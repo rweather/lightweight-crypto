@@ -8,7 +8,7 @@ submissions to the [NIST lightweight cryptography competition](https://csrc.nist
 The implementations here are focused on efficient implementation for 32-bit
 embedded architectures, particularly ARM.  The reference code from the NIST
 web site by contrast is focused on correctness and amenity to academic
-crytanalysis.
+cryptanalysis.
 
 Note: I don't provide any implementations for 8-bit microprocessors like the
 AVR chips in low end Arduino devices.  This is because the embedded space is
@@ -62,12 +62,13 @@ shouldn't rely upon that to make your system secure.  For stream-based
 connections the packet number can be used as the nonce.  For datagram-based
 connections, the nonce can be prepended to the packet when it is transmitted.
 
-Block size
-----------
+No AES
+------
 
-All of the algorithms that I chose for this library use a 128-bit block size
-or better.  Some of the NIST submissions use a 64-bit block size which is
-simply too small to be considered secure due to the birthday paradox.
+Some of the submissions to NIST use AES as the inner block cipher in the
+AEAD implementation.  I haven't implemented any of those variants.  AES is
+notoriously difficult to implement in software in a manner that avoids
+cache timing attacks.  It is best to ignore AES and do something else.
 
 Performance comparisons
 -----------------------
@@ -86,8 +87,8 @@ overkill.  Even if it takes a minute to encrypt one packet, it is too fast!
 
 The approach we take in this library is "ChaChaPoly Units".  The library
 contains a reasonably efficient 32-bit non-vectorized implementation of
-the ChaChaPoly AEAD scheme that we will not be optimising any further.
-This makes it a known quanitity to compare with other algorithms side by side.
+the ChaChaPoly AEAD scheme from my Arduino cryptography library.  This
+makes it a known quanitity to compare with other algorithms side by side.
 
 If an algorithm is measured at 0.8 ChaChaPoly Units on a specific embedded
 microprocessor at a specific clock speed, then that means that it is
