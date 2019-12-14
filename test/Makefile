@@ -27,7 +27,7 @@ clean:
 check: $(TARGET1)
 	./$(TARGET1)
 
-test-gift128.o: ../src/gift128.h test-cipher.h
+test-gift128.o: ../src/internal-gift128.h test-cipher.h
 test-skinny128.o: ../src/internal-skinny128.h test-cipher.h
 test-cipher.o: test-cipher.h
 test-main.o: test-cipher.h

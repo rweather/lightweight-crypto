@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "gift128.h"
+#include "internal-gift128.h"
 #include "util-rotate.h"
 #include "util-load-store.h"
 

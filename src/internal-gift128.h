@@ -20,8 +20,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GIFT128_H
-#define GIFT128_H
+#ifndef LW_INTERNAL_GIFT128_H
+#define LW_INTERNAL_GIFT128_H
 
 /**
  * \file gift128.h
