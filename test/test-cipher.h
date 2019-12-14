@@ -44,11 +44,11 @@ typedef struct
 } block_cipher_t;
 
 /* Information about a test vector for a 128-bit block cipher,
- * with variable key sizes up to 256-bit */
+ * with variable key sizes up to 384-bit */
 typedef struct
 {
     const char *name;
-    unsigned char key[32];
+    unsigned char key[48];
     unsigned key_len;
     unsigned char plaintext[16];
     unsigned char ciphertext[16];

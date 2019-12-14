@@ -23,9 +23,11 @@
 #include "test-cipher.h"
 
 void test_gift128(void);
+void test_skinny128(void);
 
 int main(int argc, char *argv[])
 {
     test_gift128();
+    test_skinny128();
     return test_exit_result;
 }

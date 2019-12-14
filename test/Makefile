@@ -11,7 +11,8 @@ TARGET1 = test-ciphers
 OBJS1 = \
     test-cipher.o \
     test-main.o \
-    test-gift128.o
+    test-gift128.o \
+    test-skinny128.o
 
 DEPS = ../src/libcryptolw.a
 
@@ -27,5 +28,6 @@ check: $(TARGET1)
 	./$(TARGET1)
 
 test-gift128.o: ../src/gift128.h test-cipher.h
+test-skinny128.o: ../src/internal-skinny128.h test-cipher.h
 test-cipher.o: test-cipher.h
 test-main.o: test-cipher.h
