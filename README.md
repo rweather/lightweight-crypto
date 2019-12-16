@@ -17,6 +17,21 @@ quickly coalescing on 32-bit architectures with the cost and power budget of
 algorithm selection is made, 8-bit and 16-bit architectures won't be an
 issue any more for embedded applications that require security.
 
+Source directories
+------------------
+
+The primary source for all algorithms is in the "src/combined" directory,
+which makes it easier to share common building blocks between algorithms
+and to test all of the algorithms as a set.
+
+If you want to use a specific algorithm in your project, you should instead
+copy the source files under "src/individual/ALG" where "ALG" is the name
+of the algorithm you require.
+
+The build rule "make individual" can be used to copy the relevant files
+under "src/combined" to subdirectories of "src/individual" after you
+make a change to the source in "src/combined".
+
 Hardware vs software implementations
 ------------------------------------
 

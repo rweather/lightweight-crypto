@@ -1,5 +1,5 @@
 
-.PHONY: all clean check perf
+.PHONY: all clean check perf individual
 
 all:
 	(cd src; $(MAKE) all)
@@ -19,3 +19,6 @@ check:
 perf:
 	(cd src; $(MAKE) all)
 	(cd test; $(MAKE) perf)
+
+individual:
+	(cd src/individual; $(MAKE) all)
