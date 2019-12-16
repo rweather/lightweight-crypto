@@ -25,6 +25,14 @@
 
 #include <stdint.h>
 
+#if defined(__x86_64) || defined(__x86_64__) || \
+    defined(__i386) || defined(__i386__) || \
+    defined(__arm) || defined(__arm__)
+/* Defined if the platform is known to be little-endian.  May not actually
+ * be big-endian if this isn't defined.  We simply don't know the endianness */
+#define LW_UTIL_LITTLE_ENDIAN 1
+#endif
+
 /* Helper macros to load and store values while converting endian-ness */
 
 /* Load a big-endian 32-bit word from a byte buffer */
