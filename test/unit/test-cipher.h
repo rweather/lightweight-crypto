@@ -23,6 +23,7 @@
 #ifndef TEST_CIPHER_H
 #define TEST_CIPHER_H
 
+#include "aead-common.h"
 #include <stddef.h>
 
 typedef int (*block_cipher_init_t)
@@ -55,6 +56,26 @@ typedef struct
 
 } block_cipher_test_vector_128_t;
 
+#define AEAD_MAX_KEY_LEN 32
+#define AEAD_MAX_NONCE_LEN 16
+#define AEAD_MAX_AD_LEN 32
+#define AEAD_MAX_DATA_LEN 32
+#define AEAD_MAX_TAG_LEN 16
+
+/* Information about a test vector for an AEAD algorithm */
+typedef struct
+{
+    const char *name;
+    unsigned char key[AEAD_MAX_KEY_LEN];
+    unsigned char nonce[AEAD_MAX_NONCE_LEN];
+    unsigned char ad[AEAD_MAX_AD_LEN];
+    unsigned ad_len;
+    unsigned char ciphertext[AEAD_MAX_DATA_LEN + AEAD_MAX_TAG_LEN];
+    unsigned char plaintext[AEAD_MAX_DATA_LEN];
+    unsigned plaintext_len;
+
+} aead_cipher_test_vector_t;
+
 /* Value to return from the main() function for the test result */
 extern int test_exit_result;
 
@@ -68,5 +89,16 @@ void test_block_cipher_end(const block_cipher_t *cipher);
 void test_block_cipher_128
     (const block_cipher_t *cipher,
      const block_cipher_test_vector_128_t *test_vector);
+
+/* Start a batch of tests on an AEAD cipher */
+void test_aead_cipher_start(const aead_cipher_t *cipher);
+
+/* Ends a batch of tests on an AEAD cipher */
+void test_aead_cipher_end(const aead_cipher_t *cipher);
+
+/* Tests an AEAD cipher */
+void test_aead_cipher
+    (const aead_cipher_t *cipher,
+     const aead_cipher_test_vector_t *test_vector);
 
 #endif

@@ -23,14 +23,14 @@
 #ifndef LWCRYPTO_GIMLI24_H
 #define LWCRYPTO_GIMLI24_H
 
+#include "aead-common.h"
+
 /**
  * \file gimli24.h
  * \brief GIMLI encryption algorithm with 24 rounds.
  *
  * References: https://gimli.cr.yp.to/
  */
-
-#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -52,43 +52,14 @@ extern "C" {
 #define GIMLI24_TAG_SIZE 16
 
 /**
- * \brief Simple encryption and authentication of a packet with GIMLI-24.
- *
- * \param ciphertext Buffer to receive the ciphertext output.
- * \param ciphertext_max Maximum number of bytes in the output buffer,
- * which must be at least \a plaintext_len + GIMLI24_TAG_SIZE.
- * \param plaintext Buffer that contains the plaintext to encrypt.
- * \param plaintext_len Length of the plaintext in bytes.
- * \param seq_num The 32-bit packet sequence number, which must be
- * different for every packet.
- * \param key Points to the key to use to encrypt the packet.
- * \param key_len Length of the key in bytes, which must be GIMLI24_KEY_SIZE.
- *
- * \return The number of bytes that were written to \a ciphertext which
- * includes the encrypted plaintext and the 16 byte authentication tag.
- * Returns zero if the parameters are invalid in some fashion.
- *
- * This function is simpler than gimli24_aead_encrypt() in that it dispenses
- * with the associated data and uses a simple 32-bit sequence number
- * instead of a nonce.  The sequence number is encoded into the 128-bit
- * nonce as a little-endian 32-bit value padded with zeroes.
- *
- * It is incredibly important that the sequence number be different
- * for every packet that is encrypted under the same key.  The simplest
- * is to increment the sequence number after every packet.  The application
- * must change to a new key before 32-bit overflow occurs.
- *
- * \sa gimli24_decrypt_packet(), gimli24_aead_encrypt()
+ * \brief Size of the hash output for GIMLI-24.
  */
-size_t gimli24_encrypt_packet
-    (unsigned char *ciphertext, size_t ciphertext_max,
-     const unsigned char *plaintext, size_t plaintext_len,
-     unsigned long seq_num, const unsigned char *key, size_t key_len);
+#define GIMLI24_HASH_SIZE 32
 
-size_t gimli24_decrypt_packet
-    (unsigned char *plaintext, size_t plaintext_max,
-     const unsigned char *ciphertext, size_t ciphertext_len,
-     unsigned long seq_num, const unsigned char *key, size_t key_len);
+/**
+ * \brief Meta-information block for the GIMLI-24 cipher.
+ */
+extern aead_cipher_t const gimli24_cipher;
 
 /**
  * \brief Encrypts and authenticates a packet with GIMLI-24 using the
@@ -110,7 +81,7 @@ size_t gimli24_decrypt_packet
  * \return 0 on success, or a negative value if there was an error in
  * the parameters.
  *
- * \sa gimli24_aead_decrypt(), gimli24_encrypt_packet()
+ * \sa gimli24_aead_decrypt()
  */
 int gimli24_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
@@ -141,7 +112,7 @@ int gimli24_aead_encrypt
  * \return 0 on success, -1 if the authentication tag was incorrect,
  * or some other negative number if there was an error in the parameters.
  *
- * \sa gimli24_aead_encrypt(), gimli24_decrypt_packet()
+ * \sa gimli24_aead_encrypt()
  */
 int gimli24_aead_decrypt
     (unsigned char *m, unsigned long long *mlen,
@@ -150,6 +121,20 @@ int gimli24_aead_decrypt
      const unsigned char *ad, unsigned long long adlen,
      const unsigned char *npub,
      const unsigned char *k);
+
+/**
+ * \brief Hashes a block of input data with GIMLI-24 to generate a hash value.
+ *
+ * \param out Buffer to receive the hash output which must be at least
+ * GIMLI24_HASH_SIZE bytes in length.
+ * \param in Points to the input data to be hashed.
+ * \param inlen Length of the input data in bytes.
+ *
+ * \return Returns zero on success or -1 if there was an error in the
+ * parameters.
+ */
+int gimli24_hash
+    (unsigned char *out, const unsigned char *in, unsigned long long inlen);
 
 #ifdef __cplusplus
 }
