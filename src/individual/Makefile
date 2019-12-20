@@ -4,9 +4,7 @@ SRCDIR = ../combined
 COMMON_FILES = \
 	aead-common.h \
 	aead-common.c \
-	util-aead.h \
-	util-load-store.h \
-	util-rotate.h
+	internal-util.h
 
 GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
 

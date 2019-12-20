@@ -24,7 +24,7 @@
 #define LW_INTERNAL_GIFT128_H
 
 /**
- * \file gift128.h
+ * \file internal-gift128.h
  * \brief GIFT-128 block cipher.
  *
  * There are two versions of GIFT-128 in use within the second round

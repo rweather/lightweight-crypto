@@ -28,6 +28,6 @@ individual:
 	(cd ../individual ; $(MAKE) all)
 
 aead-common.o: aead-common.h
-gimli24.o: gimli24.h aead-common.h util-aead.h util-load-store.h util-rotate.h
-internal-gift128.o: internal-gift128.h util-load-store.h util-rotate.h
-internal-skinny128.o: internal-skinny128.h util-load-store.h util-rotate.h
+gimli24.o: gimli24.h aead-common.h internal-util.h
+internal-gift128.o: internal-gift128.h internal-util.h
+internal-skinny128.o: internal-skinny128.h internal-util.h

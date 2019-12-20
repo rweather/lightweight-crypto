@@ -21,17 +21,7 @@
  */
 
 #include "internal-skinny128.h"
-#include "util-rotate.h"
-#include "util-load-store.h"
-
-/* Figure out how to inline functions using this C compiler */
-#if defined(__STDC__) && __STDC_VERSION__ >= 199901L
-#define STATIC_INLINE static inline
-#elif defined(__GNUC__) || defined(__clang__)
-#define STATIC_INLINE static __inline__
-#else
-#define STATIC_INLINE static
-#endif
+#include "internal-util.h"
 
 STATIC_INLINE uint32_t skinny128_LFSR2(uint32_t x)
 {

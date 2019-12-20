@@ -25,6 +25,7 @@
 
 #include "aead-common.h"
 #include <stddef.h>
+#include <stdint.h>
 
 typedef int (*block_cipher_init_t)
     (void *ks, const unsigned char *key, size_t key_len);

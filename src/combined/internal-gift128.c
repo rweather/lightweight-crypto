@@ -21,8 +21,7 @@
  */
 
 #include "internal-gift128.h"
-#include "util-rotate.h"
-#include "util-load-store.h"
+#include "internal-util.h"
 
 /* Round constants for GIFT-128 */
 static uint8_t const GIFT128_RC[40] = {

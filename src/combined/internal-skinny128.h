@@ -24,7 +24,7 @@
 #define LW_INTERNAL_SKINNY128_H
 
 /**
- * \file skinny128.h
+ * \file internal-skinny128.h
  * \brief SKINNY-128 block cipher family.
  *
  * References: https://eprint.iacr.org/2016/660.pdf,

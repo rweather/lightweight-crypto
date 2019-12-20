@@ -20,10 +20,129 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LW_UTIL_ROTATE_H
-#define LW_UTIL_ROTATE_H
+#ifndef LW_INTERNAL_UTIL_H
+#define LW_INTERNAL_UTIL_H
 
 #include <stdint.h>
+
+/* Figure out how to inline functions using this C compiler */
+#if defined(__STDC__) && __STDC_VERSION__ >= 199901L
+#define STATIC_INLINE static inline
+#elif defined(__GNUC__) || defined(__clang__)
+#define STATIC_INLINE static __inline__
+#else
+#define STATIC_INLINE static
+#endif
+
+#if defined(__x86_64) || defined(__x86_64__) || \
+    defined(__i386) || defined(__i386__) || \
+    defined(__arm) || defined(__arm__)
+/* Defined if the platform is known to be little-endian.  May not actually
+ * be big-endian if this isn't defined.  We simply don't know the endianness */
+#define LW_UTIL_LITTLE_ENDIAN 1
+#endif
+
+/* Helper macros to load and store values while converting endian-ness */
+
+/* Load a big-endian 32-bit word from a byte buffer */
+#define be_load_word32(ptr) \
+    ((((uint32_t)((ptr)[0])) << 24) | \
+     (((uint32_t)((ptr)[1])) << 16) | \
+     (((uint32_t)((ptr)[2])) << 8) | \
+      ((uint32_t)((ptr)[3])))
+
+/* Store a big-endian 32-bit word into a byte buffer */
+#define be_store_word32(ptr, _x) \
+    do { \
+        uint32_t x = (_x); \
+        (ptr)[0] = (uint8_t)(x >> 24); \
+        (ptr)[1] = (uint8_t)(x >> 16); \
+        (ptr)[2] = (uint8_t)(x >> 8); \
+        (ptr)[3] = (uint8_t)x; \
+    } while (0)
+
+/* Load a little-endian 32-bit word from a byte buffer */
+#define le_load_word32(ptr) \
+    ((((uint32_t)((ptr)[3])) << 24) | \
+     (((uint32_t)((ptr)[2])) << 16) | \
+     (((uint32_t)((ptr)[1])) << 8) | \
+      ((uint32_t)((ptr)[0])))
+
+/* Store a little-endian 32-bit word into a byte buffer */
+#define le_store_word32(ptr, _x) \
+    do { \
+        uint32_t x = (_x); \
+        (ptr)[0] = (uint8_t)x; \
+        (ptr)[1] = (uint8_t)(x >> 8); \
+        (ptr)[2] = (uint8_t)(x >> 16); \
+        (ptr)[3] = (uint8_t)(x >> 24); \
+    } while (0)
+
+/* XOR a source byte buffer against a destination */
+STATIC_INLINE void lw_xor_block
+    (unsigned char *dest, const unsigned char *src, unsigned len)
+{
+    while (len > 0) {
+        *dest++ ^= *src++;
+        --len;
+    }
+}
+
+/* XOR two source byte buffers and put the result in a destination buffer */
+STATIC_INLINE void lw_xor_block_2_src
+    (unsigned char *dest, const unsigned char *src1,
+     const unsigned char *src2, unsigned len)
+{
+    while (len > 0) {
+        *dest++ = *src1++ ^ *src2++;
+        --len;
+    }
+}
+
+/* XOR a source byte buffer against a destination and write to another
+ * destination at the same time */
+STATIC_INLINE void lw_xor_block_2_dest
+    (unsigned char *dest2, unsigned char *dest,
+     const unsigned char *src, unsigned len)
+{
+    while (len > 0) {
+        *dest2++ = (*dest++ ^= *src++);
+        --len;
+    }
+}
+
+/* XOR a source byte buffer against a destination and write to another
+ * destination at the same time.  This version swaps the source value
+ * into the "dest" buffer */
+STATIC_INLINE void lw_xor_block_swap
+    (unsigned char *dest2, unsigned char *dest,
+     const unsigned char *src, unsigned len)
+{
+    while (len > 0) {
+        unsigned char temp = *src++;
+        *dest2++ = *dest ^ temp;
+        *dest++ = temp;
+        --len;
+    }
+}
+
+/* Check an authentication tag in constant time.  Returns -1 if the
+ * tag check failed or "ok" if the check succeeded */
+STATIC_INLINE int lw_check_tag
+    (const unsigned char *actual, const unsigned char *expected,
+     unsigned size, int ok)
+{
+    /* Set "accum" to -1 if the tags match, or 0 if they don't match */
+    int accum = 0;
+    while (size > 0) {
+        accum |= (*actual++ ^ *expected++);
+        --size;
+    }
+    accum = (accum - 1) >> 16;
+
+    /* If "accum" is 0, return -1, otherwise return "ok" */
+    return ok | ~accum;
+}
 
 /* Rotation macros for 32-bit arguments */
 

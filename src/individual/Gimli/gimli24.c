@@ -21,9 +21,7 @@
  */
 
 #include "gimli24.h"
-#include "util-aead.h"
-#include "util-load-store.h"
-#include "util-rotate.h"
+#include "internal-util.h"
 #include <string.h>
 
 aead_cipher_t const gimli24_cipher = {
