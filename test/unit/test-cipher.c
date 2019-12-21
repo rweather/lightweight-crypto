@@ -265,3 +265,35 @@ void test_aead_cipher
         test_exit_result = 1;
     }
 }
+
+void test_hash_start(const aead_hash_algorithm_t *hash)
+{
+    if (first_test) {
+        printf("\n");
+        first_test = 0;
+    }
+    printf("%s:\n", hash->name);
+}
+
+void test_hash_end(const aead_hash_algorithm_t *hash)
+{
+    printf("\n");
+}
+
+void test_hash
+    (const aead_hash_algorithm_t *hash,
+     const aead_hash_test_vector_t *test_vector)
+{
+    unsigned char output[AEAD_MAX_HASH_LEN];
+
+    printf("    %s ... ", test_vector->name);
+    fflush(stdout);
+
+    (*hash->hash)(output, test_vector->input, test_vector->input_len);
+    if (test_memcmp(output, test_vector->hash, hash->hash_len) == 0) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+}

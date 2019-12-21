@@ -9,7 +9,9 @@ LIBRARY = libcryptolw.a
 
 OBJS = \
 	aead-common.o \
+        ascon128.o \
 	gimli24.o \
+	internal-ascon.o \
 	internal-gift128.o \
 	internal-skinny128.o
 
@@ -28,6 +30,8 @@ individual:
 	(cd ../individual ; $(MAKE) all)
 
 aead-common.o: aead-common.h
+ascon128.o: ascon128.h internal-ascon.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
+internal-ascon.o: internal-ascon.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h

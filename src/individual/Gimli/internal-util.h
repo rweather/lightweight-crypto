@@ -34,12 +34,23 @@
 #define STATIC_INLINE static
 #endif
 
+/* Try to figure out whether the CPU is little-endian or big-endian.
+ * May need to modify this to include new compiler-specific defines.
+ * Alternatively, define __LITTLE_ENDIAN__ or __BIG_ENDIAN__ in your
+ * compiler flags when you compile this library */
 #if defined(__x86_64) || defined(__x86_64__) || \
     defined(__i386) || defined(__i386__) || \
-    defined(__arm) || defined(__arm__)
-/* Defined if the platform is known to be little-endian.  May not actually
- * be big-endian if this isn't defined.  We simply don't know the endianness */
+    defined(__AVR__) || defined(__arm) || defined(__arm__) || \
+    defined(_M_AMD64) || defined(_M_X64) || defined(_M_IX86) || \
+    defined(_M_IA64) || defined(_M_ARM) || defined(_M_ARM_FP) || \
+    (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == 1234) || \
+    defined(__LITTLE_ENDIAN__)
 #define LW_UTIL_LITTLE_ENDIAN 1
+#elif (defined(__BYTE_ORDER__) && __BYTE_ORDER__ == 4321) || \
+    defined(__BIG_ENDIAN__)
+/* Big endian */
+#else
+#error "Cannot determine the endianess of this platform"
 #endif
 
 /* Helper macros to load and store values while converting endian-ness */
@@ -76,6 +87,56 @@
         (ptr)[1] = (uint8_t)(x >> 8); \
         (ptr)[2] = (uint8_t)(x >> 16); \
         (ptr)[3] = (uint8_t)(x >> 24); \
+    } while (0)
+
+/* Load a big-endian 64-bit word from a byte buffer */
+#define be_load_word64(ptr) \
+    ((((uint64_t)((ptr)[0])) << 56) | \
+     (((uint64_t)((ptr)[1])) << 48) | \
+     (((uint64_t)((ptr)[2])) << 40) | \
+     (((uint64_t)((ptr)[3])) << 32) | \
+     (((uint64_t)((ptr)[4])) << 24) | \
+     (((uint64_t)((ptr)[5])) << 16) | \
+     (((uint64_t)((ptr)[6])) << 8) | \
+      ((uint64_t)((ptr)[7])))
+
+/* Store a big-endian 64-bit word into a byte buffer */
+#define be_store_word64(ptr, _x) \
+    do { \
+        uint64_t x = (_x); \
+        (ptr)[0] = (uint8_t)(x >> 56); \
+        (ptr)[1] = (uint8_t)(x >> 48); \
+        (ptr)[2] = (uint8_t)(x >> 40); \
+        (ptr)[3] = (uint8_t)(x >> 32); \
+        (ptr)[4] = (uint8_t)(x >> 24); \
+        (ptr)[5] = (uint8_t)(x >> 16); \
+        (ptr)[6] = (uint8_t)(x >> 8); \
+        (ptr)[7] = (uint8_t)x; \
+    } while (0)
+
+/* Load a little-endian 64-bit word from a byte buffer */
+#define le_load_word64(ptr) \
+    ((((uint64_t)((ptr)[7])) << 56) | \
+     (((uint64_t)((ptr)[6])) << 48) | \
+     (((uint64_t)((ptr)[5])) << 40) | \
+     (((uint64_t)((ptr)[4])) << 32) | \
+     (((uint64_t)((ptr)[3])) << 24) | \
+     (((uint64_t)((ptr)[2])) << 16) | \
+     (((uint64_t)((ptr)[1])) << 8) | \
+      ((uint64_t)((ptr)[0])))
+
+/* Store a little-endian 64-bit word into a byte buffer */
+#define le_store_word64(ptr, _x) \
+    do { \
+        uint64_t x = (_x); \
+        (ptr)[0] = (uint8_t)x; \
+        (ptr)[1] = (uint8_t)(x >> 8); \
+        (ptr)[2] = (uint8_t)(x >> 16); \
+        (ptr)[3] = (uint8_t)(x >> 24); \
+        (ptr)[4] = (uint8_t)(x >> 32); \
+        (ptr)[5] = (uint8_t)(x >> 40); \
+        (ptr)[6] = (uint8_t)(x >> 48); \
+        (ptr)[7] = (uint8_t)(x >> 56); \
     } while (0)
 
 /* XOR a source byte buffer against a destination */

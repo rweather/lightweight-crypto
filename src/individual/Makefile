@@ -7,10 +7,14 @@ COMMON_FILES = \
 	internal-util.h
 
 GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
+ASCON_FILES = ascon128.c ascon128.h internal-ascon.c internal-ascon.h $(COMMON_FILES)
 
-.PHONY: all gimli
+.PHONY: all gimli ascon
 
-all: gimli
+all: gimli ascon
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
+
+ascon:
+	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON

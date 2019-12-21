@@ -20,18 +20,45 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "test-cipher.h"
+#ifndef LW_INTERNAL_ASCON_H
+#define LW_INTERNAL_ASCON_H
 
-void test_ascon128(void);
-void test_gift128(void);
-void test_gimli24(void);
-void test_skinny128(void);
+#include "internal-util.h"
 
-int main(int argc, char *argv[])
+/**
+ * \file internal-ascon.h
+ * \brief Internal implementation of the ASCON permutation.
+ *
+ * References: http://competitions.cr.yp.to/round3/asconv12.pdf,
+ * http://ascon.iaik.tugraz.at/
+ */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * \brief Structure of the internal state of the ASCON permutation.
+ */
+typedef union
 {
-    test_ascon128();
-    test_gift128();
-    test_gimli24();
-    test_skinny128();
-    return test_exit_result;
+    uint64_t S[5];      /**< Words of the state */
+    uint8_t B[40];      /**< Bytes of the state */
+
+} ascon_state_t;
+
+/**
+ * \brief Permutes the ASCON state.
+ *
+ * \param state The ASCON state to be permuted.
+ * \param first_round The first round (of 12) to be performed; 0, 4, or 6.
+ *
+ * The input and output \a state will be in big-endian byte order.
+ */
+void ascon_permute(ascon_state_t *state, uint8_t first_round);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

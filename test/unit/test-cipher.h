@@ -62,6 +62,7 @@ typedef struct
 #define AEAD_MAX_AD_LEN 32
 #define AEAD_MAX_DATA_LEN 32
 #define AEAD_MAX_TAG_LEN 16
+#define AEAD_MAX_HASH_LEN 32
 
 /* Information about a test vector for an AEAD algorithm */
 typedef struct
@@ -76,6 +77,16 @@ typedef struct
     unsigned plaintext_len;
 
 } aead_cipher_test_vector_t;
+
+/* Information about a test vector for a hash algorithm */
+typedef struct
+{
+    const char *name;
+    unsigned char hash[AEAD_MAX_HASH_LEN];
+    unsigned char input[AEAD_MAX_DATA_LEN];
+    unsigned input_len;
+
+} aead_hash_test_vector_t;
 
 /* Value to return from the main() function for the test result */
 extern int test_exit_result;
@@ -101,5 +112,16 @@ void test_aead_cipher_end(const aead_cipher_t *cipher);
 void test_aead_cipher
     (const aead_cipher_t *cipher,
      const aead_cipher_test_vector_t *test_vector);
+
+/* Start a batch of tests on a hash algorithm */
+void test_hash_start(const aead_hash_algorithm_t *hash);
+
+/* Ends a batch of tests on a hash algorithm */
+void test_hash_end(const aead_hash_algorithm_t *hash);
+
+/* Tests a hash algorithm */
+void test_hash
+    (const aead_hash_algorithm_t *hash,
+     const aead_hash_test_vector_t *test_vector);
 
 #endif
