@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Southern Storm Software, Pty Ltd.
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -22,6 +22,8 @@
 
 #ifndef LWCRYPTO_AEAD_COMMON_H
 #define LWCRYPTO_AEAD_COMMON_H
+
+#include <stddef.h>
 
 /**
  * \file aead-common.h
@@ -90,6 +92,66 @@ typedef int (*aead_cipher_decrypt_t)
      const unsigned char *k);
 
 /**
+ * \brief Hashes a block of input data.
+ *
+ * \param out Buffer to receive the hash output.
+ * \param in Points to the input data to be hashed.
+ * \param inlen Length of the input data in bytes.
+ *
+ * \return Returns zero on success or -1 if there was an error in the
+ * parameters.
+ */
+typedef int (*aead_hash_t)
+    (unsigned char *out, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Initializes the state for a hashing operation.
+ *
+ * \param state Hash state to be initialized.
+ */
+typedef void (*aead_hash_init_t)(void *state);
+
+/**
+ * \brief Updates a hash state with more input data.
+ *
+ * \param state Hash state to be updated.
+ * \param in Points to the input data to be incorporated into the state.
+ * \param inlen Length of the input data to be incorporated into the state.
+ */
+typedef void (*aead_hash_update_t)
+    (void *state, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Returns the final hash value from a hashing operation.
+ *
+ * \param Hash state to be finalized.
+ * \param out Points to the output buffer to receive the hash value.
+ */
+typedef void (*aead_hash_finalize_t)(void *state, unsigned char *out);
+
+/**
+ * \brief Aborbs more input data into an XOF state.
+ *
+ * \param state XOF state to be updated.
+ * \param in Points to the input data to be absorbed into the state.
+ * \param inlen Length of the input data to be absorbed into the state.
+ *
+ * \sa ascon_xof_init(), ascon_xof_squeeze()
+ */
+typedef void (*aead_xof_absorb_t)
+    (void *state, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Squeezes output data from an XOF state.
+ *
+ * \param state XOF state to squeeze the output data from.
+ * \param out Points to the output buffer to receive the squeezed data.
+ * \param outlen Number of bytes of data to squeeze out of the state.
+ */
+typedef void (*aead_xof_squeeze_t)
+    (void *state, unsigned char *out, unsigned long long outlen);
+
+/**
  * \brief No special AEAD features.
  */
 #define AEAD_FLAG_NONE          0x0000
@@ -120,6 +182,28 @@ typedef struct
     aead_cipher_decrypt_t decrypt;  /**< AEAD decryption function */
 
 } aead_cipher_t;
+
+/**
+ * \brief Meta-information about a hash algorithm that is related to an AEAD.
+ *
+ * Regular hash algorithms should provide the "hash", "init", "update",
+ * and "finalize" functions.  Extensible Output Functions (XOF's) should
+ * proivde the "hash", "init", "absorb", and "squeeze" functions.
+ */
+typedef struct
+{
+    const char *name;           /**< Name of the hash algorithm */
+    size_t state_size;          /**< Size of the incremental state structure */
+    unsigned hash_len;          /**< Length of the hash in bytes */
+    unsigned flags;             /**< Flags for extra features */
+    aead_hash_t hash;           /**< All in one hashing function */
+    aead_hash_init_t init;      /**< Incremental hash/XOF init function */
+    aead_hash_update_t update;  /**< Incremental hash update function */
+    aead_hash_finalize_t finalize; /**< Incremental hash finalize function */
+    aead_xof_absorb_t absorb;   /**< Incremental XOF absorb function */
+    aead_xof_squeeze_t squeeze; /**< Incremental XOF squeeze function */
+
+} aead_hash_algorithm_t;
 
 /**
  * \brief Simple encryption and authentication of a packet with an AEAD scheme.

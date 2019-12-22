@@ -7,7 +7,14 @@ COMMON_FILES = \
 	internal-util.h
 
 GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
-ASCON_FILES = ascon128.c ascon128.h internal-ascon.c internal-ascon.h $(COMMON_FILES)
+ASCON_FILES = \
+    ascon128.c \
+    ascon128.h \
+    ascon-hash.c \
+    ascon-xof.c \
+    internal-ascon.c \
+    internal-ascon.h \
+    $(COMMON_FILES)
 
 .PHONY: all gimli ascon
 

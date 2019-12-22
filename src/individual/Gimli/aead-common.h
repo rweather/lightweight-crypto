@@ -23,6 +23,8 @@
 #ifndef LWCRYPTO_AEAD_COMMON_H
 #define LWCRYPTO_AEAD_COMMON_H
 
+#include <stddef.h>
+
 /**
  * \file aead-common.h
  * \brief Definitions that are common across AEAD schemes.
@@ -90,6 +92,19 @@ typedef int (*aead_cipher_decrypt_t)
      const unsigned char *k);
 
 /**
+ * \brief Hashes a block of input data.
+ *
+ * \param out Buffer to receive the hash output.
+ * \param in Points to the input data to be hashed.
+ * \param inlen Length of the input data in bytes.
+ *
+ * \return Returns zero on success or -1 if there was an error in the
+ * parameters.
+ */
+typedef int (*aead_hash_t)
+    (unsigned char *out, const unsigned char *in, unsigned long long inlen);
+
+/**
  * \brief No special AEAD features.
  */
 #define AEAD_FLAG_NONE          0x0000
@@ -120,6 +135,19 @@ typedef struct
     aead_cipher_decrypt_t decrypt;  /**< AEAD decryption function */
 
 } aead_cipher_t;
+
+/**
+ * \brief Meta-information about a hash algorithm that is related to an AEAD.
+ */
+typedef struct
+{
+    const char *name;       /**< Name of the hash algorithm */
+    size_t state_size;      /**< Size of the incremental state structure */
+    unsigned hash_len;      /**< Length of the hash in bytes */
+    unsigned flags;         /**< Flags for extra features */
+    aead_hash_t hash;       /**< All in one hashing function */
+
+} aead_hash_algorithm_t;
 
 /**
  * \brief Simple encryption and authentication of a packet with an AEAD scheme.

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Southern Storm Software, Pty Ltd.
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -38,56 +38,6 @@
  * \brief Initialization vector for ASCON-80pq.
  */
 #define ASCON80PQ_IV    0xa0400c06U
-
-/**
- * \brief Word 0 of the ASCON-HASH initialization vector.
- */
-#define ASCON_HASH_IV0  0xee9398aadb67f03dULL
-
-/**
- * \brief Word 1 of the ASCON-HASH initialization vector.
- */
-#define ASCON_HASH_IV1  0x8bb21831c60f1002ULL
-
-/**
- * \brief Word 2 of the ASCON-HASH initialization vector.
- */
-#define ASCON_HASH_IV2  0xb48a92db98d5da62ULL
-
-/**
- * \brief Word 3 of the ASCON-HASH initialization vector.
- */
-#define ASCON_HASH_IV3  0x43189921b8f8e3e8ULL
-
-/**
- * \brief Word 4 of the ASCON-HASH initialization vector.
- */
-#define ASCON_HASH_IV4  0x348fa5c9d525e140ULL
-
-/**
- * \brief Word 0 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV0   0xb57e273b814cd416ULL
-
-/**
- * \brief Word 1 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV1   0x2b51042562ae2420ULL
-
-/**
- * \brief Word 2 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV2   0x66a3a7768ddf2218ULL
-
-/**
- * \brief Word 3 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV3   0x5aad0a7a8153650cULL
-
-/**
- * \brief Word 4 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV4   0x4f3e0e32539493b6ULL
 
 aead_cipher_t const ascon128_cipher = {
     "ASCON-128",
@@ -328,7 +278,7 @@ int ascon128a_aead_decrypt
     *mlen = clen - ASCON128_TAG_SIZE;
 
     /* Initialize the ASCON state */
-    be_store_word64(state.B, ASCON128_IV);
+    be_store_word64(state.B, ASCON128a_IV);
     memcpy(state.B + 8, k, ASCON128_KEY_SIZE);
     memcpy(state.B + 24, npub, ASCON128_NONCE_SIZE);
     ascon_permute(&state, 0);
@@ -342,10 +292,10 @@ int ascon128a_aead_decrypt
     state.B[39] ^= 0x01;
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt(&state, m, c, *mlen, 14, 4);
+    ascon_decrypt(&state, m, c, *mlen, 16, 4);
 
     /* Finalize and check the authentication tag */
-    lw_xor_block(state.B + 8, k, ASCON128_KEY_SIZE);
+    lw_xor_block(state.B + 16, k, ASCON128_KEY_SIZE);
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k, 16);
     return lw_check_tag(state.B + 24, c + *mlen, ASCON128_TAG_SIZE, 0);
@@ -370,7 +320,7 @@ int ascon80pq_aead_encrypt
     memcpy(state.B + 4, k, ASCON80PQ_KEY_SIZE);
     memcpy(state.B + 24, npub, ASCON80PQ_NONCE_SIZE);
     ascon_permute(&state, 0);
-    lw_xor_block(state.B + 24, k, ASCON80PQ_KEY_SIZE);
+    lw_xor_block(state.B + 20, k, ASCON80PQ_KEY_SIZE);
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
@@ -410,7 +360,7 @@ int ascon80pq_aead_decrypt
     memcpy(state.B + 4, k, ASCON80PQ_KEY_SIZE);
     memcpy(state.B + 24, npub, ASCON80PQ_NONCE_SIZE);
     ascon_permute(&state, 0);
-    lw_xor_block(state.B + 24, k, ASCON80PQ_KEY_SIZE);
+    lw_xor_block(state.B + 20, k, ASCON80PQ_KEY_SIZE);
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
@@ -427,28 +377,4 @@ int ascon80pq_aead_decrypt
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k + 4, 16);
     return lw_check_tag(state.B + 24, c + *mlen, ASCON80PQ_TAG_SIZE, 0);
-}
-
-int ascon_hash
-    (unsigned char *out, const unsigned char *in, unsigned long long inlen)
-{
-    static unsigned char const hash_iv[40] = {
-        0xee, 0x93, 0x98, 0xaa, 0xdb, 0x67, 0xf0, 0x3d,
-        0x8b, 0xb2, 0x18, 0x31, 0xc6, 0x0f, 0x10, 0x02,
-        0xb4, 0x8a, 0x92, 0xdb, 0x98, 0xd5, 0xda, 0x62,
-        0x43, 0x18, 0x99, 0x21, 0xb8, 0xf8, 0xe3, 0xe8,
-        0x34, 0x8f, 0xa5, 0xc9, 0xd5, 0x25, 0xe1, 0x40
-    };
-    ascon_state_t state;
-    memcpy(state.B, hash_iv, sizeof(hash_iv));
-    ascon_absorb(&state, in, inlen, 8, 0);
-    // TODO: ascon_squeeze()
-    memcpy(out, state.B, 8);
-    ascon_permute(&state, 0);
-    memcpy(out + 8, state.B, 8);
-    ascon_permute(&state, 0);
-    memcpy(out + 16, state.B, 8);
-    ascon_permute(&state, 0);
-    memcpy(out + 24, state.B, 8);
-    return 0;
 }

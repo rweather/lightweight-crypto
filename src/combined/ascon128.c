@@ -39,31 +39,6 @@
  */
 #define ASCON80PQ_IV    0xa0400c06U
 
-/**
- * \brief Word 0 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV0   0xb57e273b814cd416ULL
-
-/**
- * \brief Word 1 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV1   0x2b51042562ae2420ULL
-
-/**
- * \brief Word 2 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV2   0x66a3a7768ddf2218ULL
-
-/**
- * \brief Word 3 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV3   0x5aad0a7a8153650cULL
-
-/**
- * \brief Word 4 of the ASCON-XOF initialization vector.
- */
-#define ASCON_XOF_IV4   0x4f3e0e32539493b6ULL
-
 aead_cipher_t const ascon128_cipher = {
     "ASCON-128",
     ASCON128_KEY_SIZE,
@@ -92,13 +67,6 @@ aead_cipher_t const ascon80pq_cipher = {
     AEAD_FLAG_NONE,
     ascon80pq_aead_encrypt,
     ascon80pq_aead_decrypt
-};
-
-aead_hash_algorithm_t const ascon_hash_algorithm = {
-    "ASCON-HASH",
-    ASCON_HASH_SIZE,
-    AEAD_FLAG_NONE,
-    ascon_hash
 };
 
 /**
@@ -409,26 +377,4 @@ int ascon80pq_aead_decrypt
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k + 4, 16);
     return lw_check_tag(state.B + 24, c + *mlen, ASCON80PQ_TAG_SIZE, 0);
-}
-
-int ascon_hash
-    (unsigned char *out, const unsigned char *in, unsigned long long inlen)
-{
-    static unsigned char const hash_iv[40] = {
-        0xee, 0x93, 0x98, 0xaa, 0xdb, 0x67, 0xf0, 0x3d,
-        0x8b, 0xb2, 0x18, 0x31, 0xc6, 0x0f, 0x10, 0x02,
-        0xb4, 0x8a, 0x92, 0xdb, 0x98, 0xd5, 0xda, 0x62,
-        0x43, 0x18, 0x99, 0x21, 0xb8, 0xf8, 0xe3, 0xe8,
-        0x34, 0x8f, 0xa5, 0xc9, 0xd5, 0x25, 0xe1, 0x40
-    };
-    ascon_state_t state;
-    unsigned posn;
-    memcpy(state.B, hash_iv, sizeof(hash_iv));
-    ascon_absorb(&state, in, inlen, 8, 0);
-    memcpy(out, state.B, 8);
-    for (posn = 8; posn < 32; posn += 8) {
-        ascon_permute(&state, 0);
-        memcpy(out + posn, state.B, 8);
-    }
-    return 0;
 }

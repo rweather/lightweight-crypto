@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Southern Storm Software, Pty Ltd.
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -84,6 +84,20 @@ extern "C" {
 #define ASCON_HASH_SIZE 32
 
 /**
+ * \brief State information for ASCON-HASH and ASCON-XOF incremental modes.
+ */
+typedef union
+{
+    struct {
+        unsigned char state[40]; /**< Current hash state */
+        unsigned char count;     /**< Number of bytes in the current block */
+        unsigned char mode;      /**< Hash mode: 0 for absorb, 1 for squeeze */
+    } s;
+    unsigned long long align;    /**< For alignment of this structure */
+
+} ascon_hash_state_t;
+
+/**
  * \brief Meta-information block for the ASCON-128 cipher.
  */
 extern aead_cipher_t const ascon128_cipher;
@@ -97,6 +111,16 @@ extern aead_cipher_t const ascon128a_cipher;
  * \brief Meta-information block for the ASCON-80pq cipher.
  */
 extern aead_cipher_t const ascon80pq_cipher;
+
+/**
+ * \brief Meta-information block for the ASCON-HASH algorithm.
+ */
+extern aead_hash_algorithm_t const ascon_hash_algorithm;
+
+/**
+ * \brief Meta-information block for the ASCON-XOF algorithm.
+ */
+extern aead_hash_algorithm_t const ascon_xof_algorithm;
 
 /**
  * \brief Encrypts and authenticates a packet with ASCON-128.
@@ -285,9 +309,97 @@ int ascon80pq_aead_decrypt
  *
  * \return Returns zero on success or -1 if there was an error in the
  * parameters.
+ *
+ * \sa ascon_hash_init(), ascon_hash_absorb(), ascon_hash_squeeze()
  */
 int ascon_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Initializes the state for an ASCON-HASH hashing operation.
+ *
+ * \param state Hash state to be initialized.
+ *
+ * \sa ascon_hash_update(), ascon_hash_finalize(), ascon_hash()
+ */
+void ascon_hash_init(ascon_hash_state_t *state);
+
+/**
+ * \brief Updates an ASCON-HASH state with more input data.
+ *
+ * \param state Hash state to be updated.
+ * \param in Points to the input data to be incorporated into the state.
+ * \param inlen Length of the input data to be incorporated into the state.
+ *
+ * \sa ascon_hash_init(), ascon_hash_finalize()
+ */
+void ascon_hash_update
+    (ascon_hash_state_t *state, const unsigned char *in,
+     unsigned long long inlen);
+
+/**
+ * \brief Returns the final hash value from an ASCON-HASH hashing operation.
+ *
+ * \param Hash state to be finalized.
+ * \param out Points to the output buffer to receive the 32-bit hash value.
+ *
+ * \sa ascon_hash_init(), ascon_hash_update()
+ */
+void ascon_hash_finalize
+    (ascon_hash_state_t *state, unsigned char *out);
+
+/**
+ * \brief Hashes a block of input data with ASCON-XOF and generates a
+ * fixed-length 32 byte output.
+ *
+ * \param out Buffer to receive the hash output which must be at least
+ * ASCON_HASH_SIZE bytes in length.
+ * \param in Points to the input data to be hashed.
+ * \param inlen Length of the input data in bytes.
+ *
+ * \return Returns zero on success or -1 if there was an error in the
+ * parameters.
+ *
+ * Use ascon_xof_squeeze() instead if you need variable-length XOF ouutput.
+ *
+ * \sa ascon_xof_init(), ascon_xof_absorb(), ascon_xof_squeeze()
+ */
+int ascon_xof
+    (unsigned char *out, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Initializes the state for an ASCON-XOF hashing operation.
+ *
+ * \param state Hash state to be initialized.
+ *
+ * \sa ascon_xof_absorb(), ascon_xof_squeeze(), ascon_xof()
+ */
+void ascon_xof_init(ascon_hash_state_t *state);
+
+/**
+ * \brief Aborbs more input data into an ASCON-XOF state.
+ *
+ * \param state Hash state to be updated.
+ * \param in Points to the input data to be absorbed into the state.
+ * \param inlen Length of the input data to be absorbed into the state.
+ *
+ * \sa ascon_xof_init(), ascon_xof_squeeze()
+ */
+void ascon_xof_absorb
+    (ascon_hash_state_t *state, const unsigned char *in,
+     unsigned long long inlen);
+
+/**
+ * \brief Squeezes output data from an ASCON-XOF state.
+ *
+ * \param state Hash state to squeeze the output data from.
+ * \param out Points to the output buffer to receive the squeezed data.
+ * \param outlen Number of bytes of data to squeeze out of the state.
+ *
+ * \sa ascon_xof_init(), ascon_xof_update()
+ */
+void ascon_xof_squeeze
+    (ascon_hash_state_t *state, unsigned char *out, unsigned long long outlen);
 
 #ifdef __cplusplus
 }
