@@ -94,6 +94,7 @@ void ascon_xof_squeeze
     if (state->s.count) {
         temp = ASCON_XOF_RATE - state->s.count;
         if (temp > outlen) {
+            temp = (unsigned)outlen;
             memcpy(out, state->s.state + state->s.count, temp);
             state->s.count += temp;
             return;
