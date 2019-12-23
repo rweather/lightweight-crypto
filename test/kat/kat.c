@@ -41,6 +41,7 @@ static const aead_cipher_t *const ciphers[] = {
 static const aead_hash_algorithm_t *const hashes[] = {
     &ascon_hash_algorithm,
     &ascon_xof_algorithm,
+    &gimli24_hash_algorithm,
     0
 };
 

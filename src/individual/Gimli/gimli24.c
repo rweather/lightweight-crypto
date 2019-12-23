@@ -34,6 +34,19 @@ aead_cipher_t const gimli24_cipher = {
     gimli24_aead_decrypt
 };
 
+aead_hash_algorithm_t const gimli24_hash_algorithm = {
+    "GIMLI-24-HASH",
+    sizeof(gimli24_hash_state_t),
+    GIMLI24_HASH_SIZE,
+    AEAD_FLAG_LITTLE_ENDIAN,
+    gimli24_hash,
+    (aead_hash_init_t)gimli24_hash_init,
+    (aead_hash_update_t)gimli24_hash_absorb,
+    (aead_hash_finalize_t)gimli24_hash_finalize,
+    (aead_xof_absorb_t)gimli24_hash_absorb,
+    (aead_xof_squeeze_t)gimli24_hash_squeeze
+};
+
 /* Apply the SP-box to a specific column in the state array */
 #define GIMLI24_SP(col) \
     do { \
@@ -277,6 +290,110 @@ int gimli24_hash
     /* Generate the output hash */
     memcpy(out, state.bytes, GIMLI24_HASH_SIZE / 2);
     gimli24_permute(state.words);
-    memcpy(out, state.bytes + GIMLI24_HASH_SIZE / 2, GIMLI24_HASH_SIZE / 2);
+    memcpy(out + GIMLI24_HASH_SIZE / 2, state.bytes, GIMLI24_HASH_SIZE / 2);
     return 0;
+}
+
+void gimli24_hash_init(gimli24_hash_state_t *state)
+{
+    memset(state, 0, sizeof(gimli24_hash_state_t));
+}
+
+#define GIMLI24_XOF_RATE 16
+#define gimli24_xof_permute() \
+    gimli24_permute((uint32_t *)(state->s.state))
+
+void gimli24_hash_absorb
+    (gimli24_hash_state_t *state, const unsigned char *in,
+     unsigned long long inlen)
+{
+    unsigned temp;
+
+    if (state->s.mode) {
+        /* We were squeezing output - go back to the absorb phase */
+        state->s.mode = 0;
+        state->s.count = 0;
+        gimli24_xof_permute();
+    }
+
+    /* Handle the partial left-over block from last time */
+    if (state->s.count) {
+        temp = GIMLI24_XOF_RATE - state->s.count;
+        if (temp > inlen) {
+            temp = (unsigned)inlen;
+            lw_xor_block(state->s.state + state->s.count, in, temp);
+            state->s.count += temp;
+            return;
+        }
+        lw_xor_block(state->s.state + state->s.count, in, temp);
+        state->s.count = 0;
+        in += temp;
+        inlen -= temp;
+        gimli24_xof_permute();
+    }
+
+    /* Process full blocks that are aligned at state->s.count == 0 */
+    while (inlen >= GIMLI24_XOF_RATE) {
+        lw_xor_block(state->s.state, in, GIMLI24_XOF_RATE);
+        in += GIMLI24_XOF_RATE;
+        inlen -= GIMLI24_XOF_RATE;
+        gimli24_xof_permute();
+    }
+
+    /* Process the left-over block at the end of the input */
+    temp = (unsigned)inlen;
+    lw_xor_block(state->s.state, in, temp);
+    state->s.count = temp;
+}
+
+void gimli24_hash_squeeze
+    (gimli24_hash_state_t *state, unsigned char *out,
+     unsigned long long outlen)
+{
+    unsigned temp;
+
+    /* Pad the final input block if we were still in the absorb phase */
+    if (!state->s.mode) {
+        state->s.state[state->s.count] ^= 0x01;
+        state->s.state[47] ^= 0x01;
+        state->s.count = 0;
+        state->s.mode = 1;
+    }
+
+    /* Handle left-over partial blocks from last time */
+    if (state->s.count) {
+        temp = GIMLI24_XOF_RATE - state->s.count;
+        if (temp > outlen) {
+            temp = (unsigned)outlen;
+            memcpy(out, state->s.state + state->s.count, temp);
+            state->s.count += temp;
+            return;
+        }
+        memcpy(out, state->s.state + state->s.count, temp);
+        out += temp;
+        outlen -= temp;
+        state->s.count = 0;
+    }
+
+    /* Handle full blocks */
+    while (outlen >= GIMLI24_XOF_RATE) {
+        gimli24_xof_permute();
+        memcpy(out, state->s.state, GIMLI24_XOF_RATE);
+        out += GIMLI24_XOF_RATE;
+        outlen -= GIMLI24_XOF_RATE;
+    }
+
+    /* Handle the left-over block */
+    if (outlen > 0) {
+        temp = (unsigned)outlen;
+        gimli24_xof_permute();
+        memcpy(out, state->s.state, temp);
+        state->s.count = temp;
+    }
+}
+
+void gimli24_hash_finalize
+    (gimli24_hash_state_t *state, unsigned char *out)
+{
+    gimli24_hash_squeeze(state, out, GIMLI24_HASH_SIZE);
 }

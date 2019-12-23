@@ -57,9 +57,30 @@ extern "C" {
 #define GIMLI24_HASH_SIZE 32
 
 /**
+ * \brief State information for GIMLI-24-HASH incremental modes.
+ */
+typedef union
+{
+    struct {
+        unsigned char state[48]; /**< Current hash state */
+        unsigned char count;     /**< Number of bytes in the current block */
+        unsigned char mode;      /**< Hash mode: 0 for absorb, 1 for squeeze */
+    } s;
+    unsigned long long align;    /**< For alignment of this structure */
+
+} gimli24_hash_state_t;
+
+/**
  * \brief Meta-information block for the GIMLI-24 cipher.
  */
 extern aead_cipher_t const gimli24_cipher;
+
+/**
+ * \brief Meta-information block for the GIMLI-24-HASH algorithm.
+ *
+ * This meta-information block can also be used in XOF mode.
+ */
+extern aead_hash_algorithm_t const gimli24_hash_algorithm;
 
 /**
  * \brief Encrypts and authenticates a packet with GIMLI-24 using the
@@ -135,6 +156,55 @@ int gimli24_aead_decrypt
  */
 int gimli24_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen);
+
+/**
+ * \brief Initializes the state for a GIMLI-24-HASH hashing operation.
+ *
+ * \param state Hash state to be initialized.
+ *
+ * \sa gimli24_hash_absorb(), gimli24_hash_squeeze(), gimli24_hash()
+ */
+void gimli24_hash_init(gimli24_hash_state_t *state);
+
+/**
+ * \brief Aborbs more input data into a GIMLI-24-HASH state.
+ *
+ * \param state Hash state to be updated.
+ * \param in Points to the input data to be absorbed into the state.
+ * \param inlen Length of the input data to be absorbed into the state.
+ *
+ * \sa gimli24_hash_init(), gimli24_hash_squeeze()
+ */
+void gimli24_hash_absorb
+    (gimli24_hash_state_t *state, const unsigned char *in,
+     unsigned long long inlen);
+
+/**
+ * \brief Squeezes output data from an ASCON-XOF state.
+ *
+ * \param state Hash state to squeeze the output data from.
+ * \param out Points to the output buffer to receive the squeezed data.
+ * \param outlen Number of bytes of data to squeeze out of the state.
+ *
+ * \sa gimli24_hash_init(), gimli24_hash_absorb()
+ */
+void gimli24_hash_squeeze
+    (gimli24_hash_state_t *state, unsigned char *out,
+     unsigned long long outlen);
+
+/**
+ * \brief Returns the final hash value from a GIMLI-24-HASH hashing operation.
+ *
+ * \param Hash state to be finalized.
+ * \param out Points to the output buffer to receive the hash value.
+ *
+ * \note This is a wrapper around gimli24_hash_squeeze() for a fixed length
+ * of GIMLI24_HASH_SIZE bytes.
+ *
+ * \sa gimli24_hash_init(), gimli24_hash_absorb()
+ */
+void gimli24_hash_finalize
+    (gimli24_hash_state_t *state, unsigned char *out);
 
 #ifdef __cplusplus
 }
