@@ -253,8 +253,14 @@ void gift128b_decrypt
 int gift128n_init
     (gift128n_key_schedule_t *ks, const unsigned char *key, size_t key_len)
 {
-    /* Key schedule is identical for bit-sliced and nibble-based versions */
-    return gift128b_init(ks, key, key_len);
+    /* Use the little-endian key byte order from the HYENA submission */
+    if (!ks || !key || key_len != 16)
+        return 0;
+    ks->k[0] = le_load_word32(key + 12);
+    ks->k[1] = le_load_word32(key + 8);
+    ks->k[2] = le_load_word32(key + 4);
+    ks->k[3] = le_load_word32(key);
+    return 1;
 }
 
 /**
@@ -270,11 +276,14 @@ static void gift128n_to_words
 {
     uint32_t s0, s1, s2, s3;
 
-    /* Load the input buffer into 32-bit words */
-    s0 = be_load_word32(input);
-    s1 = be_load_word32(input + 4);
-    s2 = be_load_word32(input + 8);
-    s3 = be_load_word32(input + 12);
+    /* Load the input buffer into 32-bit words.  We use the nibble order
+     * from the HYENA submission to NIST which is byte-reversed with respect
+     * to the nibble order of the original GIFT-128 paper.  Nibble zero is in
+     * the first byte instead of the last, which means little-endian order. */
+    s0 = le_load_word32(input + 12);
+    s1 = le_load_word32(input + 8);
+    s2 = le_load_word32(input + 4);
+    s3 = le_load_word32(input);
 
     /* Rearrange the bits so that bits 0..3 of each nibble are
      * scattered to bytes 0..3 of each word.  The permutation is:
@@ -358,10 +367,10 @@ static void gift128n_to_nibbles
     s3 = INV_PERM_WORDS(s3);
 
     /* Store the result into the output buffer as 32-bit words */
-    be_store_word32(output,      s0);
-    be_store_word32(output + 4,  s1);
-    be_store_word32(output + 8,  s2);
-    be_store_word32(output + 12, s3);
+    le_store_word32(output + 12, s0);
+    le_store_word32(output + 8,  s1);
+    le_store_word32(output + 4,  s2);
+    le_store_word32(output,      s3);
 }
 
 void gift128n_encrypt
@@ -379,5 +388,80 @@ void gift128n_decrypt
 {
     gift128n_to_words(output, input);
     gift128b_decrypt(ks, output, output);
+    gift128n_to_nibbles(output, output);
+}
+
+void gift128t_encrypt
+    (const gift128n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, unsigned char tweak)
+{
+    static uint32_t const tweaks[16] = {
+        /* 4-bit tweak values expanded to 32-bit */
+        0x00000000, 0xe1e1e1e1, 0xd2d2d2d2, 0x33333333,
+        0xb4b4b4b4, 0x55555555, 0x66666666, 0x87878787,
+        0x78787878, 0x99999999, 0xaaaaaaaa, 0x4b4b4b4b,
+        0xcccccccc, 0x2d2d2d2d, 0x1e1e1e1e, 0xffffffff
+    };
+    uint32_t s0, s1, s2, s3;
+    uint32_t w0, w1, w2, w3;
+    uint32_t temp;
+    uint8_t round;
+
+    /* Copy the plaintext into the state buffer and convert from nibbles */
+    gift128n_to_words(output, input);
+    s0 = be_load_word32(output);
+    s1 = be_load_word32(output + 4);
+    s2 = be_load_word32(output + 8);
+    s3 = be_load_word32(output + 12);
+
+    /* The key schedule is initialized with the key itself */
+    w0 = ks->k[0];
+    w1 = ks->k[1];
+    w2 = ks->k[2];
+    w3 = ks->k[3];
+
+    /* Perform all 40 rounds */
+    for (round = 0; round < 40; ++round) {
+        /* SubCells - apply the S-box */
+        s1 ^= s0 & s2;
+        s0 ^= s1 & s3;
+        s2 ^= s0 | s1;
+        s3 ^= s2;
+        s1 ^= s3;
+        s3 ^= 0xFFFFFFFFU;
+        s2 ^= s0 & s1;
+        temp = s0;
+        s0 = s3;
+        s3 = temp;
+
+        /* PermBits - apply the 128-bit permutation */
+        s0 = PERM0(s0);
+        s1 = PERM1(s1);
+        s2 = PERM2(s2);
+        s3 = PERM3(s3);
+
+        /* AddRoundKey - XOR in the key schedule and the round constant */
+        s2 ^= w1;
+        s1 ^= w3;
+        s3 ^= 0x80000000U ^ GIFT128_RC[round];
+
+        /* AddTweak - XOR in the tweak every 5 rounds except the last */
+        if (((round + 1) % 5) == 0 && round < 39)
+            s0 ^= tweaks[tweak];
+
+        /* Rotate the key schedule */
+        temp = w3;
+        w3 = w2;
+        w2 = w1;
+        w1 = w0;
+        w0 = ((temp & 0xFFFC0000U) >> 2) | ((temp & 0x00030000U) << 14) |
+             ((temp & 0x00000FFFU) << 4) | ((temp & 0x0000F000U) >> 12);
+    }
+
+    /* Pack the state into the ciphertext buffer in nibble form */
+    be_store_word32(output,      s0);
+    be_store_word32(output + 4,  s1);
+    be_store_word32(output + 8,  s2);
+    be_store_word32(output + 12, s3);
     gift128n_to_nibbles(output, output);
 }

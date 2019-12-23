@@ -27,12 +27,24 @@
  * \file internal-gift128.h
  * \brief GIFT-128 block cipher.
  *
- * There are two versions of GIFT-128 in use within the second round
- * submissions to the NIST lightweight cryptography competition.  The most
- * efficient for 32-bit software implementation is the bit-sliced version 
- * from GIFT-COFB and SUNDAE-GIFT.  The other is the nibble-based version
- * from HYENA.  We implement the nibble-based version as a wrapper around
- * the bit-sliced version.
+ * There are three versions of GIFT-128 in use within the second round
+ * submissions to the NIST lightweight cryptography competition.
+ *
+ * The most efficient version for 32-bit software implementation is the
+ * GIFT-128-b bit-sliced version from GIFT-COFB and SUNDAE-GIFT.
+ *
+ * The second is the nibble-based version from HYENA.  We implement the
+ * HYENA version as a wrapper around the bit-sliced version.
+ *
+ * The third version is a variant on the HYENA nibble-based version that
+ * includes a 4-bit tweak value for domain separation.  It is used by
+ * the ESTATE submission to NIST.
+ *
+ * Technically there is a fourth version of GIFT-128 which is the one that
+ * appeared in the original GIFT-128 paper.  It is almost the same as the
+ * HYENA version except that the byte ordering is big-endian instead of
+ * HYENA's little-endian.  The original version of GIFT-128 doesn't appear
+ * in any of the NIST submissions so we don't bother with it in this library.
  *
  * References: https://eprint.iacr.org/2017/622.pdf,
  * https://giftcipher.github.io/gift/
@@ -140,6 +152,26 @@ void gift128n_encrypt
 void gift128n_decrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
+
+/**
+ * \brief Encrypts a 128-bit block with TweGIFT-128 (tweakable variant).
+ *
+ * \param ks Points to the GIFT-128 key schedule.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ * \param tweak 4-bit tweak value.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ *
+ * This variant of GIFT-128 is used by the ESTATE submission to the
+ * NIST Lightweight Cryptography Competition.  A 4-bit tweak is added to
+ * some of the rounds to provide domain separation.  If the tweak is
+ * zero, then this function is identical to gift128n_encrypt().
+ */
+void gift128t_encrypt
+    (const gift128n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, unsigned char tweak);
 
 #ifdef __cplusplus
 }
