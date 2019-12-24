@@ -1,0 +1,284 @@
+/*
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+\file algorithms.dox
+\page algorithms Algorithms
+\tableofcontents
+
+This page lists all of the submissions to the second round of the
+<a href="https://csrc.nist.gov/projects/lightweight-cryptography/round-2-candidates">NIST Lightweight Cryptography Competition</a>
+and the degree of support for each algorithm in the library.
+
+\section alg_which_one Which algorithm should I use?
+
+This is a tough question given that as of early-2020 the NIST competition has
+not yet whittled the list down or decided on final candidates.  But if you want
+to get encrypting now:
+
+\li \ref alg_ascon "ASCON-128" was already selected as a finalist for the
+<a href="https://competitions.cr.yp.to/caesar-submissions.html">CAESAR
+AEAD competition</a> (128-bit key).
+\li \ref alg_gimli "Gimli" is the spiritual successor to the widely used
+ChaCha20 and has a similar design (256-bit key).
+\li (others may be added here as I implement more algorithms)
+
+Note that these are my own personal peferences and are not based on any
+in-depth security analysis.  The above algorithms could fall to an attack
+tomorrow but for now they have good space and speed trade-offs when
+implemented in software.
+
+\section alg_nonces Notes on AEAD algorithms and nonces
+
+Every submission to the NIST competition takes the form of an
+Authenticated Encryption with Associated Data (AEAD) scheme.
+Such schemes typically take as input a key and a packet-specific nonce
+to encrypt a given plaintext and to authenticate the ciphertext plus some
+associated data (AD) that is not encrypted.
+
+In the documentation for most AEAD schemes you will prominently find a
+prescription that "The nonce must be unique for every packet.  If it isn't,
+then the scheme is not secure".  Beginners to encryption can sometimes overlook
+this and not take sufficient care to make the nonce unique (usually a
+constantly-incrementing packet sequence number is sufficient).
+
+To demonstrate why nonce reuse is bad, I'll briefly describe how AES-GCM
+works as it is typical of AEAD schemes:
+
+\li Generate a key stream KS from the Key and Nonce using AES in counter
+mode where the nonce is used as the high-order bits of the counter.
+In other words, KS = AES-CTR-STREAM(Key, Nonce).
+\li XOR KS with the plaintext to produce the ciphertext.
+\li Run the GCM authenticator over the associated data and ciphertext to
+produce the authentication tag.
+
+Now let's see what happens when we reuse the nonce.  We will have two
+packets with the same keystream:
+
+\li Ciphertext1 = Plaintext1 XOR KS
+\li Ciphertext2 = Plaintext2 XOR KS
+
+If an attacker was able to guess Plaintext1 because it is a standard
+protocol header or similar, then they can trivially determine the
+keystream and the other plaintext with:
+
+\li KS = Ciphertext1 XOR Guessed-Plaintext1
+\li Plaintext2 = Ciphertext2 XOR KS
+
+This is why it is so important that the nonce be unique for every packet.
+It is trivial to break many AEAD schemes if the nonce is chosen poorly.
+
+Not all AEAD schemes are as vulnerable to nonce reuse.  SUNDAE-GIFT has a
+variant with a zero-length nonce!  The SUNDAE-GIFT specification states
+that as long as the combination (AD, Plaintext) is unique for each packet,
+then there is no need for a nonce: the associated data AD acts like
+a nonce.  But obviously you still need to be careful to make the
+combination (AD, Plaintext) unique!
+
+Below we will state any special considerations if the algorithm is
+resistant against nonce reuse.  In the absence of any special considerations,
+you should assume that changing the nonce for each packet is vital for
+security.
+
+\section alg_ace ACE
+
+TODO
+
+\section alg_ascon ASCON
+
+<b>Definition:</b> \ref ascon128.h
+
+<b>Nonce Reuse:</b> Resistant against nonce reuse only if the associated
+data is unique for each packet with the same nonce.
+
+The ASCON family consists of the following AEAD algorithms:
+
+\li ASCON-128 with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+\li ASCON-128-a with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+\li ASCON-80pq with a 160-bit key, a 128-bit nonce, and a 128-bit tag.
+
+ASCON-128 is the recommended algorithm from the NIST submission.
+ASCON-128-a is faster but does not mix the input state quite as
+much as ASCON-128.  ASCON-80pq is essentially the same as ASCON-128
+but it has a 160-bit key which may give added resistance against
+quantum computers.
+
+The library also implements the ASCON-HASH and ASCON-XOF hashing
+algorithms as companions to the AEAD mode.
+
+<b>Recommendation:</b> Use ASCON-128 for now unless you consider the
+128-bit key length to be too short, in which case you should use ASCON-80pq.
+
+\section alg_comet COMET
+
+TODO
+
+\section alg_drygascon DryGASCON
+
+TODO
+
+\section alg_elephant Elephant
+
+TODO
+
+\section alg_estate ESTATE
+
+TODO
+
+\section alg_forkae ForkAE
+
+TODO
+
+\section alg_gift_cofb GIFT-COFB
+
+TODO
+
+\section alg_gimli Gimli
+
+<b>Definition:</b> \ref gimli24.h
+
+<b>Nonce Reuse:</b> Resistant against nonce reuse only if the associated
+data is unique for each packet with the same nonce.
+
+GIMLI-24-CIPHER has a 256-bit key, a 128-bit nonce, and a 128-bit tag.
+It is the spiritual successor to the widely used ChaCha20 and has a
+similar design.
+
+The library also includes an implementation of the hash algorithm
+GIMLI-24-HASH in both regular hashing and XOF modes.
+
+\section alg_grain_128aead Grain-128AEAD
+
+TODO
+
+\section alg_hyena HYENA
+
+TODO
+
+\section alg_isap ISAP
+
+TODO
+
+\section alg_knot KNOT
+
+TODO
+
+\section alg_lotus LOTUS-AEAD and LOCUS-AEAD
+
+TODO
+
+\section alg_mixfeed mixFeed
+
+TODO
+
+\section alg_orange ORANGE
+
+TODO
+
+\section alg_oribatida Oribatida
+
+TODO
+
+\section alg_photon_beetle PHOTON-Beetle
+
+TODO
+
+\section alg_pyjamask Pyjamask
+
+TODO
+
+\section alg_romulus Romulus
+
+TODO
+
+\section alg_saeaes SAEAES
+
+TODO
+
+\section alg_saturnin Saturnin
+
+TODO
+
+\section alg_skinny SKINNY-AEAD
+
+TODO
+
+\section alg_sparkle SPARKLE
+
+TODO
+
+\section alg_spix SPIX
+
+TODO
+
+\section alg_spoc SpoC
+
+TODO
+
+\section alg_spook Spook
+
+TODO
+
+\section alg_subterranean Subterranean 2.0
+
+TODO
+
+\section alg_sundae_gift SUNDAE-GIFT
+
+<b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination
+of the associated data (AD) and plaintext is unique.  Two packets with the
+same plaintext will encrypt to the same ciphertext only if they have the
+same AD as well.  It is still a good idea to provide a nonce, unless you
+can separately guarantee uniqueness of the AD.
+
+TODO
+
+<b>Recommendation:</b> SUNDAE-GIFT-96 is the recommended variant in the
+NIST submission.
+
+\section alg_tinyjambu TinyJambu
+
+TODO
+
+\section alg_wage WAGE
+
+TODO
+
+\section alg_xoodyak Xoodyak
+
+TODO
+
+\section alg_internal Internal block operations
+
+Many of the algorithms are built on top of internal block ciphers and
+sponge block operations.  Some of these operations are shared between
+multiple algorithms so they are provided in a common internal location.
+
+\li \ref internal-ascon.h "ASCON permutation"
+\li \ref internal-gift128.h "GIFT-128 block cipher" in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions.
+\li \ref internal-skinny128.h "SKINNY-128 block cipher" in 128-bit, 256-bit, and 384-bit key size versions.
+
+All of the internal block operations are implemented in source files that
+start with the <tt>internal-</tt> prefix.  They are not intended to be part
+of the public API for the AEAD algorithms.
+
+*/
