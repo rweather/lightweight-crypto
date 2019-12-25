@@ -187,24 +187,6 @@ STATIC_INLINE void lw_xor_block_swap
     }
 }
 
-/* Check an authentication tag in constant time.  Returns -1 if the
- * tag check failed or "ok" if the check succeeded */
-STATIC_INLINE int lw_check_tag
-    (const unsigned char *actual, const unsigned char *expected,
-     unsigned size, int ok)
-{
-    /* Set "accum" to -1 if the tags match, or 0 if they don't match */
-    int accum = 0;
-    while (size > 0) {
-        accum |= (*actual++ ^ *expected++);
-        --size;
-    }
-    accum = (accum - 1) >> 16;
-
-    /* If "accum" is 0, return -1, otherwise return "ok" */
-    return ok | ~accum;
-}
-
 /* Rotation macros for 32-bit arguments */
 
 /* Generic left rotate */

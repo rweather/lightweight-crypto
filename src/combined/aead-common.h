@@ -271,6 +271,27 @@ int aead_decrypt_packet
      const unsigned char *ciphertext, int ciphertext_len,
      unsigned long long seq_num, const unsigned char *key, int key_len);
 
+/**
+ * \brief Check an authentication tag in constant time.
+ *
+ * \param plaintext Points to the plaintext data.
+ * \param plaintext_len Length of the plaintext in bytes.
+ * \param tag1 First tag to compare.
+ * \param tag2 Second tag to compare.
+ * \param tag_len Length of the tags in bytes.
+ * \param ok Value to return if the tags match, -1 if they don't.
+ *
+ * \return Returns -1 if the tag check failed or \a ok if the check succeeded.
+ *
+ * If the tag check fails, then the \a plaintext will also be zeroed to
+ * prevent it from being used accidentally by the application when the
+ * ciphertext was invalid.
+ */
+int aead_check_tag
+    (unsigned char *plaintext, unsigned long long plaintext_len,
+     const unsigned char *tag1, const unsigned char *tag2,
+     unsigned tag_len, int ok);
+
 #ifdef __cplusplus
 }
 #endif

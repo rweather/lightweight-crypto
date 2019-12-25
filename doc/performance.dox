@@ -70,10 +70,10 @@ Where a NIST submission contains multiple algorithms in a family,
 
 <table>
 <tr><td>Algorithm</td><td align="right">Encrypt 128 bytes</td><td align="right">Decrypt 128 bytes</td><td align="right">Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>0.77</td><td>0.78</td><td>0.93</td><td>0.95</td><td>0.86</td></tr>
-<tr><td>ASCON-128a</td><td>0.55</td><td>0.56</td><td>0.65</td><td>0.65</td><td>0.60</td></tr>
-<tr><td><b><i>ASCON-128</i></b></td><td>0.40</td><td>0.40</td><td>0.57</td><td>0.58</td><td>0.48</td></tr>
-<tr><td>ASCON-80pq</td><td>0.40</td><td>0.40</td><td>0.56</td><td>0.57</td><td>0.48</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>0.77</td><td>0.80</td><td>0.92</td><td>0.93</td><td>0.85</td></tr>
+<tr><td>ASCON-128a</td><td>0.58</td><td>0.60</td><td>0.66</td><td>0.67</td><td>0.63</td></tr>
+<tr><td><b><i>ASCON-128</i></b></td><td>0.42</td><td>0.44</td><td>0.58</td><td>0.60</td><td>0.50</td></tr>
+<tr><td>ASCON-80pq</td><td>0.41</td><td>0.44</td><td>0.58</td><td>0.59</td><td>0.50</td></tr>
 </table>
 
 \section perf_esp32 Performance on ESP32
@@ -84,10 +84,10 @@ where the architecture differences gives some algorithms an added advantage.
 
 <table>
 <tr><td>Algorithm</td><td align="right">Encrypt 128 bytes</td><td align="right">Decrypt 128 bytes</td><td align="right">Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td>ASCON-128a</td><td>0.70</td><td>0.71</td><td>0.83</td><td>0.83</td><td>0.77</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>0.66</td><td>0.66</td><td>0.79</td><td>0.80</td><td>0.73</td></tr>
-<tr><td><b><i>ASCON-128</i></b></td><td>0.51</td><td>0.52</td><td>0.73</td><td>0.74</td><td>0.62</td></tr>
-<tr><td>ASCON-80pq</td><td>0.51</td><td>0.52</td><td>0.72</td><td>0.73</td><td>0.62</td></tr>
+<tr><td>ASCON-128a</td><td>0.70</td><td>0.73</td><td>0.83</td><td>0.83</td><td>0.78</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>0.66</td><td>0.69</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
+<tr><td><b><i>ASCON-128</i></b></td><td>0.51</td><td>0.55</td><td>0.73</td><td>0.75</td><td>0.63</td></tr>
+<tr><td>ASCON-80pq</td><td>0.51</td><td>0.55</td><td>0.72</td><td>0.74</td><td>0.63</td></tr>
 </table>
 
 */

@@ -65,7 +65,7 @@ typedef union
         unsigned char state[48]; /**< Current hash state */
         unsigned char count;     /**< Number of bytes in the current block */
         unsigned char mode;      /**< Hash mode: 0 for absorb, 1 for squeeze */
-    } s;
+    } s;                         /**< State */
     unsigned long long align;    /**< For alignment of this structure */
 
 } gimli24_hash_state_t;
@@ -195,7 +195,7 @@ void gimli24_hash_squeeze
 /**
  * \brief Returns the final hash value from a GIMLI-24-HASH hashing operation.
  *
- * \param Hash state to be finalized.
+ * \param state Hash state to be finalized.
  * \param out Points to the output buffer to receive the hash value.
  *
  * \note This is a wrapper around gimli24_hash_squeeze() for a fixed length

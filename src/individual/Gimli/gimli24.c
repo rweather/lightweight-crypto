@@ -273,7 +273,8 @@ int gimli24_aead_decrypt
     gimli24_decrypt(&state, m, c, *mlen);
 
     /* Check the authentication tag at the end of the packet */
-    return lw_check_tag(state.bytes, c + *mlen, GIMLI24_TAG_SIZE, 0);
+    return aead_check_tag
+        (m, *mlen, state.bytes, c + *mlen, GIMLI24_TAG_SIZE, 0);
 }
 
 int gimli24_hash

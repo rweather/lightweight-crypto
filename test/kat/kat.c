@@ -194,6 +194,17 @@ static int test_compare
     return 0;
 }
 
+/* Determine if the contents of a buffer is all-zero bytes or not */
+static int test_all_zeroes(const unsigned char *buf, unsigned long long len)
+{
+    while (len > 0) {
+        if (*buf++ != 0)
+            return 0;
+        --len;
+    }
+    return 1;
+}
+
 /* Test a cipher algorithm on a specific test vector */
 static int test_cipher_inner
     (const aead_cipher_t *alg, const test_vector_t *vec)
@@ -306,6 +317,12 @@ static int test_cipher_inner
         free(temp2);
         return 0;
     }
+    if (!test_all_zeroes(temp1, plaintext->size)) {
+        test_print_error(alg->name, vec, "plaintext not destroyed");
+        free(temp1);
+        free(temp2);
+        return 0;
+    }
     memset(temp1, 0xAA, ciphertext->size);
     memcpy(temp2, ciphertext->data, ciphertext->size);
     temp2[plaintext->size] ^= 0x01; /* Corrupt first byte of the tag */
@@ -315,6 +332,12 @@ static int test_cipher_inner
          ad->data, ad->size, nonce->data, key->data);
     if (result != -1) {
         test_print_error(alg->name, vec, "corrupt tag check failed");
+        free(temp1);
+        free(temp2);
+        return 0;
+    }
+    if (!test_all_zeroes(temp1, plaintext->size)) {
+        test_print_error(alg->name, vec, "plaintext not destroyed");
         free(temp1);
         free(temp2);
         return 0;

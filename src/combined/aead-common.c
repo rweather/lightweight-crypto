@@ -110,3 +110,26 @@ int aead_decrypt_packet
     /* Return the length of the plaintext if OK, or -1 on error */
     return ((int)plaintext_len) | result;
 }
+
+int aead_check_tag
+    (unsigned char *plaintext, unsigned long long plaintext_len,
+     const unsigned char *tag1, const unsigned char *tag2,
+     unsigned size, int ok)
+{
+    /* Set "accum" to -1 if the tags match, or 0 if they don't match */
+    int accum = 0;
+    while (size > 0) {
+        accum |= (*tag1++ ^ *tag2++);
+        --size;
+    }
+    accum = (accum - 1) >> 16;
+
+    /* Destroy the plaintext if the tag match failed */
+    while (plaintext_len > 0) {
+        *plaintext++ &= accum;
+        --plaintext_len;
+    }
+
+    /* If "accum" is 0, return -1, otherwise return "ok" */
+    return ok | ~accum;
+}
