@@ -22,12 +22,14 @@
 
 #include "test-cipher.h"
 
+void test_chachapoly(void);
 void test_gift128(void);
 void test_gimli24(void);
 void test_skinny128(void);
 
 int main(int argc, char *argv[])
 {
+    test_chachapoly();
     test_gift128();
     test_gimli24();
     test_skinny128();

@@ -24,13 +24,14 @@
 This example runs lightweight cryptography tests on Arduino platforms.
 
 Because this example links in the entire library and all algorithms,
-it is only suitable for use on 32-bit Arduino platforms with large
-amounts of flash memory.
+it is only suitable for use on Arduino platforms with large amounts
+of flash memory.
 */
 
 #include "aead-common.h"
 #include "ascon128.h"
 #include "gimli24.h"
+#include "internal-chachapoly.h"
 
 #if defined(ESP8266)
 extern "C" void system_soft_wdt_feed(void);
@@ -57,6 +58,15 @@ static unsigned char const nonce[16] = {
 static unsigned char plaintext[MAX_DATA_SIZE];
 static unsigned char ciphertext[MAX_DATA_SIZE + 16];
 
+static unsigned long encrypt_128_time = 0;
+static unsigned long encrypt_16_time = 0;
+static unsigned long decrypt_128_time = 0;
+static unsigned long decrypt_16_time = 0;
+static unsigned long encrypt_128_ref = 0;
+static unsigned long encrypt_16_ref = 0;
+static unsigned long decrypt_128_ref = 0;
+static unsigned long decrypt_16_ref = 0;
+
 void perfCipherEncrypt128(const aead_cipher_t *cipher)
 {
     unsigned long start;
@@ -75,6 +85,12 @@ void perfCipherEncrypt128(const aead_cipher_t *cipher)
             (ciphertext, &len, plaintext, 128, 0, 0, 0, nonce, key);
     }
     elapsed = micros() - start;
+    encrypt_128_time = elapsed;
+
+    if (encrypt_128_ref != 0 && elapsed != 0) {
+        Serial.print(((double)encrypt_128_ref) / elapsed);
+        Serial.print("x, ");
+    }
 
     Serial.print(elapsed / (128.0 * PERF_LOOPS));
     Serial.print("us per byte, ");
@@ -102,6 +118,12 @@ void perfCipherDecrypt128(const aead_cipher_t *cipher)
             (plaintext, &plen, 0, ciphertext, clen, 0, 0, nonce, key);
     }
     elapsed = micros() - start;
+    decrypt_128_time = elapsed;
+
+    if (decrypt_128_ref != 0 && elapsed != 0) {
+        Serial.print(((double)decrypt_128_ref) / elapsed);
+        Serial.print("x, ");
+    }
 
     Serial.print(elapsed / (128.0 * PERF_LOOPS));
     Serial.print("us per byte, ");
@@ -127,6 +149,12 @@ void perfCipherEncrypt16(const aead_cipher_t *cipher)
             (ciphertext, &len, plaintext, 16, 0, 0, 0, nonce, key);
     }
     elapsed = micros() - start;
+    encrypt_16_time = elapsed;
+
+    if (encrypt_16_ref != 0 && elapsed != 0) {
+        Serial.print(((double)encrypt_16_ref) / elapsed);
+        Serial.print("x, ");
+    }
 
     Serial.print(elapsed / (16.0 * PERF_LOOPS_16));
     Serial.print("us per byte, ");
@@ -154,6 +182,12 @@ void perfCipherDecrypt16(const aead_cipher_t *cipher)
             (plaintext, &plen, 0, ciphertext, clen, 0, 0, nonce, key);
     }
     elapsed = micros() - start;
+    decrypt_16_time = elapsed;
+
+    if (decrypt_16_ref != 0 && elapsed != 0) {
+        Serial.print(((double)decrypt_16_ref) / elapsed);
+        Serial.print("x, ");
+    }
 
     Serial.print(elapsed / (16.0 * PERF_LOOPS_16));
     Serial.print("us per byte, ");
@@ -173,6 +207,17 @@ void perfCipher(const aead_cipher_t *cipher)
     perfCipherEncrypt16(cipher);
     perfCipherDecrypt16(cipher);
 
+    if (encrypt_128_ref != 0) {
+        unsigned long ref_avg = encrypt_128_ref + decrypt_128_ref +
+                                encrypt_16_ref  + decrypt_16_ref;
+        unsigned long time_avg = encrypt_128_time + decrypt_128_time +
+                                 encrypt_16_time  + decrypt_16_time;
+        Serial.print("   average ... ");
+        Serial.print(((double)ref_avg) / time_avg);
+        Serial.print("x");
+        Serial.println();
+    }
+
     Serial.println();
 }
 
@@ -181,6 +226,14 @@ void setup()
     Serial.begin(9600);
     Serial.println();
 
+    // Test ChaChaPoly first to get the reference time for other algorithms.
+    perfCipher(&internal_chachapoly_cipher);
+    encrypt_128_ref = encrypt_128_time;
+    decrypt_128_ref = decrypt_128_time;
+    encrypt_16_ref = encrypt_16_time;
+    decrypt_16_ref = decrypt_16_time;
+
+    // Run performance tests on the NIST algorithms.
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);

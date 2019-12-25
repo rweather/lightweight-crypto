@@ -91,6 +91,11 @@ typedef struct
 /* Value to return from the main() function for the test result */
 extern int test_exit_result;
 
+/* Version of memcmp() that dumps its arguments on failure */
+int test_memcmp
+    (const unsigned char *actual, const unsigned char *expected,
+     unsigned long long len);
+
 /* Start a batch of tests on a block cipher */
 void test_block_cipher_start(const block_cipher_t *cipher);
 

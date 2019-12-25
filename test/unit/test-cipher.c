@@ -41,7 +41,7 @@ static void test_print_hex
     printf("\n");
 }
 
-static int test_memcmp
+int test_memcmp
     (const unsigned char *actual, const unsigned char *expected,
      unsigned long long len)
 {
