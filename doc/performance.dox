@@ -32,9 +32,9 @@ instructions; others do not.  Clock speeds can also vary considerably.
 All this means that "cycles per byte" or "megabytes per second" are
 pretty meaningless.
 
-The approach we take in this library is "ChaChaPoly Units".  The library
-contains a reasonably efficient 32-bit non-vectorized implementation of
-the ChaChaPoly AEAD scheme from my <a href="https://github.com/rweather/arduinolibs">Arduino cryptography library</a>.
+The approach I take here is "ChaChaPoly Units".  The library contains a
+reasonably efficient 32-bit non-vectorized implementation of the ChaChaPoly
+AEAD scheme from my <a href="https://github.com/rweather/arduinolibs">Arduino cryptography library</a>.
 This makes it a known quanitity to compare with other algorithms side by side.
 
 If an algorithm is measured at 0.8 ChaChaPoly Units on a specific embedded
@@ -74,6 +74,10 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>ASCON-128a</td><td>0.58</td><td>0.60</td><td>0.66</td><td>0.67</td><td>0.63</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>0.42</td><td>0.44</td><td>0.58</td><td>0.60</td><td>0.50</td></tr>
 <tr><td>ASCON-80pq</td><td>0.41</td><td>0.44</td><td>0.58</td><td>0.59</td><td>0.50</td></tr>
+<tr><td>SUNDAE-GIFT-0</td><td>0.20</td><td>0.22</td><td>0.46</td><td>0.48</td><td>0.30</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>0.19</td><td>0.21</td><td>0.35</td><td>0.37</td><td>0.26</td></tr>
+<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>0.19</td><td>0.21</td><td>0.35</td><td>0.37</td><td>0.26</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>0.19</td><td>0.21</td><td>0.34</td><td>0.36</td><td>0.26</td></tr>
 </table>
 
 \section perf_esp32 Performance on ESP32
@@ -88,6 +92,10 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td><b><i>GIMLI-24</i></b></td><td>0.66</td><td>0.69</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>0.51</td><td>0.55</td><td>0.73</td><td>0.75</td><td>0.63</td></tr>
 <tr><td>ASCON-80pq</td><td>0.51</td><td>0.55</td><td>0.72</td><td>0.74</td><td>0.63</td></tr>
+<tr><td>SUNDAE-GIFT-0</td><td>0.12</td><td>0.14</td><td>0.29</td><td>0.31</td><td>0.19</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
+<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
 </table>
 
 */

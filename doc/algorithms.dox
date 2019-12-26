@@ -244,16 +244,34 @@ TODO
 
 \section alg_sundae_gift SUNDAE-GIFT
 
-<b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination
-of the associated data (AD) and plaintext is unique.  Two packets with the
-same plaintext will encrypt to the same ciphertext only if they have the
-same AD as well.  It is still a good idea to provide a nonce, unless you
-can separately guarantee uniqueness of the AD.
+<b>Definition:</b> \ref sundae-gift.h
 
-TODO
+<b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination
+of the associated data (AD) and plaintext is unique.
+
+The SUNDAE-GIFT family consists of several related algorithms:
+
+\li SUNDAE-GIFT-0 with a 128-bit key, a 0-bit nonce, and 128-bit tag.
+\li SUNDAE-GIFT-64 with a 128-bit key, a 64-bit nonce, and 128-bit tag.
+\li SUNDAE-GIFT-96 with a 128-bit key, a 96-bit nonce, and 128-bit tag.
+This is the primary member of the family.
+\li SUNDAE-GIFT-128 with a 128-bit key, a 128-bit nonce, and 128-bit tag.
+
+SUNDAE-GIFT is built around the GIFT-128 block cipher in bit-sliced mode.
+Two passes are made over the input data.  The first pass computes the
+authentication tag over the nonce, associated data, and plaintext.
+The second pass encrypts the plaintext to produce the ciphertext.
+
+SUNDAE-GIFT is resistant against nonce reuse as long as the combination
+of the associated data and plaintext is unique.
+
+If a nonce is reused (or there is no nonce in the case of SUNDAE-GIFT-0),
+then two packets with the same associated data and plaintext will encrypt
+to the same ciphertext.  This will leak that the same plaintext has been
+sent for a second time but will not reveal the plaintext itself.
 
 <b>Recommendation:</b> SUNDAE-GIFT-96 is the recommended variant in the
-NIST submission.
+NIST submission, with SUNDAE-GIFT-0 as the next-recommended variant.
 
 \section alg_tinyjambu TinyJambu
 

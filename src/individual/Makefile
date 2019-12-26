@@ -15,13 +15,25 @@ ASCON_FILES = \
     internal-ascon.c \
     internal-ascon.h \
     $(COMMON_FILES)
+SUNDAE_GIFT_FILES = \
+    sundae-gift.c \
+    sundae-gift.h \
+    internal-gift128.c \
+    internal-gift128.h \
+    $(COMMON_FILES)
 
-.PHONY: all gimli ascon
+.PHONY: all gimli ascon sundae_gift
 
-all: gimli ascon
+all: \
+    ascon \
+    gimli \
+    sundae_gift
+
+ascon:
+	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
 
-ascon:
-	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON
+sundae_gift:
+	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

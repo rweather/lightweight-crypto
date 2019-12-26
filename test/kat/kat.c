@@ -27,6 +27,7 @@
 #include "aead-common.h"
 #include "ascon128.h"
 #include "gimli24.h"
+#include "sundae-gift.h"
 
 /* List of all AEAD ciphers that we can run KAT tests for */
 static const aead_cipher_t *const ciphers[] = {
@@ -34,6 +35,10 @@ static const aead_cipher_t *const ciphers[] = {
     &ascon128a_cipher,
     &ascon80pq_cipher,
     &gimli24_cipher,
+    &sundae_gift_0_cipher,
+    &sundae_gift_64_cipher,
+    &sundae_gift_96_cipher,
+    &sundae_gift_128_cipher,
     0
 };
 

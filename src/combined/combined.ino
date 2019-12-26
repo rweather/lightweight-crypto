@@ -31,6 +31,7 @@ of flash memory.
 #include "aead-common.h"
 #include "ascon128.h"
 #include "gimli24.h"
+#include "sundae-gift.h"
 #include "internal-chachapoly.h"
 
 #if defined(ESP8266)
@@ -238,6 +239,10 @@ void setup()
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);
     perfCipher(&gimli24_cipher);
+    perfCipher(&sundae_gift_0_cipher);
+    perfCipher(&sundae_gift_64_cipher);
+    perfCipher(&sundae_gift_96_cipher);
+    perfCipher(&sundae_gift_128_cipher);
 }
 
 void loop()
