@@ -6,7 +6,6 @@ COMMON_FILES = \
 	aead-common.c \
 	internal-util.h
 
-GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
 ASCON_FILES = \
     ascon128.c \
     ascon128.h \
@@ -15,6 +14,13 @@ ASCON_FILES = \
     internal-ascon.c \
     internal-ascon.h \
     $(COMMON_FILES)
+GIFT_COFB_FILES = \
+    gift-cofb.c \
+    gift-cofb.h \
+    internal-gift128.c \
+    internal-gift128.h \
+    $(COMMON_FILES)
+GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -22,15 +28,21 @@ SUNDAE_GIFT_FILES = \
     internal-gift128.h \
     $(COMMON_FILES)
 
-.PHONY: all gimli ascon sundae_gift
-
-all: \
+ALL_ALGORITHMS = \
     ascon \
+    gift_cofb \
     gimli \
     sundae_gift
 
+.PHONY: all $(ALL_ALGORITHMS)
+
+all: $(ALL_ALGORITHMS)
+
 ascon:
 	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON
+
+gift_cofb:
+	cp $(foreach file,$(GIFT_COFB_FILES),$(SRCDIR)/$(file)) GIFT-COFB
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli

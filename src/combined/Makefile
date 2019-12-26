@@ -12,6 +12,7 @@ OBJS = \
         ascon128.o \
         ascon-hash.o \
         ascon-xof.o \
+        gift-cofb.o \
 	gimli24.o \
         sundae-gift.o \
 	internal-ascon.o \
@@ -37,6 +38,7 @@ aead-common.o: aead-common.h
 ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
+gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h

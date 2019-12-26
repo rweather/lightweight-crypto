@@ -30,6 +30,7 @@ of flash memory.
 
 #include "aead-common.h"
 #include "ascon128.h"
+#include "gift-cofb.h"
 #include "gimli24.h"
 #include "sundae-gift.h"
 #include "internal-chachapoly.h"
@@ -238,6 +239,7 @@ void setup()
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);
+    perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&sundae_gift_0_cipher);
     perfCipher(&sundae_gift_64_cipher);

@@ -172,6 +172,20 @@ STATIC_INLINE void lw_xor_block_2_dest
     }
 }
 
+/* XOR two byte buffers and write to a destination which at the same
+ * time copying the contents of src2 to dest2 */
+STATIC_INLINE void lw_xor_block_copy_src
+    (unsigned char *dest2, unsigned char *dest,
+     const unsigned char *src1, const unsigned char *src2, unsigned len)
+{
+    while (len > 0) {
+        unsigned char temp = *src2++;
+        *dest2++ = temp;
+        *dest++ = *src1++ ^ temp;
+        --len;
+    }
+}
+
 /* XOR a source byte buffer against a destination and write to another
  * destination at the same time.  This version swaps the source value
  * into the "dest" buffer */

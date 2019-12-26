@@ -107,9 +107,6 @@ TODO
 
 <b>Definition:</b> \ref ascon128.h
 
-<b>Nonce Reuse:</b> Resistant against nonce reuse only if the associated
-data is unique for each packet with the same nonce.
-
 The ASCON family consists of the following AEAD algorithms:
 
 \li ASCON-128 with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
@@ -150,14 +147,26 @@ TODO
 
 \section alg_gift_cofb GIFT-COFB
 
-TODO
+<b>Definition:</b> \ref gift-cofb.h
+
+GIFT-COFB is an authenticated encryption algorithm that combines
+the COFB (COmbined FeedBack) block cipher mode with the bit-sliced
+version of the GIFT-128 block cipher.  The algorithm has a 128-bit key,
+a 128-bit nonce, and a 128-bit authentication tag.
+
+The GIFT-128 block cipher was designed with hardware FPGA/ASIC implementations
+in mind, so its software performance is not as great as other algorithms.
+The implementation in the library is fairly well optimised for 32-bit
+platforms so it is reasonably competitive with other schemes despite the
+hardware design focus.
+
+GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass
+algorithm used by SUNDAE-GIFT.  Out of all the GIFT-128 based submissions
+to NIST, GIFT-COFB has the best software performance.
 
 \section alg_gimli Gimli
 
 <b>Definition:</b> \ref gimli24.h
-
-<b>Nonce Reuse:</b> Resistant against nonce reuse only if the associated
-data is unique for each packet with the same nonce.
 
 GIMLI-24-CIPHER has a 256-bit key, a 128-bit nonce, and a 128-bit tag.
 It is the spiritual successor to the widely used ChaCha20 and has a

@@ -74,6 +74,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>ASCON-128a</td><td>0.58</td><td>0.60</td><td>0.66</td><td>0.67</td><td>0.63</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>0.42</td><td>0.44</td><td>0.58</td><td>0.60</td><td>0.50</td></tr>
 <tr><td>ASCON-80pq</td><td>0.41</td><td>0.44</td><td>0.58</td><td>0.59</td><td>0.50</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b></td><td>0.30</td><td>0.33</td><td>0.42</td><td>0.44</td><td>0.37</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>0.20</td><td>0.22</td><td>0.46</td><td>0.48</td><td>0.30</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>0.19</td><td>0.21</td><td>0.35</td><td>0.37</td><td>0.26</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>0.19</td><td>0.21</td><td>0.35</td><td>0.37</td><td>0.26</td></tr>
@@ -92,6 +93,7 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td><b><i>GIMLI-24</i></b></td><td>0.66</td><td>0.69</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>0.51</td><td>0.55</td><td>0.73</td><td>0.75</td><td>0.63</td></tr>
 <tr><td>ASCON-80pq</td><td>0.51</td><td>0.55</td><td>0.72</td><td>0.74</td><td>0.63</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b></td><td>0.20</td><td>0.22</td><td>0.28</td><td>0.30</td><td>0.25</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>0.12</td><td>0.14</td><td>0.29</td><td>0.31</td><td>0.19</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
