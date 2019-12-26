@@ -47,6 +47,19 @@ in-depth security analysis.  The above algorithms could fall to an attack
 tomorrow but for now they have good space and speed trade-offs when
 implemented in software.
 
+\section alg_no_aes Notes on algorithms that use AES
+
+Some of the submissions to NIST use AES as the inner block cipher in the
+AEAD implementation.  I haven't implemented any of those algorithms.
+AES is notoriously difficult to implement in software in a manner that
+avoids cache timing attacks.  It is best to ignore AES and do something else.
+
+From a high level point of view, if AES is already suitable as a
+lightweight cipher, then there's really no point to the NIST competition.
+The most the competition can produce is a new block cipher mode, and that
+mode could just as easily be used with a different block cipher that is
+not subject to cache timing attacks.
+
 \section alg_nonces Notes on AEAD algorithms and nonces
 
 Every submission to the NIST competition takes the form of an
@@ -197,7 +210,7 @@ TODO
 
 \section alg_mixfeed mixFeed
 
-TODO
+Based on AES.  Not implemented.
 
 \section alg_orange ORANGE
 
@@ -221,7 +234,7 @@ TODO
 
 \section alg_saeaes SAEAES
 
-TODO
+Based on AES.  Not implemented.
 
 \section alg_saturnin Saturnin
 
