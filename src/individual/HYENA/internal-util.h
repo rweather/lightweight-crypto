@@ -63,13 +63,13 @@
       ((uint32_t)((ptr)[3])))
 
 /* Store a big-endian 32-bit word into a byte buffer */
-#define be_store_word32(ptr, _x) \
+#define be_store_word32(ptr, x) \
     do { \
-        uint32_t x = (_x); \
-        (ptr)[0] = (uint8_t)(x >> 24); \
-        (ptr)[1] = (uint8_t)(x >> 16); \
-        (ptr)[2] = (uint8_t)(x >> 8); \
-        (ptr)[3] = (uint8_t)x; \
+        uint32_t _x = (x); \
+        (ptr)[0] = (uint8_t)(_x >> 24); \
+        (ptr)[1] = (uint8_t)(_x >> 16); \
+        (ptr)[2] = (uint8_t)(_x >> 8); \
+        (ptr)[3] = (uint8_t)_x; \
     } while (0)
 
 /* Load a little-endian 32-bit word from a byte buffer */
@@ -80,13 +80,13 @@
       ((uint32_t)((ptr)[0])))
 
 /* Store a little-endian 32-bit word into a byte buffer */
-#define le_store_word32(ptr, _x) \
+#define le_store_word32(ptr, x) \
     do { \
-        uint32_t x = (_x); \
-        (ptr)[0] = (uint8_t)x; \
-        (ptr)[1] = (uint8_t)(x >> 8); \
-        (ptr)[2] = (uint8_t)(x >> 16); \
-        (ptr)[3] = (uint8_t)(x >> 24); \
+        uint32_t _x = (x); \
+        (ptr)[0] = (uint8_t)_x; \
+        (ptr)[1] = (uint8_t)(_x >> 8); \
+        (ptr)[2] = (uint8_t)(_x >> 16); \
+        (ptr)[3] = (uint8_t)(_x >> 24); \
     } while (0)
 
 /* Load a big-endian 64-bit word from a byte buffer */
@@ -101,17 +101,17 @@
       ((uint64_t)((ptr)[7])))
 
 /* Store a big-endian 64-bit word into a byte buffer */
-#define be_store_word64(ptr, _x) \
+#define be_store_word64(ptr, x) \
     do { \
-        uint64_t x = (_x); \
-        (ptr)[0] = (uint8_t)(x >> 56); \
-        (ptr)[1] = (uint8_t)(x >> 48); \
-        (ptr)[2] = (uint8_t)(x >> 40); \
-        (ptr)[3] = (uint8_t)(x >> 32); \
-        (ptr)[4] = (uint8_t)(x >> 24); \
-        (ptr)[5] = (uint8_t)(x >> 16); \
-        (ptr)[6] = (uint8_t)(x >> 8); \
-        (ptr)[7] = (uint8_t)x; \
+        uint64_t _x = (x); \
+        (ptr)[0] = (uint8_t)(_x >> 56); \
+        (ptr)[1] = (uint8_t)(_x >> 48); \
+        (ptr)[2] = (uint8_t)(_x >> 40); \
+        (ptr)[3] = (uint8_t)(_x >> 32); \
+        (ptr)[4] = (uint8_t)(_x >> 24); \
+        (ptr)[5] = (uint8_t)(_x >> 16); \
+        (ptr)[6] = (uint8_t)(_x >> 8); \
+        (ptr)[7] = (uint8_t)_x; \
     } while (0)
 
 /* Load a little-endian 64-bit word from a byte buffer */
@@ -126,17 +126,17 @@
       ((uint64_t)((ptr)[0])))
 
 /* Store a little-endian 64-bit word into a byte buffer */
-#define le_store_word64(ptr, _x) \
+#define le_store_word64(ptr, x) \
     do { \
-        uint64_t x = (_x); \
-        (ptr)[0] = (uint8_t)x; \
-        (ptr)[1] = (uint8_t)(x >> 8); \
-        (ptr)[2] = (uint8_t)(x >> 16); \
-        (ptr)[3] = (uint8_t)(x >> 24); \
-        (ptr)[4] = (uint8_t)(x >> 32); \
-        (ptr)[5] = (uint8_t)(x >> 40); \
-        (ptr)[6] = (uint8_t)(x >> 48); \
-        (ptr)[7] = (uint8_t)(x >> 56); \
+        uint64_t _x = (x); \
+        (ptr)[0] = (uint8_t)_x; \
+        (ptr)[1] = (uint8_t)(_x >> 8); \
+        (ptr)[2] = (uint8_t)(_x >> 16); \
+        (ptr)[3] = (uint8_t)(_x >> 24); \
+        (ptr)[4] = (uint8_t)(_x >> 32); \
+        (ptr)[5] = (uint8_t)(_x >> 40); \
+        (ptr)[6] = (uint8_t)(_x >> 48); \
+        (ptr)[7] = (uint8_t)(_x >> 56); \
     } while (0)
 
 /* XOR a source byte buffer against a destination */
