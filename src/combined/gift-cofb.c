@@ -269,5 +269,5 @@ int gift_cofb_aead_decrypt
     }
 
     /* Check the authentication tag at the end of the packet */
-    return aead_check_tag(mtemp, *mlen, Y, c, GIFT_COFB_TAG_SIZE, 0);
+    return aead_check_tag(mtemp, *mlen, Y, c, GIFT_COFB_TAG_SIZE);
 }

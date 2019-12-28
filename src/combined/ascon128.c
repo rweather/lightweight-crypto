@@ -221,7 +221,7 @@ int ascon128_aead_decrypt
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k, 16);
     return aead_check_tag
-        (m, *mlen, state.B + 24, c + *mlen, ASCON128_TAG_SIZE, 0);
+        (m, *mlen, state.B + 24, c + *mlen, ASCON128_TAG_SIZE);
 }
 
 int ascon128a_aead_encrypt
@@ -300,7 +300,7 @@ int ascon128a_aead_decrypt
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k, 16);
     return aead_check_tag
-        (m, *mlen, state.B + 24, c + *mlen, ASCON128_TAG_SIZE, 0);
+        (m, *mlen, state.B + 24, c + *mlen, ASCON128_TAG_SIZE);
 }
 
 int ascon80pq_aead_encrypt
@@ -379,5 +379,5 @@ int ascon80pq_aead_decrypt
     ascon_permute(&state, 0);
     lw_xor_block(state.B + 24, k + 4, 16);
     return aead_check_tag
-        (m, *mlen, state.B + 24, c + *mlen, ASCON80PQ_TAG_SIZE, 0);
+        (m, *mlen, state.B + 24, c + *mlen, ASCON80PQ_TAG_SIZE);
 }

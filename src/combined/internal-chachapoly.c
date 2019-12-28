@@ -447,5 +447,5 @@ int internal_chachapoly_aead_decrypt
 
     /* Check the final Poly1305 authentication tag */
     poly1305_finalize(&poly, stream.bytes, poly_nonce);
-    return aead_check_tag(m, *mlen, stream.bytes, c + *mlen, 16, 0);
+    return aead_check_tag(m, *mlen, stream.bytes, c + *mlen, 16);
 }
