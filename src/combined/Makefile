@@ -20,7 +20,8 @@ OBJS = \
 	internal-ascon.o \
 	internal-chachapoly.o \
 	internal-gift128.o \
-	internal-skinny128.o
+	internal-skinny128.o \
+        internal-speck64.o
 
 all: $(LIBRARY)
 
@@ -49,3 +50,4 @@ internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h
+internal-speck64.o: internal-speck64.h internal-util.h

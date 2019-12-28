@@ -20,19 +20,39 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "test-cipher.h"
+#ifndef LW_INTERNAL_SPECK64_H
+#define LW_INTERNAL_SPECK64_H
 
-void test_chachapoly(void);
-void test_gift128(void);
-void test_gimli24(void);
-void test_skinny128(void);
+/**
+ * \file internal-speck64.h
+ * \brief SPECK-64 block cipher.
+ *
+ * References: https://en.wikipedia.org/wiki/Speck_%28cipher%29,
+ * http://eprint.iacr.org/2013/404
+ */
 
-int main(int argc, char *argv[])
-{
-    test_chachapoly();
-    test_gift128();
-    test_gimli24();
-    test_skinny128();
-    test_speck64();
-    return test_exit_result;
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * \brief Encrypts a 64-bit block with SPECK-64-128.
+ *
+ * \param key Points to the 16 bytes of the key.
+ * \param output Output buffer which must be at least 8 bytes in length.
+ * \param input Input buffer which must be at least 8 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ */
+void speck64_128_encrypt
+    (const unsigned char *key, unsigned char *output,
+     const unsigned char *input);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

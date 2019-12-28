@@ -107,6 +107,11 @@ void test_block_cipher_128
     (const block_cipher_t *cipher,
      const block_cipher_test_vector_128_t *test_vector);
 
+/* Tests a block cipher with a 64-bit block */
+void test_block_cipher_64
+    (const block_cipher_t *cipher,
+     const block_cipher_test_vector_128_t *test_vector);
+
 /* Start a batch of tests on an AEAD cipher */
 void test_aead_cipher_start(const aead_cipher_t *cipher);
 

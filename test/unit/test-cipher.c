@@ -70,9 +70,10 @@ void test_block_cipher_end(const block_cipher_t *cipher)
 
 static int test_block_cipher_128_inner
     (const block_cipher_t *cipher,
-     const block_cipher_test_vector_128_t *test_vector, void *ks)
+     const block_cipher_test_vector_128_t *test_vector, void *ks,
+     size_t block_size)
 {
-    unsigned char temp[16];
+    unsigned char temp[block_size];
 
     /* Set the encryption key */
     if (!(*(cipher->init))(ks, test_vector->key, test_vector->key_len)) {
@@ -83,15 +84,15 @@ static int test_block_cipher_128_inner
     /* Test encryption */
     memset(temp, 0xAA, sizeof(temp));
     (*(cipher->encrypt))(ks, temp, test_vector->plaintext);
-    if (test_memcmp(temp, test_vector->ciphertext, 16) != 0) {
+    if (test_memcmp(temp, test_vector->ciphertext, block_size) != 0) {
         printf("encryption ... ");
         return 0;
     }
 
     /* Test in-place encryption */
-    memcpy(temp, test_vector->plaintext, 16);
+    memcpy(temp, test_vector->plaintext, block_size);
     (*(cipher->encrypt))(ks, temp, temp);
-    if (test_memcmp(temp, test_vector->ciphertext, 16) != 0) {
+    if (test_memcmp(temp, test_vector->ciphertext, block_size) != 0) {
         printf("in-place encryption ... ");
         return 0;
     }
@@ -101,15 +102,15 @@ static int test_block_cipher_128_inner
         /* Test decryption */
         memset(temp, 0xBB, sizeof(temp));
         (*(cipher->decrypt))(ks, temp, test_vector->ciphertext);
-        if (test_memcmp(temp, test_vector->plaintext, 16) != 0) {
+        if (test_memcmp(temp, test_vector->plaintext, block_size) != 0) {
             printf("decryption ... ");
             return 0;
         }
 
         /* Test in-place decryption */
-        memcpy(temp, test_vector->ciphertext, 16);
+        memcpy(temp, test_vector->ciphertext, block_size);
         (*(cipher->decrypt))(ks, temp, temp);
-        if (test_memcmp(temp, test_vector->plaintext, 16) != 0) {
+        if (test_memcmp(temp, test_vector->plaintext, block_size) != 0) {
             printf("in-place decryption ... ");
             return 0;
         }
@@ -134,7 +135,32 @@ void test_block_cipher_128
         return;
     }
 
-    if (test_block_cipher_128_inner(cipher, test_vector, ks)) {
+    if (test_block_cipher_128_inner(cipher, test_vector, ks, 16)) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+    free(ks);
+}
+
+void test_block_cipher_64
+    (const block_cipher_t *cipher,
+     const block_cipher_test_vector_128_t *test_vector)
+{
+    char *ks;
+
+    printf("    %s ... ", test_vector->name);
+    fflush(stdout);
+
+    ks = calloc(1, cipher->schedule_size);
+    if (!ks) {
+        printf("out of memory\n");
+        test_exit_result = 1;
+        return;
+    }
+
+    if (test_block_cipher_128_inner(cipher, test_vector, ks, 8)) {
         printf("ok\n");
     } else {
         printf("failed\n");
