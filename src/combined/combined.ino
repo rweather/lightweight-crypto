@@ -32,6 +32,7 @@ of flash memory.
 #include "ascon128.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
+#include "hyena.h"
 #include "saturnin.h"
 #include "sundae-gift.h"
 #include "internal-chachapoly.h"
@@ -335,6 +336,7 @@ void setup()
     perfCipher(&ascon80pq_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
+    perfCipher(&hyena_cipher);
     perfCipher(&saturnin_cipher);
     perfCipherShort(&saturnin_short_cipher, 15);
     perfCipher(&sundae_gift_0_cipher);

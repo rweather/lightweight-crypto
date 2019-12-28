@@ -628,7 +628,7 @@ int saturnin_aead_decrypt
 
     /* Check the authentication tag at the end of the message */
     return aead_check_tag
-        (m, *mlen, tag, c + *mlen, SATURNIN_TAG_SIZE, 0);
+        (m, *mlen, tag, c + *mlen, SATURNIN_TAG_SIZE);
 }
 
 int saturnin_short_aead_encrypt

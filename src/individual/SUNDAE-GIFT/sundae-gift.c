@@ -242,7 +242,7 @@ static int sundae_gift_aead_decrypt
     sundae_gift_aead_mac(&ks, V, 0, 0, m, *mlen);
 
     /* Check the authentication tag */
-    return aead_check_tag(m, *mlen, T, V, 16, 0);
+    return aead_check_tag(m, *mlen, T, V, 16);
 }
 
 int sundae_gift_0_aead_encrypt

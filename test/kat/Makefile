@@ -31,6 +31,7 @@ check: $(TARGET1)
 	@./$(TARGET1) GIFT-COFB GIFT-COFB.txt
 	@./$(TARGET1) GIMLI-24 GIMLI-24-CIPHER.txt
 	@./$(TARGET1) GIMLI-24-HASH GIMLI-24-HASH.txt
+	@./$(TARGET1) HYENA HYENA.txt
 	@./$(TARGET1) SATURNIN-CTR-Cascade SATURNIN-CTR-Cascade.txt
 	@./$(TARGET1) SATURNIN-Short SATURNIN-Short.txt
 	@./$(TARGET1) SATURNIN-Hash SATURNIN-Hash.txt
@@ -39,4 +40,4 @@ check: $(TARGET1)
 	@./$(TARGET1) SUNDAE-GIFT-96 SUNDAE-GIFT-96.txt
 	@./$(TARGET1) SUNDAE-GIFT-128 SUNDAE-GIFT-128.txt
 
-kat.o: KAT_INC = $(wildcard $(LIBSRC_DIR)/*.h)
+kat.o: $(wildcard $(LIBSRC_DIR)/*.h)

@@ -76,6 +76,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.57</td><td>0.60</td><td>0.50</td></tr>
 <tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.57</td><td>0.59</td><td>0.50</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>0.31</td><td>0.33</td><td>0.43</td><td>0.45</td><td>0.38</td></tr>
+<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.30</td><td>0.33</td><td>0.42</td><td>0.44</td><td>0.37</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.21</td><td>0.23</td><td>0.46</td><td>0.48</td><td>0.31</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.19</td><td>0.22</td><td>0.35</td><td>0.37</td><td>0.27</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.35</td><td>0.37</td><td>0.27</td></tr>
@@ -101,6 +102,7 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.72</td><td>0.74</td><td>0.62</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.50</td><td>0.55</td><td>0.67</td><td>0.74</td><td>0.61</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.28</td><td>0.30</td><td>0.25</td></tr>
+<tr><td><b><i>HYENA</i></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.27</td><td>0.28</td><td>0.24</td></tr>
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.29</td><td>0.31</td><td>0.19</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>

@@ -114,7 +114,7 @@ int aead_decrypt_packet
 int aead_check_tag
     (unsigned char *plaintext, unsigned long long plaintext_len,
      const unsigned char *tag1, const unsigned char *tag2,
-     unsigned size, int ok)
+     unsigned size)
 {
     /* Set "accum" to -1 if the tags match, or 0 if they don't match */
     int accum = 0;
@@ -130,6 +130,6 @@ int aead_check_tag
         --plaintext_len;
     }
 
-    /* If "accum" is 0, return -1, otherwise return "ok" */
-    return ok | ~accum;
+    /* If "accum" is 0, return -1, otherwise return 0 */
+    return ~accum;
 }

@@ -178,7 +178,8 @@ hardware design focus.
 
 GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass
 algorithm used by SUNDAE-GIFT.  Out of all the GIFT-128 based submissions
-to NIST, GIFT-COFB has the best software performance.
+to NIST, GIFT-COFB has the best software performance, although HYENA is
+fairly close.
 
 <b>Similar Algorithms:</b> \ref alg_sundae_gift "SUNDAE-GIFT",
 \ref alg_hyena "HYENA", \ref alg_estate "ESTATE"
@@ -200,7 +201,26 @@ TODO
 
 \section alg_hyena HYENA
 
-TODO
+<b>Definition:</b> \ref hyena.h
+
+HYENA is an authenticated encryption algorithm that implements a hybrid
+feedback mode where a mixture of plaintext and ciphertext are mixed into
+the state each block operation.
+
+HYENA has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag.
+It makes a single pass over the associated data and plaintext.
+
+The block cipher in HYENA is the nibble-based version of GIFT-128.  This
+makes HYENA slightly slower than GIFT-COFB in this implementation because
+nibble-based GIFT-128 is implemented as a wrapper around the bit-sliced
+version.  Using the bit-sliced version of GIFT-128 with HYENA would make it
+slightly faster than GIFT-COFB.
+
+Note: The original reference implementation of HYENA in the NIST submission
+had a slight bug in it.  Only 7 bytes of the delta value were being fed back
+into the state each block operation instead of the full 8 bytes.  The authors
+have been notified and they agreed that it was a bug.  This library implements
+the corrected version of HYENA where all 8 bytes of the delta value are used.
 
 <b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
 \ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "ESTATE"

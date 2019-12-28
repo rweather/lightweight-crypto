@@ -20,7 +20,16 @@ GIFT_COFB_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     $(COMMON_FILES)
-GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
+GIMLI_FILES = \
+    gimli24.c \
+    gimli24.h \
+    $(COMMON_FILES)
+HYENA_FILES = \
+    hyena.c \
+    hyena.h \
+    internal-gift128.c \
+    internal-gift128.h \
+    $(COMMON_FILES)
 SATURNIN_FILES = \
     saturnin.c \
     saturnin.h \
@@ -36,6 +45,7 @@ ALL_ALGORITHMS = \
     ascon \
     gift_cofb \
     gimli \
+    hyena \
     saturnin \
     sundae_gift
 
@@ -51,6 +61,9 @@ gift_cofb:
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
+
+hyena:
+	cp $(foreach file,$(HYENA_FILES),$(SRCDIR)/$(file)) HYENA
 
 saturnin:
 	cp $(foreach file,$(SATURNIN_FILES),$(SRCDIR)/$(file)) Saturnin
