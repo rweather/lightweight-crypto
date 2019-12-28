@@ -31,8 +31,6 @@
  * http://eprint.iacr.org/2013/404
  */
 
-#include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
