@@ -341,7 +341,7 @@ void ascon_hash_update
  * \brief Returns the final hash value from an ASCON-HASH hashing operation.
  *
  * \param state Hash state to be finalized.
- * \param out Points to the output buffer to receive the 32-bit hash value.
+ * \param out Points to the output buffer to receive the 32-byte hash value.
  *
  * \sa ascon_hash_init(), ascon_hash_update()
  */

@@ -21,6 +21,10 @@ GIFT_COFB_FILES = \
     internal-gift128.h \
     $(COMMON_FILES)
 GIMLI_FILES = gimli24.c gimli24.h $(COMMON_FILES)
+SATURNIN_FILES = \
+    saturnin.c \
+    saturnin.h \
+    $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -32,6 +36,7 @@ ALL_ALGORITHMS = \
     ascon \
     gift_cofb \
     gimli \
+    saturnin \
     sundae_gift
 
 .PHONY: all $(ALL_ALGORITHMS)
@@ -46,6 +51,9 @@ gift_cofb:
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
+
+saturnin:
+	cp $(foreach file,$(SATURNIN_FILES),$(SRCDIR)/$(file)) Saturnin
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

@@ -32,6 +32,7 @@ of flash memory.
 #include "ascon128.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
+#include "saturnin.h"
 #include "sundae-gift.h"
 #include "internal-chachapoly.h"
 
@@ -46,6 +47,7 @@ extern "C" void system_soft_wdt_feed(void);
 #define PERF_LOOPS_16 3000
 
 #define MAX_DATA_SIZE 128
+#define MAX_TAG_SIZE 32
 
 static unsigned char const key[32] = {
     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
@@ -58,7 +60,7 @@ static unsigned char const nonce[16] = {
     0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F
 };
 static unsigned char plaintext[MAX_DATA_SIZE];
-static unsigned char ciphertext[MAX_DATA_SIZE + 16];
+static unsigned char ciphertext[MAX_DATA_SIZE + MAX_TAG_SIZE];
 
 static unsigned long encrypt_128_time = 0;
 static unsigned long encrypt_16_time = 0;
@@ -223,6 +225,98 @@ void perfCipher(const aead_cipher_t *cipher)
     Serial.println();
 }
 
+// Variant on perfCipherEncrypt16 for algorithms that cannot do
+// 16 bytes on a short packet; e.g. SATURNIN-Short is limited to 15.
+void perfCipherEncryptShort(const aead_cipher_t *cipher, unsigned size)
+{
+    unsigned long start;
+    unsigned long elapsed;
+    unsigned long long len;
+    int count;
+
+    for (count = 0; count < MAX_DATA_SIZE; ++count)
+        plaintext[count] = (unsigned char)count;
+
+    Serial.print("   encrypt  ");
+    Serial.print(size);
+    Serial.print(" byte packets ... ");
+
+    start = micros();
+    for (count = 0; count < PERF_LOOPS_16; ++count) {
+        cipher->encrypt
+            (ciphertext, &len, plaintext, size, 0, 0, 0, nonce, key);
+    }
+    elapsed = micros() - start;
+    encrypt_16_time = elapsed;
+
+    if (encrypt_16_ref != 0 && elapsed != 0) {
+        Serial.print(((double)encrypt_16_ref) / elapsed);
+        Serial.print("x, ");
+    }
+
+    Serial.print(elapsed / (((double)size) * PERF_LOOPS_16));
+    Serial.print("us per byte, ");
+    Serial.print((((double)size) * PERF_LOOPS_16 * 1000000.0) / elapsed);
+    Serial.println(" bytes per second");
+}
+
+void perfCipherDecryptShort(const aead_cipher_t *cipher, unsigned size)
+{
+    unsigned long start;
+    unsigned long elapsed;
+    unsigned long long clen;
+    unsigned long long plen;
+    int count;
+
+    for (count = 0; count < MAX_DATA_SIZE; ++count)
+        plaintext[count] = (unsigned char)count;
+    cipher->encrypt(ciphertext, &clen, plaintext, size, 0, 0, 0, nonce, key);
+
+    Serial.print("   decrypt  ");
+    Serial.print(size);
+    Serial.print(" byte packets ... ");
+
+    start = micros();
+    for (count = 0; count < PERF_LOOPS_16; ++count) {
+        cipher->decrypt
+            (plaintext, &plen, 0, ciphertext, clen, 0, 0, nonce, key);
+    }
+    elapsed = micros() - start;
+    decrypt_16_time = elapsed;
+
+    if (decrypt_16_ref != 0 && elapsed != 0) {
+        Serial.print(((double)decrypt_16_ref) / elapsed);
+        Serial.print("x, ");
+    }
+
+    Serial.print(elapsed / (((double)size) * PERF_LOOPS_16));
+    Serial.print("us per byte, ");
+    Serial.print((((double)size) * PERF_LOOPS_16 * 1000000.0) / elapsed);
+    Serial.println(" bytes per second");
+}
+
+void perfCipherShort(const aead_cipher_t *cipher, unsigned size)
+{
+    crypto_feed_watchdog();
+    Serial.print(cipher->name);
+    Serial.print(':');
+    Serial.println();
+
+    perfCipherEncryptShort(cipher, size);
+    perfCipherDecryptShort(cipher, size);
+
+    if (encrypt_16_ref != 0) {
+        unsigned long ref_avg = encrypt_16_ref  + decrypt_16_ref;
+        unsigned long time_avg = encrypt_16_time  + decrypt_16_time;
+        Serial.print("   average ... ");
+        Serial.print(((double)ref_avg) / time_avg);
+        Serial.print("x");
+        Serial.println();
+    }
+
+    Serial.println();
+}
+
 void setup()
 {
     Serial.begin(9600);
@@ -241,6 +335,8 @@ void setup()
     perfCipher(&ascon80pq_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
+    perfCipher(&saturnin_cipher);
+    perfCipherShort(&saturnin_short_cipher, 15);
     perfCipher(&sundae_gift_0_cipher);
     perfCipher(&sundae_gift_64_cipher);
     perfCipher(&sundae_gift_96_cipher);

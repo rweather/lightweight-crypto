@@ -42,7 +42,7 @@ AEAD competition</a> (128-bit key).
 ChaCha20 and has a similar design (256-bit key).
 \li (others may be added here as I implement more algorithms)
 
-Note that these are my own personal peferences and are not based on any
+Note that these are my own personal preferences and are not based on any
 in-depth security analysis.  The above algorithms could fall to an attack
 tomorrow but for now they have good space and speed trade-offs when
 implemented in software.
@@ -154,6 +154,9 @@ TODO
 
 TODO
 
+<b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
+\ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "HYENA"
+
 \section alg_forkae ForkAE
 
 TODO
@@ -177,6 +180,9 @@ GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass
 algorithm used by SUNDAE-GIFT.  Out of all the GIFT-128 based submissions
 to NIST, GIFT-COFB has the best software performance.
 
+<b>Similar Algorithms:</b> \ref alg_sundae_gift "SUNDAE-GIFT",
+\ref alg_hyena "HYENA", \ref alg_estate "ESTATE"
+
 \section alg_gimli Gimli
 
 <b>Definition:</b> \ref gimli24.h
@@ -195,6 +201,9 @@ TODO
 \section alg_hyena HYENA
 
 TODO
+
+<b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
+\ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "ESTATE"
 
 \section alg_isap ISAP
 
@@ -238,7 +247,27 @@ Based on AES.  Not implemented.
 
 \section alg_saturnin Saturnin
 
-TODO
+<b>Definition:</b> \ref saturnin.h
+
+Saturnin is a block cipher mode with a 256-bit key, a 128-bit nonce,
+and a 256-bit authentication tag.  It is built around a bit-sliced variant
+of AES that has a 256-bit block compared with AES's traditional 128-bit block.
+The authors claim that the increased block size and the 256-bit key size
+should give added protection against quantum computers.
+
+Saturnin comes in two variants: SATURNIN-CTR-Cascade and SATURNIN-Short.
+SATURNIN-CTR-Cascade works on arbitrary-sized inputs using a two-pass
+combination of CTR mode with the Cascade authentication mode.
+
+SATURNIN-Short is designed to work on short inputs of no more than 15 bytes
+with no assoicated data and involves only a single block operation.  It is
+very fast compared to other NIST submissions on short data.
+
+The library also includes an implementation of the companion hash
+algorithm SATURNIN-Hash.
+
+<b>Recommendation:</b> SATURNIN-CTR-Cascade is the recommended variant
+from the NIST submission.
 
 \section alg_skinny SKINNY-AEAD
 
@@ -294,6 +323,9 @@ sent for a second time but will not reveal the plaintext itself.
 
 <b>Recommendation:</b> SUNDAE-GIFT-96 is the recommended variant in the
 NIST submission, with SUNDAE-GIFT-0 as the next-recommended variant.
+
+<b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
+\ref alg_hyena "HYENA", \ref alg_estate "ESTATE"
 
 \section alg_tinyjambu TinyJambu
 
