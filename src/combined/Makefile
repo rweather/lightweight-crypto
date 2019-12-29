@@ -19,6 +19,7 @@ OBJS = \
         sundae-gift.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
+	internal-cham.o \
 	internal-gift128.o \
 	internal-skinny128.o \
         internal-speck64.o
