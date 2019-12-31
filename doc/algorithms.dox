@@ -239,12 +239,6 @@ nibble-based GIFT-128 is implemented as a wrapper around the bit-sliced
 version.  Using the bit-sliced version of GIFT-128 with HYENA would make it
 slightly faster than GIFT-COFB.
 
-Note: The original reference implementation of HYENA in the NIST submission
-had a slight bug in it.  Only 7 bytes of the delta value were being fed back
-into the state each block operation instead of the full 8 bytes.  The authors
-have been notified and they agreed that it was a bug.  This library implements
-the corrected version of HYENA where all 8 bytes of the delta value are used.
-
 <b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
 \ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "ESTATE"
 
@@ -389,8 +383,9 @@ sponge block operations.  Some of these operations are shared between
 multiple algorithms so they are provided in a common internal location.
 
 \li \ref internal-ascon.h "ASCON permutation"
-\li \ref internal-gift128.h "GIFT-128 block cipher" in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions.
-\li \ref internal-skinny128.h "SKINNY-128 block cipher" in 128-bit, 256-bit, and 384-bit key size versions.
+\li \ref internal-cham.h "CHAM-128/128 and CHAM-64/128" block ciphers.
+\li \ref internal-gift128.h "GIFT-128" block cipher in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions.
+\li \ref internal-skinny128.h "SKINNY-128" block cipher in 128-bit, 256-bit, and 384-bit key size versions.
 
 All of the internal block operations are implemented in source files that
 start with the <tt>internal-</tt> prefix.  They are not intended to be part

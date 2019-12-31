@@ -23,7 +23,81 @@
 /**
 \file mainpage.dox
 \mainpage
+\tableofcontents
 
-TBD
+This <a href="https://github.com/rweather/lightweight-crypto">repository</a>
+contains implementations of many of the second round submissions to the 
+<a href="https://csrc.nist.gov/projects/lightweight-cryptography/round-2-candidates">NIST lightweight cryptography competition</a>.
+
+The implementations here are focused on efficient implementation for 32-bit
+embedded architectures, particularly ARM.  The reference code from the NIST
+web site by contrast is focused on correctness and amenity to academic
+cryptanalysis.
+
+\section mainpage_source_dirs Source directories
+
+The primary source for all algorithms is in the "src/combined" directory,
+which makes it easier to share common building blocks between algorithms
+and to test all of the algorithms as a set.
+
+If you want to use a specific algorithm in your project, you should instead
+copy the source files under "src/individual/ALG" where "ALG" is the name
+of the algorithm you require.
+
+The build rule "make individual" can be used to copy the relevant files
+under "src/combined" to subdirectories of "src/individual" after you
+make a change to the source in "src/combined".
+
+The source code is mostly plain C99, tested with gcc and clang.
+There are some platform-specific and compiler-specific definitions
+in "src/combined/internal-util.h" that may need adjusting to get the
+code to work with other compilers.  Patches welcome to improve portability.
+
+\section mainpage_arduino Arduino support
+
+The "src/combined" directory contains a "combined.ino" sketch file that
+can be used to test the performance of all algorithms on Arduino devices.
+The sketch needs significant amounts of flash memory to run (at least
+256kB is recommended).
+
+Copy or symlink the entire contents of the "src/combined" directory to
+your sketchbook directory as "$HOME/sketchbook/combined".  You should
+then be able to load the sketch into the Arduino IDE and download it
+into a device.  The performance metrics are written to the serial port
+at 9600 bps.
+
+\section mainpage_alg Algorithms and performance
+
+\ref algorithms "This page" contains a list of all implemented algorithms,
+their properties, and any interesting features that I noticed as I was
+implementing them.
+
+All of the algorithms have been implemented in a manner that should
+execute in constant time with constant cache behaviour.  If you find a
+side channel leakage in the code, then please let me know.
+
+The \ref performance "performance page" contains comparisons of all
+implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.
+
+All of the algorithms have been implemented to have good performance in
+plain C on 32-bit embedded microprocessors.
+
+I don't currently provide any implementations for 8-bit microprocessors
+like the AVR chips in low end Arduino devices as assembly language is normally
+required to make AVR encryption feasible.  Once all of the algorithms have
+been implemented and tested on 32-bit architectures, and as the competition
+advances, I will investigate which ones make sense to accelerate on AVR.
+
+Eventually the plan is to integrate the competition finalists into my
+<a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino
+Cryptography Library</a>.  But it is too soon to pick a candidate for
+inclusion just yet.
+
+\section mainpage_contact Contact
+
+For more information on these libraries, to report bugs, or to suggest
+improvements, please contact the author Rhys Weatherley via
+<a href="mailto:rhys.weatherley@gmail.com">email</a>.
 
 */
+
