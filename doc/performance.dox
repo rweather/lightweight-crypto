@@ -31,7 +31,8 @@ There is a lot of variation in the capabilities of embedded microprocessors.
 Some are superscalar; others are not.  Some have specialised vector
 instructions; others do not.  Clock speeds can also vary considerably.
 All this means that "cycles per byte" or "megabytes per second" are
-pretty meaningless.
+pretty meaningless when trying to rank the algorithms on relative
+performance on any given microprocessor.
 
 The approach I take here is "ChaChaPoly Units".  The library contains a
 reasonably efficient 32-bit non-vectorized implementation of the ChaChaPoly
@@ -47,7 +48,7 @@ number of units, the better the algorithm.
 
 The number of ChaChaPoly Units for each algorithm will vary for each
 microprocessor that is tested and for different choices of optimisation
-options.  The figures below should be used as a guide to the relative
+options.  The figures below should be used as a rough guide to the relative
 performance of the algorithms, not an absolute measurement.
 
 \section perf_cortex_m3 Performance on ARM Cortex M3
@@ -67,25 +68,25 @@ ChaChaPoly on the same packet.  Higher numbers mean better performance.
 The table is ordered from best average performance down.
 
 Where a NIST submission contains multiple algorithms in a family,
-<b><i>bold italics</i></b> indicates the recommended algorithm in the family.
+<b><i>bold italics</i></b> indicates the primary algorithm in the family.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.27</td><td>1.23</td><td>2.19</td><td>2.01</td><td>1.60</td></tr>
-<tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>0.95</td><td>1.01</td><td>0.98</td></tr>
-<tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.69</td><td>0.73</td><td>1.36</td><td>1.36</td><td>0.96</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.77</td><td>0.80</td><td>0.91</td><td>0.92</td><td>0.85</td></tr>
-<tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.57</td><td>0.60</td><td>0.65</td><td>0.67</td><td>0.63</td></tr>
-<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.41</td><td>0.44</td><td>0.77</td><td>0.80</td><td>0.56</td></tr>
-<tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.57</td><td>0.60</td><td>0.50</td></tr>
-<tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.57</td><td>0.59</td><td>0.50</td></tr>
-<tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>0.31</td><td>0.33</td><td>0.43</td><td>0.45</td><td>0.38</td></tr>
-<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.30</td><td>0.33</td><td>0.42</td><td>0.44</td><td>0.37</td></tr>
-<tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.21</td><td>0.23</td><td>0.46</td><td>0.48</td><td>0.31</td></tr>
-<tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.19</td><td>0.22</td><td>0.35</td><td>0.37</td><td>0.27</td></tr>
-<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.35</td><td>0.37</td><td>0.27</td></tr>
-<tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.21</td><td>0.35</td><td>0.36</td><td>0.27</td></tr>
-<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.22</td><td>0.23</td><td>0.22</td></tr>
+<tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61</td></tr>
+<tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.74</td><td>0.76</td><td>1.46</td><td>1.45</td><td>1.03</td></tr>
+<tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>0.99</td><td>0.94</td><td>0.96</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.74</td><td>0.76</td><td>0.89</td><td>0.90</td><td>0.82</td></tr>
+<tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.55</td><td>0.57</td><td>0.66</td><td>0.67</td><td>0.61</td></tr>
+<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.40</td><td>0.43</td><td>0.79</td><td>0.81</td><td>0.57</td></tr>
+<tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.57</td><td>0.60</td><td>0.49</td></tr>
+<tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.56</td><td>0.58</td><td>0.48</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>0.29</td><td>0.32</td><td>0.42</td><td>0.44</td><td>0.37</td></tr>
+<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.28</td><td>0.31</td><td>0.40</td><td>0.42</td><td>0.35</td></tr>
+<tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.19</td><td>0.22</td><td>0.45</td><td>0.47</td><td>0.30</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.18</td><td>0.21</td><td>0.34</td><td>0.36</td><td>0.26</td></tr>
+<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.18</td><td>0.20</td><td>0.34</td><td>0.36</td><td>0.26</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.20</td><td>0.34</td><td>0.36</td><td>0.26</td></tr>
+<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.23</td></tr>
 </table>
 
 Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload,
@@ -100,21 +101,21 @@ where the architecture differences gives some algorithms an added advantage.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.09</td><td>1.07</td><td>1.82</td><td>1.71</td><td>1.37</td></tr>
-<tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.77</td><td>0.80</td><td>1.52</td><td>1.49</td><td>1.06</td></tr>
+<tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.11</td><td>1.88</td><td>1.73</td><td>1.43</td></tr>
+<tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.80</td><td>0.83</td><td>1.59</td><td>1.55</td><td>1.11</td></tr>
 <tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.03</td><td>1.02</td><td>1.03</td></tr>
-<tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.70</td><td>0.73</td><td>0.82</td><td>0.83</td><td>0.77</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.66</td><td>0.69</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
-<tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.72</td><td>0.74</td><td>0.62</td></tr>
-<tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.50</td><td>0.55</td><td>0.67</td><td>0.74</td><td>0.61</td></tr>
-<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.41</td><td>0.45</td><td>0.80</td><td>0.82</td><td>0.58</td></tr>
-<tr><td><b><i>GIFT-COFB</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.28</td><td>0.30</td><td>0.25</td></tr>
-<tr><td><b><i>HYENA</i></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.27</td><td>0.28</td><td>0.24</td></tr>
+<tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.85</td><td>0.85</td><td>0.79</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
+<tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.51</td><td>0.56</td><td>0.75</td><td>0.76</td><td>0.64</td></tr>
+<tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.74</td><td>0.75</td><td>0.63</td></tr>
+<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.42</td><td>0.46</td><td>0.82</td><td>0.84</td><td>0.59</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.23</td><td>0.28</td><td>0.30</td><td>0.25</td></tr>
+<tr><td><b><i>HYENA</i></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.27</td><td>0.29</td><td>0.24</td></tr>
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24</td></tr>
-<tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.29</td><td>0.31</td><td>0.19</td></tr>
-<tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
-<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
-<tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.14</td><td>0.22</td><td>0.24</td><td>0.17</td></tr>
+<tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.27</td><td>0.29</td><td>0.19</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
+<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
 </table>
 
 */
