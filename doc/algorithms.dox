@@ -114,6 +114,11 @@ resistant against nonce reuse.  In the absence of any special considerations,
 you should assume that changing the nonce for each packet is vital for
 security.
 
+\section alg_bugs Bugs
+
+A few bugs were found in the reference code for some of the algorithms.
+The bugs and their fixes are documented on \ref bugs "this page".
+
 \section alg_ace ACE
 
 TODO

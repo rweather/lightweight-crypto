@@ -1,0 +1,102 @@
+/*
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+\file bugs.dox
+\page bugs Bugs in the reference implementations
+\tableofcontents
+
+As I worked on this library I found some minor bugs in the second round
+reference implementations of some NIST algorithms.  The authors were
+notified so that the problems could be corrected in the official
+reference implementations.
+
+This page documents the problems that I found, and the fixes, for
+the benefit of other implementors.  This library implements the fixed
+version of the algorithms.
+
+\section bugs_comet COMET
+
+In the proc_pt and proc_ct code, the first step is to XOR a domain
+separation value of 0x20 into the rolling Z state:
+
+\code
+Z[adlen_blocks*KSZ] ^= 0x20;
+\endcode
+
+That will XOR the value into the first byte of the Z state.  All other
+places in the code where domain separation is done XOR's the value into
+the last byte of the Z state.  The above code should instead be:
+
+\code
+Z[(adlen_blocks+1)*KSZ-1] ^= 0x20;
+\endcode
+
+This bug affects all four versions of COMET.
+
+There was also a problem with carry propagation in the SPECK-64-128
+implementation which caused the block cipher to generate different
+outputs from the standard version of SPECK-64-128.  In the encryption
+phase, the following code appears:
+
+\code
+//ct[1] = (ROR(ct[1], 8) + ct[0]) ^ RK[i]
+for(u8 j=0; j<WSZ; j++){
+    ct_temp[WSZ+j] = (ct[WSZ+((j+1)%WSZ)] + ct[j]);
+
+    //add carry
+    ct_temp[WSZ+j] += carry;
+
+    //set next carry
+    carry = (ct_temp[WSZ+j] < ct[WSZ+((j+1)%WSZ)]) || (ct_temp[WSZ+j] < ct[j]);
+
+    ct_temp[WSZ+j] ^= RK[i*WSZ+j];
+}
+\endcode
+
+The line that sets the next carry gives the wrong result if the incoming
+carry value was 1 and the bytes being added were both 0xFF.  The following
+is the fixed version of "set next carry":
+
+\code
+if (carry)
+    carry = (ct_temp[WSZ+j] <= ct[WSZ+((j+1)%WSZ)]) || (ct_temp[WSZ+j] <= ct[j]);
+else
+    carry = (ct_temp[WSZ+j] < ct[WSZ+((j+1)%WSZ)]) || (ct_temp[WSZ+j] < ct[j]);
+\endcode
+
+\section bugs_hyena HYENA
+
+As part of the block operation, HYENA XOR's a 64-bit delta value into
+the upper half of the 128-bit feedback state:
+
+\code
+for(i=8; i<15 ;i++)
+{
+    feedback[i] ^= Delta[i-8];
+}
+\endcode
+
+That 15 should be a 16.  There are two places in the reference code
+where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec().
+
+*/
