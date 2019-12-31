@@ -70,26 +70,6 @@ void cham128_128_encrypt
     le_store_word32(output + 12, x3);
 }
 
-/* Load a little-endian 16-bit word from a byte buffer */
-#define le_load_word16(ptr) \
-    ((((uint16_t)((ptr)[1])) << 8) | \
-      ((uint16_t)((ptr)[0])))
-
-/* Store a little-endian 16-bit word into a byte buffer */
-#define le_store_word16(ptr, x) \
-    do { \
-        uint16_t _x = (x); \
-        (ptr)[0] = (uint8_t)_x; \
-        (ptr)[1] = (uint8_t)(_x >> 8); \
-    } while (0)
-
-/* Rotate a 16-bit value left by a number of bits */
-#define leftRotate_16(a, bits) \
-    (__extension__ ({ \
-        uint16_t _temp = (a); \
-        (_temp << (bits)) | (_temp >> (16 - (bits))); \
-    }))
-
 void cham64_128_encrypt
     (const unsigned char *key, unsigned char *output,
      const unsigned char *input)

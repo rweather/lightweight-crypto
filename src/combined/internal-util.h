@@ -139,6 +139,32 @@
         (ptr)[7] = (uint8_t)(_x >> 56); \
     } while (0)
 
+/* Load a big-endian 16-bit word from a byte buffer */
+#define be_load_word16(ptr) \
+    ((((uint16_t)((ptr)[0])) << 8) | \
+      ((uint16_t)((ptr)[1])))
+
+/* Store a big-endian 16-bit word into a byte buffer */
+#define be_store_word16(ptr, x) \
+    do { \
+        uint16_t _x = (x); \
+        (ptr)[0] = (uint8_t)(_x >> 8); \
+        (ptr)[1] = (uint8_t)_x; \
+    } while (0)
+
+/* Load a little-endian 16-bit word from a byte buffer */
+#define le_load_word16(ptr) \
+    ((((uint16_t)((ptr)[1])) << 8) | \
+      ((uint16_t)((ptr)[0])))
+
+/* Store a little-endian 16-bit word into a byte buffer */
+#define le_store_word16(ptr, x) \
+    do { \
+        uint16_t _x = (x); \
+        (ptr)[0] = (uint8_t)_x; \
+        (ptr)[1] = (uint8_t)(_x >> 8); \
+    } while (0)
+
 /* XOR a source byte buffer against a destination */
 STATIC_INLINE void lw_xor_block
     (unsigned char *dest, const unsigned char *src, unsigned len)
@@ -428,5 +454,19 @@ STATIC_INLINE void lw_xor_block_swap
 #define rightRotate61_64(a) (rightRotate_64((a), 61))
 #define rightRotate62_64(a) (rightRotate_64((a), 62))
 #define rightRotate63_64(a) (rightRotate_64((a), 63))
+
+/* Rotate a 16-bit value left by a number of bits */
+#define leftRotate_16(a, bits) \
+    (__extension__ ({ \
+        uint16_t _temp = (a); \
+        (_temp << (bits)) | (_temp >> (16 - (bits))); \
+    }))
+
+/* Rotate a 16-bit value right by a number of bits */
+#define rightRotate_16(a, bits) \
+    (__extension__ ({ \
+        uint16_t _temp = (a); \
+        (_temp >> (bits)) | (_temp << (16 - (bits))); \
+    }))
 
 #endif
