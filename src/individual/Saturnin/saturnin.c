@@ -97,23 +97,23 @@ static uint32_t const RC_16_8[] = {
 
 /* Rotate the 4-bit nibbles within a 16-bit word left */
 #define leftRotate4_N(a, mask1, bits1, mask2, bits2) \
-    (__extension__ ({ \
+    do { \
         uint32_t _temp = (a); \
-        ((_temp & (mask1)) << (bits1)) | \
-        ((_temp & ((mask1) ^ 0xFFFFU)) >> (4 - (bits1))) | \
-        ((_temp & ((mask2) << 16)) << (bits2)) | \
-        ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (4 - (bits2))); \
-    }))
+        (a) = ((_temp & (mask1)) << (bits1)) | \
+              ((_temp & ((mask1) ^ 0xFFFFU)) >> (4 - (bits1))) | \
+              ((_temp & ((mask2) << 16)) << (bits2)) | \
+              ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (4 - (bits2))); \
+    } while (0)
 
 /* Rotate 16-bit subwords left */
 #define leftRotate16_N(a, mask1, bits1, mask2, bits2) \
-    (__extension__ ({ \
+    do { \
         uint32_t _temp = (a); \
-        ((_temp & (mask1)) << (bits1)) | \
-        ((_temp & ((mask1) ^ 0xFFFFU)) >> (16 - (bits1))) | \
-        ((_temp & ((mask2) << 16)) << (bits2)) | \
-        ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (16 - (bits2))); \
-    }))
+        (a) = ((_temp & (mask1)) << (bits1)) | \
+              ((_temp & ((mask1) ^ 0xFFFFU)) >> (16 - (bits1))) | \
+              ((_temp & ((mask2) << 16)) << (bits2)) | \
+              ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (16 - (bits2))); \
+    } while (0)
 
 /* XOR the SATURNIN state with the key */
 #define saturnin_xor_key() \
@@ -267,15 +267,15 @@ static void saturnin_mds_inverse(uint32_t S[8])
  */
 static void saturnin_slice(uint32_t S[8])
 {
-    S[0] = leftRotate4_N(S[0], 0xFFFFU, 0, 0x3333, 2);
-    S[1] = leftRotate4_N(S[1], 0xFFFFU, 0, 0x3333, 2);
-    S[2] = leftRotate4_N(S[2], 0xFFFFU, 0, 0x3333, 2);
-    S[3] = leftRotate4_N(S[3], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[0], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[1], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[2], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[3], 0xFFFFU, 0, 0x3333, 2);
 
-    S[4] = leftRotate4_N(S[4], 0x7777U, 1, 0x1111, 3);
-    S[5] = leftRotate4_N(S[5], 0x7777U, 1, 0x1111, 3);
-    S[6] = leftRotate4_N(S[6], 0x7777U, 1, 0x1111, 3);
-    S[7] = leftRotate4_N(S[7], 0x7777U, 1, 0x1111, 3);
+    leftRotate4_N(S[4], 0x7777U, 1, 0x1111, 3);
+    leftRotate4_N(S[5], 0x7777U, 1, 0x1111, 3);
+    leftRotate4_N(S[6], 0x7777U, 1, 0x1111, 3);
+    leftRotate4_N(S[7], 0x7777U, 1, 0x1111, 3);
 }
 
 /**
@@ -285,15 +285,15 @@ static void saturnin_slice(uint32_t S[8])
  */
 static void saturnin_slice_inverse(uint32_t S[8])
 {
-    S[0] = leftRotate4_N(S[0], 0xFFFFU, 0, 0x3333, 2);
-    S[1] = leftRotate4_N(S[1], 0xFFFFU, 0, 0x3333, 2);
-    S[2] = leftRotate4_N(S[2], 0xFFFFU, 0, 0x3333, 2);
-    S[3] = leftRotate4_N(S[3], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[0], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[1], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[2], 0xFFFFU, 0, 0x3333, 2);
+    leftRotate4_N(S[3], 0xFFFFU, 0, 0x3333, 2);
 
-    S[4] = leftRotate4_N(S[4], 0x1111U, 3, 0x7777, 1);
-    S[5] = leftRotate4_N(S[5], 0x1111U, 3, 0x7777, 1);
-    S[6] = leftRotate4_N(S[6], 0x1111U, 3, 0x7777, 1);
-    S[7] = leftRotate4_N(S[7], 0x1111U, 3, 0x7777, 1);
+    leftRotate4_N(S[4], 0x1111U, 3, 0x7777, 1);
+    leftRotate4_N(S[5], 0x1111U, 3, 0x7777, 1);
+    leftRotate4_N(S[6], 0x1111U, 3, 0x7777, 1);
+    leftRotate4_N(S[7], 0x1111U, 3, 0x7777, 1);
 }
 
 /**
@@ -303,15 +303,15 @@ static void saturnin_slice_inverse(uint32_t S[8])
  */
 static void saturnin_sheet(uint32_t S[8])
 {
-    S[0] = leftRotate16_N(S[0], 0xFFFFU, 0, 0x00FF, 8);
-    S[1] = leftRotate16_N(S[1], 0xFFFFU, 0, 0x00FF, 8);
-    S[2] = leftRotate16_N(S[2], 0xFFFFU, 0, 0x00FF, 8);
-    S[3] = leftRotate16_N(S[3], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[0], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[1], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[2], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[3], 0xFFFFU, 0, 0x00FF, 8);
 
-    S[4] = leftRotate16_N(S[4], 0x0FFFU, 4, 0x000F, 12);
-    S[5] = leftRotate16_N(S[5], 0x0FFFU, 4, 0x000F, 12);
-    S[6] = leftRotate16_N(S[6], 0x0FFFU, 4, 0x000F, 12);
-    S[7] = leftRotate16_N(S[7], 0x0FFFU, 4, 0x000F, 12);
+    leftRotate16_N(S[4], 0x0FFFU, 4, 0x000F, 12);
+    leftRotate16_N(S[5], 0x0FFFU, 4, 0x000F, 12);
+    leftRotate16_N(S[6], 0x0FFFU, 4, 0x000F, 12);
+    leftRotate16_N(S[7], 0x0FFFU, 4, 0x000F, 12);
 }
 
 /**
@@ -321,15 +321,15 @@ static void saturnin_sheet(uint32_t S[8])
  */
 static void saturnin_sheet_inverse(uint32_t S[8])
 {
-    S[0] = leftRotate16_N(S[0], 0xFFFFU, 0, 0x00FF, 8);
-    S[1] = leftRotate16_N(S[1], 0xFFFFU, 0, 0x00FF, 8);
-    S[2] = leftRotate16_N(S[2], 0xFFFFU, 0, 0x00FF, 8);
-    S[3] = leftRotate16_N(S[3], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[0], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[1], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[2], 0xFFFFU, 0, 0x00FF, 8);
+    leftRotate16_N(S[3], 0xFFFFU, 0, 0x00FF, 8);
 
-    S[4] = leftRotate16_N(S[4], 0x000FU, 12, 0x0FFF, 4);
-    S[5] = leftRotate16_N(S[5], 0x000FU, 12, 0x0FFF, 4);
-    S[6] = leftRotate16_N(S[6], 0x000FU, 12, 0x0FFF, 4);
-    S[7] = leftRotate16_N(S[7], 0x000FU, 12, 0x0FFF, 4);
+    leftRotate16_N(S[4], 0x000FU, 12, 0x0FFF, 4);
+    leftRotate16_N(S[5], 0x000FU, 12, 0x0FFF, 4);
+    leftRotate16_N(S[6], 0x000FU, 12, 0x0FFF, 4);
+    leftRotate16_N(S[7], 0x000FU, 12, 0x0FFF, 4);
 }
 
 /**

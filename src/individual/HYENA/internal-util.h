@@ -139,67 +139,104 @@
         (ptr)[7] = (uint8_t)(_x >> 56); \
     } while (0)
 
+/* Load a big-endian 16-bit word from a byte buffer */
+#define be_load_word16(ptr) \
+    ((((uint16_t)((ptr)[0])) << 8) | \
+      ((uint16_t)((ptr)[1])))
+
+/* Store a big-endian 16-bit word into a byte buffer */
+#define be_store_word16(ptr, x) \
+    do { \
+        uint16_t _x = (x); \
+        (ptr)[0] = (uint8_t)(_x >> 8); \
+        (ptr)[1] = (uint8_t)_x; \
+    } while (0)
+
+/* Load a little-endian 16-bit word from a byte buffer */
+#define le_load_word16(ptr) \
+    ((((uint16_t)((ptr)[1])) << 8) | \
+      ((uint16_t)((ptr)[0])))
+
+/* Store a little-endian 16-bit word into a byte buffer */
+#define le_store_word16(ptr, x) \
+    do { \
+        uint16_t _x = (x); \
+        (ptr)[0] = (uint8_t)_x; \
+        (ptr)[1] = (uint8_t)(_x >> 8); \
+    } while (0)
+
 /* XOR a source byte buffer against a destination */
-STATIC_INLINE void lw_xor_block
-    (unsigned char *dest, const unsigned char *src, unsigned len)
-{
-    while (len > 0) {
-        *dest++ ^= *src++;
-        --len;
-    }
-}
+#define lw_xor_block(dest, src, len) \
+    do { \
+        unsigned char *_dest = (dest); \
+        const unsigned char *_src = (src); \
+        unsigned _len = (len); \
+        while (_len > 0) { \
+            *_dest++ ^= *_src++; \
+            --_len; \
+        } \
+    } while (0)
 
 /* XOR two source byte buffers and put the result in a destination buffer */
-STATIC_INLINE void lw_xor_block_2_src
-    (unsigned char *dest, const unsigned char *src1,
-     const unsigned char *src2, unsigned len)
-{
-    while (len > 0) {
-        *dest++ = *src1++ ^ *src2++;
-        --len;
-    }
-}
+#define lw_xor_block_2_src(dest, src1, src2, len) \
+    do { \
+        unsigned char *_dest = (dest); \
+        const unsigned char *_src1 = (src1); \
+        const unsigned char *_src2 = (src2); \
+        unsigned _len = (len); \
+        while (_len > 0) { \
+            *_dest++ = *_src1++ ^ *_src2++; \
+            --_len; \
+        } \
+    } while (0)
 
 /* XOR a source byte buffer against a destination and write to another
  * destination at the same time */
-STATIC_INLINE void lw_xor_block_2_dest
-    (unsigned char *dest2, unsigned char *dest,
-     const unsigned char *src, unsigned len)
-{
-    while (len > 0) {
-        *dest2++ = (*dest++ ^= *src++);
-        --len;
-    }
-}
+#define lw_xor_block_2_dest(dest2, dest, src, len) \
+    do { \
+        unsigned char *_dest2 = (dest2); \
+        unsigned char *_dest = (dest); \
+        const unsigned char *_src = (src); \
+        unsigned _len = (len); \
+        while (_len > 0) { \
+            *_dest2++ = (*_dest++ ^= *_src++); \
+            --_len; \
+        } \
+    } while (0)
 
 /* XOR two byte buffers and write to a destination which at the same
  * time copying the contents of src2 to dest2 */
-STATIC_INLINE void lw_xor_block_copy_src
-    (unsigned char *dest2, unsigned char *dest,
-     const unsigned char *src1, const unsigned char *src2, unsigned len)
-{
-    while (len > 0) {
-        unsigned char temp = *src2++;
-        *dest2++ = temp;
-        *dest++ = *src1++ ^ temp;
-        --len;
-    }
-}
+#define lw_xor_block_copy_src(dest2, dest, src1, src2, len) \
+    do { \
+        unsigned char *_dest2 = (dest2); \
+        unsigned char *_dest = (dest); \
+        const unsigned char *_src1 = (src1); \
+        const unsigned char *_src2 = (src2); \
+        unsigned _len = (len); \
+        while (_len > 0) { \
+            unsigned char _temp = *_src2++; \
+            *_dest2++ = _temp; \
+            *_dest++ = *_src1++ ^ _temp; \
+            --_len; \
+        } \
+    } while (0)
 
 /* XOR a source byte buffer against a destination and write to another
  * destination at the same time.  This version swaps the source value
  * into the "dest" buffer */
-STATIC_INLINE void lw_xor_block_swap
-    (unsigned char *dest2, unsigned char *dest,
-     const unsigned char *src, unsigned len)
-{
-    while (len > 0) {
-        unsigned char temp = *src++;
-        *dest2++ = *dest ^ temp;
-        *dest++ = temp;
-        --len;
-    }
-}
+#define lw_xor_block_swap(dest2, dest, src, len) \
+    do { \
+        unsigned char *_dest2 = (dest2); \
+        unsigned char *_dest = (dest); \
+        const unsigned char *_src = (src); \
+        unsigned _len = (len); \
+        while (_len > 0) { \
+            unsigned char _temp = *_src++; \
+            *_dest2++ = *_dest ^ _temp; \
+            *_dest++ = _temp; \
+            --_len; \
+        } \
+    } while (0)
 
 /* Rotation macros for 32-bit arguments */
 
@@ -428,5 +465,19 @@ STATIC_INLINE void lw_xor_block_swap
 #define rightRotate61_64(a) (rightRotate_64((a), 61))
 #define rightRotate62_64(a) (rightRotate_64((a), 62))
 #define rightRotate63_64(a) (rightRotate_64((a), 63))
+
+/* Rotate a 16-bit value left by a number of bits */
+#define leftRotate_16(a, bits) \
+    (__extension__ ({ \
+        uint16_t _temp = (a); \
+        (_temp << (bits)) | (_temp >> (16 - (bits))); \
+    }))
+
+/* Rotate a 16-bit value right by a number of bits */
+#define rightRotate_16(a, bits) \
+    (__extension__ ({ \
+        uint16_t _temp = (a); \
+        (_temp >> (bits)) | (_temp << (16 - (bits))); \
+    }))
 
 #endif
