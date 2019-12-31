@@ -254,7 +254,8 @@
         (_temp >> (bits)) | (_temp << (32 - (bits))); \
     }))
 
-/* Left rotate by a specific number of bits */
+/* Left rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
 #define leftRotate1(a)  (leftRotate((a), 1))
 #define leftRotate2(a)  (leftRotate((a), 2))
 #define leftRotate3(a)  (leftRotate((a), 3))
@@ -287,7 +288,8 @@
 #define leftRotate30(a) (leftRotate((a), 30))
 #define leftRotate31(a) (leftRotate((a), 31))
 
-/* Right rotate by a specific number of bits */
+/* Right rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
 #define rightRotate1(a)  (rightRotate((a), 1))
 #define rightRotate2(a)  (rightRotate((a), 2))
 #define rightRotate3(a)  (rightRotate((a), 3))
@@ -336,7 +338,8 @@
         (_temp >> (bits)) | (_temp << (64 - (bits))); \
     }))
 
-/* Left rotate by a specific number of bits */
+/* Left rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
 #define leftRotate1_64(a)  (leftRotate_64((a), 1))
 #define leftRotate2_64(a)  (leftRotate_64((a), 2))
 #define leftRotate3_64(a)  (leftRotate_64((a), 3))
@@ -401,7 +404,8 @@
 #define leftRotate62_64(a) (leftRotate_64((a), 62))
 #define leftRotate63_64(a) (leftRotate_64((a), 63))
 
-/* Right rotate by a specific number of bits */
+/* Right rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
 #define rightRotate1_64(a)  (rightRotate_64((a), 1))
 #define rightRotate2_64(a)  (rightRotate_64((a), 2))
 #define rightRotate3_64(a)  (rightRotate_64((a), 3))
@@ -479,5 +483,41 @@
         uint16_t _temp = (a); \
         (_temp >> (bits)) | (_temp << (16 - (bits))); \
     }))
+
+/* Left rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
+#define leftRotate1_16(a)  (leftRotate_16((a), 1))
+#define leftRotate2_16(a)  (leftRotate_16((a), 2))
+#define leftRotate3_16(a)  (leftRotate_16((a), 3))
+#define leftRotate4_16(a)  (leftRotate_16((a), 4))
+#define leftRotate5_16(a)  (leftRotate_16((a), 5))
+#define leftRotate6_16(a)  (leftRotate_16((a), 6))
+#define leftRotate7_16(a)  (leftRotate_16((a), 7))
+#define leftRotate8_16(a)  (leftRotate_16((a), 8))
+#define leftRotate9_16(a)  (leftRotate_16((a), 9))
+#define leftRotate10_16(a) (leftRotate_16((a), 10))
+#define leftRotate11_16(a) (leftRotate_16((a), 11))
+#define leftRotate12_16(a) (leftRotate_16((a), 12))
+#define leftRotate13_16(a) (leftRotate_16((a), 13))
+#define leftRotate14_16(a) (leftRotate_16((a), 14))
+#define leftRotate15_16(a) (leftRotate_16((a), 15))
+
+/* Right rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
+#define rightRotate1_16(a)  (rightRotate_16((a), 1))
+#define rightRotate2_16(a)  (rightRotate_16((a), 2))
+#define rightRotate3_16(a)  (rightRotate_16((a), 3))
+#define rightRotate4_16(a)  (rightRotate_16((a), 4))
+#define rightRotate5_16(a)  (rightRotate_16((a), 5))
+#define rightRotate6_16(a)  (rightRotate_16((a), 6))
+#define rightRotate7_16(a)  (rightRotate_16((a), 7))
+#define rightRotate8_16(a)  (rightRotate_16((a), 8))
+#define rightRotate9_16(a)  (rightRotate_16((a), 9))
+#define rightRotate10_16(a) (rightRotate_16((a), 10))
+#define rightRotate11_16(a) (rightRotate_16((a), 11))
+#define rightRotate12_16(a) (rightRotate_16((a), 12))
+#define rightRotate13_16(a) (rightRotate_16((a), 13))
+#define rightRotate14_16(a) (rightRotate_16((a), 14))
+#define rightRotate15_16(a) (rightRotate_16((a), 15))
 
 #endif

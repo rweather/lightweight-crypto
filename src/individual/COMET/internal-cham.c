@@ -87,22 +87,22 @@ void cham64_128_encrypt
     k[5]  = le_load_word16(key + 10);
     k[6]  = le_load_word16(key + 12);
     k[7]  = le_load_word16(key + 14);
-    k[8]  = k[1] ^ leftRotate_16(k[1], 1) ^ leftRotate_16(k[1], 11);
-    k[9]  = k[0] ^ leftRotate_16(k[0], 1) ^ leftRotate_16(k[0], 11);
-    k[10] = k[3] ^ leftRotate_16(k[3], 1) ^ leftRotate_16(k[3], 11);
-    k[11] = k[2] ^ leftRotate_16(k[2], 1) ^ leftRotate_16(k[2], 11);
-    k[12] = k[5] ^ leftRotate_16(k[5], 1) ^ leftRotate_16(k[5], 11);
-    k[13] = k[4] ^ leftRotate_16(k[4], 1) ^ leftRotate_16(k[4], 11);
-    k[14] = k[7] ^ leftRotate_16(k[7], 1) ^ leftRotate_16(k[7], 11);
-    k[15] = k[6] ^ leftRotate_16(k[6], 1) ^ leftRotate_16(k[6], 11);
-    k[0] ^= leftRotate_16(k[0], 1) ^ leftRotate_16(k[0], 8);
-    k[1] ^= leftRotate_16(k[1], 1) ^ leftRotate_16(k[1], 8);
-    k[2] ^= leftRotate_16(k[2], 1) ^ leftRotate_16(k[2], 8);
-    k[3] ^= leftRotate_16(k[3], 1) ^ leftRotate_16(k[3], 8);
-    k[4] ^= leftRotate_16(k[4], 1) ^ leftRotate_16(k[4], 8);
-    k[5] ^= leftRotate_16(k[5], 1) ^ leftRotate_16(k[5], 8);
-    k[6] ^= leftRotate_16(k[6], 1) ^ leftRotate_16(k[6], 8);
-    k[7] ^= leftRotate_16(k[7], 1) ^ leftRotate_16(k[7], 8);
+    k[8]  = k[1] ^ leftRotate1_16(k[1]) ^ leftRotate11_16(k[1]);
+    k[9]  = k[0] ^ leftRotate1_16(k[0]) ^ leftRotate11_16(k[0]);
+    k[10] = k[3] ^ leftRotate1_16(k[3]) ^ leftRotate11_16(k[3]);
+    k[11] = k[2] ^ leftRotate1_16(k[2]) ^ leftRotate11_16(k[2]);
+    k[12] = k[5] ^ leftRotate1_16(k[5]) ^ leftRotate11_16(k[5]);
+    k[13] = k[4] ^ leftRotate1_16(k[4]) ^ leftRotate11_16(k[4]);
+    k[14] = k[7] ^ leftRotate1_16(k[7]) ^ leftRotate11_16(k[7]);
+    k[15] = k[6] ^ leftRotate1_16(k[6]) ^ leftRotate11_16(k[6]);
+    k[0] ^= leftRotate1_16(k[0]) ^ leftRotate8_16(k[0]);
+    k[1] ^= leftRotate1_16(k[1]) ^ leftRotate8_16(k[1]);
+    k[2] ^= leftRotate1_16(k[2]) ^ leftRotate8_16(k[2]);
+    k[3] ^= leftRotate1_16(k[3]) ^ leftRotate8_16(k[3]);
+    k[4] ^= leftRotate1_16(k[4]) ^ leftRotate8_16(k[4]);
+    k[5] ^= leftRotate1_16(k[5]) ^ leftRotate8_16(k[5]);
+    k[6] ^= leftRotate1_16(k[6]) ^ leftRotate8_16(k[6]);
+    k[7] ^= leftRotate1_16(k[7]) ^ leftRotate8_16(k[7]);
 
     /* Unpack the input block */
     x0 = le_load_word16(input);
@@ -112,18 +112,18 @@ void cham64_128_encrypt
 
     /* Perform the 80 rounds four at a time */
     for (round = 0; round < 80; round += 4) {
-        x0 = leftRotate_16
+        x0 = leftRotate8_16
             ((x0 ^ round) +
-             (leftRotate_16(x1, 1) ^ k[round % 16]), 8);
-        x1 = leftRotate_16
+             (leftRotate1_16(x1) ^ k[round % 16]));
+        x1 = leftRotate1_16
             ((x1 ^ (round + 1)) +
-             (leftRotate_16(x2, 8) ^ k[(round + 1) % 16]), 1);
-        x2 = leftRotate_16
+             (leftRotate8_16(x2) ^ k[(round + 1) % 16]));
+        x2 = leftRotate8_16
             ((x2 ^ (round + 2)) +
-             (leftRotate_16(x3, 1) ^ k[(round + 2) % 16]), 8);
-        x3 = leftRotate_16
+             (leftRotate1_16(x3) ^ k[(round + 2) % 16]));
+        x3 = leftRotate1_16
             ((x3 ^ (round + 3)) +
-             (leftRotate_16(x0, 8) ^ k[(round + 3) % 16]), 1);
+             (leftRotate8_16(x0) ^ k[(round + 3) % 16]));
     }
 
     /* Pack the state into the output block */
