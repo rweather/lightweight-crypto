@@ -27,7 +27,6 @@ void test_cham(void);
 void test_gift128(void);
 void test_gimli24(void);
 void test_skinny128(void);
-void test_speck64(void);
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +35,5 @@ int main(int argc, char *argv[])
     test_gift128();
     test_gimli24();
     test_skinny128();
-    test_speck64();
     return test_exit_result;
 }

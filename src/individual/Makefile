@@ -14,6 +14,12 @@ ASCON_FILES = \
     internal-ascon.c \
     internal-ascon.h \
     $(COMMON_FILES)
+COMET_FILES = \
+    comet.c \
+    comet.h \
+    internal-cham.c \
+    internal-cham.h \
+    $(COMMON_FILES)
 GIFT_COFB_FILES = \
     gift-cofb.c \
     gift-cofb.h \
@@ -43,6 +49,7 @@ SUNDAE_GIFT_FILES = \
 
 ALL_ALGORITHMS = \
     ascon \
+    comet \
     gift_cofb \
     gimli \
     hyena \
@@ -55,6 +62,9 @@ all: $(ALL_ALGORITHMS)
 
 ascon:
 	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON
+
+comet:
+	cp $(foreach file,$(COMET_FILES),$(SRCDIR)/$(file)) COMET
 
 gift_cofb:
 	cp $(foreach file,$(GIFT_COFB_FILES),$(SRCDIR)/$(file)) GIFT-COFB

@@ -26,6 +26,7 @@
 #include <stdarg.h>
 #include "aead-common.h"
 #include "ascon128.h"
+#include "comet.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
 #include "hyena.h"
@@ -37,6 +38,9 @@ static const aead_cipher_t *const ciphers[] = {
     &ascon128_cipher,
     &ascon128a_cipher,
     &ascon80pq_cipher,
+    &comet_128_cham_cipher,
+    &comet_64_cham_cipher,
+    &comet_64_speck_cipher,
     &gift_cofb_cipher,
     &gimli24_cipher,
     &hyena_cipher,

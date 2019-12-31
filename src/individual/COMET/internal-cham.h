@@ -20,15 +20,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LW_INTERNAL_SPECK64_H
-#define LW_INTERNAL_SPECK64_H
+#ifndef LW_INTERNAL_CHAM_H
+#define LW_INTERNAL_CHAM_H
 
 /**
- * \file internal-speck64.h
- * \brief SPECK-64 block cipher.
- *
- * References: https://en.wikipedia.org/wiki/Speck_%28cipher%29,
- * http://eprint.iacr.org/2013/404
+ * \file internal-cham.h
+ * \brief CHAM block cipher.
  */
 
 #ifdef __cplusplus
@@ -36,7 +33,21 @@ extern "C" {
 #endif
 
 /**
- * \brief Encrypts a 64-bit block with SPECK-64-128.
+ * \brief Encrypts a 128-bit block with CHAM-128-128.
+ *
+ * \param key Points to the 16 bytes of the key.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ */
+void cham128_128_encrypt
+    (const unsigned char *key, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Encrypts a 64-bit block with CHAM-64-128.
  *
  * \param key Points to the 16 bytes of the key.
  * \param output Output buffer which must be at least 8 bytes in length.
@@ -45,7 +56,7 @@ extern "C" {
  * The \a input and \a output buffers can be the same buffer for
  * in-place encryption.
  */
-void speck64_128_encrypt
+void cham64_128_encrypt
     (const unsigned char *key, unsigned char *output,
      const unsigned char *input);
 

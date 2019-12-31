@@ -40,12 +40,14 @@ to get encrypting now:
 AEAD competition</a> (128-bit key).
 \li \ref alg_gimli "Gimli" is the spiritual successor to the widely used
 ChaCha20 and has a similar design (256-bit key).
+\li \ref alg_comet "COMET-128_CHAM-128/128" is currently the fastest
+algorithm in the library in terms of raw performance (128-bit key).
 \li (others may be added here as I implement more algorithms)
 
 Note that these are my own personal preferences and are not based on any
 in-depth security analysis.  The above algorithms could fall to an attack
 tomorrow but for now they have good space and speed trade-offs when
-implemented in software.
+implemented in software on 32-bit platforms.
 
 \section alg_no_aes Notes on algorithms that use AES
 
@@ -140,7 +142,28 @@ algorithms as companions to the AEAD mode.
 
 \section alg_comet COMET
 
-TODO
+<b>Definition:</b> \ref comet.h
+
+COMET is a family of authenticated encryption algorithms that are
+built around an underlying block cipher.  This library implements
+three members of the family:
+
+\li COMET-128_CHAM-128/128 which has a 128-bit key, a 128-bit nonce,
+and a 128-bit tag, built around the CHAM-128/128 block cipher.
+\li COMET-64_CHAM-64/128 which has a 128-bit key, a 120-bit nonce,
+and a 64-bit tag, built around the CHAM-64/128 block cipher.
+\li COMET-64_SPECK-64/128 which has a 128-bit key, a 120-bit nonce,
+and a 64-bit tag, built around the SPECK-64/128 block cipher.
+
+There is also another family member COMET-128_AES-128/128 that is built
+around AES but this library does not implement that version.
+
+COMET-128_CHAM-128/128 is one of the fastest of the NIST algorithms in
+software on 32-bit platforms.
+
+<b>Recommendation:</b> The specification recommends COMET-128_AES-128/128 but
+we don't implement AES-based schemes in this library.  Recommend to use
+COMET-128_CHAM-128/128 instead.
 
 \section alg_drygascon DryGASCON
 

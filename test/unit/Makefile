@@ -17,8 +17,7 @@ OBJS1 = \
     test-cham.o \
     test-gift128.o \
     test-gimli24.o \
-    test-skinny128.o \
-    test-speck64.o
+    test-skinny128.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
 

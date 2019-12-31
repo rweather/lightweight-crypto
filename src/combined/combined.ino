@@ -30,6 +30,7 @@ of flash memory.
 
 #include "aead-common.h"
 #include "ascon128.h"
+#include "comet.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
 #include "hyena.h"
@@ -334,6 +335,9 @@ void setup()
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);
+    perfCipher(&comet_128_cham_cipher);
+    perfCipher(&comet_64_cham_cipher);
+    perfCipher(&comet_64_speck_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&hyena_cipher);
