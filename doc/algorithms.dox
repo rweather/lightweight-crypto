@@ -180,7 +180,27 @@ TODO
 
 \section alg_estate ESTATE
 
-TODO
+<b>Definition:</b> \ref estate.h
+
+<b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination
+of the associated data (AD) and plaintext is unique.
+
+ESTATE_TweGIFT-128 is an authenticated encryption algorithm with a
+128-bit key, a 128-bit nonce, and a 128-bit tag.  It is a two-pass
+algorithm that is built around a tweaked version of the GIFT-128 block
+cipher, the FCBC authentication mode, and the OFB encryption mode.
+
+ESTATE is resistant against nonce reuse as long as the combination
+of the associated data and plaintext is unique.
+
+If a nonce is reused then two packets with the same nonce, associated data,
+and plaintext will encrypt to the same ciphertext.  This will leak that
+the same plaintext has been sent for a second time but will not reveal
+the plaintext itself.
+
+The ESTATE family also includes variants build around tweaked versions
+of the AES block cipher.  We do not implement those variants in this
+library.
 
 <b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
 \ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "HYENA"

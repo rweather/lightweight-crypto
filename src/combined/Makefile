@@ -13,6 +13,7 @@ OBJS = \
         ascon-hash.o \
         ascon-xof.o \
         comet.o \
+        estate.o \
         gift-cofb.o \
 	gimli24.o \
 	hyena.o \
@@ -43,6 +44,7 @@ ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 comet.o: comet.h aead-common.h internal-cham.h internal-util.h
+estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h

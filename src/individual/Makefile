@@ -20,6 +20,12 @@ COMET_FILES = \
     internal-cham.c \
     internal-cham.h \
     $(COMMON_FILES)
+ESTATE_FILES = \
+    estate.c \
+    estate.h \
+    internal-gift128.c \
+    internal-gift128.h \
+    $(COMMON_FILES)
 GIFT_COFB_FILES = \
     gift-cofb.c \
     gift-cofb.h \
@@ -50,6 +56,7 @@ SUNDAE_GIFT_FILES = \
 ALL_ALGORITHMS = \
     ascon \
     comet \
+    estate \
     gift_cofb \
     gimli \
     hyena \
@@ -65,6 +72,9 @@ ascon:
 
 comet:
 	cp $(foreach file,$(COMET_FILES),$(SRCDIR)/$(file)) COMET
+
+estate:
+	cp $(foreach file,$(ESTATE_FILES),$(SRCDIR)/$(file)) ESTATE
 
 gift_cofb:
 	cp $(foreach file,$(GIFT_COFB_FILES),$(SRCDIR)/$(file)) GIFT-COFB
