@@ -195,7 +195,12 @@ Elephant</h1>
 <p>TODO</p>
 <h1><a class="anchor" id="alg_estate"></a>
 ESTATE</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="estate_8h.html">estate.h</a></p>
+<p><b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination of the associated data (AD) and plaintext is unique.</p>
+<p>ESTATE_TweGIFT-128 is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit tag. It is a two-pass algorithm that is built around a tweaked version of the GIFT-128 block cipher, the FCBC authentication mode, and the OFB encryption mode.</p>
+<p>ESTATE is resistant against nonce reuse as long as the combination of the associated data and plaintext is unique.</p>
+<p>If a nonce is reused then two packets with the same nonce, associated data, and plaintext will encrypt to the same ciphertext. This will leak that the same plaintext has been sent for a second time but will not reveal the plaintext itself.</p>
+<p>The ESTATE family also includes variants build around tweaked versions of the AES block cipher. We do not implement those variants in this library.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a>, <a class="el" href="algorithms.html#alg_hyena">SUNDAE-GIFT</a>, <a class="el" href="algorithms.html#alg_estate">HYENA</a></p>
 <h1><a class="anchor" id="alg_forkae"></a>
 ForkAE</h1>
@@ -316,7 +321,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 1 2020 08:41:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 1 2020 13:12:21 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

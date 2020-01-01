@@ -80,6 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#bugs_comet">COMET</a></li>
+<li class="level1"><a href="#bugs_estate">ESTATE</a></li>
 <li class="level1"><a href="#bugs_hyena">HYENA</a></li>
 </ul>
 </div>
@@ -110,7 +111,24 @@ COMET</h1>
 <div class="line">    carry = (ct_temp[WSZ+j] &lt;= ct[WSZ+((j+1)%WSZ)]) || (ct_temp[WSZ+j] &lt;= ct[j]);</div>
 <div class="line"><span class="keywordflow">else</span></div>
 <div class="line">    carry = (ct_temp[WSZ+j] &lt; ct[WSZ+((j+1)%WSZ)]) || (ct_temp[WSZ+j] &lt; ct[j]);</div>
-</div><!-- fragment --><h1><a class="anchor" id="bugs_hyena"></a>
+</div><!-- fragment --><h1><a class="anchor" id="bugs_estate"></a>
+ESTATE</h1>
+<p>The specification says that if both the associated data and the plaintext are zero-length, then the algorithm should encrypt the nonce with tweak = 8 and then return immediately. The reference code was missing a return statement from the mac() function:</p>
+<div class="fragment"><div class="line">...</div>
+<div class="line">if(adlen == 0 &amp;&amp; ptlen == 0)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// generate tag when both ad and pt are empty</span></div>
+<div class="line">    twks[0] = 0x08;</div>
+<div class="line">    twegift_enc(&amp;tag[0], &amp;round_keys[0], &amp;twks[0], &amp;temp[0]);</div>
+<div class="line">    <span class="comment">// return; &lt;-- MISSING LINE</span></div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// generate tag when ad and/or pt are non-empty</span></div>
+<div class="line">twks[0] = 0x01;</div>
+<div class="line">twegift_enc(&amp;tag[0], &amp;round_keys[0], &amp;twks[0], &amp;temp[0]);</div>
+<div class="line">...</div>
+</div><!-- fragment --><p>The effect is to completely ignore the conditional code and to start every MAC computation by encrypting the nonce with tweak = 1.</p>
+<h1><a class="anchor" id="bugs_hyena"></a>
 HYENA</h1>
 <p>As part of the block operation, HYENA XOR's a 64-bit delta value into the upper half of the 128-bit feedback state:</p>
 <div class="fragment"><div class="line"><span class="keywordflow">for</span>(i=8; i&lt;15 ;i++)</div>
@@ -121,7 +139,7 @@ HYENA</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 1 2020 08:41:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 1 2020 13:12:21 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

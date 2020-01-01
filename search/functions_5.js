@@ -1,30 +1,5 @@
 var searchData=
 [
-  ['saturnin_5faead_5fdecrypt',['saturnin_aead_decrypt',['../saturnin_8h.html#a1f60e3c6c7514b7f589f4c4131dcc343',1,'saturnin.c']]],
-  ['saturnin_5faead_5fencrypt',['saturnin_aead_encrypt',['../saturnin_8h.html#a0f674f6f14802b71bc636455fb976095',1,'saturnin.c']]],
-  ['saturnin_5fhash',['saturnin_hash',['../saturnin_8h.html#a3c9d700c936d60a8cd39ef06cde22562',1,'saturnin.c']]],
-  ['saturnin_5fhash_5ffinalize',['saturnin_hash_finalize',['../saturnin_8h.html#af8f527e30205f93a8fc7b33added3dfb',1,'saturnin.c']]],
-  ['saturnin_5fhash_5finit',['saturnin_hash_init',['../saturnin_8h.html#a20c89de73aa43d66e22b0cac8364cfb8',1,'saturnin.c']]],
-  ['saturnin_5fhash_5fupdate',['saturnin_hash_update',['../saturnin_8h.html#a2c38dd5f09a9646e26a4b14befcb8227',1,'saturnin.c']]],
-  ['saturnin_5fshort_5faead_5fdecrypt',['saturnin_short_aead_decrypt',['../saturnin_8h.html#aa66569612eae465a4a4419801f1a39f4',1,'saturnin.c']]],
-  ['saturnin_5fshort_5faead_5fencrypt',['saturnin_short_aead_encrypt',['../saturnin_8h.html#aa9eaf5b4d729a2d65d1387b7fa8d8345',1,'saturnin.c']]],
-  ['skinny_5f128_5f128_5fdecrypt',['skinny_128_128_decrypt',['../internal-skinny128_8h.html#a7964179f476f4fc92c9093b6d15cd26a',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f128_5fencrypt',['skinny_128_128_encrypt',['../internal-skinny128_8h.html#a4af0682a4d516a8022d14534f0b8d0a3',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f128_5finit',['skinny_128_128_init',['../internal-skinny128_8h.html#a7d74f400b0005b073ead1c0065b522f3',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f256_5fdecrypt',['skinny_128_256_decrypt',['../internal-skinny128_8h.html#a3cd87da759ec6b6da8f8b4c64dd82342',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f256_5fencrypt',['skinny_128_256_encrypt',['../internal-skinny128_8h.html#a39a2669da1b8a4f3d092ae9a4d7fbd88',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f256_5finit',['skinny_128_256_init',['../internal-skinny128_8h.html#a5505bc2d023b14e01cf772b717f652b2',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f256_5fset_5ftweak',['skinny_128_256_set_tweak',['../internal-skinny128_8h.html#a177ed768512d212f2144f6f9e6fe03cd',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f384_5fdecrypt',['skinny_128_384_decrypt',['../internal-skinny128_8h.html#ae5f90f3e013e98bf30650bc622dbef0b',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f384_5fencrypt',['skinny_128_384_encrypt',['../internal-skinny128_8h.html#ad61230c5c7b47daccdf14549cc4b8cba',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f384_5finit',['skinny_128_384_init',['../internal-skinny128_8h.html#a324c164378b62b033f156a64dc0cb75b',1,'internal-skinny128.c']]],
-  ['skinny_5f128_5f384_5fset_5ftweak',['skinny_128_384_set_tweak',['../internal-skinny128_8h.html#a5be0b403a8671538099a50d9d1cd86d2',1,'internal-skinny128.c']]],
-  ['sundae_5fgift_5f0_5faead_5fdecrypt',['sundae_gift_0_aead_decrypt',['../sundae-gift_8h.html#a214698530151787082cd1fe3f11baa44',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f0_5faead_5fencrypt',['sundae_gift_0_aead_encrypt',['../sundae-gift_8h.html#a118e9b20c3075e44ac89b8d7479a2e0f',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f128_5faead_5fdecrypt',['sundae_gift_128_aead_decrypt',['../sundae-gift_8h.html#aa1ea5565a134867438d0c122bf74c061',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f128_5faead_5fencrypt',['sundae_gift_128_aead_encrypt',['../sundae-gift_8h.html#ab3b84a39bcc2c4e0600f733099fe5691',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f64_5faead_5fdecrypt',['sundae_gift_64_aead_decrypt',['../sundae-gift_8h.html#ac7ed5a0c7acb7f64740215cc8049d6f9',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f64_5faead_5fencrypt',['sundae_gift_64_aead_encrypt',['../sundae-gift_8h.html#a90ebb30e80f5e613d1da313a16ed20af',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f96_5faead_5fdecrypt',['sundae_gift_96_aead_decrypt',['../sundae-gift_8h.html#a2f1694ac77b45715243aee702b3c879f',1,'sundae-gift.c']]],
-  ['sundae_5fgift_5f96_5faead_5fencrypt',['sundae_gift_96_aead_encrypt',['../sundae-gift_8h.html#aeb5f45f136a887235713c156dfe87bc2',1,'sundae-gift.c']]]
+  ['internal_5fchachapoly_5faead_5fdecrypt',['internal_chachapoly_aead_decrypt',['../internal-chachapoly_8h.html#a39020dcd94e59abe74d278ee569fdb70',1,'internal-chachapoly.c']]],
+  ['internal_5fchachapoly_5faead_5fencrypt',['internal_chachapoly_aead_encrypt',['../internal-chachapoly_8h.html#aa83be30902bd74ddb3aa49dc81c0db45',1,'internal-chachapoly.c']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: internal-chachapoly.h File Reference</title>
+<title>Lightweight Cryptography Primitives: estate.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,58 +89,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">internal-chachapoly.h File Reference</div>  </div>
+<div class="title">estate.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>ChaChaPoly implementation for performance comparisons.  
+<p>ESTATE authenticated encryption algorithm.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="aead-common_8h_source.html">aead-common.h</a>&quot;</code><br/>
 </div>
-<p><a href="internal-chachapoly_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="estate_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a4a5e1502a85a53176bbf73a6b207b7e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a5e1502a85a53176bbf73a6b207b7e9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#a4a5e1502a85a53176bbf73a6b207b7e9">CHACHAPOLY_KEY_SIZE</a>&#160;&#160;&#160;32</td></tr>
-<tr class="memdesc:a4a5e1502a85a53176bbf73a6b207b7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the key for ChaChaPoly. <br/></td></tr>
-<tr class="separator:a4a5e1502a85a53176bbf73a6b207b7e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2c5abaade367bbcd485dd8121d49d59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2c5abaade367bbcd485dd8121d49d59"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#af2c5abaade367bbcd485dd8121d49d59">CHACHAPOLY_NONCE_SIZE</a>&#160;&#160;&#160;8</td></tr>
-<tr class="memdesc:af2c5abaade367bbcd485dd8121d49d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the nonce for ChaChaPoly. <br/></td></tr>
-<tr class="separator:af2c5abaade367bbcd485dd8121d49d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc8a93110d1823b77a811f5f906d2fd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc8a93110d1823b77a811f5f906d2fd1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#acc8a93110d1823b77a811f5f906d2fd1">CHACHAPOLY_TAG_SIZE</a>&#160;&#160;&#160;16</td></tr>
-<tr class="memdesc:acc8a93110d1823b77a811f5f906d2fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the authentication tag for ChaChaPoly. <br/></td></tr>
-<tr class="separator:acc8a93110d1823b77a811f5f906d2fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94dd2bcbd4b3ecd7700f39a944fa60f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94dd2bcbd4b3ecd7700f39a944fa60f6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#a94dd2bcbd4b3ecd7700f39a944fa60f6">ESTATE_TWEGIFT_KEY_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a94dd2bcbd4b3ecd7700f39a944fa60f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the key for ESTATE_TweGIFT-128. <br/></td></tr>
+<tr class="separator:a94dd2bcbd4b3ecd7700f39a944fa60f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa6bea2351f3e5a79f54fa765e04358"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfa6bea2351f3e5a79f54fa765e04358"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#abfa6bea2351f3e5a79f54fa765e04358">ESTATE_TWEGIFT_TAG_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:abfa6bea2351f3e5a79f54fa765e04358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the authentication tag for ESTATE_TweGIFT-128. <br/></td></tr>
+<tr class="separator:abfa6bea2351f3e5a79f54fa765e04358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85256b60ec40075ddf2eecc15de1b16a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85256b60ec40075ddf2eecc15de1b16a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#a85256b60ec40075ddf2eecc15de1b16a">ESTATE_TWEGIFT_NONCE_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a85256b60ec40075ddf2eecc15de1b16a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the nonce for ESTATE_TweGIFT-128. <br/></td></tr>
+<tr class="separator:a85256b60ec40075ddf2eecc15de1b16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa83be30902bd74ddb3aa49dc81c0db45"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#aa83be30902bd74ddb3aa49dc81c0db45">internal_chachapoly_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
-<tr class="memdesc:aa83be30902bd74ddb3aa49dc81c0db45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with ChaChaPoly.  <a href="#aa83be30902bd74ddb3aa49dc81c0db45">More...</a><br/></td></tr>
-<tr class="separator:aa83be30902bd74ddb3aa49dc81c0db45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39020dcd94e59abe74d278ee569fdb70"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#a39020dcd94e59abe74d278ee569fdb70">internal_chachapoly_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
-<tr class="memdesc:a39020dcd94e59abe74d278ee569fdb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with ChaChaPoly.  <a href="#a39020dcd94e59abe74d278ee569fdb70">More...</a><br/></td></tr>
-<tr class="separator:a39020dcd94e59abe74d278ee569fdb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0784acba28073d597f6f6468af6194e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#a0784acba28073d597f6f6468af6194e9">estate_twegift_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a0784acba28073d597f6f6468af6194e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with ESTATE_TweGIFT-128.  <a href="#a0784acba28073d597f6f6468af6194e9">More...</a><br/></td></tr>
+<tr class="separator:a0784acba28073d597f6f6468af6194e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae78cee05548b0059098164361a2a7e96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#ae78cee05548b0059098164361a2a7e96">estate_twegift_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:ae78cee05548b0059098164361a2a7e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with ESTATE_TweGIFT-128.  <a href="#ae78cee05548b0059098164361a2a7e96">More...</a><br/></td></tr>
+<tr class="separator:ae78cee05548b0059098164361a2a7e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a67175769253a7c6da653a9ad3215d8c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67175769253a7c6da653a9ad3215d8c0"></a>
-<a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-chachapoly_8h.html#a67175769253a7c6da653a9ad3215d8c0">internal_chachapoly_cipher</a></td></tr>
-<tr class="memdesc:a67175769253a7c6da653a9ad3215d8c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the ChaChaPoly cipher. <br/></td></tr>
-<tr class="separator:a67175769253a7c6da653a9ad3215d8c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1237086af861b5954f1dd6980f8fc3f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1237086af861b5954f1dd6980f8fc3f7"></a>
+<a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="estate_8h.html#a1237086af861b5954f1dd6980f8fc3f7">estate_twegift_cipher</a></td></tr>
+<tr class="memdesc:a1237086af861b5954f1dd6980f8fc3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the ESTATE_TweGIFT-128 cipher. <br/></td></tr>
+<tr class="separator:a1237086af861b5954f1dd6980f8fc3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>ChaChaPoly implementation for performance comparisons. </p>
-<p>ChaChaPoly is not one of the NIST lightweight submissions. We use it as a baseline to evaluate the performance of other ciphers. For example, a performance result of "1.2 ChaChaPolys" means that the algorithm is 1.2 times faster than ChaChaPoly on the same input data on the same hardware.</p>
-<p>This ChaChaPoly implementation is based on the one from the <a href="http://rweather.github.com/arduinolibs/crypto.html">Arduino Cryptography Library</a>. </p>
+<div class="textblock"><p>ESTATE authenticated encryption algorithm. </p>
+<p>ESTATE_TweGIFT-128 is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit tag. It is a two-pass algorithm that is built around a tweaked version of the GIFT-128 block cipher, the FCBC authentication mode, and the OFB encryption mode.</p>
+<p>ESTATE is resistant against nonce reuse as long as the combination of the associated data and plaintext is unique.</p>
+<p>If a nonce is reused then two packets with the same nonce, associated data, and plaintext will encrypt to the same ciphertext. This will leak that the same plaintext has been sent for a second time but will not reveal the plaintext itself.</p>
+<p>The ESTATE family also includes variants build around tweaked versions of the AES block cipher. We do not implement those variants in this library. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a39020dcd94e59abe74d278ee569fdb70"></a>
+<a class="anchor" id="ae78cee05548b0059098164361a2a7e96"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int internal_chachapoly_aead_decrypt </td>
+          <td class="memname">int estate_twegift_aead_decrypt </td>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
           <td class="paramname"><em>m</em>, </td>
@@ -201,7 +203,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decrypts and authenticates a packet with ChaChaPoly. </p>
+<p>Decrypts and authenticates a packet with ESTATE_TweGIFT-128. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
@@ -217,16 +219,16 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, -1 if the authentication tag was incorrect, or some other negative number if there was an error in the parameters.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd>chachapoly_aead_encrypt() </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="estate_8h.html#a0784acba28073d597f6f6468af6194e9" title="Encrypts and authenticates a packet with ESTATE_TweGIFT-128. ">estate_twegift_aead_encrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aa83be30902bd74ddb3aa49dc81c0db45"></a>
+<a class="anchor" id="a0784acba28073d597f6f6468af6194e9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int internal_chachapoly_aead_encrypt </td>
+          <td class="memname">int estate_twegift_aead_encrypt </td>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
           <td class="paramname"><em>c</em>, </td>
@@ -287,7 +289,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Encrypts and authenticates a packet with ChaChaPoly. </p>
+<p>Encrypts and authenticates a packet with ESTATE_TweGIFT-128. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>Buffer to receive the output. </td></tr>
@@ -303,7 +305,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on success, or a negative value if there was an error in the parameters.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd>chachapoly_aead_decrypt() </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="estate_8h.html#ae78cee05548b0059098164361a2a7e96" title="Decrypts and authenticates a packet with ESTATE_TweGIFT-128. ">estate_twegift_aead_decrypt()</a> </dd></dl>
 
 </div>
 </div>

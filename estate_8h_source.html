@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: hyena.h Source File</title>
+<title>Lightweight Cryptography Primitives: estate.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,10 +85,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">hyena.h</div>  </div>
+<div class="title">estate.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="hyena_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="estate_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 Southern Storm Software, Pty Ltd.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a</span></div>
@@ -110,49 +110,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * DEALINGS IN THE SOFTWARE.</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LWCRYPTO_HYENA_H</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LWCRYPTO_HYENA_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LWCRYPTO_ESTATE_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LWCRYPTO_ESTATE_H</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="aead-common_8h.html">aead-common.h</a>&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="hyena_8h.html#a6dc10a841e8c6545a4223e3e3ad2ee17">   46</a></span>&#160;<span class="preprocessor">#define HYENA_KEY_SIZE 16</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="hyena_8h.html#afc1f9f9729b0f5db46436ba153c18681">   51</a></span>&#160;<span class="preprocessor">#define HYENA_TAG_SIZE 16</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="hyena_8h.html#a680e2fc2bf48a2dfcb16b484435ad0fe">   56</a></span>&#160;<span class="preprocessor">#define HYENA_NONCE_SIZE 12</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">extern</span> <a class="code" href="structaead__cipher__t.html">aead_cipher_t</a> <span class="keyword">const</span> <a class="code" href="hyena_8h.html#a5e48b5c00bc5f903b62f39261dfaa2dc">hyena_cipher</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">int</span> <a class="code" href="hyena_8h.html#a5bb8ffb382760991eb77e16b65292481">hyena_aead_encrypt</a></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> *clen,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *m, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> mlen,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *ad, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> adlen,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *nsec,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *npub,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *k);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">int</span> <a class="code" href="hyena_8h.html#a26da9f2a20319ba96f300023dee70895">hyena_aead_decrypt</a></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *m, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> *mlen,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *nsec,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> clen,</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *ad, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> adlen,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *npub,</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *k);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="estate_8h.html#a94dd2bcbd4b3ecd7700f39a944fa60f6">   57</a></span>&#160;<span class="preprocessor">#define ESTATE_TWEGIFT_KEY_SIZE 16</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="estate_8h.html#abfa6bea2351f3e5a79f54fa765e04358">   62</a></span>&#160;<span class="preprocessor">#define ESTATE_TWEGIFT_TAG_SIZE 16</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="estate_8h.html#a85256b60ec40075ddf2eecc15de1b16a">   67</a></span>&#160;<span class="preprocessor">#define ESTATE_TWEGIFT_NONCE_SIZE 16</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">extern</span> <a class="code" href="structaead__cipher__t.html">aead_cipher_t</a> <span class="keyword">const</span> <a class="code" href="estate_8h.html#a1237086af861b5954f1dd6980f8fc3f7">estate_twegift_cipher</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">int</span> <a class="code" href="estate_8h.html#a0784acba28073d597f6f6468af6194e9">estate_twegift_aead_encrypt</a></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> *clen,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *m, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> mlen,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *ad, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> adlen,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *nsec,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *npub,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *k);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordtype">int</span> <a class="code" href="estate_8h.html#ae78cee05548b0059098164361a2a7e96">estate_twegift_aead_decrypt</a></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *m, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> *mlen,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *nsec,</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *c, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> clen,</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *ad, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> adlen,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *npub,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *k);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="structaead__cipher__t_html"><div class="ttname"><a href="structaead__cipher__t.html">aead_cipher_t</a></div><div class="ttdoc">Meta-information about an AEAD cipher. </div><div class="ttdef"><b>Definition:</b> aead-common.h:174</div></div>
 <div class="ttc" id="aead-common_8h_html"><div class="ttname"><a href="aead-common_8h.html">aead-common.h</a></div><div class="ttdoc">Definitions that are common across AEAD schemes. </div></div>
-<div class="ttc" id="hyena_8h_html_a5bb8ffb382760991eb77e16b65292481"><div class="ttname"><a href="hyena_8h.html#a5bb8ffb382760991eb77e16b65292481">hyena_aead_encrypt</a></div><div class="ttdeci">int hyena_aead_encrypt(unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</div><div class="ttdoc">Encrypts and authenticates a packet with HYENA. </div><div class="ttdef"><b>Definition:</b> hyena.c:101</div></div>
-<div class="ttc" id="hyena_8h_html_a26da9f2a20319ba96f300023dee70895"><div class="ttname"><a href="hyena_8h.html#a26da9f2a20319ba96f300023dee70895">hyena_aead_decrypt</a></div><div class="ttdeci">int hyena_aead_decrypt(unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</div><div class="ttdoc">Decrypts and authenticates a packet with HYENA. </div><div class="ttdef"><b>Definition:</b> hyena.c:189</div></div>
-<div class="ttc" id="hyena_8h_html_a5e48b5c00bc5f903b62f39261dfaa2dc"><div class="ttname"><a href="hyena_8h.html#a5e48b5c00bc5f903b62f39261dfaa2dc">hyena_cipher</a></div><div class="ttdeci">aead_cipher_t const hyena_cipher</div><div class="ttdoc">Meta-information block for the HYENA cipher. </div><div class="ttdef"><b>Definition:</b> hyena.c:28</div></div>
+<div class="ttc" id="estate_8h_html_a1237086af861b5954f1dd6980f8fc3f7"><div class="ttname"><a href="estate_8h.html#a1237086af861b5954f1dd6980f8fc3f7">estate_twegift_cipher</a></div><div class="ttdeci">aead_cipher_t const estate_twegift_cipher</div><div class="ttdoc">Meta-information block for the ESTATE_TweGIFT-128 cipher. </div><div class="ttdef"><b>Definition:</b> estate.c:28</div></div>
+<div class="ttc" id="estate_8h_html_a0784acba28073d597f6f6468af6194e9"><div class="ttname"><a href="estate_8h.html#a0784acba28073d597f6f6468af6194e9">estate_twegift_aead_encrypt</a></div><div class="ttdeci">int estate_twegift_aead_encrypt(unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</div><div class="ttdoc">Encrypts and authenticates a packet with ESTATE_TweGIFT-128. </div><div class="ttdef"><b>Definition:</b> estate.c:138</div></div>
+<div class="ttc" id="estate_8h_html_ae78cee05548b0059098164361a2a7e96"><div class="ttname"><a href="estate_8h.html#ae78cee05548b0059098164361a2a7e96">estate_twegift_aead_decrypt</a></div><div class="ttdeci">int estate_twegift_aead_decrypt(unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</div><div class="ttdoc">Decrypts and authenticates a packet with ESTATE_TweGIFT-128. </div><div class="ttdef"><b>Definition:</b> estate.c:169</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
