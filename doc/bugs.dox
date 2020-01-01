@@ -25,10 +25,10 @@
 \page bugs Bugs in the reference implementations
 \tableofcontents
 
-As I worked on this library I found some minor bugs in the second round
-reference implementations of some NIST algorithms.  The authors were
-notified so that the problems could be corrected in the official
-reference implementations.
+In early 2020 as I worked on this library I found some minor bugs in
+the second round reference implementations of some NIST algorithms.
+The authors were notified so that the problems could be corrected
+in the official reference implementations.
 
 This page documents the problems that I found, and the fixes, for
 the benefit of other implementors.  This library implements the fixed
@@ -98,7 +98,7 @@ if(adlen == 0 && ptlen == 0)
     // generate tag when both ad and pt are empty
     twks[0] = 0x08;
     twegift_enc(&tag[0], &round_keys[0], &twks[0], &temp[0]);
-    // return; <-- MISSING LINE
+    return; // <-- MISSING LINE
 }
 
 // generate tag when ad and/or pt are non-empty

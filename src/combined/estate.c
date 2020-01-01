@@ -82,13 +82,11 @@ static void estate_twegift_authenticate
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen)
 {
-#if 0 /* Bug in the reference code - this step is done but then ignored */
     /* Handle the case where both the message and associated data are empty */
     if (mlen == 0 && adlen == 0) {
         gift128t_encrypt(ks, tag, tag, /*tweak=*/8);
         return;
     }
-#endif
 
     /* Encrypt the nonce */
     gift128t_encrypt(ks, tag, tag, /*tweak=*/1);
