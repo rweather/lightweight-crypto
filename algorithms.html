@@ -250,7 +250,13 @@ PHOTON-Beetle</h1>
 <p>TODO</p>
 <h1><a class="anchor" id="alg_pyjamask"></a>
 Pyjamask</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="pyjamask_8h.html">pyjamask.h</a></p>
+<p>Pyjamask AEAD is a family of authenticated encryption algorithms that are built around the Pyjamask-128 and Pyjamask-96 block ciphers in OCB mode. Pyjamask-128-AEAD has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag. Pyjamask-96-AEAD has a 128-bit key, a 64-bit nonce, and a 96-bit authentication tag.</p>
+<p>Pyjamask is claimed to be resistant against power analysis side channels when implemented as a masked block cipher. This library does not currently implement masking as it requires access to a random number generator.</p>
+<p>The implementation of the block cipher in this library is very slow at the moment (patches welcome to address this).</p>
+<p>Note that OCB is covered by patents so it may not be usable in all applications. Open source applications should be covered, but for others you will need to contact the patent authors to find out if you can use it or if a paid license is required.</p>
+<p>License information: <a href="https://web.cs.ucdavis.edu/~rogaway/ocb/license.htm">https://web.cs.ucdavis.edu/~rogaway/ocb/license.htm</a></p>
+<p><b>Recommendation:</b> The specification recommends Pyjamask-128-AEAD.</p>
 <h1><a class="anchor" id="alg_romulus"></a>
 Romulus</h1>
 <p>TODO</p>
@@ -321,7 +327,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 1 2020 13:12:21 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 2 2020 14:55:54 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

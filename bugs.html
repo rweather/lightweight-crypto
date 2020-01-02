@@ -82,9 +82,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul><li class="level1"><a href="#bugs_comet">COMET</a></li>
 <li class="level1"><a href="#bugs_estate">ESTATE</a></li>
 <li class="level1"><a href="#bugs_hyena">HYENA</a></li>
+<li class="level1"><a href="#bugs_pyjamask">Pyjamask</a></li>
 </ul>
 </div>
-<div class="textblock"><p>As I worked on this library I found some minor bugs in the second round reference implementations of some NIST algorithms. The authors were notified so that the problems could be corrected in the official reference implementations.</p>
+<div class="textblock"><p>In early 2020 as I worked on this library I found some minor bugs in the second round reference implementations of some NIST algorithms. The authors were notified so that the problems could be corrected in the official reference implementations.</p>
 <p>This page documents the problems that I found, and the fixes, for the benefit of other implementors. This library implements the fixed version of the algorithms.</p>
 <h1><a class="anchor" id="bugs_comet"></a>
 COMET</h1>
@@ -120,7 +121,7 @@ ESTATE</h1>
 <div class="line">    <span class="comment">// generate tag when both ad and pt are empty</span></div>
 <div class="line">    twks[0] = 0x08;</div>
 <div class="line">    twegift_enc(&amp;tag[0], &amp;round_keys[0], &amp;twks[0], &amp;temp[0]);</div>
-<div class="line">    <span class="comment">// return; &lt;-- MISSING LINE</span></div>
+<div class="line">    <span class="keywordflow">return</span>; <span class="comment">// &lt;-- MISSING LINE</span></div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="comment">// generate tag when ad and/or pt are non-empty</span></div>
@@ -135,11 +136,21 @@ HYENA</h1>
 <div class="line">{</div>
 <div class="line">    feedback[i] ^= Delta[i-8];</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>That 15 should be a 16. There are two places in the reference code where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec(). </p>
+</div><!-- fragment --><p>That 15 should be a 16. There are two places in the reference code where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec().</p>
+<h1><a class="anchor" id="bugs_pyjamask"></a>
+Pyjamask</h1>
+<p>In the specification of the underlying block cipher, the key schedule "MixAndRotateRows" step contains the following requirement:</p>
+<blockquote class="doxtable">
+<p>The second row R1, third row R2, and fourth row R3 are left-rotated of 8, 15, 18 positions. </p>
+</blockquote>
+<p>The reference implementation has a macro called "left_rotate" to perform this step but it actually performs a right-rotation by n bits instead of a left-rotation:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define left_rotate(row,n) \</span></div>
+<div class="line"><span class="preprocessor">    row = (row &gt;&gt; n) | (row &lt;&lt; (32-n));</span></div>
+</div><!-- fragment --><p>From a security perspective, the direction of rotation shouldn't matter so this bug isn't serious. The test vectors in the specification were also clearly generated with a right-rotating implementation of the key schedule. This library implements the bug as-is. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 1 2020 13:12:21 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 2 2020 14:55:54 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

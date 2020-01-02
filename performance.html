@@ -131,6 +131,10 @@ Performance on ARM Cortex M3</h1>
 <td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.20</td><td>0.34</td><td>0.36</td><td>0.26 </td></tr>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.23 </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
 </table>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
 <h1><a class="anchor" id="perf_esp32"></a>
@@ -171,11 +175,15 @@ Performance on ESP32</h1>
 <td><b><em>SUNDAE-GIFT-96</em></b></td><td>128</td><td>96</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
 <tr>
 <td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.10</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 1 2020 13:12:21 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 2 2020 14:55:54 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
