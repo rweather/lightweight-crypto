@@ -80,6 +80,6 @@ void test_cham(void)
     test_block_cipher_end(&cham_128_128);
 
     test_block_cipher_start(&cham_64_128);
-    test_block_cipher_64(&cham_64_128, &cham64_128_1);
+    test_block_cipher_other(&cham_64_128, &cham64_128_1, 8);
     test_block_cipher_end(&cham_64_128);
 }

@@ -42,6 +42,14 @@ HYENA_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     $(COMMON_FILES)
+PYJAMASK_FILES = \
+    pyjamask-128.c \
+    pyjamask-96.c \
+    pyjamask.h \
+    internal-pyjamask.c \
+    internal-pyjamask.h \
+    internal-ocb.h \
+    $(COMMON_FILES)
 SATURNIN_FILES = \
     saturnin.c \
     saturnin.h \
@@ -60,6 +68,7 @@ ALL_ALGORITHMS = \
     gift_cofb \
     gimli \
     hyena \
+    pyjamask \
     saturnin \
     sundae_gift
 
@@ -84,6 +93,9 @@ gimli:
 
 hyena:
 	cp $(foreach file,$(HYENA_FILES),$(SRCDIR)/$(file)) HYENA
+
+pyjamask:
+	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask
 
 saturnin:
 	cp $(foreach file,$(SATURNIN_FILES),$(SRCDIR)/$(file)) Saturnin

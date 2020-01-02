@@ -20,22 +20,25 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "test-cipher.h"
+#include "pyjamask.h"
+#include "internal-pyjamask.h"
 
-void test_chachapoly(void);
-void test_cham(void);
-void test_gift128(void);
-void test_gimli24(void);
-void test_pyjamask(void);
-void test_skinny128(void);
+aead_cipher_t const pyjamask_128_cipher = {
+    "Pyjamask-128-AEAD",
+    PYJAMASK_128_KEY_SIZE,
+    PYJAMASK_128_NONCE_SIZE,
+    PYJAMASK_128_TAG_SIZE,
+    AEAD_FLAG_NONE,
+    pyjamask_128_aead_encrypt,
+    pyjamask_128_aead_decrypt
+};
 
-int main(int argc, char *argv[])
-{
-    test_chachapoly();
-    test_cham();
-    test_gift128();
-    test_gimli24();
-    test_pyjamask();
-    test_skinny128();
-    return test_exit_result;
-}
+#define OCB_ALG_NAME pyjamask_128
+#define OCB_BLOCK_SIZE 16
+#define OCB_NONCE_SIZE PYJAMASK_128_NONCE_SIZE
+#define OCB_TAG_SIZE PYJAMASK_128_TAG_SIZE
+#define OCB_KEY_SCHEDULE pyjamask_key_schedule_t
+#define OCB_SETUP_KEY pyjamask_setup_key
+#define OCB_ENCRYPT_BLOCK pyjamask_128_encrypt
+#define OCB_DECRYPT_BLOCK pyjamask_128_decrypt
+#include "internal-ocb.h"

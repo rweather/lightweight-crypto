@@ -20,22 +20,38 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "test-cipher.h"
+#include "pyjamask.h"
+#include "internal-pyjamask.h"
 
-void test_chachapoly(void);
-void test_cham(void);
-void test_gift128(void);
-void test_gimli24(void);
-void test_pyjamask(void);
-void test_skinny128(void);
+aead_cipher_t const pyjamask_96_cipher = {
+    "Pyjamask-96-AEAD",
+    PYJAMASK_96_KEY_SIZE,
+    PYJAMASK_96_NONCE_SIZE,
+    PYJAMASK_96_TAG_SIZE,
+    AEAD_FLAG_NONE,
+    pyjamask_96_aead_encrypt,
+    pyjamask_96_aead_decrypt
+};
 
-int main(int argc, char *argv[])
+/* Double a value in GF(96) */
+static void pyjamask_96_double_l
+    (unsigned char out[12], const unsigned char in[12])
 {
-    test_chachapoly();
-    test_cham();
-    test_gift128();
-    test_gimli24();
-    test_pyjamask();
-    test_skinny128();
-    return test_exit_result;
+    unsigned index;
+    unsigned char mask = (unsigned char)(((signed char)in[0]) >> 7);
+    for (index = 0; index < 11; ++index)
+        out[index] = (in[index] << 1) | (in[index + 1] >> 7);
+    out[11] = (in[11] << 1) ^ (mask & 0x41);
+    out[10] ^= (mask & 0x06);
 }
+
+#define OCB_ALG_NAME pyjamask_96
+#define OCB_BLOCK_SIZE 12
+#define OCB_NONCE_SIZE PYJAMASK_96_NONCE_SIZE
+#define OCB_TAG_SIZE PYJAMASK_96_TAG_SIZE
+#define OCB_KEY_SCHEDULE pyjamask_key_schedule_t
+#define OCB_SETUP_KEY pyjamask_setup_key
+#define OCB_ENCRYPT_BLOCK pyjamask_96_encrypt
+#define OCB_DECRYPT_BLOCK pyjamask_96_decrypt
+#define OCB_DOUBLE_L pyjamask_96_double_l
+#include "internal-ocb.h"

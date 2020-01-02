@@ -36,6 +36,8 @@ check: $(TARGET1)
 	@./$(TARGET1) GIMLI-24 GIMLI-24-CIPHER.txt
 	@./$(TARGET1) GIMLI-24-HASH GIMLI-24-HASH.txt
 	@./$(TARGET1) HYENA HYENA.txt
+	@./$(TARGET1) Pyjamask-128-AEAD Pyjamask-128-AEAD.txt
+	@./$(TARGET1) Pyjamask-96-AEAD Pyjamask-96-AEAD.txt
 	@./$(TARGET1) SATURNIN-CTR-Cascade SATURNIN-CTR-Cascade.txt
 	@./$(TARGET1) SATURNIN-Short SATURNIN-Short.txt
 	@./$(TARGET1) SATURNIN-Hash SATURNIN-Hash.txt

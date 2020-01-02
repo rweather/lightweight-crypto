@@ -125,4 +125,28 @@ for(i=8; i<15 ;i++)
 That 15 should be a 16.  There are two places in the reference code
 where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec().
 
+\section bugs_pyjamask Pyjamask
+
+In the specification of the underlying block cipher, the key schedule
+"MixAndRotateRows" step contains the following requirement:
+
+<blockquote>
+The second row R1, third row R2, and fourth row R3 are left-rotated of
+8, 15, 18 positions.
+</blockquote>
+
+The reference implementation has a macro called "left_rotate" to
+perform this step but it actually performs a right-rotation by n bits
+instead of a left-rotation:
+
+\code
+#define left_rotate(row,n) \
+    row = (row >> n) | (row << (32-n));
+\endcode
+
+From a security perspective, the direction of rotation shouldn't matter
+so this bug isn't serious.  The test vectors in the specification
+were also clearly generated with a right-rotating implementation of
+the key schedule.  This library implements the bug as-is.
+
 */

@@ -17,6 +17,7 @@ OBJS1 = \
     test-cham.o \
     test-gift128.o \
     test-gimli24.o \
+    test-pyjamask.o \
     test-skinny128.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
@@ -38,6 +39,7 @@ test-chachapoly.o: $(LIBSRC_DIR)/internal-chachapoly.h $(TEST_CIPHER_INC)
 test-cham.o: $(LIBSRC_DIR)/internal-cham.h $(TEST_CIPHER_INC)
 test-gift128.o: $(LIBSRC_DIR)/internal-gift128.h $(TEST_CIPHER_INC)
 test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(TEST_CIPHER_INC)
+test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)

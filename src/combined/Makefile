@@ -17,12 +17,15 @@ OBJS = \
         gift-cofb.o \
 	gimli24.o \
 	hyena.o \
+        pyjamask-128.o \
+        pyjamask-96.o \
         saturnin.o \
         sundae-gift.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
 	internal-cham.o \
 	internal-gift128.o \
+	internal-pyjamask.o \
 	internal-skinny128.o
 
 all: $(LIBRARY)
@@ -48,9 +51,12 @@ estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
+pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
+pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
+internal-pyjamask.o: internal-pyjamask.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h

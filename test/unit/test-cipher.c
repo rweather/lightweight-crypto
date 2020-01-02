@@ -144,9 +144,10 @@ void test_block_cipher_128
     free(ks);
 }
 
-void test_block_cipher_64
+void test_block_cipher_other
     (const block_cipher_t *cipher,
-     const block_cipher_test_vector_128_t *test_vector)
+     const block_cipher_test_vector_128_t *test_vector,
+     unsigned block_size)
 {
     char *ks;
 
@@ -160,7 +161,7 @@ void test_block_cipher_64
         return;
     }
 
-    if (test_block_cipher_128_inner(cipher, test_vector, ks, 8)) {
+    if (test_block_cipher_128_inner(cipher, test_vector, ks, block_size)) {
         printf("ok\n");
     } else {
         printf("failed\n");
