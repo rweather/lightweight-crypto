@@ -273,7 +273,19 @@ Saturnin</h1>
 <p><b>Recommendation:</b> SATURNIN-CTR-Cascade is the recommended variant from the NIST submission.</p>
 <h1><a class="anchor" id="alg_skinny"></a>
 SKINNY-AEAD</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="skinny-aead_8h.html">skinny-aead.h</a></p>
+<p>SKINNY-AEAD is a family of authenticated encryption algorithms that are built around the SKINNY tweakable block cipher. There are six members in the family:</p>
+<ul>
+<li>SKINNY-AEAD-M1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>SKINNY-AEAD-M2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>SKINNY-AEAD-M3 has a 128-bit key, a 128-bit nonce, and a 64-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>SKINNY-AEAD-M4 has a 128-bit key, a 96-bit nonce, and a 64-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>SKINNY-AEAD-M5 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-256 tweakable block cipher. </li>
+<li>SKINNY-AEAD-M6 has a 128-bit key, a 96-bit nonce, and a 64-bit tag, based around the SKINNY-128-256 tweakable block cipher.</li>
+</ul>
+<p>This library's implementation of SKINNY-128-384 requires 464 bytes of RAM for the key schedule, which makes it one of the heavier algorithms amongst the NIST submissions when it comes to RAM size. It is possible to implement SKINNY in a way that the key schedule is expanded on the fly during encryption which would save 416 bytes of RAM. But it would come at the cost of performance.</p>
+<p>The SKINNY-AEAD specification also defines the hash algorithms SKINNY-tk2-HASH and SKINNY-tk3-HASH. These hash algorithms are not currently implemented by this library. They may be added in the future.</p>
+<p><b>Recommendation:</b> SKINNY-AEAD-M1 is the recommended variant from the NIST submission.</p>
 <h1><a class="anchor" id="alg_sparkle"></a>
 SPARKLE</h1>
 <p>TODO</p>
@@ -327,7 +339,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 2 2020 14:55:54 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 3 2020 13:45:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

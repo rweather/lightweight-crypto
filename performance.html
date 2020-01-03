@@ -132,9 +132,21 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.23 </td></tr>
 <tr>
-<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
+<td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.32</td><td>0.23 </td></tr>
 <tr>
-<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
+<td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.31</td><td>0.23 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.25</td><td>0.19 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.25</td><td>0.19 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19 </td></tr>
+<tr>
+<td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19 </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12 </td></tr>
 </table>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
 <h1><a class="anchor" id="perf_esp32"></a>
@@ -176,6 +188,18 @@ Performance on ESP32</h1>
 <tr>
 <td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
 <tr>
+<td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
+<tr>
+<td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
+<tr>
+<td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
+<tr>
 <td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
 <tr>
 <td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.10</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
@@ -183,7 +207,7 @@ Performance on ESP32</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 2 2020 14:55:54 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 3 2020 13:45:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
