@@ -33,6 +33,7 @@
 #include "hyena.h"
 #include "pyjamask.h"
 #include "saturnin.h"
+#include "skinny-aead.h"
 #include "sundae-gift.h"
 
 /* List of all AEAD ciphers that we can run KAT tests for */
@@ -51,6 +52,12 @@ static const aead_cipher_t *const ciphers[] = {
     &pyjamask_96_cipher,
     &saturnin_cipher,
     &saturnin_short_cipher,
+    &skinny_aead_m1_cipher,
+    &skinny_aead_m2_cipher,
+    &skinny_aead_m3_cipher,
+    &skinny_aead_m4_cipher,
+    &skinny_aead_m5_cipher,
+    &skinny_aead_m6_cipher,
     &sundae_gift_0_cipher,
     &sundae_gift_64_cipher,
     &sundae_gift_96_cipher,

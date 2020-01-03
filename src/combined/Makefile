@@ -20,6 +20,7 @@ OBJS = \
         pyjamask-128.o \
         pyjamask-96.o \
         saturnin.o \
+        skinny-aead.o \
         sundae-gift.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
@@ -54,6 +55,7 @@ hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h
+skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h

@@ -54,6 +54,12 @@ SATURNIN_FILES = \
     saturnin.c \
     saturnin.h \
     $(COMMON_FILES)
+SKINNY_AEAD_FILES = \
+    skinny-aead.c \
+    skinny-aead.h \
+    internal-skinny128.c \
+    internal-skinny128.h \
+    $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -70,6 +76,7 @@ ALL_ALGORITHMS = \
     hyena \
     pyjamask \
     saturnin \
+    skinny_aead \
     sundae_gift
 
 .PHONY: all $(ALL_ALGORITHMS)
@@ -99,6 +106,9 @@ pyjamask:
 
 saturnin:
 	cp $(foreach file,$(SATURNIN_FILES),$(SRCDIR)/$(file)) Saturnin
+
+skinny_aead:
+	cp $(foreach file,$(SKINNY_AEAD_FILES),$(SRCDIR)/$(file)) SKINNY-AEAD
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

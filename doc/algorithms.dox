@@ -355,7 +355,38 @@ from the NIST submission.
 
 \section alg_skinny SKINNY-AEAD
 
-TODO
+<b>Definition:</b> \ref skinny-aead.h
+
+SKINNY-AEAD is a family of authenticated encryption algorithms
+that are built around the SKINNY tweakable block cipher.  There
+are six members in the family:
+
+\li SKINNY-AEAD-M1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li SKINNY-AEAD-M2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li SKINNY-AEAD-M3 has a 128-bit key, a 128-bit nonce, and a 64-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li SKINNY-AEAD-M4 has a 128-bit key, a 96-bit nonce, and a 64-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li SKINNY-AEAD-M5 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-256 tweakable block cipher.
+\li SKINNY-AEAD-M6 has a 128-bit key, a 96-bit nonce, and a 64-bit tag,
+based around the SKINNY-128-256 tweakable block cipher.
+
+This library's implementation of SKINNY-128-384 requires 464 bytes of RAM
+for the key schedule, which makes it one of the heavier algorithms amongst
+the NIST submissions when it comes to RAM size.  It is possible to
+implement SKINNY in a way that the key schedule is expanded on the fly
+during encryption which would save 416 bytes of RAM.  But it would come
+at the cost of performance.
+
+The SKINNY-AEAD specification also defines the hash algorithms
+SKINNY-tk2-HASH and SKINNY-tk3-HASH.  These hash algorithms are not
+currently implemented by this library.  They may be added in the future.
+
+<b>Recommendation:</b> SKINNY-AEAD-M1 is the recommended variant
+from the NIST submission.
 
 \section alg_sparkle SPARKLE
 
