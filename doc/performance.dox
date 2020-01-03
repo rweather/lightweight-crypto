@@ -94,8 +94,8 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.25</td><td>0.19</td></tr>
 <tr><td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19</td></tr>
 <tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19</td></tr>
-<tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09</td></tr>
-<tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.09</td><td>0.09</td><td>0.10</td><td>0.09</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12</td></tr>
+<tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12</td></tr>
 </table>
 
 Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload,

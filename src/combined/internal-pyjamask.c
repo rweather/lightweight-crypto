@@ -34,11 +34,17 @@
 STATIC_INLINE uint32_t pyjamask_matrix_multiply(uint32_t x, uint32_t y)
 {
     uint32_t result = 0;
-    uint8_t bit;
-    for (bit = 32; bit > 0; --bit) {
+    int bit;
+    for (bit = 31; bit >= 0; --bit) {
+#if defined(ESP32)
+        /* This version has slightly better performance on ESP32 */
         y = leftRotate1(y);
         result ^= x & -(y & 1);
         x = rightRotate1(x);
+#else
+        result ^= x & -((y >> bit) & 1);
+        x = rightRotate1(x);
+#endif
     }
     return result;
 }
