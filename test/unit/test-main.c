@@ -26,6 +26,7 @@ void test_chachapoly(void);
 void test_cham(void);
 void test_gift128(void);
 void test_gimli24(void);
+void test_keccak(void);
 void test_pyjamask(void);
 void test_skinny128(void);
 
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
     test_cham();
     test_gift128();
     test_gimli24();
+    test_keccak();
     test_pyjamask();
     test_skinny128();
     return test_exit_result;
