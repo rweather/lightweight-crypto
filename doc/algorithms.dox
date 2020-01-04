@@ -163,8 +163,7 @@ and a 64-bit tag, built around the SPECK-64/128 block cipher.
 There is also another family member COMET-128_AES-128/128 that is built
 around AES but this library does not implement that version.
 
-COMET-128_CHAM-128/128 is one of the fastest of the NIST algorithms in
-software on 32-bit platforms.
+COMET-128_CHAM-128/128 has good performance in software on 32-bit platforms.
 
 <b>Recommendation:</b> The specification recommends COMET-128_AES-128/128 but
 we don't implement AES-based schemes in this library.  Recommend to use
@@ -198,7 +197,7 @@ and plaintext will encrypt to the same ciphertext.  This will leak that
 the same plaintext has been sent for a second time but will not reveal
 the plaintext itself.
 
-The ESTATE family also includes variants build around tweaked versions
+The ESTATE family also includes variants built around tweaked versions
 of the AES block cipher.  We do not implement those variants in this
 library.
 
@@ -390,7 +389,24 @@ from the NIST submission.
 
 \section alg_sparkle SPARKLE
 
-TODO
+<b>Definition:</b> \ref sparkle.h
+
+SPARKLE is a family of encryption and hash algorithms that are based
+around the SPARKLE permutation.  There are three versions of the
+permutation with 256-bit, 384-bit, and 512-bit state sizes.
+The algorithms in the family are:
+
+\li Schwaemm256-128 with a 128-bit key, a 256-bit nonce, and a 128-bit tag.
+\li Schwaemm192-192 with a 192-bit key, a 192-bit nonce, and a 192-bit tag.
+\li Schwaemm128-128 with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+\li Schwaemm256-256 with a 256-bit key, a 256-bit nonce, and a 256-bit tag.
+\li Esch256 hash algorithm with a 256-bit digest output.
+\li Esch384 hash algorithm with a 384-bit digest output.
+
+SPARKLE has good performance in software on 32-bit platforms.
+
+<b>Recommendation:</b> Schwaemm256-128 and Esch256 are the recommended
+variants from the NIST submission.
 
 \section alg_spix SPIX
 

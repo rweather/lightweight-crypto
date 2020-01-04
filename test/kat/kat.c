@@ -33,6 +33,7 @@
 #include "hyena.h"
 #include "pyjamask.h"
 #include "saturnin.h"
+#include "sparkle.h"
 #include "skinny-aead.h"
 #include "sundae-gift.h"
 
@@ -52,6 +53,10 @@ static const aead_cipher_t *const ciphers[] = {
     &pyjamask_96_cipher,
     &saturnin_cipher,
     &saturnin_short_cipher,
+    &schwaemm_256_128_cipher,
+    &schwaemm_192_192_cipher,
+    &schwaemm_128_128_cipher,
+    &schwaemm_256_256_cipher,
     &skinny_aead_m1_cipher,
     &skinny_aead_m2_cipher,
     &skinny_aead_m3_cipher,
@@ -69,6 +74,8 @@ static const aead_cipher_t *const ciphers[] = {
 static const aead_hash_algorithm_t *const hashes[] = {
     &ascon_hash_algorithm,
     &ascon_xof_algorithm,
+    &esch_256_hash_algorithm,
+    &esch_384_hash_algorithm,
     &gimli24_hash_algorithm,
     &saturnin_hash_algorithm,
     0

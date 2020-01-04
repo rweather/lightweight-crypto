@@ -60,6 +60,10 @@ SKINNY_AEAD_FILES = \
     internal-skinny128.c \
     internal-skinny128.h \
     $(COMMON_FILES)
+SPARKLE_FILES = \
+    sparkle.c \
+    sparkle.h \
+    $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -77,6 +81,7 @@ ALL_ALGORITHMS = \
     pyjamask \
     saturnin \
     skinny_aead \
+    sparkle \
     sundae_gift
 
 .PHONY: all $(ALL_ALGORITHMS)
@@ -109,6 +114,9 @@ saturnin:
 
 skinny_aead:
 	cp $(foreach file,$(SKINNY_AEAD_FILES),$(SRCDIR)/$(file)) SKINNY-AEAD
+
+sparkle:
+	cp $(foreach file,$(SPARKLE_FILES),$(SRCDIR)/$(file)) SPARKLE
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

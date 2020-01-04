@@ -38,6 +38,7 @@ of flash memory.
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
+#include "sparkle.h"
 #include "sundae-gift.h"
 #include "internal-chachapoly.h"
 
@@ -349,6 +350,10 @@ void setup()
     perfCipher(&pyjamask_96_cipher);
     perfCipher(&saturnin_cipher);
     perfCipherShort(&saturnin_short_cipher, 15);
+    perfCipher(&schwaemm_256_128_cipher);
+    perfCipher(&schwaemm_192_192_cipher);
+    perfCipher(&schwaemm_128_128_cipher);
+    perfCipher(&schwaemm_256_256_cipher);
     perfCipher(&skinny_aead_m1_cipher);
     perfCipher(&skinny_aead_m2_cipher);
     perfCipher(&skinny_aead_m3_cipher);
