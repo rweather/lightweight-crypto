@@ -42,6 +42,9 @@ AEAD competition</a> (128-bit key).
 ChaCha20 and has a similar design (256-bit key).
 \li \ref alg_comet "COMET-128_CHAM-128/128" is currently the fastest
 algorithm in the library in terms of raw performance (128-bit key).
+\li \ref alg_tinyjambu "TinyJAMBU-128" has comparable performance to
+GIMLI-24 with a small RAM and flash memory footprint (128-bit key,
+with options for 192-bit and 256-bit keys as well).
 \li (others may be added here as I implement more algorithms)
 
 Note that these are my own personal preferences and are not based on any
@@ -458,9 +461,24 @@ NIST submission, with SUNDAE-GIFT-0 as the next-recommended variant.
 <b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
 \ref alg_hyena "HYENA", \ref alg_estate "ESTATE"
 
-\section alg_tinyjambu TinyJambu
+\section alg_tinyjambu TinyJAMBU
 
-TODO
+<b>Definition:</b> \ref tinyjambu.h
+
+TinyJAMBU is a family of encryption algorithms that are built around a
+lightweight 128-bit permutation.  There are three variants of TinyJAMBU
+with different key sizes:
+
+\li TinyJAMBU-128 with a 128-bit key, a 96-bit nonce, and a 64-bit tag.
+\li TinyJAMBU-192 with a 192-bit key, a 96-bit nonce, and a 64-bit tag.
+\li TinyJAMBU-256 with a 256-bit key, a 96-bit nonce, and a 64-bit tag.
+
+TinyJAMBU has one of the smallest RAM and flash memory footprints
+out of all of the NIST algorithms.  Performance of TinyJAMBU-128 is
+comparable to this library's implementation of GIMLI-24.
+
+<b>Recommendation:</b> TinyJAMBU-128 is the recommended variant in the
+NIST submission.  Use TinyJAMBU-256 if you need a greater security margin.
 
 \section alg_wage WAGE
 

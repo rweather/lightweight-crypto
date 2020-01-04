@@ -40,6 +40,7 @@ of flash memory.
 #include "skinny-aead.h"
 #include "sparkle.h"
 #include "sundae-gift.h"
+#include "tinyjambu.h"
 #include "internal-chachapoly.h"
 
 #if defined(ESP8266)
@@ -364,6 +365,9 @@ void setup()
     perfCipher(&sundae_gift_64_cipher);
     perfCipher(&sundae_gift_96_cipher);
     perfCipher(&sundae_gift_128_cipher);
+    perfCipher(&tiny_jambu_128_cipher);
+    perfCipher(&tiny_jambu_192_cipher);
+    perfCipher(&tiny_jambu_256_cipher);
 }
 
 void loop()

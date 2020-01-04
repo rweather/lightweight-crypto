@@ -70,6 +70,10 @@ SUNDAE_GIFT_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     $(COMMON_FILES)
+TINYJAMBU_FILES = \
+    tinyjambu.c \
+    tinyjambu.h \
+    $(COMMON_FILES)
 
 ALL_ALGORITHMS = \
     ascon \
@@ -82,7 +86,8 @@ ALL_ALGORITHMS = \
     saturnin \
     skinny_aead \
     sparkle \
-    sundae_gift
+    sundae_gift \
+    tinyjambu
 
 .PHONY: all $(ALL_ALGORITHMS)
 
@@ -120,3 +125,6 @@ sparkle:
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT
+
+tinyjambu:
+	cp $(foreach file,$(TINYJAMBU_FILES),$(SRCDIR)/$(file)) TinyJAMBU

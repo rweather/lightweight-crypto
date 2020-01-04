@@ -36,6 +36,7 @@
 #include "sparkle.h"
 #include "skinny-aead.h"
 #include "sundae-gift.h"
+#include "tinyjambu.h"
 
 /* List of all AEAD ciphers that we can run KAT tests for */
 static const aead_cipher_t *const ciphers[] = {
@@ -67,6 +68,9 @@ static const aead_cipher_t *const ciphers[] = {
     &sundae_gift_64_cipher,
     &sundae_gift_96_cipher,
     &sundae_gift_128_cipher,
+    &tiny_jambu_128_cipher,
+    &tiny_jambu_192_cipher,
+    &tiny_jambu_256_cipher,
     0
 };
 

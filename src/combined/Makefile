@@ -23,6 +23,7 @@ OBJS = \
         skinny-aead.o \
         sparkle.o \
         sundae-gift.o \
+        tinyjambu.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
 	internal-cham.o \
@@ -59,6 +60,7 @@ saturnin.o: saturnin.h aead-common.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
 sparkle.o: sparkle.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
+tinyjambu.o: tinyjambu.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
