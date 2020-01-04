@@ -112,7 +112,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#alg_spook">Spook</a></li>
 <li class="level1"><a href="#alg_subterranean">Subterranean 2.0</a></li>
 <li class="level1"><a href="#alg_sundae_gift">SUNDAE-GIFT</a></li>
-<li class="level1"><a href="#alg_tinyjambu">TinyJambu</a></li>
+<li class="level1"><a href="#alg_tinyjambu">TinyJAMBU</a></li>
 <li class="level1"><a href="#alg_wage">WAGE</a></li>
 <li class="level1"><a href="#alg_xoodyak">Xoodyak</a></li>
 <li class="level1"><a href="#alg_internal">Internal block operations</a></li>
@@ -126,6 +126,7 @@ Which algorithm should I use?</h1>
 <li><a class="el" href="algorithms.html#alg_ascon">ASCON-128</a> was already selected as a finalist for the <a href="https://competitions.cr.yp.to/caesar-submissions.html">CAESAR AEAD competition</a> (128-bit key). </li>
 <li><a class="el" href="algorithms.html#alg_gimli">Gimli</a> is the spiritual successor to the widely used ChaCha20 and has a similar design (256-bit key). </li>
 <li><a class="el" href="algorithms.html#alg_comet">COMET-128_CHAM-128/128</a> is currently the fastest algorithm in the library in terms of raw performance (128-bit key). </li>
+<li><a class="el" href="algorithms.html#alg_tinyjambu">TinyJAMBU-128</a> has comparable performance to GIMLI-24 with a small RAM and flash memory footprint (128-bit key, with options for 192-bit and 256-bit keys as well). </li>
 <li>(others may be added here as I implement more algorithms)</li>
 </ul>
 <p>Note that these are my own personal preferences and are not based on any in-depth security analysis. The above algorithms could fall to an attack tomorrow but for now they have good space and speed trade-offs when implemented in software on 32-bit platforms.</p>
@@ -329,8 +330,16 @@ SUNDAE-GIFT</h1>
 <p><b>Recommendation:</b> SUNDAE-GIFT-96 is the recommended variant in the NIST submission, with SUNDAE-GIFT-0 as the next-recommended variant.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a>, <a class="el" href="algorithms.html#alg_hyena">HYENA</a>, <a class="el" href="algorithms.html#alg_estate">ESTATE</a></p>
 <h1><a class="anchor" id="alg_tinyjambu"></a>
-TinyJambu</h1>
-<p>TODO</p>
+TinyJAMBU</h1>
+<p><b>Definition:</b> <a class="el" href="tinyjambu_8h.html">tinyjambu.h</a></p>
+<p>TinyJAMBU is a family of encryption algorithms that are built around a lightweight 128-bit permutation. There are three variants of TinyJAMBU with different key sizes:</p>
+<ul>
+<li>TinyJAMBU-128 with a 128-bit key, a 96-bit nonce, and a 64-bit tag. </li>
+<li>TinyJAMBU-192 with a 192-bit key, a 96-bit nonce, and a 64-bit tag. </li>
+<li>TinyJAMBU-256 with a 256-bit key, a 96-bit nonce, and a 64-bit tag.</li>
+</ul>
+<p>TinyJAMBU has one of the smallest RAM and flash memory footprints out of all of the NIST algorithms. Performance of TinyJAMBU-128 is comparable to this library's implementation of GIMLI-24.</p>
+<p><b>Recommendation:</b> TinyJAMBU-128 is the recommended variant in the NIST submission. Use TinyJAMBU-256 if you need a greater security margin.</p>
 <h1><a class="anchor" id="alg_wage"></a>
 WAGE</h1>
 <p>TODO</p>
@@ -350,7 +359,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 4 2020 12:07:58 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jan 4 2020 19:16:19 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

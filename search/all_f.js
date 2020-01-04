@@ -1,5 +1,20 @@
 var searchData=
 [
   ['tag_5flen',['tag_len',['../structaead__cipher__t.html#a6f95e595bfbe7657965475d0ebdcaada',1,'aead_cipher_t']]],
+  ['tiny_5fjambu_5f128_5faead_5fdecrypt',['tiny_jambu_128_aead_decrypt',['../tinyjambu_8h.html#a15a56be3e2adf84d9d93d5d654813c68',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f128_5faead_5fencrypt',['tiny_jambu_128_aead_encrypt',['../tinyjambu_8h.html#a92c0ad696026229e8d421dc5bffef1ff',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f128_5fcipher',['tiny_jambu_128_cipher',['../tinyjambu_8h.html#adfa655cfeabfb6db0d37f73cceabd723',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f128_5fkey_5fsize',['TINY_JAMBU_128_KEY_SIZE',['../tinyjambu_8h.html#a2b9d4bf7eb86e6a51b6618cff23fa8dc',1,'tinyjambu.h']]],
+  ['tiny_5fjambu_5f192_5faead_5fdecrypt',['tiny_jambu_192_aead_decrypt',['../tinyjambu_8h.html#a75c68dbda3ed7b7b9fccda702e9d5b61',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f192_5faead_5fencrypt',['tiny_jambu_192_aead_encrypt',['../tinyjambu_8h.html#a2456185f5c3262deccb648caf48a71c5',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f192_5fcipher',['tiny_jambu_192_cipher',['../tinyjambu_8h.html#a8ddbc2b4761f3aa1a234d28274335502',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f192_5fkey_5fsize',['TINY_JAMBU_192_KEY_SIZE',['../tinyjambu_8h.html#a2796bae7c3ea4ba027d163701367f3a6',1,'tinyjambu.h']]],
+  ['tiny_5fjambu_5f256_5faead_5fdecrypt',['tiny_jambu_256_aead_decrypt',['../tinyjambu_8h.html#ac9c936ea74e40ceddfced9aece390c27',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f256_5faead_5fencrypt',['tiny_jambu_256_aead_encrypt',['../tinyjambu_8h.html#a7feec076254eaf1c475a99daad7bd2ee',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f256_5fcipher',['tiny_jambu_256_cipher',['../tinyjambu_8h.html#a1ae08c5ead92b7ee1426f5c700417917',1,'tinyjambu.c']]],
+  ['tiny_5fjambu_5f256_5fkey_5fsize',['TINY_JAMBU_256_KEY_SIZE',['../tinyjambu_8h.html#a574debbf8ccc64d48a3fadeb4ccafd14',1,'tinyjambu.h']]],
+  ['tiny_5fjambu_5fnonce_5fsize',['TINY_JAMBU_NONCE_SIZE',['../tinyjambu_8h.html#a628a25dda561700f16899e5bc98d4bd2',1,'tinyjambu.h']]],
+  ['tiny_5fjambu_5ftag_5fsize',['TINY_JAMBU_TAG_SIZE',['../tinyjambu_8h.html#a9b61bcc7bd9bd19bf06b9a3d416ac277',1,'tinyjambu.h']]],
+  ['tinyjambu_2eh',['tinyjambu.h',['../tinyjambu_8h.html',1,'']]],
   ['tk1',['TK1',['../structskinny__128__384__key__schedule__t.html#ad4e48c2306fa72a2a3e9ac0cb3cfd041',1,'skinny_128_384_key_schedule_t::TK1()'],['../structskinny__128__256__key__schedule__t.html#ab1e0f45c5fd2ec825d74cdf5bf405e7e',1,'skinny_128_256_key_schedule_t::TK1()']]]
 ];
