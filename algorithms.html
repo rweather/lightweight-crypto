@@ -185,7 +185,7 @@ COMET</h1>
 <li>COMET-64_SPECK-64/128 which has a 128-bit key, a 120-bit nonce, and a 64-bit tag, built around the SPECK-64/128 block cipher.</li>
 </ul>
 <p>There is also another family member COMET-128_AES-128/128 that is built around AES but this library does not implement that version.</p>
-<p>COMET-128_CHAM-128/128 is one of the fastest of the NIST algorithms in software on 32-bit platforms.</p>
+<p>COMET-128_CHAM-128/128 has good performance in software on 32-bit platforms.</p>
 <p><b>Recommendation:</b> The specification recommends COMET-128_AES-128/128 but we don't implement AES-based schemes in this library. Recommend to use COMET-128_CHAM-128/128 instead.</p>
 <h1><a class="anchor" id="alg_drygascon"></a>
 DryGASCON</h1>
@@ -200,7 +200,7 @@ ESTATE</h1>
 <p>ESTATE_TweGIFT-128 is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit tag. It is a two-pass algorithm that is built around a tweaked version of the GIFT-128 block cipher, the FCBC authentication mode, and the OFB encryption mode.</p>
 <p>ESTATE is resistant against nonce reuse as long as the combination of the associated data and plaintext is unique.</p>
 <p>If a nonce is reused then two packets with the same nonce, associated data, and plaintext will encrypt to the same ciphertext. This will leak that the same plaintext has been sent for a second time but will not reveal the plaintext itself.</p>
-<p>The ESTATE family also includes variants build around tweaked versions of the AES block cipher. We do not implement those variants in this library.</p>
+<p>The ESTATE family also includes variants built around tweaked versions of the AES block cipher. We do not implement those variants in this library.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a>, <a class="el" href="algorithms.html#alg_hyena">SUNDAE-GIFT</a>, <a class="el" href="algorithms.html#alg_estate">HYENA</a></p>
 <h1><a class="anchor" id="alg_forkae"></a>
 ForkAE</h1>
@@ -288,7 +288,18 @@ SKINNY-AEAD</h1>
 <p><b>Recommendation:</b> SKINNY-AEAD-M1 is the recommended variant from the NIST submission.</p>
 <h1><a class="anchor" id="alg_sparkle"></a>
 SPARKLE</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="sparkle_8h.html">sparkle.h</a></p>
+<p>SPARKLE is a family of encryption and hash algorithms that are based around the SPARKLE permutation. There are three versions of the permutation with 256-bit, 384-bit, and 512-bit state sizes. The algorithms in the family are:</p>
+<ul>
+<li>Schwaemm256-128 with a 128-bit key, a 256-bit nonce, and a 128-bit tag. </li>
+<li>Schwaemm192-192 with a 192-bit key, a 192-bit nonce, and a 192-bit tag. </li>
+<li>Schwaemm128-128 with a 128-bit key, a 128-bit nonce, and a 128-bit tag. </li>
+<li>Schwaemm256-256 with a 256-bit key, a 256-bit nonce, and a 256-bit tag. </li>
+<li>Esch256 hash algorithm with a 256-bit digest output. </li>
+<li>Esch384 hash algorithm with a 384-bit digest output.</li>
+</ul>
+<p>SPARKLE has good performance in software on 32-bit platforms.</p>
+<p><b>Recommendation:</b> Schwaemm256-128 and Esch256 are the recommended variants from the NIST submission.</p>
 <h1><a class="anchor" id="alg_spix"></a>
 SPIX</h1>
 <p>TODO</p>
@@ -339,7 +350,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 3 2020 13:45:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jan 4 2020 12:07:58 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

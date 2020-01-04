@@ -2,5 +2,6 @@ var searchData=
 [
   ['saturnin_2eh',['saturnin.h',['../saturnin_8h.html',1,'']]],
   ['skinny_2daead_2eh',['skinny-aead.h',['../skinny-aead_8h.html',1,'']]],
+  ['sparkle_2eh',['sparkle.h',['../sparkle_8h.html',1,'']]],
   ['sundae_2dgift_2eh',['sundae-gift.h',['../sundae-gift_8h.html',1,'']]]
 ];
