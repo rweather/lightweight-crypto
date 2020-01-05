@@ -20,14 +20,17 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LW_INTERNAL_KECCAK_H
-#define LW_INTERNAL_KECCAK_H
+#ifndef LW_INTERNAL_ASCON_H
+#define LW_INTERNAL_ASCON_H
 
 #include "internal-util.h"
 
 /**
- * \file internal-keccak.h
- * \brief Internal implementation of the Keccak-p permutation.
+ * \file internal-ascon.h
+ * \brief Internal implementation of the ASCON permutation.
+ *
+ * References: http://competitions.cr.yp.to/round3/asconv12.pdf,
+ * http://ascon.iaik.tugraz.at/
  */
 
 #ifdef __cplusplus
@@ -35,41 +38,24 @@ extern "C" {
 #endif
 
 /**
- * \brief Structure of the internal state of the Keccak-p[200] permutation.
+ * \brief Structure of the internal state of the ASCON permutation.
  */
 typedef union
 {
-    uint8_t A[5][5];    /**< Keccak-p[200] state as a 5x5 array of lanes */
-    uint8_t B[25];      /**< Keccak-p[200] state as a byte array */
+    uint64_t S[5];      /**< Words of the state */
+    uint8_t B[40];      /**< Bytes of the state */
 
-} keccakp_200_state_t;
-
-/**
- * \brief Structure of the internal state of the Keccak-p[400] permutation.
- */
-typedef union
-{
-    uint16_t A[5][5];   /**< Keccak-p[400] state as a 5x5 array of lanes */
-    uint8_t B[50];      /**< Keccak-p[400] state as a byte array */
-
-} keccakp_400_state_t;
+} ascon_state_t;
 
 /**
- * \brief Permutes the Keccak-p[200] state.
+ * \brief Permutes the ASCON state.
  *
- * \param state The Keccak-p[200] state to be permuted.
- * \param rounds The number of rounds to perform (up to 18).
- */
-void keccakp_200_permute(keccakp_200_state_t *state, unsigned rounds);
-
-/**
- * \brief Permutes the Keccak-p[400] state, which is assumed to be in
- * little-endian byte order.
+ * \param state The ASCON state to be permuted.
+ * \param first_round The first round (of 12) to be performed; 0, 4, or 6.
  *
- * \param state The Keccak-p[400] state to be permuted.
- * \param rounds The number of rounds to perform (up to 20).
+ * The input and output \a state will be in big-endian byte order.
  */
-void keccakp_400_permute(keccakp_400_state_t *state, unsigned rounds);
+void ascon_permute(ascon_state_t *state, uint8_t first_round);
 
 #ifdef __cplusplus
 }

@@ -271,7 +271,28 @@ slightly faster than GIFT-COFB.
 
 \section alg_isap ISAP
 
-TODO
+<b>Definition:</b> \ref isap.h
+
+ISAP is a family of authenticated encryption algorithms that are built
+around the Keccak-p[400] or ASCON permutations.  There are four algorithms
+in the family, each of which have a 128-bit key, a 128-bit nonce, and a
+128-bit tag:
+
+\li ISAP-K-128A based around the Keccak-p[400] permutation with a
+reduced number of rounds.
+\li ISAP-A-128A based around the ASCON permutation with a reduced
+number of rounds.
+\li ISAP-K-128 based around the Keccak-p[400] permutation.
+\li ISAP-A-128 based around the ASCON permutation.
+
+ISAP is designed to provide some protection against adversaries
+using differential power analysis to determine the key.  The downside
+is that key setup is very slow.  The Keccak-p[400] permutation is
+slower than ASCON on 32-bit platforms.
+
+<b>Recommendation:</b> The specification recommends ISAP-K-128A,
+although ISAP-A-128A may be a better choice on 32-bit platforms for
+performance reasons.
 
 \section alg_knot KNOT
 

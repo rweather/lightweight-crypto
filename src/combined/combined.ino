@@ -35,6 +35,7 @@ of flash memory.
 #include "gift-cofb.h"
 #include "gimli24.h"
 #include "hyena.h"
+#include "isap.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
@@ -50,8 +51,11 @@ extern "C" void system_soft_wdt_feed(void);
 #define crypto_feed_watchdog() do { ; } while (0)
 #endif
 
-#define PERF_LOOPS 1000
-#define PERF_LOOPS_16 3000
+#define DEFAULT_PERF_LOOPS 1000
+#define DEFAULT_PERF_LOOPS_16 3000
+
+static int PERF_LOOPS = DEFAULT_PERF_LOOPS;
+static int PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16;
 
 #define MAX_DATA_SIZE 128
 #define MAX_TAG_SIZE 32
@@ -78,6 +82,14 @@ static unsigned long encrypt_16_ref = 0;
 static unsigned long decrypt_128_ref = 0;
 static unsigned long decrypt_16_ref = 0;
 
+static void print_x(double value)
+{
+    if (value < 0.005)
+        Serial.print(value, 4);
+    else
+        Serial.print(value);
+}
+
 void perfCipherEncrypt128(const aead_cipher_t *cipher)
 {
     unsigned long start;
@@ -99,7 +111,7 @@ void perfCipherEncrypt128(const aead_cipher_t *cipher)
     encrypt_128_time = elapsed;
 
     if (encrypt_128_ref != 0 && elapsed != 0) {
-        Serial.print(((double)encrypt_128_ref) / elapsed);
+        print_x(((double)encrypt_128_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -132,7 +144,7 @@ void perfCipherDecrypt128(const aead_cipher_t *cipher)
     decrypt_128_time = elapsed;
 
     if (decrypt_128_ref != 0 && elapsed != 0) {
-        Serial.print(((double)decrypt_128_ref) / elapsed);
+        print_x(((double)decrypt_128_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -163,7 +175,7 @@ void perfCipherEncrypt16(const aead_cipher_t *cipher)
     encrypt_16_time = elapsed;
 
     if (encrypt_16_ref != 0 && elapsed != 0) {
-        Serial.print(((double)encrypt_16_ref) / elapsed);
+        print_x(((double)encrypt_16_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -196,7 +208,7 @@ void perfCipherDecrypt16(const aead_cipher_t *cipher)
     decrypt_16_time = elapsed;
 
     if (decrypt_16_ref != 0 && elapsed != 0) {
-        Serial.print(((double)decrypt_16_ref) / elapsed);
+        print_x(((double)decrypt_16_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -224,7 +236,7 @@ void perfCipher(const aead_cipher_t *cipher)
         unsigned long time_avg = encrypt_128_time + decrypt_128_time +
                                  encrypt_16_time  + decrypt_16_time;
         Serial.print("   average ... ");
-        Serial.print(((double)ref_avg) / time_avg);
+        print_x(((double)ref_avg) / time_avg);
         Serial.print("x");
         Serial.println();
     }
@@ -257,7 +269,7 @@ void perfCipherEncryptShort(const aead_cipher_t *cipher, unsigned size)
     encrypt_16_time = elapsed;
 
     if (encrypt_16_ref != 0 && elapsed != 0) {
-        Serial.print(((double)encrypt_16_ref) / elapsed);
+        print_x(((double)encrypt_16_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -292,7 +304,7 @@ void perfCipherDecryptShort(const aead_cipher_t *cipher, unsigned size)
     decrypt_16_time = elapsed;
 
     if (decrypt_16_ref != 0 && elapsed != 0) {
-        Serial.print(((double)decrypt_16_ref) / elapsed);
+        print_x(((double)decrypt_16_ref) / elapsed);
         Serial.print("x, ");
     }
 
@@ -316,7 +328,7 @@ void perfCipherShort(const aead_cipher_t *cipher, unsigned size)
         unsigned long ref_avg = encrypt_16_ref  + decrypt_16_ref;
         unsigned long time_avg = encrypt_16_time  + decrypt_16_time;
         Serial.print("   average ... ");
-        Serial.print(((double)ref_avg) / time_avg);
+        print_x(((double)ref_avg) / time_avg);
         Serial.print("x");
         Serial.println();
     }
@@ -368,6 +380,18 @@ void setup()
     perfCipher(&tiny_jambu_128_cipher);
     perfCipher(&tiny_jambu_192_cipher);
     perfCipher(&tiny_jambu_256_cipher);
+
+    // Algorithms that are very slow.  Adjust loop counters and do them last.
+    encrypt_128_ref /= 10;
+    decrypt_128_ref /= 10;
+    encrypt_16_ref /= 10;
+    decrypt_16_ref /= 10;
+    PERF_LOOPS = DEFAULT_PERF_LOOPS / 10;
+    PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16 / 10;
+    perfCipher(&isap_ascon_128a_cipher);
+    perfCipher(&isap_ascon_128_cipher);
+    perfCipher(&isap_keccak_128a_cipher);
+    perfCipher(&isap_keccak_128_cipher);
 }
 
 void loop()

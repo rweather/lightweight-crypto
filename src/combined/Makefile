@@ -17,6 +17,7 @@ OBJS = \
         gift-cofb.o \
 	gimli24.o \
 	hyena.o \
+        isap.o \
         pyjamask-128.o \
         pyjamask-96.o \
         saturnin.o \
@@ -55,6 +56,7 @@ estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
+isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h

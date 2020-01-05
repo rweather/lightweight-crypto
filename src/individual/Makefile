@@ -42,6 +42,15 @@ HYENA_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     $(COMMON_FILES)
+ISAP_FILES = \
+    isap.c \
+    isap.h \
+    internal-ascon.c \
+    internal-ascon.h \
+    internal-isap.h \
+    internal-keccak.c \
+    internal-keccak.h \
+    $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
     pyjamask-96.c \
@@ -82,6 +91,7 @@ ALL_ALGORITHMS = \
     gift_cofb \
     gimli \
     hyena \
+    isap \
     pyjamask \
     saturnin \
     skinny_aead \
@@ -110,6 +120,9 @@ gimli:
 
 hyena:
 	cp $(foreach file,$(HYENA_FILES),$(SRCDIR)/$(file)) HYENA
+
+isap:
+	cp $(foreach file,$(ISAP_FILES),$(SRCDIR)/$(file)) ISAP
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask

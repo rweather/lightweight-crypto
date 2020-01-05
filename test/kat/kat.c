@@ -31,6 +31,7 @@
 #include "gift-cofb.h"
 #include "gimli24.h"
 #include "hyena.h"
+#include "isap.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "sparkle.h"
@@ -50,6 +51,10 @@ static const aead_cipher_t *const ciphers[] = {
     &gift_cofb_cipher,
     &gimli24_cipher,
     &hyena_cipher,
+    &isap_keccak_128a_cipher,
+    &isap_ascon_128a_cipher,
+    &isap_keccak_128_cipher,
+    &isap_ascon_128_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
     &saturnin_cipher,

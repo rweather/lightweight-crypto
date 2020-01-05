@@ -103,6 +103,10 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12</td></tr>
+<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04</td></tr>
+<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02</td></tr>
+<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
+<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0036</td><td>0.0041</td><td>0.0016</td><td>0.0018</td><td>0.0023</td></tr>
 </table>
 
 Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload,
@@ -148,6 +152,10 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.10</td><td>0.09</td><td>0.10</td><td>0.09</td></tr>
+<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06</td></tr>
+<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
+<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
+<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021</td></tr>
 </table>
 
 */

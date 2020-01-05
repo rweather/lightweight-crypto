@@ -520,4 +520,38 @@
 #define rightRotate14_16(a) (rightRotate_16((a), 14))
 #define rightRotate15_16(a) (rightRotate_16((a), 15))
 
+/* Rotate an 8-bit value left by a number of bits */
+#define leftRotate_8(a, bits) \
+    (__extension__ ({ \
+        uint8_t _temp = (a); \
+        (_temp << (bits)) | (_temp >> (8 - (bits))); \
+    }))
+
+/* Rotate an 8-bit value right by a number of bits */
+#define rightRotate_8(a, bits) \
+    (__extension__ ({ \
+        uint8_t _temp = (a); \
+        (_temp >> (bits)) | (_temp << (8 - (bits))); \
+    }))
+
+/* Left rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
+#define leftRotate1_8(a)  (leftRotate_8((a), 1))
+#define leftRotate2_8(a)  (leftRotate_8((a), 2))
+#define leftRotate3_8(a)  (leftRotate_8((a), 3))
+#define leftRotate4_8(a)  (leftRotate_8((a), 4))
+#define leftRotate5_8(a)  (leftRotate_8((a), 5))
+#define leftRotate6_8(a)  (leftRotate_8((a), 6))
+#define leftRotate7_8(a)  (leftRotate_8((a), 7))
+
+/* Right rotate by a specific number of bits.  These macros may be replaced
+ * with more efficient ones on platforms that lack a barrel shifter */
+#define rightRotate1_8(a)  (rightRotate_8((a), 1))
+#define rightRotate2_8(a)  (rightRotate_8((a), 2))
+#define rightRotate3_8(a)  (rightRotate_8((a), 3))
+#define rightRotate4_8(a)  (rightRotate_8((a), 4))
+#define rightRotate5_8(a)  (rightRotate_8((a), 5))
+#define rightRotate6_8(a)  (rightRotate_8((a), 6))
+#define rightRotate7_8(a)  (rightRotate_8((a), 7))
+
 #endif
