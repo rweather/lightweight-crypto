@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['a',['A',['../unionkeccakp__200__state__t.html#aca7f7d56e61d703a093597efe9934480',1,'keccakp_200_state_t::A()'],['../unionkeccakp__400__state__t.html#a13c474394b9c82275a6f96a821349a0b',1,'keccakp_400_state_t::A()']]],
   ['absorb',['absorb',['../structaead__hash__algorithm__t.html#a593a4b9ce0a69249d4cd5c18a1dcc7ab',1,'aead_hash_algorithm_t']]],
   ['aead_2dcommon_2eh',['aead-common.h',['../aead-common_8h.html',1,'']]],
   ['aead_5fcheck_5ftag',['aead_check_tag',['../aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a',1,'aead-common.c']]],

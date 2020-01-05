@@ -230,7 +230,16 @@ HYENA</h1>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a>, <a class="el" href="algorithms.html#alg_hyena">SUNDAE-GIFT</a>, <a class="el" href="algorithms.html#alg_estate">ESTATE</a></p>
 <h1><a class="anchor" id="alg_isap"></a>
 ISAP</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="isap_8h.html">isap.h</a></p>
+<p>ISAP is a family of authenticated encryption algorithms that are built around the Keccak-p[400] or ASCON permutations. There are four algorithms in the family, each of which have a 128-bit key, a 128-bit nonce, and a 128-bit tag:</p>
+<ul>
+<li>ISAP-K-128A based around the Keccak-p[400] permutation with a reduced number of rounds. </li>
+<li>ISAP-A-128A based around the ASCON permutation with a reduced number of rounds. </li>
+<li>ISAP-K-128 based around the Keccak-p[400] permutation. </li>
+<li>ISAP-A-128 based around the ASCON permutation.</li>
+</ul>
+<p>ISAP is designed to provide some protection against adversaries using differential power analysis to determine the key. The downside is that key setup is very slow. The Keccak-p[400] permutation is slower than ASCON on 32-bit platforms.</p>
+<p><b>Recommendation:</b> The specification recommends ISAP-K-128A, although ISAP-A-128A may be a better choice on 32-bit platforms for performance reasons.</p>
 <h1><a class="anchor" id="alg_knot"></a>
 KNOT</h1>
 <p>TODO</p>
@@ -350,16 +359,17 @@ Xoodyak</h1>
 Internal block operations</h1>
 <p>Many of the algorithms are built on top of internal block ciphers and sponge block operations. Some of these operations are shared between multiple algorithms so they are provided in a common internal location.</p>
 <ul>
-<li><a class="el" href="internal-ascon_8h.html">ASCON permutation</a> </li>
+<li><a class="el" href="internal-ascon_8h.html">ASCON</a> permutation. </li>
 <li><a class="el" href="internal-cham_8h.html">CHAM-128/128 and CHAM-64/128</a> block ciphers. </li>
 <li><a class="el" href="internal-gift128_8h.html">GIFT-128</a> block cipher in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions. </li>
+<li><a class="el" href="internal-keccak_8h.html">Keccak</a> permutations. </li>
 <li><a class="el" href="internal-skinny128_8h.html">SKINNY-128</a> block cipher in 128-bit, 256-bit, and 384-bit key size versions.</li>
 </ul>
 <p>All of the internal block operations are implemented in source files that start with the <code>internal-</code> prefix. They are not intended to be part of the public API for the AEAD algorithms. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 4 2020 19:16:19 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 6 2020 04:51:38 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -161,6 +161,14 @@ Performance on ARM Cortex M3</h1>
 <td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12 </td></tr>
 <tr>
 <td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12 </td></tr>
+<tr>
+<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04 </td></tr>
+<tr>
+<td><b><em>ISAP-K-128A</em></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02 </td></tr>
+<tr>
+<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01 </td></tr>
+<tr>
+<td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0036</td><td>0.0041</td><td>0.0016</td><td>0.0018</td><td>0.0023 </td></tr>
 </table>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
 <h1><a class="anchor" id="perf_esp32"></a>
@@ -231,11 +239,19 @@ Performance on ESP32</h1>
 <td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
 <tr>
 <td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.10</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
+<tr>
+<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06 </td></tr>
+<tr>
+<td><b><em>ISAP-K-128A</em></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
+<tr>
+<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01 </td></tr>
+<tr>
+<td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021 </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 4 2020 19:16:19 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 6 2020 04:51:38 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
