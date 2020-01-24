@@ -53,8 +53,12 @@ ISAP_FILES = \
     $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
+    pyjamask-128-masked.c \
     pyjamask-96.c \
+    pyjamask-96-masked.c \
     pyjamask.h \
+    internal-masking.c \
+    internal-masking.h \
     internal-pyjamask.c \
     internal-pyjamask.h \
     internal-ocb.h \

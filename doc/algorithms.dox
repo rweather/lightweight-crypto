@@ -329,8 +329,8 @@ authentication tag.  Pyjamask-96-AEAD has a 128-bit key, a 64-bit nonce,
 and a 96-bit authentication tag.
 
 Pyjamask is claimed to be resistant against power analysis side channels
-when implemented as a masked block cipher.  This library does not currently
-implement masking as it requires access to a random number generator.
+when implemented as a masked block cipher.  This library implements both
+the masked and unmasked versions of Pyjamask.
 
 The implementation of the block cipher in this library is very slow
 at the moment (patches welcome to address this).

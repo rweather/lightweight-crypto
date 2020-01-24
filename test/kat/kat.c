@@ -57,6 +57,8 @@ static const aead_cipher_t *const ciphers[] = {
     &isap_ascon_128_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
+    &pyjamask_masked_128_cipher,
+    &pyjamask_masked_96_cipher,
     &saturnin_cipher,
     &saturnin_short_cipher,
     &schwaemm_256_128_cipher,
@@ -560,7 +562,7 @@ int main(int argc, char *argv[])
     }
 
     /* Look for a hash algorithm with the specified name */
-    for (index = 0; ciphers[index] != 0; ++index) {
+    for (index = 0; hashes[index] != 0; ++index) {
         if (!strcmp(hashes[index]->name, argv[1])) {
             exit_val = test_hash(hashes[index], file);
             fclose(file);

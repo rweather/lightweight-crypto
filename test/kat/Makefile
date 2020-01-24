@@ -44,6 +44,8 @@ check: $(TARGET1)
 	@./$(TARGET1) ISAP-K-128A ISAP-K-128A.txt
 	@./$(TARGET1) Pyjamask-128-AEAD Pyjamask-128-AEAD.txt
 	@./$(TARGET1) Pyjamask-96-AEAD Pyjamask-96-AEAD.txt
+	@./$(TARGET1) Pyjamask-128-AEAD-Masked Pyjamask-128-AEAD.txt
+	@./$(TARGET1) Pyjamask-96-AEAD-Masked Pyjamask-96-AEAD.txt
 	@./$(TARGET1) SATURNIN-CTR-Cascade SATURNIN-CTR-Cascade.txt
 	@./$(TARGET1) SATURNIN-Short SATURNIN-Short.txt
 	@./$(TARGET1) SATURNIN-Hash SATURNIN-Hash.txt

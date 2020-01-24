@@ -33,6 +33,15 @@ static int pyjamask_cipher_init
     return 1;
 }
 
+static int pyjamask_masked_cipher_init
+    (unsigned char *ks, const unsigned char *key, size_t key_len)
+{
+    if (key_len != 16)
+        return 0;
+    pyjamask_masked_setup_key((pyjamask_masked_key_schedule_t *)ks, key);
+    return 1;
+}
+
 /* Information block for the Pyjamask-128 block cipher */
 static block_cipher_t const pyjamask_128 = {
     "Pyjamask-128",
@@ -42,6 +51,15 @@ static block_cipher_t const pyjamask_128 = {
     (block_cipher_decrypt_t)pyjamask_128_decrypt
 };
 
+/* Information block for the masked Pyjamask-128 block cipher */
+static block_cipher_t const pyjamask_masked_128 = {
+    "Pyjamask-128-Masked",
+    sizeof(pyjamask_masked_key_schedule_t),
+    (block_cipher_init_t)pyjamask_masked_cipher_init,
+    (block_cipher_encrypt_t)pyjamask_masked_128_encrypt,
+    (block_cipher_decrypt_t)pyjamask_masked_128_decrypt
+};
+
 /* Information block for the Pyjamask-96 block cipher */
 static block_cipher_t const pyjamask_96 = {
     "Pyjamask-96",
@@ -49,6 +67,15 @@ static block_cipher_t const pyjamask_96 = {
     (block_cipher_init_t)pyjamask_cipher_init,
     (block_cipher_encrypt_t)pyjamask_96_encrypt,
     (block_cipher_decrypt_t)pyjamask_96_decrypt
+};
+
+/* Information block for the masked Pyjamask-96 block cipher */
+static block_cipher_t const pyjamask_masked_96 = {
+    "Pyjamask-96-Masked",
+    sizeof(pyjamask_masked_key_schedule_t),
+    (block_cipher_init_t)pyjamask_masked_cipher_init,
+    (block_cipher_encrypt_t)pyjamask_masked_96_encrypt,
+    (block_cipher_decrypt_t)pyjamask_masked_96_decrypt
 };
 
 /* Test vectors for the Pyjamask block cipher from the specification */
@@ -82,4 +109,12 @@ void test_pyjamask(void)
     test_block_cipher_start(&pyjamask_96);
     test_block_cipher_other(&pyjamask_96, &pyjamask_96_1, 12);
     test_block_cipher_end(&pyjamask_96);
+
+    test_block_cipher_start(&pyjamask_masked_128);
+    test_block_cipher_128(&pyjamask_masked_128, &pyjamask_128_1);
+    test_block_cipher_end(&pyjamask_masked_128);
+
+    test_block_cipher_start(&pyjamask_masked_96);
+    test_block_cipher_other(&pyjamask_masked_96, &pyjamask_96_1, 12);
+    test_block_cipher_end(&pyjamask_masked_96);
 }

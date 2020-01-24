@@ -9,6 +9,7 @@ LIBRARY = libcryptolw.a
 
 OBJS = \
 	aead-common.o \
+	internal-masking.o \
         ascon128.o \
         ascon-hash.o \
         ascon-xof.o \
@@ -19,7 +20,9 @@ OBJS = \
 	hyena.o \
         isap.o \
         pyjamask-128.o \
+        pyjamask-128-masked.o \
         pyjamask-96.o \
+        pyjamask-96-masked.o \
         saturnin.o \
         skinny-aead.o \
         sparkle.o \
@@ -48,6 +51,7 @@ individual:
 	(cd ../individual ; $(MAKE) all)
 
 aead-common.o: aead-common.h
+internal-masking.o: internal-masking.h
 ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
@@ -68,5 +72,5 @@ internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
-internal-pyjamask.o: internal-pyjamask.h internal-util.h
+internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
 internal-skinny128.o: internal-skinny128.h internal-util.h

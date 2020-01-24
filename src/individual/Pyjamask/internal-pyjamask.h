@@ -40,6 +40,11 @@ extern "C" {
 #define PYJAMASK_ROUNDS 14
 
 /**
+ * \brief Number of parallel states for masked operation.
+ */
+#define PYJAMASK_MASKING_ORDER 4
+
+/**
  * \brief Structure of the key schedule for Pyjamask block ciphers.
  */
 typedef struct
@@ -47,6 +52,16 @@ typedef struct
     uint32_t k[(PYJAMASK_ROUNDS + 1) * 4]; /**< Words of the key schedule */
 
 } pyjamask_key_schedule_t;
+
+/**
+ * \brief Structure of the key schedule for masked Pyjamask block ciphers.
+ */
+typedef struct
+{
+    /** Words of the key schedule */
+    uint32_t k[PYJAMASK_MASKING_ORDER * (PYJAMASK_ROUNDS + 1) * 4];
+
+} pyjamask_masked_key_schedule_t;
 
 /**
  * \brief Sets up the key schedule for the Pyjamask block cipher.
@@ -118,6 +133,79 @@ void pyjamask_96_encrypt
  */
 void pyjamask_96_decrypt
     (const pyjamask_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Sets up the key schedule for the masked Pyjamask block cipher.
+ *
+ * \param ks The key schedule on output.
+ * \param key The 16 bytes of the key on input.
+ */
+void pyjamask_masked_setup_key
+    (pyjamask_masked_key_schedule_t *ks, const unsigned char *key);
+
+/**
+ * \brief Encrypts a 128-bit block with Pyjamask-128 in masked mode.
+ *
+ * \param ks Points to the key schedule.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ *
+ * \sa pyjamask_masked_128_decrypt()
+ */
+void pyjamask_masked_128_encrypt
+    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Decrypts a 128-bit block with Pyjamask-128 in masked mode.
+ *
+ * \param ks Points to the key schedule.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place decryption.
+ *
+ * \sa pyjamask_masked_128_encrypt()
+ */
+void pyjamask_masked_128_decrypt
+    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Encrypts a 96-bit block with Pyjamask-96 in masked mode.
+ *
+ * \param ks Points to the key schedule.
+ * \param output Output buffer which must be at least 12 bytes in length.
+ * \param input Input buffer which must be at least 12 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ *
+ * \sa pyjamask_masked_96_decrypt()
+ */
+void pyjamask_masked_96_encrypt
+    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Decrypts a 96-bit block with Pyjamask-96 in masked mode.
+ *
+ * \param ks Points to the key schedule.
+ * \param output Output buffer which must be at least 12 bytes in length.
+ * \param input Input buffer which must be at least 12 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place decryption.
+ *
+ * \sa pyjamask_masked_96_encrypt()
+ */
+void pyjamask_masked_96_decrypt
+    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 #ifdef __cplusplus

@@ -392,6 +392,8 @@ void setup()
     perfCipher(&isap_ascon_128_cipher);
     perfCipher(&isap_keccak_128a_cipher);
     perfCipher(&isap_keccak_128_cipher);
+    perfCipher(&pyjamask_masked_128_cipher);
+    perfCipher(&pyjamask_masked_96_cipher);
 }
 
 void loop()
