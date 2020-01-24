@@ -262,7 +262,7 @@ PHOTON-Beetle</h1>
 Pyjamask</h1>
 <p><b>Definition:</b> <a class="el" href="pyjamask_8h.html">pyjamask.h</a></p>
 <p>Pyjamask AEAD is a family of authenticated encryption algorithms that are built around the Pyjamask-128 and Pyjamask-96 block ciphers in OCB mode. Pyjamask-128-AEAD has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag. Pyjamask-96-AEAD has a 128-bit key, a 64-bit nonce, and a 96-bit authentication tag.</p>
-<p>Pyjamask is claimed to be resistant against power analysis side channels when implemented as a masked block cipher. This library does not currently implement masking as it requires access to a random number generator.</p>
+<p>Pyjamask is claimed to be resistant against power analysis side channels when implemented as a masked block cipher. This library implements both the masked and unmasked versions of Pyjamask.</p>
 <p>The implementation of the block cipher in this library is very slow at the moment (patches welcome to address this).</p>
 <p>Note that OCB is covered by patents so it may not be usable in all applications. Open source applications should be covered, but for others you will need to contact the patent authors to find out if you can use it or if a paid license is required.</p>
 <p>License information: <a href="https://web.cs.ucdavis.edu/~rogaway/ocb/license.htm">https://web.cs.ucdavis.edu/~rogaway/ocb/license.htm</a></p>
@@ -369,7 +369,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 6 2020 04:51:38 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 24 2020 19:46:13 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

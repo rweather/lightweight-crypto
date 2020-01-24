@@ -93,6 +93,7 @@ Source directories</h1>
 <p>If you want to use a specific algorithm in your project, you should instead copy the source files under "src/individual/ALG" where "ALG" is the name of the algorithm you require.</p>
 <p>The build rule "make individual" can be used to copy the relevant files under "src/combined" to subdirectories of "src/individual" after you make a change to the source in "src/combined".</p>
 <p>The source code is mostly plain C99, tested with gcc and clang. There are some platform-specific and compiler-specific definitions in "src/combined/internal-util.h" that may need adjusting to get the code to work with other compilers. Patches welcome to improve portability.</p>
+<p>Masked ciphers need a source of random numbers. This is provided by the "src/combined/aead-random.c" file in the source code. Modifications will be needed to this file to support the TRNG in new CPU's. Patches welcome.</p>
 <h1><a class="anchor" id="mainpage_arduino"></a>
 Arduino support</h1>
 <p>The "src/combined" directory contains a "combined.ino" sketch file that can be used to test the performance of all algorithms on Arduino devices. The sketch needs significant amounts of flash memory to run (at least 256kB is recommended).</p>
@@ -111,7 +112,7 @@ Contact</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 6 2020 04:51:38 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 24 2020 19:46:13 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
