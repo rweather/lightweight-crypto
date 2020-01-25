@@ -24,20 +24,24 @@
 
 void test_chachapoly(void);
 void test_cham(void);
+void test_clyde128(void);
 void test_gift128(void);
 void test_gimli24(void);
 void test_keccak(void);
 void test_pyjamask(void);
+void test_shadow(void);
 void test_skinny128(void);
 
 int main(int argc, char *argv[])
 {
     test_chachapoly();
     test_cham();
+    test_clyde128();
     test_gift128();
     test_gimli24();
     test_keccak();
     test_pyjamask();
+    test_shadow();
     test_skinny128();
     return test_exit_result;
 }

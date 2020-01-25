@@ -36,6 +36,7 @@
 #include "saturnin.h"
 #include "sparkle.h"
 #include "skinny-aead.h"
+#include "spook.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
 
@@ -71,6 +72,10 @@ static const aead_cipher_t *const ciphers[] = {
     &skinny_aead_m4_cipher,
     &skinny_aead_m5_cipher,
     &skinny_aead_m6_cipher,
+    &spook_128_512_su_cipher,
+    &spook_128_384_su_cipher,
+    &spook_128_512_mu_cipher,
+    &spook_128_384_mu_cipher,
     &sundae_gift_0_cipher,
     &sundae_gift_64_cipher,
     &sundae_gift_96_cipher,

@@ -19,7 +19,8 @@ OBJS1 = \
     test-gimli24.o \
     test-keccak.o \
     test-pyjamask.o \
-    test-skinny128.o
+    test-skinny128.o \
+    test-spook.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
 
@@ -43,5 +44,6 @@ test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(TEST_CIPHER_INC)
 test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(TEST_CIPHER_INC)
+test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)

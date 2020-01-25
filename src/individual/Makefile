@@ -77,6 +77,12 @@ SPARKLE_FILES = \
     sparkle.c \
     sparkle.h \
     $(COMMON_FILES)
+SPOOK_FILES = \
+    spook.c \
+    spook.h \
+    internal-spook.c \
+    internal-spook.h \
+    $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -100,6 +106,7 @@ ALL_ALGORITHMS = \
     saturnin \
     skinny_aead \
     sparkle \
+    spook \
     sundae_gift \
     tinyjambu
 
@@ -139,6 +146,9 @@ skinny_aead:
 
 sparkle:
 	cp $(foreach file,$(SPARKLE_FILES),$(SRCDIR)/$(file)) SPARKLE
+
+spook:
+	cp $(foreach file,$(SPOOK_FILES),$(SRCDIR)/$(file)) Spook
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

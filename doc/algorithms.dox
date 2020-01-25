@@ -442,7 +442,36 @@ TODO
 
 \section alg_spook Spook
 
-TODO
+<b>Definition:</b> \ref spook.h
+
+Spook is a family of authenticated encryption algorithms that are
+built around a tweakable block cipher and a permutation.
+
+If the tweakable block cipher is implemented as a masked block cipher,
+then Spook provides protection against power analysis side channels.
+This library does not currently implement masking (still in progress).
+
+There are four members in the Spook family:
+
+\li Spook-128-512-su with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+Internally the algorithm uses a 512-bit permutation.  This is the primary
+member of the family.
+\li Spook-128-384-su with a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+Internally the algorithm uses a 384-bit permutation.
+\li Spook-128-512-mu with a 128-bit key, a 128-bit public tweak, a 128-bit
+nonce, and a 128-bit tag.  Internally the algorithm uses a 512-bit
+permutation.
+\li Spook-128-512-mu with a 128-bit key, a 128-bit public tweak, a 128-bit
+nonce, and a 128-bit tag.  Internally the algorithm uses a 384-bit
+permutation.
+
+In this library, the "mu" (multi-user) variants combine the 128-bit key
+and the 128-bit public tweak into a single 256-bit key value.
+Applications can either view this as a cipher with a 256-bit key,
+or they can split the key value into secret and public halves.
+Even with the use of 256-bit keys, Spook only has 128-bit security.
+
+<b>Recommendation:</b> The specification recommends Spook-128-512-su.
 
 \section alg_subterranean Subterranean 2.0
 

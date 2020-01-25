@@ -26,6 +26,7 @@ OBJS = \
         saturnin.o \
         skinny-aead.o \
         sparkle.o \
+        spook.o \
         sundae-gift.o \
         tinyjambu.o \
 	internal-ascon.o \
@@ -34,7 +35,8 @@ OBJS = \
 	internal-gift128.o \
 	internal-keccak.o \
 	internal-pyjamask.o \
-	internal-skinny128.o
+	internal-skinny128.o \
+        internal-spook.o
 
 all: $(LIBRARY)
 
@@ -65,6 +67,7 @@ pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
+spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 sparkle.o: sparkle.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 tinyjambu.o: tinyjambu.h aead-common.h internal-util.h
@@ -74,3 +77,4 @@ internal-gift128.o: internal-gift128.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
 internal-skinny128.o: internal-skinny128.h internal-util.h
+internal-spook.o: internal-spook.h internal-util.h
