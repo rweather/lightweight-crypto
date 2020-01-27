@@ -242,7 +242,19 @@ ISAP</h1>
 <p><b>Recommendation:</b> The specification recommends ISAP-K-128A, although ISAP-A-128A may be a better choice on 32-bit platforms for performance reasons.</p>
 <h1><a class="anchor" id="alg_knot"></a>
 KNOT</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="knot_8h.html">knot.h</a></p>
+<p>KNOT is a family of authenticated encryption and hash algorithms built around a permutation and the MonkeyDuplex sponge construction. The family members are:</p>
+<ul>
+<li>KNOT-AEAD-128-256 with a 128-bit key, a 128-bit nonce, and a 128-bit tag, built around a 256-bit permutation. </li>
+<li>KNOT-AEAD-128-384 with a 128-bit key, a 128-bit nonce, and a 128-bit tag, built around a 384-bit permutation. </li>
+<li>KNOT-AEAD-192-384 with a 192-bit key, a 192-bit nonce, and a 192-bit tag, built around a 384-bit permutation. </li>
+<li>KNOT-AEAD-256-512 with a 256-bit key, a 256-bit nonce, and a 256-bit tag, built around a 512-bit permutation. </li>
+<li>KNOT-HASH-256-256 with a 256-bit hash output, built around a 256-bit permutation. </li>
+<li>KNOT-HASH-256-384 with a 256-bit hash output, built around a 384-bit permutation. </li>
+<li>KNOT-HASH-384-384 with a 384-bit hash output, built around a 384-bit permutation. </li>
+<li>KNOT-HASH-512-512 with a 512-bit hash output, built around a 512-bit permutation.</li>
+</ul>
+<p><b>Recommendation:</b> The specification recommends KNOT-AEAD-128-256 and KNOT-HASH-256-256.</p>
 <h1><a class="anchor" id="alg_lotus"></a>
 LOTUS-AEAD and LOCUS-AEAD</h1>
 <p>TODO</p>
@@ -318,7 +330,18 @@ SpoC</h1>
 <p>TODO</p>
 <h1><a class="anchor" id="alg_spook"></a>
 Spook</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="spook_8h.html">spook.h</a></p>
+<p>Spook is a family of authenticated encryption algorithms that are built around a tweakable block cipher and a permutation.</p>
+<p>If the tweakable block cipher is implemented as a masked block cipher, then Spook provides protection against power analysis side channels. This library does not currently implement masking (still in progress).</p>
+<p>There are four members in the Spook family:</p>
+<ul>
+<li>Spook-128-512-su with a 128-bit key, a 128-bit nonce, and a 128-bit tag. Internally the algorithm uses a 512-bit permutation. This is the primary member of the family. </li>
+<li>Spook-128-384-su with a 128-bit key, a 128-bit nonce, and a 128-bit tag. Internally the algorithm uses a 384-bit permutation. </li>
+<li>Spook-128-512-mu with a 128-bit key, a 128-bit public tweak, a 128-bit nonce, and a 128-bit tag. Internally the algorithm uses a 512-bit permutation. </li>
+<li>Spook-128-512-mu with a 128-bit key, a 128-bit public tweak, a 128-bit nonce, and a 128-bit tag. Internally the algorithm uses a 384-bit permutation.</li>
+</ul>
+<p>In this library, the "mu" (multi-user) variants combine the 128-bit key and the 128-bit public tweak into a single 256-bit key value. Applications can either view this as a cipher with a 256-bit key, or they can split the key value into secret and public halves. Even with the use of 256-bit keys, Spook only has 128-bit security.</p>
+<p><b>Recommendation:</b> The specification recommends Spook-128-512-su.</p>
 <h1><a class="anchor" id="alg_subterranean"></a>
 Subterranean 2.0</h1>
 <p>TODO</p>
@@ -369,7 +392,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 24 2020 19:46:13 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 14:15:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

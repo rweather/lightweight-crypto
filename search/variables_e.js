@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['s',['s',['../unionascon__hash__state__t.html#a7a89e66eac38ccb46a396c77c1f6def4',1,'ascon_hash_state_t::s()'],['../uniongimli24__hash__state__t.html#a945b29ad3ced236b1fd187bddccf9941',1,'gimli24_hash_state_t::s()'],['../unionsaturnin__hash__state__t.html#ad36f77ce31be08a3b72110db50ce4ab5',1,'saturnin_hash_state_t::s()'],['../unionesch__256__hash__state__t.html#ab2f3dd0a16201818cd09fabce6d74685',1,'esch_256_hash_state_t::s()'],['../unionesch__384__hash__state__t.html#a0c89d055a855890a4d2f9c897ee65d46',1,'esch_384_hash_state_t::s()'],['../unionascon__state__t.html#ac772b498028f0dab4cf8a460bd81ef6f',1,'ascon_state_t::S()']]],
+  ['s',['S',['../unionascon__state__t.html#ac772b498028f0dab4cf8a460bd81ef6f',1,'ascon_state_t::S()'],['../unionknot256__state__t.html#a3d000df82ad8954a038bbca92d41347b',1,'knot256_state_t::S()'],['../unionknot384__state__t.html#a0e41991618bc19fa083a7922ee280a3e',1,'knot384_state_t::S()'],['../unionknot512__state__t.html#afa58a518f80cd101d89c89fba5cbbcfc',1,'knot512_state_t::S()'],['../unionascon__hash__state__t.html#a7a89e66eac38ccb46a396c77c1f6def4',1,'ascon_hash_state_t::s()'],['../uniongimli24__hash__state__t.html#a945b29ad3ced236b1fd187bddccf9941',1,'gimli24_hash_state_t::s()'],['../unionsaturnin__hash__state__t.html#ad36f77ce31be08a3b72110db50ce4ab5',1,'saturnin_hash_state_t::s()'],['../unionesch__256__hash__state__t.html#ab2f3dd0a16201818cd09fabce6d74685',1,'esch_256_hash_state_t::s()'],['../unionesch__384__hash__state__t.html#a0c89d055a855890a4d2f9c897ee65d46',1,'esch_384_hash_state_t::s()']]],
   ['saturnin_5fcipher',['saturnin_cipher',['../saturnin_8h.html#ab21b45feb4c8b294cd979e6305669f25',1,'saturnin.c']]],
   ['saturnin_5fhash_5falgorithm',['saturnin_hash_algorithm',['../saturnin_8h.html#a6709d62e335d872e6867e657b149a605',1,'saturnin.c']]],
   ['saturnin_5fshort_5fcipher',['saturnin_short_cipher',['../saturnin_8h.html#a6c971a47e4d6676e131653d68ca4fbbd',1,'saturnin.c']]],
@@ -14,6 +14,10 @@ var searchData=
   ['skinny_5faead_5fm4_5fcipher',['skinny_aead_m4_cipher',['../skinny-aead_8h.html#a34175c6579786285f50449bd45a6d9e3',1,'skinny-aead.c']]],
   ['skinny_5faead_5fm5_5fcipher',['skinny_aead_m5_cipher',['../skinny-aead_8h.html#a93bd5228b8f483f5e04a18f52d0dcc68',1,'skinny-aead.c']]],
   ['skinny_5faead_5fm6_5fcipher',['skinny_aead_m6_cipher',['../skinny-aead_8h.html#a965c6a89ad6650ecda606f12787ca134',1,'skinny-aead.c']]],
+  ['spook_5f128_5f384_5fmu_5fcipher',['spook_128_384_mu_cipher',['../spook_8h.html#adbf776656066fa0db88e992ae381c3a9',1,'spook.c']]],
+  ['spook_5f128_5f384_5fsu_5fcipher',['spook_128_384_su_cipher',['../spook_8h.html#aaf9fc5f7d2a7daf0e8496c909105d1bf',1,'spook.c']]],
+  ['spook_5f128_5f512_5fmu_5fcipher',['spook_128_512_mu_cipher',['../spook_8h.html#a844a5d435c5557c92dca0a9821b3eb5b',1,'spook.c']]],
+  ['spook_5f128_5f512_5fsu_5fcipher',['spook_128_512_su_cipher',['../spook_8h.html#a27f341bf7263de58c653d80a069e8c6d',1,'spook.c']]],
   ['squeeze',['squeeze',['../structaead__hash__algorithm__t.html#a7b73775c8de562625562f66242bc652c',1,'aead_hash_algorithm_t']]],
   ['state',['state',['../unionascon__hash__state__t.html#a0a2cffa349289740de570c9776e29647',1,'ascon_hash_state_t::state()'],['../uniongimli24__hash__state__t.html#a486f1360faf288b2152ede571b30106e',1,'gimli24_hash_state_t::state()'],['../unionesch__256__hash__state__t.html#aa26ba7785b719d0ca5932b3699eb4751',1,'esch_256_hash_state_t::state()'],['../unionesch__384__hash__state__t.html#a5a744743c9a8300d42002e3022e66b7a',1,'esch_384_hash_state_t::state()']]],
   ['state_5fsize',['state_size',['../structaead__hash__algorithm__t.html#ae7f280fbb83c0b39a400e5cee9db6804',1,'aead_hash_algorithm_t']]],

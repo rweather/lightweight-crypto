@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['pyjamask_5f128_5fkey_5fsize',['PYJAMASK_128_KEY_SIZE',['../pyjamask_8h.html#a5c39b8f37f54b54edd4ea62ad3c3abdb',1,'pyjamask.h']]],
-  ['pyjamask_5f128_5fnonce_5fsize',['PYJAMASK_128_NONCE_SIZE',['../pyjamask_8h.html#a5babcfc9ead8a8710dd8b6f1e0bcf7fa',1,'pyjamask.h']]],
-  ['pyjamask_5f128_5ftag_5fsize',['PYJAMASK_128_TAG_SIZE',['../pyjamask_8h.html#afdc1cca9cb4cc13fd2df4a94b2fc6399',1,'pyjamask.h']]],
-  ['pyjamask_5f96_5fkey_5fsize',['PYJAMASK_96_KEY_SIZE',['../pyjamask_8h.html#aa60ce3d5e1bf07cf068b7665ed53ade6',1,'pyjamask.h']]],
-  ['pyjamask_5f96_5fnonce_5fsize',['PYJAMASK_96_NONCE_SIZE',['../pyjamask_8h.html#a588f55514af111f7b8645fbeba91fe59',1,'pyjamask.h']]],
-  ['pyjamask_5f96_5ftag_5fsize',['PYJAMASK_96_TAG_SIZE',['../pyjamask_8h.html#a3238ae7090cfbc6a86c680a824241594',1,'pyjamask.h']]],
-  ['pyjamask_5fmasking_5forder',['PYJAMASK_MASKING_ORDER',['../internal-pyjamask_8h.html#a2b4a3b6732f267fc734a4fdbb8038da3',1,'internal-pyjamask.h']]],
-  ['pyjamask_5frounds',['PYJAMASK_ROUNDS',['../internal-pyjamask_8h.html#aa0c8baebe8dc3aa77119209f53d9245a',1,'internal-pyjamask.h']]]
+  ['knot_5faead_5f128_5fkey_5fsize',['KNOT_AEAD_128_KEY_SIZE',['../knot_8h.html#a3f6e4ca6ae32403db5d14eb421bd823e',1,'knot.h']]],
+  ['knot_5faead_5f128_5fnonce_5fsize',['KNOT_AEAD_128_NONCE_SIZE',['../knot_8h.html#abb1d631630a8175dbd55fa2ede9038d8',1,'knot.h']]],
+  ['knot_5faead_5f128_5ftag_5fsize',['KNOT_AEAD_128_TAG_SIZE',['../knot_8h.html#a74ddcb54c9553c282605e487760ca544',1,'knot.h']]],
+  ['knot_5faead_5f192_5fkey_5fsize',['KNOT_AEAD_192_KEY_SIZE',['../knot_8h.html#ab4b52d2bf85b52948ef62912913d7df5',1,'knot.h']]],
+  ['knot_5faead_5f192_5fnonce_5fsize',['KNOT_AEAD_192_NONCE_SIZE',['../knot_8h.html#ad12fc3068c8baeaf4a5dc360a187145a',1,'knot.h']]],
+  ['knot_5faead_5f192_5ftag_5fsize',['KNOT_AEAD_192_TAG_SIZE',['../knot_8h.html#a792035fb2ceb562757218c86ed32b81e',1,'knot.h']]],
+  ['knot_5faead_5f256_5fkey_5fsize',['KNOT_AEAD_256_KEY_SIZE',['../knot_8h.html#a95ad1ebcd36839cfec7f145b8fbb61ac',1,'knot.h']]],
+  ['knot_5faead_5f256_5fnonce_5fsize',['KNOT_AEAD_256_NONCE_SIZE',['../knot_8h.html#a42f00712876da840fa3751a39fa3f014',1,'knot.h']]],
+  ['knot_5faead_5f256_5ftag_5fsize',['KNOT_AEAD_256_TAG_SIZE',['../knot_8h.html#a0d7f72d22b365084d0093e028f28b74e',1,'knot.h']]],
+  ['knot_5fhash_5f256_5fsize',['KNOT_HASH_256_SIZE',['../knot_8h.html#a821248f558b5e4ab32f6193604781ef9',1,'knot.h']]],
+  ['knot_5fhash_5f384_5fsize',['KNOT_HASH_384_SIZE',['../knot_8h.html#a591f17efe7140c356cbd8366b5937170',1,'knot.h']]],
+  ['knot_5fhash_5f512_5fsize',['KNOT_HASH_512_SIZE',['../knot_8h.html#aa2176010c01f3bc72d277dbb219e8cfc',1,'knot.h']]]
 ];
