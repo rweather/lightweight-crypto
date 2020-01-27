@@ -32,6 +32,7 @@
 #include "gimli24.h"
 #include "hyena.h"
 #include "isap.h"
+#include "knot.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "sparkle.h"
@@ -56,6 +57,10 @@ static const aead_cipher_t *const ciphers[] = {
     &isap_ascon_128a_cipher,
     &isap_keccak_128_cipher,
     &isap_ascon_128_cipher,
+    &knot_aead_128_256_cipher,
+    &knot_aead_128_384_cipher,
+    &knot_aead_192_384_cipher,
+    &knot_aead_256_512_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
     &pyjamask_masked_128_cipher,
@@ -93,6 +98,10 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &esch_256_hash_algorithm,
     &esch_384_hash_algorithm,
     &gimli24_hash_algorithm,
+    &knot_hash_256_256_algorithm,
+    &knot_hash_256_384_algorithm,
+    &knot_hash_384_384_algorithm,
+    &knot_hash_512_512_algorithm,
     &saturnin_hash_algorithm,
     0
 };

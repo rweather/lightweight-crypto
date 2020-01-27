@@ -36,6 +36,7 @@ of flash memory.
 #include "gimli24.h"
 #include "hyena.h"
 #include "isap.h"
+#include "knot.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
@@ -360,6 +361,10 @@ void setup()
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&hyena_cipher);
+    perfCipher(&knot_aead_128_256_cipher);
+    perfCipher(&knot_aead_128_384_cipher);
+    perfCipher(&knot_aead_192_384_cipher);
+    perfCipher(&knot_aead_256_512_cipher);
     perfCipher(&pyjamask_128_cipher);
     perfCipher(&pyjamask_96_cipher);
     perfCipher(&saturnin_cipher);

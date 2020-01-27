@@ -296,7 +296,31 @@ performance reasons.
 
 \section alg_knot KNOT
 
-TODO
+<b>Definition:</b> \ref knot.h
+
+KNOT is a family of authenticated encryption and hash algorithms built
+around a permutation and the MonkeyDuplex sponge construction.  The
+family members are:
+
+\li KNOT-AEAD-128-256 with a 128-bit key, a 128-bit nonce, and a
+128-bit tag, built around a 256-bit permutation.
+\li KNOT-AEAD-128-384 with a 128-bit key, a 128-bit nonce, and a
+128-bit tag, built around a 384-bit permutation.
+\li KNOT-AEAD-192-384 with a 192-bit key, a 192-bit nonce, and a
+192-bit tag, built around a 384-bit permutation.
+\li KNOT-AEAD-256-512 with a 256-bit key, a 256-bit nonce, and a
+256-bit tag, built around a 512-bit permutation.
+\li KNOT-HASH-256-256 with a 256-bit hash output, built around a
+256-bit permutation.
+\li KNOT-HASH-256-384 with a 256-bit hash output, built around a
+384-bit permutation.
+\li KNOT-HASH-384-384 with a 384-bit hash output, built around a
+384-bit permutation.
+\li KNOT-HASH-512-512 with a 512-bit hash output, built around a
+512-bit permutation.
+
+<b>Recommendation:</b> The specification recommends KNOT-AEAD-128-256 and
+KNOT-HASH-256-256.
 
 \section alg_lotus LOTUS-AEAD and LOCUS-AEAD
 
