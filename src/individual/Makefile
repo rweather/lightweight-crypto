@@ -51,6 +51,13 @@ ISAP_FILES = \
     internal-keccak.c \
     internal-keccak.h \
     $(COMMON_FILES)
+KNOT_FILES = \
+    knot-aead.c \
+    knot-hash.c \
+    knot.h \
+    internal-knot.c \
+    internal-knot.h \
+    $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
     pyjamask-128-masked.c \
@@ -102,6 +109,7 @@ ALL_ALGORITHMS = \
     gimli \
     hyena \
     isap \
+    knot \
     pyjamask \
     saturnin \
     skinny_aead \
@@ -134,6 +142,9 @@ hyena:
 
 isap:
 	cp $(foreach file,$(ISAP_FILES),$(SRCDIR)/$(file)) ISAP
+
+knot:
+	cp $(foreach file,$(KNOT_FILES),$(SRCDIR)/$(file)) KNOT
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask
