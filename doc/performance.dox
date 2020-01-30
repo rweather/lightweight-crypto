@@ -78,6 +78,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.74</td><td>0.76</td><td>1.46</td><td>1.45</td><td>1.03</td></tr>
 <tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>0.99</td><td>0.94</td><td>0.96</td></tr>
 <tr><td>Schwaemm192-192</td><td>192</td><td>192</td><td>192</td><td>0.83</td><td>0.89</td><td>1.03</td><td>1.04</td><td>0.95</td></tr>
+<tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86</td></tr>
 <tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.74</td><td>0.76</td><td>0.89</td><td>0.90</td><td>0.82</td></tr>
 <tr><td><b><i>TinyJAMBU-128</i></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81</td></tr>
 <tr><td>Schwaemm256-256</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.82</td><td>0.75</td><td>0.76</td><td>0.77</td></tr>
@@ -137,6 +138,7 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td><b><i>Schwaemm256-128</i></b></td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.08</td><td>1.01</td><td>1.01</td><td>1.04</td></tr>
 <tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.03</td><td>1.02</td><td>1.03</td></tr>
 <tr><td>Schwaemm192-192</td><td>192</td><td>192</td><td>192</td><td>0.85</td><td>0.88</td><td>0.99</td><td>0.98</td><td>0.93</td></tr>
+<tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.86</td><td>0.80</td><td>0.82</td><td>0.83</td></tr>
 <tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.85</td><td>0.85</td><td>0.79</td></tr>
 <tr><td>Schwaemm256-256</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.80</td><td>0.71</td><td>0.71</td><td>0.75</td></tr>
 <tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>

@@ -44,6 +44,7 @@ of flash memory.
 #include "spook.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
+#include "xoodyak.h"
 #include "internal-chachapoly.h"
 
 #if defined(ESP8266)
@@ -390,6 +391,7 @@ void setup()
     perfCipher(&tiny_jambu_128_cipher);
     perfCipher(&tiny_jambu_192_cipher);
     perfCipher(&tiny_jambu_256_cipher);
+    perfCipher(&xoodyak_cipher);
 
     // Algorithms that are very slow.  Adjust loop counters and do them last.
     encrypt_128_ref /= 10;

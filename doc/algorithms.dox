@@ -560,7 +560,27 @@ TODO
 
 \section alg_xoodyak Xoodyak
 
-TODO
+<b>Definition:</b> \ref xoodyak.h
+
+Xoodyak is an authenticated encryption and hash algorithm pair based
+around the 384-bit Xoodoo permutation that is similar in structure to
+Keccak but is more efficient than Keccak on 32-bit embedded devices.
+The Cyclist mode of operation is used to convert the permutation
+into a sponge for the higher-level algorithms.
+
+The Xoodyak encryption mode has a 128-bit key, a 128-bit nonce,
+and a 128-bit authentication tag.  The Xoodyak hashing mode has a
+256-bit fixed hash output and can also be used as an extensible
+output function (XOF).
+
+The Xoodyak specification describes a re-keying mechanism where the
+key for one packet is used to derive the key to use on the next packet.
+This provides some resistance against side channel attacks by making
+the session key a moving target.  This library does not currently
+implement re-keying.
+
+<b>Recommendation:</b> There is only one encryption algorithm and
+one hash algorithm in the Xoodyak family, so they the recommended ones.
 
 \section alg_internal Internal block operations
 

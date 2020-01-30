@@ -100,6 +100,10 @@ TINYJAMBU_FILES = \
     tinyjambu.c \
     tinyjambu.h \
     $(COMMON_FILES)
+XOODYAK_FILES = \
+    xoodyak.c \
+    xoodyak.h \
+    $(COMMON_FILES)
 
 ALL_ALGORITHMS = \
     ascon \
@@ -116,7 +120,8 @@ ALL_ALGORITHMS = \
     sparkle \
     spook \
     sundae_gift \
-    tinyjambu
+    tinyjambu \
+    xoodyak
 
 .PHONY: all $(ALL_ALGORITHMS)
 
@@ -166,3 +171,6 @@ sundae_gift:
 
 tinyjambu:
 	cp $(foreach file,$(TINYJAMBU_FILES),$(SRCDIR)/$(file)) TinyJAMBU
+
+xoodyak:
+	cp $(foreach file,$(XOODYAK_FILES),$(SRCDIR)/$(file)) Xoodyak

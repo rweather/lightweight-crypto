@@ -31,6 +31,7 @@ OBJS = \
         spook.o \
         sundae-gift.o \
         tinyjambu.o \
+        xoodyak.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
 	internal-cham.o \
@@ -76,6 +77,7 @@ spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 sparkle.o: sparkle.h aead-common.h internal-util.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 tinyjambu.o: tinyjambu.h aead-common.h internal-util.h
+xoodyak.o: xoodyak.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h

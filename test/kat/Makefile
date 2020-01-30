@@ -78,5 +78,7 @@ check: $(TARGET1)
 	@./$(TARGET1) TinyJAMBU-128 TinyJAMBU-128.txt
 	@./$(TARGET1) TinyJAMBU-192 TinyJAMBU-192.txt
 	@./$(TARGET1) TinyJAMBU-256 TinyJAMBU-256.txt
+	@./$(TARGET1) Xoodyak Xoodyak.txt
+	@./$(TARGET1) Xoodyak-Hash Xoodyak-Hash.txt
 
 kat.o: $(wildcard $(LIBSRC_DIR)/*.h)

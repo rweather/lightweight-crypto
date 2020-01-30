@@ -40,6 +40,7 @@
 #include "spook.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
+#include "xoodyak.h"
 
 /* List of all AEAD ciphers that we can run KAT tests for */
 static const aead_cipher_t *const ciphers[] = {
@@ -88,6 +89,7 @@ static const aead_cipher_t *const ciphers[] = {
     &tiny_jambu_128_cipher,
     &tiny_jambu_192_cipher,
     &tiny_jambu_256_cipher,
+    &xoodyak_cipher,
     0
 };
 
@@ -103,6 +105,7 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &knot_hash_384_384_algorithm,
     &knot_hash_512_512_algorithm,
     &saturnin_hash_algorithm,
+    &xoodyak_hash_algorithm,
     0
 };
 
