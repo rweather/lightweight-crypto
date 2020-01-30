@@ -49,7 +49,7 @@ extern "C" {
  * \param ad Buffer that contains associated data to authenticate
  * along with the packet but which does not need to be encrypted.
  * \param adlen Length of the associated data in bytes.
- * \param nsec Secret nonce - not used by this algorithm.
+ * \param nsec Secret nonce - normally not used by AEAD schemes.
  * \param npub Points to the public nonce for the packet.
  * \param k Points to the key to use to encrypt the packet.
  *
@@ -69,7 +69,7 @@ typedef int (*aead_cipher_encrypt_t)
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
- * \param nsec Secret nonce - not used by this algorithm.
+ * \param nsec Secret nonce - normally not used by AEAD schemes.
  * \param c Buffer that contains the ciphertext and authentication
  * tag to decrypt.
  * \param clen Length of the input data in bytes, which includes the
@@ -204,72 +204,6 @@ typedef struct
     aead_xof_squeeze_t squeeze; /**< Incremental XOF squeeze function */
 
 } aead_hash_algorithm_t;
-
-/**
- * \brief Simple encryption and authentication of a packet with an AEAD scheme.
- *
- * \param aead The aead_cipher_t meta-information block for the AEAD cipher.
- * \param ciphertext Buffer to receive the ciphertext output.
- * \param ciphertext_max Maximum number of bytes in the output buffer,
- * which must be large enough to contain the ciphertext and the
- * authentication tag
- * \param plaintext Buffer that contains the plaintext to encrypt.
- * \param plaintext_len Length of the plaintext in bytes.
- * \param seq_num The 64-bit packet sequence number, which must be
- * different for every packet.
- * \param key Points to the key to use to encrypt the packet.
- * \param key_len Length of the key in bytes.
- *
- * \return The number of bytes that were written to \a ciphertext which
- * includes the encrypted plaintext and the authentication tag.
- * Returns -1 if the parameters are invalid in some fashion.
- *
- * This function is simpler than the full AEAD API in that it dispenses
- * with the associated data and uses a simple 64-bit sequence number
- * instead of a nonce.
- *
- * It is incredibly important that the sequence number be different
- * for every packet that is encrypted under the same key.  The simplest
- * is to increment the sequence number after every packet.  The application
- * must change to a new key before overflow occurs.
- *
- * \sa aead_decrypt_packet()
- */
-int aead_encrypt_packet
-    (const aead_cipher_t *aead, unsigned char *ciphertext, int ciphertext_max,
-     const unsigned char *plaintext, int plaintext_len,
-     unsigned long long seq_num, const unsigned char *key, int key_len);
-
-/**
- * \brief Simple decryption and authentication of a packet with an AEAD scheme.
- *
- * \param aead The aead_cipher_t meta-information block for the AEAD cipher.
- * \param plaintext Buffer to receive the ciphertext output.
- * \param plaintext_max Maximum number of bytes in the output buffer,
- * which must be at least \a ciphertext_len - tag_size where \a tag_size
- * is the size of the authentication tag for the underlying cipher.
- * \param ciphertext Buffer that contains the ciphertext to decrypt,
- * followed by the authentication tag.
- * \param ciphertext_len Length of the input buffer in bytes.
- * \param seq_num The 64-bit packet sequence number, which must be
- * different for every packet.
- * \param key Points to the key to use to decrypt the packet.
- * \param key_len Length of the key in bytes.
- *
- * \return The number of bytes that were written to \a plaintext which
- * excludes the authentication tag.  Returns -1 if the parameters
- * are invalid in some fashion or the authentication tag is invalid.
- *
- * This function is simpler than the full AEAD API in that it dispenses
- * with the associated data and uses a simple 64-bit sequence number
- * instead of a nonce.
- *
- * \sa aead_encrypt_packet()
- */
-int aead_decrypt_packet
-    (const aead_cipher_t *aead, unsigned char *plaintext, int plaintext_max,
-     const unsigned char *ciphertext, int ciphertext_len,
-     unsigned long long seq_num, const unsigned char *key, int key_len);
 
 /**
  * \brief Check an authentication tag in constant time.

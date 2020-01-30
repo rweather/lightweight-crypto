@@ -180,7 +180,7 @@ void gimli24_hash_absorb
      unsigned long long inlen);
 
 /**
- * \brief Squeezes output data from an ASCON-XOF state.
+ * \brief Squeezes output data from an GIMLI-24-HASH state.
  *
  * \param state Hash state to squeeze the output data from.
  * \param out Points to the output buffer to receive the squeezed data.
