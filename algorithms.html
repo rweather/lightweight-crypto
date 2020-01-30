@@ -377,7 +377,11 @@ WAGE</h1>
 <p>TODO</p>
 <h1><a class="anchor" id="alg_xoodyak"></a>
 Xoodyak</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="xoodyak_8h.html">xoodyak.h</a></p>
+<p>Xoodyak is an authenticated encryption and hash algorithm pair based around the 384-bit Xoodoo permutation that is similar in structure to Keccak but is more efficient than Keccak on 32-bit embedded devices. The Cyclist mode of operation is used to convert the permutation into a sponge for the higher-level algorithms.</p>
+<p>The Xoodyak encryption mode has a 128-bit key, a 128-bit nonce, and a 128-bit authentication tag. The Xoodyak hashing mode has a 256-bit fixed hash output and can also be used as an extensible output function (XOF).</p>
+<p>The Xoodyak specification describes a re-keying mechanism where the key for one packet is used to derive the key to use on the next packet. This provides some resistance against side channel attacks by making the session key a moving target. This library does not currently implement re-keying.</p>
+<p><b>Recommendation:</b> There is only one encryption algorithm and one hash algorithm in the Xoodyak family, so they the recommended ones.</p>
 <h1><a class="anchor" id="alg_internal"></a>
 Internal block operations</h1>
 <p>Many of the algorithms are built on top of internal block ciphers and sponge block operations. Some of these operations are shared between multiple algorithms so they are provided in a common internal location.</p>
@@ -392,7 +396,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 27 2020 14:15:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 30 2020 19:02:51 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
