@@ -21,6 +21,7 @@ OBJS = \
         isap.o \
         knot-aead.o \
         knot-hash.o \
+        lotus-locus.o \
         pyjamask-128.o \
         pyjamask-128-masked.o \
         pyjamask-96.o \
@@ -68,8 +69,9 @@ gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
 isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h internal-util.h
-knot-aead.o: knot.h aead-common.h internal-knot.h
-knot-hash.o: knot.h aead-common.h internal-knot.h
+knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
+knot-hash.o: knot.h aead-common.h internal-knot.h internal-util.h
+lotus-locus.o: lotus-locus.h aead-common.h internal-gift64.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h

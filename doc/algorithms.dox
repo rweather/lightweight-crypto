@@ -324,7 +324,29 @@ KNOT-HASH-256-256.
 
 \section alg_lotus LOTUS-AEAD and LOCUS-AEAD
 
-TODO
+<b>Definition:</b> \ref lotus-locus.h
+
+LOTUS-AEAD and LOCUS-AEAD are authenticated encryption algorithms
+that are based around a tweakable variant of the GIFT-64 block cipher
+called TweGIFT-64.  Both AEAD algorithms have a 128-bit key, a 128-bit
+nonce, and a 64-bit tag.
+
+The two algorithms have the same key initialization, associated data
+processing, and tag generation mechanisms.  They differ in how the
+input is encrypted with TweGIFT-64.
+
+LOTUS-AEAD uses a method similar to the block cipher mode OTR.
+TweGIFT-64 is essentially converted into a 128-bit block cipher
+using a Feistel construction and four TweGIFT-64 block operations
+every 16 bytes of input.
+
+LOCUS-AEAD uses a method similar to the block cipher mode OCB
+with two TweGIFT-64 block operations for every 8 bytes of input.
+LOCUS-AEAD requires both the block encrypt and block decrypt
+operations of TweGIFT-64, which increases the overall code size.
+LOTUS-AEAD only needs the block encrypt operation.
+
+<b>Recommendation:</b> The specification recommends LOTUS-AEAD.
 
 \section alg_mixfeed mixFeed
 

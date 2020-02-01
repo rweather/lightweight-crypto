@@ -438,17 +438,18 @@ void gift128n_decrypt
     gift128n_to_nibbles(output, output);
 }
 
+/* 4-bit tweak values expanded to 32-bit */
+static uint32_t const GIFT128_tweaks[16] = {
+    0x00000000, 0xe1e1e1e1, 0xd2d2d2d2, 0x33333333,
+    0xb4b4b4b4, 0x55555555, 0x66666666, 0x87878787,
+    0x78787878, 0x99999999, 0xaaaaaaaa, 0x4b4b4b4b,
+    0xcccccccc, 0x2d2d2d2d, 0x1e1e1e1e, 0xffffffff
+};
+
 void gift128t_encrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, unsigned char tweak)
 {
-    static uint32_t const tweaks[16] = {
-        /* 4-bit tweak values expanded to 32-bit */
-        0x00000000, 0xe1e1e1e1, 0xd2d2d2d2, 0x33333333,
-        0xb4b4b4b4, 0x55555555, 0x66666666, 0x87878787,
-        0x78787878, 0x99999999, 0xaaaaaaaa, 0x4b4b4b4b,
-        0xcccccccc, 0x2d2d2d2d, 0x1e1e1e1e, 0xffffffff
-    };
     uint32_t s0, s1, s2, s3;
     uint32_t w0, w1, w2, w3;
     uint32_t temp;
@@ -494,7 +495,7 @@ void gift128t_encrypt
 
         /* AddTweak - XOR in the tweak every 5 rounds except the last */
         if (((round + 1) % 5) == 0 && round < 39)
-            s0 ^= tweaks[tweak];
+            s0 ^= GIFT128_tweaks[tweak];
 
         /* Rotate the key schedule */
         temp = w3;
@@ -506,6 +507,108 @@ void gift128t_encrypt
     }
 
     /* Pack the state into the ciphertext buffer in nibble form */
+    be_store_word32(output,      s0);
+    be_store_word32(output + 4,  s1);
+    be_store_word32(output + 8,  s2);
+    be_store_word32(output + 12, s3);
+    gift128n_to_nibbles(output, output);
+}
+
+void gift128t_decrypt
+    (const gift128n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, unsigned char tweak)
+{
+    uint32_t s0, s1, s2, s3;
+    uint32_t w0, w1, w2, w3;
+    uint32_t temp;
+    uint8_t round;
+
+    /* Copy the plaintext into the state buffer and convert from nibbles */
+    gift128n_to_words(output, input);
+    s0 = be_load_word32(output);
+    s1 = be_load_word32(output + 4);
+    s2 = be_load_word32(output + 8);
+    s3 = be_load_word32(output + 12);
+
+    /* Generate the decryption key at the end of the last round.
+     *
+     * To do that, we run the block operation forward to determine the
+     * final state of the key schedule after the last round:
+     *
+     * w0 = ks->k[0];
+     * w1 = ks->k[1];
+     * w2 = ks->k[2];
+     * w3 = ks->k[3];
+     * for (round = 0; round < 40; ++round) {
+     *     temp = w3;
+     *     w3 = w2;
+     *     w2 = w1;
+     *     w1 = w0;
+     *     w0 = ((temp & 0xFFFC0000U) >> 2) | ((temp & 0x00030000U) << 14) |
+     *          ((temp & 0x00000FFFU) << 4) | ((temp & 0x0000F000U) >> 12);
+     * }
+     *
+     * We can short-cut all of the above by noticing that we don't need
+     * to do the word rotations.  Every 4 rounds, the rotation alignment
+     * returns to the original position and each word has been rotated
+     * by applying the "2 right and 4 left" bit-rotation step to it.
+     * We then repeat that 10 times for the full 40 rounds.  The overall
+     * effect is to apply a "20 right and 40 left" bit-rotation to every
+     * word in the key schedule.  That is equivalent to "4 right and 8 left"
+     * on the 16-bit sub-words.
+     */
+    w0 = ks->k[0];
+    w1 = ks->k[1];
+    w2 = ks->k[2];
+    w3 = ks->k[3];
+    w0 = ((w0 & 0xFFF00000U) >> 4) | ((w0 & 0x000F0000U) << 12) |
+         ((w0 & 0x000000FFU) << 8) | ((w0 & 0x0000FF00U) >> 8);
+    w1 = ((w1 & 0xFFF00000U) >> 4) | ((w1 & 0x000F0000U) << 12) |
+         ((w1 & 0x000000FFU) << 8) | ((w1 & 0x0000FF00U) >> 8);
+    w2 = ((w2 & 0xFFF00000U) >> 4) | ((w2 & 0x000F0000U) << 12) |
+         ((w2 & 0x000000FFU) << 8) | ((w2 & 0x0000FF00U) >> 8);
+    w3 = ((w3 & 0xFFF00000U) >> 4) | ((w3 & 0x000F0000U) << 12) |
+         ((w3 & 0x000000FFU) << 8) | ((w3 & 0x0000FF00U) >> 8);
+
+    /* Perform all 40 rounds */
+    for (round = 40; round > 0; --round) {
+        /* Rotate the key schedule backwards */
+        temp = w0;
+        w0 = w1;
+        w1 = w2;
+        w2 = w3;
+        w3 = ((temp & 0x3FFF0000U) << 2) | ((temp & 0xC0000000U) >> 14) |
+             ((temp & 0x0000FFF0U) >> 4) | ((temp & 0x0000000FU) << 12);
+
+        /* AddTweak - XOR in the tweak every 5 rounds except the last */
+        if ((round % 5) == 0 && round < 40)
+            s0 ^= GIFT128_tweaks[tweak];
+
+        /* AddRoundKey - XOR in the key schedule and the round constant */
+        s2 ^= w1;
+        s1 ^= w3;
+        s3 ^= 0x80000000U ^ GIFT128_RC[round - 1];
+
+        /* InvPermBits - apply the inverse of the 128-bit permutation */
+        INV_PERM0(s0);
+        INV_PERM1(s1);
+        INV_PERM2(s2);
+        INV_PERM3(s3);
+
+        /* InvSubCells - apply the inverse of the S-box */
+        temp = s0;
+        s0 = s3;
+        s3 = temp;
+        s2 ^= s0 & s1;
+        s3 ^= 0xFFFFFFFFU;
+        s1 ^= s3;
+        s3 ^= s2;
+        s2 ^= s0 | s1;
+        s0 ^= s1 & s3;
+        s1 ^= s0 & s2;
+    }
+
+    /* Pack the state into the plaintext buffer in nibble form */
     be_store_word32(output,      s0);
     be_store_word32(output + 4,  s1);
     be_store_word32(output + 8,  s2);

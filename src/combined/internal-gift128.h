@@ -58,6 +58,11 @@ extern "C" {
 #endif
 
 /**
+ * \brief Size of a GIFT-128 block in bytes.
+ */
+#define GIFT128_BLOCK_SIZE 16
+
+/**
  * \brief Structure of the key schedule for GIFT-128 (bit-sliced).
  */
 typedef struct

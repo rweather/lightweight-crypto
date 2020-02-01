@@ -58,6 +58,12 @@ KNOT_FILES = \
     internal-knot.c \
     internal-knot.h \
     $(COMMON_FILES)
+LOTUS_FILES = \
+    lotus-locus.c \
+    lotus-locus.h \
+    internal-gift64.c \
+    internal-gift64.h \
+    $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
     pyjamask-128-masked.c \
@@ -114,6 +120,7 @@ ALL_ALGORITHMS = \
     hyena \
     isap \
     knot \
+    lotus \
     pyjamask \
     saturnin \
     skinny_aead \
@@ -150,6 +157,9 @@ isap:
 
 knot:
 	cp $(foreach file,$(KNOT_FILES),$(SRCDIR)/$(file)) KNOT
+
+lotus:
+	cp $(foreach file,$(LOTUS_FILES),$(SRCDIR)/$(file)) LOTUS-AEAD
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask

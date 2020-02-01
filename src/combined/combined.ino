@@ -37,6 +37,7 @@ of flash memory.
 #include "hyena.h"
 #include "isap.h"
 #include "knot.h"
+#include "lotus-locus.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
@@ -366,6 +367,8 @@ void setup()
     perfCipher(&knot_aead_128_384_cipher);
     perfCipher(&knot_aead_192_384_cipher);
     perfCipher(&knot_aead_256_512_cipher);
+    perfCipher(&lotus_aead_cipher);
+    perfCipher(&locus_aead_cipher);
     perfCipher(&pyjamask_128_cipher);
     perfCipher(&pyjamask_96_cipher);
     perfCipher(&saturnin_cipher);

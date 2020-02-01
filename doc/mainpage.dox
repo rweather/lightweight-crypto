@@ -61,8 +61,10 @@ be needed to this file to support the TRNG in new CPU's.  Patches welcome.
 
 The "src/combined" directory contains a "combined.ino" sketch file that
 can be used to test the performance of all algorithms on Arduino devices.
-The sketch needs significant amounts of flash memory to run (at least
-256kB is recommended).
+The sketch needs significant amounts of flash memory to run the full set
+of performance tests (at least 512kB is recommended).  Flash memory
+requirements can be reduced by commenting out some of the algorithms in
+"combined.ino" and testing them a group at a time.
 
 Copy or symlink the entire contents of the "src/combined" directory to
 your sketchbook directory as "$HOME/sketchbook/combined".  You should

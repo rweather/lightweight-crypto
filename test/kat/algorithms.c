@@ -29,6 +29,7 @@
 #include "hyena.h"
 #include "isap.h"
 #include "knot.h"
+#include "lotus-locus.h"
 #include "pyjamask.h"
 #include "saturnin.h"
 #include "sparkle.h"
@@ -60,6 +61,8 @@ static const aead_cipher_t *const ciphers[] = {
     &knot_aead_128_384_cipher,
     &knot_aead_192_384_cipher,
     &knot_aead_256_512_cipher,
+    &locus_aead_cipher,
+    &lotus_aead_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
     &pyjamask_masked_128_cipher,
