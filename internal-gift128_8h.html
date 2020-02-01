@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -105,6 +106,13 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for GIFT-128 (bit-sliced).  <a href="structgift128b__key__schedule__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a642719cdc783743ff774f31b77513109"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a642719cdc783743ff774f31b77513109"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a642719cdc783743ff774f31b77513109">GIFT128_BLOCK_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a642719cdc783743ff774f31b77513109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of a GIFT-128 block in bytes. <br/></td></tr>
+<tr class="separator:a642719cdc783743ff774f31b77513109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -136,6 +144,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a069e67cef117a13abda06ee4fed6d30c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a069e67cef117a13abda06ee4fed6d30c">gift128t_encrypt</a> (const <a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input, unsigned char tweak)</td></tr>
 <tr class="memdesc:a069e67cef117a13abda06ee4fed6d30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with TweGIFT-128 (tweakable variant).  <a href="#a069e67cef117a13abda06ee4fed6d30c">More...</a><br/></td></tr>
 <tr class="separator:a069e67cef117a13abda06ee4fed6d30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e435105e27d356c89b71da4a70568b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a35e435105e27d356c89b71da4a70568b">gift128t_decrypt</a> (const <a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input, unsigned char tweak)</td></tr>
+<tr class="memdesc:a35e435105e27d356c89b71da4a70568b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with TweGIFT-128 (tweakable variant).  <a href="#a35e435105e27d356c89b71da4a70568b">More...</a><br/></td></tr>
+<tr class="separator:a35e435105e27d356c89b71da4a70568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>GIFT-128 block cipher. </p>
@@ -404,6 +415,57 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a35e435105e27d356c89b71da4a70568b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gift128t_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>tweak</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts a 128-bit block with TweGIFT-128 (tweakable variant). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>Points to the GIFT-128 key schedule. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer which must be at least 16 bytes in length. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer which must be at least 16 bytes in length. </td></tr>
+    <tr><td class="paramname">tweak</td><td>4-bit tweak value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
+<p>This variant of GIFT-128 is used by the ESTATE submission to the NIST Lightweight Cryptography Competition. A 4-bit tweak is added to some of the rounds to provide domain separation. If the tweak is zero, then this function is identical to <a class="el" href="internal-gift128_8h.html#a7cb0366799316b3087107637b87b11da" title="Encrypts a 128-bit block with GIFT-128 (nibble-based). ">gift128n_encrypt()</a>. </p>
+
+</div>
+</div>
 <a class="anchor" id="a069e67cef117a13abda06ee4fed6d30c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -458,7 +520,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 19:02:50 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -143,7 +143,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ad07ee087f3399597777e022545c467dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aborbs more input data into a GIMLI-24-HASH state.  <a href="#ad07ee087f3399597777e022545c467dc">More...</a><br/></td></tr>
 <tr class="separator:ad07ee087f3399597777e022545c467dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14adb4f12fec4723c4789f0807681ea7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7">gimli24_hash_squeeze</a> (<a class="el" href="uniongimli24__hash__state__t.html">gimli24_hash_state_t</a> *state, unsigned char *out, unsigned long long outlen)</td></tr>
-<tr class="memdesc:a14adb4f12fec4723c4789f0807681ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Squeezes output data from an ASCON-XOF state.  <a href="#a14adb4f12fec4723c4789f0807681ea7">More...</a><br/></td></tr>
+<tr class="memdesc:a14adb4f12fec4723c4789f0807681ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Squeezes output data from an GIMLI-24-HASH state.  <a href="#a14adb4f12fec4723c4789f0807681ea7">More...</a><br/></td></tr>
 <tr class="separator:a14adb4f12fec4723c4789f0807681ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf8cbf313c338b480f31fd9c9f768470"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gimli24_8h.html#acf8cbf313c338b480f31fd9c9f768470">gimli24_hash_finalize</a> (<a class="el" href="uniongimli24__hash__state__t.html">gimli24_hash_state_t</a> *state, unsigned char *out)</td></tr>
 <tr class="memdesc:acf8cbf313c338b480f31fd9c9f768470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the final hash value from a GIMLI-24-HASH hashing operation.  <a href="#acf8cbf313c338b480f31fd9c9f768470">More...</a><br/></td></tr>
@@ -417,7 +417,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="gimli24_8h.html#a7cd03f46508df5975d41a5f1b1e9be92" title="Initializes the state for a GIMLI-24-HASH hashing operation. ">gimli24_hash_init()</a>, <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an ASCON-XOF state. ">gimli24_hash_squeeze()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="gimli24_8h.html#a7cd03f46508df5975d41a5f1b1e9be92" title="Initializes the state for a GIMLI-24-HASH hashing operation. ">gimli24_hash_init()</a>, <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an GIMLI-24-HASH state. ">gimli24_hash_squeeze()</a> </dd></dl>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This is a wrapper around <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an ASCON-XOF state. ">gimli24_hash_squeeze()</a> for a fixed length of GIMLI24_HASH_SIZE bytes.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is a wrapper around <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an GIMLI-24-HASH state. ">gimli24_hash_squeeze()</a> for a fixed length of GIMLI24_HASH_SIZE bytes.</dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="gimli24_8h.html#a7cd03f46508df5975d41a5f1b1e9be92" title="Initializes the state for a GIMLI-24-HASH hashing operation. ">gimli24_hash_init()</a>, <a class="el" href="gimli24_8h.html#ad07ee087f3399597777e022545c467dc" title="Aborbs more input data into a GIMLI-24-HASH state. ">gimli24_hash_absorb()</a> </dd></dl>
 
 </div>
@@ -479,7 +479,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="gimli24_8h.html#ad07ee087f3399597777e022545c467dc" title="Aborbs more input data into a GIMLI-24-HASH state. ">gimli24_hash_absorb()</a>, <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an ASCON-XOF state. ">gimli24_hash_squeeze()</a>, <a class="el" href="gimli24_8h.html#aae94828a658a37ec98c1520f80916a92" title="Hashes a block of input data with GIMLI-24 to generate a hash value. ">gimli24_hash()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="gimli24_8h.html#ad07ee087f3399597777e022545c467dc" title="Aborbs more input data into a GIMLI-24-HASH state. ">gimli24_hash_absorb()</a>, <a class="el" href="gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7" title="Squeezes output data from an GIMLI-24-HASH state. ">gimli24_hash_squeeze()</a>, <a class="el" href="gimli24_8h.html#aae94828a658a37ec98c1520f80916a92" title="Hashes a block of input data with GIMLI-24 to generate a hash value. ">gimli24_hash()</a> </dd></dl>
 
 </div>
 </div>
@@ -513,7 +513,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Squeezes output data from an ASCON-XOF state. </p>
+<p>Squeezes output data from an GIMLI-24-HASH state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>Hash state to squeeze the output data from. </td></tr>
@@ -545,7 +545,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 19:02:50 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

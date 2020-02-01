@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xoodyak_5fcipher',['xoodyak_cipher',['../xoodyak_8h.html#a646aad6bf7fd7cf20070733cc8c67371',1,'xoodyak.c']]],
-  ['xoodyak_5fhash_5falgorithm',['xoodyak_hash_algorithm',['../xoodyak_8h.html#ab36a25193059de429cf2ab87a9fda90c',1,'xoodyak.c']]]
+  ['w',['W',['../unionknot384__state__t.html#a50deaf8fc5a62e738752ce266eaf659b',1,'knot384_state_t']]],
+  ['words',['words',['../uniongimli24__state__t.html#ab8302a46e53a1f48d8e28526c93b710b',1,'gimli24_state_t::words()'],['../unionchacha20__state__t.html#ac60de42575dd42db67f4c131bb899460',1,'chacha20_state_t::words()']]]
 ];

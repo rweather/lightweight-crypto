@@ -1,8 +1,6 @@
 var searchData=
 [
   ['aead_5fcheck_5ftag',['aead_check_tag',['../aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a',1,'aead-common.c']]],
-  ['aead_5fdecrypt_5fpacket',['aead_decrypt_packet',['../aead-common_8h.html#a257a80f052aeea527c96048532c8ead9',1,'aead-common.c']]],
-  ['aead_5fencrypt_5fpacket',['aead_encrypt_packet',['../aead-common_8h.html#a1c35852eacefa88d9a4c18a681c51a60',1,'aead-common.c']]],
   ['aead_5fmasking_5fgenerate',['aead_masking_generate',['../internal-masking_8h.html#a3c4cf694df53d2968e7809e3fb4012e5',1,'internal-masking.c']]],
   ['aead_5fmasking_5fgenerate_5f32',['aead_masking_generate_32',['../internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8',1,'internal-masking.c']]],
   ['aead_5fmasking_5finit',['aead_masking_init',['../internal-masking_8h.html#a920e5e0a102d6265a336d65c69fb048b',1,'internal-masking.c']]],

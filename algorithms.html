@@ -257,7 +257,12 @@ KNOT</h1>
 <p><b>Recommendation:</b> The specification recommends KNOT-AEAD-128-256 and KNOT-HASH-256-256.</p>
 <h1><a class="anchor" id="alg_lotus"></a>
 LOTUS-AEAD and LOCUS-AEAD</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="lotus-locus_8h.html">lotus-locus.h</a></p>
+<p>LOTUS-AEAD and LOCUS-AEAD are authenticated encryption algorithms that are based around a tweakable variant of the GIFT-64 block cipher called TweGIFT-64. Both AEAD algorithms have a 128-bit key, a 128-bit nonce, and a 64-bit tag.</p>
+<p>The two algorithms have the same key initialization, associated data processing, and tag generation mechanisms. They differ in how the input is encrypted with TweGIFT-64.</p>
+<p>LOTUS-AEAD uses a method similar to the block cipher mode OTR. TweGIFT-64 is essentially converted into a 128-bit block cipher using a Feistel construction and four TweGIFT-64 block operations every 16 bytes of input.</p>
+<p>LOCUS-AEAD uses a method similar to the block cipher mode OCB with two TweGIFT-64 block operations for every 8 bytes of input. LOCUS-AEAD requires both the block encrypt and block decrypt operations of TweGIFT-64, which increases the overall code size. LOTUS-AEAD only needs the block encrypt operation.</p>
+<p><b>Recommendation:</b> The specification recommends LOTUS-AEAD.</p>
 <h1><a class="anchor" id="alg_mixfeed"></a>
 mixFeed</h1>
 <p>Based on AES. Not implemented.</p>
@@ -389,6 +394,7 @@ Internal block operations</h1>
 <li><a class="el" href="internal-ascon_8h.html">ASCON</a> permutation. </li>
 <li><a class="el" href="internal-cham_8h.html">CHAM-128/128 and CHAM-64/128</a> block ciphers. </li>
 <li><a class="el" href="internal-gift128_8h.html">GIFT-128</a> block cipher in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions. </li>
+<li><a class="el" href="internal-gift64_8h.html">GIFT-64</a> block cipher in GIFT-64-b, GIFT-64-n, and TweGIFT-64 versions. </li>
 <li><a class="el" href="internal-keccak_8h.html">Keccak</a> permutations. </li>
 <li><a class="el" href="internal-skinny128_8h.html">SKINNY-128</a> block cipher in 128-bit, 256-bit, and 384-bit key size versions.</li>
 </ul>
@@ -396,7 +402,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 19:02:51 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

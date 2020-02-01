@@ -148,12 +148,6 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1c35852eacefa88d9a4c18a681c51a60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-common_8h.html#a1c35852eacefa88d9a4c18a681c51a60">aead_encrypt_packet</a> (const <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> *aead, unsigned char *ciphertext, int ciphertext_max, const unsigned char *plaintext, int plaintext_len, unsigned long long seq_num, const unsigned char *key, int key_len)</td></tr>
-<tr class="memdesc:a1c35852eacefa88d9a4c18a681c51a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple encryption and authentication of a packet with an AEAD scheme.  <a href="#a1c35852eacefa88d9a4c18a681c51a60">More...</a><br/></td></tr>
-<tr class="separator:a1c35852eacefa88d9a4c18a681c51a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a257a80f052aeea527c96048532c8ead9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-common_8h.html#a257a80f052aeea527c96048532c8ead9">aead_decrypt_packet</a> (const <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> *aead, unsigned char *plaintext, int plaintext_max, const unsigned char *ciphertext, int ciphertext_len, unsigned long long seq_num, const unsigned char *key, int key_len)</td></tr>
-<tr class="memdesc:a257a80f052aeea527c96048532c8ead9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple decryption and authentication of a packet with an AEAD scheme.  <a href="#a257a80f052aeea527c96048532c8ead9">More...</a><br/></td></tr>
-<tr class="separator:a257a80f052aeea527c96048532c8ead9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee68ca38ca62dbae8e52072af87e4f0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a">aead_check_tag</a> (unsigned char *plaintext, unsigned long long plaintext_len, const unsigned char *tag1, const unsigned char *tag2, unsigned tag_len)</td></tr>
 <tr class="memdesc:aee68ca38ca62dbae8e52072af87e4f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check an authentication tag in constant time.  <a href="#aee68ca38ca62dbae8e52072af87e4f0a">More...</a><br/></td></tr>
 <tr class="separator:aee68ca38ca62dbae8e52072af87e4f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,7 +188,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
     <tr><td class="paramname">mlen</td><td>Receives the length of the plaintext message on output. </td></tr>
-    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - normally not used by AEAD schemes. </td></tr>
     <tr><td class="paramname">c</td><td>Buffer that contains the ciphertext and authentication tag to decrypt. </td></tr>
     <tr><td class="paramname">clen</td><td>Length of the input data in bytes, which includes the ciphertext and the authentication tag. </td></tr>
     <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
@@ -227,7 +221,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">mlen</td><td>Length of the plaintext message in bytes. </td></tr>
     <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
     <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
-    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - normally not used by AEAD schemes. </td></tr>
     <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet. </td></tr>
     <tr><td class="paramname">k</td><td>Points to the key to use to encrypt the packet.</td></tr>
   </table>
@@ -427,171 +421,10 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a257a80f052aeea527c96048532c8ead9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int aead_decrypt_packet </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> *&#160;</td>
-          <td class="paramname"><em>aead</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>plaintext_max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ciphertext_len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>seq_num</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>key_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Simple decryption and authentication of a packet with an AEAD scheme. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aead</td><td>The <a class="el" href="structaead__cipher__t.html" title="Meta-information about an AEAD cipher. ">aead_cipher_t</a> meta-information block for the AEAD cipher. </td></tr>
-    <tr><td class="paramname">plaintext</td><td>Buffer to receive the ciphertext output. </td></tr>
-    <tr><td class="paramname">plaintext_max</td><td>Maximum number of bytes in the output buffer, which must be at least <em>ciphertext_len</em> - tag_size where <em>tag_size</em> is the size of the authentication tag for the underlying cipher. </td></tr>
-    <tr><td class="paramname">ciphertext</td><td>Buffer that contains the ciphertext to decrypt, followed by the authentication tag. </td></tr>
-    <tr><td class="paramname">ciphertext_len</td><td>Length of the input buffer in bytes. </td></tr>
-    <tr><td class="paramname">seq_num</td><td>The 64-bit packet sequence number, which must be different for every packet. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the key to use to decrypt the packet. </td></tr>
-    <tr><td class="paramname">key_len</td><td>Length of the key in bytes.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes that were written to <em>plaintext</em> which excludes the authentication tag. Returns -1 if the parameters are invalid in some fashion or the authentication tag is invalid.</dd></dl>
-<p>This function is simpler than the full AEAD API in that it dispenses with the associated data and uses a simple 64-bit sequence number instead of a nonce.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aead-common_8h.html#a1c35852eacefa88d9a4c18a681c51a60" title="Simple encryption and authentication of a packet with an AEAD scheme. ">aead_encrypt_packet()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1c35852eacefa88d9a4c18a681c51a60"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int aead_encrypt_packet </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> *&#160;</td>
-          <td class="paramname"><em>aead</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ciphertext_max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>plaintext_len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>seq_num</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>key_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Simple encryption and authentication of a packet with an AEAD scheme. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aead</td><td>The <a class="el" href="structaead__cipher__t.html" title="Meta-information about an AEAD cipher. ">aead_cipher_t</a> meta-information block for the AEAD cipher. </td></tr>
-    <tr><td class="paramname">ciphertext</td><td>Buffer to receive the ciphertext output. </td></tr>
-    <tr><td class="paramname">ciphertext_max</td><td>Maximum number of bytes in the output buffer, which must be large enough to contain the ciphertext and the authentication tag </td></tr>
-    <tr><td class="paramname">plaintext</td><td>Buffer that contains the plaintext to encrypt. </td></tr>
-    <tr><td class="paramname">plaintext_len</td><td>Length of the plaintext in bytes. </td></tr>
-    <tr><td class="paramname">seq_num</td><td>The 64-bit packet sequence number, which must be different for every packet. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the key to use to encrypt the packet. </td></tr>
-    <tr><td class="paramname">key_len</td><td>Length of the key in bytes.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes that were written to <em>ciphertext</em> which includes the encrypted plaintext and the authentication tag. Returns -1 if the parameters are invalid in some fashion.</dd></dl>
-<p>This function is simpler than the full AEAD API in that it dispenses with the associated data and uses a simple 64-bit sequence number instead of a nonce.</p>
-<p>It is incredibly important that the sequence number be different for every packet that is encrypted under the same key. The simplest is to increment the sequence number after every packet. The application must change to a new key before overflow occurs.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="aead-common_8h.html#a257a80f052aeea527c96048532c8ead9" title="Simple decryption and authentication of a packet with an AEAD scheme. ">aead_decrypt_packet()</a> </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 19:02:50 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

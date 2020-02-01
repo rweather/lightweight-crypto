@@ -7,8 +7,6 @@ var searchData=
   ['aead_5fcipher_5fdecrypt_5ft',['aead_cipher_decrypt_t',['../aead-common_8h.html#a01a3b8ccfd367356c116837456b7875c',1,'aead-common.h']]],
   ['aead_5fcipher_5fencrypt_5ft',['aead_cipher_encrypt_t',['../aead-common_8h.html#ab497cc2c7580ebb183c9e8e8b4f0645c',1,'aead-common.h']]],
   ['aead_5fcipher_5ft',['aead_cipher_t',['../structaead__cipher__t.html',1,'']]],
-  ['aead_5fdecrypt_5fpacket',['aead_decrypt_packet',['../aead-common_8h.html#a257a80f052aeea527c96048532c8ead9',1,'aead-common.c']]],
-  ['aead_5fencrypt_5fpacket',['aead_encrypt_packet',['../aead-common_8h.html#a1c35852eacefa88d9a4c18a681c51a60',1,'aead-common.c']]],
   ['aead_5fflag_5flittle_5fendian',['AEAD_FLAG_LITTLE_ENDIAN',['../aead-common_8h.html#a18db69f1de513ab2385b38ab0770efdd',1,'aead-common.h']]],
   ['aead_5fflag_5fnone',['AEAD_FLAG_NONE',['../aead-common_8h.html#abf75baea17c19ea12c074cf2587b2852',1,'aead-common.h']]],
   ['aead_5fhash_5falgorithm_5ft',['aead_hash_algorithm_t',['../structaead__hash__algorithm__t.html',1,'']]],

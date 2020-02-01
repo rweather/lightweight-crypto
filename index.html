@@ -96,7 +96,7 @@ Source directories</h1>
 <p>Masked ciphers need a source of random numbers. This is provided by the "src/combined/aead-random.c" file in the source code. Modifications will be needed to this file to support the TRNG in new CPU's. Patches welcome.</p>
 <h1><a class="anchor" id="mainpage_arduino"></a>
 Arduino support</h1>
-<p>The "src/combined" directory contains a "combined.ino" sketch file that can be used to test the performance of all algorithms on Arduino devices. The sketch needs significant amounts of flash memory to run (at least 256kB is recommended).</p>
+<p>The "src/combined" directory contains a "combined.ino" sketch file that can be used to test the performance of all algorithms on Arduino devices. The sketch needs significant amounts of flash memory to run the full set of performance tests (at least 512kB is recommended). Flash memory requirements can be reduced by commenting out some of the algorithms in "combined.ino" and testing them a group at a time.</p>
 <p>Copy or symlink the entire contents of the "src/combined" directory to your sketchbook directory as "$HOME/sketchbook/combined". You should then be able to load the sketch into the Arduino IDE and download it into a device. The performance metrics are written to the serial port at 9600 bps.</p>
 <h1><a class="anchor" id="mainpage_alg"></a>
 Algorithms and performance</h1>
@@ -112,7 +112,7 @@ Contact</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 30 2020 19:02:51 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
