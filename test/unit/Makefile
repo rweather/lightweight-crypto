@@ -16,6 +16,7 @@ OBJS1 = \
     test-chachapoly.o \
     test-cham.o \
     test-gift128.o \
+    test-gift64.o \
     test-gimli24.o \
     test-keccak.o \
     test-knot.o \
@@ -41,6 +42,7 @@ TEST_CIPHER_INC = test-cipher.h $(LIBSRC_DIR)/aead-common.h
 test-chachapoly.o: $(LIBSRC_DIR)/internal-chachapoly.h $(TEST_CIPHER_INC)
 test-cham.o: $(LIBSRC_DIR)/internal-cham.h $(TEST_CIPHER_INC)
 test-gift128.o: $(LIBSRC_DIR)/internal-gift128.h $(TEST_CIPHER_INC)
+test-gift64.o: $(LIBSRC_DIR)/internal-gift64.h $(TEST_CIPHER_INC)
 test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(TEST_CIPHER_INC)
 test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)

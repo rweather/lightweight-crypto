@@ -591,6 +591,7 @@ multiple algorithms so they are provided in a common internal location.
 \li \ref internal-ascon.h "ASCON" permutation.
 \li \ref internal-cham.h "CHAM-128/128 and CHAM-64/128" block ciphers.
 \li \ref internal-gift128.h "GIFT-128" block cipher in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions.
+\li \ref internal-gift64.h "GIFT-64" block cipher in GIFT-64-b, GIFT-64-n, and TweGIFT-64 versions.
 \li \ref internal-keccak.h "Keccak" permutations.
 \li \ref internal-skinny128.h "SKINNY-128" block cipher in 128-bit, 256-bit, and 384-bit key size versions.
 

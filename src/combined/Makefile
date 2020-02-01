@@ -36,6 +36,7 @@ OBJS = \
 	internal-chachapoly.o \
 	internal-cham.o \
 	internal-gift128.o \
+	internal-gift64.o \
 	internal-keccak.o \
         internal-knot.o \
 	internal-pyjamask.o \
@@ -81,6 +82,7 @@ xoodyak.o: xoodyak.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
+internal-gift64.o: internal-gift64.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h

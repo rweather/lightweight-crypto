@@ -26,6 +26,7 @@ void test_chachapoly(void);
 void test_cham(void);
 void test_clyde128(void);
 void test_gift128(void);
+void test_gift64(void);
 void test_gimli24(void);
 void test_keccak(void);
 void test_knot(void);
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     test_cham();
     test_clyde128();
     test_gift128();
+    test_gift64();
     test_gimli24();
     test_keccak();
     test_knot();
