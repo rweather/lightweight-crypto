@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul><li class="level1"><a href="#perf_intro">Introduction</a></li>
 <li class="level1"><a href="#perf_cortex_m3">Performance on ARM Cortex M3</a></li>
 <li class="level1"><a href="#perf_esp32">Performance on ESP32</a></li>
+<li class="level1"><a href="#perf_overall">Overall group rankings</a></li>
 </ul>
 </div>
 <div class="textblock"><h1><a class="anchor" id="perf_intro"></a>
@@ -102,15 +103,15 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>COMET-128_CHAM-128/128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61 </td></tr>
 <tr>
-<td>Schwaemm128-128</td><td>128</td><td>128</td><td>128</td><td>1.10</td><td>1.16</td><td>1.71</td><td>1.70</td><td>1.39 </td></tr>
+<td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.10</td><td>1.16</td><td>1.71</td><td>1.70</td><td>1.39 </td></tr>
 <tr>
-<td><b><em>Schwaemm256-128</em></b></td><td>128</td><td>256</td><td>128</td><td>1.10</td><td>1.08</td><td>1.06</td><td>1.05</td><td>1.07 </td></tr>
+<td><b><em>Schwaemm256-128</em></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.10</td><td>1.08</td><td>1.06</td><td>1.05</td><td>1.07 </td></tr>
 <tr>
 <td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.74</td><td>0.76</td><td>1.46</td><td>1.45</td><td>1.03 </td></tr>
 <tr>
 <td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>0.99</td><td>0.94</td><td>0.96 </td></tr>
 <tr>
-<td>Schwaemm192-192</td><td>192</td><td>192</td><td>192</td><td>0.83</td><td>0.89</td><td>1.03</td><td>1.04</td><td>0.95 </td></tr>
+<td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.83</td><td>0.89</td><td>1.03</td><td>1.04</td><td>0.95 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86 </td></tr>
 <tr>
@@ -118,7 +119,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81 </td></tr>
 <tr>
-<td>Schwaemm256-256</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.82</td><td>0.75</td><td>0.76</td><td>0.77 </td></tr>
+<td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.82</td><td>0.75</td><td>0.76</td><td>0.77 </td></tr>
 <tr>
 <td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.62</td><td>0.66</td><td>0.90</td><td>0.92</td><td>0.76 </td></tr>
 <tr>
@@ -206,21 +207,21 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>COMET-128_CHAM-128/128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.11</td><td>1.88</td><td>1.73</td><td>1.43 </td></tr>
 <tr>
-<td>Schwaemm128-128</td><td>128</td><td>128</td><td>128</td><td>1.05</td><td>1.04</td><td>1.64</td><td>1.56</td><td>1.29 </td></tr>
+<td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.05</td><td>1.04</td><td>1.64</td><td>1.56</td><td>1.29 </td></tr>
 <tr>
 <td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.80</td><td>0.83</td><td>1.59</td><td>1.55</td><td>1.11 </td></tr>
 <tr>
-<td><b><em>Schwaemm256-128</em></b></td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.08</td><td>1.01</td><td>1.01</td><td>1.04 </td></tr>
+<td><b><em>Schwaemm256-128</em></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.08</td><td>1.01</td><td>1.01</td><td>1.04 </td></tr>
 <tr>
 <td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>1.03</td><td>1.02</td><td>1.03 </td></tr>
 <tr>
-<td>Schwaemm192-192</td><td>192</td><td>192</td><td>192</td><td>0.85</td><td>0.88</td><td>0.99</td><td>0.98</td><td>0.93 </td></tr>
+<td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.85</td><td>0.88</td><td>0.99</td><td>0.98</td><td>0.93 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.86</td><td>0.80</td><td>0.82</td><td>0.83 </td></tr>
 <tr>
 <td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.85</td><td>0.85</td><td>0.79 </td></tr>
 <tr>
-<td>Schwaemm256-256</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.80</td><td>0.71</td><td>0.71</td><td>0.75 </td></tr>
+<td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.80</td><td>0.71</td><td>0.71</td><td>0.75 </td></tr>
 <tr>
 <td><b><em>GIMLI-24</em></b></td><td>256</td><td>128</td><td>128</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.81</td><td>0.74 </td></tr>
 <tr>
@@ -300,10 +301,33 @@ Performance on ESP32</h1>
 <tr>
 <td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021 </td></tr>
 </table>
+<h1><a class="anchor" id="perf_overall"></a>
+Overall group rankings</h1>
+<p>Based on the above data, we can roughly group the NIST submissions into those with similar performance. Changes in CPU, optimisation options, loop unrolling, or assembly code replacement might modify the rank of an algorithm. Only the primary algorithm in each family is considered for this ranking.</p>
+<table class="doxtable">
+<tr>
+<td>Rank</td><td>Algorithms </td></tr>
+<tr>
+<td>1</td><td>COMET </td></tr>
+<tr>
+<td>2</td><td>SPARKLE </td></tr>
+<tr>
+<td>3</td><td>Gimli, TinyJAMBU, Xoodyak </td></tr>
+<tr>
+<td>4</td><td>ASCON, Spook </td></tr>
+<tr>
+<td>5</td><td>KNOT, GIFT-COFB, HYENA </td></tr>
+<tr>
+<td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin </td></tr>
+<tr>
+<td>7</td><td>SKINNY-AEAD, LOTUS </td></tr>
+<tr>
+<td>8</td><td>Pyjamask, ISAP </td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 2 2020 05:18:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 2 2020 09:15:29 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
