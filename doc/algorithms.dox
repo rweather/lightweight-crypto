@@ -122,6 +122,62 @@ security.
 A few bugs were found in the reference code for some of the algorithms.
 The bugs and their fixes are documented on \ref bugs "this page".
 
+\section alg_properties Summary
+
+The following table summarises the interesting properties of all
+(non-AES) NIST submissions.  More details are provided in the sections below.
+
+<table>
+<tr><td>Algorithm</td><td>Key Sizes</td><td>Core</td><td>Mode</td><td>Nonce Reuse</td><td>Side Channels</td><td>Post Quantum</td><td>Hashing</td></tr>
+<tr><td>ACE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
+<tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>DryGASCON</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Elephant</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td> </td><td> </td><td> </td></tr>
+<tr><td>ForkAE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Gimli</td><td>256</td><td>Gimli</td><td>Duplex</td><td> </td><td> </td><td>Y</td><td>Digest/XOF</td></tr>
+<tr><td>Grain128-AEAD</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>HYENA</td><td>128</td><td>GIFT-128</td><td>HyFB</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ISAP</td><td>128</td><td>ASCON/Keccak</td><td>Duplex</td><td> </td><td>Y</td><td> </td><td> </td></tr>
+<tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
+<tr><td>LOTUS-AEAD/LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR/OCB</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ORANGE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Oribatida</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>PHOTON-Beetle</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td> </td><td>M</td><td> </td><td> </td></tr>
+<tr><td>Romulus</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Saturnin</td><td>256</td><td>Saturnin</td><td>CTR/Cascade</td><td> </td><td> </td><td>Y</td><td>Digest</td></tr>
+<tr><td>SKINNY-AEAD</td><td>128</td><td>SKINNY-128</td><td>ΘCB3</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>SPARKLE</td><td>128/192/256</td><td>SPARKLE</td><td>Beetle</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
+<tr><td>SPIX</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>SpoC</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Spook</td><td>128</td><td>Clyde-128/Shadow</td><td>S1P</td><td> </td><td>M</td><td> </td><td> </td></tr>
+<tr><td>Subterranean 2.0</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>SUNDAE-GIFT</td><td>128</td><td>GIFT-128</td><td>SUNDAE</td><td>Y</td><td> </td><td> </td><td> </td></tr>
+<tr><td>TinyJAMBU</td><td>128/192/256</td><td>TinyJAMBU</td><td>TinyJAMBU</td><td> </td><td> </td><td>K</td><td> </td></tr>
+<tr><td>WAGE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Xoodyak</td><td>128</td><td>Xoodoo</td><td>Cyclist</td><td> </td><td>R</td><td> </td><td>Digest/XOF</td></tr>
+</table>
+
+"Core" indicates the core block operation that the sponge or block cipher
+mode is built around, and "Mode" indicates the mode itself.
+
+"Nonce Reuse" indicates that the algorithm provides some resistance against
+nonce reuse.
+
+"Side Channels" indicates that the algorithm provides some resistance
+against power analysis side channels: "Y" indicates that the resistance is
+built in, "M" indicates that the resistance is present only if the
+core block operation is masked, and "R" indicates that the resistance is
+present only if the cipher is rekeyed after every packet.
+
+"Post Quantum" indicates if the algorithm has resistance against
+post-quantum adversaries: "Y" indicates that all key sizes are resistant,
+"K" indicates that key sizes larger than 128 bits (e.g. 160, 192, or 256)
+provide the post-quantum resistance.
+
 \section alg_ace ACE
 
 TODO
