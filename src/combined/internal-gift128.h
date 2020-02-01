@@ -173,6 +173,26 @@ void gift128t_encrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, unsigned char tweak);
 
+/**
+ * \brief Decrypts a 128-bit block with TweGIFT-128 (tweakable variant).
+ *
+ * \param ks Points to the GIFT-128 key schedule.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ * \param tweak 4-bit tweak value.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ *
+ * This variant of GIFT-128 is used by the ESTATE submission to the
+ * NIST Lightweight Cryptography Competition.  A 4-bit tweak is added to
+ * some of the rounds to provide domain separation.  If the tweak is
+ * zero, then this function is identical to gift128n_encrypt().
+ */
+void gift128t_decrypt
+    (const gift128n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, unsigned char tweak);
+
 #ifdef __cplusplus
 }
 #endif
