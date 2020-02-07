@@ -62,6 +62,7 @@ var searchData=
   ['skinny_5f128_5f256_5fset_5ftweak',['skinny_128_256_set_tweak',['../internal-skinny128_8h.html#a177ed768512d212f2144f6f9e6fe03cd',1,'internal-skinny128.c']]],
   ['skinny_5f128_5f384_5fdecrypt',['skinny_128_384_decrypt',['../internal-skinny128_8h.html#ae5f90f3e013e98bf30650bc622dbef0b',1,'internal-skinny128.c']]],
   ['skinny_5f128_5f384_5fencrypt',['skinny_128_384_encrypt',['../internal-skinny128_8h.html#ad61230c5c7b47daccdf14549cc4b8cba',1,'internal-skinny128.c']]],
+  ['skinny_5f128_5f384_5fencrypt_5ftk2',['skinny_128_384_encrypt_tk2',['../internal-skinny128_8h.html#a1e24c7933f74d7c94f1d6abaa52cafd4',1,'internal-skinny128.c']]],
   ['skinny_5f128_5f384_5finit',['skinny_128_384_init',['../internal-skinny128_8h.html#a324c164378b62b033f156a64dc0cb75b',1,'internal-skinny128.c']]],
   ['skinny_5f128_5f384_5fkey_5fschedule_5ft',['skinny_128_384_key_schedule_t',['../structskinny__128__384__key__schedule__t.html',1,'']]],
   ['skinny_5f128_5f384_5frounds',['SKINNY_128_384_ROUNDS',['../internal-skinny128_8h.html#a581f88323f87d8431f85b37d8c9849d8',1,'internal-skinny128.h']]],

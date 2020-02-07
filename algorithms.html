@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#alg_romulus">Romulus</a></li>
 <li class="level1"><a href="#alg_saeaes">SAEAES</a></li>
 <li class="level1"><a href="#alg_saturnin">Saturnin</a></li>
-<li class="level1"><a href="#alg_skinny">SKINNY-AEAD</a></li>
+<li class="level1"><a href="#alg_skinny_aead">SKINNY-AEAD</a></li>
 <li class="level1"><a href="#alg_sparkle">SPARKLE</a></li>
 <li class="level1"><a href="#alg_spix">SPIX</a></li>
 <li class="level1"><a href="#alg_spoc">SpoC</a></li>
@@ -205,7 +205,9 @@ Summary</h1>
 <tr>
 <td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td></td><td>M</td><td></td><td></td></tr>
 <tr>
-<td>Romulus</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td>Romulus-M</td><td>128</td><td>SKINNY-128</td><td>Romulus-M</td><td>Y</td><td></td><td></td><td></td></tr>
 <tr>
 <td>Saturnin</td><td>256</td><td>Saturnin</td><td>CTR/Cascade</td><td></td><td></td><td>Y</td><td>Digest </td></tr>
 <tr>
@@ -358,7 +360,20 @@ Pyjamask</h1>
 <p><b>Recommendation:</b> The specification recommends Pyjamask-128-AEAD.</p>
 <h1><a class="anchor" id="alg_romulus"></a>
 Romulus</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="romulus_8h.html">romulus.h</a></p>
+<p><b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination of the associated data (AD) and plaintext is unique.</p>
+<p>Romulus is a family of authenticated encryption algorithms that are built around the SKINNY-128 tweakable block cipher. There are six members in the family:</p>
+<ul>
+<li>Romulus-N1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. This is the primary member of the family. </li>
+<li>Romulus-N2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>Romulus-N3 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-256 tweakable block cipher. </li>
+<li>Romulus-M1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>Romulus-M2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>Romulus-M3 has a 128-bit key, a 96-bit nonce, and a 128-bit tag, based around the SKINNY-128-256 tweakable block cipher.</li>
+</ul>
+<p>The Romulus-M variants are resistant to nonce reuse as long as the combination of the associated data and plaintext is unique. If the same associated data and plaintext are reused under the same nonce, then the scheme will leak that the same plaintext has been sent for a second time but will not reveal the plaintext itself.</p>
+<p>The Romulus block padding and domain separation schemes are quite complex, so it is one of the larger algorithms to implement in software.</p>
+<p><b>Recommendation:</b> The specification recommends Romulus-N1, or Romulus-M1 if resistance against nonce reuse is desirable. The specification recommends that Romulus should be paired with the SKINNY-tk2-HASH and SKINNY-tk3-HASH algorithms from the <a class="el" href="algorithms.html#alg_skinny_aead">SKINNY-AEAD</a> submission if hashing is required.</p>
 <h1><a class="anchor" id="alg_saeaes"></a>
 SAEAES</h1>
 <p>Based on AES. Not implemented.</p>
@@ -370,7 +385,7 @@ Saturnin</h1>
 <p>SATURNIN-Short is designed to work on short inputs of no more than 15 bytes with no assoicated data and involves only a single block operation. It is very fast compared to other NIST submissions on short data.</p>
 <p>The library also includes an implementation of the companion hash algorithm SATURNIN-Hash.</p>
 <p><b>Recommendation:</b> SATURNIN-CTR-Cascade is the recommended variant from the NIST submission.</p>
-<h1><a class="anchor" id="alg_skinny"></a>
+<h1><a class="anchor" id="alg_skinny_aead"></a>
 SKINNY-AEAD</h1>
 <p><b>Definition:</b> <a class="el" href="skinny-aead_8h.html">skinny-aead.h</a></p>
 <p>SKINNY-AEAD is a family of authenticated encryption algorithms that are built around the SKINNY tweakable block cipher. There are six members in the family:</p>
@@ -474,7 +489,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 2 2020 09:15:29 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 09:23:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
