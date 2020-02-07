@@ -119,6 +119,26 @@ void skinny_128_384_decrypt
      const unsigned char *input);
 
 /**
+ * \brief Encrypts a 128-bit block with SKINNY-128-384 and an explicitly
+ * provided TK2 value.
+ *
+ * \param ks Points to the SKINNY-128-384 key schedule.
+ * \param output Output buffer which must be at least 16 bytes in length.
+ * \param input Input buffer which must be at least 16 bytes in length.
+ * \param tk2 TK2 value that should be updated on the fly.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ *
+ * This version is useful when both TK1 and TK2 change from block to block.
+ * When the key is initialized with skinny_128_384_init(), the TK2 part of
+ * the key value should be set to zero.
+ */
+void skinny_128_384_encrypt_tk2
+    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, const unsigned char *tk2);
+
+/**
  * \brief Number of rounds for SKINNY-128-256.
  */
 #define SKINNY_128_256_ROUNDS 48

@@ -76,6 +76,12 @@ PYJAMASK_FILES = \
     internal-pyjamask.h \
     internal-ocb.h \
     $(COMMON_FILES)
+ROMULUS_FILES = \
+    romulus.c \
+    romulus.h \
+    internal-skinny128.c \
+    internal-skinny128.h \
+    $(COMMON_FILES)
 SATURNIN_FILES = \
     saturnin.c \
     saturnin.h \
@@ -122,6 +128,7 @@ ALL_ALGORITHMS = \
     knot \
     lotus \
     pyjamask \
+    romulus \
     saturnin \
     skinny_aead \
     sparkle \
@@ -163,6 +170,9 @@ lotus:
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask
+
+romulus:
+	cp $(foreach file,$(ROMULUS_FILES),$(SRCDIR)/$(file)) Romulus
 
 saturnin:
 	cp $(foreach file,$(SATURNIN_FILES),$(SRCDIR)/$(file)) Saturnin

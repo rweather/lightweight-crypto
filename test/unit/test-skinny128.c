@@ -23,6 +23,7 @@
 #include "internal-skinny128.h"
 #include "test-cipher.h"
 #include <stdio.h>
+#include <string.h>
 
 /* Information blocks for the SKINNY-128 block cipher variants */
 static block_cipher_t const skinny128_128 = {
@@ -85,6 +86,32 @@ static block_cipher_test_vector_128_t const skinny128_384_1 = {
      0x1b, 0x38, 0xc6, 0x34, 0x6a, 0x10, 0xdc, 0xfa}
 };
 
+/* Alternative version of SKINNY-128-384 where TK2 is also tweakable */
+static unsigned char TK2[16];
+static int tk2_skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
+     size_t key_len)
+{
+    unsigned char tk[48];
+    memcpy(tk, key, 48);
+    memset(tk + 16, 0, 16);
+    memcpy(TK2, key + 16, 16);
+    return skinny_128_384_init(ks, tk, sizeof(tk));
+}
+static void tk2_skinny_128_384_encrypt
+    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input)
+{
+    skinny_128_384_encrypt_tk2(ks, output, input, TK2);
+}
+static block_cipher_t const skinny128_384_tk2 = {
+    "SKINNY-128-384-TK2",
+    sizeof(skinny_128_384_key_schedule_t),
+    (block_cipher_init_t)tk2_skinny_128_384_init,
+    (block_cipher_encrypt_t)tk2_skinny_128_384_encrypt,
+    (block_cipher_decrypt_t)0
+};
+
 void test_skinny128(void)
 {
     test_block_cipher_start(&skinny128_128);
@@ -98,4 +125,8 @@ void test_skinny128(void)
     test_block_cipher_start(&skinny128_384);
     test_block_cipher_128(&skinny128_384, &skinny128_384_1);
     test_block_cipher_end(&skinny128_384);
+
+    test_block_cipher_start(&skinny128_384_tk2);
+    test_block_cipher_128(&skinny128_384_tk2, &skinny128_384_1);
+    test_block_cipher_end(&skinny128_384_tk2);
 }

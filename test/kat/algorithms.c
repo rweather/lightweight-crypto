@@ -31,6 +31,7 @@
 #include "knot.h"
 #include "lotus-locus.h"
 #include "pyjamask.h"
+#include "romulus.h"
 #include "saturnin.h"
 #include "sparkle.h"
 #include "skinny-aead.h"
@@ -67,6 +68,12 @@ static const aead_cipher_t *const ciphers[] = {
     &pyjamask_96_cipher,
     &pyjamask_masked_128_cipher,
     &pyjamask_masked_96_cipher,
+    &romulus_m1_cipher,
+    &romulus_m2_cipher,
+    &romulus_m3_cipher,
+    &romulus_n1_cipher,
+    &romulus_n2_cipher,
+    &romulus_n3_cipher,
     &saturnin_cipher,
     &saturnin_short_cipher,
     &schwaemm_256_128_cipher,

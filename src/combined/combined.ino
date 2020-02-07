@@ -39,6 +39,7 @@ of flash memory.
 #include "knot.h"
 #include "lotus-locus.h"
 #include "pyjamask.h"
+#include "romulus.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
 #include "sparkle.h"
@@ -371,6 +372,12 @@ void setup()
     perfCipher(&locus_aead_cipher);
     perfCipher(&pyjamask_128_cipher);
     perfCipher(&pyjamask_96_cipher);
+    perfCipher(&romulus_n1_cipher);
+    perfCipher(&romulus_n2_cipher);
+    perfCipher(&romulus_n3_cipher);
+    perfCipher(&romulus_m1_cipher);
+    perfCipher(&romulus_m2_cipher);
+    perfCipher(&romulus_m3_cipher);
     perfCipher(&saturnin_cipher);
     perfCipherShort(&saturnin_short_cipher, 15);
     perfCipher(&schwaemm_256_128_cipher);

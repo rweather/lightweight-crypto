@@ -68,6 +68,12 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) Pyjamask-96-AEAD Pyjamask-96-AEAD.txt
 	@$(RUN_KAT) Pyjamask-128-AEAD-Masked Pyjamask-128-AEAD.txt
 	@$(RUN_KAT) Pyjamask-96-AEAD-Masked Pyjamask-96-AEAD.txt
+	@$(RUN_KAT) Romulus-N1 Romulus-N1.txt
+	@$(RUN_KAT) Romulus-N2 Romulus-N2.txt
+	@$(RUN_KAT) Romulus-N3 Romulus-N3.txt
+	@$(RUN_KAT) Romulus-M1 Romulus-M1.txt
+	@$(RUN_KAT) Romulus-M2 Romulus-M2.txt
+	@$(RUN_KAT) Romulus-M3 Romulus-M3.txt
 	@$(RUN_KAT) SATURNIN-CTR-Cascade SATURNIN-CTR-Cascade.txt
 	@$(RUN_KAT) SATURNIN-Short SATURNIN-Short.txt --max-ad=0 --max-pt=15
 	@$(RUN_KAT) SATURNIN-Hash SATURNIN-Hash.txt

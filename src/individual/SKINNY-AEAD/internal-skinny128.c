@@ -416,6 +416,76 @@ void skinny_128_384_decrypt
     le_store_word32(output + 12, s3);
 }
 
+void skinny_128_384_encrypt_tk2
+    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, const unsigned char *tk2)
+{
+    uint32_t s0, s1, s2, s3;
+    uint32_t TK1[4];
+    uint32_t TK2[4];
+    const uint32_t *schedule = ks->k;
+    uint32_t temp;
+    unsigned round;
+
+    /* Unpack the input block into the state array */
+    s0 = le_load_word32(input);
+    s1 = le_load_word32(input + 4);
+    s2 = le_load_word32(input + 8);
+    s3 = le_load_word32(input + 12);
+
+    /* Make a local copy of the tweakable part of the state, TK1/TK2 */
+    TK1[0] = le_load_word32(ks->TK1);
+    TK1[1] = le_load_word32(ks->TK1 + 4);
+    TK1[2] = le_load_word32(ks->TK1 + 8);
+    TK1[3] = le_load_word32(ks->TK1 + 12);
+    TK2[0] = le_load_word32(tk2);
+    TK2[1] = le_load_word32(tk2 + 4);
+    TK2[2] = le_load_word32(tk2 + 8);
+    TK2[3] = le_load_word32(tk2 + 12);
+
+    /* Perform all encryption rounds */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round, schedule += 2) {
+        /* Apply the S-box to all bytes in the state */
+        skinny128_sbox(s0);
+        skinny128_sbox(s1);
+        skinny128_sbox(s2);
+        skinny128_sbox(s3);
+
+        /* Apply the subkey for this round */
+        s0 ^= schedule[0] ^ TK1[0] ^ TK2[0];
+        s1 ^= schedule[1] ^ TK1[1] ^ TK2[1];
+        s2 ^= 0x02;
+
+        /* Shift the cells in the rows right, which moves the cell
+         * values up closer to the MSB.  That is, we do a left rotate
+         * on the word to rotate the cells in the word right */
+        s1 = leftRotate8(s1);
+        s2 = leftRotate16(s2);
+        s3 = leftRotate24(s3);
+
+        /* Mix the columns */
+        s1 ^= s2;
+        s2 ^= s0;
+        temp = s3 ^ s2;
+        s3 = s2;
+        s2 = s1;
+        s1 = s0;
+        s0 = temp;
+
+        /* Permute TK1 and TK2 for the next round */
+        skinny128_permute_tk(TK1);
+        skinny128_permute_tk(TK2);
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+    }
+
+    /* Pack the result into the output buffer */
+    le_store_word32(output,      s0);
+    le_store_word32(output + 4,  s1);
+    le_store_word32(output + 8,  s2);
+    le_store_word32(output + 12, s3);
+}
+
 int skinny_128_256_init
     (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
      size_t key_len)

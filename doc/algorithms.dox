@@ -147,7 +147,8 @@ The following table summarises the interesting properties of all
 <tr><td>Oribatida</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>PHOTON-Beetle</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td> </td><td>M</td><td> </td><td> </td></tr>
-<tr><td>Romulus</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Romulus-M</td><td>128</td><td>SKINNY-128</td><td>Romulus-M</td><td>Y</td><td> </td><td> </td><td> </td></tr>
 <tr><td>Saturnin</td><td>256</td><td>Saturnin</td><td>CTR/Cascade</td><td> </td><td> </td><td>Y</td><td>Digest</td></tr>
 <tr><td>SKINNY-AEAD</td><td>128</td><td>SKINNY-128</td><td>ΘCB3</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>SPARKLE</td><td>128/192/256</td><td>SPARKLE</td><td>Beetle</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
@@ -448,7 +449,43 @@ License information: https://web.cs.ucdavis.edu/~rogaway/ocb/license.htm
 
 \section alg_romulus Romulus
 
-TODO
+<b>Definition:</b> \ref romulus.h
+
+<b>Nonce Reuse:</b> Resistant against nonce reuse as long as the combination
+of the associated data (AD) and plaintext is unique.
+
+Romulus is a family of authenticated encryption algorithms that
+are built around the SKINNY-128 tweakable block cipher.  There
+are six members in the family:
+
+\li Romulus-N1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.  This is the
+primary member of the family.
+\li Romulus-N2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li Romulus-N3 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-256 tweakable block cipher.
+\li Romulus-M1 has a 128-bit key, a 128-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li Romulus-M2 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-384 tweakable block cipher.
+\li Romulus-M3 has a 128-bit key, a 96-bit nonce, and a 128-bit tag,
+based around the SKINNY-128-256 tweakable block cipher.
+
+The Romulus-M variants are resistant to nonce reuse as long as the
+combination of the associated data and plaintext is unique.  If the
+same associated data and plaintext are reused under the same nonce,
+then the scheme will leak that the same plaintext has been sent for a
+second time but will not reveal the plaintext itself.
+
+The Romulus block padding and domain separation schemes are quite complex,
+so it is one of the larger algorithms to implement in software.
+
+<b>Recommendation:</b> The specification recommends Romulus-N1, or
+Romulus-M1 if resistance against nonce reuse is desirable.  The specification
+recommends that Romulus should be paired with the SKINNY-tk2-HASH and
+SKINNY-tk3-HASH algorithms from the \ref alg_skinny_aead "SKINNY-AEAD"
+submission if hashing is required.
 
 \section alg_saeaes SAEAES
 
@@ -478,7 +515,7 @@ algorithm SATURNIN-Hash.
 <b>Recommendation:</b> SATURNIN-CTR-Cascade is the recommended variant
 from the NIST submission.
 
-\section alg_skinny SKINNY-AEAD
+\section alg_skinny_aead SKINNY-AEAD
 
 <b>Definition:</b> \ref skinny-aead.h
 
