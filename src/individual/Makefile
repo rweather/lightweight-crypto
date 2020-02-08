@@ -96,6 +96,12 @@ SPARKLE_FILES = \
     sparkle.c \
     sparkle.h \
     $(COMMON_FILES)
+SPIX_FILES = \
+    spix.c \
+    spix.h \
+    internal-sliscp-light.c \
+    internal-sliscp-light.h \
+    $(COMMON_FILES)
 SPOOK_FILES = \
     spook.c \
     spook.h \
@@ -132,6 +138,7 @@ ALL_ALGORITHMS = \
     saturnin \
     skinny_aead \
     sparkle \
+    spix \
     spook \
     sundae_gift \
     tinyjambu \
@@ -182,6 +189,9 @@ skinny_aead:
 
 sparkle:
 	cp $(foreach file,$(SPARKLE_FILES),$(SRCDIR)/$(file)) SPARKLE
+
+spix:
+	cp $(foreach file,$(SPIX_FILES),$(SRCDIR)/$(file)) SPIX
 
 spook:
 	cp $(foreach file,$(SPOOK_FILES),$(SRCDIR)/$(file)) Spook

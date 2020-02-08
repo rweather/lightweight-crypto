@@ -43,6 +43,7 @@ of flash memory.
 #include "saturnin.h"
 #include "skinny-aead.h"
 #include "sparkle.h"
+#include "spix.h"
 #include "spook.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
@@ -390,6 +391,7 @@ void setup()
     perfCipher(&skinny_aead_m4_cipher);
     perfCipher(&skinny_aead_m5_cipher);
     perfCipher(&skinny_aead_m6_cipher);
+    perfCipher(&spix_cipher);
     perfCipher(&spook_128_512_su_cipher);
     perfCipher(&spook_128_384_su_cipher);
     perfCipher(&spook_128_512_mu_cipher);

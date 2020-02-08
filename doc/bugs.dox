@@ -149,4 +149,10 @@ so this bug isn't serious.  The test vectors in the specification
 were also clearly generated with a right-rotating implementation of
 the key schedule.  This library implements the bug as-is.
 
+\section bugs_spix SPIX
+
+Section 2.2.6 Finalization of the SPIX specification says that the final tag
+should be extracted from bytes 7, ..., 15, 24, ..., 31 of the finalized state.
+That 7 should be an 8 instead.  The reference implementation is correct.
+
 */

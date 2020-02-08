@@ -30,6 +30,7 @@ OBJS = \
         saturnin.o \
         skinny-aead.o \
         sparkle.o \
+        spix.o \
         spook.o \
         sundae-gift.o \
         tinyjambu.o \
@@ -81,6 +82,7 @@ saturnin.o: saturnin.h aead-common.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 sparkle.o: sparkle.h aead-common.h internal-util.h
+spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 tinyjambu.o: tinyjambu.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h aead-common.h internal-util.h
