@@ -129,7 +129,7 @@ The following table summarises the interesting properties of all
 
 <table>
 <tr><td>Algorithm</td><td>Key Sizes</td><td>Core</td><td>Mode</td><td>Nonce Reuse</td><td>Side Channels</td><td>Post Quantum</td><td>Hashing</td></tr>
-<tr><td>ACE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
 <tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>DryGASCON</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -181,7 +181,13 @@ provide the post-quantum resistance.
 
 \section alg_ace ACE
 
-TODO
+<b>Definition:</b> \ref ace.h
+
+ACE is an authenticated encryption algorithm with a 128-bit key,
+a 128-bit nonce, and a 128-bit tag.  It uses a duplex construction
+on top of a 320-bit permutation.  The permutation is a generalised
+version of sLiSCP-light, extended from 256 bits to 320 bits.
+ACE also has a companion hash algorithm with a 256-bit output.
 
 <b>Similar Algorithms:</b> \ref alg_spix "SPIX", \ref alg_spoc "SpoC"
 
@@ -580,8 +586,6 @@ variants from the NIST submission.
 SPIX is an authenticated encryption algorithm with a 128-bit key,
 a 128-bit nonce, and a 128-bit tag.  It uses the MonkeyDuplex
 construction on top of the 256-bit sLiSCP-light permutation.
-
-<b>Recommendation:</b> There is only one version of SPIX in the specification.
 
 <b>Similar Algorithms:</b> \ref alg_ace "ACE", \ref alg_spoc "SpoC"
 

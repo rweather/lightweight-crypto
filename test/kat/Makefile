@@ -35,6 +35,8 @@ clean:
 RUN_KAT = $(SHELL) ./kat-run.sh ./$(TARGET1) ./$(TARGET2)
 
 check: $(TARGET1) $(TARGET2)
+	@$(RUN_KAT) ACE ACE.txt
+	@$(RUN_KAT) ACE-HASH ACE-HASH.txt
 	@$(RUN_KAT) ASCON-128 ASCON-128.txt
 	@$(RUN_KAT) ASCON-128 ASCON-128.txt
 	@$(RUN_KAT) ASCON-128a ASCON-128a.txt

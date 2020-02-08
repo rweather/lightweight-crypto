@@ -29,6 +29,7 @@ of flash memory.
 */
 
 #include "aead-common.h"
+#include "ace.h"
 #include "ascon128.h"
 #include "comet.h"
 #include "estate.h"
@@ -355,6 +356,7 @@ void setup()
     decrypt_16_ref = decrypt_16_time;
 
     // Run performance tests on the NIST algorithms.
+    perfCipher(&ace_cipher);
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);

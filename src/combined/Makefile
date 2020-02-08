@@ -9,7 +9,7 @@ LIBRARY = libcryptolw.a
 
 OBJS = \
 	aead-common.o \
-	internal-masking.o \
+        ace.o \
         ascon128.o \
         ascon-hash.o \
         ascon-xof.o \
@@ -42,6 +42,7 @@ OBJS = \
 	internal-gift64.o \
 	internal-keccak.o \
         internal-knot.o \
+	internal-masking.o \
 	internal-pyjamask.o \
 	internal-sliscp-light.o \
 	internal-skinny128.o \
@@ -62,7 +63,7 @@ individual:
 	(cd ../individual ; $(MAKE) all)
 
 aead-common.o: aead-common.h
-internal-masking.o: internal-masking.h
+ace.o: ace.h aead-common.h internal-util.h internal-sliscp-light.h
 ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
@@ -92,6 +93,7 @@ internal-gift128.o: internal-gift128.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
+internal-masking.o: internal-masking.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h

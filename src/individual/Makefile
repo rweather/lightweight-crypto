@@ -6,6 +6,12 @@ COMMON_FILES = \
 	aead-common.c \
 	internal-util.h
 
+ACE_FILES = \
+    ace.c \
+    ace.h \
+    internal-sliscp-light.c \
+    internal-sliscp-light.h \
+    $(COMMON_FILES)
 ASCON_FILES = \
     ascon128.c \
     ascon128.h \
@@ -124,6 +130,7 @@ XOODYAK_FILES = \
     $(COMMON_FILES)
 
 ALL_ALGORITHMS = \
+    ace \
     ascon \
     comet \
     estate \
@@ -147,6 +154,9 @@ ALL_ALGORITHMS = \
 .PHONY: all $(ALL_ALGORITHMS)
 
 all: $(ALL_ALGORITHMS)
+
+ace:
+	cp $(foreach file,$(ACE_FILES),$(SRCDIR)/$(file)) ACE
 
 ascon:
 	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON

@@ -21,6 +21,7 @@
  */
 
 #include "algorithms.h"
+#include "ace.h"
 #include "ascon128.h"
 #include "comet.h"
 #include "estate.h"
@@ -45,6 +46,7 @@
 
 /* List of all AEAD ciphers that we can run KAT tests for */
 static const aead_cipher_t *const ciphers[] = {
+    &ace_cipher,
     &ascon128_cipher,
     &ascon128a_cipher,
     &ascon80pq_cipher,
@@ -105,6 +107,7 @@ static const aead_cipher_t *const ciphers[] = {
 
 /* List of all hash algorithms that we can run KAT tests for */
 static const aead_hash_algorithm_t *const hashes[] = {
+    &ace_hash_algorithm,
     &ascon_hash_algorithm,
     &ascon_xof_algorithm,
     &esch_256_hash_algorithm,
