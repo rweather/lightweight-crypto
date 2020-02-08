@@ -42,6 +42,7 @@ OBJS = \
 	internal-keccak.o \
         internal-knot.o \
 	internal-pyjamask.o \
+	internal-simeck.o \
 	internal-skinny128.o \
         internal-spook.o
 
@@ -90,5 +91,6 @@ internal-gift64.o: internal-gift64.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
+internal-simeck.o: internal-simeck.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h

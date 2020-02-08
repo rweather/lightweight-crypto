@@ -32,6 +32,7 @@ void test_keccak(void);
 void test_knot(void);
 void test_pyjamask(void);
 void test_shadow(void);
+void test_simeck(void);
 void test_skinny128(void);
 
 int main(int argc, char *argv[])
@@ -46,6 +47,7 @@ int main(int argc, char *argv[])
     test_knot();
     test_pyjamask();
     test_shadow();
+    test_simeck();
     test_skinny128();
     return test_exit_result;
 }

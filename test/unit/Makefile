@@ -21,6 +21,7 @@ OBJS1 = \
     test-keccak.o \
     test-knot.o \
     test-pyjamask.o \
+    test-simeck.o \
     test-skinny128.o \
     test-spook.o
 
@@ -47,6 +48,7 @@ test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(TEST_CIPHER_INC)
 test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
 test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
+test-simeck.o: $(LIBSRC_DIR)/internal-simeck.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
