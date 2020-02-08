@@ -178,7 +178,7 @@ void sliscp_light256_permute(unsigned char block[32], unsigned rounds)
         (ptr)[2] = (uint8_t)_x; \
     } while (0)
 
-void sliscp_light192_permute(unsigned char block[24], unsigned rounds)
+void sliscp_light192_permute(unsigned char block[24])
 {
     /* Interleaved rc0, rc1, sc0, and sc1 values for each round */
     static const unsigned char const RC[18 * 4] = {
@@ -195,6 +195,7 @@ void sliscp_light192_permute(unsigned char block[24], unsigned rounds)
     const unsigned char *rc = RC;
     uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
     uint32_t t0, t1;
+    unsigned round;
 
     /* Load the block into local state variables.  Each 24-bit block is
      * placed into a separate 32-bit word which improves efficiency below */
@@ -208,7 +209,7 @@ void sliscp_light192_permute(unsigned char block[24], unsigned rounds)
     x7 = be_load_word24(block + 21);
 
     /* Perform all permutation rounds */
-    for (; rounds > 0; --rounds, rc += 4) {
+    for (round = 0; round < 18; ++round, rc += 4) {
         /* Apply Simeck-48 to two of the 48-bit sub-blocks */
         simeck48_box(x2, x3, rc[0]);
         simeck48_box(x6, x7, rc[1]);

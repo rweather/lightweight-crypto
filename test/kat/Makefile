@@ -90,6 +90,8 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) SKINNY-AEAD-M5 SKINNY-AEAD-M5.txt
 	@$(RUN_KAT) SKINNY-AEAD-M6 SKINNY-AEAD-M6.txt
 	@$(RUN_KAT) SPIX SPIX.txt
+	@$(RUN_KAT) SpoC-128 SpoC-128.txt
+	@$(RUN_KAT) SpoC-64 SpoC-64.txt
 	@$(RUN_KAT) Spook-128-512-su Spook-128-512-su.txt
 	@$(RUN_KAT) Spook-128-384-su Spook-128-384-su.txt
 	@$(RUN_KAT) Spook-128-512-mu Spook-128-512-mu.txt

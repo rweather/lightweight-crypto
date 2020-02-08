@@ -28,7 +28,7 @@
 /**
  * \brief Size of the state for the internal sLiSCP-light permutation.
  */
-#define SPIX_STATE_SIZE 32
+#define SPIX_STATE_SIZE SLISCP_LIGHT256_STATE_SIZE
 
 /**
  * \brief Rate for absorbing data into the sLiSCP-light state and for

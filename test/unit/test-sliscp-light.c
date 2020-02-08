@@ -56,7 +56,7 @@ void test_sliscp_light(void)
     printf("    SLiSCP-light[192] ... ");
     fflush(stdout);
     memset(state, 0, sizeof(state));
-    sliscp_light192_permute(state, 18);
+    sliscp_light192_permute(state);
     if (!test_memcmp(state, sliscp192_output, sizeof(sliscp192_output))) {
         printf("ok\n");
     } else {

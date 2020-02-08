@@ -45,6 +45,21 @@ extern "C" {
 #endif
 
 /**
+ * \brief Size of the state for sLiSCP-light-256.
+ */
+#define SLISCP_LIGHT256_STATE_SIZE 32
+
+/**
+ * \brief Size of the state for sLiSCP-light-192.
+ */
+#define SLISCP_LIGHT192_STATE_SIZE 24
+
+/**
+ * \brief Size of the state for sLiSCP-light-320.
+ */
+#define SLISCP_LIGHT320_STATE_SIZE 40
+
+/**
  * \brief Performs the sLiSCP-light permutation on a 256-bit block.
  *
  * \param block Points to the block to be permuted.
@@ -56,9 +71,8 @@ void sliscp_light256_permute(unsigned char block[32], unsigned rounds);
  * \brief Performs the sLiSCP-light permutation on a 192-bit block.
  *
  * \param block Points to the block to be permuted.
- * \param rounds Number of rounds to be performed, usually 9 or 18.
  */
-void sliscp_light192_permute(unsigned char block[24], unsigned rounds);
+void sliscp_light192_permute(unsigned char block[24]);
 
 /**
  * \brief Performs the sLiSCP-light permutation on a 320-bit block.

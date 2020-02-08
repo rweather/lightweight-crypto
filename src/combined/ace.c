@@ -28,7 +28,7 @@
 /**
  * \brief Size of the state for the internal ACE permutation.
  */
-#define ACE_STATE_SIZE 40
+#define ACE_STATE_SIZE SLISCP_LIGHT320_STATE_SIZE
 
 /**
  * \brief Rate for absorbing data into the ACE state and for

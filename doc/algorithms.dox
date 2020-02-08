@@ -129,7 +129,7 @@ The following table summarises the interesting properties of all
 
 <table>
 <tr><td>Algorithm</td><td>Key Sizes</td><td>Core</td><td>Mode</td><td>Nonce Reuse</td><td>Side Channels</td><td>Post Quantum</td><td>Hashing</td></tr>
-<tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
 <tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>DryGASCON</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -153,7 +153,7 @@ The following table summarises the interesting properties of all
 <tr><td>SKINNY-AEAD</td><td>128</td><td>SKINNY-128</td><td>ΘCB3</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>SPARKLE</td><td>128/192/256</td><td>SPARKLE</td><td>Beetle</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
 <tr><td>SPIX</td><td>128</td><td>sLiSCP-light-256</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>SpoC</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>SpoC</td><td>128</td><td>sLiSCP-light-256/192</td><td>SpoC</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Spook</td><td>128</td><td>Clyde-128/Shadow</td><td>S1P</td><td> </td><td>M</td><td> </td><td> </td></tr>
 <tr><td>Subterranean 2.0</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>SUNDAE-GIFT</td><td>128</td><td>GIFT-128</td><td>SUNDAE</td><td>Y</td><td> </td><td> </td><td> </td></tr>
@@ -591,7 +591,22 @@ construction on top of the 256-bit sLiSCP-light permutation.
 
 \section alg_spoc SpoC
 
-TODO
+<b>Definition:</b> \ref spoc.h
+
+SpoC is a family of authenticated encryption algorithms with two
+members, SpoC-128 and Spoc-64.  The algorithms use a Beetle-like
+sponge construction built on top of the sLiSCP-light permutation.
+
+\li Spoc-128 has a 128-bit key, a 128-bit nonce, and a 128-bit tag.
+It is built around the 256-bit version of the sLiSCP-light permutation.
+This is the primary member of the family.
+\li Spoc-64 has a 128-bit key, a 128-bit nonce, and a 64-bit tag.
+It is built around the 192-bit version of the sLiSCP-light permutation.
+
+Spoc-128 has good performance on small packets (16 bytes or less)
+on 32-bit embedded platforms.
+
+<b>Recommendation:</b> The specification recommends SpoC-128.
 
 <b>Similar Algorithms:</b> \ref alg_ace "ACE", \ref alg_spix "SPIX"
 
@@ -725,6 +740,8 @@ multiple algorithms so they are provided in a common internal location.
 \li \ref internal-gift64.h "GIFT-64" block cipher in GIFT-64-b, GIFT-64-n, and TweGIFT-64 versions.
 \li \ref internal-keccak.h "Keccak" permutations.
 \li \ref internal-skinny128.h "SKINNY-128" block cipher in 128-bit, 256-bit, and 384-bit key size versions.
+\li \ref internal-sliscp-light.h "sLiSCP-light" permutations for ACE, SPIX,
+and SpoC.
 
 All of the internal block operations are implemented in source files that
 start with the <tt>internal-</tt> prefix.  They are not intended to be part
