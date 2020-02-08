@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#bugs_estate">ESTATE</a></li>
 <li class="level1"><a href="#bugs_hyena">HYENA</a></li>
 <li class="level1"><a href="#bugs_pyjamask">Pyjamask</a></li>
+<li class="level1"><a href="#bugs_spix">SPIX</a></li>
 </ul>
 </div>
 <div class="textblock"><p>In early 2020 as I worked on this library I found some minor bugs in the second round reference implementations of some NIST algorithms. The authors were notified so that the problems could be corrected in the official reference implementations.</p>
@@ -146,11 +147,14 @@ Pyjamask</h1>
 <p>The reference implementation has a macro called "left_rotate" to perform this step but it actually performs a right-rotation by n bits instead of a left-rotation:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define left_rotate(row,n) \</span></div>
 <div class="line"><span class="preprocessor">    row = (row &gt;&gt; n) | (row &lt;&lt; (32-n));</span></div>
-</div><!-- fragment --><p>From a security perspective, the direction of rotation shouldn't matter so this bug isn't serious. The test vectors in the specification were also clearly generated with a right-rotating implementation of the key schedule. This library implements the bug as-is. </p>
+</div><!-- fragment --><p>From a security perspective, the direction of rotation shouldn't matter so this bug isn't serious. The test vectors in the specification were also clearly generated with a right-rotating implementation of the key schedule. This library implements the bug as-is.</p>
+<h1><a class="anchor" id="bugs_spix"></a>
+SPIX</h1>
+<p>Section 2.2.6 Finalization of the SPIX specification says that the final tag should be extracted from bytes 7, ..., 15, 24, ..., 31 of the finalized state. That 7 should be an 8 instead. The reference implementation is correct. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 8 2020 09:23:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 9 2020 08:41:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -11,6 +11,7 @@ var searchData=
   ['internal_2dmasking_2eh',['internal-masking.h',['../internal-masking_8h.html',1,'']]],
   ['internal_2dpyjamask_2eh',['internal-pyjamask.h',['../internal-pyjamask_8h.html',1,'']]],
   ['internal_2dskinny128_2eh',['internal-skinny128.h',['../internal-skinny128_8h.html',1,'']]],
+  ['internal_2dsliscp_2dlight_2eh',['internal-sliscp-light.h',['../internal-sliscp-light_8h.html',1,'']]],
   ['internal_2dspook_2eh',['internal-spook.h',['../internal-spook_8h.html',1,'']]],
   ['internal_5fchachapoly_5faead_5fdecrypt',['internal_chachapoly_aead_decrypt',['../internal-chachapoly_8h.html#a39020dcd94e59abe74d278ee569fdb70',1,'internal-chachapoly.c']]],
   ['internal_5fchachapoly_5faead_5fencrypt',['internal_chachapoly_aead_encrypt',['../internal-chachapoly_8h.html#aa83be30902bd74ddb3aa49dc81c0db45',1,'internal-chachapoly.c']]],
