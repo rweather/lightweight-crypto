@@ -199,7 +199,7 @@ Summary</h1>
 <tr>
 <td>ORANGE</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr>
-<td>Oribatida</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td></td><td></td><td></td><td></td></tr>
 <tr>
 <td>PHOTON-Beetle</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr>
@@ -347,7 +347,13 @@ ORANGE</h1>
 <p>TODO</p>
 <h1><a class="anchor" id="alg_oribatida"></a>
 Oribatida</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="oribatida_8h.html">oribatida.h</a></p>
+<p>Oribatida is a family of authenticated encryption algorithms based on the SimP-256 and SimP-192 permutations which are built around reduced-round variants of the Simon-128-128 and Simon-96-96 block ciphers. There are two algorithms in the family:</p>
+<ul>
+<li>Oribatida-256-64 with a 128-bit key, a 128-bit nonce, and a 128-bit tag, built around the SimP-256 permutation. </li>
+<li>Oribatida-192-96 with a 128-bit key, a 64-bit nonce, and a 96-bit tag, built around the SimP-192 permutation.</li>
+</ul>
+<p><b>Recommendation:</b> The specification recommends Oribatida-256-64.</p>
 <h1><a class="anchor" id="alg_photon_beetle"></a>
 PHOTON-Beetle</h1>
 <p>TODO</p>
@@ -502,7 +508,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2020 08:41:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 11 2020 17:02:36 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

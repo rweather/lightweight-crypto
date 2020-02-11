@@ -1,15 +1,21 @@
 var searchData=
 [
-  ['romulus_5fm1_5faead_5fdecrypt',['romulus_m1_aead_decrypt',['../romulus_8h.html#a282abfb0e10f087683b7cb78957628c2',1,'romulus.c']]],
-  ['romulus_5fm1_5faead_5fencrypt',['romulus_m1_aead_encrypt',['../romulus_8h.html#a40dcbdafcb81ec8265bd13b062910307',1,'romulus.c']]],
-  ['romulus_5fm2_5faead_5fdecrypt',['romulus_m2_aead_decrypt',['../romulus_8h.html#aa65cb6cde4cf61e06199c5190b72f8e7',1,'romulus.c']]],
-  ['romulus_5fm2_5faead_5fencrypt',['romulus_m2_aead_encrypt',['../romulus_8h.html#ab08c13710896c1115b81ecca6392439a',1,'romulus.c']]],
-  ['romulus_5fm3_5faead_5fdecrypt',['romulus_m3_aead_decrypt',['../romulus_8h.html#a52fcc85edee6f5717f752e131b5c5316',1,'romulus.c']]],
-  ['romulus_5fm3_5faead_5fencrypt',['romulus_m3_aead_encrypt',['../romulus_8h.html#a96484dac2fd8a65071a82651a89f02b4',1,'romulus.c']]],
-  ['romulus_5fn1_5faead_5fdecrypt',['romulus_n1_aead_decrypt',['../romulus_8h.html#aab9da0fbc5380b101257b989bbd00bc4',1,'romulus.c']]],
-  ['romulus_5fn1_5faead_5fencrypt',['romulus_n1_aead_encrypt',['../romulus_8h.html#ac6673670fad4302c24a5a8194cb9bba9',1,'romulus.c']]],
-  ['romulus_5fn2_5faead_5fdecrypt',['romulus_n2_aead_decrypt',['../romulus_8h.html#a04c11de9f2335f75d0ef54189f918db7',1,'romulus.c']]],
-  ['romulus_5fn2_5faead_5fencrypt',['romulus_n2_aead_encrypt',['../romulus_8h.html#a0a407af1b9f6a06e08916b86fcc8c8e9',1,'romulus.c']]],
-  ['romulus_5fn3_5faead_5fdecrypt',['romulus_n3_aead_decrypt',['../romulus_8h.html#a7829807eb5eeb3eece525d0af2931943',1,'romulus.c']]],
-  ['romulus_5fn3_5faead_5fencrypt',['romulus_n3_aead_encrypt',['../romulus_8h.html#ad331eeb5d672fec72def4486f4abecae',1,'romulus.c']]]
+  ['pyjamask_5f128_5faead_5fdecrypt',['pyjamask_128_aead_decrypt',['../pyjamask_8h.html#ae2fb997f97d698e6331a264832487cc5',1,'pyjamask.h']]],
+  ['pyjamask_5f128_5faead_5fencrypt',['pyjamask_128_aead_encrypt',['../pyjamask_8h.html#a5b137d5de929ce6a2b3c5de568bdad81',1,'pyjamask.h']]],
+  ['pyjamask_5f128_5fdecrypt',['pyjamask_128_decrypt',['../internal-pyjamask_8h.html#aa86dd718b4cff21a292b8d1ebeb0d471',1,'internal-pyjamask.c']]],
+  ['pyjamask_5f128_5fencrypt',['pyjamask_128_encrypt',['../internal-pyjamask_8h.html#aa9d845d7656fd85adaff2a0caf4020c3',1,'internal-pyjamask.c']]],
+  ['pyjamask_5f96_5faead_5fdecrypt',['pyjamask_96_aead_decrypt',['../pyjamask_8h.html#a9417f040aa84e83da62fcf26b6b3d45e',1,'pyjamask.h']]],
+  ['pyjamask_5f96_5faead_5fencrypt',['pyjamask_96_aead_encrypt',['../pyjamask_8h.html#a3b53cc4ecd62265d224c055ad39b41c6',1,'pyjamask.h']]],
+  ['pyjamask_5f96_5fdecrypt',['pyjamask_96_decrypt',['../internal-pyjamask_8h.html#a06a59f6ab0b96844cacd7a82f192d40f',1,'internal-pyjamask.c']]],
+  ['pyjamask_5f96_5fencrypt',['pyjamask_96_encrypt',['../internal-pyjamask_8h.html#a59213a61a3272db4cb08cb28fb19775c',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fmasked_5f128_5faead_5fdecrypt',['pyjamask_masked_128_aead_decrypt',['../pyjamask_8h.html#ae18e4d462bef286cdd7d51008db1b5d0',1,'pyjamask.h']]],
+  ['pyjamask_5fmasked_5f128_5faead_5fencrypt',['pyjamask_masked_128_aead_encrypt',['../pyjamask_8h.html#a5aebde68a51b9f6514f430bf7ec21d88',1,'pyjamask.h']]],
+  ['pyjamask_5fmasked_5f128_5fdecrypt',['pyjamask_masked_128_decrypt',['../internal-pyjamask_8h.html#a4e9e2bcec75c22fb7d47e4db971bd1ab',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fmasked_5f128_5fencrypt',['pyjamask_masked_128_encrypt',['../internal-pyjamask_8h.html#af85818cc41a75d55b75d0c713cfc6024',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fmasked_5f96_5faead_5fdecrypt',['pyjamask_masked_96_aead_decrypt',['../pyjamask_8h.html#abd2ad74be143076577b973c87e20e1d7',1,'pyjamask.h']]],
+  ['pyjamask_5fmasked_5f96_5faead_5fencrypt',['pyjamask_masked_96_aead_encrypt',['../pyjamask_8h.html#a2e81afc9dc7899edc5e7b33e0e426a0e',1,'pyjamask.h']]],
+  ['pyjamask_5fmasked_5f96_5fdecrypt',['pyjamask_masked_96_decrypt',['../internal-pyjamask_8h.html#a6847ea1b66de6287ccfe9ae0e4bb5a12',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fmasked_5f96_5fencrypt',['pyjamask_masked_96_encrypt',['../internal-pyjamask_8h.html#a6924d70c12d8cfa7826a543b0b0c4b30',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fmasked_5fsetup_5fkey',['pyjamask_masked_setup_key',['../internal-pyjamask_8h.html#af4b0e337feaae211309081f9308a1272',1,'internal-pyjamask.c']]],
+  ['pyjamask_5fsetup_5fkey',['pyjamask_setup_key',['../internal-pyjamask_8h.html#a2abedf3f2ff71467f16160786011dffa',1,'internal-pyjamask.c']]]
 ];
