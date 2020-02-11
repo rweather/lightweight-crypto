@@ -141,6 +141,8 @@ TINYJAMBU_FILES = \
 XOODYAK_FILES = \
     xoodyak.c \
     xoodyak.h \
+    internal-xoodoo.c \
+    internal-xoodoo.h \
     $(COMMON_FILES)
 
 ALL_ALGORITHMS = \
