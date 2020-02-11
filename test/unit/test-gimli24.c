@@ -21,6 +21,7 @@
  */
 
 #include "gimli24.h"
+#include "internal-gimli24.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -42,9 +43,6 @@ static uint8_t const gimli24_output[48] = {
     0xf0, 0x73, 0xb6, 0x84, 0xf7, 0x2f, 0xe5, 0x34,
     0x49, 0xef, 0x2b, 0x9e, 0xd6, 0xb8, 0x1b, 0xf4
 };
-
-/* Import the internal permuation function so that we can test it directly */
-extern void gimli24_permute(uint32_t state[12]);
 
 static void test_gimli24_permutation(void)
 {

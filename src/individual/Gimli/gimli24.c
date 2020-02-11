@@ -21,7 +21,7 @@
  */
 
 #include "gimli24.h"
-#include "internal-util.h"
+#include "internal-gimli24.h"
 #include <string.h>
 
 aead_cipher_t const gimli24_cipher = {
@@ -46,76 +46,6 @@ aead_hash_algorithm_t const gimli24_hash_algorithm = {
     (aead_xof_absorb_t)gimli24_hash_absorb,
     (aead_xof_squeeze_t)gimli24_hash_squeeze
 };
-
-/* Apply the SP-box to a specific column in the state array */
-#define GIMLI24_SP(col) \
-    do { \
-        x = leftRotate24(state[(col)]); \
-        y = leftRotate9(state[(col) + 4]); \
-        z = state[(col) + 8]; \
-        state[(col) + 8] = x ^ (z << 1) ^ ((y & z) << 2); \
-        state[(col) + 4] = y ^ x ^ ((x | z) << 1); \
-        state[(col)] = z ^ y ^ ((x & y) << 3); \
-    } while (0)
-
-/* Internal function, exported to support unit tests and future
- * high-level operations that need access to the raw permutation */
-void gimli24_permute(uint32_t state[12])
-{
-    uint32_t x, y, z;
-    unsigned round;
-
-    /* Convert state from little-endian if the platform is not little-endian */
-#if !defined(LW_UTIL_LITTLE_ENDIAN)
-    for (round = 0; round < 12; ++round)
-        state[round] = le_load_word32((const unsigned char *)(&(state[round])));
-#endif
-
-    /* Unroll and perform the rounds 4 at a time */
-    for (round = 24; round > 0; round -= 4) {
-        /* Round 0: SP-box, small swap, add round constant */
-        GIMLI24_SP(0);
-        GIMLI24_SP(1);
-        GIMLI24_SP(2);
-        GIMLI24_SP(3);
-        x = state[0];
-        y = state[2];
-        state[0] = state[1] ^ 0x9e377900U ^ round;
-        state[1] = x;
-        state[2] = state[3];
-        state[3] = y;
-
-        /* Round 1: SP-box only */
-        GIMLI24_SP(0);
-        GIMLI24_SP(1);
-        GIMLI24_SP(2);
-        GIMLI24_SP(3);
-
-        /* Round 2: SP-box, big swap */
-        GIMLI24_SP(0);
-        GIMLI24_SP(1);
-        GIMLI24_SP(2);
-        GIMLI24_SP(3);
-        x = state[0];
-        y = state[1];
-        state[0] = state[2];
-        state[1] = state[3];
-        state[2] = x;
-        state[3] = y;
-
-        /* Round 3: SP-box only */
-        GIMLI24_SP(0);
-        GIMLI24_SP(1);
-        GIMLI24_SP(2);
-        GIMLI24_SP(3);
-    }
-
-    /* Convert state to little-endian if the platform is not little-endian */
-#if !defined(LW_UTIL_LITTLE_ENDIAN)
-    for (round = 0; round < 12; ++round)
-        le_store_word32(((unsigned char *)(&(state[round]))), state[round]);
-#endif
-}
 
 /**
  * \brief Number of bytes of input or output data to process per block.

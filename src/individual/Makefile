@@ -41,6 +41,8 @@ GIFT_COFB_FILES = \
 GIMLI_FILES = \
     gimli24.c \
     gimli24.h \
+    internal-gimli24.c \
+    internal-gimli24.h \
     $(COMMON_FILES)
 HYENA_FILES = \
     hyena.c \
