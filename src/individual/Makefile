@@ -137,6 +137,8 @@ SUNDAE_GIFT_FILES = \
 TINYJAMBU_FILES = \
     tinyjambu.c \
     tinyjambu.h \
+    internal-tinyjambu.c \
+    internal-tinyjambu.h \
     $(COMMON_FILES)
 XOODYAK_FILES = \
     xoodyak.c \

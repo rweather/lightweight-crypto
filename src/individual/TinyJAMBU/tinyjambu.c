@@ -21,7 +21,7 @@
  */
 
 #include "tinyjambu.h"
-#include "internal-util.h"
+#include "internal-tinyjambu.h"
 #include <string.h>
 
 aead_cipher_t const tiny_jambu_128_cipher = {
@@ -55,76 +55,6 @@ aead_cipher_t const tiny_jambu_256_cipher = {
 };
 
 /**
- * \brief Size of the TinyJAMBU state in 32-bit words.
- */
-#define TINY_JAMBU_STATE_SIZE 4
-
-/**
- * \brief Converts a number of steps into a number of rounds, where each
- * round consists of 128 steps.
- *
- * \param steps The number of steps to perform; 384, 1024, 1152, or 1280.
- *
- * \return The number of rounds corresponding to \a steps.
- */
-#define ROUNDS(steps) ((steps) / 128)
-
-/**
- * \brief Perform the TinyJAMBU permutation.
- *
- * \param state TinyJAMBU state to be permuted.
- * \param key Points to the key words.
- * \param key_words The number of words in the key.
- * \param rounds The number of rounds to perform.
- *
- * The number of key words should be 4 for TinyJAMBU-128, 12 for TinyJAMBU-192,
- * and 8 for TinuJAMBU-256.  The TinyJAMBU-192 key is duplicated so that the
- * \a key_words parameter is a multiple of 4.
- */
-static void tiny_jambu_permutation
-    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
-     unsigned key_words, unsigned rounds)
-{
-    uint32_t t1, t2, t3, t4;
-    unsigned round;
-
-    /* Load the state into local variables */
-    uint32_t s0 = state[0];
-    uint32_t s1 = state[1];
-    uint32_t s2 = state[2];
-    uint32_t s3 = state[3];
-
-    /* Perform all permutation rounds.  Each round consists of 128 steps,
-     * which can be performed 32 at a time plus a rotation.  After four
-     * sets of 32 steps, the rotation order returns to the original position.
-     * So we can hide the rotations by doing 128 steps each round */
-    for (round = 0; round < rounds; ++round) {
-        /* Get the key words to use during this round */
-        const uint32_t *k = &(key[(round * 4) % key_words]);
-
-        /* Perform the 128 steps of this round in groups of 32 */
-        #define tiny_jambu_steps_32(s0, s1, s2, s3, offset) \
-            do { \
-                t1 = (s1 >> 15) | (s2 << 17); \
-                t2 = (s2 >> 6)  | (s3 << 26); \
-                t3 = (s2 >> 21) | (s3 << 11); \
-                t4 = (s2 >> 27) | (s3 << 5); \
-                s0 ^= t1 ^ (~(t2 & t3)) ^ t4 ^ k[offset]; \
-            } while (0)
-        tiny_jambu_steps_32(s0, s1, s2, s3, 0);
-        tiny_jambu_steps_32(s1, s2, s3, s0, 1);
-        tiny_jambu_steps_32(s2, s3, s0, s1, 2);
-        tiny_jambu_steps_32(s3, s0, s1, s2, 3);
-    }
-
-    /* Store the local variables back to the state */
-    state[0] = s0;
-    state[1] = s1;
-    state[2] = s2;
-    state[3] = s3;
-}
-
-/**
  * \brief Set up the TinyJAMBU state with the key and the nonce.
  *
  * \param state TinyJAMBU state to be permuted.
@@ -145,13 +75,13 @@ static void tiny_jambu_setup
 
     /* Absorb the three 32-bit words of the 96-bit nonce */
     state[1] ^= 0x10; /* Domain separator for the nonce */
-    tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+    tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
     state[3] ^= le_load_word32(nonce);
     state[1] ^= 0x10;
-    tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+    tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
     state[3] ^= le_load_word32(nonce + 4);
     state[1] ^= 0x10;
-    tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+    tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
     state[3] ^= le_load_word32(nonce + 8);
 }
 
@@ -171,7 +101,7 @@ static void tiny_jambu_process_ad
     /* Process as many full 32-bit words as we can */
     while (adlen >= 4) {
         state[1] ^= 0x30; /* Domain separator for associated data */
-        tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+        tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
         state[3] ^= le_load_word32(ad);
         ad += 4;
         adlen -= 4;
@@ -180,17 +110,17 @@ static void tiny_jambu_process_ad
     /* Handle the left-over associated data bytes, if any */
     if (adlen == 1) {
         state[1] ^= 0x30;
-        tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+        tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
         state[3] ^= ad[0];
         state[1] ^= 0x01;
     } else if (adlen == 2) {
         state[1] ^= 0x30;
-        tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+        tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
         state[3] ^= le_load_word16(ad);
         state[1] ^= 0x02;
     } else if (adlen == 3) {
         state[1] ^= 0x30;
-        tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+        tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
         state[3] ^= le_load_word16(ad) | (((uint32_t)(ad[2])) << 16);
         state[1] ^= 0x03;
     }
@@ -333,7 +263,7 @@ static void tiny_jambu_generate_tag
     tiny_jambu_permutation(state, key, key_words, rounds);
     le_store_word32(tag, state[2]);
     state[1] ^= 0x70;
-    tiny_jambu_permutation(state, key, key_words, ROUNDS(384));
+    tiny_jambu_permutation(state, key, key_words, TINYJAMBU_ROUNDS(384));
     le_store_word32(tag + 4, state[2]);
 }
 
@@ -359,14 +289,14 @@ int tiny_jambu_128_aead_encrypt
     key[3] = le_load_word32(k + 12);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 4, ROUNDS(1024), npub);
+    tiny_jambu_setup(state, key, 4, TINYJAMBU_ROUNDS(1024), npub);
     tiny_jambu_process_ad(state, key, 4, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
-    tiny_jambu_encrypt(state, key, 4, ROUNDS(1024), c, m, mlen);
+    tiny_jambu_encrypt(state, key, 4, TINYJAMBU_ROUNDS(1024), c, m, mlen);
 
     /* Generate the authentication tag */
-    tiny_jambu_generate_tag(state, key, 4, ROUNDS(1024), c + mlen);
+    tiny_jambu_generate_tag(state, key, 4, TINYJAMBU_ROUNDS(1024), c + mlen);
     return 0;
 }
 
@@ -395,14 +325,14 @@ int tiny_jambu_128_aead_decrypt
     key[3] = le_load_word32(k + 12);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 4, ROUNDS(1024), npub);
+    tiny_jambu_setup(state, key, 4, TINYJAMBU_ROUNDS(1024), npub);
     tiny_jambu_process_ad(state, key, 4, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
-    tiny_jambu_decrypt(state, key, 4, ROUNDS(1024), m, c, *mlen);
+    tiny_jambu_decrypt(state, key, 4, TINYJAMBU_ROUNDS(1024), m, c, *mlen);
 
     /* Check the authentication tag */
-    tiny_jambu_generate_tag(state, key, 4, ROUNDS(1024), tag);
+    tiny_jambu_generate_tag(state, key, 4, TINYJAMBU_ROUNDS(1024), tag);
     return aead_check_tag(m, *mlen, tag, c + *mlen, TINY_JAMBU_TAG_SIZE);
 }
 
@@ -430,14 +360,14 @@ int tiny_jambu_192_aead_encrypt
     key[11] = key[5] = le_load_word32(k + 20);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 12, ROUNDS(1152), npub);
+    tiny_jambu_setup(state, key, 12, TINYJAMBU_ROUNDS(1152), npub);
     tiny_jambu_process_ad(state, key, 12, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
-    tiny_jambu_encrypt(state, key, 12, ROUNDS(1152), c, m, mlen);
+    tiny_jambu_encrypt(state, key, 12, TINYJAMBU_ROUNDS(1152), c, m, mlen);
 
     /* Generate the authentication tag */
-    tiny_jambu_generate_tag(state, key, 12, ROUNDS(1152), c + mlen);
+    tiny_jambu_generate_tag(state, key, 12, TINYJAMBU_ROUNDS(1152), c + mlen);
     return 0;
 }
 
@@ -468,14 +398,14 @@ int tiny_jambu_192_aead_decrypt
     key[11] = key[5] = le_load_word32(k + 20);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 12, ROUNDS(1152), npub);
+    tiny_jambu_setup(state, key, 12, TINYJAMBU_ROUNDS(1152), npub);
     tiny_jambu_process_ad(state, key, 12, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
-    tiny_jambu_decrypt(state, key, 12, ROUNDS(1152), m, c, *mlen);
+    tiny_jambu_decrypt(state, key, 12, TINYJAMBU_ROUNDS(1152), m, c, *mlen);
 
     /* Check the authentication tag */
-    tiny_jambu_generate_tag(state, key, 12, ROUNDS(1152), tag);
+    tiny_jambu_generate_tag(state, key, 12, TINYJAMBU_ROUNDS(1152), tag);
     return aead_check_tag(m, *mlen, tag, c + *mlen, TINY_JAMBU_TAG_SIZE);
 }
 
@@ -505,14 +435,14 @@ int tiny_jambu_256_aead_encrypt
     key[7] = le_load_word32(k + 28);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 8, ROUNDS(1280), npub);
+    tiny_jambu_setup(state, key, 8, TINYJAMBU_ROUNDS(1280), npub);
     tiny_jambu_process_ad(state, key, 8, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
-    tiny_jambu_encrypt(state, key, 8, ROUNDS(1280), c, m, mlen);
+    tiny_jambu_encrypt(state, key, 8, TINYJAMBU_ROUNDS(1280), c, m, mlen);
 
     /* Generate the authentication tag */
-    tiny_jambu_generate_tag(state, key, 8, ROUNDS(1280), c + mlen);
+    tiny_jambu_generate_tag(state, key, 8, TINYJAMBU_ROUNDS(1280), c + mlen);
     return 0;
 }
 
@@ -545,13 +475,13 @@ int tiny_jambu_256_aead_decrypt
     key[7] = le_load_word32(k + 28);
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
-    tiny_jambu_setup(state, key, 8, ROUNDS(1280), npub);
+    tiny_jambu_setup(state, key, 8, TINYJAMBU_ROUNDS(1280), npub);
     tiny_jambu_process_ad(state, key, 8, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
-    tiny_jambu_decrypt(state, key, 8, ROUNDS(1280), m, c, *mlen);
+    tiny_jambu_decrypt(state, key, 8, TINYJAMBU_ROUNDS(1280), m, c, *mlen);
 
     /* Check the authentication tag */
-    tiny_jambu_generate_tag(state, key, 8, ROUNDS(1280), tag);
+    tiny_jambu_generate_tag(state, key, 8, TINYJAMBU_ROUNDS(1280), tag);
     return aead_check_tag(m, *mlen, tag, c + *mlen, TINY_JAMBU_TAG_SIZE);
 }
