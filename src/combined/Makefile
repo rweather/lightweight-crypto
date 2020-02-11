@@ -22,6 +22,7 @@ OBJS = \
         knot-aead.o \
         knot-hash.o \
         lotus-locus.o \
+        oribatida.o \
         pyjamask-128.o \
         pyjamask-128-masked.o \
         pyjamask-96.o \
@@ -45,6 +46,7 @@ OBJS = \
         internal-knot.o \
 	internal-masking.o \
 	internal-pyjamask.o \
+	internal-simp.o \
 	internal-sliscp-light.o \
 	internal-skinny128.o \
         internal-spook.o
@@ -77,6 +79,7 @@ isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h 
 knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
 knot-hash.o: knot.h aead-common.h internal-knot.h internal-util.h
 lotus-locus.o: lotus-locus.h aead-common.h internal-gift64.h internal-util.h
+oribatida.o: oribatida.h aead-common.h internal-simp.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 romulus.o: romulus.h internal-skinny128.h aead-common.h internal-util.h
@@ -97,6 +100,7 @@ internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-masking.o: internal-masking.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
+internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h

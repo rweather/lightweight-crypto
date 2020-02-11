@@ -70,6 +70,12 @@ LOTUS_FILES = \
     internal-gift64.c \
     internal-gift64.h \
     $(COMMON_FILES)
+ORIBATIDA_FILES = \
+    oribatida.c \
+    oribatida.h \
+    internal-simp.c \
+    internal-simp.h \
+    $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
     pyjamask-128-masked.c \
@@ -146,6 +152,7 @@ ALL_ALGORITHMS = \
     isap \
     knot \
     lotus \
+    oribatida \
     pyjamask \
     romulus \
     saturnin \
@@ -191,6 +198,9 @@ knot:
 
 lotus:
 	cp $(foreach file,$(LOTUS_FILES),$(SRCDIR)/$(file)) LOTUS-AEAD
+
+oribatida:
+	cp $(foreach file,$(ORIBATIDA_FILES),$(SRCDIR)/$(file)) Oribatida
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask

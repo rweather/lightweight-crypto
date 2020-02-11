@@ -144,7 +144,7 @@ The following table summarises the interesting properties of all
 <tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
 <tr><td>LOTUS-AEAD/LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR/OCB</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ORANGE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>Oribatida</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>PHOTON-Beetle</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td> </td><td>M</td><td> </td><td> </td></tr>
 <tr><td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -423,7 +423,19 @@ TODO
 
 \section alg_oribatida Oribatida
 
-TODO
+<b>Definition:</b> \ref oribatida.h
+
+Oribatida is a family of authenticated encryption algorithms based on the
+SimP-256 and SimP-192 permutations which are built around reduced-round
+variants of the Simon-128-128 and Simon-96-96 block ciphers.
+There are two algorithms in the family:
+
+\li Oribatida-256-64 with a 128-bit key, a 128-bit nonce, and a 128-bit tag,
+built around the SimP-256 permutation.
+\li Oribatida-192-96 with a 128-bit key, a 64-bit nonce, and a 96-bit tag,
+built around the SimP-192 permutation.
+
+<b>Recommendation:</b> The specification recommends Oribatida-256-64.
 
 \section alg_photon_beetle PHOTON-Beetle
 

@@ -31,6 +31,7 @@
 #include "isap.h"
 #include "knot.h"
 #include "lotus-locus.h"
+#include "oribatida.h"
 #include "pyjamask.h"
 #include "romulus.h"
 #include "saturnin.h"
@@ -68,6 +69,8 @@ static const aead_cipher_t *const ciphers[] = {
     &knot_aead_256_512_cipher,
     &locus_aead_cipher,
     &lotus_aead_cipher,
+    &oribatida_256_cipher,
+    &oribatida_192_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
     &pyjamask_masked_128_cipher,
