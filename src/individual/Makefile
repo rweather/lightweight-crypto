@@ -109,6 +109,8 @@ SKINNY_AEAD_FILES = \
 SPARKLE_FILES = \
     sparkle.c \
     sparkle.h \
+    internal-sparkle.c \
+    internal-sparkle.h \
     $(COMMON_FILES)
 SPIX_FILES = \
     spix.c \
