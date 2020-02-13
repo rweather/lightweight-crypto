@@ -46,6 +46,7 @@ OBJS = \
 	internal-keccak.o \
         internal-knot.o \
 	internal-masking.o \
+	internal-photon256.o \
 	internal-pyjamask.o \
 	internal-simp.o \
 	internal-sliscp-light.o \
@@ -104,6 +105,7 @@ internal-gimli24.o: internal-gimli24.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-masking.o: internal-masking.h
+internal-photon256.o: internal-photon256.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
 internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
