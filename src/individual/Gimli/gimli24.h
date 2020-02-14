@@ -27,7 +27,14 @@
 
 /**
  * \file gimli24.h
- * \brief GIMLI encryption algorithm with 24 rounds.
+ * \brief Gimli authenticated encryption algorithm.
+ *
+ * GIMLI-24-CIPHER has a 256-bit key, a 128-bit nonce, and a 128-bit tag.
+ * It is the spiritual successor to the widely used ChaCha20 and has a
+ * similar design.
+ *
+ * This library also includes an implementation of the hash algorithm
+ * GIMLI-24-HASH in both regular hashing and XOF modes.
  *
  * References: https://gimli.cr.yp.to/
  */

@@ -40,6 +40,7 @@ of flash memory.
 #include "knot.h"
 #include "lotus-locus.h"
 #include "oribatida.h"
+#include "photon-beetle.h"
 #include "pyjamask.h"
 #include "romulus.h"
 #include "saturnin.h"
@@ -424,6 +425,8 @@ void setup()
     perfCipher(&isap_ascon_128_cipher);
     perfCipher(&isap_keccak_128a_cipher);
     perfCipher(&isap_keccak_128_cipher);
+    perfCipher(&photon_beetle_128_cipher);
+    perfCipher(&photon_beetle_32_cipher);
     perfCipher(&pyjamask_masked_128_cipher);
     perfCipher(&pyjamask_masked_96_cipher);
 }

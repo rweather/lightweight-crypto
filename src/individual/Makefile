@@ -78,6 +78,12 @@ ORIBATIDA_FILES = \
     internal-simp.c \
     internal-simp.h \
     $(COMMON_FILES)
+PHOTON_BEETLE_FILES = \
+    photon-beetle.c \
+    photon-beetle.h \
+    internal-photon256.c \
+    internal-photon256.h \
+    $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
     pyjamask-128-masked.c \
@@ -161,6 +167,7 @@ ALL_ALGORITHMS = \
     knot \
     lotus \
     oribatida \
+    photon_beetle \
     pyjamask \
     romulus \
     saturnin \
@@ -209,6 +216,9 @@ lotus:
 
 oribatida:
 	cp $(foreach file,$(ORIBATIDA_FILES),$(SRCDIR)/$(file)) Oribatida
+
+photon_beetle:
+	cp $(foreach file,$(PHOTON_BEETLE_FILES),$(SRCDIR)/$(file)) PHOTON-Beetle
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask

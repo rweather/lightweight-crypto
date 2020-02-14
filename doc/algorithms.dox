@@ -439,7 +439,21 @@ built around the SimP-192 permutation.
 
 \section alg_photon_beetle PHOTON-Beetle
 
-TODO
+<b>Definition:</b> \ref photon-beetle.h
+
+PHOTON-Beetle is a family of authenticated encryption algorithms based
+on the PHOTON-256 permutation and using the Beetle sponge mode.
+There are three algorithms in the family:
+
+\li PHOTON-Beetle-AEAD-ENC-128 with a 128-bit key, a 128-bit nonce, and a
+128-bit tag.  Data is handled in 16 byte blocks.
+\li PHOTON-Beetle-AEAD-ENC-32 with a 128-bit key, a 128-bit nonce, and a
+128-bit tag.  Data is handled in 4 byte blocks.
+\li PHOTON-Beetle-Hash with a 256-bit hash output.  The initial data is
+handled as a 16 byte block, and then the remaining bytes are processed
+in 4 byte blocks.
+
+<b>Recommendation:</b> The specification recommends PHOTON-Beetle-AEAD-ENC-128.
 
 \section alg_pyjamask Pyjamask
 

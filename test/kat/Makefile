@@ -68,6 +68,9 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) LOTUS-AEAD LOTUS-AEAD.txt
 	@$(RUN_KAT) Oribatida-256-64 Oribatida-256-64.txt
 	@$(RUN_KAT) Oribatida-192-96 Oribatida-192-96.txt
+	@$(RUN_KAT) PHOTON-Beetle-AEAD-ENC-128 PHOTON-Beetle-AEAD-ENC-128.txt
+	@$(RUN_KAT) PHOTON-Beetle-AEAD-ENC-32 PHOTON-Beetle-AEAD-ENC-32.txt
+	@$(RUN_KAT) PHOTON-Beetle-HASH PHOTON-Beetle-HASH.txt
 	@$(RUN_KAT) Pyjamask-128-AEAD Pyjamask-128-AEAD.txt
 	@$(RUN_KAT) Pyjamask-96-AEAD Pyjamask-96-AEAD.txt
 	@$(RUN_KAT) Pyjamask-128-AEAD-Masked Pyjamask-128-AEAD.txt

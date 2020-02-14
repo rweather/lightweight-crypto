@@ -126,8 +126,10 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.07</td><td>0.08</td><td>0.12</td><td>0.13</td><td>0.10</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.08</td><td>0.07</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07</td></tr>
+<tr><td><b><i>PHOTON-Beetle-AEAD-ENC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.04</td><td>0.04</td><td>0.08</td><td>0.08</td><td>0.06</td></tr>
 <tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02</td></tr>
+<tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.01</td><td>0.03</td><td>0.03</td><td>0.02</td></tr>
 <tr><td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
@@ -201,7 +203,9 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.05</td><td>0.06</td><td>0.09</td><td>0.10</td><td>0.07</td></tr>
 <tr><td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.06</td><td>0.08</td><td>0.09</td><td>0.07</td></tr>
 <tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06</td></tr>
+<tr><td><b><i>PHOTON-Beetle-AEAD-ENC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.06</td><td>0.07</td><td>0.05</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
+<tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.01</td><td>0.03</td><td>0.03</td><td>0.02</td></tr>
 <tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
@@ -225,7 +229,7 @@ this ranking.
 <tr><td>5</td><td>SPIX, KNOT, GIFT-COFB, HYENA</td></tr>
 <tr><td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin, ACE</td></tr>
 <tr><td>7</td><td>SKINNY-AEAD, LOTUS, Romulus, Oribatida</td></tr>
-<tr><td>8</td><td>Pyjamask, ISAP</td></tr>
+<tr><td>8</td><td>Pyjamask, PHOTON-Beetle, ISAP</td></tr>
 </table>
 
 */

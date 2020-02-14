@@ -32,6 +32,7 @@
 #include "knot.h"
 #include "lotus-locus.h"
 #include "oribatida.h"
+#include "photon-beetle.h"
 #include "pyjamask.h"
 #include "romulus.h"
 #include "saturnin.h"
@@ -71,6 +72,8 @@ static const aead_cipher_t *const ciphers[] = {
     &lotus_aead_cipher,
     &oribatida_256_cipher,
     &oribatida_192_cipher,
+    &photon_beetle_128_cipher,
+    &photon_beetle_32_cipher,
     &pyjamask_128_cipher,
     &pyjamask_96_cipher,
     &pyjamask_masked_128_cipher,
@@ -123,6 +126,7 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &knot_hash_256_384_algorithm,
     &knot_hash_384_384_algorithm,
     &knot_hash_512_512_algorithm,
+    &photon_beetle_hash_algorithm,
     &saturnin_hash_algorithm,
     &xoodyak_hash_algorithm,
     0
