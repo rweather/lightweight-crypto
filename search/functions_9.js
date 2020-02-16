@@ -1,5 +1,11 @@
 var searchData=
 [
+  ['photon256_5fpermute',['photon256_permute',['../internal-photon256_8h.html#a91ad3cb2dfa78b59264054725f2ba87c',1,'internal-photon256.c']]],
+  ['photon_5fbeetle_5f128_5faead_5fdecrypt',['photon_beetle_128_aead_decrypt',['../photon-beetle_8h.html#ac1f65f17be0b06e0654c30779ef22bd1',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5f128_5faead_5fencrypt',['photon_beetle_128_aead_encrypt',['../photon-beetle_8h.html#ae33ee087b0728c0d56ef4de0bccc9e35',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5f32_5faead_5fdecrypt',['photon_beetle_32_aead_decrypt',['../photon-beetle_8h.html#ad4cc9d299286ff44a6af97546f71d14d',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5f32_5faead_5fencrypt',['photon_beetle_32_aead_encrypt',['../photon-beetle_8h.html#af73350c4c3653fed0dabbeaccf684656',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5fhash',['photon_beetle_hash',['../photon-beetle_8h.html#a50889d8917484ee09e1b24f288612fec',1,'photon-beetle.c']]],
   ['pyjamask_5f128_5faead_5fdecrypt',['pyjamask_128_aead_decrypt',['../pyjamask_8h.html#ae2fb997f97d698e6331a264832487cc5',1,'pyjamask.h']]],
   ['pyjamask_5f128_5faead_5fencrypt',['pyjamask_128_aead_encrypt',['../pyjamask_8h.html#a5b137d5de929ce6a2b3c5de568bdad81',1,'pyjamask.h']]],
   ['pyjamask_5f128_5fdecrypt',['pyjamask_128_decrypt',['../internal-pyjamask_8h.html#aa86dd718b4cff21a292b8d1ebeb0d471',1,'internal-pyjamask.c']]],

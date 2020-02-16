@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['xoodoo_5fpermute',['xoodoo_permute',['../internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb',1,'internal-xoodoo.c']]],
   ['xoodyak_5faead_5fdecrypt',['xoodyak_aead_decrypt',['../xoodyak_8h.html#ac64fbe6a95a1a1cad33f87fece148e2a',1,'xoodyak.c']]],
   ['xoodyak_5faead_5fencrypt',['xoodyak_aead_encrypt',['../xoodyak_8h.html#a922cc8b64545a4d06b84aad2c466fcf8',1,'xoodyak.c']]],
   ['xoodyak_5fhash',['xoodyak_hash',['../xoodyak_8h.html#abfcffaa12af0ec1c0c49cce23b95ff1a',1,'xoodyak.c']]],

@@ -197,11 +197,11 @@ Summary</h1>
 <tr>
 <td>LOTUS-AEAD/LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR/OCB</td><td></td><td></td><td></td><td></td></tr>
 <tr>
-<td>ORANGE</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>ORANGE</td><td>128</td><td>PHOTON-256</td><td>ORANGE</td><td></td><td></td><td></td><td>Digest </td></tr>
 <tr>
 <td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td></td><td></td><td></td><td></td></tr>
 <tr>
-<td>PHOTON-Beetle</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>PHOTON-Beetle</td><td>128</td><td>PHOTON-256</td><td>Beetle</td><td></td><td></td><td></td><td>Digest </td></tr>
 <tr>
 <td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td></td><td>M</td><td></td><td></td></tr>
 <tr>
@@ -344,7 +344,12 @@ mixFeed</h1>
 <p>Based on AES. Not implemented.</p>
 <h1><a class="anchor" id="alg_orange"></a>
 ORANGE</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="orange_8h.html">orange.h</a></p>
+<p>ORANGE is a family of algorithms built around the PHOTON-256 permutation. There are two members of the family at present:</p>
+<ul>
+<li>ORANGE-Zest is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit tag. </li>
+<li>ORANGISH is a hash algorithm with a 256-bit output.</li>
+</ul>
 <h1><a class="anchor" id="alg_oribatida"></a>
 Oribatida</h1>
 <p><b>Definition:</b> <a class="el" href="oribatida_8h.html">oribatida.h</a></p>
@@ -356,7 +361,14 @@ Oribatida</h1>
 <p><b>Recommendation:</b> The specification recommends Oribatida-256-64.</p>
 <h1><a class="anchor" id="alg_photon_beetle"></a>
 PHOTON-Beetle</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="photon-beetle_8h.html">photon-beetle.h</a></p>
+<p>PHOTON-Beetle is a family of authenticated encryption algorithms based on the PHOTON-256 permutation and using the Beetle sponge mode. There are three algorithms in the family:</p>
+<ul>
+<li>PHOTON-Beetle-AEAD-ENC-128 with a 128-bit key, a 128-bit nonce, and a 128-bit tag. Data is handled in 16 byte blocks. </li>
+<li>PHOTON-Beetle-AEAD-ENC-32 with a 128-bit key, a 128-bit nonce, and a 128-bit tag. Data is handled in 4 byte blocks. </li>
+<li>PHOTON-Beetle-Hash with a 256-bit hash output. The initial data is handled as a 16 byte block, and then the remaining bytes are processed in 4 byte blocks.</li>
+</ul>
+<p><b>Recommendation:</b> The specification recommends PHOTON-Beetle-AEAD-ENC-128.</p>
 <h1><a class="anchor" id="alg_pyjamask"></a>
 Pyjamask</h1>
 <p><b>Definition:</b> <a class="el" href="pyjamask_8h.html">pyjamask.h</a></p>
@@ -508,7 +520,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 11 2020 17:02:36 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 16 2020 10:17:34 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

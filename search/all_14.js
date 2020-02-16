@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['xoodoo_5fcols',['XOODOO_COLS',['../internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4',1,'internal-xoodoo.h']]],
+  ['xoodoo_5fpermute',['xoodoo_permute',['../internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb',1,'internal-xoodoo.c']]],
+  ['xoodoo_5frounds',['XOODOO_ROUNDS',['../internal-xoodoo_8h.html#a51f7946b80b810125499a4c25d61239c',1,'internal-xoodoo.h']]],
+  ['xoodoo_5frows',['XOODOO_ROWS',['../internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1',1,'internal-xoodoo.h']]],
   ['xoodoo_5fstate_5ft',['xoodoo_state_t',['../unionxoodoo__state__t.html',1,'']]],
   ['xoodyak_2eh',['xoodyak.h',['../xoodyak_8h.html',1,'']]],
   ['xoodyak_5faead_5fdecrypt',['xoodyak_aead_decrypt',['../xoodyak_8h.html#ac64fbe6a95a1a1cad33f87fece148e2a',1,'xoodyak.c']]],

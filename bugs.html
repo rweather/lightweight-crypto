@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul><li class="level1"><a href="#bugs_comet">COMET</a></li>
 <li class="level1"><a href="#bugs_estate">ESTATE</a></li>
 <li class="level1"><a href="#bugs_hyena">HYENA</a></li>
+<li class="level1"><a href="#bugs_orange">ORANGE</a></li>
 <li class="level1"><a href="#bugs_pyjamask">Pyjamask</a></li>
 <li class="level1"><a href="#bugs_spix">SPIX</a></li>
 </ul>
@@ -138,6 +139,10 @@ HYENA</h1>
 <div class="line">    feedback[i] ^= Delta[i-8];</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>That 15 should be a 16. There are two places in the reference code where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec().</p>
+<h1><a class="anchor" id="bugs_orange"></a>
+ORANGE</h1>
+<p>The reference implementation of the PHOTON-256 permutation in ORANGE has some byte order issues in store32() and load32(). The store32() function uses little-endian byte order 0 1 2 3, but the byte order of load32() is mixed up: 2 1 0 3 instead of 0 1 2 3.</p>
+<p>This asymmetry means that the reference implementation does not implement PHOTON-256 correctly. Correcting the byte order makes the ORANGE implementation of the permutation give the same results as the PHOTON-Beetle implementation of the permutation.</p>
 <h1><a class="anchor" id="bugs_pyjamask"></a>
 Pyjamask</h1>
 <p>In the specification of the underlying block cipher, the key schedule "MixAndRotateRows" step contains the following requirement:</p>
@@ -154,7 +159,7 @@ SPIX</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 11 2020 17:02:36 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 16 2020 10:17:34 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
