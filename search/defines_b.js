@@ -39,6 +39,7 @@ var searchData=
   ['skinny_5faead_5fm5_5ftag_5fsize',['SKINNY_AEAD_M5_TAG_SIZE',['../skinny-aead_8h.html#aeab81aa1f5a8fd7082b4a114307cfc4a',1,'skinny-aead.h']]],
   ['skinny_5faead_5fm6_5fnonce_5fsize',['SKINNY_AEAD_M6_NONCE_SIZE',['../skinny-aead_8h.html#a181d4b777dbc37f565786199461701b4',1,'skinny-aead.h']]],
   ['skinny_5faead_5fm6_5ftag_5fsize',['SKINNY_AEAD_M6_TAG_SIZE',['../skinny-aead_8h.html#a503f340f3822a1f6c03c8e4701c74bf3',1,'skinny-aead.h']]],
+  ['skinny_5fhash_5fsize',['SKINNY_HASH_SIZE',['../skinny-hash_8h.html#a7e72ee09a6fb3103cb2c2946f6a2acd3',1,'skinny-hash.h']]],
   ['sliscp_5flight192_5fstate_5fsize',['SLISCP_LIGHT192_STATE_SIZE',['../internal-sliscp-light_8h.html#a0fb9a4d158acaed2eeb998babd86ec4a',1,'internal-sliscp-light.h']]],
   ['sliscp_5flight256_5fstate_5fsize',['SLISCP_LIGHT256_STATE_SIZE',['../internal-sliscp-light_8h.html#a267ba9a95ee6eda50d1ac22095f79786',1,'internal-sliscp-light.h']]],
   ['sliscp_5flight320_5fstate_5fsize',['SLISCP_LIGHT320_STATE_SIZE',['../internal-sliscp-light_8h.html#a8f81737734a97e9d16e38f2569c15f48',1,'internal-sliscp-light.h']]],

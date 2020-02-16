@@ -14,6 +14,8 @@ var searchData=
   ['skinny_5faead_5fm4_5fcipher',['skinny_aead_m4_cipher',['../skinny-aead_8h.html#a34175c6579786285f50449bd45a6d9e3',1,'skinny-aead.c']]],
   ['skinny_5faead_5fm5_5fcipher',['skinny_aead_m5_cipher',['../skinny-aead_8h.html#a93bd5228b8f483f5e04a18f52d0dcc68',1,'skinny-aead.c']]],
   ['skinny_5faead_5fm6_5fcipher',['skinny_aead_m6_cipher',['../skinny-aead_8h.html#a965c6a89ad6650ecda606f12787ca134',1,'skinny-aead.c']]],
+  ['skinny_5ftk2_5fhash_5falgorithm',['skinny_tk2_hash_algorithm',['../skinny-hash_8h.html#a4658a7d6906cf2c28a94d1c54cee2705',1,'skinny-hash.c']]],
+  ['skinny_5ftk3_5fhash_5falgorithm',['skinny_tk3_hash_algorithm',['../skinny-hash_8h.html#a7da3c973576ee16ad9522ebc8dbd2760',1,'skinny-hash.c']]],
   ['spix_5fcipher',['spix_cipher',['../spix_8h.html#a7176010bf3e8625b5d4815b70f77e56e',1,'spix.c']]],
   ['spoc_5f128_5fcipher',['spoc_128_cipher',['../spoc_8h.html#a9a6d671dd6f93ce848d6b3c36eb25a53',1,'spoc.c']]],
   ['spoc_5f64_5fcipher',['spoc_64_cipher',['../spoc_8h.html#a9eaad8789bd0591c1c2d171732d30889',1,'spoc.c']]],

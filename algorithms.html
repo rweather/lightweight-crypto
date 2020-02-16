@@ -418,8 +418,13 @@ SKINNY-AEAD</h1>
 <li>SKINNY-AEAD-M6 has a 128-bit key, a 96-bit nonce, and a 64-bit tag, based around the SKINNY-128-256 tweakable block cipher.</li>
 </ul>
 <p>This library's implementation of SKINNY-128-384 requires 464 bytes of RAM for the key schedule, which makes it one of the heavier algorithms amongst the NIST submissions when it comes to RAM size. It is possible to implement SKINNY in a way that the key schedule is expanded on the fly during encryption which would save 416 bytes of RAM. But it would come at the cost of performance.</p>
-<p>The SKINNY-AEAD specification also defines the hash algorithms SKINNY-tk2-HASH and SKINNY-tk3-HASH. These hash algorithms are not currently implemented by this library. They may be added in the future.</p>
-<p><b>Recommendation:</b> SKINNY-AEAD-M1 is the recommended variant from the NIST submission.</p>
+<p>The SKINNY-AEAD family also includes two hash algorithms:</p>
+<ul>
+<li>SKINNY-tk3-HASH with a 256-bit hash output, based around the SKINNY-128-384 tweakable block cipher. </li>
+<li>SKINNY-tk2-HASH with a 256-bit hash output, based around the SKINNY-128-256 tweakable block cipher.</li>
+</ul>
+<p>The hash algorithms use a more memory-efficient version of SKINNY that expands the key schedule on the fly because the key needs to change every block. It does however have a performance cost to do this.</p>
+<p><b>Recommendation:</b> SKINNY-AEAD-M1 and SKINNY-tk3-HASH are the recommended variants from the NIST submission.</p>
 <h1><a class="anchor" id="alg_sparkle"></a>
 SPARKLE</h1>
 <p><b>Definition:</b> <a class="el" href="sparkle_8h.html">sparkle.h</a></p>
@@ -520,7 +525,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 16 2020 10:17:34 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 16 2020 15:37:58 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
