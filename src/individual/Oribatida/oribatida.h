@@ -147,7 +147,7 @@ int oribatida_256_aead_decrypt
      const unsigned char *k);
 
 /**
- * \brief Encrypts and authenticates a packet with Oribatida-192-64.
+ * \brief Encrypts and authenticates a packet with Oribatida-192-96.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -176,7 +176,7 @@ int oribatida_192_aead_encrypt
      const unsigned char *k);
 
 /**
- * \brief Decrypts and authenticates a packet with Oribatida-192-64.
+ * \brief Decrypts and authenticates a packet with Oribatida-192-96.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.

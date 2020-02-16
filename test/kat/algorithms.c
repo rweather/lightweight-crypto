@@ -39,6 +39,7 @@
 #include "saturnin.h"
 #include "sparkle.h"
 #include "skinny-aead.h"
+#include "skinny-hash.h"
 #include "spix.h"
 #include "spoc.h"
 #include "spook.h"
@@ -131,6 +132,8 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &orangish_hash_algorithm,
     &photon_beetle_hash_algorithm,
     &saturnin_hash_algorithm,
+    &skinny_tk2_hash_algorithm,
+    &skinny_tk3_hash_algorithm,
     &xoodyak_hash_algorithm,
     0
 };

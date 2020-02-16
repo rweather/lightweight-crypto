@@ -584,12 +584,19 @@ implement SKINNY in a way that the key schedule is expanded on the fly
 during encryption which would save 416 bytes of RAM.  But it would come
 at the cost of performance.
 
-The SKINNY-AEAD specification also defines the hash algorithms
-SKINNY-tk2-HASH and SKINNY-tk3-HASH.  These hash algorithms are not
-currently implemented by this library.  They may be added in the future.
+The SKINNY-AEAD family also includes two hash algorithms:
 
-<b>Recommendation:</b> SKINNY-AEAD-M1 is the recommended variant
-from the NIST submission.
+\li SKINNY-tk3-HASH with a 256-bit hash output, based around the
+SKINNY-128-384 tweakable block cipher.
+\li SKINNY-tk2-HASH with a 256-bit hash output, based around the
+SKINNY-128-256 tweakable block cipher.
+
+The hash algorithms use a more memory-efficient version of SKINNY
+that expands the key schedule on the fly because the key needs to
+change every block.  It does however have a performance cost to do this.
+
+<b>Recommendation:</b> SKINNY-AEAD-M1 and SKINNY-tk3-HASH are the
+recommended variants from the NIST submission.
 
 \section alg_sparkle SPARKLE
 

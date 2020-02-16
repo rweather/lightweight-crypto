@@ -32,6 +32,7 @@ OBJS = \
         romulus.o \
         saturnin.o \
         skinny-aead.o \
+        skinny-hash.o \
         sparkle.o \
         spix.o \
         spoc.o \
@@ -94,6 +95,7 @@ pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 romulus.o: romulus.h internal-skinny128.h aead-common.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
+skinny-hash.o: skinny-hash.h internal-skinny128.h aead-common.h internal-util.h
 sparkle.o: sparkle.h internal-sparkle.h aead-common.h internal-util.h
 spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h

@@ -47,6 +47,14 @@
  * \li SKINNY-AEAD-M6 has a 128-bit key, a 96-bit nonce, and a 64-bit tag,
  * based around the SKINNY-128-256 tweakable block cipher.
  *
+ * The SKINNY-AEAD family also includes two hash algorithms:
+ *
+ * \li SKINNY-tk3-HASH with a 256-bit hash output, based around the
+ * SKINNY-128-384 tweakable block cipher.  This is the primary hashing
+ * member of the family.
+ * \li SKINNY-tk2-HASH with a 256-bit hash output, based around the
+ * SKINNY-128-256 tweakable block cipher.
+ *
  * References: https://sites.google.com/site/skinnycipher/home
  */
 

@@ -115,6 +115,8 @@ SATURNIN_FILES = \
 SKINNY_AEAD_FILES = \
     skinny-aead.c \
     skinny-aead.h \
+    skinny-hash.c \
+    skinny-hash.h \
     internal-skinny128.c \
     internal-skinny128.h \
     $(COMMON_FILES)

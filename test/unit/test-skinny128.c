@@ -112,6 +112,42 @@ static block_cipher_t const skinny128_384_tk2 = {
     (block_cipher_decrypt_t)0
 };
 
+/* Alternative version of SKINNY-128-384 where everything is tweakable */
+static int tk_full_skinny_128_384_init
+    (unsigned char ks[48], const unsigned char *key,
+     size_t key_len)
+{
+    if (key_len != 48)
+        return 0;
+    memcpy(ks, key, key_len);
+    return 1;
+}
+static block_cipher_t const skinny128_384_tk_full = {
+    "SKINNY-128-384-TK-FULL",
+    48,
+    (block_cipher_init_t)tk_full_skinny_128_384_init,
+    (block_cipher_encrypt_t)skinny_128_384_encrypt_tk_full,
+    (block_cipher_decrypt_t)0
+};
+
+/* Alternative version of SKINNY-128-256 where everything is tweakable */
+static int tk_full_skinny_128_256_init
+    (unsigned char ks[32], const unsigned char *key,
+     size_t key_len)
+{
+    if (key_len != 32)
+        return 0;
+    memcpy(ks, key, key_len);
+    return 1;
+}
+static block_cipher_t const skinny128_256_tk_full = {
+    "SKINNY-128-256-TK-FULL",
+    32,
+    (block_cipher_init_t)tk_full_skinny_128_256_init,
+    (block_cipher_encrypt_t)skinny_128_256_encrypt_tk_full,
+    (block_cipher_decrypt_t)0
+};
+
 void test_skinny128(void)
 {
     test_block_cipher_start(&skinny128_128);
@@ -122,6 +158,10 @@ void test_skinny128(void)
     test_block_cipher_128(&skinny128_256, &skinny128_256_1);
     test_block_cipher_end(&skinny128_256);
 
+    test_block_cipher_start(&skinny128_256_tk_full);
+    test_block_cipher_128(&skinny128_256_tk_full, &skinny128_256_1);
+    test_block_cipher_end(&skinny128_256_tk_full);
+
     test_block_cipher_start(&skinny128_384);
     test_block_cipher_128(&skinny128_384, &skinny128_384_1);
     test_block_cipher_end(&skinny128_384);
@@ -129,4 +169,8 @@ void test_skinny128(void)
     test_block_cipher_start(&skinny128_384_tk2);
     test_block_cipher_128(&skinny128_384_tk2, &skinny128_384_1);
     test_block_cipher_end(&skinny128_384_tk2);
+
+    test_block_cipher_start(&skinny128_384_tk_full);
+    test_block_cipher_128(&skinny128_384_tk_full, &skinny128_384_1);
+    test_block_cipher_end(&skinny128_384_tk_full);
 }

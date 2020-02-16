@@ -486,6 +486,86 @@ void skinny_128_384_encrypt_tk2
     le_store_word32(output + 12, s3);
 }
 
+void skinny_128_384_encrypt_tk_full
+    (const unsigned char key[48], unsigned char *output,
+     const unsigned char *input)
+{
+    uint32_t s0, s1, s2, s3;
+    uint32_t TK1[4];
+    uint32_t TK2[4];
+    uint32_t TK3[4];
+    uint32_t temp;
+    unsigned round;
+    uint8_t rc = 0;
+
+    /* Unpack the input block into the state array */
+    s0 = le_load_word32(input);
+    s1 = le_load_word32(input + 4);
+    s2 = le_load_word32(input + 8);
+    s3 = le_load_word32(input + 12);
+
+    /* Make a local copy of the tweakey */
+    TK1[0] = le_load_word32(key);
+    TK1[1] = le_load_word32(key + 4);
+    TK1[2] = le_load_word32(key + 8);
+    TK1[3] = le_load_word32(key + 12);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
+    TK3[0] = le_load_word32(key + 32);
+    TK3[1] = le_load_word32(key + 36);
+    TK3[2] = le_load_word32(key + 40);
+    TK3[3] = le_load_word32(key + 44);
+
+    /* Perform all encryption rounds */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
+        /* Apply the S-box to all bytes in the state */
+        skinny128_sbox(s0);
+        skinny128_sbox(s1);
+        skinny128_sbox(s2);
+        skinny128_sbox(s3);
+
+        /* XOR the round constant and the subkey for this round */
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+        s2 ^= 0x02;
+
+        /* Shift the cells in the rows right, which moves the cell
+         * values up closer to the MSB.  That is, we do a left rotate
+         * on the word to rotate the cells in the word right */
+        s1 = leftRotate8(s1);
+        s2 = leftRotate16(s2);
+        s3 = leftRotate24(s3);
+
+        /* Mix the columns */
+        s1 ^= s2;
+        s2 ^= s0;
+        temp = s3 ^ s2;
+        s3 = s2;
+        s2 = s1;
+        s1 = s0;
+        s0 = temp;
+
+        /* Permute TK1, TK2, and TK3 for the next round */
+        skinny128_permute_tk(TK1);
+        skinny128_permute_tk(TK2);
+        skinny128_permute_tk(TK3);
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+        skinny128_LFSR3(TK3[0]);
+        skinny128_LFSR3(TK3[1]);
+    }
+
+    /* Pack the result into the output buffer */
+    le_store_word32(output,      s0);
+    le_store_word32(output + 4,  s1);
+    le_store_word32(output + 8,  s2);
+    le_store_word32(output + 12, s3);
+}
+
 int skinny_128_256_init
     (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
      size_t key_len)
@@ -667,6 +747,78 @@ void skinny_128_256_decrypt
         skinny128_inv_sbox(s1);
         skinny128_inv_sbox(s2);
         skinny128_inv_sbox(s3);
+    }
+
+    /* Pack the result into the output buffer */
+    le_store_word32(output,      s0);
+    le_store_word32(output + 4,  s1);
+    le_store_word32(output + 8,  s2);
+    le_store_word32(output + 12, s3);
+}
+
+void skinny_128_256_encrypt_tk_full
+    (const unsigned char key[32], unsigned char *output,
+     const unsigned char *input)
+{
+    uint32_t s0, s1, s2, s3;
+    uint32_t TK1[4];
+    uint32_t TK2[4];
+    uint32_t temp;
+    unsigned round;
+    uint8_t rc = 0;
+
+    /* Unpack the input block into the state array */
+    s0 = le_load_word32(input);
+    s1 = le_load_word32(input + 4);
+    s2 = le_load_word32(input + 8);
+    s3 = le_load_word32(input + 12);
+
+    /* Make a local copy of the tweakey */
+    TK1[0] = le_load_word32(key);
+    TK1[1] = le_load_word32(key + 4);
+    TK1[2] = le_load_word32(key + 8);
+    TK1[3] = le_load_word32(key + 12);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
+
+    /* Perform all encryption rounds */
+    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
+        /* Apply the S-box to all bytes in the state */
+        skinny128_sbox(s0);
+        skinny128_sbox(s1);
+        skinny128_sbox(s2);
+        skinny128_sbox(s3);
+
+        /* XOR the round constant and the subkey for this round */
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
+        s2 ^= 0x02;
+
+        /* Shift the cells in the rows right, which moves the cell
+         * values up closer to the MSB.  That is, we do a left rotate
+         * on the word to rotate the cells in the word right */
+        s1 = leftRotate8(s1);
+        s2 = leftRotate16(s2);
+        s3 = leftRotate24(s3);
+
+        /* Mix the columns */
+        s1 ^= s2;
+        s2 ^= s0;
+        temp = s3 ^ s2;
+        s3 = s2;
+        s2 = s1;
+        s1 = s0;
+        s0 = temp;
+
+        /* Permute TK1 and TK2 for the next round */
+        skinny128_permute_tk(TK1);
+        skinny128_permute_tk(TK2);
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
     }
 
     /* Pack the result into the output buffer */
