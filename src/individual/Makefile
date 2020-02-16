@@ -72,6 +72,12 @@ LOTUS_FILES = \
     internal-gift64.c \
     internal-gift64.h \
     $(COMMON_FILES)
+ORANGE_FILES = \
+    orange.c \
+    orange.h \
+    internal-photon256.c \
+    internal-photon256.h \
+    $(COMMON_FILES)
 ORIBATIDA_FILES = \
     oribatida.c \
     oribatida.h \
@@ -166,6 +172,7 @@ ALL_ALGORITHMS = \
     isap \
     knot \
     lotus \
+    orange \
     oribatida \
     photon_beetle \
     pyjamask \
@@ -213,6 +220,9 @@ knot:
 
 lotus:
 	cp $(foreach file,$(LOTUS_FILES),$(SRCDIR)/$(file)) LOTUS-AEAD
+
+orange:
+	cp $(foreach file,$(ORANGE_FILES),$(SRCDIR)/$(file)) ORANGE
 
 oribatida:
 	cp $(foreach file,$(ORIBATIDA_FILES),$(SRCDIR)/$(file)) Oribatida

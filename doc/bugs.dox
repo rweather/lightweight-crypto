@@ -125,6 +125,18 @@ for(i=8; i<15 ;i++)
 That 15 should be a 16.  There are two places in the reference code
 where this problem occurs, in Feedback_TXT_Enc() and Feedback_TXT_Dec().
 
+\section bugs_orange ORANGE
+
+The reference implementation of the PHOTON-256 permutation in ORANGE
+has some byte order issues in store32() and load32().  The store32()
+function uses little-endian byte order 0 1 2 3, but the byte order
+of load32() is mixed up: 2 1 0 3 instead of 0 1 2 3.
+
+This asymmetry means that the reference implementation does not
+implement PHOTON-256 correctly.  Correcting the byte order makes
+the ORANGE implementation of the permutation give the same results
+as the PHOTON-Beetle implementation of the permutation.
+
 \section bugs_pyjamask Pyjamask
 
 In the specification of the underlying block cipher, the key schedule

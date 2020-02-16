@@ -143,9 +143,9 @@ The following table summarises the interesting properties of all
 <tr><td>ISAP</td><td>128</td><td>ASCON/Keccak</td><td>Duplex</td><td> </td><td>Y</td><td> </td><td> </td></tr>
 <tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
 <tr><td>LOTUS-AEAD/LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR/OCB</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>ORANGE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ORANGE</td><td>128</td><td>PHOTON-256</td><td>ORANGE</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>PHOTON-Beetle</td><td>128</td><td>PHOTON-256</td><td>Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>PHOTON-Beetle</td><td>128</td><td>PHOTON-256</td><td>Beetle</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td> </td><td>M</td><td> </td><td> </td></tr>
 <tr><td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Romulus-M</td><td>128</td><td>SKINNY-128</td><td>Romulus-M</td><td>Y</td><td> </td><td> </td><td> </td></tr>
@@ -419,7 +419,14 @@ Based on AES.  Not implemented.
 
 \section alg_orange ORANGE
 
-TODO
+<b>Definition:</b> \ref orange.h
+
+ORANGE is a family of algorithms built around the PHOTON-256 permutation.
+There are two members of the family at present:
+
+\li ORANGE-Zest is an authenticated encryption algorithm with a 128-bit
+key, a 128-bit nonce, and a 128-bit tag.
+\li ORANGISH is a hash algorithm with a 256-bit output.
 
 \section alg_oribatida Oribatida
 

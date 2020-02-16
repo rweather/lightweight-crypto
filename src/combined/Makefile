@@ -22,6 +22,7 @@ OBJS = \
         knot-aead.o \
         knot-hash.o \
         lotus-locus.o \
+        orange.o \
         oribatida.o \
         photon-beetle.o \
         pyjamask-128.o \
@@ -85,6 +86,7 @@ isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h 
 knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
 knot-hash.o: knot.h aead-common.h internal-knot.h internal-util.h
 lotus-locus.o: lotus-locus.h aead-common.h internal-gift64.h internal-util.h
+orange.o: orange.h aead-common.h internal-photon256.h internal-util.h
 oribatida.o: oribatida.h aead-common.h internal-simp.h internal-util.h
 photon-beetle.o: photon-beetle.h internal-photon256.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
