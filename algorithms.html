@@ -175,7 +175,7 @@ Summary</h1>
 <tr>
 <td>COMET</td><td>128</td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td></td><td></td><td></td><td></td></tr>
 <tr>
-<td>DryGASCON</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td></td><td>Y</td><td>K</td><td>Digest </td></tr>
 <tr>
 <td>Elephant</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr>
@@ -266,7 +266,16 @@ COMET</h1>
 <p><b>Recommendation:</b> The specification recommends COMET-128_AES-128/128 but we don't implement AES-based schemes in this library. Recommend to use COMET-128_CHAM-128/128 instead.</p>
 <h1><a class="anchor" id="alg_drygascon"></a>
 DryGASCON</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="drygascon_8h.html">drygascon.h</a></p>
+<p>DryGASCON is a family of authenticated encryption algorithms based around a generalised version of the ASCON permutation. DryGASCON is designed to provide some protection against power analysis.</p>
+<p>There are four algorithms in the DryGASCON family:</p>
+<ul>
+<li>DryGASCON128 is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit authentication tag. </li>
+<li>DryGASCON256 is an authenticated encryption algorithm with a 256-bit key, a 128-bit nonce, and a 128-256 authentication tag. </li>
+<li>DryGASCON128-HASH is a hash algorithm with a 256-bit output. </li>
+<li>DryGASCON256-HASH is a hash algorithm with a 512-bit output.</li>
+</ul>
+<p><b>Recommendation:</b> The specification recommends DryGASCON128 and DryGASCON128-HASH.</p>
 <h1><a class="anchor" id="alg_elephant"></a>
 Elephant</h1>
 <p>TODO</p>
@@ -525,7 +534,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 16 2020 15:37:58 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 19 2020 19:45:17 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

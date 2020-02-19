@@ -1,5 +1,31 @@
 var searchData=
 [
-  ['hyena_5faead_5fdecrypt',['hyena_aead_decrypt',['../hyena_8h.html#a26da9f2a20319ba96f300023dee70895',1,'hyena.c']]],
-  ['hyena_5faead_5fencrypt',['hyena_aead_encrypt',['../hyena_8h.html#a5bb8ffb382760991eb77e16b65292481',1,'hyena.c']]]
+  ['gascon128_5fcore_5fround',['gascon128_core_round',['../internal-drysponge_8h.html#a7043b97b4cda9d749cfaeae9ed533014',1,'internal-drysponge.c']]],
+  ['gascon256_5fcore_5fround',['gascon256_core_round',['../internal-drysponge_8h.html#af2f4e37b0c6ed41a4631a48ceed08fa1',1,'internal-drysponge.c']]],
+  ['gift128b_5fdecrypt',['gift128b_decrypt',['../internal-gift128_8h.html#a6013773ef83633ec436d35b7bba17db8',1,'internal-gift128.c']]],
+  ['gift128b_5fencrypt',['gift128b_encrypt',['../internal-gift128_8h.html#a906bbcc9cd3dfd82444f493c0f924277',1,'internal-gift128.c']]],
+  ['gift128b_5finit',['gift128b_init',['../internal-gift128_8h.html#a0ba0889c919a3b296579b4f600fe0333',1,'internal-gift128.c']]],
+  ['gift128n_5fdecrypt',['gift128n_decrypt',['../internal-gift128_8h.html#a63471735613b6bd81e2bd6d6f5a60930',1,'internal-gift128.c']]],
+  ['gift128n_5fencrypt',['gift128n_encrypt',['../internal-gift128_8h.html#a7cb0366799316b3087107637b87b11da',1,'internal-gift128.c']]],
+  ['gift128n_5finit',['gift128n_init',['../internal-gift128_8h.html#adde1a280e4018bfc0c23e33459d38db1',1,'internal-gift128.c']]],
+  ['gift128t_5fdecrypt',['gift128t_decrypt',['../internal-gift128_8h.html#a35e435105e27d356c89b71da4a70568b',1,'internal-gift128.c']]],
+  ['gift128t_5fencrypt',['gift128t_encrypt',['../internal-gift128_8h.html#a069e67cef117a13abda06ee4fed6d30c',1,'internal-gift128.c']]],
+  ['gift64b_5fdecrypt',['gift64b_decrypt',['../internal-gift64_8h.html#a69c21a8227ad297995f233ca25d12326',1,'internal-gift64.c']]],
+  ['gift64b_5fencrypt',['gift64b_encrypt',['../internal-gift64_8h.html#a0e6b15bd6b1d7ca15577f6770d941724',1,'internal-gift64.c']]],
+  ['gift64b_5finit',['gift64b_init',['../internal-gift64_8h.html#a0cf063c1940fbcbd35193dcca857f21d',1,'internal-gift64.c']]],
+  ['gift64n_5fdecrypt',['gift64n_decrypt',['../internal-gift64_8h.html#a11160bd9b96419e572d48395a58b47f4',1,'internal-gift64.c']]],
+  ['gift64n_5fencrypt',['gift64n_encrypt',['../internal-gift64_8h.html#a4ce9afe5cfbb9b472fcf50ccd8e53988',1,'internal-gift64.c']]],
+  ['gift64n_5finit',['gift64n_init',['../internal-gift64_8h.html#a2d2835d39807f2ef0f3b0ecbf8771296',1,'internal-gift64.c']]],
+  ['gift64t_5fdecrypt',['gift64t_decrypt',['../internal-gift64_8h.html#abd737d8b412c77910cf34ff822f59cff',1,'internal-gift64.c']]],
+  ['gift64t_5fencrypt',['gift64t_encrypt',['../internal-gift64_8h.html#ac523d70364fc0cc5cb510cf3436b4a5c',1,'internal-gift64.c']]],
+  ['gift_5fcofb_5faead_5fdecrypt',['gift_cofb_aead_decrypt',['../gift-cofb_8h.html#a3b20843c68272bbb0ec9f23a8bc69f7b',1,'gift-cofb.c']]],
+  ['gift_5fcofb_5faead_5fencrypt',['gift_cofb_aead_encrypt',['../gift-cofb_8h.html#a5be1044e72e09c65c6ecbc328b943f4d',1,'gift-cofb.c']]],
+  ['gimli24_5faead_5fdecrypt',['gimli24_aead_decrypt',['../gimli24_8h.html#a8fae8394bde1af557ded05f0febd5da9',1,'gimli24.c']]],
+  ['gimli24_5faead_5fencrypt',['gimli24_aead_encrypt',['../gimli24_8h.html#aeef4d6e169c33e31afa0daf4c21d2f99',1,'gimli24.c']]],
+  ['gimli24_5fhash',['gimli24_hash',['../gimli24_8h.html#aae94828a658a37ec98c1520f80916a92',1,'gimli24.c']]],
+  ['gimli24_5fhash_5fabsorb',['gimli24_hash_absorb',['../gimli24_8h.html#ad07ee087f3399597777e022545c467dc',1,'gimli24.c']]],
+  ['gimli24_5fhash_5ffinalize',['gimli24_hash_finalize',['../gimli24_8h.html#acf8cbf313c338b480f31fd9c9f768470',1,'gimli24.c']]],
+  ['gimli24_5fhash_5finit',['gimli24_hash_init',['../gimli24_8h.html#a7cd03f46508df5975d41a5f1b1e9be92',1,'gimli24.c']]],
+  ['gimli24_5fhash_5fsqueeze',['gimli24_hash_squeeze',['../gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7',1,'gimli24.c']]],
+  ['gimli24_5fpermute',['gimli24_permute',['../internal-gimli24_8h.html#addf68dcd26c84960768af4a6e7a976fc',1,'internal-gimli24.c']]]
 ];

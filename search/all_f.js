@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['r',['r',['../structpoly1305__state__t.html#a757291df58af5c2660d1418671e8083d',1,'poly1305_state_t']]],
+  ['r',['r',['../structpoly1305__state__t.html#a757291df58af5c2660d1418671e8083d',1,'poly1305_state_t::r()'],['../structdrysponge128__state__t.html#ae5deaf66d65a177b655dcd3ebae58f55',1,'drysponge128_state_t::r()'],['../structdrysponge256__state__t.html#a54c6ac424c580313e135d1f5d5577f48',1,'drysponge256_state_t::r()']]],
   ['romulus_2eh',['romulus.h',['../romulus_8h.html',1,'']]],
   ['romulus1_5fnonce_5fsize',['ROMULUS1_NONCE_SIZE',['../romulus_8h.html#ae9ae52220eb8a555986fc85574ccf6e1',1,'romulus.h']]],
   ['romulus2_5fnonce_5fsize',['ROMULUS2_NONCE_SIZE',['../romulus_8h.html#a731e01313e83f1d086a88a3857c7196a',1,'romulus.h']]],
@@ -24,5 +24,6 @@ var searchData=
   ['romulus_5fn3_5faead_5fdecrypt',['romulus_n3_aead_decrypt',['../romulus_8h.html#a7829807eb5eeb3eece525d0af2931943',1,'romulus.c']]],
   ['romulus_5fn3_5faead_5fencrypt',['romulus_n3_aead_encrypt',['../romulus_8h.html#ad331eeb5d672fec72def4486f4abecae',1,'romulus.c']]],
   ['romulus_5fn3_5fcipher',['romulus_n3_cipher',['../romulus_8h.html#a77270af06da4f72806af0cff1872d9f1',1,'romulus.c']]],
-  ['romulus_5ftag_5fsize',['ROMULUS_TAG_SIZE',['../romulus_8h.html#a9188c93a0975d91f0cf7052601cf7a1c',1,'romulus.h']]]
+  ['romulus_5ftag_5fsize',['ROMULUS_TAG_SIZE',['../romulus_8h.html#a9188c93a0975d91f0cf7052601cf7a1c',1,'romulus.h']]],
+  ['rounds',['rounds',['../structdrysponge128__state__t.html#abad0c7696ba8dd23ca5fcd32699dd028',1,'drysponge128_state_t::rounds()'],['../structdrysponge256__state__t.html#a94ac4be254473c439456981acb0ccfbf',1,'drysponge256_state_t::rounds()']]]
 ];

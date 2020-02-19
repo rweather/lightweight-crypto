@@ -1,5 +1,11 @@
 var searchData=
 [
+  ['gascon128_5fcore_5fround',['gascon128_core_round',['../internal-drysponge_8h.html#a7043b97b4cda9d749cfaeae9ed533014',1,'internal-drysponge.c']]],
+  ['gascon128_5fstate_5fsize',['GASCON128_STATE_SIZE',['../internal-drysponge_8h.html#a9b4829c6512c7ceae6e6f18daec9ccb6',1,'internal-drysponge.h']]],
+  ['gascon128_5fstate_5ft',['gascon128_state_t',['../uniongascon128__state__t.html',1,'']]],
+  ['gascon256_5fcore_5fround',['gascon256_core_round',['../internal-drysponge_8h.html#af2f4e37b0c6ed41a4631a48ceed08fa1',1,'internal-drysponge.c']]],
+  ['gascon256_5fstate_5fsize',['GASCON256_STATE_SIZE',['../internal-drysponge_8h.html#a02db305fb162314afe1e72decb6db741',1,'internal-drysponge.h']]],
+  ['gascon256_5fstate_5ft',['gascon256_state_t',['../uniongascon256__state__t.html',1,'']]],
   ['gift_2dcofb_2eh',['gift-cofb.h',['../gift-cofb_8h.html',1,'']]],
   ['gift128_5fblock_5fsize',['GIFT128_BLOCK_SIZE',['../internal-gift128_8h.html#a642719cdc783743ff774f31b77513109',1,'internal-gift128.h']]],
   ['gift128b_5fdecrypt',['gift128b_decrypt',['../internal-gift128_8h.html#a6013773ef83633ec436d35b7bba17db8',1,'internal-gift128.c']]],

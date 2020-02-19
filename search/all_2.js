@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c',['c',['../structpoly1305__state__t.html#a45210a251064612cff2a8009bd7f545d',1,'poly1305_state_t']]],
+  ['c',['c',['../structpoly1305__state__t.html#a45210a251064612cff2a8009bd7f545d',1,'poly1305_state_t::c()'],['../structdrysponge128__state__t.html#a8167df9a94236122b44c75b6058bf3db',1,'drysponge128_state_t::c()'],['../structdrysponge256__state__t.html#a5cb9876a1df165e86cd3a63a353d5a39',1,'drysponge256_state_t::c()']]],
   ['chacha20_5fstate_5ft',['chacha20_state_t',['../unionchacha20__state__t.html',1,'']]],
   ['chachapoly_5fkey_5fsize',['CHACHAPOLY_KEY_SIZE',['../internal-chachapoly_8h.html#a4a5e1502a85a53176bbf73a6b207b7e9',1,'internal-chachapoly.h']]],
   ['chachapoly_5fnonce_5fsize',['CHACHAPOLY_NONCE_SIZE',['../internal-chachapoly_8h.html#af2c5abaade367bbcd485dd8121d49d59',1,'internal-chachapoly.h']]],

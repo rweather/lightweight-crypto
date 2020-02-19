@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['keccakp_5f200_5fstate_5ft',['keccakp_200_state_t',['../unionkeccakp__200__state__t.html',1,'']]],
-  ['keccakp_5f400_5fstate_5ft',['keccakp_400_state_t',['../unionkeccakp__400__state__t.html',1,'']]],
-  ['knot256_5fstate_5ft',['knot256_state_t',['../unionknot256__state__t.html',1,'']]],
-  ['knot384_5fstate_5ft',['knot384_state_t',['../unionknot384__state__t.html',1,'']]],
-  ['knot512_5fstate_5ft',['knot512_state_t',['../unionknot512__state__t.html',1,'']]]
+  ['gascon128_5fstate_5ft',['gascon128_state_t',['../uniongascon128__state__t.html',1,'']]],
+  ['gascon256_5fstate_5ft',['gascon256_state_t',['../uniongascon256__state__t.html',1,'']]],
+  ['gift128b_5fkey_5fschedule_5ft',['gift128b_key_schedule_t',['../structgift128b__key__schedule__t.html',1,'']]],
+  ['gift64b_5fkey_5fschedule_5ft',['gift64b_key_schedule_t',['../structgift64b__key__schedule__t.html',1,'']]],
+  ['gimli24_5fhash_5fstate_5ft',['gimli24_hash_state_t',['../uniongimli24__hash__state__t.html',1,'']]],
+  ['gimli24_5fstate_5ft',['gimli24_state_t',['../uniongimli24__state__t.html',1,'']]]
 ];

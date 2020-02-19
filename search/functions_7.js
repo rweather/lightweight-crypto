@@ -1,7 +1,22 @@
 var searchData=
 [
-  ['locus_5faead_5fdecrypt',['locus_aead_decrypt',['../lotus-locus_8h.html#abef4ee90b516ebc0fb022ea0286e8326',1,'lotus-locus.c']]],
-  ['locus_5faead_5fencrypt',['locus_aead_encrypt',['../lotus-locus_8h.html#a4d827c5b7f3fb22d1c61a2aef7a0213c',1,'lotus-locus.c']]],
-  ['lotus_5faead_5fdecrypt',['lotus_aead_decrypt',['../lotus-locus_8h.html#abd0dc9bb9b77d09e07e060c9e31a6be5',1,'lotus-locus.c']]],
-  ['lotus_5faead_5fencrypt',['lotus_aead_encrypt',['../lotus-locus_8h.html#af4c79522333501b5ca64c40c18f694b8',1,'lotus-locus.c']]]
+  ['keccakp_5f200_5fpermute',['keccakp_200_permute',['../internal-keccak_8h.html#a8aefd4da0dfa8cb624c870ab6fae2e02',1,'internal-keccak.c']]],
+  ['keccakp_5f400_5fpermute',['keccakp_400_permute',['../internal-keccak_8h.html#a7ea8bfa1024b53d5658e904e141cd2b9',1,'internal-keccak.c']]],
+  ['knot256_5fpermute_5f6',['knot256_permute_6',['../internal-knot_8h.html#af7484aac6b3585dd37d6f4955fe0e574',1,'internal-knot.c']]],
+  ['knot256_5fpermute_5f7',['knot256_permute_7',['../internal-knot_8h.html#a68b867627acedbaed025774810e3a8fc',1,'internal-knot.c']]],
+  ['knot384_5fpermute_5f7',['knot384_permute_7',['../internal-knot_8h.html#a6e6764f26f60b35b3de356cdd418f841',1,'internal-knot.c']]],
+  ['knot512_5fpermute_5f7',['knot512_permute_7',['../internal-knot_8h.html#a1cb92954509a7563bdd39758015e9322',1,'internal-knot.c']]],
+  ['knot512_5fpermute_5f8',['knot512_permute_8',['../internal-knot_8h.html#a3903068f5fa3a948593f71bfd8cea854',1,'internal-knot.c']]],
+  ['knot_5faead_5f128_5f256_5fdecrypt',['knot_aead_128_256_decrypt',['../knot_8h.html#a14ca65b36efb72d6f27e98ea9ddd0a81',1,'knot-aead.c']]],
+  ['knot_5faead_5f128_5f256_5fencrypt',['knot_aead_128_256_encrypt',['../knot_8h.html#a1a7e27b0a9b7d6d6c50e849c1c21c9db',1,'knot-aead.c']]],
+  ['knot_5faead_5f128_5f384_5fdecrypt',['knot_aead_128_384_decrypt',['../knot_8h.html#adfcac20523fa199c61a50c1cd0761702',1,'knot-aead.c']]],
+  ['knot_5faead_5f128_5f384_5fencrypt',['knot_aead_128_384_encrypt',['../knot_8h.html#a1552ed5cda78a9d5c34587ae7b17ab49',1,'knot-aead.c']]],
+  ['knot_5faead_5f192_5f384_5fdecrypt',['knot_aead_192_384_decrypt',['../knot_8h.html#a0968e647fece7eb8e9548892b0ae9e37',1,'knot-aead.c']]],
+  ['knot_5faead_5f192_5f384_5fencrypt',['knot_aead_192_384_encrypt',['../knot_8h.html#ad292adff72267df41308e83a225aa46c',1,'knot-aead.c']]],
+  ['knot_5faead_5f256_5f512_5fdecrypt',['knot_aead_256_512_decrypt',['../knot_8h.html#a5ef34785f997e10a3fdd3343bde71090',1,'knot-aead.c']]],
+  ['knot_5faead_5f256_5f512_5fencrypt',['knot_aead_256_512_encrypt',['../knot_8h.html#a559e88cafab4385866876291e86fca16',1,'knot-aead.c']]],
+  ['knot_5fhash_5f256_5f256',['knot_hash_256_256',['../knot_8h.html#a9ca228cde6b76eb678b6ec6b8d9236ba',1,'knot-hash.c']]],
+  ['knot_5fhash_5f256_5f384',['knot_hash_256_384',['../knot_8h.html#a14d897acad00fe12913b261365c7a935',1,'knot-hash.c']]],
+  ['knot_5fhash_5f384_5f384',['knot_hash_384_384',['../knot_8h.html#ac25ec6deb781f3c3bbecc5a04ad665a1',1,'knot-hash.c']]],
+  ['knot_5fhash_5f512_5f512',['knot_hash_512_512',['../knot_8h.html#a60bd604f095367133fc7d30558b81b38',1,'knot-hash.c']]]
 ];
