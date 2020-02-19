@@ -32,6 +32,7 @@ of flash memory.
 #include "ace.h"
 #include "ascon128.h"
 #include "comet.h"
+#include "drygascon.h"
 #include "estate.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
@@ -367,6 +368,8 @@ void setup()
     perfCipher(&comet_128_cham_cipher);
     perfCipher(&comet_64_cham_cipher);
     perfCipher(&comet_64_speck_cipher);
+    perfCipher(&drygascon128_cipher);
+    perfCipher(&drygascon256_cipher);
     perfCipher(&estate_twegift_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);

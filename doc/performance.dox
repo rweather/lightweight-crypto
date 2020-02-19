@@ -108,6 +108,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.32</td><td>0.23</td></tr>
 <tr><td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.31</td><td>0.23</td></tr>
 <tr><td><b><i>ACE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.22</td><td>0.24</td><td>0.22</td></tr>
+<tr><td><b><i>DryGASCON128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.15</td><td>0.17</td><td>0.27</td><td>0.29</td><td>0.21</td></tr>
 <tr><td>Romulus-N3</td><td>128</td><td>96</td><td>128</td><td>0.16</td><td>0.18</td><td>0.24</td><td>0.26</td><td>0.20</td></tr>
 <tr><td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.25</td><td>0.19</td></tr>
 <tr><td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.25</td><td>0.19</td></tr>
@@ -117,6 +118,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.14</td><td>0.25</td><td>0.27</td><td>0.18</td></tr>
 <tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.27</td><td>0.18</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.13</td><td>0.15</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
+<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.12</td><td>0.13</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
 <tr><td><b><i>Romulus-N1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.18</td><td>0.19</td><td>0.16</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.22</td><td>0.23</td><td>0.16</td></tr>
 <tr><td>Romulus-M3</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.16</td><td>0.19</td><td>0.14</td></tr>
@@ -172,6 +174,7 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.57</td><td>0.61</td><td>0.57</td><td>0.59</td><td>0.59</td></tr>
 <tr><td><b><i>KNOT-AEAD-128-256</i></b></td><td>128</td><td>128</td><td>128</td><td>0.45</td><td>0.49</td><td>0.73</td><td>0.75</td><td>0.59</td></tr>
 <tr><td><b><i>SpoC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.40</td><td>0.43</td><td>0.76</td><td>0.76</td><td>0.56</td></tr>
+<tr><td><b><i>DryGASCON128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.23</td><td>0.25</td><td>0.40</td><td>0.42</td><td>0.31</td></tr>
 <tr><td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.25</td><td>0.41</td><td>0.43</td><td>0.31</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.27</td><td>0.30</td><td>0.24</td><td>0.26</td><td>0.26</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.28</td><td>0.32</td><td>0.39</td><td>0.41</td><td>0.25</td></tr>
@@ -181,6 +184,7 @@ where the architecture differences gives some algorithms an added advantage.
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24</td></tr>
 <tr><td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.17</td><td>0.19</td><td>0.28</td><td>0.30</td><td>0.22</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.18</td><td>0.21</td><td>0.21</td><td>0.23</td><td>0.21</td></tr>
+<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.26</td><td>0.21</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.27</td><td>0.29</td><td>0.19</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.28</td><td>0.18</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
@@ -229,7 +233,7 @@ this ranking.
 <tr><td>3</td><td>Gimli, SpoC, TinyJAMBU, Xoodyak</td></tr>
 <tr><td>4</td><td>ASCON, Spook</td></tr>
 <tr><td>5</td><td>SPIX, KNOT, GIFT-COFB, HYENA</td></tr>
-<tr><td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin, ACE</td></tr>
+<tr><td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin, ACE, DryGASCON</td></tr>
 <tr><td>7</td><td>SKINNY-AEAD, LOTUS, Romulus, Oribatida, ORANGE</td></tr>
 <tr><td>8</td><td>Pyjamask, PHOTON-Beetle, ISAP</td></tr>
 </table>

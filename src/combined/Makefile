@@ -14,6 +14,7 @@ OBJS = \
         ascon-hash.o \
         ascon-xof.o \
         comet.o \
+        drygascon.o \
         estate.o \
         gift-cofb.o \
 	gimli24.o \
@@ -43,6 +44,7 @@ OBJS = \
 	internal-ascon.o \
 	internal-chachapoly.o \
 	internal-cham.o \
+	internal-drysponge.o \
 	internal-gift128.o \
 	internal-gift64.o \
 	internal-gimli24.o \
@@ -79,6 +81,7 @@ ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 comet.o: comet.h aead-common.h internal-cham.h internal-util.h
+drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
@@ -105,6 +108,8 @@ tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
+internal-cham.o: internal-cham.h internal-util.h
+internal-drysponge.o: internal-drysponge.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-gimli24.o: internal-gimli24.h internal-util.h

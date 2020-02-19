@@ -26,6 +26,12 @@ COMET_FILES = \
     internal-cham.c \
     internal-cham.h \
     $(COMMON_FILES)
+DRYGASCON_FILES = \
+    drygascon.c \
+    drygascon.h \
+    internal-drysponge.c \
+    internal-drysponge.h \
+    $(COMMON_FILES)
 ESTATE_FILES = \
     estate.c \
     estate.h \
@@ -167,6 +173,7 @@ ALL_ALGORITHMS = \
     ace \
     ascon \
     comet \
+    drygascon \
     estate \
     gift_cofb \
     gimli \
@@ -201,6 +208,9 @@ ascon:
 
 comet:
 	cp $(foreach file,$(COMET_FILES),$(SRCDIR)/$(file)) COMET
+
+drygascon:
+	cp $(foreach file,$(DRYGASCON_FILES),$(SRCDIR)/$(file)) DryGASCON
 
 estate:
 	cp $(foreach file,$(ESTATE_FILES),$(SRCDIR)/$(file)) ESTATE

@@ -132,7 +132,7 @@ The following table summarises the interesting properties of all
 <tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
 <tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>DryGASCON</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td> </td><td>Y</td><td>K</td><td>Digest</td></tr>
 <tr><td>Elephant</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td> </td><td> </td><td> </td></tr>
 <tr><td>ForkAE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -239,7 +239,23 @@ COMET-128_CHAM-128/128 instead.
 
 \section alg_drygascon DryGASCON
 
-TODO
+<b>Definition:</b> \ref drygascon.h
+
+DryGASCON is a family of authenticated encryption algorithms based
+around a generalised version of the ASCON permutation.  DryGASCON
+is designed to provide some protection against power analysis.
+
+There are four algorithms in the DryGASCON family:
+
+\li DryGASCON128 is an authenticated encryption algorithm with a
+128-bit key, a 128-bit nonce, and a 128-bit authentication tag.
+\li DryGASCON256 is an authenticated encryption algorithm with a
+256-bit key, a 128-bit nonce, and a 128-256 authentication tag.
+\li DryGASCON128-HASH is a hash algorithm with a 256-bit output.
+\li DryGASCON256-HASH is a hash algorithm with a 512-bit output.
+
+<b>Recommendation:</b> The specification recommends DryGASCON128 and
+DryGASCON128-HASH.
 
 \section alg_elephant Elephant
 

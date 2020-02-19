@@ -24,6 +24,7 @@
 #include "ace.h"
 #include "ascon128.h"
 #include "comet.h"
+#include "drygascon.h"
 #include "estate.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
@@ -58,6 +59,8 @@ static const aead_cipher_t *const ciphers[] = {
     &comet_128_cham_cipher,
     &comet_64_cham_cipher,
     &comet_64_speck_cipher,
+    &drygascon128_cipher,
+    &drygascon256_cipher,
     &estate_twegift_cipher,
     &gift_cofb_cipher,
     &gimli24_cipher,
@@ -122,6 +125,8 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &ace_hash_algorithm,
     &ascon_hash_algorithm,
     &ascon_xof_algorithm,
+    &drygascon128_hash_algorithm,
+    &drygascon256_hash_algorithm,
     &esch_256_hash_algorithm,
     &esch_384_hash_algorithm,
     &gimli24_hash_algorithm,
