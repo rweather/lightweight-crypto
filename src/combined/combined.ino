@@ -51,6 +51,7 @@ of flash memory.
 #include "spix.h"
 #include "spoc.h"
 #include "spook.h"
+#include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
 #include "xoodyak.h"
@@ -410,6 +411,7 @@ void setup()
     perfCipher(&spook_128_384_su_cipher);
     perfCipher(&spook_128_512_mu_cipher);
     perfCipher(&spook_128_384_mu_cipher);
+    perfCipher(&subterranean_cipher);
     perfCipher(&sundae_gift_0_cipher);
     perfCipher(&sundae_gift_64_cipher);
     perfCipher(&sundae_gift_96_cipher);

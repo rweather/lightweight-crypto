@@ -155,7 +155,7 @@ The following table summarises the interesting properties of all
 <tr><td>SPIX</td><td>128</td><td>sLiSCP-light-256</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>SpoC</td><td>128</td><td>sLiSCP-light-256/192</td><td>SpoC</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Spook</td><td>128</td><td>Clyde-128/Shadow</td><td>S1P</td><td> </td><td>M</td><td> </td><td> </td></tr>
-<tr><td>Subterranean 2.0</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Subterranean</td><td>128</td><td>Subterranean</td><td>Duplex</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
 <tr><td>SUNDAE-GIFT</td><td>128</td><td>GIFT-128</td><td>SUNDAE</td><td>Y</td><td> </td><td> </td><td> </td></tr>
 <tr><td>TinyJAMBU</td><td>128/192/256</td><td>TinyJAMBU</td><td>TinyJAMBU</td><td> </td><td> </td><td>K</td><td> </td></tr>
 <tr><td>WAGE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -699,9 +699,22 @@ Even with the use of 256-bit keys, Spook only has 128-bit security.
 
 <b>Recommendation:</b> The specification recommends Spook-128-512-su.
 
-\section alg_subterranean Subterranean 2.0
+\section alg_subterranean Subterranean
 
-TODO
+<b>Definition:</b> \ref subterranean.h
+
+Subterranean (technically "Subterranean 2.0") is a family of
+algorithms built around the 257-bit Subterranean permutation:
+
+\li Subterranean is an authenticated encryption algorithm with a 128-bit
+key, a 128-bit nonce, and a 128-bit tag.
+\li Subterranean-Hash is a hash algorithm with a 256-bit output.
+
+The Subterranean permutation is intended for hardware implementation.
+It is not structured for efficient software implementation.  Despite
+that, this library's implementation is still fairly competitive,
+with similar performance to SKINNY-based authenticated encryption schemes
+like \ref alg_skinny_aead "SKINNY-AEAD".
 
 \section alg_sundae_gift SUNDAE-GIFT
 

@@ -150,6 +150,12 @@ SPOOK_FILES = \
     internal-spook.c \
     internal-spook.h \
     $(COMMON_FILES)
+SUBTERRANEAN_FILES = \
+    subterranean.c \
+    subterranean.h \
+    internal-subterranean.c \
+    internal-subterranean.h \
+    $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
     sundae-gift.h \
@@ -192,6 +198,7 @@ ALL_ALGORITHMS = \
     spix \
     spoc \
     spook \
+    subterranean \
     sundae_gift \
     tinyjambu \
     xoodyak
@@ -265,6 +272,9 @@ spoc:
 
 spook:
 	cp $(foreach file,$(SPOOK_FILES),$(SRCDIR)/$(file)) Spook
+
+subterranean:
+	cp $(foreach file,$(SUBTERRANEAN_FILES),$(SRCDIR)/$(file)) Subterranean
 
 sundae_gift:
 	cp $(foreach file,$(SUNDAE_GIFT_FILES),$(SRCDIR)/$(file)) SUNDAE-GIFT

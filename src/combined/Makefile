@@ -38,6 +38,7 @@ OBJS = \
         spix.o \
         spoc.o \
         spook.o \
+        subterranean.o \
         sundae-gift.o \
         tinyjambu.o \
         xoodyak.o \
@@ -58,6 +59,7 @@ OBJS = \
 	internal-skinny128.o \
         internal-sparkle.o \
         internal-spook.o \
+        internal-subterranean.o \
         internal-tinyjambu.o \
         internal-xoodoo.o
 
@@ -103,6 +105,7 @@ sparkle.o: sparkle.h internal-sparkle.h aead-common.h internal-util.h
 spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h
+subterranean.o: subterranean.h aead-common.h internal-util.h internal-subterranean.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
@@ -123,5 +126,6 @@ internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-util.h
 internal-sparkle.o: internal-sparkle.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h
+internal-subterranean.o: internal-subterranean.h internal-util.h
 internal-tinyjambu.o: internal-tinyjambu.h internal-util.h
 internal-xoodoo.o: internal-xoodoo.h internal-util.h

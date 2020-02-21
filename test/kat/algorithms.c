@@ -44,6 +44,7 @@
 #include "spix.h"
 #include "spoc.h"
 #include "spook.h"
+#include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
 #include "xoodyak.h"
@@ -109,6 +110,7 @@ static const aead_cipher_t *const ciphers[] = {
     &spook_128_384_su_cipher,
     &spook_128_512_mu_cipher,
     &spook_128_384_mu_cipher,
+    &subterranean_cipher,
     &sundae_gift_0_cipher,
     &sundae_gift_64_cipher,
     &sundae_gift_96_cipher,
@@ -139,6 +141,7 @@ static const aead_hash_algorithm_t *const hashes[] = {
     &saturnin_hash_algorithm,
     &skinny_tk2_hash_algorithm,
     &skinny_tk3_hash_algorithm,
+    &subterranean_hash_algorithm,
     &xoodyak_hash_algorithm,
     0
 };

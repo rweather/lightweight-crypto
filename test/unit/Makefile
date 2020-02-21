@@ -26,7 +26,8 @@ OBJS1 = \
     test-simp.o \
     test-skinny128.o \
     test-sliscp-light.o \
-    test-spook.o
+    test-spook.o \
+    test-subterranean.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
 
@@ -57,5 +58,6 @@ test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(TEST_CIPHER_INC)
 test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
+test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)
