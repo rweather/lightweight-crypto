@@ -65,7 +65,7 @@ extern "C" {
 #define PHOTON_BEETLE_NONCE_SIZE 16
 
 /**
- * \brief Size of the hahs output for PHOTON-Beetle-HASH.
+ * \brief Size of the hash output for PHOTON-Beetle-HASH.
  */
 #define PHOTON_BEETLE_HASH_SIZE 32
 

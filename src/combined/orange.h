@@ -59,7 +59,7 @@ extern "C" {
 #define ORANGE_ZEST_NONCE_SIZE 16
 
 /**
- * \brief Size of the hahs output for the ORANGISH hash algorithm.
+ * \brief Size of the hash output for the ORANGISH hash algorithm.
  */
 #define ORANGISH_HASH_SIZE 32
 
