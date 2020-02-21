@@ -148,7 +148,7 @@ columns report the results for 15 bytes of payload instead.
 
 The tests below were run on an ESP32 Dev Module running at 240MHz.
 The ordering is mostly the same as ARM Cortext M3 with a few reversals
-where the architecture differences gives some algorithms an added advantage.
+where the architectural differences gives some algorithms an added advantage.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
@@ -222,22 +222,30 @@ where the architecture differences gives some algorithms an added advantage.
 
 \section perf_overall Overall group rankings
 
-Based on the above data, we can roughly group the NIST submissions into
-those with similar performance.  Changes in CPU, optimisation options,
+Based on the above data, the NIST submissions can be roughly grouped with
+those of similar performance.  Changes in CPU, optimisation options,
 loop unrolling, or assembly code replacement might modify the rank of an
-algorithm.  Only the primary algorithm in each family is considered for
-this ranking.
+algorithm.
+
+Only the primary algorithm in each family is considered for this ranking.
+I took the average of the ARM Cortex M3 and ESP32 figures from the above
+tables to compute an average across different architectures.  I then grouped
+the algorithms into 0.1-wide buckets; for example everything with rank 3
+has an average between 0.30 and 0.39 ChaChaPoly units.
 
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
-<tr><td>1</td><td>COMET</td></tr>
-<tr><td>2</td><td>SPARKLE</td></tr>
-<tr><td>3</td><td>Gimli, SpoC, TinyJAMBU, Xoodyak</td></tr>
-<tr><td>4</td><td>ASCON, Spook</td></tr>
-<tr><td>5</td><td>SPIX, KNOT, GIFT-COFB, HYENA</td></tr>
-<tr><td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin, ACE, DryGASCON</td></tr>
-<tr><td>7</td><td>SKINNY-AEAD, LOTUS, Romulus, Oribatida, ORANGE, Subterranean</td></tr>
-<tr><td>8</td><td>Pyjamask, PHOTON-Beetle, ISAP</td></tr>
+<tr><td>15</td><td>COMET</td></tr>
+<tr><td>10</td><td>SPARKLE</td></tr>
+<tr><td>8</td><td>Xoodyak</td></tr>
+<tr><td>7</td><td>Gimli, TinyJAMBU</td></tr>
+<tr><td>6</td><td>SpoC, Spook</td></tr>
+<tr><td>5</td><td>ASCON</td></tr>
+<tr><td>4</td><td>KNOT</td></tr>
+<tr><td>3</td><td>GIFT-COFB, HYENA, SPIX</td></tr>
+<tr><td>2</td><td>DryGASCON, ESTATE, Oribatida, Saturnin, SUNDAE-GIFT</td></tr>
+<tr><td>1</td><td>ACE, LOTUS, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
+<tr><td>0</td><td>ISAP, PHOTON-Beetle, Pyjamask</td></tr>
 </table>
 
 */
