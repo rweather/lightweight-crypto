@@ -199,6 +199,8 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>Oribatida-256-64</em></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.22</td><td>0.23</td><td>0.16 </td></tr>
 <tr>
+<td><b><em>Subterranean</em></b></td><td>128</td><td>128</td><td>128</td><td>0.16</td><td>0.18</td><td>0.13</td><td>0.14</td><td>0.15 </td></tr>
+<tr>
 <td>Romulus-M3</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.16</td><td>0.19</td><td>0.14 </td></tr>
 <tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12 </td></tr>
@@ -234,7 +236,7 @@ Performance on ARM Cortex M3</h1>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
 <h1><a class="anchor" id="perf_esp32"></a>
 Performance on ESP32</h1>
-<p>The tests below were run on an ESP32 Dev Module running at 240MHz. The ordering is mostly the same as ARM Cortext M3 with a few reversals where the architecture differences gives some algorithms an added advantage.</p>
+<p>The tests below were run on an ESP32 Dev Module running at 240MHz. The ordering is mostly the same as ARM Cortext M3 with a few reversals where the architectural differences gives some algorithms an added advantage.</p>
 <table class="doxtable">
 <tr>
 <td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
@@ -337,6 +339,8 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
 <tr>
+<td><b><em>Subterranean</em></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.14</td><td>0.10</td><td>0.11</td><td>0.12 </td></tr>
+<tr>
 <td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.09</td><td>0.12</td><td>0.13</td><td>0.11 </td></tr>
 <tr>
 <td><b><em>Romulus-N1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.11</td><td>0.12</td><td>0.10 </td></tr>
@@ -371,31 +375,38 @@ Performance on ESP32</h1>
 </table>
 <h1><a class="anchor" id="perf_overall"></a>
 Overall group rankings</h1>
-<p>Based on the above data, we can roughly group the NIST submissions into those with similar performance. Changes in CPU, optimisation options, loop unrolling, or assembly code replacement might modify the rank of an algorithm. Only the primary algorithm in each family is considered for this ranking.</p>
+<p>Based on the above data, the NIST submissions can be roughly grouped with those of similar performance. Changes in CPU, optimisation options, loop unrolling, or assembly code replacement might modify the rank of an algorithm.</p>
+<p>Only the primary algorithm in each family is considered for this ranking. I took the average of the ARM Cortex M3 and ESP32 figures from the above tables to compute an average across different architectures. I then grouped the algorithms into 0.1-wide buckets; for example everything with rank 3 has an average between 0.30 and 0.39 ChaChaPoly units.</p>
 <table class="doxtable">
 <tr>
 <td>Rank</td><td>Algorithms </td></tr>
 <tr>
-<td>1</td><td>COMET </td></tr>
+<td>15</td><td>COMET </td></tr>
 <tr>
-<td>2</td><td>SPARKLE </td></tr>
+<td>10</td><td>SPARKLE </td></tr>
 <tr>
-<td>3</td><td>Gimli, SpoC, TinyJAMBU, Xoodyak </td></tr>
+<td>8</td><td>Xoodyak </td></tr>
 <tr>
-<td>4</td><td>ASCON, Spook </td></tr>
+<td>7</td><td>Gimli, TinyJAMBU </td></tr>
 <tr>
-<td>5</td><td>SPIX, KNOT, GIFT-COFB, HYENA </td></tr>
+<td>6</td><td>SpoC, Spook </td></tr>
 <tr>
-<td>6</td><td>ESTATE, SUNDAE-GIFT, Saturnin, ACE, DryGASCON </td></tr>
+<td>5</td><td>ASCON </td></tr>
 <tr>
-<td>7</td><td>SKINNY-AEAD, LOTUS, Romulus, Oribatida, ORANGE </td></tr>
+<td>4</td><td>KNOT </td></tr>
 <tr>
-<td>8</td><td>Pyjamask, PHOTON-Beetle, ISAP </td></tr>
+<td>3</td><td>GIFT-COFB, HYENA, SPIX </td></tr>
+<tr>
+<td>2</td><td>DryGASCON, ESTATE, Oribatida, Saturnin, SUNDAE-GIFT </td></tr>
+<tr>
+<td>1</td><td>ACE, LOTUS, ORANGE, Romulus, SKINNY-AEAD, Subterranean </td></tr>
+<tr>
+<td>0</td><td>ISAP, PHOTON-Beetle, Pyjamask </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Feb 19 2020 19:45:17 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 22 2020 09:54:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

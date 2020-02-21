@@ -7,5 +7,6 @@ var searchData=
   ['spix_2eh',['spix.h',['../spix_8h.html',1,'']]],
   ['spoc_2eh',['spoc.h',['../spoc_8h.html',1,'']]],
   ['spook_2eh',['spook.h',['../spook_8h.html',1,'']]],
+  ['subterranean_2eh',['subterranean.h',['../subterranean_8h.html',1,'']]],
   ['sundae_2dgift_2eh',['sundae-gift.h',['../sundae-gift_8h.html',1,'']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x',['x',['../structdrysponge128__state__t.html#ad87ddf144331cccc7472468876ce2397',1,'drysponge128_state_t::x()'],['../structdrysponge256__state__t.html#a067480e22b1a9d4a08950976b87ccd1d',1,'drysponge256_state_t::x()']]],
+  ['x',['x',['../structdrysponge128__state__t.html#ad87ddf144331cccc7472468876ce2397',1,'drysponge128_state_t::x()'],['../structdrysponge256__state__t.html#a067480e22b1a9d4a08950976b87ccd1d',1,'drysponge256_state_t::x()'],['../structsubterranean__state__t.html#a80f686b6cd22b3bc592bfa4dbfcdd517',1,'subterranean_state_t::x()']]],
   ['xoodoo_5fcols',['XOODOO_COLS',['../internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4',1,'internal-xoodoo.h']]],
   ['xoodoo_5fpermute',['xoodoo_permute',['../internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb',1,'internal-xoodoo.c']]],
   ['xoodoo_5frounds',['XOODOO_ROUNDS',['../internal-xoodoo_8h.html#a51f7946b80b810125499a4c25d61239c',1,'internal-xoodoo.h']]],
