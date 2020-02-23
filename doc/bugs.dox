@@ -156,10 +156,14 @@ instead of a left-rotation:
     row = (row >> n) | (row << (32-n));
 \endcode
 
-From a security perspective, the direction of rotation shouldn't matter
-so this bug isn't serious.  The test vectors in the specification
-were also clearly generated with a right-rotating implementation of
-the key schedule.  This library implements the bug as-is.
+It is debatable as to whether this is a bug or simply a consequence of
+the bit ordering (left most cells of the row positioned in the least
+significant bits).  From a security perspective, the direction of
+rotation probably doesn't matter so this issue isn't serious.
+
+The test vectors in the specification were also clearly generated with a
+right-rotating implementation of the key schedule.  This library implements
+the "bug" as-is.
 
 \section bugs_spix SPIX
 
