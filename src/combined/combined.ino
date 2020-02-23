@@ -36,6 +36,7 @@ of flash memory.
 #include "estate.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
+#include "grain128.h"
 #include "hyena.h"
 #include "isap.h"
 #include "knot.h"
@@ -374,6 +375,7 @@ void setup()
     perfCipher(&estate_twegift_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
+    perfCipher(&grain128_aead_cipher);
     perfCipher(&hyena_cipher);
     perfCipher(&knot_aead_128_256_cipher);
     perfCipher(&knot_aead_128_384_cipher);

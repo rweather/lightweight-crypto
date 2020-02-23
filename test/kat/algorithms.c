@@ -28,6 +28,7 @@
 #include "estate.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
+#include "grain128.h"
 #include "hyena.h"
 #include "isap.h"
 #include "knot.h"
@@ -65,6 +66,7 @@ static const aead_cipher_t *const ciphers[] = {
     &estate_twegift_cipher,
     &gift_cofb_cipher,
     &gimli24_cipher,
+    &grain128_aead_cipher,
     &hyena_cipher,
     &isap_keccak_128a_cipher,
     &isap_ascon_128a_cipher,

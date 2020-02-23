@@ -19,6 +19,7 @@ OBJS1 = \
     test-gift128.o \
     test-gift64.o \
     test-gimli24.o \
+    test-grain128.o \
     test-keccak.o \
     test-knot.o \
     test-photon256.o \
@@ -50,6 +51,7 @@ test-drygascon.o: $(LIBSRC_DIR)/internal-drysponge.h $(TEST_CIPHER_INC)
 test-gift128.o: $(LIBSRC_DIR)/internal-gift128.h $(TEST_CIPHER_INC)
 test-gift64.o: $(LIBSRC_DIR)/internal-gift64.h $(TEST_CIPHER_INC)
 test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(LIBSRC_DIR)/internal-gimli24.h $(TEST_CIPHER_INC)
+test-grain128.o: $(LIBSRC_DIR)/internal-grain128.h $(TEST_CIPHER_INC)
 test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
 test-photon256.o: $(LIBSRC_DIR)/internal-photon256.h $(TEST_CIPHER_INC)

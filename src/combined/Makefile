@@ -18,6 +18,7 @@ OBJS = \
         estate.o \
         gift-cofb.o \
 	gimli24.o \
+	grain128.o \
 	hyena.o \
         isap.o \
         knot-aead.o \
@@ -49,6 +50,7 @@ OBJS = \
 	internal-gift128.o \
 	internal-gift64.o \
 	internal-gimli24.o \
+	internal-grain128.o \
 	internal-keccak.o \
         internal-knot.o \
 	internal-masking.o \
@@ -87,6 +89,7 @@ drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
+grain128.o: grain128.h internal-grain128.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
 isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h internal-util.h
 knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
@@ -116,6 +119,7 @@ internal-drysponge.o: internal-drysponge.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-gimli24.o: internal-gimli24.h internal-util.h
+internal-grain128.o: internal-grain128.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-masking.o: internal-masking.h

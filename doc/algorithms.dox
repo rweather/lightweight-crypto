@@ -138,7 +138,7 @@ The following table summarises the interesting properties of all
 <tr><td>ForkAE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Gimli</td><td>256</td><td>Gimli</td><td>Duplex</td><td> </td><td> </td><td>Y</td><td>Digest/XOF</td></tr>
-<tr><td>Grain128-AEAD</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Grain-128AEAD</td><td>128</td><td>Grain-128</td><td>Grain-128AEAD</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>HYENA</td><td>128</td><td>GIFT-128</td><td>HyFB</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ISAP</td><td>128</td><td>ASCON/Keccak</td><td>Duplex</td><td> </td><td>Y</td><td> </td><td> </td></tr>
 <tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
@@ -328,7 +328,12 @@ GIMLI-24-HASH in both regular hashing and XOF modes.
 
 \section alg_grain_128aead Grain-128AEAD
 
-TODO
+<b>Definition:</b> \ref grain128.h
+
+Grain-128AEAD is an authenticated encryption algorithm based around a
+combination of a 128-bit linear feedback shift register (LFSR) and a
+128-bit non-linear feedback shift register (NFSR).  It is a member of
+the Grain family of stream ciphers.
 
 \section alg_hyena HYENA
 

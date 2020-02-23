@@ -20,44 +20,27 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "test-cipher.h"
+#include "aead-common.h"
 
-void test_chachapoly(void);
-void test_cham(void);
-void test_clyde128(void);
-void test_drygascon(void);
-void test_gift128(void);
-void test_gift64(void);
-void test_gimli24(void);
-void test_grain128(void);
-void test_keccak(void);
-void test_knot(void);
-void test_photon256(void);
-void test_pyjamask(void);
-void test_shadow(void);
-void test_simp(void);
-void test_skinny128(void);
-void test_sliscp_light(void);
-void test_subterranean(void);
-
-int main(int argc, char *argv[])
+int aead_check_tag
+    (unsigned char *plaintext, unsigned long long plaintext_len,
+     const unsigned char *tag1, const unsigned char *tag2,
+     unsigned size)
 {
-    test_chachapoly();
-    test_cham();
-    test_clyde128();
-    test_drygascon();
-    test_gift128();
-    test_gift64();
-    test_gimli24();
-    test_keccak();
-    test_knot();
-    test_photon256();
-    test_pyjamask();
-    test_shadow();
-    test_simp();
-    test_skinny128();
-    test_sliscp_light();
-    test_subterranean();
-    test_grain128();
-    return test_exit_result;
+    /* Set "accum" to -1 if the tags match, or 0 if they don't match */
+    int accum = 0;
+    while (size > 0) {
+        accum |= (*tag1++ ^ *tag2++);
+        --size;
+    }
+    accum = (accum - 1) >> 16;
+
+    /* Destroy the plaintext if the tag match failed */
+    while (plaintext_len > 0) {
+        *plaintext++ &= accum;
+        --plaintext_len;
+    }
+
+    /* If "accum" is 0, return -1, otherwise return 0 */
+    return ~accum;
 }

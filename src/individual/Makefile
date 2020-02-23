@@ -50,6 +50,12 @@ GIMLI_FILES = \
     internal-gimli24.c \
     internal-gimli24.h \
     $(COMMON_FILES)
+GRAIN128_FILES = \
+    grain128.c \
+    grain128.h \
+    internal-grain128.c \
+    internal-grain128.h \
+    $(COMMON_FILES)
 HYENA_FILES = \
     hyena.c \
     hyena.h \
@@ -183,6 +189,7 @@ ALL_ALGORITHMS = \
     estate \
     gift_cofb \
     gimli \
+    grain128 \
     hyena \
     isap \
     knot \
@@ -227,6 +234,9 @@ gift_cofb:
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
+
+grain128:
+	cp $(foreach file,$(GRAIN128_FILES),$(SRCDIR)/$(file)) Grain-128AEAD
 
 hyena:
 	cp $(foreach file,$(HYENA_FILES),$(SRCDIR)/$(file)) HYENA
