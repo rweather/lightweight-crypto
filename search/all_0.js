@@ -2,6 +2,7 @@ var searchData=
 [
   ['a',['A',['../unionkeccakp__200__state__t.html#aca7f7d56e61d703a093597efe9934480',1,'keccakp_200_state_t::A()'],['../unionkeccakp__400__state__t.html#a13c474394b9c82275a6f96a821349a0b',1,'keccakp_400_state_t::A()']]],
   ['absorb',['absorb',['../structaead__hash__algorithm__t.html#a593a4b9ce0a69249d4cd5c18a1dcc7ab',1,'aead_hash_algorithm_t']]],
+  ['accum',['accum',['../structgrain128__state__t.html#a51cad294f00cad502dc0e56e196b0f35',1,'grain128_state_t']]],
   ['ace_2eh',['ace.h',['../ace_8h.html',1,'']]],
   ['ace_5faead_5fdecrypt',['ace_aead_decrypt',['../ace_8h.html#a15d4477e76a9f349c6749797c0921f01',1,'ace.c']]],
   ['ace_5faead_5fencrypt',['ace_aead_encrypt',['../ace_8h.html#a83056d18f3c913ae273aa2f5b54030bb',1,'ace.c']]],
@@ -18,6 +19,7 @@ var searchData=
   ['ace_5ftag_5fsize',['ACE_TAG_SIZE',['../ace_8h.html#a0d986ae6b5b4d4986a867fadaea83103',1,'ace.h']]],
   ['aead_2dcommon_2eh',['aead-common.h',['../aead-common_8h.html',1,'']]],
   ['aead_5fcheck_5ftag',['aead_check_tag',['../aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a',1,'aead-common.c']]],
+  ['aead_5fcheck_5ftag_5fprecheck',['aead_check_tag_precheck',['../aead-common_8h.html#afa549735cf9aa743dc54071ee0124af4',1,'aead-common.c']]],
   ['aead_5fcipher_5fdecrypt_5ft',['aead_cipher_decrypt_t',['../aead-common_8h.html#a01a3b8ccfd367356c116837456b7875c',1,'aead-common.h']]],
   ['aead_5fcipher_5fencrypt_5ft',['aead_cipher_encrypt_t',['../aead-common_8h.html#ab497cc2c7580ebb183c9e8e8b4f0645c',1,'aead-common.h']]],
   ['aead_5fcipher_5ft',['aead_cipher_t',['../structaead__cipher__t.html',1,'']]],

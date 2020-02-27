@@ -152,14 +152,15 @@ Pyjamask</h1>
 <p>The reference implementation has a macro called "left_rotate" to perform this step but it actually performs a right-rotation by n bits instead of a left-rotation:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define left_rotate(row,n) \</span></div>
 <div class="line"><span class="preprocessor">    row = (row &gt;&gt; n) | (row &lt;&lt; (32-n));</span></div>
-</div><!-- fragment --><p>From a security perspective, the direction of rotation shouldn't matter so this bug isn't serious. The test vectors in the specification were also clearly generated with a right-rotating implementation of the key schedule. This library implements the bug as-is.</p>
+</div><!-- fragment --><p>It is debatable as to whether this is a bug or simply a consequence of the bit ordering (left most cells of the row positioned in the least significant bits). From a security perspective, the direction of rotation probably doesn't matter so this issue isn't serious.</p>
+<p>The test vectors in the specification were also clearly generated with a right-rotating implementation of the key schedule. This library implements the "bug" as-is.</p>
 <h1><a class="anchor" id="bugs_spix"></a>
 SPIX</h1>
 <p>Section 2.2.6 Finalization of the SPIX specification says that the final tag should be extracted from bytes 7, ..., 15, 24, ..., 31 of the finalized state. That 7 should be an 8 instead. The reference implementation is correct. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 22 2020 09:54:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 27 2020 17:15:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

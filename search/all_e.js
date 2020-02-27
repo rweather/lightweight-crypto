@@ -18,6 +18,7 @@ var searchData=
   ['photon_5fbeetle_5fnonce_5fsize',['PHOTON_BEETLE_NONCE_SIZE',['../photon-beetle_8h.html#a1134fece2c130c13f9fe19eaac4dd042',1,'photon-beetle.h']]],
   ['photon_5fbeetle_5ftag_5fsize',['PHOTON_BEETLE_TAG_SIZE',['../photon-beetle_8h.html#a658b6174aca088a3bdc0f40285fe0405',1,'photon-beetle.h']]],
   ['poly1305_5fstate_5ft',['poly1305_state_t',['../structpoly1305__state__t.html',1,'']]],
+  ['posn',['posn',['../structgrain128__state__t.html#a38cb945fe0ce8533c5546ff8d805f65f',1,'grain128_state_t']]],
   ['pyjamask_2eh',['pyjamask.h',['../pyjamask_8h.html',1,'']]],
   ['pyjamask_5f128_5faead_5fdecrypt',['pyjamask_128_aead_decrypt',['../pyjamask_8h.html#ae2fb997f97d698e6331a264832487cc5',1,'pyjamask.h']]],
   ['pyjamask_5f128_5faead_5fencrypt',['pyjamask_128_aead_encrypt',['../pyjamask_8h.html#a5b137d5de929ce6a2b3c5de568bdad81',1,'pyjamask.h']]],

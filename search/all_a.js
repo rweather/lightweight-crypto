@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['lfsr',['lfsr',['../structgrain128__state__t.html#a8c51b5c7dfef1c1cc7e763262c94725b',1,'grain128_state_t']]],
   ['locus_5faead_5fcipher',['locus_aead_cipher',['../lotus-locus_8h.html#a550a1d729328aac184a9f9a50cc8fc10',1,'lotus-locus.c']]],
   ['locus_5faead_5fdecrypt',['locus_aead_decrypt',['../lotus-locus_8h.html#abef4ee90b516ebc0fb022ea0286e8326',1,'lotus-locus.c']]],
   ['locus_5faead_5fencrypt',['locus_aead_encrypt',['../lotus-locus_8h.html#a4d827c5b7f3fb22d1c61a2aef7a0213c',1,'lotus-locus.c']]],

@@ -185,11 +185,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *tag1, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *tag2,</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;     <span class="keywordtype">unsigned</span> tag_len);</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="keywordtype">int</span> <a class="code" href="aead-common_8h.html#afa549735cf9aa743dc54071ee0124af4">aead_check_tag_precheck</a></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *plaintext, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> plaintext_len,</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *tag1, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *tag2,</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;     <span class="keywordtype">unsigned</span> tag_len, <span class="keywordtype">int</span> precheck);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="structaead__cipher__t_html"><div class="ttname"><a href="structaead__cipher__t.html">aead_cipher_t</a></div><div class="ttdoc">Meta-information about an AEAD cipher. </div><div class="ttdef"><b>Definition:</b> aead-common.h:174</div></div>
 <div class="ttc" id="structaead__hash__algorithm__t_html"><div class="ttname"><a href="structaead__hash__algorithm__t.html">aead_hash_algorithm_t</a></div><div class="ttdoc">Meta-information about a hash algorithm that is related to an AEAD. </div><div class="ttdef"><b>Definition:</b> aead-common.h:193</div></div>
 <div class="ttc" id="structaead__cipher__t_html_a4e11b79c1afc980a25e7c592e32f7a5d"><div class="ttname"><a href="structaead__cipher__t.html#a4e11b79c1afc980a25e7c592e32f7a5d">aead_cipher_t::nonce_len</a></div><div class="ttdeci">unsigned nonce_len</div><div class="ttdef"><b>Definition:</b> aead-common.h:178</div></div>
@@ -216,12 +221,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structaead__cipher__t_html_ad8ce25e44dc217e6acdf5eb29411a221"><div class="ttname"><a href="structaead__cipher__t.html#ad8ce25e44dc217e6acdf5eb29411a221">aead_cipher_t::encrypt</a></div><div class="ttdeci">aead_cipher_encrypt_t encrypt</div><div class="ttdef"><b>Definition:</b> aead-common.h:181</div></div>
 <div class="ttc" id="aead-common_8h_html_ac4ab721a972d5984b466aab2066a0190"><div class="ttname"><a href="aead-common_8h.html#ac4ab721a972d5984b466aab2066a0190">aead_xof_absorb_t</a></div><div class="ttdeci">void(* aead_xof_absorb_t)(void *state, const unsigned char *in, unsigned long long inlen)</div><div class="ttdoc">Aborbs more input data into an XOF state. </div><div class="ttdef"><b>Definition:</b> aead-common.h:142</div></div>
 <div class="ttc" id="structaead__cipher__t_html_a1c595cf981fe68d4d80eab2b4efd72ea"><div class="ttname"><a href="structaead__cipher__t.html#a1c595cf981fe68d4d80eab2b4efd72ea">aead_cipher_t::decrypt</a></div><div class="ttdeci">aead_cipher_decrypt_t decrypt</div><div class="ttdef"><b>Definition:</b> aead-common.h:182</div></div>
+<div class="ttc" id="aead-common_8h_html_afa549735cf9aa743dc54071ee0124af4"><div class="ttname"><a href="aead-common_8h.html#afa549735cf9aa743dc54071ee0124af4">aead_check_tag_precheck</a></div><div class="ttdeci">int aead_check_tag_precheck(unsigned char *plaintext, unsigned long long plaintext_len, const unsigned char *tag1, const unsigned char *tag2, unsigned tag_len, int precheck)</div><div class="ttdoc">Check an authentication tag in constant time with a previous check. </div><div class="ttdef"><b>Definition:</b> aead-common.c:49</div></div>
 <div class="ttc" id="structaead__hash__algorithm__t_html_a593a4b9ce0a69249d4cd5c18a1dcc7ab"><div class="ttname"><a href="structaead__hash__algorithm__t.html#a593a4b9ce0a69249d4cd5c18a1dcc7ab">aead_hash_algorithm_t::absorb</a></div><div class="ttdeci">aead_xof_absorb_t absorb</div><div class="ttdef"><b>Definition:</b> aead-common.h:203</div></div>
 <div class="ttc" id="aead-common_8h_html_af84795b30d21325e486f4b2864b1901f"><div class="ttname"><a href="aead-common_8h.html#af84795b30d21325e486f4b2864b1901f">aead_hash_update_t</a></div><div class="ttdeci">void(* aead_hash_update_t)(void *state, const unsigned char *in, unsigned long long inlen)</div><div class="ttdoc">Updates a hash state with more input data. </div><div class="ttdef"><b>Definition:</b> aead-common.h:122</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 22 2020 09:54:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 27 2020 17:15:08 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

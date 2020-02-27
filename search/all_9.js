@@ -47,5 +47,6 @@ var searchData=
   ['knot_5fhash_5f512_5f512',['knot_hash_512_512',['../knot_8h.html#a60bd604f095367133fc7d30558b81b38',1,'knot-hash.c']]],
   ['knot_5fhash_5f512_5f512_5falgorithm',['knot_hash_512_512_algorithm',['../knot_8h.html#a315269670421991a9e7fcdccb428637e',1,'knot-hash.c']]],
   ['knot_5fhash_5f512_5fsize',['KNOT_HASH_512_SIZE',['../knot_8h.html#aa2176010c01f3bc72d277dbb219e8cfc',1,'knot.h']]],
-  ['knot_5fpermute_5ft',['knot_permute_t',['../internal-knot_8h.html#a2c72e4077645389642c8e475da770326',1,'internal-knot.h']]]
+  ['knot_5fpermute_5ft',['knot_permute_t',['../internal-knot_8h.html#a2c72e4077645389642c8e475da770326',1,'internal-knot.h']]],
+  ['ks',['ks',['../structgrain128__state__t.html#abad60f27db26e18e720267dd3f83253b',1,'grain128_state_t']]]
 ];

@@ -7,6 +7,7 @@ var searchData=
   ['ace_5fhash_5finit',['ace_hash_init',['../ace_8h.html#a569b9563bba9d9556feccf4ee0697bf2',1,'ace.c']]],
   ['ace_5fhash_5fupdate',['ace_hash_update',['../ace_8h.html#a145971b090cdf5f76bdf0f1433c82f07',1,'ace.c']]],
   ['aead_5fcheck_5ftag',['aead_check_tag',['../aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a',1,'aead-common.c']]],
+  ['aead_5fcheck_5ftag_5fprecheck',['aead_check_tag_precheck',['../aead-common_8h.html#afa549735cf9aa743dc54071ee0124af4',1,'aead-common.c']]],
   ['aead_5fmasking_5fgenerate',['aead_masking_generate',['../internal-masking_8h.html#a3c4cf694df53d2968e7809e3fb4012e5',1,'internal-masking.c']]],
   ['aead_5fmasking_5fgenerate_5f32',['aead_masking_generate_32',['../internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8',1,'internal-masking.c']]],
   ['aead_5fmasking_5finit',['aead_masking_init',['../internal-masking_8h.html#a920e5e0a102d6265a336d65c69fb048b',1,'internal-masking.c']]],

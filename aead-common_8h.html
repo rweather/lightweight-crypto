@@ -151,6 +151,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aee68ca38ca62dbae8e52072af87e4f0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-common_8h.html#aee68ca38ca62dbae8e52072af87e4f0a">aead_check_tag</a> (unsigned char *plaintext, unsigned long long plaintext_len, const unsigned char *tag1, const unsigned char *tag2, unsigned tag_len)</td></tr>
 <tr class="memdesc:aee68ca38ca62dbae8e52072af87e4f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check an authentication tag in constant time.  <a href="#aee68ca38ca62dbae8e52072af87e4f0a">More...</a><br/></td></tr>
 <tr class="separator:aee68ca38ca62dbae8e52072af87e4f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa549735cf9aa743dc54071ee0124af4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-common_8h.html#afa549735cf9aa743dc54071ee0124af4">aead_check_tag_precheck</a> (unsigned char *plaintext, unsigned long long plaintext_len, const unsigned char *tag1, const unsigned char *tag2, unsigned tag_len, int precheck)</td></tr>
+<tr class="memdesc:afa549735cf9aa743dc54071ee0124af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check an authentication tag in constant time with a previous check.  <a href="#afa549735cf9aa743dc54071ee0124af4">More...</a><br/></td></tr>
+<tr class="separator:afa549735cf9aa743dc54071ee0124af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Definitions that are common across AEAD schemes. </p>
@@ -421,10 +424,76 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afa549735cf9aa743dc54071ee0124af4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int aead_check_tag_precheck </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>plaintext_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>tag1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>tag2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>tag_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>precheck</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check an authentication tag in constant time with a previous check. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Points to the plaintext data. </td></tr>
+    <tr><td class="paramname">plaintext_len</td><td>Length of the plaintext in bytes. </td></tr>
+    <tr><td class="paramname">tag1</td><td>First tag to compare. </td></tr>
+    <tr><td class="paramname">tag2</td><td>Second tag to compare. </td></tr>
+    <tr><td class="paramname">tag_len</td><td>Length of the tags in bytes. </td></tr>
+    <tr><td class="paramname">precheck</td><td>Set to -1 if previous check succeeded or 0 if it failed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns -1 if the tag check failed or 0 if the check succeeded.</dd></dl>
+<p>If the tag check fails, then the <em>plaintext</em> will also be zeroed to prevent it from being used accidentally by the application when the ciphertext was invalid.</p>
+<p>This version can be used to incorporate other information about the correctness of the plaintext into the final result. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 22 2020 09:54:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 27 2020 17:15:08 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

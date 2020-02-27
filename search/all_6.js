@@ -51,5 +51,18 @@ var searchData=
   ['gimli24_5fnonce_5fsize',['GIMLI24_NONCE_SIZE',['../gimli24_8h.html#a7618c63ac7eb4274c1a38b7850a8d5f4',1,'gimli24.h']]],
   ['gimli24_5fpermute',['gimli24_permute',['../internal-gimli24_8h.html#addf68dcd26c84960768af4a6e7a976fc',1,'internal-gimli24.c']]],
   ['gimli24_5fstate_5ft',['gimli24_state_t',['../uniongimli24__state__t.html',1,'']]],
-  ['gimli24_5ftag_5fsize',['GIMLI24_TAG_SIZE',['../gimli24_8h.html#a611257df6fe9fa59149153dfae6462dd',1,'gimli24.h']]]
+  ['gimli24_5ftag_5fsize',['GIMLI24_TAG_SIZE',['../gimli24_8h.html#a611257df6fe9fa59149153dfae6462dd',1,'gimli24.h']]],
+  ['grain128_2eh',['grain128.h',['../grain128_8h.html',1,'']]],
+  ['grain128_5faead_5fcipher',['grain128_aead_cipher',['../grain128_8h.html#a5b92e19d006283c93ac24619a3e713f4',1,'grain128.c']]],
+  ['grain128_5faead_5fdecrypt',['grain128_aead_decrypt',['../grain128_8h.html#a2fad29d2e493e26a7f3a1667ce09cc62',1,'grain128.c']]],
+  ['grain128_5faead_5fencrypt',['grain128_aead_encrypt',['../grain128_8h.html#ab7ae0b5a3bc56b377b57f549c89cbea2',1,'grain128.c']]],
+  ['grain128_5fauthenticate',['grain128_authenticate',['../internal-grain128_8h.html#aff9aa77629794aea8a81ecf38267173a',1,'internal-grain128.c']]],
+  ['grain128_5fcompute_5ftag',['grain128_compute_tag',['../internal-grain128_8h.html#a88947e94b7050dc5ec8719ff0971a4bc',1,'internal-grain128.c']]],
+  ['grain128_5fdecrypt',['grain128_decrypt',['../internal-grain128_8h.html#a73cf4ed4bc18154d07d71c8ffb8e1e1d',1,'internal-grain128.c']]],
+  ['grain128_5fencrypt',['grain128_encrypt',['../internal-grain128_8h.html#a5eea18f1ba3dea68807b402432d2c431',1,'internal-grain128.c']]],
+  ['grain128_5fkey_5fsize',['GRAIN128_KEY_SIZE',['../grain128_8h.html#ab394b591a8017175ba26601a7a64445c',1,'grain128.h']]],
+  ['grain128_5fnonce_5fsize',['GRAIN128_NONCE_SIZE',['../grain128_8h.html#a3e6bb766668175bac5e638672e237df8',1,'grain128.h']]],
+  ['grain128_5fsetup',['grain128_setup',['../internal-grain128_8h.html#ab8badf7d15868acb24c26bd3f78cd125',1,'internal-grain128.c']]],
+  ['grain128_5fstate_5ft',['grain128_state_t',['../structgrain128__state__t.html',1,'']]],
+  ['grain128_5ftag_5fsize',['GRAIN128_TAG_SIZE',['../grain128_8h.html#aa27d8a6d607c7098ec52e6c6227e42ba',1,'grain128.h']]]
 ];

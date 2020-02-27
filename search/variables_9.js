@@ -9,5 +9,6 @@ var searchData=
   ['knot_5fhash_5f256_5f256_5falgorithm',['knot_hash_256_256_algorithm',['../knot_8h.html#a382296d7bea79fc0fc0ad5b8ce33f7ea',1,'knot-hash.c']]],
   ['knot_5fhash_5f256_5f384_5falgorithm',['knot_hash_256_384_algorithm',['../knot_8h.html#a17ae3aec91add8bb74c278f8fdcff53b',1,'knot-hash.c']]],
   ['knot_5fhash_5f384_5f384_5falgorithm',['knot_hash_384_384_algorithm',['../knot_8h.html#ab7b8a45898f99ad334561c7f6c27a91e',1,'knot-hash.c']]],
-  ['knot_5fhash_5f512_5f512_5falgorithm',['knot_hash_512_512_algorithm',['../knot_8h.html#a315269670421991a9e7fcdccb428637e',1,'knot-hash.c']]]
+  ['knot_5fhash_5f512_5f512_5falgorithm',['knot_hash_512_512_algorithm',['../knot_8h.html#a315269670421991a9e7fcdccb428637e',1,'knot-hash.c']]],
+  ['ks',['ks',['../structgrain128__state__t.html#abad60f27db26e18e720267dd3f83253b',1,'grain128_state_t']]]
 ];
