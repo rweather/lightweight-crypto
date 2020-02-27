@@ -337,10 +337,11 @@ int drygascon256_aead_decrypt
         c += temp;
     }
 
-    /* Check the authentication tag */
-    result = aead_check_tag(mtemp, *mlen, state.r.B, c, 16);
+    /* Check the authentication tag which is split into two pieces */
+    result = aead_check_tag(0, 0, state.r.B, c, 16);
     drysponge256_g(&state);
-    return result | aead_check_tag(mtemp, *mlen, state.r.B, c + 16, 16);
+    return aead_check_tag_precheck
+        (mtemp, *mlen, state.r.B, c + 16, 16, ~result);
 }
 
 /**

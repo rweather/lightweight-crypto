@@ -119,7 +119,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.14</td><td>0.25</td><td>0.27</td><td>0.18</td></tr>
 <tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.27</td><td>0.18</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.13</td><td>0.15</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
-<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.12</td><td>0.13</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
+<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.12</td><td>0.14</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
 <tr><td><b><i>Romulus-N1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.18</td><td>0.19</td><td>0.16</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.22</td><td>0.23</td><td>0.16</td></tr>
 <tr><td><b><i>Subterranean</i></b></td><td>128</td><td>128</td><td>128</td><td>0.16</td><td>0.18</td><td>0.13</td><td>0.14</td><td>0.15</td></tr>
@@ -193,7 +193,7 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24</td></tr>
 <tr><td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.17</td><td>0.19</td><td>0.28</td><td>0.30</td><td>0.22</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.18</td><td>0.21</td><td>0.21</td><td>0.23</td><td>0.21</td></tr>
-<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.26</td><td>0.21</td></tr>
+<tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.27</td><td>0.21</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.27</td><td>0.29</td><td>0.19</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.28</td><td>0.18</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
