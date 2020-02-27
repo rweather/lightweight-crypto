@@ -16,6 +16,7 @@ OBJS = \
         comet.o \
         drygascon.o \
         estate.o \
+        forkae.o \
         gift-cofb.o \
 	gimli24.o \
 	grain128.o \
@@ -47,6 +48,7 @@ OBJS = \
 	internal-chachapoly.o \
 	internal-cham.o \
 	internal-drysponge.o \
+	internal-forkskinny.o \
 	internal-gift128.o \
 	internal-gift64.o \
 	internal-gimli24.o \
@@ -87,6 +89,7 @@ ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 comet.o: comet.h aead-common.h internal-cham.h internal-util.h
 drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
+forkae.o: forkae.h aead-common.h internal-forkskinny.h internal-forkae-paef.h internal-forkae-saef.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
 grain128.o: grain128.h internal-grain128.h aead-common.h internal-util.h
@@ -116,6 +119,7 @@ internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h
 internal-drysponge.o: internal-drysponge.h internal-util.h
+internal-forkskinny.o: internal-forkskinny.h internal-skinnyutil.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-gimli24.o: internal-gimli24.h internal-util.h
@@ -127,7 +131,7 @@ internal-photon256.o: internal-photon256.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
 internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
-internal-skinny128.o: internal-skinny128.h internal-util.h
+internal-skinny128.o: internal-skinny128.h internal-skinnyutil.h internal-util.h
 internal-sparkle.o: internal-sparkle.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h
 internal-subterranean.o: internal-subterranean.h internal-util.h

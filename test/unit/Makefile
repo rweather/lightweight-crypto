@@ -16,6 +16,7 @@ OBJS1 = \
     test-chachapoly.o \
     test-cham.o \
     test-drygascon.o \
+    test-forkskinny.o \
     test-gift128.o \
     test-gift64.o \
     test-gimli24.o \
@@ -48,6 +49,7 @@ TEST_CIPHER_INC = test-cipher.h $(LIBSRC_DIR)/aead-common.h
 test-chachapoly.o: $(LIBSRC_DIR)/internal-chachapoly.h $(TEST_CIPHER_INC)
 test-cham.o: $(LIBSRC_DIR)/internal-cham.h $(TEST_CIPHER_INC)
 test-drygascon.o: $(LIBSRC_DIR)/internal-drysponge.h $(TEST_CIPHER_INC)
+test-forkskinny.o: $(LIBSRC_DIR)/internal-forkskinny.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)
 test-gift128.o: $(LIBSRC_DIR)/internal-gift128.h $(TEST_CIPHER_INC)
 test-gift64.o: $(LIBSRC_DIR)/internal-gift64.h $(TEST_CIPHER_INC)
 test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(LIBSRC_DIR)/internal-gimli24.h $(TEST_CIPHER_INC)
@@ -57,7 +59,7 @@ test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
 test-photon256.o: $(LIBSRC_DIR)/internal-photon256.h $(TEST_CIPHER_INC)
 test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
 test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
-test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(TEST_CIPHER_INC)
+test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)
 test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)

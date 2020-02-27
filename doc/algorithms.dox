@@ -135,7 +135,7 @@ The following table summarises the interesting properties of all
 <tr><td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td> </td><td>Y</td><td>K</td><td>Digest</td></tr>
 <tr><td>Elephant</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td> </td><td> </td><td> </td></tr>
-<tr><td>ForkAE</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ForkAE</td><td>128</td><td>ForkSkinny</td><td>PAEF/SAEF</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>Gimli</td><td>256</td><td>Gimli</td><td>Duplex</td><td> </td><td> </td><td>Y</td><td>Digest/XOF</td></tr>
 <tr><td>Grain-128AEAD</td><td>128</td><td>Grain-128</td><td>Grain-128AEAD</td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -290,7 +290,43 @@ library.
 
 \section alg_forkae ForkAE
 
-TODO
+<b>Definition:</b> \ref forkae.h
+
+ForkAE is a family of authenticated encryption algorithms based on a
+modified version of the SKINNY tweakable block cipher.  The modifications
+introduce "forking" where each input block produces two output blocks
+for use in encryption and authentication.  There are six members in
+the ForkAE family:
+
+\li PAEF-ForkSkinny-64-192 has a 128-bit key, a 48-bit nonce, and a
+64-bit authentication tag.  The associated data and plaintext are
+limited to 2<sup>16</sup> bytes.
+\li PAEF-ForkSkinny-128-192 has a 128-bit key, a 48-bit nonce, and a
+128-bit authentication tag.  The associated data and plaintext are
+limited to 2<sup>17</sup> bytes.
+\li PAEF-ForkSkinny-128-256 has a 128-bit key, a 112-bit nonce, and a
+128-bit authentication tag.  The associated data and plaintext are
+limited to 2<sup>17</sup> bytes.
+\li PAEF-ForkSkinny-128-288 has a 128-bit key, a 104-bit nonce, and a
+128-bit authentication tag.  The associated data and plaintext are
+limited to 2<sup>57</sup> bytes.
+\li SAEF-ForkSkinny-128-192 has a 128-bit key, a 56-bit nonce, and a
+128-bit authentication tag.  The associated data and plaintext may be
+unlimited in size.
+\li SAEF-ForkSkinny-128-256 has a 128-bit key, a 120-bit nonce, and a
+128-bit authentication tag.  The associated data and plaintext may be
+unlimited in size.
+
+The PAEF variants support parallel encryption and decryption for
+higher throughput.  The SAEF variants encrypt or decrypt blocks
+sequentially.
+
+ForkAE is designed to be efficient on small packet sizes so most of
+the PAEF algorithms have a limit of 64k or 128k on the amount of
+payload in a single packet.  Obviously the input can be split into
+separate packets for larger amounts of data.
+
+<b>Recommendation:</b> The specification recommends PAEF-ForkSkinny-128-288.
 
 \section alg_gift_cofb GIFT-COFB
 

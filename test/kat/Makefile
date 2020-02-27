@@ -75,6 +75,10 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) ORANGISH ORANGISH.txt
 	@$(RUN_KAT) Oribatida-256-64 Oribatida-256-64.txt
 	@$(RUN_KAT) Oribatida-192-96 Oribatida-192-96.txt
+	@$(RUN_KAT) PAEF-ForkSkinny-64-192 PAEF-ForkSkinny-64-192.txt
+	@$(RUN_KAT) PAEF-ForkSkinny-128-192 PAEF-ForkSkinny-128-192.txt
+	@$(RUN_KAT) PAEF-ForkSkinny-128-256 PAEF-ForkSkinny-128-256.txt
+	@$(RUN_KAT) PAEF-ForkSkinny-128-288 PAEF-ForkSkinny-128-288.txt
 	@$(RUN_KAT) PHOTON-Beetle-AEAD-ENC-128 PHOTON-Beetle-AEAD-ENC-128.txt
 	@$(RUN_KAT) PHOTON-Beetle-AEAD-ENC-32 PHOTON-Beetle-AEAD-ENC-32.txt
 	@$(RUN_KAT) PHOTON-Beetle-HASH PHOTON-Beetle-HASH.txt
@@ -88,6 +92,8 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) Romulus-M1 Romulus-M1.txt
 	@$(RUN_KAT) Romulus-M2 Romulus-M2.txt
 	@$(RUN_KAT) Romulus-M3 Romulus-M3.txt
+	@$(RUN_KAT) SAEF-ForkSkinny-128-192 SAEF-ForkSkinny-128-192.txt
+	@$(RUN_KAT) SAEF-ForkSkinny-128-256 SAEF-ForkSkinny-128-256.txt
 	@$(RUN_KAT) SATURNIN-CTR-Cascade SATURNIN-CTR-Cascade.txt
 	@$(RUN_KAT) SATURNIN-Short SATURNIN-Short.txt --max-ad=0 --max-pt=15
 	@$(RUN_KAT) SATURNIN-Hash SATURNIN-Hash.txt

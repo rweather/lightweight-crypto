@@ -26,6 +26,7 @@ void test_chachapoly(void);
 void test_cham(void);
 void test_clyde128(void);
 void test_drygascon(void);
+void test_forkskinny(void);
 void test_gift128(void);
 void test_gift64(void);
 void test_gimli24(void);
@@ -46,9 +47,11 @@ int main(int argc, char *argv[])
     test_cham();
     test_clyde128();
     test_drygascon();
+    test_forkskinny();
     test_gift128();
     test_gift64();
     test_gimli24();
+    test_grain128();
     test_keccak();
     test_knot();
     test_photon256();
@@ -58,6 +61,5 @@ int main(int argc, char *argv[])
     test_skinny128();
     test_sliscp_light();
     test_subterranean();
-    test_grain128();
     return test_exit_result;
 }

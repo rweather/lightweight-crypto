@@ -308,7 +308,7 @@ static int test_cipher_inner
     }
     memset(temp1, 0xAA, ciphertext->size);
     memcpy(temp2, ciphertext->data, ciphertext->size);
-    temp2[plaintext->size] ^= 0x01; /* Corrupt first byte of the tag */
+    temp2[ciphertext->size - 1] ^= 0x01; /* Corrupt last byte of the tag */
     len = 0xBADBEEF;
     result = (*(alg->decrypt))
         (temp1, &len, 0, temp2, ciphertext->size,

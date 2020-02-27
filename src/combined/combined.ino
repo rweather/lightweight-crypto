@@ -34,6 +34,7 @@ of flash memory.
 #include "comet.h"
 #include "drygascon.h"
 #include "estate.h"
+#include "forkae.h"
 #include "gift-cofb.h"
 #include "gimli24.h"
 #include "grain128.h"
@@ -373,6 +374,12 @@ void setup()
     perfCipher(&drygascon128_cipher);
     perfCipher(&drygascon256_cipher);
     perfCipher(&estate_twegift_cipher);
+    perfCipher(&forkae_paef_64_192_cipher);
+    perfCipher(&forkae_paef_128_192_cipher);
+    perfCipher(&forkae_paef_128_256_cipher);
+    perfCipher(&forkae_paef_128_288_cipher);
+    perfCipher(&forkae_saef_128_192_cipher);
+    perfCipher(&forkae_saef_128_256_cipher);
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&grain128_aead_cipher);

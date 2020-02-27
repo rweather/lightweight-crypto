@@ -38,6 +38,15 @@ ESTATE_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     $(COMMON_FILES)
+FORKAE_FILES = \
+    forkae.c \
+    forkae.h \
+    internal-forkae-paef.h \
+    internal-forkae-saef.h \
+    internal-forkskinny.c \
+    internal-forkskinny.h \
+    internal-skinnyutil.h \
+    $(COMMON_FILES)
 GIFT_COFB_FILES = \
     gift-cofb.c \
     gift-cofb.h \
@@ -119,6 +128,7 @@ ROMULUS_FILES = \
     romulus.h \
     internal-skinny128.c \
     internal-skinny128.h \
+    internal-skinnyutil.h \
     $(COMMON_FILES)
 SATURNIN_FILES = \
     saturnin.c \
@@ -131,6 +141,7 @@ SKINNY_AEAD_FILES = \
     skinny-hash.h \
     internal-skinny128.c \
     internal-skinny128.h \
+    internal-skinnyutil.h \
     $(COMMON_FILES)
 SPARKLE_FILES = \
     sparkle.c \
@@ -187,6 +198,7 @@ ALL_ALGORITHMS = \
     comet \
     drygascon \
     estate \
+    forkae \
     gift_cofb \
     gimli \
     grain128 \
@@ -228,6 +240,9 @@ drygascon:
 
 estate:
 	cp $(foreach file,$(ESTATE_FILES),$(SRCDIR)/$(file)) ESTATE
+
+forkae:
+	cp $(foreach file,$(FORKAE_FILES),$(SRCDIR)/$(file)) ForkAE
 
 gift_cofb:
 	cp $(foreach file,$(GIFT_COFB_FILES),$(SRCDIR)/$(file)) GIFT-COFB

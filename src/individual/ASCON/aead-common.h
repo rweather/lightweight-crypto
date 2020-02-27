@@ -225,6 +225,30 @@ int aead_check_tag
      const unsigned char *tag1, const unsigned char *tag2,
      unsigned tag_len);
 
+/**
+ * \brief Check an authentication tag in constant time with a previous check.
+ *
+ * \param plaintext Points to the plaintext data.
+ * \param plaintext_len Length of the plaintext in bytes.
+ * \param tag1 First tag to compare.
+ * \param tag2 Second tag to compare.
+ * \param tag_len Length of the tags in bytes.
+ * \param precheck Set to -1 if previous check succeeded or 0 if it failed.
+ *
+ * \return Returns -1 if the tag check failed or 0 if the check succeeded.
+ *
+ * If the tag check fails, then the \a plaintext will also be zeroed to
+ * prevent it from being used accidentally by the application when the
+ * ciphertext was invalid.
+ *
+ * This version can be used to incorporate other information about the
+ * correctness of the plaintext into the final result.
+ */
+int aead_check_tag_precheck
+    (unsigned char *plaintext, unsigned long long plaintext_len,
+     const unsigned char *tag1, const unsigned char *tag2,
+     unsigned tag_len, int precheck);
+
 #ifdef __cplusplus
 }
 #endif
