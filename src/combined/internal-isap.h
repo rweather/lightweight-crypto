@@ -245,3 +245,5 @@ int ISAP_CONCAT(ISAP_ALG_NAME,_aead_decrypt)
 #undef ISAP_sK
 #undef ISAP_STATE
 #undef ISAP_PERMUTE
+#undef ISAP_CONCAT_INNER
+#undef ISAP_CONCAT
