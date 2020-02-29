@@ -25,6 +25,7 @@
 #include "ascon128.h"
 #include "comet.h"
 #include "drygascon.h"
+#include "elephant.h"
 #include "estate.h"
 #include "forkae.h"
 #include "gift-cofb.h"
@@ -64,6 +65,9 @@ static const aead_cipher_t *const ciphers[] = {
     &comet_64_speck_cipher,
     &drygascon128_cipher,
     &drygascon256_cipher,
+    &dumbo_cipher,
+    &jumbo_cipher,
+    &delirium_cipher,
     &estate_twegift_cipher,
     &forkae_paef_64_192_cipher,
     &forkae_paef_128_192_cipher,

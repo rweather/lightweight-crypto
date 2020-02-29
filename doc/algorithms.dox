@@ -133,7 +133,7 @@ The following table summarises the interesting properties of all
 <tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
 <tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td> </td><td>Y</td><td>K</td><td>Digest</td></tr>
-<tr><td>Elephant</td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Elephant</td><td>128</td><td>Spongent/Keccak</td><td>Elephant</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td> </td><td> </td><td> </td></tr>
 <tr><td>ForkAE</td><td>128</td><td>ForkSkinny</td><td>PAEF/SAEF</td><td> </td><td> </td><td> </td><td> </td></tr>
 <tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td></tr>
@@ -259,7 +259,19 @@ DryGASCON128-HASH.
 
 \section alg_elephant Elephant
 
-TODO
+<b>Definition:</b> \ref elephant.h
+
+Elephant is a family of authenticated encryption algorithms based
+around the Spongent-pi and Keccak permutations.
+
+\li Dumbo has a 128-bit key, a 96-bit nonce, and a 64-bit authentication
+tag.  It is based around the Spongent-pi[160] permutation.
+\li Jumbo has a 128-bit key, a 96-bit nonce, and a 64-bit authentication
+tag.  It is based around the Spongent-pi[176] permutation.
+\li Delirium has a 128-bit key, a 96-bit nonce, and a 128-bit authentication
+tag.  It is based around the Keccak[200] permutation.
+
+<b>Recommendation:</b> The specification recommends Dumbo.
 
 \section alg_estate ESTATE
 

@@ -35,6 +35,16 @@ extern "C" {
 #endif
 
 /**
+ * \brief Size of the state for the Keccak-p[200] permutation.
+ */
+#define KECCAKP_200_STATE_SIZE 25
+
+/**
+ * \brief Size of the state for the Keccak-p[400] permutation.
+ */
+#define KECCAKP_400_STATE_SIZE 50
+
+/**
  * \brief Structure of the internal state of the Keccak-p[200] permutation.
  */
 typedef union

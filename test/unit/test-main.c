@@ -39,6 +39,7 @@ void test_shadow(void);
 void test_simp(void);
 void test_skinny128(void);
 void test_sliscp_light(void);
+void test_spongent(void);
 void test_subterranean(void);
 
 int main(int argc, char *argv[])
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
     test_simp();
     test_skinny128();
     test_sliscp_light();
+    test_spongent();
     test_subterranean();
     return test_exit_result;
 }

@@ -32,6 +32,14 @@ DRYGASCON_FILES = \
     internal-drysponge.c \
     internal-drysponge.h \
     $(COMMON_FILES)
+ELEPHANT_FILES = \
+    elephant.c \
+    elephant.h \
+    internal-keccak.c \
+    internal-keccak.h \
+    internal-spongent.c \
+    internal-spongent.h \
+    $(COMMON_FILES)
 ESTATE_FILES = \
     estate.c \
     estate.h \
@@ -197,6 +205,7 @@ ALL_ALGORITHMS = \
     ascon \
     comet \
     drygascon \
+    elephant \
     estate \
     forkae \
     gift_cofb \
@@ -237,6 +246,9 @@ comet:
 
 drygascon:
 	cp $(foreach file,$(DRYGASCON_FILES),$(SRCDIR)/$(file)) DryGASCON
+
+elephant:
+	cp $(foreach file,$(ELEPHANT_FILES),$(SRCDIR)/$(file)) Elephant
 
 estate:
 	cp $(foreach file,$(ESTATE_FILES),$(SRCDIR)/$(file)) ESTATE

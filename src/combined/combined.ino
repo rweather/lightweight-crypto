@@ -33,6 +33,7 @@ of flash memory.
 #include "ascon128.h"
 #include "comet.h"
 #include "drygascon.h"
+#include "elephant.h"
 #include "estate.h"
 #include "forkae.h"
 #include "gift-cofb.h"
@@ -437,6 +438,9 @@ void setup()
     decrypt_16_ref /= 10;
     PERF_LOOPS = DEFAULT_PERF_LOOPS / 10;
     PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16 / 10;
+    perfCipher(&dumbo_cipher);
+    perfCipher(&jumbo_cipher);
+    perfCipher(&delirium_cipher);
     perfCipher(&isap_ascon_128a_cipher);
     perfCipher(&isap_ascon_128_cipher);
     perfCipher(&isap_keccak_128a_cipher);

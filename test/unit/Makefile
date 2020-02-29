@@ -28,6 +28,7 @@ OBJS1 = \
     test-simp.o \
     test-skinny128.o \
     test-sliscp-light.o \
+    test-spongent.o \
     test-spook.o \
     test-subterranean.o
 
@@ -61,6 +62,7 @@ test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
 test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)
 test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)
+test-spongent.o: $(LIBSRC_DIR)/internal-spongent.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
