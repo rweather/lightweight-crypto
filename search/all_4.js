@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['elephant_2eh',['elephant.h',['../elephant_8h.html',1,'']]],
   ['encrypt',['encrypt',['../structaead__cipher__t.html#ad8ce25e44dc217e6acdf5eb29411a221',1,'aead_cipher_t']]],
   ['esch_5f256_5fhash',['esch_256_hash',['../sparkle_8h.html#ae061a2b568838902040b40804af2941c',1,'sparkle.c']]],
   ['esch_5f256_5fhash_5falgorithm',['esch_256_hash_algorithm',['../sparkle_8h.html#a576dd0a97cfc84bdb6a3cdd14f8c51ba',1,'sparkle.c']]],

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['mode',['mode',['../unionascon__hash__state__t.html#a4306ab1bd28e777ef86eafe4ef02e7da',1,'ascon_hash_state_t::mode()'],['../uniongimli24__hash__state__t.html#adca4b114dd1413437bbe71667de8e97e',1,'gimli24_hash_state_t::mode()'],['../unionsaturnin__hash__state__t.html#a25ee88dc0f84b5e286ca72f048594b39',1,'saturnin_hash_state_t::mode()'],['../unionxoodyak__hash__state__t.html#a779d44785244d9fd6fed36209d24bb4f',1,'xoodyak_hash_state_t::mode()']]]
+  ['lfsr',['lfsr',['../structgrain128__state__t.html#a8c51b5c7dfef1c1cc7e763262c94725b',1,'grain128_state_t']]],
+  ['locus_5faead_5fcipher',['locus_aead_cipher',['../lotus-locus_8h.html#a550a1d729328aac184a9f9a50cc8fc10',1,'lotus-locus.c']]],
+  ['lotus_5faead_5fcipher',['lotus_aead_cipher',['../lotus-locus_8h.html#a4e0431db288295d481952b6f39796a2c',1,'lotus-locus.c']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['name',['name',['../structaead__cipher__t.html#a0020218538ba8def326dae86e4fce099',1,'aead_cipher_t::name()'],['../structaead__hash__algorithm__t.html#aca733989cc5b361c907d173c8926fae9',1,'aead_hash_algorithm_t::name()']]],
-  ['nfsr',['nfsr',['../structgrain128__state__t.html#a6ffddf8ff1c7d8462b7c6d5d16b4d778',1,'grain128_state_t']]],
-  ['nonce_5flen',['nonce_len',['../structaead__cipher__t.html#a4e11b79c1afc980a25e7c592e32f7a5d',1,'aead_cipher_t']]]
+  ['mainpage_2edox',['mainpage.dox',['../mainpage_8dox.html',1,'']]],
+  ['mode',['mode',['../unionascon__hash__state__t.html#a4306ab1bd28e777ef86eafe4ef02e7da',1,'ascon_hash_state_t::mode()'],['../uniongimli24__hash__state__t.html#adca4b114dd1413437bbe71667de8e97e',1,'gimli24_hash_state_t::mode()'],['../unionsaturnin__hash__state__t.html#a25ee88dc0f84b5e286ca72f048594b39',1,'saturnin_hash_state_t::mode()'],['../unionxoodyak__hash__state__t.html#a779d44785244d9fd6fed36209d24bb4f',1,'xoodyak_hash_state_t::mode()']]]
 ];

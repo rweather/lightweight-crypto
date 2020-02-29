@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['orange_5fzest_5fcipher',['orange_zest_cipher',['../orange_8h.html#a25428ef4718eec4eab01a4e88d3b6089',1,'orange.c']]],
-  ['orangish_5fhash_5falgorithm',['orangish_hash_algorithm',['../orange_8h.html#ab1f864858b47e8c888a9b04f832c7cc8',1,'orange.c']]],
-  ['oribatida_5f192_5fcipher',['oribatida_192_cipher',['../oribatida_8h.html#ab832f2324d29760cc04561d5d6147da6',1,'oribatida.c']]],
-  ['oribatida_5f256_5fcipher',['oribatida_256_cipher',['../oribatida_8h.html#a05002d98882fb5fa44638d747f5796ac',1,'oribatida.c']]]
+  ['name',['name',['../structaead__cipher__t.html#a0020218538ba8def326dae86e4fce099',1,'aead_cipher_t::name()'],['../structaead__hash__algorithm__t.html#aca733989cc5b361c907d173c8926fae9',1,'aead_hash_algorithm_t::name()']]],
+  ['nfsr',['nfsr',['../structgrain128__state__t.html#a6ffddf8ff1c7d8462b7c6d5d16b4d778',1,'grain128_state_t']]],
+  ['nonce_5flen',['nonce_len',['../structaead__cipher__t.html#a4e11b79c1afc980a25e7c592e32f7a5d',1,'aead_cipher_t']]]
 ];

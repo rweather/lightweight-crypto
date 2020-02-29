@@ -1,6 +1,12 @@
 var searchData=
 [
   ['decrypt',['decrypt',['../structaead__cipher__t.html#a1c595cf981fe68d4d80eab2b4efd72ea',1,'aead_cipher_t']]],
+  ['delirium_5faead_5fdecrypt',['delirium_aead_decrypt',['../elephant_8h.html#a1d9cee7e4ac5729315358da395b61782',1,'elephant.c']]],
+  ['delirium_5faead_5fencrypt',['delirium_aead_encrypt',['../elephant_8h.html#afcb3e07ba7c5f0c68e7f6e4b4666aa7f',1,'elephant.c']]],
+  ['delirium_5fcipher',['delirium_cipher',['../elephant_8h.html#ac3a79ff1807234f3396498ca47b1eb39',1,'elephant.c']]],
+  ['delirium_5fkey_5fsize',['DELIRIUM_KEY_SIZE',['../elephant_8h.html#a5a1ea3fbaa88ee670160be091e9cb372',1,'elephant.h']]],
+  ['delirium_5fnonce_5fsize',['DELIRIUM_NONCE_SIZE',['../elephant_8h.html#a5cde64d3654d8ede4ebf61ae221ac391',1,'elephant.h']]],
+  ['delirium_5ftag_5fsize',['DELIRIUM_TAG_SIZE',['../elephant_8h.html#a5b444c4c4881232ea7a0640e95a2fc45',1,'elephant.h']]],
   ['domain',['domain',['../structdrysponge128__state__t.html#a1b26170be61b39d5705b3e96a4344ad9',1,'drysponge128_state_t::domain()'],['../structdrysponge256__state__t.html#a0c6450a59977e83b4fa9a7b4edf9a67f',1,'drysponge256_state_t::domain()']]],
   ['drydomain128_5fassoc_5fdata',['DRYDOMAIN128_ASSOC_DATA',['../internal-drysponge_8h.html#a394108af61cbb14cb97ebc8a838aa5b9',1,'internal-drysponge.h']]],
   ['drydomain128_5ffinal',['DRYDOMAIN128_FINAL',['../internal-drysponge_8h.html#aeb651bfe56809bca87457f29ca384a40',1,'internal-drysponge.h']]],
@@ -52,5 +58,11 @@ var searchData=
   ['drysponge256_5fsetup',['drysponge256_setup',['../internal-drysponge_8h.html#a8c7965b5d70457e8b627823a6920ee02',1,'internal-drysponge.c']]],
   ['drysponge256_5fstate_5ft',['drysponge256_state_t',['../structdrysponge256__state__t.html',1,'']]],
   ['drysponge256_5fx_5ft',['drysponge256_x_t',['../uniondrysponge256__x__t.html',1,'']]],
-  ['drysponge256_5fxsize',['DRYSPONGE256_XSIZE',['../internal-drysponge_8h.html#a4eea53c073eb370e18685886f13f9fd0',1,'internal-drysponge.h']]]
+  ['drysponge256_5fxsize',['DRYSPONGE256_XSIZE',['../internal-drysponge_8h.html#a4eea53c073eb370e18685886f13f9fd0',1,'internal-drysponge.h']]],
+  ['dumbo_5faead_5fdecrypt',['dumbo_aead_decrypt',['../elephant_8h.html#a952a79227010e7439497cee8affce461',1,'elephant.c']]],
+  ['dumbo_5faead_5fencrypt',['dumbo_aead_encrypt',['../elephant_8h.html#a15988cc94bc622f0f3576ae98d194554',1,'elephant.c']]],
+  ['dumbo_5fcipher',['dumbo_cipher',['../elephant_8h.html#a1d4a60d2b32b00d1d9c1fabb67c62fef',1,'elephant.c']]],
+  ['dumbo_5fkey_5fsize',['DUMBO_KEY_SIZE',['../elephant_8h.html#a24f9ef2ab5bf778a6a10613f6cea989a',1,'elephant.h']]],
+  ['dumbo_5fnonce_5fsize',['DUMBO_NONCE_SIZE',['../elephant_8h.html#a9180328b9a3b3da036811e5dbdcd5b8c',1,'elephant.h']]],
+  ['dumbo_5ftag_5fsize',['DUMBO_TAG_SIZE',['../elephant_8h.html#ad263191e30710ee556a04ca157bca0ee',1,'elephant.h']]]
 ];

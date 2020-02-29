@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['delirium_5fkey_5fsize',['DELIRIUM_KEY_SIZE',['../elephant_8h.html#a5a1ea3fbaa88ee670160be091e9cb372',1,'elephant.h']]],
+  ['delirium_5fnonce_5fsize',['DELIRIUM_NONCE_SIZE',['../elephant_8h.html#a5cde64d3654d8ede4ebf61ae221ac391',1,'elephant.h']]],
+  ['delirium_5ftag_5fsize',['DELIRIUM_TAG_SIZE',['../elephant_8h.html#a5b444c4c4881232ea7a0640e95a2fc45',1,'elephant.h']]],
   ['drydomain128_5fassoc_5fdata',['DRYDOMAIN128_ASSOC_DATA',['../internal-drysponge_8h.html#a394108af61cbb14cb97ebc8a838aa5b9',1,'internal-drysponge.h']]],
   ['drydomain128_5ffinal',['DRYDOMAIN128_FINAL',['../internal-drysponge_8h.html#aeb651bfe56809bca87457f29ca384a40',1,'internal-drysponge.h']]],
   ['drydomain128_5fmessage',['DRYDOMAIN128_MESSAGE',['../internal-drysponge_8h.html#a26fbd45c0618b3e43ecc59f23c970526',1,'internal-drysponge.h']]],
@@ -25,5 +28,8 @@ var searchData=
   ['drysponge256_5finit_5frounds',['DRYSPONGE256_INIT_ROUNDS',['../internal-drysponge_8h.html#ad01cffc69a13f49b607916b434bed0b2',1,'internal-drysponge.h']]],
   ['drysponge256_5frate',['DRYSPONGE256_RATE',['../internal-drysponge_8h.html#a66cb4cdc557bc0075d3001111b4b22e0',1,'internal-drysponge.h']]],
   ['drysponge256_5frounds',['DRYSPONGE256_ROUNDS',['../internal-drysponge_8h.html#ac19def8e6ce068d20f39727c5442b432',1,'internal-drysponge.h']]],
-  ['drysponge256_5fxsize',['DRYSPONGE256_XSIZE',['../internal-drysponge_8h.html#a4eea53c073eb370e18685886f13f9fd0',1,'internal-drysponge.h']]]
+  ['drysponge256_5fxsize',['DRYSPONGE256_XSIZE',['../internal-drysponge_8h.html#a4eea53c073eb370e18685886f13f9fd0',1,'internal-drysponge.h']]],
+  ['dumbo_5fkey_5fsize',['DUMBO_KEY_SIZE',['../elephant_8h.html#a24f9ef2ab5bf778a6a10613f6cea989a',1,'elephant.h']]],
+  ['dumbo_5fnonce_5fsize',['DUMBO_NONCE_SIZE',['../elephant_8h.html#a9180328b9a3b3da036811e5dbdcd5b8c',1,'elephant.h']]],
+  ['dumbo_5ftag_5fsize',['DUMBO_TAG_SIZE',['../elephant_8h.html#ad263191e30710ee556a04ca157bca0ee',1,'elephant.h']]]
 ];

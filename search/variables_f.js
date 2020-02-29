@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['r',['r',['../structpoly1305__state__t.html#a757291df58af5c2660d1418671e8083d',1,'poly1305_state_t::r()'],['../structdrysponge128__state__t.html#ae5deaf66d65a177b655dcd3ebae58f55',1,'drysponge128_state_t::r()'],['../structdrysponge256__state__t.html#a54c6ac424c580313e135d1f5d5577f48',1,'drysponge256_state_t::r()']]],
-  ['romulus_5fm1_5fcipher',['romulus_m1_cipher',['../romulus_8h.html#a821fe25277e2d586a6d3f87cb4c16cdd',1,'romulus.c']]],
-  ['romulus_5fm2_5fcipher',['romulus_m2_cipher',['../romulus_8h.html#af6dbe0e3f7e68dd0b6da2be5b6e3015e',1,'romulus.c']]],
-  ['romulus_5fm3_5fcipher',['romulus_m3_cipher',['../romulus_8h.html#ae59e37f43cba0a89385a795d25f3cca3',1,'romulus.c']]],
-  ['romulus_5fn1_5fcipher',['romulus_n1_cipher',['../romulus_8h.html#a291a538b07f55633951b786510f7c852',1,'romulus.c']]],
-  ['romulus_5fn2_5fcipher',['romulus_n2_cipher',['../romulus_8h.html#ad470f90b3386a4fec7df3c18e8810cd5',1,'romulus.c']]],
-  ['romulus_5fn3_5fcipher',['romulus_n3_cipher',['../romulus_8h.html#a77270af06da4f72806af0cff1872d9f1',1,'romulus.c']]],
-  ['rounds',['rounds',['../structdrysponge128__state__t.html#abad0c7696ba8dd23ca5fcd32699dd028',1,'drysponge128_state_t::rounds()'],['../structdrysponge256__state__t.html#a94ac4be254473c439456981acb0ccfbf',1,'drysponge256_state_t::rounds()']]]
+  ['photon_5fbeetle_5f128_5fcipher',['photon_beetle_128_cipher',['../photon-beetle_8h.html#a9773adb3c02d308cbb1f87a5d3a3613d',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5f32_5fcipher',['photon_beetle_32_cipher',['../photon-beetle_8h.html#adaaed9412befd919ab5285ceff75ecb4',1,'photon-beetle.c']]],
+  ['photon_5fbeetle_5fhash_5falgorithm',['photon_beetle_hash_algorithm',['../photon-beetle_8h.html#a35884c1c4512fc1f613bb5e56db9019d',1,'photon-beetle.c']]],
+  ['posn',['posn',['../structgrain128__state__t.html#a38cb945fe0ce8533c5546ff8d805f65f',1,'grain128_state_t']]],
+  ['pyjamask_5f128_5fcipher',['pyjamask_128_cipher',['../pyjamask_8h.html#a5e51bfd65c65e7154c20e0b9e41ce7db',1,'pyjamask-128.c']]],
+  ['pyjamask_5f96_5fcipher',['pyjamask_96_cipher',['../pyjamask_8h.html#acc2a91aa758c52777bc149924d418573',1,'pyjamask-96.c']]],
+  ['pyjamask_5fmasked_5f128_5fcipher',['pyjamask_masked_128_cipher',['../pyjamask_8h.html#a35202edf9739d5aa18b0833ee81adcb3',1,'pyjamask-128-masked.c']]],
+  ['pyjamask_5fmasked_5f96_5fcipher',['pyjamask_masked_96_cipher',['../pyjamask_8h.html#a5db3bd8159d82c983bc6f727e9e2a9b3',1,'pyjamask-96-masked.c']]]
 ];

@@ -119,35 +119,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">union</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html#aca7f7d56e61d703a093597efe9934480">   42</a></span>&#160;    uint8_t A[5][5];    </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html#a7561f05040b63e341ec7466c00c4d5b4">   43</a></span>&#160;    uint8_t B[25];      </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <a class="code" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html">   50</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">union</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="internal-keccak_8h.html#a4da9afd861cda349a86f1ae3700e8c42">   40</a></span>&#160;<span class="preprocessor">#define KECCAKP_200_STATE_SIZE 25</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="internal-keccak_8h.html#a708b64b4c2044814a758542000a3f344">   45</a></span>&#160;<span class="preprocessor">#define KECCAKP_400_STATE_SIZE 50</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html">   50</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">union</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html#a13c474394b9c82275a6f96a821349a0b">   52</a></span>&#160;    uint16_t A[5][5];   </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html#abc2a1dc31e0dbb0bdff5eedc6f9d3660">   53</a></span>&#160;    uint8_t B[50];      </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <a class="code" href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html#aca7f7d56e61d703a093597efe9934480">   52</a></span>&#160;    uint8_t A[5][5];    </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="unionkeccakp__200__state__t.html#a7561f05040b63e341ec7466c00c4d5b4">   53</a></span>&#160;    uint8_t B[25];      </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <a class="code" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-keccak_8h.html#a8aefd4da0dfa8cb624c870ab6fae2e02">keccakp_200_permute</a>(<a class="code" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a> *state, <span class="keywordtype">unsigned</span> rounds);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-keccak_8h.html#a7ea8bfa1024b53d5658e904e141cd2b9">keccakp_400_permute</a>(<a class="code" href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a> *state, <span class="keywordtype">unsigned</span> rounds);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="unionkeccakp__400__state__t_html"><div class="ttname"><a href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a></div><div class="ttdoc">Structure of the internal state of the Keccak-p[400] permutation. </div><div class="ttdef"><b>Definition:</b> internal-keccak.h:50</div></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html">   60</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">union</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html#a13c474394b9c82275a6f96a821349a0b">   62</a></span>&#160;    uint16_t A[5][5];   </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="unionkeccakp__400__state__t.html#abc2a1dc31e0dbb0bdff5eedc6f9d3660">   63</a></span>&#160;    uint8_t B[50];      </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <a class="code" href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-keccak_8h.html#a8aefd4da0dfa8cb624c870ab6fae2e02">keccakp_200_permute</a>(<a class="code" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a> *state, <span class="keywordtype">unsigned</span> rounds);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-keccak_8h.html#a7ea8bfa1024b53d5658e904e141cd2b9">keccakp_400_permute</a>(<a class="code" href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a> *state, <span class="keywordtype">unsigned</span> rounds);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="unionkeccakp__400__state__t_html"><div class="ttname"><a href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a></div><div class="ttdoc">Structure of the internal state of the Keccak-p[400] permutation. </div><div class="ttdef"><b>Definition:</b> internal-keccak.h:60</div></div>
 <div class="ttc" id="internal-keccak_8h_html_a7ea8bfa1024b53d5658e904e141cd2b9"><div class="ttname"><a href="internal-keccak_8h.html#a7ea8bfa1024b53d5658e904e141cd2b9">keccakp_400_permute</a></div><div class="ttdeci">void keccakp_400_permute(keccakp_400_state_t *state, unsigned rounds)</div><div class="ttdoc">Permutes the Keccak-p[400] state, which is assumed to be in little-endian byte order. </div><div class="ttdef"><b>Definition:</b> internal-keccak.c:197</div></div>
 <div class="ttc" id="internal-keccak_8h_html_a8aefd4da0dfa8cb624c870ab6fae2e02"><div class="ttname"><a href="internal-keccak_8h.html#a8aefd4da0dfa8cb624c870ab6fae2e02">keccakp_200_permute</a></div><div class="ttdeci">void keccakp_200_permute(keccakp_200_state_t *state, unsigned rounds)</div><div class="ttdoc">Permutes the Keccak-p[200] state. </div><div class="ttdef"><b>Definition:</b> internal-keccak.c:31</div></div>
-<div class="ttc" id="unionkeccakp__200__state__t_html"><div class="ttname"><a href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a></div><div class="ttdoc">Structure of the internal state of the Keccak-p[200] permutation. </div><div class="ttdef"><b>Definition:</b> internal-keccak.h:40</div></div>
+<div class="ttc" id="unionkeccakp__200__state__t_html"><div class="ttname"><a href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a></div><div class="ttdoc">Structure of the internal state of the Keccak-p[200] permutation. </div><div class="ttdef"><b>Definition:</b> internal-keccak.h:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 27 2020 17:15:08 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 29 2020 15:11:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

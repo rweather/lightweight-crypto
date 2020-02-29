@@ -177,7 +177,7 @@ Summary</h1>
 <tr>
 <td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td></td><td>Y</td><td>K</td><td>Digest </td></tr>
 <tr>
-<td>Elephant</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td>Elephant</td><td>128</td><td>Spongent/Keccak</td><td>Elephant</td><td></td><td></td><td></td><td></td></tr>
 <tr>
 <td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td></td><td></td><td></td></tr>
 <tr>
@@ -278,7 +278,14 @@ DryGASCON</h1>
 <p><b>Recommendation:</b> The specification recommends DryGASCON128 and DryGASCON128-HASH.</p>
 <h1><a class="anchor" id="alg_elephant"></a>
 Elephant</h1>
-<p>TODO</p>
+<p><b>Definition:</b> <a class="el" href="elephant_8h.html">elephant.h</a></p>
+<p>Elephant is a family of authenticated encryption algorithms based around the Spongent-pi and Keccak permutations.</p>
+<ul>
+<li>Dumbo has a 128-bit key, a 96-bit nonce, and a 64-bit authentication tag. It is based around the Spongent-pi[160] permutation. </li>
+<li>Jumbo has a 128-bit key, a 96-bit nonce, and a 64-bit authentication tag. It is based around the Spongent-pi[176] permutation. </li>
+<li>Delirium has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag. It is based around the Keccak[200] permutation.</li>
+</ul>
+<p><b>Recommendation:</b> The specification recommends Dumbo.</p>
 <h1><a class="anchor" id="alg_estate"></a>
 ESTATE</h1>
 <p><b>Definition:</b> <a class="el" href="estate_8h.html">estate.h</a></p>
@@ -540,20 +547,12 @@ Xoodyak</h1>
 <h1><a class="anchor" id="alg_internal"></a>
 Internal block operations</h1>
 <p>Many of the algorithms are built on top of internal block ciphers and sponge block operations. Some of these operations are shared between multiple algorithms so they are provided in a common internal location.</p>
-<ul>
-<li><a class="el" href="internal-ascon_8h.html">ASCON</a> permutation. </li>
-<li><a class="el" href="internal-cham_8h.html">CHAM-128/128 and CHAM-64/128</a> block ciphers. </li>
-<li><a class="el" href="internal-gift128_8h.html">GIFT-128</a> block cipher in GIFT-128-b, GIFT-128-n, and TweGIFT-128 versions. </li>
-<li><a class="el" href="internal-gift64_8h.html">GIFT-64</a> block cipher in GIFT-64-b, GIFT-64-n, and TweGIFT-64 versions. </li>
-<li><a class="el" href="internal-keccak_8h.html">Keccak</a> permutations. </li>
-<li><a class="el" href="internal-skinny128_8h.html">SKINNY-128</a> block cipher in 128-bit, 256-bit, and 384-bit key size versions. </li>
-<li><a class="el" href="internal-sliscp-light_8h.html">sLiSCP-light</a> permutations for ACE, SPIX, and SpoC.</li>
-</ul>
-<p>All of the internal block operations are implemented in source files that start with the <code>internal-</code> prefix. They are not intended to be part of the public API for the AEAD algorithms. </p>
+<p>All of the internal block operations are implemented in source files that start with the <code>internal-</code> prefix. They are not intended to be part of the public API for the AEAD algorithms.</p>
+<p>If you wish to improve the performance of an algorithm implementation with assembly code or vector instructions, then the best place to start is with the internal block operation code. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 27 2020 17:15:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 29 2020 15:11:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

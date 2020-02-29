@@ -20,6 +20,7 @@ var searchData=
   ['internal_2dskinnyutil_2eh',['internal-skinnyutil.h',['../internal-skinnyutil_8h.html',1,'']]],
   ['internal_2dsliscp_2dlight_2eh',['internal-sliscp-light.h',['../internal-sliscp-light_8h.html',1,'']]],
   ['internal_2dsparkle_2eh',['internal-sparkle.h',['../internal-sparkle_8h.html',1,'']]],
+  ['internal_2dspongent_2eh',['internal-spongent.h',['../internal-spongent_8h.html',1,'']]],
   ['internal_2dspook_2eh',['internal-spook.h',['../internal-spook_8h.html',1,'']]],
   ['internal_2dsubterranean_2eh',['internal-subterranean.h',['../internal-subterranean_8h.html',1,'']]],
   ['internal_2dtinyjambu_2eh',['internal-tinyjambu.h',['../internal-tinyjambu_8h.html',1,'']]],

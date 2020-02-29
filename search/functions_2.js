@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['delirium_5faead_5fdecrypt',['delirium_aead_decrypt',['../elephant_8h.html#a1d9cee7e4ac5729315358da395b61782',1,'elephant.c']]],
+  ['delirium_5faead_5fencrypt',['delirium_aead_encrypt',['../elephant_8h.html#afcb3e07ba7c5f0c68e7f6e4b4666aa7f',1,'elephant.c']]],
   ['drygascon128_5faead_5fdecrypt',['drygascon128_aead_decrypt',['../drygascon_8h.html#a6c9435e1da32868ce5504398221d0d0b',1,'drygascon.c']]],
   ['drygascon128_5faead_5fencrypt',['drygascon128_aead_encrypt',['../drygascon_8h.html#a56bc46da7d3c8d9a22bdb67c963b1c98',1,'drygascon.c']]],
   ['drygascon128_5fhash',['drygascon128_hash',['../drygascon_8h.html#a9cdec41564e95661c2aa3fc8f3210965',1,'drygascon.c']]],
@@ -13,5 +15,7 @@ var searchData=
   ['drysponge256_5ff_5fabsorb',['drysponge256_f_absorb',['../internal-drysponge_8h.html#a4219199ab9e8ee4a929087f936149003',1,'internal-drysponge.c']]],
   ['drysponge256_5fg',['drysponge256_g',['../internal-drysponge_8h.html#afd1ba66bff35ed3ed65ce488bc0e2c3c',1,'internal-drysponge.c']]],
   ['drysponge256_5fg_5fcore',['drysponge256_g_core',['../internal-drysponge_8h.html#a171f0759b10a55bf509661f5e417bba4',1,'internal-drysponge.c']]],
-  ['drysponge256_5fsetup',['drysponge256_setup',['../internal-drysponge_8h.html#a8c7965b5d70457e8b627823a6920ee02',1,'internal-drysponge.c']]]
+  ['drysponge256_5fsetup',['drysponge256_setup',['../internal-drysponge_8h.html#a8c7965b5d70457e8b627823a6920ee02',1,'internal-drysponge.c']]],
+  ['dumbo_5faead_5fdecrypt',['dumbo_aead_decrypt',['../elephant_8h.html#a952a79227010e7439497cee8affce461',1,'elephant.c']]],
+  ['dumbo_5faead_5fencrypt',['dumbo_aead_encrypt',['../elephant_8h.html#a15988cc94bc622f0f3576ae98d194554',1,'elephant.c']]]
 ];
