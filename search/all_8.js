@@ -24,6 +24,7 @@ var searchData=
   ['internal_2dspook_2eh',['internal-spook.h',['../internal-spook_8h.html',1,'']]],
   ['internal_2dsubterranean_2eh',['internal-subterranean.h',['../internal-subterranean_8h.html',1,'']]],
   ['internal_2dtinyjambu_2eh',['internal-tinyjambu.h',['../internal-tinyjambu_8h.html',1,'']]],
+  ['internal_2dwage_2eh',['internal-wage.h',['../internal-wage_8h.html',1,'']]],
   ['internal_2dxoodoo_2eh',['internal-xoodoo.h',['../internal-xoodoo_8h.html',1,'']]],
   ['internal_5fchachapoly_5faead_5fdecrypt',['internal_chachapoly_aead_decrypt',['../internal-chachapoly_8h.html#a39020dcd94e59abe74d278ee569fdb70',1,'internal-chachapoly.c']]],
   ['internal_5fchachapoly_5faead_5fencrypt',['internal_chachapoly_aead_encrypt',['../internal-chachapoly_8h.html#aa83be30902bd74ddb3aa49dc81c0db45',1,'internal-chachapoly.c']]],

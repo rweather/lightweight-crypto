@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xoodyak_2eh',['xoodyak.h',['../xoodyak_8h.html',1,'']]]
+  ['wage_2eh',['wage.h',['../wage_8h.html',1,'']]]
 ];
