@@ -193,6 +193,12 @@ TINYJAMBU_FILES = \
     internal-tinyjambu.c \
     internal-tinyjambu.h \
     $(COMMON_FILES)
+WAGE_FILES = \
+    wage.c \
+    wage.h \
+    internal-wage.c \
+    internal-wage.h \
+    $(COMMON_FILES)
 XOODYAK_FILES = \
     xoodyak.c \
     xoodyak.h \
@@ -229,6 +235,7 @@ ALL_ALGORITHMS = \
     subterranean \
     sundae_gift \
     tinyjambu \
+    wage \
     xoodyak
 
 .PHONY: all $(ALL_ALGORITHMS)
@@ -318,6 +325,9 @@ sundae_gift:
 
 tinyjambu:
 	cp $(foreach file,$(TINYJAMBU_FILES),$(SRCDIR)/$(file)) TinyJAMBU
+
+wage:
+	cp $(foreach file,$(WAGE_FILES),$(SRCDIR)/$(file)) WAGE
 
 xoodyak:
 	cp $(foreach file,$(XOODYAK_FILES),$(SRCDIR)/$(file)) Xoodyak

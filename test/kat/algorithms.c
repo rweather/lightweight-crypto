@@ -50,6 +50,7 @@
 #include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
+#include "wage.h"
 #include "xoodyak.h"
 #include <string.h>
 #include <stdio.h>
@@ -131,6 +132,7 @@ static const aead_cipher_t *const ciphers[] = {
     &tiny_jambu_128_cipher,
     &tiny_jambu_192_cipher,
     &tiny_jambu_256_cipher,
+    &wage_cipher,
     &xoodyak_cipher,
     0
 };

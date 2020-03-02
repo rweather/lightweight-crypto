@@ -44,6 +44,7 @@ OBJS = \
         subterranean.o \
         sundae-gift.o \
         tinyjambu.o \
+        wage.o \
         xoodyak.o \
 	internal-ascon.o \
 	internal-chachapoly.o \
@@ -67,6 +68,7 @@ OBJS = \
         internal-spook.o \
         internal-subterranean.o \
         internal-tinyjambu.o \
+        internal-wage.o \
         internal-xoodoo.o
 
 all: $(LIBRARY)
@@ -117,6 +119,7 @@ spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 subterranean.o: subterranean.h aead-common.h internal-util.h internal-subterranean.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
 tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
+wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
@@ -140,4 +143,5 @@ internal-spongent.o: internal-spongent.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h
 internal-subterranean.o: internal-subterranean.h internal-util.h
 internal-tinyjambu.o: internal-tinyjambu.h internal-util.h
+internal-wage.o: internal-wage.h internal-util.h
 internal-xoodoo.o: internal-xoodoo.h internal-util.h

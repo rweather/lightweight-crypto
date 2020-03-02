@@ -57,6 +57,7 @@ of flash memory.
 #include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
+#include "wage.h"
 #include "xoodyak.h"
 #include "internal-chachapoly.h"
 
@@ -429,6 +430,7 @@ void setup()
     perfCipher(&tiny_jambu_128_cipher);
     perfCipher(&tiny_jambu_192_cipher);
     perfCipher(&tiny_jambu_256_cipher);
+    perfCipher(&wage_cipher);
     perfCipher(&xoodyak_cipher);
 
     // Algorithms that are very slow.  Adjust loop counters and do them last.

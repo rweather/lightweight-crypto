@@ -41,6 +41,7 @@ void test_skinny128(void);
 void test_sliscp_light(void);
 void test_spongent(void);
 void test_subterranean(void);
+void test_wage(void);
 
 int main(int argc, char *argv[])
 {
@@ -63,5 +64,6 @@ int main(int argc, char *argv[])
     test_sliscp_light();
     test_spongent();
     test_subterranean();
+    test_wage();
     return test_exit_result;
 }

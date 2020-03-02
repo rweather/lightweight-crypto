@@ -30,7 +30,8 @@ OBJS1 = \
     test-sliscp-light.o \
     test-spongent.o \
     test-spook.o \
-    test-subterranean.o
+    test-subterranean.o \
+    test-wage.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
 
@@ -65,5 +66,6 @@ test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)
 test-spongent.o: $(LIBSRC_DIR)/internal-spongent.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)
+test-wage.o: $(LIBSRC_DIR)/internal-wage.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)

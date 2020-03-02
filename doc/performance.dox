@@ -140,6 +140,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.05</td><td>0.04</td><td>0.16</td><td>0.12</td><td>0.07</td></tr>
 <tr><td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.04</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.05</td></tr>
 <tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04</td></tr>
+<tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.05</td><td>0.03</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.03</td><td>0.03</td><td>0.02</td></tr>
@@ -230,6 +231,7 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06</td></tr>
 <tr><td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.08</td><td>0.06</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.04</td><td>0.03</td><td>0.14</td><td>0.10</td><td>0.06</td></tr>
+<tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.04</td><td>0.04</td><td>0.04</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.02</td><td>0.04</td><td>0.04</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
@@ -265,7 +267,7 @@ has an average between 0.30 and 0.39 ChaChaPoly units.
 <tr><td>3</td><td>GIFT-COFB, HYENA, SPIX</td></tr>
 <tr><td>2</td><td>DryGASCON, ESTATE, Oribatida, Saturnin, SUNDAE-GIFT</td></tr>
 <tr><td>1</td><td>ACE, LOTUS, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
-<tr><td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask</td></tr>
+<tr><td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE</td></tr>
 </table>
 
 */
