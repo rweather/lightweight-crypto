@@ -46,10 +46,15 @@ aead_cipher_t const spix_cipher = {
     spix_aead_decrypt
 };
 
-/* Indices of where a rate byte is located to help with padding */
+/* Indices of where a rate byte is located in the state.  We don't
+ * need this array any more because sliscp_light256_permute_spix()
+ * operates on byte-swapped states where the rate bytes are contiguous
+ * in the bytes 8 to 15 */
+/*
 static unsigned char const spix_rate_posn[8] = {
     8, 9, 10, 11, 24, 25, 26, 27
 };
+*/
 
 /**
  * \brief Initializes the SPIX state.
@@ -72,36 +77,31 @@ static void spix_init
     memcpy(state + 8, k, 8);
     memcpy(state + 16, npub + 8, 8);
     memcpy(state + 24, k + 8, 8);
+    sliscp_light256_swap_spix(state);
 
     /* Run the permutation to scramble the initial state */
-    sliscp_light256_permute(state, 18);
+    sliscp_light256_permute_spix(state, 18);
 
     /* Absorb the key in two further permutation operations */
-    lw_xor_block(state + 8, k, 4);
-    lw_xor_block(state + 24, k + 4, 4);
-    sliscp_light256_permute(state, 18);
-    lw_xor_block(state + 8, k + 8, 4);
-    lw_xor_block(state + 24, k + 12, 4);
-    sliscp_light256_permute(state, 18);
+    lw_xor_block(state + 8, k, 8);
+    sliscp_light256_permute_spix(state, 18);
+    lw_xor_block(state + 8, k + 8, 8);
+    sliscp_light256_permute_spix(state, 18);
 
     /* Absorb the associated data into the state */
     if (adlen != 0) {
         while (adlen >= SPIX_RATE) {
-            lw_xor_block(state + 8, ad, 4);
-            lw_xor_block(state + 24, ad + 4, 4);
+            lw_xor_block(state + 8, ad, SPIX_RATE);
             state[SPIX_STATE_SIZE - 1] ^= 0x01; /* domain separation */
-            sliscp_light256_permute(state, 9);
+            sliscp_light256_permute_spix(state, 9);
             ad += SPIX_RATE;
             adlen -= SPIX_RATE;
         }
         temp = (unsigned)adlen;
-        state[spix_rate_posn[temp]] ^= 0x80; /* padding */
+        lw_xor_block(state + 8, ad, temp);
+        state[temp + 8] ^= 0x80; /* padding */
         state[SPIX_STATE_SIZE - 1] ^= 0x01; /* domain separation */
-        while (temp > 0) {
-            --temp;
-            state[spix_rate_posn[temp]] ^= ad[temp];
-        }
-        sliscp_light256_permute(state, 9);
+        sliscp_light256_permute_spix(state, 9);
     }
 }
 
@@ -117,14 +117,13 @@ static void spix_finalize
      unsigned char *tag)
 {
     /* Absorb the key into the state again */
-    lw_xor_block(state + 8, k, 4);
-    lw_xor_block(state + 24, k + 4, 4);
-    sliscp_light256_permute(state, 18);
-    lw_xor_block(state + 8, k + 8, 4);
-    lw_xor_block(state + 24, k + 12, 4);
-    sliscp_light256_permute(state, 18);
+    lw_xor_block(state + 8, k, 8);
+    sliscp_light256_permute_spix(state, 18);
+    lw_xor_block(state + 8, k + 8, 8);
+    sliscp_light256_permute_spix(state, 18);
 
     /* Copy out the authentication tag */
+    sliscp_light256_swap_spix(state);
     memcpy(tag, state + 8, 8);
     memcpy(tag + 8, state + 24, 8);
 }
@@ -149,23 +148,18 @@ int spix_aead_encrypt
 
     /* Encrypt the plaintext to produce the ciphertext */
     while (mlen >= SPIX_RATE) {
-        lw_xor_block_2_dest(c, state + 8, m, 4);
-        lw_xor_block_2_dest(c + 4, state + 24, m + 4, 4);
+        lw_xor_block_2_dest(c, state + 8, m, SPIX_RATE);
         state[SPIX_STATE_SIZE - 1] ^= 0x02; /* domain separation */
-        sliscp_light256_permute(state, 9);
+        sliscp_light256_permute_spix(state, 9);
         c += SPIX_RATE;
         m += SPIX_RATE;
         mlen -= SPIX_RATE;
     }
     temp = (unsigned)mlen;
-    state[spix_rate_posn[temp]] ^= 0x80; /* padding */
+    lw_xor_block_2_dest(c, state + 8, m, temp);
+    state[temp + 8] ^= 0x80; /* padding */
     state[SPIX_STATE_SIZE - 1] ^= 0x02; /* domain separation */
-    while (temp > 0) {
-        --temp;
-        state[spix_rate_posn[temp]] ^= m[temp];
-        c[temp] = state[spix_rate_posn[temp]];
-    }
-    sliscp_light256_permute(state, 9);
+    sliscp_light256_permute_spix(state, 9);
     c += mlen;
 
     /* Generate the authentication tag */
@@ -183,7 +177,6 @@ int spix_aead_decrypt
 {
     unsigned char state[SPIX_STATE_SIZE];
     unsigned char *mtemp = m;
-    unsigned char cbyte;
     unsigned temp;
     (void)nsec;
 
@@ -198,24 +191,18 @@ int spix_aead_decrypt
     /* Decrypt the ciphertext to produce the plaintext */
     clen -= SPIX_TAG_SIZE;
     while (clen >= SPIX_RATE) {
-        lw_xor_block_swap(m, state + 8, c, 4);
-        lw_xor_block_swap(m + 4, state + 24, c + 4, 4);
+        lw_xor_block_swap(m, state + 8, c, SPIX_RATE);
         state[SPIX_STATE_SIZE - 1] ^= 0x02; /* domain separation */
-        sliscp_light256_permute(state, 9);
+        sliscp_light256_permute_spix(state, 9);
         c += SPIX_RATE;
         m += SPIX_RATE;
         clen -= SPIX_RATE;
     }
     temp = (unsigned)clen;
-    state[spix_rate_posn[temp]] ^= 0x80; /* padding */
+    lw_xor_block_swap(m, state + 8, c, temp);
+    state[temp + 8] ^= 0x80; /* padding */
     state[SPIX_STATE_SIZE - 1] ^= 0x02; /* domain separation */
-    while (temp > 0) {
-        --temp;
-        cbyte = c[temp];
-        m[temp] = cbyte ^ state[spix_rate_posn[temp]];
-        state[spix_rate_posn[temp]] = cbyte;
-    }
-    sliscp_light256_permute(state, 9);
+    sliscp_light256_permute_spix(state, 9);
     c += clen;
 
     /* Finalize the SPIX state and compare against the authentication tag */

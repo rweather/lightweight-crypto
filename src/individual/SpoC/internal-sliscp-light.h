@@ -64,8 +64,64 @@ extern "C" {
  *
  * \param block Points to the block to be permuted.
  * \param rounds Number of rounds to be performed, usually 9 or 18.
+ *
+ * The bytes of the block are assumed to be rearranged to match the
+ * requirements of the SPIX cipher.  SPIX places the rate bytes at
+ * positions 8, 9, 10, 11, 24, 25, 26, and 27.
+ *
+ * This function assumes that bytes 24-27 have been pre-swapped with
+ * bytes 12-15 so that the rate portion of the state is contiguous.
+ *
+ * The sliscp_light256_swap_spix() function can be used to switch
+ * between the canonical order and the pre-swapped order.
+ *
+ * \sa sliscp_light256_swap_spix()
  */
-void sliscp_light256_permute(unsigned char block[32], unsigned rounds);
+void sliscp_light256_permute_spix(unsigned char block[32], unsigned rounds);
+
+/**
+ * \brief Swaps rate bytes in a sLiSCP-light 256-bit block for SPIX.
+ *
+ * \param block Points to the block to be rate-swapped.
+ *
+ * \sa sliscp_light256_permute_spix()
+ */
+void sliscp_light256_swap_spix(unsigned char block[32]);
+
+/**
+ * \brief Performs the sLiSCP-light permutation on a 256-bit block.
+ *
+ * \param block Points to the block to be permuted.
+ * \param rounds Number of rounds to be performed, usually 9 or 18.
+ *
+ * The bytes of the block are assumed to be rearranged to match the
+ * requirements of the SpoC-128 cipher.  SpoC-128 interleaves the
+ * rate bytes and the mask bytes.  This version assumes that the
+ * rate and mask are in contiguous bytes of the state.
+ *
+ * SpoC-128 absorbs bytes using the mask bytes of the state at offsets
+ * 8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, and 31.
+ * It squeezes bytes using the rate bytes of the state at offsets
+ * 0, 1, 2, 3, 4, 5, 6, 7, 16, 17, 18, 19, 20, 21, 22, and 23.
+ *
+ * This function assumes that bytes 8-15 have been pre-swapped with 16-23
+ * so that the rate and mask portions of the state are contiguous.
+ *
+ * The sliscp_light256_swap_spoc() function can be used to switch
+ * between the canonical order and the pre-swapped order.
+ *
+ * \sa sliscp_light256_swap_spoc()
+ */
+void sliscp_light256_permute_spoc(unsigned char block[32], unsigned rounds);
+
+/**
+ * \brief Swaps rate bytes in a sLiSCP-light 256-bit block for SpoC-128.
+ *
+ * \param block Points to the block to be rate-swapped.
+ *
+ * \sa sliscp_light256_permute_spoc()
+ */
+void sliscp_light256_swap_spoc(unsigned char block[32]);
 
 /**
  * \brief Performs the sLiSCP-light permutation on a 192-bit block.
@@ -82,8 +138,29 @@ void sliscp_light192_permute(unsigned char block[24]);
  * The ACE specification refers to this permutation as "ACE" but that
  * can be confused with the name of the AEAD mode so we call this
  * permutation "sLiSCP-light-320" instead.
+ *
+ * ACE absorbs and squeezes data at the rate bytes 0, 1, 2, 3, 16, 17, 18, 19.
+ * Efficiency can suffer because of the discontinuity in rate byte positions.
+ *
+ * To counteract this, we assume that the input to the permutation has been
+ * pre-swapped: bytes 4, 5, 6, 7 are swapped with bytes 16, 17, 18, 19 so
+ * that the rate is contiguous at the start of the state.
+ *
+ * The sliscp_light320_swap() function can be used to switch between the
+ * canonical order and the pre-swapped order.
+ *
+ * \sa sliscp_light320_swap()
  */
 void sliscp_light320_permute(unsigned char block[40]);
+
+/**
+ * \brief Swaps rate bytes in a sLiSCP-light 320-bit block.
+ *
+ * \param block Points to the block to be rate-swapped.
+ *
+ * \sa sliscp_light320_permute()
+ */
+void sliscp_light320_swap(unsigned char block[40]);
 
 #ifdef __cplusplus
 }

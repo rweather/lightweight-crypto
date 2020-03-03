@@ -68,12 +68,14 @@ aead_cipher_t const spoc_64_cipher = {
 };
 
 /* Indices of where a rate byte is located to help with padding */
+/*
 static unsigned char const spoc_128_rate_posn[16] = {
     0, 1, 2, 3, 4, 5, 6, 7, 16, 17, 18, 19, 20, 21, 22, 23
 };
 static unsigned char const spoc_128_mask_posn[16] = {
     8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31
 };
+*/
 static unsigned char const spoc_64_rate_posn[8] = {
     0, 1, 2, 3, 12, 13, 14, 15
 };
@@ -97,31 +99,25 @@ static void spoc_128_init
 {
     unsigned temp;
 
-    /* Initialize the state by interleaving the key and nonce */
-    memcpy(state, npub, 8);
-    memcpy(state + 8, k, 8);
-    memcpy(state + 16, npub + 8, 8);
-    memcpy(state + 24, k + 8, 8);
+    /* Initialize the state by combining the key and nonce */
+    memcpy(state, npub, 16);
+    memcpy(state + 16, k, 16);
 
     /* Absorb the associated data into the state */
     if (adlen != 0) {
         while (adlen >= SPOC_128_RATE) {
-            sliscp_light256_permute(state, 18);
-            lw_xor_block(state + 8, ad, 8);
-            lw_xor_block(state + 24, ad + 8, 8);
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block(state + 16, ad, SPOC_128_RATE);
             state[0] ^= 0x20; /* domain separation */
             ad += SPOC_128_RATE;
             adlen -= SPOC_128_RATE;
         }
         temp = (unsigned)adlen;
         if (temp > 0) {
-            sliscp_light256_permute(state, 18);
-            state[spoc_128_mask_posn[temp]] ^= 0x80; /* padding */
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block(state + 16, ad, temp);
+            state[temp + 16] ^= 0x80; /* padding */
             state[0] ^= 0x30; /* domain separation */
-            while (temp > 0) {
-                --temp;
-                state[spoc_128_mask_posn[temp]] ^= ad[temp];
-            }
         }
     }
 }
@@ -189,11 +185,10 @@ static void spoc_128_finalize
 {
     /* Pad and permute the state one more time */
     state[0] ^= 0x80;
-    sliscp_light256_permute(state, 18);
+    sliscp_light256_permute_spoc(state, 18);
 
     /* Copy out the authentication tag */
-    memcpy(tag, state + 8, 8);
-    memcpy(tag + 8, state + 24, 8);
+    memcpy(tag, state + 16, 16);
 }
 
 /**
@@ -234,11 +229,9 @@ int spoc_128_aead_encrypt
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen != 0) {
         while (mlen >= SPOC_128_RATE) {
-            sliscp_light256_permute(state, 18);
-            lw_xor_block(state + 8, m, 8);
-            lw_xor_block(state + 24, m + 8, 8);
-            lw_xor_block_2_src(c, m, state, 8);
-            lw_xor_block_2_src(c + 8, m + 8, state + 16, 8);
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block(state + 16, m, SPOC_128_RATE);
+            lw_xor_block_2_src(c, m, state, SPOC_128_RATE);
             state[0] ^= 0x40; /* domain separation */
             c += SPOC_128_RATE;
             m += SPOC_128_RATE;
@@ -246,14 +239,10 @@ int spoc_128_aead_encrypt
         }
         if (mlen != 0) {
             unsigned temp = (unsigned)mlen;
-            sliscp_light256_permute(state, 18);
-            state[spoc_128_mask_posn[temp]] ^= 0x80; /* padding */
-            while (temp > 0) {
-                --temp;
-                unsigned char mbyte = m[temp];
-                state[spoc_128_mask_posn[temp]] ^= mbyte;
-                c[temp] = mbyte ^ state[spoc_128_rate_posn[temp]];
-            }
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block(state + 16, m, temp);
+            lw_xor_block_2_src(c, m, state, temp);
+            state[temp + 16] ^= 0x80; /* padding */
             state[0] ^= 0x50; /* domain separation */
             c += mlen;
         }
@@ -288,11 +277,9 @@ int spoc_128_aead_decrypt
     clen -= SPOC_128_TAG_SIZE;
     if (clen != 0) {
         while (clen >= SPOC_128_RATE) {
-            sliscp_light256_permute(state, 18);
-            lw_xor_block_2_src(m, c, state, 8);
-            lw_xor_block_2_src(m + 8, c + 8, state + 16, 8);
-            lw_xor_block(state + 8, m, 8);
-            lw_xor_block(state + 24, m + 8, 8);
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block_2_src(m, c, state, SPOC_128_RATE);
+            lw_xor_block(state + 16, m, SPOC_128_RATE);
             state[0] ^= 0x40; /* domain separation */
             c += SPOC_128_RATE;
             m += SPOC_128_RATE;
@@ -300,14 +287,10 @@ int spoc_128_aead_decrypt
         }
         if (clen != 0) {
             unsigned temp = (unsigned)clen;
-            sliscp_light256_permute(state, 18);
-            state[spoc_128_mask_posn[temp]] ^= 0x80; /* padding */
-            while (temp > 0) {
-                --temp;
-                unsigned char mbyte = c[temp] ^ state[spoc_128_rate_posn[temp]];
-                state[spoc_128_mask_posn[temp]] ^= mbyte;
-                m[temp] = mbyte;
-            }
+            sliscp_light256_permute_spoc(state, 18);
+            lw_xor_block_2_src(m, c, state, temp);
+            lw_xor_block(state + 16, m, temp);
+            state[temp + 16] ^= 0x80; /* padding */
             state[0] ^= 0x50; /* domain separation */
             c += clen;
         }

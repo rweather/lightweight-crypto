@@ -99,21 +99,22 @@
         simeck48_round(y, x);   /* Round 6 */ \
     } while (0)
 
-void sliscp_light256_permute(unsigned char block[32], unsigned rounds)
+/* Interleaved rc0, rc1, sc0, and sc1 values for each round */
+static unsigned char const sliscp_light256_RC[18 * 4] = {
+    0x0f, 0x47, 0x08, 0x64, 0x04, 0xb2, 0x86, 0x6b,
+    0x43, 0xb5, 0xe2, 0x6f, 0xf1, 0x37, 0x89, 0x2c,
+    0x44, 0x96, 0xe6, 0xdd, 0x73, 0xee, 0xca, 0x99,
+    0xe5, 0x4c, 0x17, 0xea, 0x0b, 0xf5, 0x8e, 0x0f,
+    0x47, 0x07, 0x64, 0x04, 0xb2, 0x82, 0x6b, 0x43,
+    0xb5, 0xa1, 0x6f, 0xf1, 0x37, 0x78, 0x2c, 0x44,
+    0x96, 0xa2, 0xdd, 0x73, 0xee, 0xb9, 0x99, 0xe5,
+    0x4c, 0xf2, 0xea, 0x0b, 0xf5, 0x85, 0x0f, 0x47,
+    0x07, 0x23, 0x04, 0xb2, 0x82, 0xd9, 0x43, 0xb5
+};
+
+void sliscp_light256_permute_spix(unsigned char block[32], unsigned rounds)
 {
-    /* Interleaved rc0, rc1, sc0, and sc1 values for each round */
-    static unsigned char const RC[18 * 4] = {
-        0x0f, 0x47, 0x08, 0x64, 0x04, 0xb2, 0x86, 0x6b,
-        0x43, 0xb5, 0xe2, 0x6f, 0xf1, 0x37, 0x89, 0x2c,
-        0x44, 0x96, 0xe6, 0xdd, 0x73, 0xee, 0xca, 0x99,
-        0xe5, 0x4c, 0x17, 0xea, 0x0b, 0xf5, 0x8e, 0x0f,
-        0x47, 0x07, 0x64, 0x04, 0xb2, 0x82, 0x6b, 0x43,
-        0xb5, 0xa1, 0x6f, 0xf1, 0x37, 0x78, 0x2c, 0x44,
-        0x96, 0xa2, 0xdd, 0x73, 0xee, 0xb9, 0x99, 0xe5,
-        0x4c, 0xf2, 0xea, 0x0b, 0xf5, 0x85, 0x0f, 0x47,
-        0x07, 0x23, 0x04, 0xb2, 0x82, 0xd9, 0x43, 0xb5
-    };
-    const unsigned char *rc = RC;
+    const unsigned char *rc = sliscp_light256_RC;
     uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
     uint32_t t0, t1;
 
@@ -121,10 +122,10 @@ void sliscp_light256_permute(unsigned char block[32], unsigned rounds)
     x0 = be_load_word32(block);
     x1 = be_load_word32(block + 4);
     x2 = be_load_word32(block + 8);
-    x3 = be_load_word32(block + 12);
+    x3 = be_load_word32(block + 24); /* Assumes the block is pre-swapped */
     x4 = be_load_word32(block + 16);
     x5 = be_load_word32(block + 20);
-    x6 = be_load_word32(block + 24);
+    x6 = be_load_word32(block + 12);
     x7 = be_load_word32(block + 28);
 
     /* Perform all permutation rounds */
@@ -156,11 +157,81 @@ void sliscp_light256_permute(unsigned char block[32], unsigned rounds)
     be_store_word32(block,      x0);
     be_store_word32(block +  4, x1);
     be_store_word32(block +  8, x2);
-    be_store_word32(block + 12, x3);
+    be_store_word32(block + 24, x3); /* Assumes the block is pre-swapped */
     be_store_word32(block + 16, x4);
     be_store_word32(block + 20, x5);
+    be_store_word32(block + 12, x6);
+    be_store_word32(block + 28, x7);
+}
+
+void sliscp_light256_swap_spix(unsigned char block[32])
+{
+    uint32_t t1, t2;
+    t1 = le_load_word32(block + 12);
+    t2 = le_load_word32(block + 24);
+    le_store_word32(block + 24, t1);
+    le_store_word32(block + 12, t2);
+}
+
+void sliscp_light256_permute_spoc(unsigned char block[32], unsigned rounds)
+{
+    const unsigned char *rc = sliscp_light256_RC;
+    uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
+    uint32_t t0, t1;
+
+    /* Load the block into local state variables */
+    x0 = be_load_word32(block);
+    x1 = be_load_word32(block + 4);
+    x2 = be_load_word32(block + 16); /* Assumes the block is pre-swapped */
+    x3 = be_load_word32(block + 20);
+    x4 = be_load_word32(block + 8);
+    x5 = be_load_word32(block + 12);
+    x6 = be_load_word32(block + 24);
+    x7 = be_load_word32(block + 28);
+
+    /* Perform all permutation rounds */
+    for (; rounds > 0; --rounds, rc += 4) {
+        /* Apply Simeck-64 to two of the 64-bit sub-blocks */
+        simeck64_box(x2, x3, rc[0]);
+        simeck64_box(x6, x7, rc[1]);
+
+        /* Add step constants */
+        x0 ^= 0xFFFFFFFFU;
+        x1 ^= 0xFFFFFF00U ^ rc[2];
+        x4 ^= 0xFFFFFFFFU;
+        x5 ^= 0xFFFFFF00U ^ rc[3];
+
+        /* Mix the sub-blocks */
+        t0 = x0 ^ x2;
+        t1 = x1 ^ x3;
+        x0 = x2;
+        x1 = x3;
+        x2 = x4 ^ x6;
+        x3 = x5 ^ x7;
+        x4 = x6;
+        x5 = x7;
+        x6 = t0;
+        x7 = t1;
+    }
+
+    /* Store the state back into the block */
+    be_store_word32(block,      x0);
+    be_store_word32(block +  4, x1);
+    be_store_word32(block + 16, x2); /* Assumes the block is pre-swapped */
+    be_store_word32(block + 20, x3);
+    be_store_word32(block +  8, x4);
+    be_store_word32(block + 12, x5);
     be_store_word32(block + 24, x6);
     be_store_word32(block + 28, x7);
+}
+
+void sliscp_light256_swap_spoc(unsigned char block[32])
+{
+    uint64_t t1, t2;
+    t1 = le_load_word64(block + 8);
+    t2 = le_load_word64(block + 16);
+    le_store_word64(block + 16, t1);
+    le_store_word64(block +  8, t2);
 }
 
 /* Load a big-endian 24-bit word from a byte buffer */
@@ -268,10 +339,10 @@ void sliscp_light320_permute(unsigned char block[40])
 
     /* Load the block into local state variables */
     x0 = be_load_word32(block);
-    x1 = be_load_word32(block + 4);
+    x1 = be_load_word32(block + 16); /* Assumes the block is pre-swapped */
     x2 = be_load_word32(block + 8);
     x3 = be_load_word32(block + 12);
-    x4 = be_load_word32(block + 16);
+    x4 = be_load_word32(block + 4);
     x5 = be_load_word32(block + 20);
     x6 = be_load_word32(block + 24);
     x7 = be_load_word32(block + 28);
@@ -316,13 +387,22 @@ void sliscp_light320_permute(unsigned char block[40])
 
     /* Store the state back into the block */
     be_store_word32(block,      x0);
-    be_store_word32(block +  4, x1);
+    be_store_word32(block + 16, x1); /* Assumes the block is pre-swapped */
     be_store_word32(block +  8, x2);
     be_store_word32(block + 12, x3);
-    be_store_word32(block + 16, x4);
+    be_store_word32(block +  4, x4);
     be_store_word32(block + 20, x5);
     be_store_word32(block + 24, x6);
     be_store_word32(block + 28, x7);
     be_store_word32(block + 32, x8);
     be_store_word32(block + 36, x9);
+}
+
+void sliscp_light320_swap(unsigned char block[40])
+{
+    uint32_t t1, t2;
+    t1 = le_load_word32(block + 4);
+    t2 = le_load_word32(block + 16);
+    le_store_word32(block + 16, t1);
+    le_store_word32(block +  4, t2);
 }
