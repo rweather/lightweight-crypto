@@ -64,10 +64,12 @@ void test_sliscp_light(void)
         test_exit_result = 1;
     }
 
-    printf("    SLiSCP-light[256] ... ");
+    printf("    SLiSCP-light-SPIX[256] ... ");
     fflush(stdout);
     memset(state, 0, sizeof(state));
-    sliscp_light256_permute(state, 18);
+    sliscp_light256_swap_spix(state);
+    sliscp_light256_permute_spix(state, 18);
+    sliscp_light256_swap_spix(state);
     if (!test_memcmp(state, sliscp256_output, sizeof(sliscp256_output))) {
         printf("ok\n");
     } else {
@@ -75,10 +77,25 @@ void test_sliscp_light(void)
         test_exit_result = 1;
     }
 
-    printf("    SLiSCP-light[320] ... ");
+    printf("    SLiSCP-light-SpoC[256] ... ");
     fflush(stdout);
     memset(state, 0, sizeof(state));
+    sliscp_light256_swap_spoc(state);
+    sliscp_light256_permute_spoc(state, 18);
+    sliscp_light256_swap_spoc(state);
+    if (!test_memcmp(state, sliscp256_output, sizeof(sliscp256_output))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    SLiSCP-light-ACE[320] ... ");
+    fflush(stdout);
+    memset(state, 0, sizeof(state));
+    sliscp_light320_swap(state);
     sliscp_light320_permute(state);
+    sliscp_light320_swap(state);
     if (!test_memcmp(state, sliscp320_output, sizeof(sliscp320_output))) {
         printf("ok\n");
     } else {
