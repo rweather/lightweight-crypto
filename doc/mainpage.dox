@@ -54,7 +54,7 @@ in "src/combined/internal-util.h" that may need adjusting to get the
 code to work with other compilers.  Patches welcome to improve portability.
 
 Masked ciphers need a source of random numbers.  This is provided by the
-"src/combined/aead-random.c" file in the source code.  Modifications will
+"src/combined/internal-masking.c" file in the source code.  Modifications will
 be needed to this file to support the TRNG in new CPU's.  Patches welcome.
 
 \section mainpage_arduino Arduino support
