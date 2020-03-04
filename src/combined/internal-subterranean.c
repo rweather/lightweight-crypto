@@ -72,9 +72,11 @@ void subterranean_round(subterranean_state_t *state)
 
     /* Step pi: permute the bits with the rule s[i] = s[(i * 12) % 257].
      * BCP = bit copy, BUP = move bit up, BDN = move bit down */
-    #define BCP(x, bit) ((x) & (1U << (bit)))
-    #define BUP(x, from, to) (((x) << ((to) - (from))) & (1U << (to)))
-    #define BDN(x, from, to) (((x) >> ((from) - (to))) & (1U << (to)))
+    #define BCP(x, bit) ((x) & (((uint32_t)1) << (bit)))
+    #define BUP(x, from, to) \
+        (((x) << ((to) - (from))) & (((uint32_t)1) << (to)))
+    #define BDN(x, from, to) \
+        (((x) >> ((from) - (to))) & (((uint32_t)1) << (to)))
     state->x[0] = BCP(x0,  0)     ^ BDN(x0, 12,  1) ^ BDN(x0, 24,  2) ^
                   BDN(x1,  4,  3) ^ BDN(x1, 16,  4) ^ BDN(x1, 28,  5) ^
                   BDN(x2,  8,  6) ^ BDN(x2, 20,  7) ^ BUP(x3,  0,  8) ^

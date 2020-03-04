@@ -100,9 +100,9 @@ static uint32_t const RC_16_8[] = {
     do { \
         uint32_t _temp = (a); \
         (a) = ((_temp & (mask1)) << (bits1)) | \
-              ((_temp & ((mask1) ^ 0xFFFFU)) >> (4 - (bits1))) | \
-              ((_temp & ((mask2) << 16)) << (bits2)) | \
-              ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (4 - (bits2))); \
+              ((_temp & ((mask1) ^ (uint32_t)0xFFFFU)) >> (4 - (bits1))) | \
+              ((_temp & (((uint32_t)(mask2)) << 16)) << (bits2)) | \
+              ((_temp & (((uint32_t)((mask2)) << 16) ^ 0xFFFF0000U)) >> (4 - (bits2))); \
     } while (0)
 
 /* Rotate 16-bit subwords left */
@@ -110,9 +110,9 @@ static uint32_t const RC_16_8[] = {
     do { \
         uint32_t _temp = (a); \
         (a) = ((_temp & (mask1)) << (bits1)) | \
-              ((_temp & ((mask1) ^ 0xFFFFU)) >> (16 - (bits1))) | \
-              ((_temp & ((mask2) << 16)) << (bits2)) | \
-              ((_temp & (((mask2) << 16) ^ 0xFFFF0000U)) >> (16 - (bits2))); \
+              ((_temp & ((mask1) ^ (uint32_t)0xFFFFU)) >> (16 - (bits1))) | \
+              ((_temp & (((uint32_t)(mask2)) << 16)) << (bits2)) | \
+              ((_temp & (((uint32_t)((mask2)) << 16) ^ 0xFFFF0000U)) >> (16 - (bits2))); \
     } while (0)
 
 /* XOR the SATURNIN state with the key */
@@ -704,7 +704,7 @@ int saturnin_short_aead_decrypt
 
     /* At this point, check1 is zero if the nonce and plaintext are good,
      * or non-zero if there was an error in the decrypted data */
-    result = (((int)check1) - 1) >> 16;
+    result = (((int)check1) - 1) >> 8;
 
     /* The "result" is -1 if the data is good or zero if the data is invalid.
      * Copy either the plaintext or zeroes to the output buffer.  We assume

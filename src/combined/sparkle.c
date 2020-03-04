@@ -98,7 +98,7 @@ aead_hash_algorithm_t const esch_384_hash_algorithm = {
  * \return The domain separation value as a 32-bit word.
  */
 #if defined(LW_UTIL_LITTLE_ENDIAN)
-#define DOMAIN(value) ((value) << 24)
+#define DOMAIN(value) (((uint32_t)(value)) << 24)
 #else
 #define DOMAIN(value) (value)
 #endif
@@ -890,6 +890,20 @@ int schwaemm_256_256_aead_decrypt
         s[5] ^= tx; \
     } while (0)
 
+/**
+ * \brief Word-based state for the Esch256 incremental hash mode.
+ */
+typedef union
+{
+    struct {
+        uint32_t state[SPARKLE_384_STATE_SIZE];
+        uint32_t block[4];
+        unsigned char count;
+    } s;
+    unsigned long long align;
+
+} esch_256_hash_state_wt;
+
 int esch_256_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen)
 {
@@ -930,18 +944,19 @@ void esch_256_hash_update
     (esch_256_hash_state_t *state, const unsigned char *in,
      unsigned long long inlen)
 {
+    esch_256_hash_state_wt *st = (esch_256_hash_state_wt *)state;
     unsigned temp;
     while (inlen > 0) {
-        if (state->s.count == ESCH_256_RATE) {
-            esch_256_m3(state->s.state, state->s.block, 0x00);
-            sparkle_384(state->s.state, 7);
-            state->s.count = 0;
+        if (st->s.count == ESCH_256_RATE) {
+            esch_256_m3(st->s.state, st->s.block, 0x00);
+            sparkle_384(st->s.state, 7);
+            st->s.count = 0;
         }
-        temp = ESCH_256_RATE - state->s.count;
+        temp = ESCH_256_RATE - st->s.count;
         if (temp > inlen)
             temp = (unsigned)inlen;
-        memcpy(((unsigned char *)(state->s.block)) + state->s.count, in, temp);
-        state->s.count += temp;
+        memcpy(((unsigned char *)(st->s.block)) + st->s.count, in, temp);
+        st->s.count += temp;
         in += temp;
         inlen -= temp;
     }
@@ -950,22 +965,24 @@ void esch_256_hash_update
 void esch_256_hash_finalize
     (esch_256_hash_state_t *state, unsigned char *out)
 {
+    esch_256_hash_state_wt *st = (esch_256_hash_state_wt *)state;
+
     /* Pad and process the last block */
-    if (state->s.count == ESCH_256_RATE) {
-        esch_256_m3(state->s.state, state->s.block, 0x02);
+    if (st->s.count == ESCH_256_RATE) {
+        esch_256_m3(st->s.state, st->s.block, 0x02);
     } else {
-        unsigned temp = state->s.count;
-        ((unsigned char *)(state->s.block))[temp] = 0x80;
-        memset(((unsigned char *)(state->s.block)) + temp + 1, 0,
+        unsigned temp = st->s.count;
+        ((unsigned char *)(st->s.block))[temp] = 0x80;
+        memset(((unsigned char *)(st->s.block)) + temp + 1, 0,
                ESCH_256_RATE - temp - 1);
-        esch_256_m3(state->s.state, state->s.block, 0x01);
+        esch_256_m3(st->s.state, st->s.block, 0x01);
     }
-    sparkle_384(state->s.state, 11);
+    sparkle_384(st->s.state, 11);
 
     /* Generate the final hash value */
-    memcpy(out, state->s.state, ESCH_256_RATE);
-    sparkle_384(state->s.state, 7);
-    memcpy(out + ESCH_256_RATE, state->s.state, ESCH_256_RATE);
+    memcpy(out, st->s.state, ESCH_256_RATE);
+    sparkle_384(st->s.state, 7);
+    memcpy(out + ESCH_256_RATE, st->s.state, ESCH_256_RATE);
 }
 
 /**
@@ -997,6 +1014,20 @@ void esch_256_hash_finalize
         s[6] ^= ty; \
         s[7] ^= tx; \
     } while (0)
+
+/**
+ * \brief Word-based state for the Esch384 incremental hash mode.
+ */
+typedef union
+{
+    struct {
+        uint32_t state[SPARKLE_512_STATE_SIZE];
+        uint32_t block[4];
+        unsigned char count;
+    } s;
+    unsigned long long align;
+
+} esch_384_hash_state_wt;
 
 int esch_384_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen)
@@ -1040,18 +1071,19 @@ void esch_384_hash_update
     (esch_384_hash_state_t *state, const unsigned char *in,
      unsigned long long inlen)
 {
+    esch_384_hash_state_wt *st = (esch_384_hash_state_wt *)state;
     unsigned temp;
     while (inlen > 0) {
-        if (state->s.count == ESCH_384_RATE) {
-            esch_384_m4(state->s.state, state->s.block, 0x00);
-            sparkle_512(state->s.state, 8);
-            state->s.count = 0;
+        if (st->s.count == ESCH_384_RATE) {
+            esch_384_m4(st->s.state, st->s.block, 0x00);
+            sparkle_512(st->s.state, 8);
+            st->s.count = 0;
         }
-        temp = ESCH_384_RATE - state->s.count;
+        temp = ESCH_384_RATE - st->s.count;
         if (temp > inlen)
             temp = (unsigned)inlen;
-        memcpy(((unsigned char *)(state->s.block)) + state->s.count, in, temp);
-        state->s.count += temp;
+        memcpy(((unsigned char *)(st->s.block)) + st->s.count, in, temp);
+        st->s.count += temp;
         in += temp;
         inlen -= temp;
     }
@@ -1060,22 +1092,24 @@ void esch_384_hash_update
 void esch_384_hash_finalize
     (esch_384_hash_state_t *state, unsigned char *out)
 {
+    esch_384_hash_state_wt *st = (esch_384_hash_state_wt *)state;
+
     /* Pad and process the last block */
-    if (state->s.count == ESCH_384_RATE) {
-        esch_384_m4(state->s.state, state->s.block, 0x02);
+    if (st->s.count == ESCH_384_RATE) {
+        esch_384_m4(st->s.state, st->s.block, 0x02);
     } else {
-        unsigned temp = state->s.count;
-        ((unsigned char *)(state->s.block))[temp] = 0x80;
-        memset(((unsigned char *)(state->s.block)) + temp + 1, 0,
+        unsigned temp = st->s.count;
+        ((unsigned char *)(st->s.block))[temp] = 0x80;
+        memset(((unsigned char *)(st->s.block)) + temp + 1, 0,
                ESCH_384_RATE - temp - 1);
-        esch_384_m4(state->s.state, state->s.block, 0x01);
+        esch_384_m4(st->s.state, st->s.block, 0x01);
     }
-    sparkle_512(state->s.state, 12);
+    sparkle_512(st->s.state, 12);
 
     /* Generate the final hash value */
-    memcpy(out, state->s.state, ESCH_384_RATE);
-    sparkle_512(state->s.state, 8);
-    memcpy(out + ESCH_384_RATE, state->s.state, ESCH_384_RATE);
-    sparkle_512(state->s.state, 8);
-    memcpy(out + ESCH_384_RATE * 2, state->s.state, ESCH_384_RATE);
+    memcpy(out, st->s.state, ESCH_384_RATE);
+    sparkle_512(st->s.state, 8);
+    memcpy(out + ESCH_384_RATE, st->s.state, ESCH_384_RATE);
+    sparkle_512(st->s.state, 8);
+    memcpy(out + ESCH_384_RATE * 2, st->s.state, ESCH_384_RATE);
 }

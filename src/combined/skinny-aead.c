@@ -551,7 +551,7 @@ static void skinny_aead_128_256_init
  */
 #define skinny_aead_128_256_update_lfsr(lfsr) \
     do { \
-        uint32_t feedback = ((lfsr) & (1U << 23)) ? 0x1B : 0x00; \
+        uint32_t feedback = ((lfsr) & (((uint32_t)1) << 23)) ? 0x1B : 0x00; \
         (lfsr) = ((lfsr) << 1) ^ (feedback); \
     } while (0)
 

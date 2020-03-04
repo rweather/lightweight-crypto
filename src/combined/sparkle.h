@@ -156,11 +156,11 @@ extern aead_hash_algorithm_t const esch_384_hash_algorithm;
 typedef union
 {
     struct {
-        unsigned int state[12];  /**< Current hash state */
-        unsigned int block[4];   /**< Partial input data block */
-        unsigned char count;     /**< Number of bytes in the current block */
-    } s;                         /**< State */
-    unsigned long long align;    /**< For alignment of this structure */
+        unsigned char state[48];    /**< Current hash state */
+        unsigned char block[16];    /**< Partial input data block */
+        unsigned char count;        /**< Number of bytes in the current block */
+    } s;                            /**< State */
+    unsigned long long align;       /**< For alignment of this structure */
 
 } esch_256_hash_state_t;
 
@@ -170,11 +170,11 @@ typedef union
 typedef union
 {
     struct {
-        unsigned int state[16];  /**< Current hash state */
-        unsigned int block[4];   /**< Partial input data block */
-        unsigned char count;     /**< Number of bytes in the current block */
-    } s;                         /**< State */
-    unsigned long long align;    /**< For alignment of this structure */
+        unsigned char state[64];    /**< Current hash state */
+        unsigned char block[16];    /**< Partial input data block */
+        unsigned char count;        /**< Number of bytes in the current block */
+    } s;                            /**< State */
+    unsigned long long align;       /**< For alignment of this structure */
 
 } esch_384_hash_state_t;
 

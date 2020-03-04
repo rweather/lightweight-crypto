@@ -119,9 +119,11 @@ void spongent160_permute(spongent160_state_t *state)
         /* Permute the bits of the state.  Bit i is moved to (40 * i) % 159
          * for all bits except the last which is left where it is.
          * BCP = bit copy, BUP = move bit up, BDN = move bit down */
-        #define BCP(x, bit) ((x) & (1U << (bit)))
-        #define BUP(x, from, to) (((x) << ((to) - (from))) & (1U << (to)))
-        #define BDN(x, from, to) (((x) >> ((from) - (to))) & (1U << (to)))
+        #define BCP(x, bit) ((x) & (((uint32_t)1) << (bit)))
+        #define BUP(x, from, to) \
+            (((x) << ((to) - (from))) & (((uint32_t)1) << (to)))
+        #define BDN(x, from, to) \
+            (((x) >> ((from) - (to))) & (((uint32_t)1) << (to)))
         x0 = BCP(t0,  0)     ^ BDN(t0,  4,  1) ^ BDN(t0,  8,  2) ^
              BDN(t0, 12,  3) ^ BDN(t0, 16,  4) ^ BDN(t0, 20,  5) ^
              BDN(t0, 24,  6) ^ BDN(t0, 28,  7) ^ BUP(t1,  0,  8) ^
