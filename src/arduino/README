@@ -1,0 +1,5 @@
+
+The LWC_Benchmark subdirectory contains an Arduino sketch that can be
+used to test third-party implementations using my "ChaChaPoly Units"
+metric.  You will need to modify some functions and the "my_cipher"
+data structure to integrate your own algorithm for benchmarking.
