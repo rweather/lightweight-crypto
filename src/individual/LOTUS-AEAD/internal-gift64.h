@@ -49,6 +49,7 @@ extern "C" {
 typedef struct
 {
     uint32_t k[4];      /**< Words of the key schedule */
+    uint32_t rk[8];     /**< Pre-computed round keys for fixsliced form */
 
 } gift64b_key_schedule_t;
 
@@ -66,32 +67,11 @@ int gift64b_init
     (gift64b_key_schedule_t *ks, const unsigned char *key, size_t key_len);
 
 /**
- * \brief Encrypts a 64-bit block with GIFT-64 (bit-sliced).
+ * \brief Updates the round keys after a change in the base key.
  *
- * \param ks Points to the GIFT-64 key schedule.
- * \param output Output buffer which must be at least 8 bytes in length.
- * \param input Input buffer which must be at least 8 bytes in length.
- *
- * The \a input and \a output buffers can be the same buffer for
- * in-place encryption.
+ * \param ks Points to the key schedule to update.
  */
-void gift64b_encrypt
-    (const gift64b_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input);
-
-/**
- * \brief Decrypts a 64-bit block with GIFT-64 (bit-sliced).
- *
- * \param ks Points to the GIFT-64 key schedule.
- * \param output Output buffer which must be at least 8 bytes in length.
- * \param input Input buffer which must be at least 8 bytes in length.
- *
- * The \a input and \a output buffers can be the same buffer for
- * in-place decryption.
- */
-void gift64b_decrypt
-    (const gift64b_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input);
+void gift64b_update_round_keys(gift64b_key_schedule_t *ks);
 
 /**
  * \brief Structure of the key schedule for GIFT-64 (nibble-based).
@@ -136,6 +116,34 @@ void gift64n_encrypt
  * in-place decryption.
  */
 void gift64n_decrypt
+    (const gift64n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Encrypts a 64-bit block with GIFT-64 (nibble-based big-endian).
+ *
+ * \param ks Points to the GIFT-64 key schedule.
+ * \param output Output buffer which must be at least 8 bytes in length.
+ * \param input Input buffer which must be at least 8 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ */
+void gift64nb_encrypt
+    (const gift64n_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input);
+
+/**
+ * \brief Decrypts a 64-bit block with GIFT-64 (nibble-based big-endian).
+ *
+ * \param ks Points to the GIFT-64 key schedule.
+ * \param output Output buffer which must be at least 8 bytes in length.
+ * \param input Input buffer which must be at least 8 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place decryption.
+ */
+void gift64nb_decrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 

@@ -94,6 +94,8 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.57</td><td>0.60</td><td>0.49</td></tr>
 <tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.56</td><td>0.58</td><td>0.48</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.38</td><td>0.39</td><td>0.40</td></tr>
+<tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.29</td><td>0.31</td><td>0.56</td><td>0.58</td><td>0.40</td></tr>
+<tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.28</td><td>0.29</td><td>0.56</td><td>0.57</td><td>0.39</td></tr>
 <tr><td><b><i>KNOT-AEAD-128-256</i></b></td><td>128</td><td>128</td><td>128</td><td>0.29</td><td>0.31</td><td>0.47</td><td>0.49</td><td>0.38</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>0.29</td><td>0.32</td><td>0.42</td><td>0.44</td><td>0.37</td></tr>
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.26</td><td>0.26</td><td>0.56</td><td>0.56</td><td>0.37</td></tr>
@@ -116,8 +118,6 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19</td></tr>
 <tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.15</td><td>0.17</td><td>0.21</td><td>0.22</td><td>0.18</td></tr>
-<tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.14</td><td>0.25</td><td>0.27</td><td>0.18</td></tr>
-<tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.27</td><td>0.18</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.13</td><td>0.15</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
 <tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.12</td><td>0.14</td><td>0.19</td><td>0.20</td><td>0.16</td></tr>
 <tr><td><b><i>Romulus-N1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.18</td><td>0.19</td><td>0.16</td></tr>
@@ -189,6 +189,8 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.33</td><td>0.30</td><td>0.65</td><td>0.59</td><td>0.43</td></tr>
 <tr><td><b><i>DryGASCON128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.23</td><td>0.25</td><td>0.40</td><td>0.42</td><td>0.31</td></tr>
 <tr><td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.25</td><td>0.41</td><td>0.43</td><td>0.31</td></tr>
+<tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.20</td><td>0.22</td><td>0.40</td><td>0.42</td><td>0.29</td></tr>
+<tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.19</td><td>0.22</td><td>0.39</td><td>0.41</td><td>0.28</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.27</td><td>0.30</td><td>0.24</td><td>0.26</td><td>0.26</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.28</td><td>0.32</td><td>0.39</td><td>0.41</td><td>0.25</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.23</td><td>0.28</td><td>0.30</td><td>0.25</td></tr>
@@ -206,8 +208,6 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16</td></tr>
 <tr><td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15</td></tr>
 <tr><td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15</td></tr>
-<tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.20</td><td>0.21</td><td>0.14</td></tr>
-<tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.20</td><td>0.21</td><td>0.14</td></tr>
 <tr><td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13</td></tr>
 <tr><td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13</td></tr>
 <tr><td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13</td></tr>
@@ -264,9 +264,9 @@ has an average between 0.30 and 0.39 ChaChaPoly units.
 <tr><td>6</td><td>SpoC, Spook</td></tr>
 <tr><td>5</td><td>ASCON</td></tr>
 <tr><td>4</td><td>Grain128-AEAD, KNOT</td></tr>
-<tr><td>3</td><td>GIFT-COFB, HYENA, SPIX</td></tr>
+<tr><td>3</td><td>GIFT-COFB, HYENA, LOTUS, SPIX</td></tr>
 <tr><td>2</td><td>DryGASCON, ESTATE, Oribatida, Saturnin, SUNDAE-GIFT</td></tr>
-<tr><td>1</td><td>ACE, LOTUS, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
+<tr><td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
 <tr><td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE</td></tr>
 </table>
 
