@@ -890,6 +890,8 @@ int schwaemm_256_256_aead_decrypt
         s[5] ^= tx; \
     } while (0)
 
+/** @cond esch_256 */
+
 /**
  * \brief Word-based state for the Esch256 incremental hash mode.
  */
@@ -903,6 +905,8 @@ typedef union
     unsigned long long align;
 
 } esch_256_hash_state_wt;
+
+/** @endcond */
 
 int esch_256_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen)
@@ -1015,6 +1019,8 @@ void esch_256_hash_finalize
         s[7] ^= tx; \
     } while (0)
 
+/** @cond esch_384 */
+
 /**
  * \brief Word-based state for the Esch384 incremental hash mode.
  */
@@ -1028,6 +1034,8 @@ typedef union
     unsigned long long align;
 
 } esch_384_hash_state_wt;
+
+/** @endcond */
 
 int esch_384_hash
     (unsigned char *out, const unsigned char *in, unsigned long long inlen)
