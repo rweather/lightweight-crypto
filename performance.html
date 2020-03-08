@@ -121,6 +121,10 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81 </td></tr>
 <tr>
+<td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>0.70</td><td>0.71</td><td>0.90</td><td>0.90</td><td>0.80 </td></tr>
+<tr>
+<td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80 </td></tr>
+<tr>
 <td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.82</td><td>0.75</td><td>0.76</td><td>0.77 </td></tr>
 <tr>
 <td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.62</td><td>0.66</td><td>0.90</td><td>0.92</td><td>0.76 </td></tr>
@@ -131,9 +135,19 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Spook-128-512-mu</td><td>256</td><td>128</td><td>128</td><td>0.75</td><td>0.80</td><td>0.71</td><td>0.75</td><td>0.75 </td></tr>
 <tr>
+<td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.69</td><td>0.80</td><td>0.83</td><td>0.74 </td></tr>
+<tr>
 <td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.54</td><td>0.57</td><td>1.01</td><td>1.03</td><td>0.74 </td></tr>
 <tr>
+<td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.87</td><td>0.71 </td></tr>
+<tr>
+<td><b><em>SUNDAE-GIFT-96</em></b></td><td>128</td><td>96</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.86</td><td>0.70 </td></tr>
+<tr>
+<td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.56</td><td>0.59</td><td>0.83</td><td>0.85</td><td>0.70 </td></tr>
+<tr>
 <td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.49</td><td>0.52</td><td>0.94</td><td>0.96</td><td>0.68 </td></tr>
+<tr>
+<td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66 </td></tr>
 <tr>
 <td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.55</td><td>0.57</td><td>0.66</td><td>0.67</td><td>0.61 </td></tr>
 <tr>
@@ -145,27 +159,17 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.38</td><td>0.39</td><td>0.40 </td></tr>
 <tr>
+<td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.29</td><td>0.31</td><td>0.56</td><td>0.58</td><td>0.40 </td></tr>
+<tr>
+<td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.28</td><td>0.29</td><td>0.56</td><td>0.57</td><td>0.39 </td></tr>
+<tr>
 <td><b><em>KNOT-AEAD-128-256</em></b></td><td>128</td><td>128</td><td>128</td><td>0.29</td><td>0.31</td><td>0.47</td><td>0.49</td><td>0.38 </td></tr>
 <tr>
-<td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>0.29</td><td>0.32</td><td>0.42</td><td>0.44</td><td>0.37 </td></tr>
-<tr>
 <td><b><em>Grain-128AEAD</em></b></td><td>128</td><td>96</td><td>64</td><td>0.26</td><td>0.26</td><td>0.56</td><td>0.56</td><td>0.37 </td></tr>
-<tr>
-<td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>0.28</td><td>0.31</td><td>0.40</td><td>0.42</td><td>0.35 </td></tr>
 <tr>
 <td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.31</td><td>0.33</td><td>0.30</td><td>0.32</td><td>0.31 </td></tr>
 <tr>
 <td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.24</td><td>0.42</td><td>0.44</td><td>0.31 </td></tr>
-<tr>
-<td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.19</td><td>0.22</td><td>0.45</td><td>0.47</td><td>0.30 </td></tr>
-<tr>
-<td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.20</td><td>0.41</td><td>0.43</td><td>0.28 </td></tr>
-<tr>
-<td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.18</td><td>0.21</td><td>0.34</td><td>0.36</td><td>0.26 </td></tr>
-<tr>
-<td><b><em>SUNDAE-GIFT-96</em></b></td><td>128</td><td>96</td><td>128</td><td>0.18</td><td>0.20</td><td>0.34</td><td>0.36</td><td>0.26 </td></tr>
-<tr>
-<td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.20</td><td>0.34</td><td>0.36</td><td>0.26 </td></tr>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.23 </td></tr>
 <tr>
@@ -188,10 +192,6 @@ Performance on ARM Cortex M3</h1>
 <td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.16</td><td>0.23</td><td>0.24</td><td>0.19 </td></tr>
 <tr>
 <td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.15</td><td>0.17</td><td>0.21</td><td>0.22</td><td>0.18 </td></tr>
-<tr>
-<td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.14</td><td>0.25</td><td>0.27</td><td>0.18 </td></tr>
-<tr>
-<td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.27</td><td>0.18 </td></tr>
 <tr>
 <td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.13</td><td>0.15</td><td>0.19</td><td>0.20</td><td>0.16 </td></tr>
 <tr>
@@ -285,11 +285,17 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>0.51</td><td>0.55</td><td>0.98</td><td>0.99</td><td>0.71 </td></tr>
 <tr>
+<td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>0.60</td><td>0.65</td><td>0.76</td><td>0.79</td><td>0.70 </td></tr>
+<tr>
 <td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.46</td><td>0.50</td><td>0.91</td><td>0.92</td><td>0.65 </td></tr>
 <tr>
 <td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.51</td><td>0.56</td><td>0.75</td><td>0.76</td><td>0.64 </td></tr>
 <tr>
+<td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.47</td><td>0.52</td><td>0.85</td><td>0.87</td><td>0.64 </td></tr>
+<tr>
 <td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.74</td><td>0.75</td><td>0.63 </td></tr>
+<tr>
+<td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>0.54</td><td>0.59</td><td>0.68</td><td>0.70</td><td>0.63 </td></tr>
 <tr>
 <td><b><em>Spook-128-512-su</em></b></td><td>256</td><td>128</td><td>128</td><td>0.64</td><td>0.68</td><td>0.59</td><td>0.61</td><td>0.63 </td></tr>
 <tr>
@@ -307,7 +313,15 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>KNOT-AEAD-128-256</em></b></td><td>128</td><td>128</td><td>128</td><td>0.45</td><td>0.49</td><td>0.73</td><td>0.75</td><td>0.59 </td></tr>
 <tr>
+<td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.44</td><td>0.49</td><td>0.69</td><td>0.71</td><td>0.57 </td></tr>
+<tr>
+<td><b><em>SUNDAE-GIFT-96</em></b></td><td>128</td><td>96</td><td>128</td><td>0.44</td><td>0.49</td><td>0.68</td><td>0.70</td><td>0.57 </td></tr>
+<tr>
+<td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.44</td><td>0.49</td><td>0.67</td><td>0.70</td><td>0.57 </td></tr>
+<tr>
 <td><b><em>SpoC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.40</td><td>0.44</td><td>0.77</td><td>0.78</td><td>0.56 </td></tr>
+<tr>
+<td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.38</td><td>0.42</td><td>0.74</td><td>0.76</td><td>0.54 </td></tr>
 <tr>
 <td><b><em>Grain-128AEAD</em></b></td><td>128</td><td>96</td><td>64</td><td>0.33</td><td>0.30</td><td>0.65</td><td>0.59</td><td>0.43 </td></tr>
 <tr>
@@ -315,15 +329,15 @@ Performance on ESP32</h1>
 <tr>
 <td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.25</td><td>0.41</td><td>0.43</td><td>0.31 </td></tr>
 <tr>
+<td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.20</td><td>0.22</td><td>0.40</td><td>0.42</td><td>0.29 </td></tr>
+<tr>
+<td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.19</td><td>0.22</td><td>0.39</td><td>0.41</td><td>0.28 </td></tr>
+<tr>
 <td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.27</td><td>0.30</td><td>0.24</td><td>0.26</td><td>0.26 </td></tr>
 <tr>
 <td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.28</td><td>0.32</td><td>0.39</td><td>0.41</td><td>0.25 </td></tr>
 <tr>
-<td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.23</td><td>0.28</td><td>0.30</td><td>0.25 </td></tr>
-<tr>
 <td><b><em>Oribatida-256-64</em></b></td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.19</td><td>0.34</td><td>0.35</td><td>0.25 </td></tr>
-<tr>
-<td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.22</td><td>0.27</td><td>0.29</td><td>0.24 </td></tr>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24 </td></tr>
 <tr>
@@ -333,25 +347,11 @@ Performance on ESP32</h1>
 <tr>
 <td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.27</td><td>0.21 </td></tr>
 <tr>
-<td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.12</td><td>0.14</td><td>0.27</td><td>0.29</td><td>0.19 </td></tr>
-<tr>
-<td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.26</td><td>0.28</td><td>0.18 </td></tr>
-<tr>
-<td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
-<tr>
-<td><b><em>SUNDAE-GIFT-96</em></b></td><td>128</td><td>96</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
-<tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.15</td><td>0.16</td><td>0.15 </td></tr>
-<tr>
-<td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.21</td><td>0.22</td><td>0.16 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.12</td><td>0.18</td><td>0.23</td><td>0.15 </td></tr>
-<tr>
-<td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.20</td><td>0.21</td><td>0.14 </td></tr>
-<tr>
-<td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.09</td><td>0.11</td><td>0.20</td><td>0.21</td><td>0.14 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.09</td><td>0.11</td><td>0.14</td><td>0.19</td><td>0.13 </td></tr>
 <tr>
@@ -431,26 +431,26 @@ Overall group rankings</h1>
 <tr>
 <td>8</td><td>Xoodyak </td></tr>
 <tr>
-<td>7</td><td>Gimli, TinyJAMBU </td></tr>
+<td>7</td><td>GIFT-COFB, Gimli, TinyJAMBU </td></tr>
 <tr>
-<td>6</td><td>SpoC, Spook </td></tr>
+<td>6</td><td>ESTATE, HYENA, SpoC, Spook, SUNDAE-GIFT </td></tr>
 <tr>
 <td>5</td><td>ASCON </td></tr>
 <tr>
 <td>4</td><td>Grain128-AEAD, KNOT </td></tr>
 <tr>
-<td>3</td><td>GIFT-COFB, HYENA, SPIX </td></tr>
+<td>3</td><td>LOTUS, SPIX </td></tr>
 <tr>
-<td>2</td><td>DryGASCON, ESTATE, Oribatida, Saturnin, SUNDAE-GIFT </td></tr>
+<td>2</td><td>DryGASCON, Oribatida, Saturnin </td></tr>
 <tr>
-<td>1</td><td>ACE, LOTUS, ORANGE, Romulus, SKINNY-AEAD, Subterranean </td></tr>
+<td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean </td></tr>
 <tr>
 <td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2020 04:09:35 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2020 13:27:31 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

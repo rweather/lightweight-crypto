@@ -3,6 +3,7 @@ var searchData=
   ['gascon128_5fstate_5fsize',['GASCON128_STATE_SIZE',['../internal-drysponge_8h.html#a9b4829c6512c7ceae6e6f18daec9ccb6',1,'internal-drysponge.h']]],
   ['gascon256_5fstate_5fsize',['GASCON256_STATE_SIZE',['../internal-drysponge_8h.html#a02db305fb162314afe1e72decb6db741',1,'internal-drysponge.h']]],
   ['gift128_5fblock_5fsize',['GIFT128_BLOCK_SIZE',['../internal-gift128_8h.html#a642719cdc783743ff774f31b77513109',1,'internal-gift128.h']]],
+  ['gift128_5fround_5fkeys',['GIFT128_ROUND_KEYS',['../internal-gift128_8h.html#afa2aa6a99e9d2cf61a4579068480af51',1,'internal-gift128.h']]],
   ['gift64_5fblock_5fsize',['GIFT64_BLOCK_SIZE',['../internal-gift64_8h.html#a2e78978d8a93d87623ba59d7f13f5fbb',1,'internal-gift64.h']]],
   ['gift_5fcofb_5fkey_5fsize',['GIFT_COFB_KEY_SIZE',['../gift-cofb_8h.html#abf905972dee770a846429f3849785021',1,'gift-cofb.h']]],
   ['gift_5fcofb_5fnonce_5fsize',['GIFT_COFB_NONCE_SIZE',['../gift-cofb_8h.html#ad12c6b0811f9ebe85e40b304b383b541',1,'gift-cofb.h']]],

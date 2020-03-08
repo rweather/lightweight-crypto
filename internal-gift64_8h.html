@@ -126,12 +126,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a0cf063c1940fbcbd35193dcca857f21d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a0cf063c1940fbcbd35193dcca857f21d">gift64b_init</a> (<a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *ks, const unsigned char *key, size_t key_len)</td></tr>
 <tr class="memdesc:a0cf063c1940fbcbd35193dcca857f21d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-64 (bit-sliced).  <a href="#a0cf063c1940fbcbd35193dcca857f21d">More...</a><br/></td></tr>
 <tr class="separator:a0cf063c1940fbcbd35193dcca857f21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e6b15bd6b1d7ca15577f6770d941724"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a0e6b15bd6b1d7ca15577f6770d941724">gift64b_encrypt</a> (const <a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a0e6b15bd6b1d7ca15577f6770d941724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 64-bit block with GIFT-64 (bit-sliced).  <a href="#a0e6b15bd6b1d7ca15577f6770d941724">More...</a><br/></td></tr>
-<tr class="separator:a0e6b15bd6b1d7ca15577f6770d941724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69c21a8227ad297995f233ca25d12326"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a69c21a8227ad297995f233ca25d12326">gift64b_decrypt</a> (const <a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a69c21a8227ad297995f233ca25d12326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 64-bit block with GIFT-64 (bit-sliced).  <a href="#a69c21a8227ad297995f233ca25d12326">More...</a><br/></td></tr>
-<tr class="separator:a69c21a8227ad297995f233ca25d12326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae2388fe0d6cc18be936ca25082e1a60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#aae2388fe0d6cc18be936ca25082e1a60">gift64b_update_round_keys</a> (<a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *ks)</td></tr>
+<tr class="memdesc:aae2388fe0d6cc18be936ca25082e1a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the round keys after a change in the base key.  <a href="#aae2388fe0d6cc18be936ca25082e1a60">More...</a><br/></td></tr>
+<tr class="separator:aae2388fe0d6cc18be936ca25082e1a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d2835d39807f2ef0f3b0ecbf8771296"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a2d2835d39807f2ef0f3b0ecbf8771296">gift64n_init</a> (<a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *ks, const unsigned char *key, size_t key_len)</td></tr>
 <tr class="memdesc:a2d2835d39807f2ef0f3b0ecbf8771296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-64 (nibble-based).  <a href="#a2d2835d39807f2ef0f3b0ecbf8771296">More...</a><br/></td></tr>
 <tr class="separator:a2d2835d39807f2ef0f3b0ecbf8771296"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +138,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a11160bd9b96419e572d48395a58b47f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a11160bd9b96419e572d48395a58b47f4">gift64n_decrypt</a> (const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a11160bd9b96419e572d48395a58b47f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 64-bit block with GIFT-64 (nibble-based).  <a href="#a11160bd9b96419e572d48395a58b47f4">More...</a><br/></td></tr>
 <tr class="separator:a11160bd9b96419e572d48395a58b47f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095e0d920a22d14b2274a2e2d92b07f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a095e0d920a22d14b2274a2e2d92b07f1">gift64nb_encrypt</a> (const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a095e0d920a22d14b2274a2e2d92b07f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 64-bit block with GIFT-64 (nibble-based big-endian).  <a href="#a095e0d920a22d14b2274a2e2d92b07f1">More...</a><br/></td></tr>
+<tr class="separator:a095e0d920a22d14b2274a2e2d92b07f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384844763cda79e11c118ef615242fac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#a384844763cda79e11c118ef615242fac">gift64nb_decrypt</a> (const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a384844763cda79e11c118ef615242fac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 64-bit block with GIFT-64 (nibble-based big-endian).  <a href="#a384844763cda79e11c118ef615242fac">More...</a><br/></td></tr>
+<tr class="separator:a384844763cda79e11c118ef615242fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac523d70364fc0cc5cb510cf3436b4a5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift64_8h.html#ac523d70364fc0cc5cb510cf3436b4a5c">gift64t_encrypt</a> (const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input, unsigned char tweak)</td></tr>
 <tr class="memdesc:ac523d70364fc0cc5cb510cf3436b4a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 64-bit block with TweGIFT-64 (tweakable variant).  <a href="#ac523d70364fc0cc5cb510cf3436b4a5c">More...</a><br/></td></tr>
 <tr class="separator:ac523d70364fc0cc5cb510cf3436b4a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,92 +155,6 @@ Functions</h2></td></tr>
 <div class="textblock"><p>GIFT-64 block cipher. </p>
 <p>References: <a href="https://eprint.iacr.org/2017/622.pdf,">https://eprint.iacr.org/2017/622.pdf,</a> <a href="https://giftcipher.github.io/gift/">https://giftcipher.github.io/gift/</a> </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a69c21a8227ad297995f233ca25d12326"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gift64b_decrypt </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>input</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Decrypts a 64-bit block with GIFT-64 (bit-sliced). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ks</td><td>Points to the GIFT-64 key schedule. </td></tr>
-    <tr><td class="paramname">output</td><td>Output buffer which must be at least 8 bytes in length. </td></tr>
-    <tr><td class="paramname">input</td><td>Input buffer which must be at least 8 bytes in length.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption. </p>
-
-</div>
-</div>
-<a class="anchor" id="a0e6b15bd6b1d7ca15577f6770d941724"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gift64b_encrypt </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>input</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Encrypts a 64-bit block with GIFT-64 (bit-sliced). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ks</td><td>Points to the GIFT-64 key schedule. </td></tr>
-    <tr><td class="paramname">output</td><td>Output buffer which must be at least 8 bytes in length. </td></tr>
-    <tr><td class="paramname">input</td><td>Input buffer which must be at least 8 bytes in length.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption. </p>
-
-</div>
-</div>
 <a class="anchor" id="a0cf063c1940fbcbd35193dcca857f21d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -278,6 +195,30 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Non-zero on success or zero if there is something wrong with the parameters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aae2388fe0d6cc18be936ca25082e1a60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gift64b_update_round_keys </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgift64b__key__schedule__t.html">gift64b_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the round keys after a change in the base key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>Points to the key schedule to update. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -410,6 +351,92 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a384844763cda79e11c118ef615242fac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gift64nb_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts a 64-bit block with GIFT-64 (nibble-based big-endian). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>Points to the GIFT-64 key schedule. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer which must be at least 8 bytes in length. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer which must be at least 8 bytes in length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption. </p>
+
+</div>
+</div>
+<a class="anchor" id="a095e0d920a22d14b2274a2e2d92b07f1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gift64nb_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="internal-gift64_8h.html#a44ad1dc20004289cee30cde1ee1e4fa8">gift64n_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts a 64-bit block with GIFT-64 (nibble-based big-endian). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>Points to the GIFT-64 key schedule. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer which must be at least 8 bytes in length. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer which must be at least 8 bytes in length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption. </p>
+
+</div>
+</div>
 <a class="anchor" id="abd737d8b412c77910cf34ff822f59cff"></a>
 <div class="memitem">
 <div class="memproto">
@@ -515,7 +542,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2020 04:09:35 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2020 13:27:31 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
