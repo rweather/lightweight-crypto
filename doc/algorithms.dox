@@ -128,42 +128,48 @@ The following table summarises the interesting properties of all
 (non-AES) NIST submissions.  More details are provided in the sections below.
 
 <table>
-<tr><td>Algorithm</td><td>Key Sizes</td><td>Core</td><td>Mode</td><td>Nonce Reuse</td><td>Side Channels</td><td>Post Quantum</td><td>Hashing</td></tr>
-<tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
-<tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
-<tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td> </td><td>Y</td><td>K</td><td>Digest</td></tr>
-<tr><td>Elephant</td><td>128</td><td>Spongent/Keccak</td><td>Elephant</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td>Y</td><td> </td><td> </td><td> </td></tr>
-<tr><td>ForkAE</td><td>128</td><td>ForkSkinny</td><td>PAEF/SAEF</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>Gimli</td><td>256</td><td>Gimli</td><td>Duplex</td><td> </td><td> </td><td>Y</td><td>Digest/XOF</td></tr>
-<tr><td>Grain-128AEAD</td><td>128</td><td>Grain-128</td><td>Grain-128AEAD</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>HYENA</td><td>128</td><td>GIFT-128</td><td>HyFB</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>ISAP</td><td>128</td><td>ASCON/Keccak</td><td>Duplex</td><td> </td><td>Y</td><td> </td><td> </td></tr>
-<tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
-<tr><td>LOTUS-AEAD/LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR/OCB</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>ORANGE</td><td>128</td><td>PHOTON-256</td><td>ORANGE</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
-<tr><td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>PHOTON-Beetle</td><td>128</td><td>PHOTON-256</td><td>Beetle</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
-<tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td> </td><td>M</td><td> </td><td> </td></tr>
-<tr><td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>Romulus-M</td><td>128</td><td>SKINNY-128</td><td>Romulus-M</td><td>Y</td><td> </td><td> </td><td> </td></tr>
-<tr><td>Saturnin</td><td>256</td><td>Saturnin</td><td>CTR/Cascade</td><td> </td><td> </td><td>Y</td><td>Digest</td></tr>
-<tr><td>SKINNY-AEAD</td><td>128</td><td>SKINNY-128</td><td>ΘCB3</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
-<tr><td>SPARKLE</td><td>128/192/256</td><td>SPARKLE</td><td>Beetle</td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
-<tr><td>SPIX</td><td>128</td><td>sLiSCP-light-256</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>SpoC</td><td>128</td><td>sLiSCP-light-256/192</td><td>SpoC</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>Spook</td><td>128</td><td>Clyde-128/Shadow</td><td>S1P</td><td> </td><td>M</td><td> </td><td> </td></tr>
-<tr><td>Subterranean</td><td>128</td><td>Subterranean</td><td>Duplex</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
-<tr><td>SUNDAE-GIFT</td><td>128</td><td>GIFT-128</td><td>SUNDAE</td><td>Y</td><td> </td><td> </td><td> </td></tr>
-<tr><td>TinyJAMBU</td><td>128/192/256</td><td>TinyJAMBU</td><td>TinyJAMBU</td><td> </td><td> </td><td>K</td><td> </td></tr>
-<tr><td>WAGE</td><td>128</td><td>WAGE</td><td>Duplex</td><td> </td><td> </td><td> </td><td> </td></tr>
-<tr><td>Xoodyak</td><td>128</td><td>Xoodoo</td><td>Cyclist</td><td> </td><td>R</td><td> </td><td>Digest/XOF</td></tr>
+<tr><td>Algorithm</td><td>Key Sizes</td><td>Core</td><td>Mode</td><td>Inverse Free</td><td>Nonce Reuse</td><td>Side Channels</td><td>Post Quantum</td><td>Hashing</td></tr>
+<tr><td>ACE</td><td>128</td><td>ACE</td><td>ACE</td><td> </td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>ASCON</td><td>128/160</td><td>ASCON</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td>K</td><td>Digest/XOF</td></tr>
+<tr><td>COMET</td><td>128</td></td><td>CHAM-128/CHAM-64/SPECK-64</td><td>CTR/Beetle</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>DryGASCON</td><td>128/256</td><td>GASCON</td><td>DryGASCON</td><td> </td><td> </td><td>Y</td><td>K</td><td>Digest</td></tr>
+<tr><td>Elephant</td><td>128</td><td>Spongent/Keccak</td><td>Elephant</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ESTATE</td><td>128</td><td>GIFT-128</td><td>FCBC/OFB</td><td> </td><td>Y</td><td> </td><td> </td><td> </td></tr>
+<tr><td>ForkAE</td><td>128</td><td>ForkSkinny</td><td>PAEF/SAEF</td><td>N</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>GIFT-COFB</td><td>128</td><td>GIFT-128</td><td>COFB</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Gimli</td><td>256</td><td>Gimli</td><td>Duplex</td><td> </td><td> </td><td> </td><td>Y</td><td>Digest/XOF</td></tr>
+<tr><td>Grain-128AEAD</td><td>128</td><td>Grain-128</td><td>Grain-128AEAD</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>HYENA</td><td>128</td><td>GIFT-128</td><td>HyFB</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ISAP</td><td>128</td><td>ASCON/Keccak</td><td>Duplex</td><td> </td><td> </td><td>Y</td><td> </td><td> </td></tr>
+<tr><td>KNOT</td><td>128/192/256</td><td>KNOT</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
+<tr><td>LOTUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OTR</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>LOCUS-AEAD</td><td>128</td><td>GIFT-64</td><td>OCB</td><td>N</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>ORANGE</td><td>128</td><td>PHOTON-256</td><td>ORANGE</td><td> </td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>Oribatida</td><td>128</td><td>SimP</td><td>Masked Duplex</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>PHOTON-Beetle</td><td>128</td><td>PHOTON-256</td><td>Beetle</td><td> </td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>Pyjamask</td><td>128</td><td>Pyjamask-128/Pyjamask-96</td><td>OCB</td><td>N</td><td> </td><td>M</td><td> </td><td> </td></tr>
+<tr><td>Romulus-N</td><td>128</td><td>SKINNY-128</td><td>Romulus-N</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Romulus-M</td><td>128</td><td>SKINNY-128</td><td>Romulus-M</td><td> </td><td>Y</td><td> </td><td> </td><td> </td></tr>
+<tr><td>Saturnin</td><td>256</td><td>Saturnin</td><td>CTR/Cascade</td><td> </td><td> </td><td> </td><td>Y</td><td>Digest</td></tr>
+<tr><td>Saturnin-Short</td><td>256</td><td>Saturnin</td><td>ECB</td><td>N</td><td> </td><td> </td><td>Y</td><td> </td></tr>
+<tr><td>SKINNY-AEAD</td><td>128</td><td>SKINNY-128</td><td>ΘCB3</td><td>N</td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>SPARKLE</td><td>128/192/256</td><td>SPARKLE</td><td>Beetle</td><td> </td><td> </td><td> </td><td>K</td><td>Digest</td></tr>
+<tr><td>SPIX</td><td>128</td><td>sLiSCP-light-256</td><td>MonkeyDuplex</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>SpoC</td><td>128</td><td>sLiSCP-light-256/192</td><td>SpoC</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Spook</td><td>128</td><td>Clyde-128/Shadow</td><td>S1P</td><td> </td><td> </td><td>M</td><td> </td><td> </td></tr>
+<tr><td>Subterranean</td><td>128</td><td>Subterranean</td><td>Duplex</td><td> </td><td> </td><td> </td><td> </td><td>Digest</td></tr>
+<tr><td>SUNDAE-GIFT</td><td>128</td><td>GIFT-128</td><td>SUNDAE</td><td> </td><td>Y</td><td> </td><td> </td><td> </td></tr>
+<tr><td>TinyJAMBU</td><td>128/192/256</td><td>TinyJAMBU</td><td>TinyJAMBU</td><td> </td><td> </td><td> </td><td>K</td><td> </td></tr>
+<tr><td>WAGE</td><td>128</td><td>WAGE</td><td>Duplex</td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td>Xoodyak</td><td>128</td><td>Xoodoo</td><td>Cyclist</td><td> </td><td> </td><td>R</td><td> </td><td>Digest/XOF</td></tr>
 </table>
 
 "Core" indicates the core block operation that the sponge or block cipher
 mode is built around, and "Mode" indicates the mode itself.
+
+"Inverse Free" is "N" to indicate that the core block operation is used
+in both the encryption and decryption directions, or blank if the
+AEAD mode only needs encryption.
 
 "Nonce Reuse" indicates that the algorithm provides some resistance against
 nonce reuse.
