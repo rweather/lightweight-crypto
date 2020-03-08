@@ -63,11 +63,17 @@ extern "C" {
 #define GIFT128_BLOCK_SIZE 16
 
 /**
+ * \brief Number of round keys for the fixsliced representation of GIFT-128.
+ */
+#define GIFT128_ROUND_KEYS 80
+
+/**
  * \brief Structure of the key schedule for GIFT-128 (bit-sliced).
  */
 typedef struct
 {
-    uint32_t k[4];      /**< Words of the key schedule */
+    /** Pre-computed round keys in the fixsliced form */
+    uint32_t k[GIFT128_ROUND_KEYS];
 
 } gift128b_key_schedule_t;
 

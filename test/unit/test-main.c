@@ -50,7 +50,6 @@ int main(int argc, char *argv[])
     test_clyde128();
     test_drygascon();
     test_forkskinny();
-    test_gift128();
     test_gift64();
     test_gimli24();
     test_grain128();
@@ -65,5 +64,6 @@ int main(int argc, char *argv[])
     test_spongent();
     test_subterranean();
     test_wage();
+    test_gift128();
     return test_exit_result;
 }
