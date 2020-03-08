@@ -338,6 +338,12 @@ int main(int argc, char *argv[])
 {
     FILE *file;
 
+    /* If "--algorithms" is supplied, then list all supported algorithms */
+    if (argc > 1 && !strcmp(argv[1], "--algorithms")) {
+        print_algorithm_names();
+        return 0;
+    }
+
     /* Parse the command-line */
     if (!parse_command_line(argc, argv)) {
         usage(argv[0]);

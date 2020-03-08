@@ -476,6 +476,12 @@ int main(int argc, char *argv[])
     int exit_val;
     FILE *file;
 
+    /* If "--algorithms" is supplied, then list all supported algorithms */
+    if (argc > 1 && !strcmp(argv[1], "--algorithms")) {
+        print_algorithm_names();
+        return 0;
+    }
+
     /* Check that we have all command-line arguments that we need */
     if (argc < 3) {
         fprintf(stderr, "Usage: %s Algorithm KAT-file\n", argv[0]);

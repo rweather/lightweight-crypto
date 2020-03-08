@@ -181,13 +181,28 @@ const aead_hash_algorithm_t *find_hash_algorithm(const char *name)
     return 0;
 }
 
+static void print_cipher_details(const aead_cipher_t *cipher)
+{
+    printf("%-30s %8u   %8u   %8u\n",
+           cipher->name,
+           cipher->key_len * 8,
+           cipher->nonce_len * 8,
+           cipher->tag_len * 8);
+}
+
+static void print_hash_details(const aead_hash_algorithm_t *hash)
+{
+    printf("%-30s %8u\n", hash->name, hash->hash_len * 8);
+}
+
 void print_algorithm_names(void)
 {
     int index;
-    fprintf(stderr, "\nCiphers:\n");
+    printf("\nCipher                           Key Bits");
+    printf("  Nonce Bits  Tag Bits\n");
     for (index = 0; ciphers[index] != 0; ++index)
-        fprintf(stderr, "    %s\n", ciphers[index]->name);
-    fprintf(stderr, "\nHash Algorithms:\n");
+        print_cipher_details(ciphers[index]);
+    printf("\nHash Algorithm                   Hash Bits\n");
     for (index = 0; hashes[index] != 0; ++index)
-        fprintf(stderr, "    %s\n", hashes[index]->name);
+        print_hash_details(hashes[index]);
 }
