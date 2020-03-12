@@ -60,6 +60,7 @@ OBJS = \
 	internal-masking.o \
 	internal-photon256.o \
 	internal-pyjamask.o \
+	internal-pyjamask-m.o \
 	internal-simp.o \
 	internal-sliscp-light.o \
 	internal-skinny128.o \

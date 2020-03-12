@@ -8,4 +8,4 @@ aead_tag_size=16
 aead_encrypt=pyjamask_128_aead_encrypt
 aead_decrypt=pyjamask_128_aead_decrypt
 aead_header=pyjamask.h
-aead_exclude="pyjamask-128-masked.c pyjamask-96.c pyjamask-96-masked.c"
+aead_exclude="pyjamask-128-masked.c pyjamask-96.c pyjamask-96-masked.c internal-masking.h internal-masking.c internal-pyjamask-m.c"
