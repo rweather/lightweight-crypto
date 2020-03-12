@@ -129,6 +129,7 @@ PYJAMASK_FILES = \
     internal-masking.h \
     internal-pyjamask.c \
     internal-pyjamask.h \
+    internal-pyjamask-m.c \
     internal-ocb.h \
     $(COMMON_FILES)
 ROMULUS_FILES = \
