@@ -1,0 +1,10 @@
+aead_family=orange
+aead_name=orangezestv1
+aead_meta_name=ORANGE-Zest
+aead_srcdir=ORANGE
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=orange_zest_aead_encrypt
+aead_decrypt=orange_zest_aead_decrypt
+aead_header=orange.h

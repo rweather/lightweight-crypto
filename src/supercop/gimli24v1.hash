@@ -1,0 +1,7 @@
+hash_family=gimli
+hash_name=gimli24v1
+hash_meta_name=GIMLI-24-HASH
+hash_srcdir=Gimli
+hash_size=32
+hash_function=gimli24_hash
+hash_header=gimli24.h

@@ -1,0 +1,10 @@
+aead_family=wage
+aead_name=wageae128v1
+aead_meta_name=WAGE
+aead_srcdir=WAGE
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=wage_aead_encrypt
+aead_decrypt=wage_aead_decrypt
+aead_header=wage.h

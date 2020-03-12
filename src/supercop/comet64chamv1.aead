@@ -1,0 +1,10 @@
+aead_family=comet
+aead_name=comet64chamv1
+aead_meta_name=COMET-64_CHAM-64/128
+aead_srcdir=COMET
+aead_key_size=16
+aead_nonce_size=15
+aead_tag_size=8
+aead_encrypt=comet_64_cham_aead_encrypt
+aead_decrypt=comet_64_cham_aead_decrypt
+aead_header=comet.h

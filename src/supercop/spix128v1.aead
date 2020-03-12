@@ -1,0 +1,10 @@
+aead_family=spix
+aead_name=spix128v1
+aead_meta_name=SPIX
+aead_srcdir=SPIX
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=spix_aead_encrypt
+aead_decrypt=spix_aead_decrypt
+aead_header=spix.h

@@ -1,0 +1,7 @@
+hash_family=orange
+hash_name=orangishv1
+hash_meta_name=ORANGISH
+hash_srcdir=ORANGE
+hash_size=32
+hash_function=orangish_hash
+hash_header=orange.h

@@ -1,0 +1,10 @@
+aead_family=sparkle
+aead_name=schwaemm256128v1
+aead_meta_name=Schwaemm256-128
+aead_srcdir=SPARKLE
+aead_key_size=16
+aead_nonce_size=32
+aead_tag_size=16
+aead_encrypt=schwaemm_256_128_aead_encrypt
+aead_decrypt=schwaemm_256_128_aead_decrypt
+aead_header=sparkle.h

@@ -1,0 +1,10 @@
+aead_family=sundae-gift
+aead_name=sundaegift128v1
+aead_meta_name=SUNDAE-GIFT-128
+aead_srcdir=SUNDAE-GIFT
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=sundae_gift_128_aead_encrypt
+aead_decrypt=sundae_gift_128_aead_decrypt
+aead_header=sundae-gift.h

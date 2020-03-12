@@ -1,0 +1,10 @@
+aead_family=forkae
+aead_name=paefforkskinnyb64t192n48v1
+aead_meta_name=PAEF-ForkSkinny-64-192
+aead_srcdir=ForkAE
+aead_key_size=16
+aead_nonce_size=6
+aead_tag_size=8
+aead_encrypt=forkae_paef_64_192_aead_encrypt
+aead_decrypt=forkae_paef_64_192_aead_decrypt
+aead_header=forkae.h

@@ -1,0 +1,11 @@
+aead_family=ascon
+aead_name=ascon128av12
+aead_meta_name=ASCON-128a
+aead_srcdir=ASCON
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=ascon128a_aead_encrypt
+aead_decrypt=ascon128a_aead_decrypt
+aead_exclude="ascon-hash.c ascon-xof.c"
+aead_header=ascon128.h

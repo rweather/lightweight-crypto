@@ -1,0 +1,10 @@
+aead_family=oribatida
+aead_name=oribatida192v12
+aead_meta_name=Oribatida-192-96
+aead_srcdir=Oribatida
+aead_key_size=16
+aead_nonce_size=8
+aead_tag_size=12
+aead_encrypt=oribatida_192_aead_encrypt
+aead_decrypt=oribatida_192_aead_decrypt
+aead_header=oribatida.h

@@ -1,0 +1,10 @@
+aead_family=spoc
+aead_name=spoc64sliscplight192v1
+aead_meta_name=SpoC-64
+aead_srcdir=SpoC
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=8
+aead_encrypt=spoc_64_aead_encrypt
+aead_decrypt=spoc_64_aead_decrypt
+aead_header=spoc.h

@@ -1,0 +1,7 @@
+hash_family=drygascon
+hash_name=drygascon256
+hash_meta_name=DryGASCON256-HASH
+hash_srcdir=DryGASCON
+hash_size=64
+hash_function=drygascon256_hash
+hash_header=drygascon.h

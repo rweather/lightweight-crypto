@@ -1,0 +1,10 @@
+aead_family=elephant
+aead_name=elephant176v1
+aead_meta_name=Jumbo
+aead_srcdir=Elephant
+aead_key_size=16
+aead_nonce_size=12
+aead_tag_size=8
+aead_encrypt=jumbo_aead_encrypt
+aead_decrypt=jumbo_aead_decrypt
+aead_header=elephant.h

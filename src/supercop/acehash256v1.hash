@@ -1,0 +1,7 @@
+hash_family=ace
+hash_name=acehash256v1
+hash_meta_name=ACE-HASH
+hash_srcdir=ACE
+hash_size=32
+hash_function=ace_hash
+hash_header=ace.h

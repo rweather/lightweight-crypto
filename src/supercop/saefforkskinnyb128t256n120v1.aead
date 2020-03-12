@@ -1,0 +1,10 @@
+aead_family=forkae
+aead_name=saefforkskinnyb128t256n120v1
+aead_meta_name=SAEF-ForkSkinny-128-256
+aead_srcdir=ForkAE
+aead_key_size=16
+aead_nonce_size=15
+aead_tag_size=16
+aead_encrypt=forkae_saef_128_256_aead_encrypt
+aead_decrypt=forkae_saef_128_256_aead_decrypt
+aead_header=forkae.h

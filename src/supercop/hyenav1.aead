@@ -1,0 +1,10 @@
+aead_family=hyena
+aead_name=hyenav1
+aead_meta_name=HYENA
+aead_srcdir=HYENA
+aead_key_size=16
+aead_nonce_size=12
+aead_tag_size=16
+aead_encrypt=hyena_aead_encrypt
+aead_decrypt=hyena_aead_decrypt
+aead_header=hyena.h

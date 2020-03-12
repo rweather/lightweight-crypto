@@ -1,0 +1,8 @@
+hash_family=knot
+hash_name=knot384
+hash_meta_name=KNOT-HASH-384-384
+hash_srcdir=KNOT
+hash_size=48
+hash_function=knot_hash_384_384
+hash_header=knot.h
+hash_exclude=knot-aead.c

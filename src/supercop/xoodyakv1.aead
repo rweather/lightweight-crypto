@@ -1,0 +1,10 @@
+aead_family=xoodyak
+aead_name=xoodyakv1
+aead_meta_name=Xoodyak
+aead_srcdir=Xoodyak
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=xoodyak_aead_encrypt
+aead_decrypt=xoodyak_aead_decrypt
+aead_header=xoodyak.h

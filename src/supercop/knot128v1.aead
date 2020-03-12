@@ -1,0 +1,11 @@
+aead_family=knot
+aead_name=knot128v1
+aead_meta_name=KNOT-AEAD-128-256
+aead_srcdir=KNOT
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=knot_aead_128_256_encrypt
+aead_decrypt=knot_aead_128_256_decrypt
+aead_header=knot.h
+aead_exclude=knot-hash.c

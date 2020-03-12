@@ -1,0 +1,10 @@
+aead_family=romulus
+aead_name=romulusm1v12
+aead_meta_name=Romulus-M1
+aead_srcdir=Romulus
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=romulus_m1_aead_encrypt
+aead_decrypt=romulus_m1_aead_decrypt
+aead_header=romulus.h

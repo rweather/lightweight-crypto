@@ -1,0 +1,10 @@
+aead_family=photon-beetle
+aead_name=photonbeetleaead128rate32v1
+aead_meta_name=PHOTON-Beetle-AEAD-ENC-32
+aead_srcdir=PHOTON-Beetle
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=photon_beetle_32_aead_encrypt
+aead_decrypt=photon_beetle_32_aead_decrypt
+aead_header=photon-beetle.h

@@ -1,0 +1,7 @@
+hash_family=xoodyak
+hash_name=xoodyakv1
+hash_meta_name=Xoodyak-Hash
+hash_srcdir=Xoodyak
+hash_size=32
+hash_function=xoodyak_hash
+hash_header=xoodyak.h

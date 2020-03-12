@@ -1,0 +1,8 @@
+hash_family=ascon
+hash_name=asconhashv12
+hash_meta_name=ASCON-HASH
+hash_srcdir=ASCON
+hash_size=32
+hash_function=ascon_hash
+hash_exclude="ascon128.c ascon-xof.c"
+hash_header=ascon128.h

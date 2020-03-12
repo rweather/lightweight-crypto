@@ -1,0 +1,7 @@
+hash_family=photon-beetle
+hash_name=photonbeetlehash256rate32v1
+hash_meta_name=PHOTON-Beetle-HASH
+hash_srcdir=PHOTON-Beetle
+hash_size=32
+hash_function=photon_beetle_hash
+hash_header=photon-beetle.h

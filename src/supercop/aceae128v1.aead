@@ -1,0 +1,10 @@
+aead_family=ace
+aead_name=aceae128v1
+aead_meta_name=ACE
+aead_srcdir=ACE
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=ace_aead_encrypt
+aead_decrypt=ace_aead_decrypt
+aead_header=ace.h

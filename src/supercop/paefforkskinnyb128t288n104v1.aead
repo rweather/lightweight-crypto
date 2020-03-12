@@ -1,0 +1,10 @@
+aead_family=forkae
+aead_name=paefforkskinnyb128t288n104v1
+aead_meta_name=PAEF-ForkSkinny-128-288
+aead_srcdir=ForkAE
+aead_key_size=16
+aead_nonce_size=13
+aead_tag_size=16
+aead_encrypt=forkae_paef_128_288_aead_encrypt
+aead_decrypt=forkae_paef_128_288_aead_decrypt
+aead_header=forkae.h

@@ -1,0 +1,11 @@
+aead_family=saturnin
+aead_name=saturninshortv2
+aead_meta_name=SATURNIN-Short
+aead_srcdir=Saturnin
+aead_key_size=32
+aead_nonce_size=16
+aead_tag_size=32
+aead_encrypt=saturnin_short_aead_encrypt
+aead_decrypt=saturnin_short_aead_decrypt
+aead_header=saturnin.h
+aead_kat_options="--max-ad=0 --max-pt=15"

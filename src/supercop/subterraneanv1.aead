@@ -1,0 +1,10 @@
+aead_family=subterranean
+aead_name=subterraneanv1
+aead_meta_name=Subterranean
+aead_srcdir=Subterranean
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=subterranean_aead_encrypt
+aead_decrypt=subterranean_aead_decrypt
+aead_header=subterranean.h

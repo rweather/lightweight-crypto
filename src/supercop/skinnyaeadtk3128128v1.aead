@@ -1,0 +1,11 @@
+aead_family=skinny
+aead_name=skinnyaeadtk3128128v1
+aead_meta_name=SKINNY-AEAD-M1
+aead_srcdir=SKINNY-AEAD
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=skinny_aead_m1_encrypt
+aead_decrypt=skinny_aead_m1_decrypt
+aead_header=skinny-aead.h
+aead_exclude="skinny-hash.h skinny-hash.c"

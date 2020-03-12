@@ -1,0 +1,10 @@
+aead_family=tinyjambu
+aead_name=tinyjambu256
+aead_meta_name=TinyJAMBU-256
+aead_srcdir=TinyJAMBU
+aead_key_size=32
+aead_nonce_size=12
+aead_tag_size=8
+aead_encrypt=tiny_jambu_256_aead_encrypt
+aead_decrypt=tiny_jambu_256_aead_decrypt
+aead_header=tinyjambu.h

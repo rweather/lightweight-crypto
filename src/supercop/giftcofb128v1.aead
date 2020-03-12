@@ -1,0 +1,10 @@
+aead_family=gift-cofb
+aead_name=giftcofb128v1
+aead_meta_name=GIFT-COFB
+aead_srcdir=GIFT-COFB
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=gift_cofb_aead_encrypt
+aead_decrypt=gift_cofb_aead_decrypt
+aead_header=gift-cofb.h

@@ -1,0 +1,7 @@
+hash_family=saturnin
+hash_name=saturninhashv2
+hash_meta_name=SATURNIN-Hash
+hash_srcdir=Saturnin
+hash_size=32
+hash_function=saturnin_hash
+hash_header=saturnin.h

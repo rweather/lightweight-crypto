@@ -1,0 +1,10 @@
+aead_family=grain-128aead
+aead_name=grain128aead
+aead_meta_name=Grain-128AEAD
+aead_srcdir=Grain-128AEAD
+aead_key_size=16
+aead_nonce_size=12
+aead_tag_size=8
+aead_encrypt=grain128_aead_encrypt
+aead_decrypt=grain128_aead_decrypt
+aead_header=grain128.h

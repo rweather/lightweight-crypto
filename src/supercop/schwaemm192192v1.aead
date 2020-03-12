@@ -1,0 +1,10 @@
+aead_family=sparkle
+aead_name=schwaemm192192v1
+aead_meta_name=Schwaemm192-192
+aead_srcdir=SPARKLE
+aead_key_size=24
+aead_nonce_size=24
+aead_tag_size=24
+aead_encrypt=schwaemm_192_192_aead_encrypt
+aead_decrypt=schwaemm_192_192_aead_decrypt
+aead_header=sparkle.h

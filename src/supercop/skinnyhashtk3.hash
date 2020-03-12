@@ -1,0 +1,8 @@
+hash_family=skinny
+hash_name=skinnyhashtk3
+hash_meta_name=SKINNY-tk3-HASH
+hash_srcdir=SKINNY-AEAD
+hash_size=32
+hash_function=skinny_tk3_hash
+hash_header=skinny-hash.h
+hash_exclude="skinny-aead.h skinny-aead.c"

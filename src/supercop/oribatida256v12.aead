@@ -1,0 +1,10 @@
+aead_family=oribatida
+aead_name=oribatida256v12
+aead_meta_name=Oribatida-256-64
+aead_srcdir=Oribatida
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=oribatida_256_aead_encrypt
+aead_decrypt=oribatida_256_aead_decrypt
+aead_header=oribatida.h

@@ -1,0 +1,10 @@
+aead_family=spook
+aead_name=spook128mu512v1
+aead_meta_name=Spook-128-512-mu
+aead_srcdir=Spook
+aead_key_size=32
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=spook_128_512_mu_aead_encrypt
+aead_decrypt=spook_128_512_mu_aead_decrypt
+aead_header=spook.h

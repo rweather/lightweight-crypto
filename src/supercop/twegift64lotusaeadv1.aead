@@ -1,0 +1,10 @@
+aead_family=lotus-locus
+aead_name=twegift64lotusaeadv1
+aead_meta_name=LOTUS-AEAD
+aead_srcdir=LOTUS-AEAD
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=8
+aead_encrypt=lotus_aead_encrypt
+aead_decrypt=lotus_aead_decrypt
+aead_header=lotus-locus.h

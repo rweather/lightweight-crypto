@@ -1,0 +1,10 @@
+aead_family=saturnin
+aead_name=saturninctrcascadev2
+aead_meta_name=SATURNIN-CTR-Cascade
+aead_srcdir=Saturnin
+aead_key_size=32
+aead_nonce_size=16
+aead_tag_size=32
+aead_encrypt=saturnin_aead_encrypt
+aead_decrypt=saturnin_aead_decrypt
+aead_header=saturnin.h

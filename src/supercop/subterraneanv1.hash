@@ -1,0 +1,7 @@
+hash_family=subterranean
+hash_name=subterraneanv1
+hash_meta_name=Subterranean-Hash
+hash_srcdir=Subterranean
+hash_size=32
+hash_function=subterranean_hash
+hash_header=subterranean.h

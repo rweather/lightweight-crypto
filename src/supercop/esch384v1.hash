@@ -1,0 +1,7 @@
+hash_family=sparkle
+hash_name=esch384v1
+hash_meta_name=Esch384
+hash_srcdir=SPARKLE
+hash_size=48
+hash_function=esch_384_hash
+hash_header=sparkle.h

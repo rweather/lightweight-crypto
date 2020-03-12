@@ -1,0 +1,10 @@
+aead_family=estate
+aead_name=estatetwegift128v1
+aead_meta_name=ESTATE_TweGIFT-128
+aead_srcdir=ESTATE
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=estate_twegift_aead_encrypt
+aead_decrypt=estate_twegift_aead_decrypt
+aead_header=estate.h

@@ -1,0 +1,10 @@
+aead_family=isap
+aead_name=isapk128v20
+aead_meta_name=ISAP-K-128
+aead_srcdir=ISAP
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=isap_keccak_128_aead_encrypt
+aead_decrypt=isap_keccak_128_aead_decrypt
+aead_header=isap.h

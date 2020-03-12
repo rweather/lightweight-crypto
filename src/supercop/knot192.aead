@@ -1,0 +1,11 @@
+aead_family=knot
+aead_name=knot192
+aead_meta_name=KNOT-AEAD-192-384
+aead_srcdir=KNOT
+aead_key_size=24
+aead_nonce_size=24
+aead_tag_size=24
+aead_encrypt=knot_aead_192_384_encrypt
+aead_decrypt=knot_aead_192_384_decrypt
+aead_header=knot.h
+aead_exclude=knot-hash.c
