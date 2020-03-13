@@ -550,6 +550,35 @@ void gift128b_encrypt
     be_store_word32(output + 12, s3);
 }
 
+void gift128b_encrypt_preloaded
+    (const gift128b_key_schedule_t *ks, uint32_t output[4],
+     const uint32_t input[4])
+{
+    uint32_t s0, s1, s2, s3;
+
+    /* Copy the plaintext into local variables */
+    s0 = input[0];
+    s1 = input[1];
+    s2 = input[2];
+    s3 = input[3];
+
+    /* Perform all 40 rounds five at a time using the fixsliced method */
+    gift128b_encrypt_5_rounds(ks->k, GIFT128_RC);
+    gift128b_encrypt_5_rounds(ks->k + 10, GIFT128_RC + 5);
+    gift128b_encrypt_5_rounds(ks->k + 20, GIFT128_RC + 10);
+    gift128b_encrypt_5_rounds(ks->k + 30, GIFT128_RC + 15);
+    gift128b_encrypt_5_rounds(ks->k + 40, GIFT128_RC + 20);
+    gift128b_encrypt_5_rounds(ks->k + 50, GIFT128_RC + 25);
+    gift128b_encrypt_5_rounds(ks->k + 60, GIFT128_RC + 30);
+    gift128b_encrypt_5_rounds(ks->k + 70, GIFT128_RC + 35);
+
+    /* Pack the state into the ciphertext buffer */
+    output[0] = s0;
+    output[1] = s1;
+    output[2] = s2;
+    output[3] = s3;
+}
+
 void gift128b_decrypt
     (const gift128b_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
