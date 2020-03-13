@@ -4,6 +4,7 @@ var searchData=
   ['gascon256_5fcore_5fround',['gascon256_core_round',['../internal-drysponge_8h.html#af2f4e37b0c6ed41a4631a48ceed08fa1',1,'internal-drysponge.c']]],
   ['gift128b_5fdecrypt',['gift128b_decrypt',['../internal-gift128_8h.html#a6013773ef83633ec436d35b7bba17db8',1,'internal-gift128.c']]],
   ['gift128b_5fencrypt',['gift128b_encrypt',['../internal-gift128_8h.html#a906bbcc9cd3dfd82444f493c0f924277',1,'internal-gift128.c']]],
+  ['gift128b_5fencrypt_5fpreloaded',['gift128b_encrypt_preloaded',['../internal-gift128_8h.html#ac7269b3484146e77aebe0e69254e3e95',1,'internal-gift128.c']]],
   ['gift128b_5finit',['gift128b_init',['../internal-gift128_8h.html#a0ba0889c919a3b296579b4f600fe0333',1,'internal-gift128.c']]],
   ['gift128n_5fdecrypt',['gift128n_decrypt',['../internal-gift128_8h.html#a63471735613b6bd81e2bd6d6f5a60930',1,'internal-gift128.c']]],
   ['gift128n_5fencrypt',['gift128n_encrypt',['../internal-gift128_8h.html#a7cb0366799316b3087107637b87b11da',1,'internal-gift128.c']]],

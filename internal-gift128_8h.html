@@ -133,6 +133,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a906bbcc9cd3dfd82444f493c0f924277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a906bbcc9cd3dfd82444f493c0f924277">gift128b_encrypt</a> (const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a906bbcc9cd3dfd82444f493c0f924277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with GIFT-128 (bit-sliced).  <a href="#a906bbcc9cd3dfd82444f493c0f924277">More...</a><br/></td></tr>
 <tr class="separator:a906bbcc9cd3dfd82444f493c0f924277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7269b3484146e77aebe0e69254e3e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#ac7269b3484146e77aebe0e69254e3e95">gift128b_encrypt_preloaded</a> (const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, uint32_t output[4], const uint32_t input[4])</td></tr>
+<tr class="memdesc:ac7269b3484146e77aebe0e69254e3e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with GIFT-128 (bit-sliced and pre-loaded).  <a href="#ac7269b3484146e77aebe0e69254e3e95">More...</a><br/></td></tr>
+<tr class="separator:ac7269b3484146e77aebe0e69254e3e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6013773ef83633ec436d35b7bba17db8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a6013773ef83633ec436d35b7bba17db8">gift128b_decrypt</a> (const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a6013773ef83633ec436d35b7bba17db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with GIFT-128 (bit-sliced).  <a href="#a6013773ef83633ec436d35b7bba17db8">More...</a><br/></td></tr>
 <tr class="separator:a6013773ef83633ec436d35b7bba17db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,6 +247,50 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac7269b3484146e77aebe0e69254e3e95"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gift128b_encrypt_preloaded </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>output</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>input</em>[4]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts a 128-bit block with GIFT-128 (bit-sliced and pre-loaded). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>Points to the GIFT-128 key schedule. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer which must be at least 16 bytes in length. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer which must be at least 16 bytes in length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
+<p>This version assumes that the input has already been pre-loaded from big-endian into host byte order in the supplied word array. The output is delivered in the same way. </p>
 
 </div>
 </div>
@@ -524,7 +571,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 8 2020 13:27:31 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2020 05:19:39 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
