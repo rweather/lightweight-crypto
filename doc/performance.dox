@@ -79,8 +79,8 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.74</td><td>0.76</td><td>1.46</td><td>1.45</td><td>1.03</td></tr>
 <tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>0.99</td><td>0.94</td><td>0.96</td></tr>
 <tr><td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.83</td><td>0.89</td><td>1.03</td><td>1.04</td><td>0.95</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.84</td><td>0.85</td><td>0.97</td><td>0.98</td><td>0.91</td></tr>
 <tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.74</td><td>0.76</td><td>0.89</td><td>0.90</td><td>0.82</td></tr>
 <tr><td><b><i>SpoC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.14</td><td>1.14</td><td>0.82</td></tr>
 <tr><td><b><i>TinyJAMBU-128</i></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80</td></tr>
@@ -173,7 +173,7 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.86</td><td>0.80</td><td>0.82</td><td>0.83</td></tr>
 <tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.85</td><td>0.85</td><td>0.79</td></tr>
 <tr><td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.78</td><td>0.80</td><td>0.71</td><td>0.71</td><td>0.75</td></tr>
-<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.66</td><td>0.70</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
+<tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.65</td><td>0.69</td><td>0.79</td><td>0.81</td><td>0.74</td></tr>
 <tr><td><b><i>TinyJAMBU-128</i></b></td><td>128</td><td>96</td><td>64</td><td>0.51</td><td>0.55</td><td>0.98</td><td>0.99</td><td>0.71</td></tr>
 <tr><td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.46</td><td>0.50</td><td>0.91</td><td>0.92</td><td>0.65</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.51</td><td>0.56</td><td>0.75</td><td>0.76</td><td>0.64</td></tr>
@@ -260,8 +260,8 @@ has an average between 0.30 and 0.39 ChaChaPoly units.
 <tr><td>15</td><td>COMET</td></tr>
 <tr><td>10</td><td>SPARKLE</td></tr>
 <tr><td>9</td><td>GIFT-COFB</td></tr>
-<tr><td>8</td><td>Xoodyak</td></tr>
-<tr><td>7</td><td>Gimli, TinyJAMBU</td></tr>
+<tr><td>8</td><td>Gimli, Xoodyak</td></tr>
+<tr><td>7</td><td>TinyJAMBU</td></tr>
 <tr><td>6</td><td>ESTATE, HYENA, SpoC, Spook, SUNDAE-GIFT</td></tr>
 <tr><td>5</td><td>ASCON</td></tr>
 <tr><td>4</td><td>Grain128-AEAD, KNOT</td></tr>
