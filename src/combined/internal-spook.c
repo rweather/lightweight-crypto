@@ -43,9 +43,9 @@ static uint8_t const rc[CLYDE128_STEPS][8] = {
 };
 
 void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const unsigned char tweak[CLYDE128_TWEAK_SIZE],
-                      unsigned char output[CLYDE128_BLOCK_SIZE],
-                      const unsigned char input[CLYDE128_BLOCK_SIZE])
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
+                      uint32_t output[CLYDE128_BLOCK_SIZE / 4],
+                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4])
 {
     uint32_t k0, k1, k2, k3;
     uint32_t t0, t1, t2, t3;
@@ -58,14 +58,25 @@ void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
     k1 = le_load_word32(key + 4);
     k2 = le_load_word32(key + 8);
     k3 = le_load_word32(key + 12);
-    t0 = le_load_word32(tweak);
-    t1 = le_load_word32(tweak + 4);
-    t2 = le_load_word32(tweak + 8);
-    t3 = le_load_word32(tweak + 12);
-    s0 = le_load_word32(input);
-    s1 = le_load_word32(input + 4);
-    s2 = le_load_word32(input + 8);
-    s3 = le_load_word32(input + 12);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    t0 = tweak[0];
+    t1 = tweak[1];
+    t2 = tweak[2];
+    t3 = tweak[3];
+    s0 = input[0];
+    s1 = input[1];
+    s2 = input[2];
+    s3 = input[3];
+#else
+    t0 = le_load_word32((const unsigned char *)&(tweak[0]));
+    t1 = le_load_word32((const unsigned char *)&(tweak[1]));
+    t2 = le_load_word32((const unsigned char *)&(tweak[2]));
+    t3 = le_load_word32((const unsigned char *)&(tweak[3]));
+    s0 = le_load_word32((const unsigned char *)&(input[0]));
+    s1 = le_load_word32((const unsigned char *)&(input[1]));
+    s2 = le_load_word32((const unsigned char *)&(input[2]));
+    s3 = le_load_word32((const unsigned char *)&(input[3]));
+#endif
 
     /* Add the initial tweakey to the state */
     s0 ^= k0 ^ t0;
@@ -129,15 +140,22 @@ void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
     }
 
     /* Pack the state into the output buffer */
-    le_store_word32(output,      s0);
-    le_store_word32(output + 4,  s1);
-    le_store_word32(output + 8,  s2);
-    le_store_word32(output + 12, s3);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    output[0] = s0;
+    output[1] = s1;
+    output[2] = s2;
+    output[3] = s3;
+#else
+    le_store_word32((unsigned char *)&(output[0]), s0);
+    le_store_word32((unsigned char *)&(output[1]), s1);
+    le_store_word32((unsigned char *)&(output[2]), s2);
+    le_store_word32((unsigned char *)&(output[3]), s3);
+#endif
 }
 
 void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const unsigned char tweak[CLYDE128_TWEAK_SIZE],
-                      unsigned char output[CLYDE128_BLOCK_SIZE],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
+                      uint32_t output[CLYDE128_BLOCK_SIZE / 4],
                       const unsigned char input[CLYDE128_BLOCK_SIZE])
 {
     uint32_t k0, k1, k2, k3;
@@ -151,10 +169,17 @@ void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
     k1 = le_load_word32(key + 4);
     k2 = le_load_word32(key + 8);
     k3 = le_load_word32(key + 12);
-    t0 = le_load_word32(tweak);
-    t1 = le_load_word32(tweak + 4);
-    t2 = le_load_word32(tweak + 8);
-    t3 = le_load_word32(tweak + 12);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    t0 = tweak[0];
+    t1 = tweak[1];
+    t2 = tweak[2];
+    t3 = tweak[3];
+#else
+    t0 = le_load_word32((const unsigned char *)&(tweak[0]));
+    t1 = le_load_word32((const unsigned char *)&(tweak[1]));
+    t2 = le_load_word32((const unsigned char *)&(tweak[2]));
+    t3 = le_load_word32((const unsigned char *)&(tweak[3]));
+#endif
     s0 = le_load_word32(input);
     s1 = le_load_word32(input + 4);
     s2 = le_load_word32(input + 8);
@@ -225,13 +250,20 @@ void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
     s3 ^= k3 ^ t3;
 
     /* Pack the state into the output buffer */
-    le_store_word32(output,      s0);
-    le_store_word32(output + 4,  s1);
-    le_store_word32(output + 8,  s2);
-    le_store_word32(output + 12, s3);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    output[0] = s0;
+    output[1] = s1;
+    output[2] = s2;
+    output[3] = s3;
+#else
+    le_store_word32((unsigned char *)&(output[0]), s0);
+    le_store_word32((unsigned char *)&(output[1]), s1);
+    le_store_word32((unsigned char *)&(output[2]), s2);
+    le_store_word32((unsigned char *)&(output[3]), s3);
+#endif
 }
 
-void shadow512(unsigned char state[SHADOW512_STATE_SIZE])
+void shadow512(shadow512_state_t *state)
 {
     uint32_t s00, s01, s02, s03;
     uint32_t s10, s11, s12, s13;
@@ -241,22 +273,41 @@ void shadow512(unsigned char state[SHADOW512_STATE_SIZE])
     int step;
 
     /* Unpack the state into local variables */
-    s00 = le_load_word32(state);
-    s01 = le_load_word32(state + 4);
-    s02 = le_load_word32(state + 8);
-    s03 = le_load_word32(state + 12);
-    s10 = le_load_word32(state + 16);
-    s11 = le_load_word32(state + 20);
-    s12 = le_load_word32(state + 24);
-    s13 = le_load_word32(state + 28);
-    s20 = le_load_word32(state + 32);
-    s21 = le_load_word32(state + 36);
-    s22 = le_load_word32(state + 40);
-    s23 = le_load_word32(state + 44);
-    s30 = le_load_word32(state + 48);
-    s31 = le_load_word32(state + 52);
-    s32 = le_load_word32(state + 56);
-    s33 = le_load_word32(state + 60);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    s00 = state->W[0];
+    s01 = state->W[1];
+    s02 = state->W[2];
+    s03 = state->W[3];
+    s10 = state->W[4];
+    s11 = state->W[5];
+    s12 = state->W[6];
+    s13 = state->W[7];
+    s20 = state->W[8];
+    s21 = state->W[9];
+    s22 = state->W[10];
+    s23 = state->W[11];
+    s30 = state->W[12];
+    s31 = state->W[13];
+    s32 = state->W[14];
+    s33 = state->W[15];
+#else
+    s00 = le_load_word32(state->B);
+    s01 = le_load_word32(state->B + 4);
+    s02 = le_load_word32(state->B + 8);
+    s03 = le_load_word32(state->B + 12);
+    s10 = le_load_word32(state->B + 16);
+    s11 = le_load_word32(state->B + 20);
+    s12 = le_load_word32(state->B + 24);
+    s13 = le_load_word32(state->B + 28);
+    s20 = le_load_word32(state->B + 32);
+    s21 = le_load_word32(state->B + 36);
+    s22 = le_load_word32(state->B + 40);
+    s23 = le_load_word32(state->B + 44);
+    s30 = le_load_word32(state->B + 48);
+    s31 = le_load_word32(state->B + 52);
+    s32 = le_load_word32(state->B + 56);
+    s33 = le_load_word32(state->B + 60);
+#endif
 
     /* Perform all rounds in pairs */
     for (step = 0; step < CLYDE128_STEPS; ++step) {
@@ -339,25 +390,44 @@ void shadow512(unsigned char state[SHADOW512_STATE_SIZE])
     }
 
     /* Pack the local variables back into the state */
-    le_store_word32(state,      s00);
-    le_store_word32(state + 4,  s01);
-    le_store_word32(state + 8,  s02);
-    le_store_word32(state + 12, s03);
-    le_store_word32(state + 16, s10);
-    le_store_word32(state + 20, s11);
-    le_store_word32(state + 24, s12);
-    le_store_word32(state + 28, s13);
-    le_store_word32(state + 32, s20);
-    le_store_word32(state + 36, s21);
-    le_store_word32(state + 40, s22);
-    le_store_word32(state + 44, s23);
-    le_store_word32(state + 48, s30);
-    le_store_word32(state + 52, s31);
-    le_store_word32(state + 56, s32);
-    le_store_word32(state + 60, s33);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    state->W[0]  = s00;
+    state->W[1]  = s01;
+    state->W[2]  = s02;
+    state->W[3]  = s03;
+    state->W[4]  = s10;
+    state->W[5]  = s11;
+    state->W[6]  = s12;
+    state->W[7]  = s13;
+    state->W[8]  = s20;
+    state->W[9]  = s21;
+    state->W[10] = s22;
+    state->W[11] = s23;
+    state->W[12] = s30;
+    state->W[13] = s31;
+    state->W[14] = s32;
+    state->W[15] = s33;
+#else
+    le_store_word32(state->B,      s00);
+    le_store_word32(state->B + 4,  s01);
+    le_store_word32(state->B + 8,  s02);
+    le_store_word32(state->B + 12, s03);
+    le_store_word32(state->B + 16, s10);
+    le_store_word32(state->B + 20, s11);
+    le_store_word32(state->B + 24, s12);
+    le_store_word32(state->B + 28, s13);
+    le_store_word32(state->B + 32, s20);
+    le_store_word32(state->B + 36, s21);
+    le_store_word32(state->B + 40, s22);
+    le_store_word32(state->B + 44, s23);
+    le_store_word32(state->B + 48, s30);
+    le_store_word32(state->B + 52, s31);
+    le_store_word32(state->B + 56, s32);
+    le_store_word32(state->B + 60, s33);
+#endif
 }
 
-void shadow384(unsigned char state[SHADOW384_STATE_SIZE])
+void shadow384(shadow384_state_t *state)
 {
     uint32_t s00, s01, s02, s03;
     uint32_t s10, s11, s12, s13;
@@ -366,18 +436,33 @@ void shadow384(unsigned char state[SHADOW384_STATE_SIZE])
     int step;
 
     /* Unpack the state into local variables */
-    s00 = le_load_word32(state);
-    s01 = le_load_word32(state + 4);
-    s02 = le_load_word32(state + 8);
-    s03 = le_load_word32(state + 12);
-    s10 = le_load_word32(state + 16);
-    s11 = le_load_word32(state + 20);
-    s12 = le_load_word32(state + 24);
-    s13 = le_load_word32(state + 28);
-    s20 = le_load_word32(state + 32);
-    s21 = le_load_word32(state + 36);
-    s22 = le_load_word32(state + 40);
-    s23 = le_load_word32(state + 44);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    s00 = state->W[0];
+    s01 = state->W[1];
+    s02 = state->W[2];
+    s03 = state->W[3];
+    s10 = state->W[4];
+    s11 = state->W[5];
+    s12 = state->W[6];
+    s13 = state->W[7];
+    s20 = state->W[8];
+    s21 = state->W[9];
+    s22 = state->W[10];
+    s23 = state->W[11];
+#else
+    s00 = le_load_word32(state->B);
+    s01 = le_load_word32(state->B + 4);
+    s02 = le_load_word32(state->B + 8);
+    s03 = le_load_word32(state->B + 12);
+    s10 = le_load_word32(state->B + 16);
+    s11 = le_load_word32(state->B + 20);
+    s12 = le_load_word32(state->B + 24);
+    s13 = le_load_word32(state->B + 28);
+    s20 = le_load_word32(state->B + 32);
+    s21 = le_load_word32(state->B + 36);
+    s22 = le_load_word32(state->B + 40);
+    s23 = le_load_word32(state->B + 44);
+#endif
 
     /* Perform all rounds in pairs */
     for (step = 0; step < CLYDE128_STEPS; ++step) {
@@ -442,16 +527,31 @@ void shadow384(unsigned char state[SHADOW384_STATE_SIZE])
     }
 
     /* Pack the local variables back into the state */
-    le_store_word32(state,      s00);
-    le_store_word32(state + 4,  s01);
-    le_store_word32(state + 8,  s02);
-    le_store_word32(state + 12, s03);
-    le_store_word32(state + 16, s10);
-    le_store_word32(state + 20, s11);
-    le_store_word32(state + 24, s12);
-    le_store_word32(state + 28, s13);
-    le_store_word32(state + 32, s20);
-    le_store_word32(state + 36, s21);
-    le_store_word32(state + 40, s22);
-    le_store_word32(state + 44, s23);
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+    state->W[0]  = s00;
+    state->W[1]  = s01;
+    state->W[2]  = s02;
+    state->W[3]  = s03;
+    state->W[4]  = s10;
+    state->W[5]  = s11;
+    state->W[6]  = s12;
+    state->W[7]  = s13;
+    state->W[8]  = s20;
+    state->W[9]  = s21;
+    state->W[10] = s22;
+    state->W[11] = s23;
+#else
+    le_store_word32(state->B,      s00);
+    le_store_word32(state->B + 4,  s01);
+    le_store_word32(state->B + 8,  s02);
+    le_store_word32(state->B + 12, s03);
+    le_store_word32(state->B + 16, s10);
+    le_store_word32(state->B + 20, s11);
+    le_store_word32(state->B + 24, s12);
+    le_store_word32(state->B + 28, s13);
+    le_store_word32(state->B + 32, s20);
+    le_store_word32(state->B + 36, s21);
+    le_store_word32(state->B + 40, s22);
+    le_store_word32(state->B + 44, s23);
+#endif
 }

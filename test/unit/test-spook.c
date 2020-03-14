@@ -38,14 +38,23 @@ static void clyde128_test_encrypt
     (const unsigned char *ks, unsigned char *output,
      const unsigned char *input)
 {
-    clyde128_encrypt(ks, ks + 16, output, input);
+    uint32_t k[4];
+    uint32_t x[4];
+    memcpy(k, ks + 16, sizeof(k));
+    memcpy(x, input, sizeof(x));
+    clyde128_encrypt(ks, k, x, x);
+    memcpy(output, x, sizeof(x));
 }
 
 static void clyde128_test_decrypt
     (const unsigned char *ks, unsigned char *output,
      const unsigned char *input)
 {
-    clyde128_decrypt(ks, ks + 16, output, input);
+    uint32_t k[4];
+    uint32_t x[4];
+    memcpy(k, ks + 16, sizeof(k));
+    clyde128_decrypt(ks, k, x, input);
+    memcpy(output, x, sizeof(x));
 }
 
 /* Information block for the Clyde-128 block cipher */
@@ -118,15 +127,16 @@ static unsigned char const shadow384_output[] = {
 
 void test_shadow(void)
 {
-    unsigned char state[64];
+    shadow512_state_t state512;
+    shadow384_state_t state384;
 
     printf("Shadow Permutation:\n");
 
     printf("    Shadow-512 ... ");
     fflush(stdout);
-    memcpy(state, shadow512_input, sizeof(shadow512_input));
-    shadow512(state);
-    if (!test_memcmp(state, shadow512_output, sizeof(shadow512_output))) {
+    memcpy(state512.B, shadow512_input, sizeof(shadow512_input));
+    shadow512(&state512);
+    if (!test_memcmp(state512.B, shadow512_output, sizeof(shadow512_output))) {
         printf("ok\n");
     } else {
         printf("failed\n");
@@ -135,9 +145,9 @@ void test_shadow(void)
 
     printf("    Shadow-384 ... ");
     fflush(stdout);
-    memcpy(state, shadow384_input, sizeof(shadow384_input));
-    shadow384(state);
-    if (!test_memcmp(state, shadow384_output, sizeof(shadow384_output))) {
+    memcpy(state384.B, shadow384_input, sizeof(shadow384_input));
+    shadow384(&state384);
+    if (!test_memcmp(state384.B, shadow384_output, sizeof(shadow384_output))) {
         printf("ok\n");
     } else {
         printf("failed\n");

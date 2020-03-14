@@ -70,6 +70,26 @@ extern "C" {
 #define SHADOW384_RATE 16
 
 /**
+ * \brief Internal state of the Shadow-512 permutation.
+ */
+typedef union
+{
+    uint32_t W[SHADOW512_STATE_SIZE / 4];   /**< Words of the state */
+    uint8_t B[SHADOW512_STATE_SIZE];        /**< Bytes of the state */
+
+} shadow512_state_t;
+
+/**
+ * \brief Internal state of the Shadow-384 permutation.
+ */
+typedef union
+{
+    uint32_t W[SHADOW384_STATE_SIZE / 4];   /**< Words of the state */
+    uint8_t B[SHADOW384_STATE_SIZE];        /**< Bytes of the state */
+
+} shadow384_state_t;
+
+/**
  * \brief Encrypts a block with the Clyde-128 block cipher.
  *
  * \param key Points to the key to encrypt with.
@@ -80,9 +100,9 @@ extern "C" {
  * \sa clyde128_decrypt()
  */
 void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const unsigned char tweak[CLYDE128_TWEAK_SIZE],
-                      unsigned char output[CLYDE128_BLOCK_SIZE],
-                      const unsigned char input[CLYDE128_BLOCK_SIZE]);
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
+                      uint32_t output[CLYDE128_BLOCK_SIZE / 4],
+                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4]);
 
 /**
  * \brief Decrypts a block with the Clyde-128 block cipher.
@@ -95,27 +115,29 @@ void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
  * \sa clyde128_encrypt()
  */
 void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const unsigned char tweak[CLYDE128_TWEAK_SIZE],
-                      unsigned char output[CLYDE128_BLOCK_SIZE],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
+                      uint32_t output[CLYDE128_BLOCK_SIZE / 4],
                       const unsigned char input[CLYDE128_BLOCK_SIZE]);
 
 /**
  * \brief Performs the Shadow-512 permutation on a state.
  *
- * \param state The Shadow-512 state.
+ * \param state The Shadow-512 state which will be in little-endian
+ * byte order on input and output.
  *
  * \sa shadow384()
  */
-void shadow512(unsigned char state[SHADOW512_STATE_SIZE]);
+void shadow512(shadow512_state_t *state);
 
 /**
  * \brief Performs the Shadow-384 permutation on a state.
  *
- * \param state The Shadow-384 state.
+ * \param state The Shadow-384 state which will be in little-endian
+ * byte order on input and output.
  *
  * \sa shadow512()
  */
-void shadow384(unsigned char state[SHADOW384_STATE_SIZE]);
+void shadow384(shadow384_state_t *state);
 
 #ifdef __cplusplus
 }

@@ -74,20 +74,19 @@ aead_cipher_t const spook_128_384_mu_cipher = {
  * \param npub Public nonce for the state.
  */
 static void spook_128_512_init
-    (unsigned char state[SHADOW512_STATE_SIZE],
+    (shadow512_state_t *state,
      const unsigned char *k, unsigned klen,
      const unsigned char *npub)
 {
-    memset(state, 0, SHADOW512_STATE_SIZE);
+    memset(state->B, 0, SHADOW512_STATE_SIZE);
     if (klen == SPOOK_MU_KEY_SIZE) {
         /* The public tweak is 126 bits in size followed by a 1 bit */
-        memcpy(state, k + CLYDE128_BLOCK_SIZE, CLYDE128_BLOCK_SIZE);
-        state[CLYDE128_BLOCK_SIZE - 1] &= 0x7F;
-        state[CLYDE128_BLOCK_SIZE - 1] |= 0x40;
+        memcpy(state->B, k + CLYDE128_BLOCK_SIZE, CLYDE128_BLOCK_SIZE);
+        state->B[CLYDE128_BLOCK_SIZE - 1] &= 0x7F;
+        state->B[CLYDE128_BLOCK_SIZE - 1] |= 0x40;
     }
-    memcpy(state + CLYDE128_BLOCK_SIZE, npub, CLYDE128_BLOCK_SIZE);
-    clyde128_encrypt
-        (k, state, state + SHADOW512_STATE_SIZE - CLYDE128_BLOCK_SIZE, npub);
+    memcpy(state->B + CLYDE128_BLOCK_SIZE, npub, CLYDE128_BLOCK_SIZE);
+    clyde128_encrypt(k, state->W, state->W + 12, state->W + 4);
     shadow512(state);
 }
 
@@ -100,20 +99,19 @@ static void spook_128_512_init
  * \param npub Public nonce for the state.
  */
 static void spook_128_384_init
-    (unsigned char state[SHADOW384_STATE_SIZE],
+    (shadow384_state_t *state,
      const unsigned char *k, unsigned klen,
      const unsigned char *npub)
 {
-    memset(state, 0, SHADOW384_STATE_SIZE);
+    memset(state->B, 0, SHADOW384_STATE_SIZE);
     if (klen == SPOOK_MU_KEY_SIZE) {
         /* The public tweak is 126 bits in size followed by a 1 bit */
-        memcpy(state, k + CLYDE128_BLOCK_SIZE, CLYDE128_BLOCK_SIZE);
-        state[CLYDE128_BLOCK_SIZE - 1] &= 0x7F;
-        state[CLYDE128_BLOCK_SIZE - 1] |= 0x40;
+        memcpy(state->B, k + CLYDE128_BLOCK_SIZE, CLYDE128_BLOCK_SIZE);
+        state->B[CLYDE128_BLOCK_SIZE - 1] &= 0x7F;
+        state->B[CLYDE128_BLOCK_SIZE - 1] |= 0x40;
     }
-    memcpy(state + CLYDE128_BLOCK_SIZE, npub, CLYDE128_BLOCK_SIZE);
-    clyde128_encrypt
-        (k, state, state + SHADOW384_STATE_SIZE - CLYDE128_BLOCK_SIZE, npub);
+    memcpy(state->B + CLYDE128_BLOCK_SIZE, npub, CLYDE128_BLOCK_SIZE);
+    clyde128_encrypt(k, state->W, state->W + 8, state->W + 4);
     shadow384(state);
 }
 
@@ -125,20 +123,20 @@ static void spook_128_384_init
  * \param adlen Length of the associated data in bytes, must be non-zero.
  */
 static void spook_128_512_absorb
-    (unsigned char state[SHADOW512_STATE_SIZE],
+    (shadow512_state_t *state,
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen >= SHADOW512_RATE) {
-        lw_xor_block(state, ad, SHADOW512_RATE);
+        lw_xor_block(state->B, ad, SHADOW512_RATE);
         shadow512(state);
         ad += SHADOW512_RATE;
         adlen -= SHADOW512_RATE;
     }
     if (adlen > 0) {
         unsigned temp = (unsigned)adlen;
-        lw_xor_block(state, ad, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW512_RATE] ^= 0x02;
+        lw_xor_block(state->B, ad, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW512_RATE] ^= 0x02;
         shadow512(state);
     }
 }
@@ -151,20 +149,20 @@ static void spook_128_512_absorb
  * \param adlen Length of the associated data in bytes, must be non-zero.
  */
 static void spook_128_384_absorb
-    (unsigned char state[SHADOW384_STATE_SIZE],
+    (shadow384_state_t *state,
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen >= SHADOW384_RATE) {
-        lw_xor_block(state, ad, SHADOW384_RATE);
+        lw_xor_block(state->B, ad, SHADOW384_RATE);
         shadow384(state);
         ad += SHADOW384_RATE;
         adlen -= SHADOW384_RATE;
     }
     if (adlen > 0) {
         unsigned temp = (unsigned)adlen;
-        lw_xor_block(state, ad, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW384_RATE] ^= 0x02;
+        lw_xor_block(state->B, ad, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW384_RATE] ^= 0x02;
         shadow384(state);
     }
 }
@@ -178,12 +176,12 @@ static void spook_128_384_absorb
  * \param mlen Number of bytes of plaintext to be encrypted.
  */
 static void spook_128_512_encrypt
-    (unsigned char state[SHADOW512_STATE_SIZE], unsigned char *c,
+    (shadow512_state_t *state, unsigned char *c,
      const unsigned char *m, unsigned long long mlen)
 {
-    state[SHADOW512_RATE] ^= 0x01;
+    state->B[SHADOW512_RATE] ^= 0x01;
     while (mlen >= SHADOW512_RATE) {
-        lw_xor_block_2_dest(c, state, m, SHADOW512_RATE);
+        lw_xor_block_2_dest(c, state->B, m, SHADOW512_RATE);
         shadow512(state);
         c += SHADOW512_RATE;
         m += SHADOW512_RATE;
@@ -191,9 +189,9 @@ static void spook_128_512_encrypt
     }
     if (mlen > 0) {
         unsigned temp = (unsigned)mlen;
-        lw_xor_block_2_dest(c, state, m, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW512_RATE] ^= 0x02;
+        lw_xor_block_2_dest(c, state->B, m, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW512_RATE] ^= 0x02;
         shadow512(state);
     }
 }
@@ -207,12 +205,12 @@ static void spook_128_512_encrypt
  * \param mlen Number of bytes of plaintext to be encrypted.
  */
 static void spook_128_384_encrypt
-    (unsigned char state[SHADOW384_STATE_SIZE], unsigned char *c,
+    (shadow384_state_t *state, unsigned char *c,
      const unsigned char *m, unsigned long long mlen)
 {
-    state[SHADOW384_RATE] ^= 0x01;
+    state->B[SHADOW384_RATE] ^= 0x01;
     while (mlen >= SHADOW384_RATE) {
-        lw_xor_block_2_dest(c, state, m, SHADOW384_RATE);
+        lw_xor_block_2_dest(c, state->B, m, SHADOW384_RATE);
         shadow384(state);
         c += SHADOW384_RATE;
         m += SHADOW384_RATE;
@@ -220,9 +218,9 @@ static void spook_128_384_encrypt
     }
     if (mlen > 0) {
         unsigned temp = (unsigned)mlen;
-        lw_xor_block_2_dest(c, state, m, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW384_RATE] ^= 0x02;
+        lw_xor_block_2_dest(c, state->B, m, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW384_RATE] ^= 0x02;
         shadow384(state);
     }
 }
@@ -236,12 +234,12 @@ static void spook_128_384_encrypt
  * \param clen Number of bytes of ciphertext to be decrypted.
  */
 static void spook_128_512_decrypt
-    (unsigned char state[SHADOW512_STATE_SIZE], unsigned char *m,
+    (shadow512_state_t *state, unsigned char *m,
      const unsigned char *c, unsigned long long clen)
 {
-    state[SHADOW512_RATE] ^= 0x01;
+    state->B[SHADOW512_RATE] ^= 0x01;
     while (clen >= SHADOW512_RATE) {
-        lw_xor_block_swap(m, state, c, SHADOW512_RATE);
+        lw_xor_block_swap(m, state->B, c, SHADOW512_RATE);
         shadow512(state);
         c += SHADOW512_RATE;
         m += SHADOW512_RATE;
@@ -249,9 +247,9 @@ static void spook_128_512_decrypt
     }
     if (clen > 0) {
         unsigned temp = (unsigned)clen;
-        lw_xor_block_swap(m, state, c, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW512_RATE] ^= 0x02;
+        lw_xor_block_swap(m, state->B, c, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW512_RATE] ^= 0x02;
         shadow512(state);
     }
 }
@@ -265,12 +263,12 @@ static void spook_128_512_decrypt
  * \param clen Number of bytes of ciphertext to be decrypted.
  */
 static void spook_128_384_decrypt
-    (unsigned char state[SHADOW384_STATE_SIZE], unsigned char *m,
+    (shadow384_state_t *state, unsigned char *m,
      const unsigned char *c, unsigned long long clen)
 {
-    state[SHADOW384_RATE] ^= 0x01;
+    state->B[SHADOW384_RATE] ^= 0x01;
     while (clen >= SHADOW384_RATE) {
-        lw_xor_block_swap(m, state, c, SHADOW384_RATE);
+        lw_xor_block_swap(m, state->B, c, SHADOW384_RATE);
         shadow384(state);
         c += SHADOW384_RATE;
         m += SHADOW384_RATE;
@@ -278,9 +276,9 @@ static void spook_128_384_decrypt
     }
     if (clen > 0) {
         unsigned temp = (unsigned)clen;
-        lw_xor_block_swap(m, state, c, temp);
-        state[temp] ^= 0x01;
-        state[SHADOW384_RATE] ^= 0x02;
+        lw_xor_block_swap(m, state->B, c, temp);
+        state->B[temp] ^= 0x01;
+        state->B[SHADOW384_RATE] ^= 0x02;
         shadow384(state);
     }
 }
@@ -293,26 +291,27 @@ int spook_128_512_su_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW512_STATE_SIZE];
+    shadow512_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
     *clen = mlen + SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-512 sponge state */
-    spook_128_512_init(state, k, SPOOK_SU_KEY_SIZE, npub);
+    spook_128_512_init(&state, k, SPOOK_SU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_512_absorb(state, ad, adlen);
+        spook_128_512_absorb(&state, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0)
-        spook_128_512_encrypt(state, c, m, mlen);
+        spook_128_512_encrypt(&state, c, m, mlen);
 
     /* Compute the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_encrypt(k, state + CLYDE128_BLOCK_SIZE, c + mlen, state);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_encrypt(k, state.W + 4, state.W, state.W);
+    memcpy(c + mlen, state.B, SPOOK_TAG_SIZE);
     return 0;
 }
 
@@ -324,7 +323,7 @@ int spook_128_512_su_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW512_STATE_SIZE];
+    shadow512_state_t state;
     (void)nsec;
 
     /* Validate the ciphertext length and set the return "mlen" value */
@@ -333,24 +332,22 @@ int spook_128_512_su_aead_decrypt
     *mlen = clen - SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-512 sponge state */
-    spook_128_512_init(state, k, SPOOK_SU_KEY_SIZE, npub);
+    spook_128_512_init(&state, k, SPOOK_SU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_512_absorb(state, ad, adlen);
+        spook_128_512_absorb(&state, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
     clen -= SPOOK_TAG_SIZE;
     if (clen > 0)
-        spook_128_512_decrypt(state, m, c, clen);
+        spook_128_512_decrypt(&state, m, c, clen);
 
     /* Check the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_decrypt
-        (k, state + CLYDE128_BLOCK_SIZE,
-         state + CLYDE128_BLOCK_SIZE, c + clen);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_decrypt(k, state.W + 4, state.W + 4, c + clen);
     return aead_check_tag
-        (m, clen, state, state + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
+        (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
 }
 
 int spook_128_384_su_aead_encrypt
@@ -361,26 +358,27 @@ int spook_128_384_su_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW384_STATE_SIZE];
+    shadow384_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
     *clen = mlen + SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-384 sponge state */
-    spook_128_384_init(state, k, SPOOK_SU_KEY_SIZE, npub);
+    spook_128_384_init(&state, k, SPOOK_SU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_384_absorb(state, ad, adlen);
+        spook_128_384_absorb(&state, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0)
-        spook_128_384_encrypt(state, c, m, mlen);
+        spook_128_384_encrypt(&state, c, m, mlen);
 
     /* Compute the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_encrypt(k, state + CLYDE128_BLOCK_SIZE, c + mlen, state);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_encrypt(k, state.W + 4, state.W, state.W);
+    memcpy(c + mlen, state.B, SPOOK_TAG_SIZE);
     return 0;
 }
 
@@ -392,7 +390,7 @@ int spook_128_384_su_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW384_STATE_SIZE];
+    shadow384_state_t state;
     (void)nsec;
 
     /* Validate the ciphertext length and set the return "mlen" value */
@@ -401,24 +399,22 @@ int spook_128_384_su_aead_decrypt
     *mlen = clen - SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-384 sponge state */
-    spook_128_384_init(state, k, SPOOK_SU_KEY_SIZE, npub);
+    spook_128_384_init(&state, k, SPOOK_SU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_384_absorb(state, ad, adlen);
+        spook_128_384_absorb(&state, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
     clen -= SPOOK_TAG_SIZE;
     if (clen > 0)
-        spook_128_384_decrypt(state, m, c, clen);
+        spook_128_384_decrypt(&state, m, c, clen);
 
     /* Check the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_decrypt
-        (k, state + CLYDE128_BLOCK_SIZE,
-         state + CLYDE128_BLOCK_SIZE, c + clen);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_decrypt(k, state.W + 4, state.W + 4, c + clen);
     return aead_check_tag
-        (m, clen, state, state + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
+        (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
 }
 
 int spook_128_512_mu_aead_encrypt
@@ -429,26 +425,27 @@ int spook_128_512_mu_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW512_STATE_SIZE];
+    shadow512_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
     *clen = mlen + SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-512 sponge state */
-    spook_128_512_init(state, k, SPOOK_MU_KEY_SIZE, npub);
+    spook_128_512_init(&state, k, SPOOK_MU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_512_absorb(state, ad, adlen);
+        spook_128_512_absorb(&state, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0)
-        spook_128_512_encrypt(state, c, m, mlen);
+        spook_128_512_encrypt(&state, c, m, mlen);
 
     /* Compute the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_encrypt(k, state + CLYDE128_BLOCK_SIZE, c + mlen, state);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_encrypt(k, state.W + 4, state.W, state.W);
+    memcpy(c + mlen, state.B, SPOOK_TAG_SIZE);
     return 0;
 }
 
@@ -460,7 +457,7 @@ int spook_128_512_mu_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW512_STATE_SIZE];
+    shadow512_state_t state;
     (void)nsec;
 
     /* Validate the ciphertext length and set the return "mlen" value */
@@ -469,24 +466,22 @@ int spook_128_512_mu_aead_decrypt
     *mlen = clen - SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-512 sponge state */
-    spook_128_512_init(state, k, SPOOK_MU_KEY_SIZE, npub);
+    spook_128_512_init(&state, k, SPOOK_MU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_512_absorb(state, ad, adlen);
+        spook_128_512_absorb(&state, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
     clen -= SPOOK_TAG_SIZE;
     if (clen > 0)
-        spook_128_512_decrypt(state, m, c, clen);
+        spook_128_512_decrypt(&state, m, c, clen);
 
     /* Check the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_decrypt
-        (k, state + CLYDE128_BLOCK_SIZE,
-         state + CLYDE128_BLOCK_SIZE, c + clen);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_decrypt(k, state.W + 4, state.W + 4, c + clen);
     return aead_check_tag
-        (m, clen, state, state + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
+        (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
 }
 
 int spook_128_384_mu_aead_encrypt
@@ -497,26 +492,27 @@ int spook_128_384_mu_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW384_STATE_SIZE];
+    shadow384_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
     *clen = mlen + SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-384 sponge state */
-    spook_128_384_init(state, k, SPOOK_MU_KEY_SIZE, npub);
+    spook_128_384_init(&state, k, SPOOK_MU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_384_absorb(state, ad, adlen);
+        spook_128_384_absorb(&state, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0)
-        spook_128_384_encrypt(state, c, m, mlen);
+        spook_128_384_encrypt(&state, c, m, mlen);
 
     /* Compute the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_encrypt(k, state + CLYDE128_BLOCK_SIZE, c + mlen, state);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_encrypt(k, state.W + 4, state.W, state.W);
+    memcpy(c + mlen, state.B, SPOOK_TAG_SIZE);
     return 0;
 }
 
@@ -528,7 +524,7 @@ int spook_128_384_mu_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    unsigned char state[SHADOW384_STATE_SIZE];
+    shadow384_state_t state;
     (void)nsec;
 
     /* Validate the ciphertext length and set the return "mlen" value */
@@ -537,22 +533,20 @@ int spook_128_384_mu_aead_decrypt
     *mlen = clen - SPOOK_TAG_SIZE;
 
     /* Initialize the Shadow-384 sponge state */
-    spook_128_384_init(state, k, SPOOK_MU_KEY_SIZE, npub);
+    spook_128_384_init(&state, k, SPOOK_MU_KEY_SIZE, npub);
 
     /* Process the associated data */
     if (adlen > 0)
-        spook_128_384_absorb(state, ad, adlen);
+        spook_128_384_absorb(&state, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
     clen -= SPOOK_TAG_SIZE;
     if (clen > 0)
-        spook_128_384_decrypt(state, m, c, clen);
+        spook_128_384_decrypt(&state, m, c, clen);
 
     /* Check the authentication tag */
-    state[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
-    clyde128_decrypt
-        (k, state + CLYDE128_BLOCK_SIZE,
-         state + CLYDE128_BLOCK_SIZE, c + clen);
+    state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
+    clyde128_decrypt(k, state.W + 4, state.W + 4, c + clen);
     return aead_check_tag
-        (m, clen, state, state + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
+        (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_TAG_SIZE);
 }
