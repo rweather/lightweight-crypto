@@ -22,6 +22,7 @@
 
 #include "test-cipher.h"
 
+void test_blake2s(void);
 void test_chachapoly(void);
 void test_cham(void);
 void test_clyde128(void);
@@ -45,6 +46,7 @@ void test_wage(void);
 
 int main(int argc, char *argv[])
 {
+    test_blake2s();
     test_chachapoly();
     test_cham();
     test_clyde128();

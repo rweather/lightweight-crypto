@@ -47,6 +47,7 @@ OBJS = \
         wage.o \
         xoodyak.o \
 	internal-ascon.o \
+	internal-blake2s.o \
 	internal-chachapoly.o \
 	internal-cham.o \
 	internal-drysponge.o \
@@ -123,6 +124,7 @@ tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
+internal-blake2s.o: internal-blake2s.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h
 internal-drysponge.o: internal-drysponge.h internal-util.h
