@@ -26,13 +26,6 @@
 #include <string.h>
 
 /* Information blocks for the SKINNY-128 block cipher variants */
-static block_cipher_t const skinny128_128 = {
-    "SKINNY-128-128",
-    sizeof(skinny_128_128_key_schedule_t),
-    (block_cipher_init_t)skinny_128_128_init,
-    (block_cipher_encrypt_t)skinny_128_128_encrypt,
-    (block_cipher_decrypt_t)skinny_128_128_decrypt
-};
 static block_cipher_t const skinny128_256 = {
     "SKINNY-128-256",
     sizeof(skinny_128_256_key_schedule_t),
@@ -49,16 +42,6 @@ static block_cipher_t const skinny128_384 = {
 };
 
 /* Test vectors for SKINNY-128 from https://eprint.iacr.org/2016/660.pdf */
-static block_cipher_test_vector_128_t const skinny128_128_1 = {
-    "Test Vector",
-    {0x4f, 0x55, 0xcf, 0xb0, 0x52, 0x0c, 0xac, 0x52,    /* key */
-     0xfd, 0x92, 0xc1, 0x5f, 0x37, 0x07, 0x3e, 0x93},
-    16,                                                 /* key_len */
-    {0xf2, 0x0a, 0xdb, 0x0e, 0xb0, 0x8b, 0x64, 0x8a,    /* plaintext */
-     0x3b, 0x2e, 0xee, 0xd1, 0xf0, 0xad, 0xda, 0x14},
-    {0x22, 0xff, 0x30, 0xd4, 0x98, 0xea, 0x62, 0xd7,    /* ciphertext */
-     0xe4, 0x5b, 0x47, 0x6e, 0x33, 0x67, 0x5b, 0x74}
-};
 static block_cipher_test_vector_128_t const skinny128_256_1 = {
     "Test Vector",
     {0x00, 0x9c, 0xec, 0x81, 0x60, 0x5d, 0x4a, 0xc1,    /* key */
@@ -150,10 +133,6 @@ static block_cipher_t const skinny128_256_tk_full = {
 
 void test_skinny128(void)
 {
-    test_block_cipher_start(&skinny128_128);
-    test_block_cipher_128(&skinny128_128, &skinny128_128_1);
-    test_block_cipher_end(&skinny128_128);
-
     test_block_cipher_start(&skinny128_256);
     test_block_cipher_128(&skinny128_256, &skinny128_256_1);
     test_block_cipher_end(&skinny128_256);
