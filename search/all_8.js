@@ -2,6 +2,7 @@ var searchData=
 [
   ['init',['init',['../structaead__hash__algorithm__t.html#ad691b214a1d1052d26098f8577cfe858',1,'aead_hash_algorithm_t']]],
   ['internal_2dascon_2eh',['internal-ascon.h',['../internal-ascon_8h.html',1,'']]],
+  ['internal_2dblake2s_2eh',['internal-blake2s.h',['../internal-blake2s_8h.html',1,'']]],
   ['internal_2dchachapoly_2eh',['internal-chachapoly.h',['../internal-chachapoly_8h.html',1,'']]],
   ['internal_2dcham_2eh',['internal-cham.h',['../internal-cham_8h.html',1,'']]],
   ['internal_2ddrysponge_2eh',['internal-drysponge.h',['../internal-drysponge_8h.html',1,'']]],
@@ -26,6 +27,8 @@ var searchData=
   ['internal_2dtinyjambu_2eh',['internal-tinyjambu.h',['../internal-tinyjambu_8h.html',1,'']]],
   ['internal_2dwage_2eh',['internal-wage.h',['../internal-wage_8h.html',1,'']]],
   ['internal_2dxoodoo_2eh',['internal-xoodoo.h',['../internal-xoodoo_8h.html',1,'']]],
+  ['internal_5fblake2s_5fhash',['internal_blake2s_hash',['../internal-blake2s_8h.html#a753ce61965a843ec87eee8f0d63a5e81',1,'internal-blake2s.c']]],
+  ['internal_5fblake2s_5fhash_5falgorithm',['internal_blake2s_hash_algorithm',['../internal-blake2s_8h.html#acc84769b4b27b83b136054b18eaa9a10',1,'internal-blake2s.c']]],
   ['internal_5fchachapoly_5faead_5fdecrypt',['internal_chachapoly_aead_decrypt',['../internal-chachapoly_8h.html#a39020dcd94e59abe74d278ee569fdb70',1,'internal-chachapoly.c']]],
   ['internal_5fchachapoly_5faead_5fencrypt',['internal_chachapoly_aead_encrypt',['../internal-chachapoly_8h.html#aa83be30902bd74ddb3aa49dc81c0db45',1,'internal-chachapoly.c']]],
   ['internal_5fchachapoly_5fcipher',['internal_chachapoly_cipher',['../internal-chachapoly_8h.html#a67175769253a7c6da653a9ad3215d8c0',1,'internal-chachapoly.c']]],

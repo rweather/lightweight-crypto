@@ -1,6 +1,7 @@
 var searchData=
 [
   ['internal_2dascon_2eh',['internal-ascon.h',['../internal-ascon_8h.html',1,'']]],
+  ['internal_2dblake2s_2eh',['internal-blake2s.h',['../internal-blake2s_8h.html',1,'']]],
   ['internal_2dchachapoly_2eh',['internal-chachapoly.h',['../internal-chachapoly_8h.html',1,'']]],
   ['internal_2dcham_2eh',['internal-cham.h',['../internal-cham_8h.html',1,'']]],
   ['internal_2ddrysponge_2eh',['internal-drysponge.h',['../internal-drysponge_8h.html',1,'']]],

@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['forkae_5fpaef_5f128_5f192_5fkey_5fsize',['FORKAE_PAEF_128_192_KEY_SIZE',['../forkae_8h.html#a3156629d8c6dd41aa4045a71a68b76b5',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f192_5fnonce_5fsize',['FORKAE_PAEF_128_192_NONCE_SIZE',['../forkae_8h.html#a4cd6bc7fbb12ad6f7c3ac025608a8029',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f192_5ftag_5fsize',['FORKAE_PAEF_128_192_TAG_SIZE',['../forkae_8h.html#a579167d7dc42c10d4e03d91f6ed5c31b',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f256_5fkey_5fsize',['FORKAE_PAEF_128_256_KEY_SIZE',['../forkae_8h.html#a1f39563c3fc6c7eaffd9224d4d732abb',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f256_5fnonce_5fsize',['FORKAE_PAEF_128_256_NONCE_SIZE',['../forkae_8h.html#a4266ddcaeede6d40e15fd53af4bbce3d',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f256_5ftag_5fsize',['FORKAE_PAEF_128_256_TAG_SIZE',['../forkae_8h.html#aa4f74bc904788c2ab0d995d41ecece91',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f288_5fkey_5fsize',['FORKAE_PAEF_128_288_KEY_SIZE',['../forkae_8h.html#a9aaef0ccaeada3523ec2a960dd4ae2bd',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f288_5fnonce_5fsize',['FORKAE_PAEF_128_288_NONCE_SIZE',['../forkae_8h.html#ad382fadbce92e3d871b0fb2e248c7d4a',1,'forkae.h']]],
-  ['forkae_5fpaef_5f128_5f288_5ftag_5fsize',['FORKAE_PAEF_128_288_TAG_SIZE',['../forkae_8h.html#a8829a7689facd2e45719dc57d7cb8c46',1,'forkae.h']]],
-  ['forkae_5fpaef_5f64_5f192_5fkey_5fsize',['FORKAE_PAEF_64_192_KEY_SIZE',['../forkae_8h.html#af6b5374cd4ccec930e75b020b1f1c913',1,'forkae.h']]],
-  ['forkae_5fpaef_5f64_5f192_5fnonce_5fsize',['FORKAE_PAEF_64_192_NONCE_SIZE',['../forkae_8h.html#a47495701db8a41d3b728639ce1bfc1bc',1,'forkae.h']]],
-  ['forkae_5fpaef_5f64_5f192_5ftag_5fsize',['FORKAE_PAEF_64_192_TAG_SIZE',['../forkae_8h.html#a15a8e0593845a7e098a6558637c79d39',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f192_5fkey_5fsize',['FORKAE_SAEF_128_192_KEY_SIZE',['../forkae_8h.html#a289e82e658085ac2fe84189e61159c5f',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f192_5fnonce_5fsize',['FORKAE_SAEF_128_192_NONCE_SIZE',['../forkae_8h.html#acb9533e6d612c4e3e94b6250e76834c9',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f192_5ftag_5fsize',['FORKAE_SAEF_128_192_TAG_SIZE',['../forkae_8h.html#ad142bedc9985179f228a2dfadfc4734a',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f256_5fkey_5fsize',['FORKAE_SAEF_128_256_KEY_SIZE',['../forkae_8h.html#ac53d60e1197d436c58239c55a03daaea',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f256_5fnonce_5fsize',['FORKAE_SAEF_128_256_NONCE_SIZE',['../forkae_8h.html#a7d4c06a5b6103e347e19bc08a8a2cf69',1,'forkae.h']]],
-  ['forkae_5fsaef_5f128_5f256_5ftag_5fsize',['FORKAE_SAEF_128_256_TAG_SIZE',['../forkae_8h.html#a732c089814d0d04b438c020d4f79711d',1,'forkae.h']]]
+  ['esch_5f256_5fhash_5fsize',['ESCH_256_HASH_SIZE',['../sparkle_8h.html#a639cd045594df03c39731d1587dbb805',1,'sparkle.h']]],
+  ['esch_5f384_5fhash_5fsize',['ESCH_384_HASH_SIZE',['../sparkle_8h.html#a65ae401c898565391b4f9884c7b4bafd',1,'sparkle.h']]],
+  ['estate_5ftwegift_5fkey_5fsize',['ESTATE_TWEGIFT_KEY_SIZE',['../estate_8h.html#a94dd2bcbd4b3ecd7700f39a944fa60f6',1,'estate.h']]],
+  ['estate_5ftwegift_5fnonce_5fsize',['ESTATE_TWEGIFT_NONCE_SIZE',['../estate_8h.html#a85256b60ec40075ddf2eecc15de1b16a',1,'estate.h']]],
+  ['estate_5ftwegift_5ftag_5fsize',['ESTATE_TWEGIFT_TAG_SIZE',['../estate_8h.html#abfa6bea2351f3e5a79f54fa765e04358',1,'estate.h']]]
 ];

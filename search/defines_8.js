@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['jumbo_5fkey_5fsize',['JUMBO_KEY_SIZE',['../elephant_8h.html#aed25f9c9b0637f070f2e22b530d39655',1,'elephant.h']]],
-  ['jumbo_5fnonce_5fsize',['JUMBO_NONCE_SIZE',['../elephant_8h.html#a492544836195fb311984452ac51d9534',1,'elephant.h']]],
-  ['jumbo_5ftag_5fsize',['JUMBO_TAG_SIZE',['../elephant_8h.html#a7bb760ceb23272cb930e0e736cb29e2b',1,'elephant.h']]]
+  ['isap_5fkey_5fsize',['ISAP_KEY_SIZE',['../isap_8h.html#aa964faacdf60e544d87760b9474bcd79',1,'isap.h']]],
+  ['isap_5fnonce_5fsize',['ISAP_NONCE_SIZE',['../isap_8h.html#a38dcf74e80abb9ccabfe437dfbec0e78',1,'isap.h']]],
+  ['isap_5ftag_5fsize',['ISAP_TAG_SIZE',['../isap_8h.html#a4b3c1256ae5c1b4218a4ce405843718e',1,'isap.h']]]
 ];

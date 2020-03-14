@@ -91,6 +91,7 @@ Introduction</h1>
 <p>The approach I take here is "ChaChaPoly Units". The library contains a reasonably efficient 32-bit non-vectorized implementation of the ChaChaPoly AEAD scheme from my <a href="https://github.com/rweather/arduinolibs">Arduino cryptography library</a>. This makes it a known quanitity to compare with other algorithms side by side.</p>
 <p>If an algorithm is measured at 0.8 ChaChaPoly Units on a specific embedded microprocessor at a specific clock speed, then that means that it is slower than ChaChaPoly by a factor of 0.8 on that microprocessor. If the algorithm is instead measured at 2 ChaChaPoly Units, then it is twice as fast as ChaChaPoly on the same microprocessor. The higher the number of units, the better the algorithm.</p>
 <p>The number of ChaChaPoly Units for each algorithm will vary for each microprocessor that is tested and for different choices of optimisation options. The figures below should be used as a rough guide to the relative performance of the algorithms, not an absolute measurement.</p>
+<p>For hash algorithms we use BLAKE2s as the basic unit. BLAKE2s is based on ChaCha20 so it is the most logical hashing counterpart to ChaChaPoly.</p>
 <h1><a class="anchor" id="perf_cortex_m3"></a>
 Performance on ARM Cortex M3</h1>
 <p>All tests were run on an Arduino Due which is an ARM Cortex M3 running at 84MHz. The code was optimised for size rather than speed, which is the default optimisation option for the Arduino IDE. I found that "-Os" size optimisation often did better on the Due than "-O2" or "-O3" with the compiler that I had. Your own results may vary.</p>
@@ -256,6 +257,47 @@ Performance on ARM Cortex M3</h1>
 <td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0036</td><td>0.0041</td><td>0.0016</td><td>0.0018</td><td>0.0023 </td></tr>
 </table>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
+<p>The hash algorithms are compared against BLAKE2s instead of ChaChaPoly:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51 </td></tr>
+<tr>
+<td><b><em>GIMLI-24-HASH</em></b></td><td>256</td><td>0.45</td><td>0.35</td><td>0.61</td><td>0.46 </td></tr>
+<tr>
+<td><b><em>Esch256</em></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.64</td><td>0.45 </td></tr>
+<tr>
+<td>Esch384 (SPARKLE)</td><td>384</td><td>0.26</td><td>0.21</td><td>0.34</td><td>0.27 </td></tr>
+<tr>
+<td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.13</td><td>0.11</td><td>0.28</td><td>0.18 </td></tr>
+<tr>
+<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.07</td><td>0.07</td><td>0.25</td><td>0.13 </td></tr>
+<tr>
+<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.11</td><td>0.09</td><td>0.16</td><td>0.12 </td></tr>
+<tr>
+<td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.10</td><td>0.09</td><td>0.15</td><td>0.11 </td></tr>
+<tr>
+<td>DryGASCON256-HASH</td><td>512</td><td>0.06</td><td>0.05</td><td>0.11</td><td>0.08 </td></tr>
+<tr>
+<td>KNOT-HASH-256-384</td><td>256</td><td>0.05</td><td>0.04</td><td>0.07</td><td>0.05 </td></tr>
+<tr>
+<td><b><em>KNOT-HASH-256-256</em></b></td><td>256</td><td>0.03</td><td>0.03</td><td>0.08</td><td>0.04 </td></tr>
+<tr>
+<td><b><em>Subterranean-Hash</em></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.03 </td></tr>
+<tr>
+<td><b><em>ORANGISH</em></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.03</td><td>0.02 </td></tr>
+<tr>
+<td>KNOT-HASH-384-384</td><td>384</td><td>0.01</td><td>0.01</td><td>0.04</td><td>0.02 </td></tr>
+<tr>
+<td><b><em>PHOTON-Beetle-HASH</em></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.05</td><td>0.02 </td></tr>
+<tr>
+<td><b><em>SKINNY-tk3-HASH</em></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01 </td></tr>
+<tr>
+<td>KNOT-HASH-512-512</td><td>512</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01 </td></tr>
+<tr>
+<td>SKINNY-tk2-HASH</td><td>256</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01 </td></tr>
+</table>
 <h1><a class="anchor" id="perf_esp32"></a>
 Performance on ESP32</h1>
 <p>The tests below were run on an ESP32 Dev Module running at 240MHz. The ordering is mostly the same as ARM Cortext M3 with a few reversals where the architectural differences gives some algorithms an added advantage.</p>
@@ -417,10 +459,52 @@ Performance on ESP32</h1>
 <tr>
 <td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021 </td></tr>
 </table>
+<p>Hash algorithms:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b></td><td>256</td><td>0.35</td><td>0.33</td><td>0.73</td><td>0.47 </td></tr>
+<tr>
+<td><b><em>Esch256</em></b> (SPARKLE)</td><td>256</td><td>0.37</td><td>0.33</td><td>0.62</td><td>0.44 </td></tr>
+<tr>
+<td><b><em>GIMLI-24-HASH</em></b></td><td>256</td><td>0.35</td><td>0.29</td><td>0.50</td><td>0.38 </td></tr>
+<tr>
+<td>Esch384 (SPARKLE)</td><td>384</td><td>0.25</td><td>0.20</td><td>0.31</td><td>0.25 </td></tr>
+<tr>
+<td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.15</td><td>0.12</td><td>0.31</td><td>0.19 </td></tr>
+<tr>
+<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.10</td><td>0.10</td><td>0.34</td><td>0.18 </td></tr>
+<tr>
+<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.14</td><td>0.12</td><td>0.20</td><td>0.15 </td></tr>
+<tr>
+<td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.07</td><td>0.13</td><td>0.10 </td></tr>
+<tr>
+<td>DryGASCON256-HASH</td><td>512</td><td>0.08</td><td>0.07</td><td>0.15</td><td>0.10 </td></tr>
+<tr>
+<td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.07</td><td>0.06</td><td>0.10</td><td>0.07 </td></tr>
+<tr>
+<td><b><em>KNOT-HASH-256-256</em></b></td><td>256</td><td>0.04</td><td>0.04</td><td>0.13</td><td>0.07 </td></tr>
+<tr>
+<td>KNOT-HASH-384-384</td><td>384</td><td>0.03</td><td>0.03</td><td>0.07</td><td>0.04 </td></tr>
+<tr>
+<td><b><em>ORANGISH</em></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.03</td><td>0.02 </td></tr>
+<tr>
+<td><b><em>SKINNY-tk3-HASH</em></b></td><td>256</td><td>0.04</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
+<tr>
+<td>SKINNY-tk2-HASH</td><td>256</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.02 </td></tr>
+<tr>
+<td>KNOT-HASH-512-512</td><td>512</td><td>0.02</td><td>0.02</td><td>0.04</td><td>0.02 </td></tr>
+<tr>
+<td><b><em>PHOTON-Beetle-HASH</em></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.05</td><td>0.02 </td></tr>
+<tr>
+<td><b><em>Subterranean-Hash</em></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.04</td><td>0.02 </td></tr>
+</table>
 <h1><a class="anchor" id="perf_overall"></a>
 Overall group rankings</h1>
 <p>Based on the above data, the NIST submissions can be roughly grouped with those of similar performance. Changes in CPU, optimisation options, loop unrolling, or assembly code replacement might modify the rank of an algorithm.</p>
 <p>Only the primary algorithm in each family is considered for this ranking. I took the average of the ARM Cortex M3 and ESP32 figures from the above tables to compute an average across different architectures. I then grouped the algorithms into 0.1-wide buckets; for example everything with rank 3 has an average between 0.30 and 0.39 ChaChaPoly units.</p>
+<p>AEAD algorithm rankings:</p>
 <table class="doxtable">
 <tr>
 <td>Rank</td><td>Algorithms </td></tr>
@@ -449,10 +533,21 @@ Overall group rankings</h1>
 <tr>
 <td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE </td></tr>
 </table>
+<p>Hash algorithm rankings:</p>
+<table class="doxtable">
+<tr>
+<td>Rank</td><td>Algorithms </td></tr>
+<tr>
+<td>4</td><td>Gimli, SPARKLE, Xoodyak </td></tr>
+<tr>
+<td>1</td><td>ASCON, DryGASCON, Saturnin </td></tr>
+<tr>
+<td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean </td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 14 2020 12:37:38 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 15 2020 09:17:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
