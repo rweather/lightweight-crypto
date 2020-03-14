@@ -50,6 +50,7 @@ of flash memory.
 #include "romulus.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
+#include "skinny-hash.h"
 #include "sparkle.h"
 #include "spix.h"
 #include "spoc.h"
@@ -59,6 +60,7 @@ of flash memory.
 #include "tinyjambu.h"
 #include "wage.h"
 #include "xoodyak.h"
+#include "internal-blake2s.h"
 #include "internal-chachapoly.h"
 
 #if defined(ESP8266)
@@ -70,9 +72,11 @@ extern "C" void system_soft_wdt_feed(void);
 
 #define DEFAULT_PERF_LOOPS 1000
 #define DEFAULT_PERF_LOOPS_16 3000
+#define DEFAULT_PERF_HASH_LOOPS 1000
 
 static int PERF_LOOPS = DEFAULT_PERF_LOOPS;
 static int PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16;
+static int PERF_HASH_LOOPS = DEFAULT_PERF_HASH_LOOPS;
 
 #define MAX_DATA_SIZE 128
 #define MAX_TAG_SIZE 32
@@ -98,6 +102,12 @@ static unsigned long encrypt_128_ref = 0;
 static unsigned long encrypt_16_ref = 0;
 static unsigned long decrypt_128_ref = 0;
 static unsigned long decrypt_16_ref = 0;
+static unsigned long hash_1024_time = 0;
+static unsigned long hash_128_time = 0;
+static unsigned long hash_16_time = 0;
+static unsigned long hash_1024_ref = 0;
+static unsigned long hash_128_ref = 0;
+static unsigned long hash_16_ref = 0;
 
 static void print_x(double value)
 {
@@ -353,19 +363,97 @@ void perfCipherShort(const aead_cipher_t *cipher, unsigned size)
     Serial.println();
 }
 
+static unsigned char hash_buffer[1024];
+
+unsigned long perfHash_N
+    (const aead_hash_algorithm_t *hash_alg, int size, unsigned long ref)
+{
+    unsigned long start;
+    unsigned long elapsed;
+    unsigned long long len;
+    int count, loops;
+
+    for (count = 0; count < size; ++count)
+        hash_buffer[count] = (unsigned char)count;
+
+    Serial.print("   hash ");
+    if (size < 1000) {
+        if (size < 100)
+            Serial.print("  ");
+        else
+            Serial.print(" ");
+    }
+    Serial.print(size);
+    Serial.print(" bytes ... ");
+
+    // Adjust the number of loops to do more loops on smaller sizes.
+    if (size < 1024)
+        loops = PERF_HASH_LOOPS * 4;
+    else
+        loops = PERF_HASH_LOOPS;
+
+    start = micros();
+    for (count = 0; count < loops; ++count) {
+        hash_alg->hash(ciphertext, plaintext, size);
+    }
+    elapsed = micros() - start;
+
+    if (ref != 0 && elapsed != 0) {
+        print_x(((double)ref) / elapsed);
+        Serial.print("x, ");
+    }
+
+    Serial.print(elapsed / (((double)size) * loops));
+    Serial.print("us per byte, ");
+    Serial.print((1000000.0 * size * loops) / elapsed);
+    Serial.println(" bytes per second");
+
+    return elapsed;
+}
+
+void perfHash(const aead_hash_algorithm_t *hash_alg)
+{
+    crypto_feed_watchdog();
+    Serial.print(hash_alg->name);
+    Serial.print(':');
+    Serial.println();
+
+    hash_1024_time = perfHash_N(hash_alg, 1024, hash_1024_ref);
+    hash_128_time = perfHash_N(hash_alg, 128, hash_128_ref);
+    hash_16_time = perfHash_N(hash_alg, 16, hash_16_ref);
+
+    if (hash_16_ref != 0) {
+        double avg = ((double)hash_1024_ref) / hash_1024_time;
+        avg += ((double)hash_128_ref) / hash_128_time;
+        avg += ((double)hash_16_ref) / hash_16_time;
+        avg /= 3.0;
+        Serial.print("   average ... ");
+        print_x(avg);
+        Serial.print("x");
+        Serial.println();
+    }
+
+    Serial.println();
+}
+
 void setup()
 {
     Serial.begin(9600);
     Serial.println();
 
-    // Test ChaChaPoly first to get the reference time for other algorithms.
+    // Test ChaChaPoly and BLAKE2s first to get the reference time
+    // for other algorithms.
     perfCipher(&internal_chachapoly_cipher);
     encrypt_128_ref = encrypt_128_time;
     decrypt_128_ref = decrypt_128_time;
     encrypt_16_ref = encrypt_16_time;
     decrypt_16_ref = decrypt_16_time;
+    perfHash(&internal_blake2s_hash_algorithm);
+    hash_1024_ref = hash_1024_time;
+    hash_128_ref = hash_128_time;
+    hash_16_ref = hash_16_time;
 
-    // Run performance tests on the NIST algorithms.
+    // Run performance tests on the NIST AEAD algorithms.
     perfCipher(&ace_cipher);
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
@@ -432,6 +520,26 @@ void setup()
     perfCipher(&tiny_jambu_256_cipher);
     perfCipher(&wage_cipher);
     perfCipher(&xoodyak_cipher);
+
+    // Run performance tests on the NIST hash algorithms.
+    perfHash(&ace_hash_algorithm);
+    perfHash(&ascon_hash_algorithm);
+    perfHash(&drygascon128_hash_algorithm);
+    perfHash(&drygascon256_hash_algorithm);
+    perfHash(&esch_256_hash_algorithm);
+    perfHash(&esch_384_hash_algorithm);
+    perfHash(&gimli24_hash_algorithm);
+    perfHash(&knot_hash_256_256_algorithm);
+    perfHash(&knot_hash_256_384_algorithm);
+    perfHash(&knot_hash_384_384_algorithm);
+    perfHash(&knot_hash_512_512_algorithm);
+    perfHash(&orangish_hash_algorithm);
+    perfHash(&photon_beetle_hash_algorithm);
+    perfHash(&saturnin_hash_algorithm);
+    perfHash(&skinny_tk2_hash_algorithm);
+    perfHash(&skinny_tk3_hash_algorithm);
+    perfHash(&subterranean_hash_algorithm);
+    perfHash(&xoodyak_hash_algorithm);
 
     // Algorithms that are very slow.  Adjust loop counters and do them last.
     encrypt_128_ref /= 10;

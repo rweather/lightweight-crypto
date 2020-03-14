@@ -51,6 +51,9 @@ microprocessor that is tested and for different choices of optimisation
 options.  The figures below should be used as a rough guide to the relative
 performance of the algorithms, not an absolute measurement.
 
+For hash algorithms we use BLAKE2s as the basic unit.  BLAKE2s is based
+on ChaCha20 so it is the most logical hashing counterpart to ChaChaPoly.
+
 \section perf_cortex_m3 Performance on ARM Cortex M3
 
 All tests were run on an Arduino Due which is an ARM Cortex M3 running
@@ -155,6 +158,30 @@ Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload,
 so there are no performance figures for 128-byte packets, and the 16-byte
 columns report the results for 15 bytes of payload instead.
 
+The hash algorithms are compared against BLAKE2s instead of ChaChaPoly:
+
+<table>
+<tr><td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51</td></tr>
+<tr><td><b><i>GIMLI-24-HASH</i></b></td><td>256</td><td>0.45</td><td>0.35</td><td>0.61</td><td>0.46</td></tr>
+<tr><td><b><i>Esch256</i></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.64</td><td>0.45</td></tr>
+<tr><td>Esch384 (SPARKLE)</td><td>384</td><td>0.26</td><td>0.21</td><td>0.34</td><td>0.27</td></tr>
+<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.13</td><td>0.11</td><td>0.28</td><td>0.18</td></tr>
+<tr><td><b><i>DryGASCON128-HASH</i></b></td><td>256</td><td>0.07</td><td>0.07</td><td>0.25</td><td>0.13</td></tr>
+<tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.11</td><td>0.09</td><td>0.16</td><td>0.12</td></tr>
+<tr><td><b><i>ACE-HASH</i></b></td><td>256</td><td>0.10</td><td>0.09</td><td>0.15</td><td>0.11</td></tr>
+<tr><td>DryGASCON256-HASH</td><td>512</td><td>0.06</td><td>0.05</td><td>0.11</td><td>0.08</td></tr>
+<tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.05</td><td>0.04</td><td>0.07</td><td>0.05</td></tr>
+<tr><td><b><i>KNOT-HASH-256-256</i></b></td><td>256</td><td>0.03</td><td>0.03</td><td>0.08</td><td>0.04</td></tr>
+<tr><td><b><i>Subterranean-Hash</i></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.03</td></tr>
+<tr><td><b><i>ORANGISH</i></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.03</td><td>0.02</td></tr>
+<tr><td>KNOT-HASH-384-384</td><td>384</td><td>0.01</td><td>0.01</td><td>0.04</td><td>0.02</td></tr>
+<tr><td><b><i>PHOTON-Beetle-HASH</i></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.05</td><td>0.02</td></tr>
+<tr><td><b><i>SKINNY-tk3-HASH</i></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
+<tr><td>KNOT-HASH-512-512</td><td>512</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
+<tr><td>SKINNY-tk2-HASH</td><td>256</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
+</table>
+
 \section perf_esp32 Performance on ESP32
 
 The tests below were run on an ESP32 Dev Module running at 240MHz.
@@ -242,6 +269,30 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021</td></tr>
 </table>
 
+Hash algorithms:
+
+<table>
+<tr><td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.35</td><td>0.33</td><td>0.73</td><td>0.47</td></tr>
+<tr><td><b><i>Esch256</i></b> (SPARKLE)</td><td>256</td><td>0.37</td><td>0.33</td><td>0.62</td><td>0.44</td></tr>
+<tr><td><b><i>GIMLI-24-HASH</i></b></td><td>256</td><td>0.35</td><td>0.29</td><td>0.50</td><td>0.38</td></tr>
+<tr><td>Esch384 (SPARKLE)</td><td>384</td><td>0.25</td><td>0.20</td><td>0.31</td><td>0.25</td></tr>
+<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.15</td><td>0.12</td><td>0.31</td><td>0.19</td></tr>
+<tr><td><b><i>DryGASCON128-HASH</i></b></td><td>256</td><td>0.10</td><td>0.10</td><td>0.34</td><td>0.18</td></tr>
+<tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.14</td><td>0.12</td><td>0.20</td><td>0.15</td></tr>
+<tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.07</td><td>0.13</td><td>0.10</td></tr>
+<tr><td>DryGASCON256-HASH</td><td>512</td><td>0.08</td><td>0.07</td><td>0.15</td><td>0.10</td></tr>
+<tr><td><b><i>ACE-HASH</i></b></td><td>256</td><td>0.07</td><td>0.06</td><td>0.10</td><td>0.07</td></tr>
+<tr><td><b><i>KNOT-HASH-256-256</i></b></td><td>256</td><td>0.04</td><td>0.04</td><td>0.13</td><td>0.07</td></tr>
+<tr><td>KNOT-HASH-384-384</td><td>384</td><td>0.03</td><td>0.03</td><td>0.07</td><td>0.04</td></tr>
+<tr><td><b><i>ORANGISH</i></b></td><td>256</td><td>0.02</td><td>0.02</td><td>0.03</td><td>0.02</td></tr>
+<tr><td><b><i>SKINNY-tk3-HASH</i></b></td><td>256</td><td>0.04</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
+<tr><td>SKINNY-tk2-HASH</td><td>256</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.02</td></tr>
+<tr><td>KNOT-HASH-512-512</td><td>512</td><td>0.02</td><td>0.02</td><td>0.04</td><td>0.02</td></tr>
+<tr><td><b><i>PHOTON-Beetle-HASH</i></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.05</td><td>0.02</td></tr>
+<tr><td><b><i>Subterranean-Hash</i></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.04</td><td>0.02</td></tr>
+</table>
+
 \section perf_overall Overall group rankings
 
 Based on the above data, the NIST submissions can be roughly grouped with
@@ -254,6 +305,8 @@ I took the average of the ARM Cortex M3 and ESP32 figures from the above
 tables to compute an average across different architectures.  I then grouped
 the algorithms into 0.1-wide buckets; for example everything with rank 3
 has an average between 0.30 and 0.39 ChaChaPoly units.
+
+AEAD algorithm rankings:
 
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
@@ -269,6 +322,15 @@ has an average between 0.30 and 0.39 ChaChaPoly units.
 <tr><td>2</td><td>DryGASCON, Oribatida, Saturnin</td></tr>
 <tr><td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
 <tr><td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE</td></tr>
+</table>
+
+Hash algorithm rankings:
+
+<table>
+<tr><td>Rank</td><td>Algorithms</td></tr>
+<tr><td>4</td><td>Gimli, SPARKLE, Xoodyak</td></tr>
+<tr><td>1</td><td>ASCON, DryGASCON, Saturnin</td></tr>
+<tr><td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean</td></tr>
 </table>
 
 */
