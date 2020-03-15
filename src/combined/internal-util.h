@@ -265,7 +265,7 @@
         (_temp >> (bits)) | (_temp << (32 - (bits))); \
     }))
 
-#if !CRYPTO_ROTATE32_COMPOSED
+#if !LW_CRYPTO_ROTATE32_COMPOSED
 
 /* Left rotate by a specific number of bits.  These macros may be replaced
  * with more efficient ones on platforms that lack a barrel shifter */
@@ -335,7 +335,7 @@
 #define rightRotate30(a) (rightRotate((a), 30))
 #define rightRotate31(a) (rightRotate((a), 31))
 
-#else /* CRYPTO_ROTATE32_COMPOSED */
+#else /* LW_CRYPTO_ROTATE32_COMPOSED */
 
 /* Composed rotation macros where 1 and 8 are fast, but others are slow */
 
@@ -465,7 +465,7 @@
 #define rightRotate30(a) (leftRotate2((a)))
 #define rightRotate31(a) (leftRotate1((a)))
 
-#endif /* CRYPTO_ROTATE32_COMPOSED */
+#endif /* LW_CRYPTO_ROTATE32_COMPOSED */
 
 /* Rotation macros for 64-bit arguments */
 

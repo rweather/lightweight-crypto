@@ -143,8 +143,15 @@ STATIC_INLINE void chacha_encrypt
     }
 }
 
+#if !defined(__AVR__)
 typedef uint32_t limb_t;    /**< Size of a multi-precision integer word */
 typedef uint64_t dlimb_t;   /**< Size of a multi-precision integer dword */
+#else
+/* Use 16-bit limbs on AVR */
+typedef uint16_t limb_t;
+typedef int16_t slimb_t;
+typedef uint32_t dlimb_t;
+#endif
 
 #define LIMB_BITS (sizeof(limb_t) * 8)
 #define BITS2LIMBS(bits) (((bits) + LIMB_BITS - 1) / LIMB_BITS)
