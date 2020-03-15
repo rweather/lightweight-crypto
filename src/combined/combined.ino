@@ -70,9 +70,15 @@ extern "C" void system_soft_wdt_feed(void);
 #define crypto_feed_watchdog() do { ; } while (0)
 #endif
 
+#if defined(__AVR__)
+#define DEFAULT_PERF_LOOPS 200
+#define DEFAULT_PERF_LOOPS_16 200
+#define DEFAULT_PERF_HASH_LOOPS 100
+#else
 #define DEFAULT_PERF_LOOPS 1000
 #define DEFAULT_PERF_LOOPS_16 3000
 #define DEFAULT_PERF_HASH_LOOPS 1000
+#endif
 
 static int PERF_LOOPS = DEFAULT_PERF_LOOPS;
 static int PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16;
