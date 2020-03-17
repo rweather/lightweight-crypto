@@ -54,6 +54,10 @@ performance of the algorithms, not an absolute measurement.
 For hash algorithms we use BLAKE2s as the basic unit.  BLAKE2s is based
 on ChaCha20 so it is the most logical hashing counterpart to ChaChaPoly.
 
+This page details the performance results for 32-bit platforms.  A separate
+page that details preliminary results for the 8-bit AVR platform can be
+found \ref performance_avr "here".
+
 \section perf_cortex_m3 Performance on ARM Cortex M3
 
 All tests were run on an Arduino Due which is an ARM Cortex M3 running

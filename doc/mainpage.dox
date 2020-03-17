@@ -88,11 +88,9 @@ implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.
 All of the algorithms have been implemented to have good performance in
 plain C on 32-bit embedded microprocessors.
 
-I don't currently provide any implementations for 8-bit microprocessors
-like the AVR chips in low end Arduino devices as assembly language is normally
-required to make AVR encryption feasible.  Once all of the algorithms have
-been implemented and tested on 32-bit architectures, and as the competition
-advances, I will investigate which ones make sense to accelerate on AVR.
+Work is underway to port the algorithms to the 8-bit AVR platform.
+Some preliminary performance figures for AVR can be found
+\ref performance_avr "here".
 
 Eventually the plan is to integrate the competition finalists into my
 <a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino
