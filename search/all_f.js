@@ -2,6 +2,8 @@ var searchData=
 [
   ['performance',['Performance',['../performance.html',1,'']]],
   ['performance_2edox',['performance.dox',['../performance_8dox.html',1,'']]],
+  ['performance_20on_20avr',['Performance on AVR',['../performance_avr.html',1,'']]],
+  ['performance_5favr_2edox',['performance_avr.dox',['../performance__avr_8dox.html',1,'']]],
   ['photon_2dbeetle_2eh',['photon-beetle.h',['../photon-beetle_8h.html',1,'']]],
   ['photon256_5fpermute',['photon256_permute',['../internal-photon256_8h.html#a91ad3cb2dfa78b59264054725f2ba87c',1,'internal-photon256.c']]],
   ['photon256_5fstate_5fsize',['PHOTON256_STATE_SIZE',['../internal-photon256_8h.html#aa3976af78abc8f7b8fa200a8695e95fc',1,'internal-photon256.h']]],

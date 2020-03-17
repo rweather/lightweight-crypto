@@ -104,7 +104,7 @@ Algorithms and performance</h1>
 <p>All of the algorithms have been implemented in a manner that should execute in constant time with constant cache behaviour. If you find a side channel leakage in the code, then please let me know.</p>
 <p>The <a class="el" href="performance.html">performance page</a> contains comparisons of all implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.</p>
 <p>All of the algorithms have been implemented to have good performance in plain C on 32-bit embedded microprocessors.</p>
-<p>I don't currently provide any implementations for 8-bit microprocessors like the AVR chips in low end Arduino devices as assembly language is normally required to make AVR encryption feasible. Once all of the algorithms have been implemented and tested on 32-bit architectures, and as the competition advances, I will investigate which ones make sense to accelerate on AVR.</p>
+<p>Work is underway to port the algorithms to the 8-bit AVR platform. Some preliminary performance figures for AVR can be found <a class="el" href="performance_avr.html">here</a>.</p>
 <p>Eventually the plan is to integrate the competition finalists into my <a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino Cryptography Library</a>. But it is too soon to pick a candidate for inclusion just yet.</p>
 <h1><a class="anchor" id="mainpage_contact"></a>
 Contact</h1>
@@ -112,7 +112,7 @@ Contact</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2020 09:17:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 17 2020 18:37:33 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
