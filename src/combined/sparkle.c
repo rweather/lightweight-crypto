@@ -123,24 +123,21 @@ aead_hash_algorithm_t const esch_384_hash_algorithm = {
  * \brief Perform the rho1 and rate whitening steps for Schwaemm256-128.
  *
  * \param s SPARKLE-384 state.
- * \param domain Domain separator for this phase.
  */
-#define schwaemm_256_128_rho(s, domain) \
+#define schwaemm_256_128_rho(s) \
     do { \
-        uint32_t t0 = s[0]; \
-        uint32_t t1 = s[1]; \
-        uint32_t t2 = s[2]; \
-        uint32_t t3 = s[3]; \
-        if ((domain) != 0) \
-            s[11] ^= DOMAIN(domain); \
+        uint32_t t = s[0]; \
         s[0] = s[4] ^ s[8]; \
+        s[4] ^= t   ^ s[8]; \
+        t = s[1]; \
         s[1] = s[5] ^ s[9]; \
+        s[5] ^= t   ^ s[9]; \
+        t = s[2]; \
         s[2] = s[6] ^ s[10]; \
+        s[6] ^= t   ^ s[10]; \
+        t = s[3]; \
         s[3] = s[7] ^ s[11]; \
-        s[4] ^= t0  ^ s[8]; \
-        s[5] ^= t1  ^ s[9]; \
-        s[6] ^= t2  ^ s[10]; \
-        s[7] ^= t3  ^ s[11]; \
+        s[7] ^= t   ^ s[11]; \
     } while (0)
 
 /**
@@ -155,18 +152,20 @@ static void schwaemm_256_128_authenticate
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen > SCHWAEMM_256_128_RATE) {
-        schwaemm_256_128_rho(s, 0x00);
+        schwaemm_256_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_256_128_RATE);
         sparkle_384(s, 7);
         ad += SCHWAEMM_256_128_RATE;
         adlen -= SCHWAEMM_256_128_RATE;
     }
     if (adlen == SCHWAEMM_256_128_RATE) {
-        schwaemm_256_128_rho(s, 0x05);
+        s[11] ^= DOMAIN(0x05);
+        schwaemm_256_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_256_128_RATE);
     } else {
         unsigned temp = (unsigned)adlen;
-        schwaemm_256_128_rho(s, 0x04);
+        s[11] ^= DOMAIN(0x04);
+        schwaemm_256_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, temp);
         ((unsigned char *)s)[temp] ^= 0x80;
     }
@@ -202,7 +201,7 @@ int schwaemm_256_128_aead_encrypt
         while (mlen > SCHWAEMM_256_128_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_256_128_RATE);
-            schwaemm_256_128_rho(s, 0x00);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_128_RATE);
             sparkle_384(s, 7);
             memcpy(c, block, SCHWAEMM_256_128_RATE);
@@ -213,13 +212,15 @@ int schwaemm_256_128_aead_encrypt
         if (mlen == SCHWAEMM_256_128_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_256_128_RATE);
-            schwaemm_256_128_rho(s, 0x07);
+            s[11] ^= DOMAIN(0x07);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_128_RATE);
             memcpy(c, block, SCHWAEMM_256_128_RATE);
         } else {
             unsigned temp = (unsigned)mlen;
             lw_xor_block_2_src(block, (unsigned char *)s, m, temp);
-            schwaemm_256_128_rho(s, 0x06);
+            s[11] ^= DOMAIN(0x06);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
             memcpy(c, block, temp);
@@ -266,7 +267,7 @@ int schwaemm_256_128_aead_decrypt
         while (clen > SCHWAEMM_256_128_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_256_128_RATE);
-            schwaemm_256_128_rho(s, 0x00);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_128_RATE);
             sparkle_384(s, 7);
             c += SCHWAEMM_256_128_RATE;
@@ -276,12 +277,14 @@ int schwaemm_256_128_aead_decrypt
         if (clen == SCHWAEMM_256_128_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_256_128_RATE);
-            schwaemm_256_128_rho(s, 0x07);
+            s[11] ^= DOMAIN(0x07);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_128_RATE);
         } else {
             unsigned temp = (unsigned)clen;
             lw_xor_block_2_src(m, (unsigned char *)s, c, temp);
-            schwaemm_256_128_rho(s, 0x06);
+            s[11] ^= DOMAIN(0x06);
+            schwaemm_256_128_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
         }
@@ -315,21 +318,18 @@ int schwaemm_256_128_aead_decrypt
  * \brief Perform the rho1 and rate whitening steps for Schwaemm192-192.
  *
  * \param s SPARKLE-384 state.
- * \param domain Domain separator for this phase.
  */
-#define schwaemm_192_192_rho(s, domain) \
+#define schwaemm_192_192_rho(s) \
     do { \
-        uint32_t t0 = s[0]; \
-        uint32_t t1 = s[1]; \
-        uint32_t t2 = s[2]; \
-        if ((domain) != 0) \
-            s[11] ^= DOMAIN(domain); \
+        uint32_t t = s[0]; \
         s[0] = s[3] ^ s[6]; \
+        s[3] ^= t   ^ s[9]; \
+        t = s[1]; \
         s[1] = s[4] ^ s[7]; \
+        s[4] ^= t   ^ s[10]; \
+        t = s[2]; \
         s[2] = s[5] ^ s[8]; \
-        s[3] ^= t0  ^ s[9]; \
-        s[4] ^= t1  ^ s[10]; \
-        s[5] ^= t2  ^ s[11]; \
+        s[5] ^= t   ^ s[11]; \
     } while (0)
 
 /**
@@ -344,18 +344,20 @@ static void schwaemm_192_192_authenticate
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen > SCHWAEMM_192_192_RATE) {
-        schwaemm_192_192_rho(s, 0x00);
+        schwaemm_192_192_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_192_192_RATE);
         sparkle_384(s, 7);
         ad += SCHWAEMM_192_192_RATE;
         adlen -= SCHWAEMM_192_192_RATE;
     }
     if (adlen == SCHWAEMM_192_192_RATE) {
-        schwaemm_192_192_rho(s, 0x09);
+        s[11] ^= DOMAIN(0x09);
+        schwaemm_192_192_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_192_192_RATE);
     } else {
         unsigned temp = (unsigned)adlen;
-        schwaemm_192_192_rho(s, 0x08);
+        s[11] ^= DOMAIN(0x08);
+        schwaemm_192_192_rho(s);
         lw_xor_block((unsigned char *)s, ad, temp);
         ((unsigned char *)s)[temp] ^= 0x80;
     }
@@ -391,7 +393,7 @@ int schwaemm_192_192_aead_encrypt
         while (mlen > SCHWAEMM_192_192_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_192_192_RATE);
-            schwaemm_192_192_rho(s, 0x00);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_192_192_RATE);
             sparkle_384(s, 7);
             memcpy(c, block, SCHWAEMM_192_192_RATE);
@@ -402,13 +404,15 @@ int schwaemm_192_192_aead_encrypt
         if (mlen == SCHWAEMM_192_192_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_192_192_RATE);
-            schwaemm_192_192_rho(s, 0x0B);
+            s[11] ^= DOMAIN(0x0B);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_192_192_RATE);
             memcpy(c, block, SCHWAEMM_192_192_RATE);
         } else {
             unsigned temp = (unsigned)mlen;
             lw_xor_block_2_src(block, (unsigned char *)s, m, temp);
-            schwaemm_192_192_rho(s, 0x0A);
+            s[11] ^= DOMAIN(0x0A);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
             memcpy(c, block, temp);
@@ -455,7 +459,7 @@ int schwaemm_192_192_aead_decrypt
         while (clen > SCHWAEMM_192_192_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_192_192_RATE);
-            schwaemm_192_192_rho(s, 0x00);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_192_192_RATE);
             sparkle_384(s, 7);
             c += SCHWAEMM_192_192_RATE;
@@ -465,12 +469,14 @@ int schwaemm_192_192_aead_decrypt
         if (clen == SCHWAEMM_192_192_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_192_192_RATE);
-            schwaemm_192_192_rho(s, 0x0B);
+            s[11] ^= DOMAIN(0x0B);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_192_192_RATE);
         } else {
             unsigned temp = (unsigned)clen;
             lw_xor_block_2_src(m, (unsigned char *)s, c, temp);
-            schwaemm_192_192_rho(s, 0x0A);
+            s[11] ^= DOMAIN(0x0A);
+            schwaemm_192_192_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
         }
@@ -504,18 +510,15 @@ int schwaemm_192_192_aead_decrypt
  * \brief Perform the rho1 and rate whitening steps for Schwaemm128-128.
  *
  * \param s SPARKLE-256 state.
- * \param domain Domain separator for this phase.
  */
-#define schwaemm_128_128_rho(s, domain) \
+#define schwaemm_128_128_rho(s) \
     do { \
-        uint32_t t0 = s[0]; \
-        uint32_t t1 = s[1]; \
-        if ((domain) != 0) \
-            s[7] ^= DOMAIN(domain); \
+        uint32_t t = s[0]; \
         s[0] = s[2] ^ s[4]; \
+        s[2] ^= t   ^ s[6]; \
+        t = s[1]; \
         s[1] = s[3] ^ s[5]; \
-        s[2] ^= t0  ^ s[6]; \
-        s[3] ^= t1  ^ s[7]; \
+        s[3] ^= t   ^ s[7]; \
     } while (0)
 
 /**
@@ -530,18 +533,20 @@ static void schwaemm_128_128_authenticate
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen > SCHWAEMM_128_128_RATE) {
-        schwaemm_128_128_rho(s, 0x00);
+        schwaemm_128_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_128_128_RATE);
         sparkle_256(s, 7);
         ad += SCHWAEMM_128_128_RATE;
         adlen -= SCHWAEMM_128_128_RATE;
     }
     if (adlen == SCHWAEMM_128_128_RATE) {
-        schwaemm_128_128_rho(s, 0x05);
+        s[7] ^= DOMAIN(0x05);
+        schwaemm_128_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_128_128_RATE);
     } else {
         unsigned temp = (unsigned)adlen;
-        schwaemm_128_128_rho(s, 0x04);
+        s[7] ^= DOMAIN(0x04);
+        schwaemm_128_128_rho(s);
         lw_xor_block((unsigned char *)s, ad, temp);
         ((unsigned char *)s)[temp] ^= 0x80;
     }
@@ -577,7 +582,7 @@ int schwaemm_128_128_aead_encrypt
         while (mlen > SCHWAEMM_128_128_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_128_128_RATE);
-            schwaemm_128_128_rho(s, 0x00);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_128_128_RATE);
             sparkle_256(s, 7);
             memcpy(c, block, SCHWAEMM_128_128_RATE);
@@ -588,13 +593,15 @@ int schwaemm_128_128_aead_encrypt
         if (mlen == SCHWAEMM_128_128_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_128_128_RATE);
-            schwaemm_128_128_rho(s, 0x07);
+            s[7] ^= DOMAIN(0x07);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_128_128_RATE);
             memcpy(c, block, SCHWAEMM_128_128_RATE);
         } else {
             unsigned temp = (unsigned)mlen;
             lw_xor_block_2_src(block, (unsigned char *)s, m, temp);
-            schwaemm_128_128_rho(s, 0x06);
+            s[7] ^= DOMAIN(0x06);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
             memcpy(c, block, temp);
@@ -641,7 +648,7 @@ int schwaemm_128_128_aead_decrypt
         while (clen > SCHWAEMM_128_128_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_128_128_RATE);
-            schwaemm_128_128_rho(s, 0x00);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_128_128_RATE);
             sparkle_256(s, 7);
             c += SCHWAEMM_128_128_RATE;
@@ -651,12 +658,14 @@ int schwaemm_128_128_aead_decrypt
         if (clen == SCHWAEMM_128_128_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_128_128_RATE);
-            schwaemm_128_128_rho(s, 0x07);
+            s[7] ^= DOMAIN(0x07);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_128_128_RATE);
         } else {
             unsigned temp = (unsigned)clen;
             lw_xor_block_2_src(m, (unsigned char *)s, c, temp);
-            schwaemm_128_128_rho(s, 0x06);
+            s[7] ^= DOMAIN(0x06);
+            schwaemm_128_128_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
         }
@@ -690,24 +699,21 @@ int schwaemm_128_128_aead_decrypt
  * \brief Perform the rho1 and rate whitening steps for Schwaemm256-256.
  *
  * \param s SPARKLE-512 state.
- * \param domain Domain separator for this phase.
  */
-#define schwaemm_256_256_rho(s, domain) \
+#define schwaemm_256_256_rho(s) \
     do { \
-        uint32_t t0 = s[0]; \
-        uint32_t t1 = s[1]; \
-        uint32_t t2 = s[2]; \
-        uint32_t t3 = s[3]; \
-        if ((domain) != 0) \
-            s[15] ^= DOMAIN(domain); \
+        uint32_t t = s[0]; \
         s[0] = s[4] ^ s[8]; \
+        s[4] ^= t   ^ s[12]; \
+        t = s[1]; \
         s[1] = s[5] ^ s[9]; \
+        s[5] ^= t   ^ s[13]; \
+        t = s[2]; \
         s[2] = s[6] ^ s[10]; \
+        s[6] ^= t   ^ s[14]; \
+        t = s[3]; \
         s[3] = s[7] ^ s[11]; \
-        s[4] ^= t0  ^ s[12]; \
-        s[5] ^= t1  ^ s[13]; \
-        s[6] ^= t2  ^ s[14]; \
-        s[7] ^= t3  ^ s[15]; \
+        s[7] ^= t   ^ s[15]; \
     } while (0)
 
 /**
@@ -722,18 +728,20 @@ static void schwaemm_256_256_authenticate
      const unsigned char *ad, unsigned long long adlen)
 {
     while (adlen > SCHWAEMM_256_256_RATE) {
-        schwaemm_256_256_rho(s, 0x00);
+        schwaemm_256_256_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_256_256_RATE);
         sparkle_512(s, 8);
         ad += SCHWAEMM_256_256_RATE;
         adlen -= SCHWAEMM_256_256_RATE;
     }
     if (adlen == SCHWAEMM_256_256_RATE) {
-        schwaemm_256_256_rho(s, 0x11);
+        s[15] ^= DOMAIN(0x11);
+        schwaemm_256_256_rho(s);
         lw_xor_block((unsigned char *)s, ad, SCHWAEMM_256_256_RATE);
     } else {
         unsigned temp = (unsigned)adlen;
-        schwaemm_256_256_rho(s, 0x10);
+        s[15] ^= DOMAIN(0x10);
+        schwaemm_256_256_rho(s);
         lw_xor_block((unsigned char *)s, ad, temp);
         ((unsigned char *)s)[temp] ^= 0x80;
     }
@@ -769,7 +777,7 @@ int schwaemm_256_256_aead_encrypt
         while (mlen > SCHWAEMM_256_256_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_256_256_RATE);
-            schwaemm_256_256_rho(s, 0x00);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_256_RATE);
             sparkle_512(s, 8);
             memcpy(c, block, SCHWAEMM_256_256_RATE);
@@ -780,13 +788,15 @@ int schwaemm_256_256_aead_encrypt
         if (mlen == SCHWAEMM_256_256_RATE) {
             lw_xor_block_2_src
                 (block, (unsigned char *)s, m, SCHWAEMM_256_256_RATE);
-            schwaemm_256_256_rho(s, 0x13);
+            s[15] ^= DOMAIN(0x13);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_256_RATE);
             memcpy(c, block, SCHWAEMM_256_256_RATE);
         } else {
             unsigned temp = (unsigned)mlen;
             lw_xor_block_2_src(block, (unsigned char *)s, m, temp);
-            schwaemm_256_256_rho(s, 0x12);
+            s[15] ^= DOMAIN(0x12);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
             memcpy(c, block, temp);
@@ -833,7 +843,7 @@ int schwaemm_256_256_aead_decrypt
         while (clen > SCHWAEMM_256_256_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_256_256_RATE);
-            schwaemm_256_256_rho(s, 0x00);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_256_RATE);
             sparkle_512(s, 8);
             c += SCHWAEMM_256_256_RATE;
@@ -843,12 +853,14 @@ int schwaemm_256_256_aead_decrypt
         if (clen == SCHWAEMM_256_256_RATE) {
             lw_xor_block_2_src
                 (m, (unsigned char *)s, c, SCHWAEMM_256_256_RATE);
-            schwaemm_256_256_rho(s, 0x13);
+            s[15] ^= DOMAIN(0x13);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, SCHWAEMM_256_256_RATE);
         } else {
             unsigned temp = (unsigned)clen;
             lw_xor_block_2_src(m, (unsigned char *)s, c, temp);
-            schwaemm_256_256_rho(s, 0x12);
+            s[15] ^= DOMAIN(0x12);
+            schwaemm_256_256_rho(s);
             lw_xor_block((unsigned char *)s, m, temp);
             ((unsigned char *)s)[temp] ^= 0x80;
         }

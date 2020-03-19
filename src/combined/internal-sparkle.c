@@ -66,7 +66,7 @@ void sparkle_256(uint32_t s[SPARKLE_256_STATE_SIZE], unsigned steps)
 {
     uint32_t x0, x1, x2, x3;
     uint32_t y0, y1, y2, y3;
-    uint32_t tx, ty, tz, tw;
+    uint32_t tx, ty;
     unsigned step;
 
     /* Load the SPARKLE-256 state up into local variables */
@@ -105,18 +105,20 @@ void sparkle_256(uint32_t s[SPARKLE_256_STATE_SIZE], unsigned steps)
         /* Linear layer */
         tx = x0 ^ x1;
         ty = y0 ^ y1;
-        tw = x0;
-        tz = y0;
         tx = leftRotate16(tx ^ (tx << 16));
         ty = leftRotate16(ty ^ (ty << 16));
-        x0 = x3 ^ x1 ^ ty;
-        x3 = x1;
-        y0 = y3 ^ y1 ^ tx;
+        y2 ^= tx;
+        tx ^= y3;
         y3 = y1;
-        x1 = x2 ^ tw ^ ty;
-        x2 = tw;
-        y1 = y2 ^ tz ^ tx;
-        y2 = tz;
+        y1 = y2 ^ y0;
+        y2 = y0;
+        y0 = tx ^ y3;
+        x2 ^= ty;
+        ty ^= x3;
+        x3 = x1;
+        x1 = x2 ^ x0;
+        x2 = x0;
+        x0 = ty ^ x3;
     }
 
     /* Write the local variables back to the SPARKLE-256 state */
@@ -145,7 +147,7 @@ void sparkle_384(uint32_t s[SPARKLE_384_STATE_SIZE], unsigned steps)
 {
     uint32_t x0, x1, x2, x3, x4, x5;
     uint32_t y0, y1, y2, y3, y4, y5;
-    uint32_t tx, ty, tz, tw;
+    uint32_t tx, ty;
     unsigned step;
 
     /* Load the SPARKLE-384 state up into local variables */
@@ -194,22 +196,26 @@ void sparkle_384(uint32_t s[SPARKLE_384_STATE_SIZE], unsigned steps)
         /* Linear layer */
         tx = x0 ^ x1 ^ x2;
         ty = y0 ^ y1 ^ y2;
-        tw = x0;
-        tz = y0;
         tx = leftRotate16(tx ^ (tx << 16));
         ty = leftRotate16(ty ^ (ty << 16));
-        x0 = x4 ^ x1 ^ ty;
-        x4 = x1;
-        y0 = y4 ^ y1 ^ tx;
-        y4 = y1;
-        x1 = x5 ^ x2 ^ ty;
-        x5 = x2;
-        y1 = y5 ^ y2 ^ tx;
+        y3 ^= tx;
+        y4 ^= tx;
+        tx ^= y5;
         y5 = y2;
-        x2 = x3 ^ tw ^ ty;
-        x3 = tw;
-        y2 = y3 ^ tz ^ tx;
-        y3 = tz;
+        y2 = y3 ^ y0;
+        y3 = y0;
+        y0 = y4 ^ y1;
+        y4 = y1;
+        y1 = tx ^ y5;
+        x3 ^= ty;
+        x4 ^= ty;
+        ty ^= x5;
+        x5 = x2;
+        x2 = x3 ^ x0;
+        x3 = x0;
+        x0 = x4 ^ x1;
+        x4 = x1;
+        x1 = ty ^ x5;
     }
 
     /* Write the local variables back to the SPARKLE-384 state */
@@ -246,7 +252,7 @@ void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)
 {
     uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
     uint32_t y0, y1, y2, y3, y4, y5, y6, y7;
-    uint32_t tx, ty, tz, tw;
+    uint32_t tx, ty;
     unsigned step;
 
     /* Load the SPARKLE-512 state up into local variables */
@@ -305,26 +311,32 @@ void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)
         /* Linear layer */
         tx = x0 ^ x1 ^ x2 ^ x3;
         ty = y0 ^ y1 ^ y2 ^ y3;
-        tw = x0;
-        tz = y0;
         tx = leftRotate16(tx ^ (tx << 16));
         ty = leftRotate16(ty ^ (ty << 16));
-        x0 = x5 ^ x1 ^ ty;
-        x5 = x1;
-        y0 = y5 ^ y1 ^ tx;
-        y5 = y1;
-        x1 = x6 ^ x2 ^ ty;
-        x6 = x2;
-        y1 = y6 ^ y2 ^ tx;
-        y6 = y2;
-        x2 = x7 ^ x3 ^ ty;
-        x7 = x3;
-        y2 = y7 ^ y3 ^ tx;
+        y4 ^= tx;
+        y5 ^= tx;
+        y6 ^= tx;
+        tx ^= y7;
         y7 = y3;
-        x3 = x4 ^ tw ^ ty;
-        x4 = tw;
-        y3 = y4 ^ tz ^ tx;
-        y4 = tz;
+        y3 = y4 ^ y0;
+        y4 = y0;
+        y0 = y5 ^ y1;
+        y5 = y1;
+        y1 = y6 ^ y2;
+        y6 = y2;
+        y2 = tx ^ y7;
+        x4 ^= ty;
+        x5 ^= ty;
+        x6 ^= ty;
+        ty ^= x7;
+        x7 = x3;
+        x3 = x4 ^ x0;
+        x4 = x0;
+        x0 = x5 ^ x1;
+        x5 = x1;
+        x1 = x6 ^ x2;
+        x6 = x2;
+        x2 = ty ^ x7;
     }
 
     /* Write the local variables back to the SPARKLE-512 state */
