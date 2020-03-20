@@ -42,9 +42,9 @@ designed for 32-bit.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>3.28</td><td>2.96</td><td>7.73</td><td>7.07</td><td>3.89</td></tr>
+<tr><td><b><i>COMET-128_CHAM-128/128</i></b> *</td><td>128</td><td>128</td><td>128</td><td>6.45</td><td>4.91</td><td>11.95</td><td>10.02</td><td>6.70</td></tr>
+<tr><td>COMET-64_CHAM-64/128 *</td><td>128</td><td>120</td><td>128</td><td>5.69</td><td>4.67</td><td>13.18</td><td>11.28</td><td>6.40</td></tr>
 <tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>2.76</td><td>2.65</td><td>2.71</td></tr>
-<tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.96</td><td>1.84</td><td>3.54</td><td>3.38</td><td>2.24</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>1.62</td><td>1.57</td><td>2.06</td><td>2.02</td><td>1.72</td></tr>
 <tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>1.26</td><td>1.27</td><td>1.76</td><td>1.74</td><td>1.40</td></tr>
 <tr><td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.15</td><td>1.14</td><td>2.15</td><td>2.12</td><td>1.36</td></tr>
@@ -151,7 +151,7 @@ AEAD algorithm rankings:
 
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
-<tr><td>22</td><td>COMET</td></tr>
+<tr><td>67</td><td>COMET</td></tr>
 <tr><td>17</td><td>GIFT-COFB</td></tr>
 <tr><td>14</td><td>HYENA</td></tr>
 <tr><td>12</td><td>SPARKLE</td></tr>
