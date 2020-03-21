@@ -77,23 +77,60 @@ static bool cham64(enum Mode mode)
     return true;
 }
 
+static bool speck64(enum Mode mode)
+{
+    Code code;
+    gen_speck64_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_speck64_encrypt(code)) {
+            std::cout << "SPECK-64 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "SPECK-64 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+typedef bool (*gen_code)(enum Mode mode);
+
 int main(int argc, char *argv[])
 {
     bool generate = true;
     int exit_val = 0;
+    gen_code gen1 = 0;
+    gen_code gen2 = 0;
 
-    if (argc > 1 && !strcmp(argv[1], "--test"))
+    if (argc > 1 && !strcmp(argv[1], "--test")) {
         generate = false;
+    } else {
+        if (argc <= 1) {
+            fprintf(stderr, "Usage: %s algorithm-name\n", argv[0]);
+            return 1;
+        }
+        if (!strcmp(argv[1], "CHAM")) {
+            gen1 = cham128;
+            gen2 = cham64;
+        } else if (!strcmp(argv[1], "SPECK-64")) {
+            gen1 = speck64;
+        }
+    }
 
     if (generate) {
         header(std::cout);
-        cham128(Generate);
-        cham64(Generate);
+        if (gen1)
+            gen1(Generate);
+        if (gen2)
+            gen2(Generate);
         footer(std::cout);
     } else {
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))
+            exit_val = 1;
+        if (!speck64(Test))
             exit_val = 1;
     }
 

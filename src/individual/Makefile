@@ -25,6 +25,10 @@ COMET_FILES = \
     comet.h \
     internal-cham.c \
     internal-cham.h \
+    internal-cham-avr.S \
+    internal-speck64.c \
+    internal-speck64.h \
+    internal-speck64-avr.S \
     $(COMMON_FILES)
 DRYGASCON_FILES = \
     drygascon.c \

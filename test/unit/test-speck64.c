@@ -20,54 +20,42 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "internal-speck64.h"
 #include "test-cipher.h"
+#include <stdio.h>
+#include <string.h>
 
-void test_blake2s(void);
-void test_chachapoly(void);
-void test_cham(void);
-void test_clyde128(void);
-void test_drygascon(void);
-void test_forkskinny(void);
-void test_gift128(void);
-void test_gift64(void);
-void test_gimli24(void);
-void test_grain128(void);
-void test_keccak(void);
-void test_knot(void);
-void test_photon256(void);
-void test_pyjamask(void);
-void test_shadow(void);
-void test_simp(void);
-void test_skinny128(void);
-void test_sliscp_light(void);
-void test_speck64(void);
-void test_spongent(void);
-void test_subterranean(void);
-void test_wage(void);
-
-int main(int argc, char *argv[])
+static int speck64_128_init
+    (unsigned char *ks, const unsigned char *key, size_t key_len)
 {
-    test_blake2s();
-    test_chachapoly();
-    test_cham();
-    test_clyde128();
-    test_drygascon();
-    test_forkskinny();
-    test_gift128();
-    test_gift64();
-    test_gimli24();
-    test_grain128();
-    test_keccak();
-    test_knot();
-    test_photon256();
-    test_pyjamask();
-    test_shadow();
-    test_simp();
-    test_skinny128();
-    test_sliscp_light();
-    test_speck64();
-    test_spongent();
-    test_subterranean();
-    test_wage();
-    return test_exit_result;
+    if (key_len != 16)
+        return 0;
+    memcpy(ks, key, 16);
+    return 1;
+}
+
+/* Information block for the SPECK-64-128 block cipher */
+static block_cipher_t const speck64_128 = {
+    "SPECK-64-128",
+    16,
+    (block_cipher_init_t)speck64_128_init,
+    (block_cipher_encrypt_t)speck64_128_encrypt,
+    (block_cipher_decrypt_t)0
+};
+
+/* Test vector for SPECK-64-128 */
+static block_cipher_test_vector_128_t const speck64_128_1 = {
+    "Test Vector 1",
+    {0xE0, 0x84, 0x1F, 0x8F, 0xB9, 0x07, 0x83, 0x13,    /* key */
+     0x6A, 0xA8, 0xB7, 0xF1, 0x92, 0xF5, 0xC4, 0x74},
+    16,                                                 /* key_len */
+    {0xE4, 0x91, 0xC6, 0x65, 0x52, 0x20, 0x31, 0xCF},   /* plaintext */
+    {0x71, 0xB0, 0x8A, 0xE3, 0xA2, 0x0A, 0x94, 0x96}    /* ciphertext */
+};
+
+void test_speck64(void)
+{
+    test_block_cipher_start(&speck64_128);
+    test_block_cipher_other(&speck64_128, &speck64_128_1, 8);
+    test_block_cipher_end(&speck64_128);
 }

@@ -42,4 +42,8 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// SPECK-64 block cipher.
+void gen_speck64_encrypt(Code &code);
+bool test_speck64_encrypt(Code &code);
+
 #endif

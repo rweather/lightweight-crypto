@@ -22,6 +22,7 @@
 
 #include "comet.h"
 #include "internal-cham.h"
+#include "internal-speck64.h"
 #include "internal-util.h"
 #include <string.h>
 
@@ -478,58 +479,6 @@ int comet_64_cham_aead_decrypt
     return aead_check_tag(m, *mlen, Y, c + *mlen, COMET_64_TAG_SIZE);
 }
 
-/**
- * \brief Encrypts a 64-bit block with SPECK-64-128 in COMET byte order.
- *
- * \param key Points to the 16 bytes of the key.
- * \param output Output buffer which must be at least 8 bytes in length.
- * \param input Input buffer which must be at least 8 bytes in length.
- *
- * The \a input and \a output buffers can be the same buffer for
- * in-place encryption.
- *
- * \note This version differs from standard SPECK-64 in that it uses the
- * little-endian byte order from the COMET specification which is different
- * from the big-endian byte order from the original SPECK paper.
- */
-static void speck64_128_comet_encrypt
-    (const unsigned char *key, unsigned char *output,
-     const unsigned char *input)
-{
-    uint32_t l[4];
-    uint32_t x, y, s;
-    uint8_t round;
-    uint8_t li_in = 0;
-    uint8_t li_out = 3;
-
-    /* Unpack the key and the input block */
-    s    = le_load_word32(key);
-    l[0] = le_load_word32(key + 4);
-    l[1] = le_load_word32(key + 8);
-    l[2] = le_load_word32(key + 12);
-    y = le_load_word32(input);
-    x = le_load_word32(input + 4);
-
-    /* Perform all encryption rounds except the last */
-    for (round = 0; round < 26; ++round) {
-        /* Perform the round with the current key schedule word */
-        x = (rightRotate8(x) + y) ^ s;
-        y = leftRotate3(y) ^ x;
-
-        /* Calculate the next key schedule word */
-        l[li_out] = (s + rightRotate8(l[li_in])) ^ round;
-        s = leftRotate3(s) ^ l[li_out];
-        li_in = (li_in + 1) & 0x03;
-        li_out = (li_out + 1) & 0x03;
-    }
-
-    /* Perform the last encryption round and write the result to the output */
-    x = (rightRotate8(x) + y) ^ s;
-    y = leftRotate3(y) ^ x;
-    le_store_word32(output, y);
-    le_store_word32(output + 4, x);
-}
-
 int comet_64_speck_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
@@ -547,23 +496,23 @@ int comet_64_speck_aead_encrypt
 
     /* Set up the initial state of Y and Z */
     memset(Y, 0, 8);
-    speck64_128_comet_encrypt(k, Y, Y);
+    speck64_128_encrypt(k, Y, Y);
     memcpy(Z, npub, 15);
     Z[15] = 0;
     lw_xor_block(Z, k, 16);
 
     /* Process the associated data */
     if (adlen > 0)
-        comet_process_ad(Y, Z, 8, speck64_128_comet_encrypt, ad, adlen);
+        comet_process_ad(Y, Z, 8, speck64_128_encrypt, ad, adlen);
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0)
-        comet_encrypt_64(Y, Z, speck64_128_comet_encrypt, c, m, mlen);
+        comet_encrypt_64(Y, Z, speck64_128_encrypt, c, m, mlen);
 
     /* Generate the authentication tag */
     Z[15] ^= 0x80;
     comet_adjust_block_key(Z);
-    speck64_128_comet_encrypt(Z, c + mlen, Y);
+    speck64_128_encrypt(Z, c + mlen, Y);
     return 0;
 }
 
@@ -586,22 +535,22 @@ int comet_64_speck_aead_decrypt
 
     /* Set up the initial state of Y and Z */
     memset(Y, 0, 8);
-    speck64_128_comet_encrypt(k, Y, Y);
+    speck64_128_encrypt(k, Y, Y);
     memcpy(Z, npub, 15);
     Z[15] = 0;
     lw_xor_block(Z, k, 16);
 
     /* Process the associated data */
     if (adlen > 0)
-        comet_process_ad(Y, Z, 8, speck64_128_comet_encrypt, ad, adlen);
+        comet_process_ad(Y, Z, 8, speck64_128_encrypt, ad, adlen);
 
     /* Decrypt the ciphertext to produce the plaintext */
     if (clen > COMET_64_TAG_SIZE)
-        comet_decrypt_64(Y, Z, speck64_128_comet_encrypt, m, c, *mlen);
+        comet_decrypt_64(Y, Z, speck64_128_encrypt, m, c, *mlen);
 
     /* Check the authentication tag */
     Z[15] ^= 0x80;
     comet_adjust_block_key(Z);
-    speck64_128_comet_encrypt(Z, Y, Y);
+    speck64_128_encrypt(Z, Y, Y);
     return aead_check_tag(m, *mlen, Y, c + *mlen, COMET_64_TAG_SIZE);
 }

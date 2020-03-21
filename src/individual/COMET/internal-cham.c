@@ -23,6 +23,8 @@
 #include "internal-cham.h"
 #include "internal-util.h"
 
+#if !defined(__AVR__)
+
 void cham128_128_encrypt
     (const unsigned char *key, unsigned char *output,
      const unsigned char *input)
@@ -132,3 +134,5 @@ void cham64_128_encrypt
     le_store_word16(output + 4, x2);
     le_store_word16(output + 6, x3);
 }
+
+#endif

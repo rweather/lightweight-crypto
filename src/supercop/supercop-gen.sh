@@ -57,7 +57,7 @@ if test "$CIPHERS" = "1" ; then
         mkdir -p "$AEAD_OUT_DIR"
 
         # Copy the source files that make up the algorithm.
-        cp "$SRC_DIR/$aead_srcdir"/*.[ch] "$AEAD_OUT_DIR"
+        cp "$SRC_DIR/$aead_srcdir"/*.[chS] "$AEAD_OUT_DIR"
         if test -n "$aead_exclude" ; then
             for exclude in $aead_exclude ; do
                 rm -f "$AEAD_OUT_DIR/$exclude"
@@ -104,7 +104,7 @@ if test "$HASHES" = "1" ; then
         mkdir -p "$HASH_OUT_DIR"
 
         # Copy the source files that make up the algorithm.
-        cp "$SRC_DIR/$hash_srcdir"/*.[ch] "$HASH_OUT_DIR"
+        cp "$SRC_DIR/$hash_srcdir"/*.[chS] "$HASH_OUT_DIR"
         if test -n "$hash_exclude" ; then
             for exclude in $hash_exclude ; do
                 rm -f "$HASH_OUT_DIR/$exclude"

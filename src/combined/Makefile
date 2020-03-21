@@ -66,6 +66,7 @@ OBJS = \
 	internal-sliscp-light.o \
 	internal-skinny128.o \
         internal-sparkle.o \
+        internal-speck64.o \
         internal-spongent.o \
         internal-spook.o \
         internal-subterranean.o \
@@ -92,7 +93,7 @@ ace.o: ace.h aead-common.h internal-util.h internal-sliscp-light.h
 ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
-comet.o: comet.h aead-common.h internal-cham.h internal-util.h
+comet.o: comet.h aead-common.h internal-cham.h internal-speck64.h internal-util.h
 drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 elephant.o: elephant.h aead-common.h internal-keccak.h internal-spongent.h internal-util.h
 estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
@@ -142,6 +143,7 @@ internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-skinnyutil.h internal-util.h
 internal-sparkle.o: internal-sparkle.h internal-util.h
+internal-speck64.o: internal-speck64.h internal-util.h
 internal-spongent.o: internal-spongent.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h
 internal-subterranean.o: internal-subterranean.h internal-util.h
