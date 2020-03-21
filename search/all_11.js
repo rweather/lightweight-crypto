@@ -123,6 +123,7 @@ var searchData=
   ['sparkle_5f384_5fstate_5fsize',['SPARKLE_384_STATE_SIZE',['../internal-sparkle_8h.html#aa759ba6e42456a0d40e827eac48335a3',1,'internal-sparkle.h']]],
   ['sparkle_5f512',['sparkle_512',['../internal-sparkle_8h.html#a61563dfabadfb1e76b102b8a49e6c13b',1,'internal-sparkle.c']]],
   ['sparkle_5f512_5fstate_5fsize',['SPARKLE_512_STATE_SIZE',['../internal-sparkle_8h.html#a2c848a045e79b1c9962ca6189079d753',1,'internal-sparkle.h']]],
+  ['speck64_5f128_5fencrypt',['speck64_128_encrypt',['../internal-speck64_8h.html#a510081d1285aa7a85bde21c7ef420c53',1,'internal-speck64.c']]],
   ['spix_2eh',['spix.h',['../spix_8h.html',1,'']]],
   ['spix_5faead_5fdecrypt',['spix_aead_decrypt',['../spix_8h.html#ad2e8e5ef27b59e1ab11d7f3ea5bebf96',1,'spix.c']]],
   ['spix_5faead_5fencrypt',['spix_aead_encrypt',['../spix_8h.html#a3f78275be91ebe36fd0dc9ff73779989',1,'spix.c']]],

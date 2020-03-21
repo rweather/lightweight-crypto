@@ -87,11 +87,13 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
 <tr>
-<td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>3.28</td><td>2.96</td><td>7.73</td><td>7.07</td><td>3.89 </td></tr>
+<td><b><em>COMET-128_CHAM-128/128</em></b> *</td><td>128</td><td>128</td><td>128</td><td>6.45</td><td>4.91</td><td>11.95</td><td>10.02</td><td>6.70 </td></tr>
+<tr>
+<td>COMET-64_CHAM-64/128 *</td><td>128</td><td>120</td><td>128</td><td>5.69</td><td>4.67</td><td>13.18</td><td>11.28</td><td>6.40 </td></tr>
+<tr>
+<td>COMET-64_SPECK-64/128 *</td><td>128</td><td>120</td><td>128</td><td>5.15</td><td>4.32</td><td>12.07</td><td>10.55</td><td>5.88 </td></tr>
 <tr>
 <td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>2.76</td><td>2.65</td><td>2.71 </td></tr>
-<tr>
-<td><b><em>COMET-128_CHAM-128/128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.96</td><td>1.84</td><td>3.54</td><td>3.38</td><td>2.24 </td></tr>
 <tr>
 <td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>1.62</td><td>1.57</td><td>2.06</td><td>2.02</td><td>1.72 </td></tr>
 <tr>
@@ -112,8 +114,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.85</td><td>1.79</td><td>1.77</td><td>1.04 </td></tr>
 <tr>
 <td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.92</td><td>0.93</td><td>1.31</td><td>1.30</td><td>1.03 </td></tr>
-<tr>
-<td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>0.78</td><td>0.79</td><td>1.88</td><td>1.85</td><td>0.98 </td></tr>
 <tr>
 <td><b><em>KNOT-AEAD-128-256</em></b></td><td>128</td><td>128</td><td>128</td><td>0.79</td><td>0.80</td><td>1.62</td><td>1.61</td><td>0.96 </td></tr>
 <tr>
@@ -290,7 +290,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>Rank</td><td>Algorithms </td></tr>
 <tr>
-<td>22</td><td>COMET </td></tr>
+<td>67</td><td>COMET </td></tr>
 <tr>
 <td>17</td><td>GIFT-COFB </td></tr>
 <tr>
@@ -338,7 +338,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 20 2020 03:38:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 21 2020 15:24:39 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: forkskinny_128_384_state_t Struct Reference</title>
+<title>Lightweight Cryptography Primitives: internal-speck64.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -60,9 +60,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,87 +78,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_61f0d87b39da19d95a8733a92902c65f.html">combined</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">forkskinny_128_384_state_t Struct Reference</div>  </div>
+<div class="title">internal-speck64.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>State information for ForkSkinny-128-384.  
- <a href="structforkskinny__128__384__state__t.html#details">More...</a></p>
+<p>SPECK-64 block cipher.  
+<a href="#details">More...</a></p>
+
+<p><a href="internal-speck64_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a1a581e2648db2ce18267d2491ef071ff"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__384__state__t.html#a1a581e2648db2ce18267d2491ef071ff">TK1</a> [4]</td></tr>
-<tr class="separator:a1a581e2648db2ce18267d2491ef071ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a161bad476dee60604d05596f5e88c7f1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__384__state__t.html#a161bad476dee60604d05596f5e88c7f1">TK2</a> [4]</td></tr>
-<tr class="separator:a161bad476dee60604d05596f5e88c7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a788258c23bbe94cbd931beb4610c4d89"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__384__state__t.html#a788258c23bbe94cbd931beb4610c4d89">TK3</a> [4]</td></tr>
-<tr class="separator:a788258c23bbe94cbd931beb4610c4d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcf6bd4a28041d5e2e45a1cb0a2c0ed6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__384__state__t.html#abcf6bd4a28041d5e2e45a1cb0a2c0ed6">S</a> [4]</td></tr>
-<tr class="separator:abcf6bd4a28041d5e2e45a1cb0a2c0ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a510081d1285aa7a85bde21c7ef420c53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-speck64_8h.html#a510081d1285aa7a85bde21c7ef420c53">speck64_128_encrypt</a> (const unsigned char *key, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a510081d1285aa7a85bde21c7ef420c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 64-bit block with SPECK-64-128 in COMET byte order.  <a href="#a510081d1285aa7a85bde21c7ef420c53">More...</a><br/></td></tr>
+<tr class="separator:a510081d1285aa7a85bde21c7ef420c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>State information for ForkSkinny-128-384. </p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="abcf6bd4a28041d5e2e45a1cb0a2c0ed6"></a>
+<div class="textblock"><p>SPECK-64 block cipher. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a510081d1285aa7a85bde21c7ef420c53"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t forkskinny_128_384_state_t::S[4]</td>
+          <td class="memname">void speck64_128_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-<p>Current block state </p>
-
-</div>
-</div>
-<a class="anchor" id="a1a581e2648db2ce18267d2491ef071ff"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">uint32_t forkskinny_128_384_state_t::TK1[4]</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-<p>First part of the tweakey </p>
-
-</div>
-</div>
-<a class="anchor" id="a161bad476dee60604d05596f5e88c7f1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">uint32_t forkskinny_128_384_state_t::TK2[4]</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-<p>Second part of the tweakey </p>
-
-</div>
-</div>
-<a class="anchor" id="a788258c23bbe94cbd931beb4610c4d89"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">uint32_t forkskinny_128_384_state_t::TK3[4]</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Third part of the tweakey </p>
+
+<p>Encrypts a 64-bit block with SPECK-64-128 in COMET byte order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Points to the 16 bytes of the key. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer which must be at least 8 bytes in length. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer which must be at least 8 bytes in length.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
+<dl class="section note"><dt>Note</dt><dd>This version expects the key, input, and output to be in little-endian byte order, as expected by the COMET specification. </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>internal-forkskinny.c</li>
-</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

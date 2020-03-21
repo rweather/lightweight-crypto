@@ -53,6 +53,7 @@ var searchData=
   ['sparkle_5f256',['sparkle_256',['../internal-sparkle_8h.html#a884429517da8779224d67062ba0529fd',1,'internal-sparkle.c']]],
   ['sparkle_5f384',['sparkle_384',['../internal-sparkle_8h.html#a60673aec7703700fce1993a1e40b1153',1,'internal-sparkle.c']]],
   ['sparkle_5f512',['sparkle_512',['../internal-sparkle_8h.html#a61563dfabadfb1e76b102b8a49e6c13b',1,'internal-sparkle.c']]],
+  ['speck64_5f128_5fencrypt',['speck64_128_encrypt',['../internal-speck64_8h.html#a510081d1285aa7a85bde21c7ef420c53',1,'internal-speck64.c']]],
   ['spix_5faead_5fdecrypt',['spix_aead_decrypt',['../spix_8h.html#ad2e8e5ef27b59e1ab11d7f3ea5bebf96',1,'spix.c']]],
   ['spix_5faead_5fencrypt',['spix_aead_encrypt',['../spix_8h.html#a3f78275be91ebe36fd0dc9ff73779989',1,'spix.c']]],
   ['spoc_5f128_5faead_5fdecrypt',['spoc_128_aead_decrypt',['../spoc_8h.html#a4d65dacab06e103178d56c3a6f649137',1,'spoc.c']]],

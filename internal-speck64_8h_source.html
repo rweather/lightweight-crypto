@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: skinny-hash.h Source File</title>
+<title>Lightweight Cryptography Primitives: internal-speck64.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,10 +85,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">skinny-hash.h</div>  </div>
+<div class="title">internal-speck64.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="skinny-hash_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="internal-speck64_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 Southern Storm Software, Pty Ltd.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a</span></div>
@@ -110,38 +110,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * DEALINGS IN THE SOFTWARE.</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LWCRYPTO_SKINNY_HASH_H</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LWCRYPTO_SKINNY_HASH_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LW_INTERNAL_SPECK64_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LW_INTERNAL_SPECK64_H</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="aead-common_8h.html">aead-common.h</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="skinny-hash_8h.html#a7e72ee09a6fb3103cb2c2946f6a2acd3">   50</a></span>&#160;<span class="preprocessor">#define SKINNY_HASH_SIZE 32</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <a class="code" href="structaead__hash__algorithm__t.html">aead_hash_algorithm_t</a> <span class="keyword">const</span> <a class="code" href="skinny-hash_8h.html#a7da3c973576ee16ad9522ebc8dbd2760">skinny_tk3_hash_algorithm</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">extern</span> <a class="code" href="structaead__hash__algorithm__t.html">aead_hash_algorithm_t</a> <span class="keyword">const</span> <a class="code" href="skinny-hash_8h.html#a4658a7d6906cf2c28a94d1c54cee2705">skinny_tk2_hash_algorithm</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="skinny-hash_8h.html#a32c5fd26f0921da16c762c1c43bcb983">skinny_tk3_hash</a></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *out, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *in, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> inlen);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">int</span> <a class="code" href="skinny-hash_8h.html#aaa8909824119d45ee1ba8d55c4b52dc8">skinny_tk2_hash</a></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *out, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *in, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> inlen);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aead-common_8h_html"><div class="ttname"><a href="aead-common_8h.html">aead-common.h</a></div><div class="ttdoc">Definitions that are common across AEAD schemes. </div></div>
-<div class="ttc" id="skinny-hash_8h_html_aaa8909824119d45ee1ba8d55c4b52dc8"><div class="ttname"><a href="skinny-hash_8h.html#aaa8909824119d45ee1ba8d55c4b52dc8">skinny_tk2_hash</a></div><div class="ttdeci">int skinny_tk2_hash(unsigned char *out, const unsigned char *in, unsigned long long inlen)</div><div class="ttdoc">Hashes a block of input data with SKINNY-tk2-HASH to generate a hash value. </div><div class="ttdef"><b>Definition:</b> skinny-hash.c:146</div></div>
-<div class="ttc" id="structaead__hash__algorithm__t_html"><div class="ttname"><a href="structaead__hash__algorithm__t.html">aead_hash_algorithm_t</a></div><div class="ttdoc">Meta-information about a hash algorithm that is related to an AEAD. </div><div class="ttdef"><b>Definition:</b> aead-common.h:193</div></div>
-<div class="ttc" id="skinny-hash_8h_html_a32c5fd26f0921da16c762c1c43bcb983"><div class="ttname"><a href="skinny-hash_8h.html#a32c5fd26f0921da16c762c1c43bcb983">skinny_tk3_hash</a></div><div class="ttdeci">int skinny_tk3_hash(unsigned char *out, const unsigned char *in, unsigned long long inlen)</div><div class="ttdoc">Hashes a block of input data with SKINNY-tk3-HASH to generate a hash value. </div><div class="ttdef"><b>Definition:</b> skinny-hash.c:115</div></div>
-<div class="ttc" id="skinny-hash_8h_html_a7da3c973576ee16ad9522ebc8dbd2760"><div class="ttname"><a href="skinny-hash_8h.html#a7da3c973576ee16ad9522ebc8dbd2760">skinny_tk3_hash_algorithm</a></div><div class="ttdeci">aead_hash_algorithm_t const skinny_tk3_hash_algorithm</div><div class="ttdoc">Meta-information block for the SKINNY-tk3-HASH algorithm. </div><div class="ttdef"><b>Definition:</b> skinny-hash.c:28</div></div>
-<div class="ttc" id="skinny-hash_8h_html_a4658a7d6906cf2c28a94d1c54cee2705"><div class="ttname"><a href="skinny-hash_8h.html#a4658a7d6906cf2c28a94d1c54cee2705">skinny_tk2_hash_algorithm</a></div><div class="ttdeci">aead_hash_algorithm_t const skinny_tk2_hash_algorithm</div><div class="ttdoc">Meta-information block for the SKINNY-tk2-HASH algorithm. </div><div class="ttdef"><b>Definition:</b> skinny-hash.c:41</div></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-speck64_8h.html#a510081d1285aa7a85bde21c7ef420c53">speck64_128_encrypt</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    (<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *output,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *input);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="internal-speck64_8h_html_a510081d1285aa7a85bde21c7ef420c53"><div class="ttname"><a href="internal-speck64_8h.html#a510081d1285aa7a85bde21c7ef420c53">speck64_128_encrypt</a></div><div class="ttdeci">void speck64_128_encrypt(const unsigned char *key, unsigned char *output, const unsigned char *input)</div><div class="ttdoc">Encrypts a 64-bit block with SPECK-64-128 in COMET byte order. </div><div class="ttdef"><b>Definition:</b> internal-speck64.c:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
