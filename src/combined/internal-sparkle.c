@@ -22,6 +22,8 @@
 
 #include "internal-sparkle.h"
 
+#if !defined(__AVR__)
+
 /* The 8 basic round constants from the specification */
 #define RC_0 0xB7E15162
 #define RC_1 0xBF715880
@@ -376,3 +378,5 @@ void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)
     le_store_word32((uint8_t *)&(s[15]), y7);
 #endif
 }
+
+#endif

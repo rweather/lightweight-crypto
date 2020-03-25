@@ -490,8 +490,10 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
  *
  * \param state Points to the buffer containing the state on input and output.
  * \param state_len Length of the state buffer.
+ * \param count Count parameter for the number of rounds to perform.
  */
-void Code::exec_permutation(void *state, unsigned state_len)
+void Code::exec_permutation
+    (void *state, unsigned state_len, unsigned char count)
 {
     AVRState s;
     unsigned state_address = s.alloc_buffer(state, state_len);
@@ -500,6 +502,7 @@ void Code::exec_permutation(void *state, unsigned state_len)
     unsigned fp = s.pair(32) - m_localsSize;
     s.setPair(28, fp);              // Y = frame pointer
     s.setPair(32, fp);
+    s.setPair(22, count);           // Pass the count parameter in r22:r23
     while (s.pc != (int)m_insns.size()) {
         if (s.pc < 0 || s.pc > (int)m_insns.size())
             throw std::invalid_argument("program counter out of range");

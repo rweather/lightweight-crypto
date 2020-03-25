@@ -29,6 +29,7 @@ OBJS1 = \
     test-simp.o \
     test-skinny128.o \
     test-sliscp-light.o \
+    test-sparkle.o \
     test-speck64.o \
     test-spongent.o \
     test-spook.o \
@@ -66,6 +67,7 @@ test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
 test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)
 test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)
+test-sparkle.o: $(LIBSRC_DIR)/internal-sparkle.h $(TEST_CIPHER_INC)
 test-speck64.o: $(LIBSRC_DIR)/internal-speck64.h $(TEST_CIPHER_INC)
 test-spongent.o: $(LIBSRC_DIR)/internal-spongent.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)

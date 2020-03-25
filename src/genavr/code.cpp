@@ -1658,6 +1658,40 @@ void Code::prologue_permutation(const char *name, unsigned size_locals)
 }
 
 /**
+ * \brief Sets up the function prologue for a permutation function.
+ *
+ * \param name Name of the permutation function.
+ * \param size_locals Number of bytes of local variables that are needed.
+ *
+ * \return A register reference to the count parameter.
+ *
+ * The generated function will have the following prototype:
+ *
+ * \code
+ * void name(void *state, unsigned char count)
+ * \endcode
+ *
+ * Where "state" points to the state to be permuted by the function
+ * and "count" is the number of rounds to perform or some other parameter
+ * that controls the number of rounds.  In the generated code,
+ * Z will point to "state" and the registers of X will be free for
+ * use as temporary variables.
+ */
+Reg Code::prologue_permutation_with_count
+    (const char *name, unsigned size_locals)
+{
+    // Output the standard permutation header.
+    prologue_permutation(name, size_locals);
+
+    // r22 will contain the "count" parameter on entry, so allocate it.
+    m_allocated |= (1 << 22);
+    m_usedRegs |= (1 << 22);
+    Reg reg;
+    reg.m_regs.push_back(22);
+    return reg;
+}
+
+/**
  * \brief Loads the output block pointer for an encrypt operation into X.
  *
  * \sa prologue_encrypt_block()

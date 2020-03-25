@@ -94,6 +94,57 @@ static bool speck64(enum Mode mode)
     return true;
 }
 
+static bool sparkle256(enum Mode mode)
+{
+    Code code;
+    gen_sparkle256_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_sparkle256_permutation(code)) {
+            std::cout << "SPARKLE-256 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "SPARKLE-256 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool sparkle384(enum Mode mode)
+{
+    Code code;
+    gen_sparkle384_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_sparkle384_permutation(code)) {
+            std::cout << "SPARKLE-384 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "SPARKLE-384 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool sparkle512(enum Mode mode)
+{
+    Code code;
+    gen_sparkle512_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_sparkle512_permutation(code)) {
+            std::cout << "SPARKLE-512 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "SPARKLE-512 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 typedef bool (*gen_code)(enum Mode mode);
 
 int main(int argc, char *argv[])
@@ -102,6 +153,7 @@ int main(int argc, char *argv[])
     int exit_val = 0;
     gen_code gen1 = 0;
     gen_code gen2 = 0;
+    gen_code gen3 = 0;
 
     if (argc > 1 && !strcmp(argv[1], "--test")) {
         generate = false;
@@ -113,6 +165,10 @@ int main(int argc, char *argv[])
         if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
+        } else if (!strcmp(argv[1], "SPARKLE")) {
+            gen1 = sparkle256;
+            gen2 = sparkle384;
+            gen3 = sparkle512;
         } else if (!strcmp(argv[1], "SPECK-64")) {
             gen1 = speck64;
         }
@@ -124,6 +180,8 @@ int main(int argc, char *argv[])
             gen1(Generate);
         if (gen2)
             gen2(Generate);
+        if (gen3)
+            gen3(Generate);
         footer(std::cout);
     } else {
         if (!cham128(Test))
@@ -131,6 +189,12 @@ int main(int argc, char *argv[])
         if (!cham64(Test))
             exit_val = 1;
         if (!speck64(Test))
+            exit_val = 1;
+        if (!sparkle256(Test))
+            exit_val = 1;
+        if (!sparkle384(Test))
+            exit_val = 1;
+        if (!sparkle512(Test))
             exit_val = 1;
     }
 

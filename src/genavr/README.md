@@ -5,6 +5,11 @@ will usually be better than than created by a C compiler because it can
 directly optimize at the instruction and register level.
 
 While it is possible to write primitives by hand in assembly, it can be
-daunting to keep all the registers and member locations straight in a
+daunting to keep all the registers and memory locations straight in a
 human brain.  This framework removes the human error and makes it easier
 to generate highly-optimized assembly code for AVR.
+
+The framework also includes an AVR interpreter that can be used to run
+test vectors on a desktop machine to check the correctness of the
+generated code independently of an actual AVR device.  Run "make check"
+in this directory to run all test vectors.

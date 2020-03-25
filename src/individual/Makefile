@@ -161,6 +161,7 @@ SPARKLE_FILES = \
     sparkle.h \
     internal-sparkle.c \
     internal-sparkle.h \
+    internal-sparkle-avr.S \
     $(COMMON_FILES)
 SPIX_FILES = \
     spix.c \

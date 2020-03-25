@@ -42,6 +42,14 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// SPARKLE permutation.
+void gen_sparkle256_permutation(Code &code);
+void gen_sparkle384_permutation(Code &code);
+void gen_sparkle512_permutation(Code &code);
+bool test_sparkle256_permutation(Code &code);
+bool test_sparkle384_permutation(Code &code);
+bool test_sparkle512_permutation(Code &code);
+
 // SPECK-64 block cipher.
 void gen_speck64_encrypt(Code &code);
 bool test_speck64_encrypt(Code &code);

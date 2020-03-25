@@ -515,6 +515,7 @@ public:
     void prologue_decrypt_block(const char *name, unsigned size_locals)
         { prologue_encrypt_block(name, size_locals); }
     void prologue_permutation(const char *name, unsigned size_locals);
+    Reg prologue_permutation_with_count(const char *name, unsigned size_locals);
     void load_output_ptr();
 
     // Execute generated code in the interpreter.
@@ -528,7 +529,8 @@ public:
                             const void *input, unsigned input_len)
         { exec_encrypt_block(key, key_len, output, output_len,
                              input, input_len); }
-    void exec_permutation(void *state, unsigned state_len);
+    void exec_permutation
+        (void *state, unsigned state_len, unsigned char count = 0);
 
     // Speciality instructions for cryptography.
     void double_gf(const Reg &reg, unsigned feedback);
