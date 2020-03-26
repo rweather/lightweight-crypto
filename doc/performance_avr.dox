@@ -164,7 +164,7 @@ AEAD algorithm rankings:
 <tr><td>3</td><td>SpoC</td></tr>
 <tr><td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus SKINNY-AEAD, SPIX, Spook, TinyJAMBU</td></tr>
 <tr><td>1</td><td>ACE, DryGASCON, ForkAE, ISAP</td></tr>
-<tr><td>0</td><td>Pyjamask, WAGE, Elephant</td></tr>
+<tr><td>0</td><td>Elephant, Pyjamask, Subterranean, WAGE</td></tr>
 </table>
 
 Hash algorithm rankings:
