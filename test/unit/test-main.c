@@ -44,6 +44,7 @@ void test_sparkle(void);
 void test_speck64(void);
 void test_spongent(void);
 void test_subterranean(void);
+void test_tinyjambu(void);
 void test_wage(void);
 
 int main(int argc, char *argv[])
@@ -70,6 +71,7 @@ int main(int argc, char *argv[])
     test_speck64();
     test_spongent();
     test_subterranean();
+    test_tinyjambu();
     test_wage();
     return test_exit_result;
 }

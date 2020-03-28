@@ -34,6 +34,7 @@ OBJS1 = \
     test-spongent.o \
     test-spook.o \
     test-subterranean.o \
+    test-tinyjambu.o \
     test-wage.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
@@ -72,6 +73,7 @@ test-speck64.o: $(LIBSRC_DIR)/internal-speck64.h $(TEST_CIPHER_INC)
 test-spongent.o: $(LIBSRC_DIR)/internal-spongent.h $(TEST_CIPHER_INC)
 test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)
+test-tinyjambu.o: $(LIBSRC_DIR)/internal-tinyjambu.h $(TEST_CIPHER_INC)
 test-wage.o: $(LIBSRC_DIR)/internal-wage.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)

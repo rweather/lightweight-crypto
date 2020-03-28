@@ -50,6 +50,9 @@ designed for 32-bit.
 <tr><td>Schwaemm192-192 (SPARKLE) *</td><td>192</td><td>192</td><td>192</td><td>3.63</td><td>3.31</td><td>5.29</td><td>5.05</td><td>3.91</td></tr>
 <tr><td>Schwaemm256-256 (SPARKLE) *</td><td>256</td><td>256</td><td>256</td><td>3.03</td><td>2.75</td><td>3.45</td><td>3.33</td><td>3.04</td></tr>
 <tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>2.76</td><td>2.65</td><td>2.71</td></tr>
+<tr><td><b><i>TinyJAMBU-128</i></b> *</td><td>128</td><td>96</td><td>64</td><td>1.72</td><td>1.67</td><td>4.13</td><td>3.98</td><td>2.13</td></tr>
+<tr><td>TinyJAMBU-192 *</td><td>192</td><td>96</td><td>64</td><td>1.56</td><td>1.53</td><td>3.81</td><td>3.68</td><td>1.94</td></tr>
+<tr><td>TinyJAMBU-256 *</td><td>256</td><td>96</td><td>64</td><td>1.42</td><td>1.40</td><td>3.54</td><td>3.43</td><td>1.78</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>1.62</td><td>1.57</td><td>2.06</td><td>2.02</td><td>1.72</td></tr>
 <tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>1.26</td><td>1.27</td><td>1.76</td><td>1.74</td><td>1.40</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>1.05</td><td>1.06</td><td>2.06</td><td>2.06</td><td>1.27</td></tr>
@@ -80,19 +83,16 @@ designed for 32-bit.
 <tr><td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.21</td><td>0.21</td><td>0.48</td><td>0.47</td><td>0.26</td></tr>
 <tr><td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.21</td><td>0.21</td><td>0.48</td><td>0.47</td><td>0.26</td></tr>
 <tr><td>Romulus-N3</td><td>128</td><td>96</td><td>128</td><td>0.20</td><td>0.21</td><td>0.45</td><td>0.45</td><td>0.26</td></tr>
-<tr><td><b><i>TinyJAMBU-128</i></b></td><td>128</td><td>96</td><td>64</td><td>0.18</td><td>0.18</td><td>0.45</td><td>0.45</td><td>0.23</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.18</td><td>0.43</td><td>0.43</td><td>0.23</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.17</td><td>0.18</td><td>0.34</td><td>0.34</td><td>0.21</td></tr>
 <tr><td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
 <tr><td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
 <tr><td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
 <tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
-<tr><td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.16</td><td>0.17</td><td>0.41</td><td>0.41</td><td>0.21</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.19</td><td>0.12</td><td>0.83</td><td>0.51</td><td>0.20</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.19</td><td>0.21</td><td>0.21</td><td>0.20</td></tr>
 <tr><td><b><i>Romulus-N1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.17</td><td>0.32</td><td>0.32</td><td>0.20</td></tr>
 <tr><td><b><i>DryGASCON128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.15</td><td>0.15</td><td>0.33</td><td>0.33</td><td>0.19</td></tr>
-<tr><td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.14</td><td>0.15</td><td>0.38</td><td>0.38</td><td>0.19</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18</td></tr>
 <tr><td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.14</td><td>0.34</td><td>0.34</td><td>0.18</td></tr>
 <tr><td>Romulus-M3</td><td>128</td><td>96</td><td>128</td><td>0.13</td><td>0.14</td><td>0.30</td><td>0.31</td><td>0.17</td></tr>
@@ -153,6 +153,7 @@ AEAD algorithm rankings:
 <tr><td>Rank</td><td>Algorithms</td></tr>
 <tr><td>67</td><td>COMET</td></tr>
 <tr><td>44</td><td>SPARKLE</td></tr>
+<tr><td>21</td><td>TinyJAMBU</td></tr>
 <tr><td>17</td><td>GIFT-COFB</td></tr>
 <tr><td>14</td><td>HYENA</td></tr>
 <tr><td>11</td><td>SUNDAE-GIFT</td></tr>
@@ -162,7 +163,7 @@ AEAD algorithm rankings:
 <tr><td>5</td><td>Gimli, Xoodyak, Saturnin</td></tr>
 <tr><td>4</td><td>ORANGE</td></tr>
 <tr><td>3</td><td>SpoC</td></tr>
-<tr><td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus SKINNY-AEAD, SPIX, Spook, TinyJAMBU</td></tr>
+<tr><td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus, SKINNY-AEAD, SPIX, Spook</td></tr>
 <tr><td>1</td><td>ACE, DryGASCON, ForkAE, ISAP</td></tr>
 <tr><td>0</td><td>Elephant, Pyjamask, Subterranean, WAGE</td></tr>
 </table>

@@ -22,6 +22,8 @@
 
 #include "internal-tinyjambu.h"
 
+#if !defined(__AVR__)
+
 void tiny_jambu_permutation
     (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
      unsigned key_words, unsigned rounds)
@@ -64,3 +66,5 @@ void tiny_jambu_permutation
     state[2] = s2;
     state[3] = s3;
 }
+
+#endif

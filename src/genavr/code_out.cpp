@@ -421,6 +421,18 @@ void Code::write(std::ostream &ostream) const
             ostream << "\tmov r31,r25" << std::endl;
         }
         break;
+
+    case TinyJAMBU:
+        if (hasFlag(MoveWord)) {
+            ostream << "\tmovw r26,r24" << std::endl;
+            ostream << "\tmovw r30,r22" << std::endl;
+        } else {
+            ostream << "\tmov r26,r24" << std::endl;
+            ostream << "\tmov r27,r25" << std::endl;
+            ostream << "\tmov r30,r22" << std::endl;
+            ostream << "\tmov r31,r23" << std::endl;
+        }
+        break;
     }
     unsigned locals = m_localsSize;
     if (locals <= 6) {

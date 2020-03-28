@@ -54,4 +54,8 @@ bool test_sparkle512_permutation(Code &code);
 void gen_speck64_encrypt(Code &code);
 bool test_speck64_encrypt(Code &code);
 
+// TinyJAMBU permutation.
+void gen_tinyjambu_permutation(Code &code);
+bool test_tinyjambu_permutation(Code &code);
+
 #endif

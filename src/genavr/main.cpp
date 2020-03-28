@@ -145,6 +145,23 @@ static bool sparkle512(enum Mode mode)
     return true;
 }
 
+static bool tinyjambu(enum Mode mode)
+{
+    Code code;
+    gen_tinyjambu_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_tinyjambu_permutation(code)) {
+            std::cout << "TinyJAMBU tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "TinyJAMBU tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 typedef bool (*gen_code)(enum Mode mode);
 
 int main(int argc, char *argv[])
@@ -171,6 +188,8 @@ int main(int argc, char *argv[])
             gen3 = sparkle512;
         } else if (!strcmp(argv[1], "SPECK-64")) {
             gen1 = speck64;
+        } else if (!strcmp(argv[1], "TinyJAMBU")) {
+            gen1 = tinyjambu;
         }
     }
 
@@ -195,6 +214,8 @@ int main(int argc, char *argv[])
         if (!sparkle384(Test))
             exit_val = 1;
         if (!sparkle512(Test))
+            exit_val = 1;
+        if (!tinyjambu(Test))
             exit_val = 1;
     }
 

@@ -198,6 +198,7 @@ TINYJAMBU_FILES = \
     tinyjambu.h \
     internal-tinyjambu.c \
     internal-tinyjambu.h \
+    internal-tinyjambu-avr.S \
     $(COMMON_FILES)
 WAGE_FILES = \
     wage.c \

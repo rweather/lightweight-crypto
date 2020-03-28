@@ -516,6 +516,7 @@ public:
         { prologue_encrypt_block(name, size_locals); }
     void prologue_permutation(const char *name, unsigned size_locals);
     Reg prologue_permutation_with_count(const char *name, unsigned size_locals);
+    void prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds);
     void load_output_ptr();
 
     // Execute generated code in the interpreter.
@@ -531,6 +532,9 @@ public:
                              input, input_len); }
     void exec_permutation
         (void *state, unsigned state_len, unsigned char count = 0);
+    void exec_tinyjambu
+        (void *state, unsigned state_len, const void *key,
+         unsigned key_len, unsigned rounds);
 
     // Speciality instructions for cryptography.
     void double_gf(const Reg &reg, unsigned feedback);
@@ -561,7 +565,8 @@ private:
     enum PrologueType {
         EncryptBlock,
         KeySetup,
-        Permutation
+        Permutation,
+        TinyJAMBU
     };
     std::vector<Insn> m_insns;
     std::vector<int> m_labels;

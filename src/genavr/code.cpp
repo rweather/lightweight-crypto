@@ -366,6 +366,11 @@ void Code::add(const Reg &reg1, unsigned long long value, bool carryIn)
             // Adding 1 to a single-byte register can be done with "inc".
             onereg(Insn::INC, reg1.reg(index));
             haveCarry = true;
+        } else if (!haveCarry && reg1.size() == 1 && reg1.reg(0) >= 16) {
+            // Adding an immediate to a single-byte high register can
+            // be done with a "SUBI" instruction instead.
+            immreg(Insn::SUBI, reg1.reg(index), 256 - bvalue);
+            haveCarry = true;
         } else {
             // We need a high register to store the immediate byte value.
             unsigned char high_reg = immtemp(bvalue);
@@ -1689,6 +1694,42 @@ Reg Code::prologue_permutation_with_count
     Reg reg;
     reg.m_regs.push_back(22);
     return reg;
+}
+
+/**
+ * \brief Sets up the function prologue for TinyJAMBU.
+ *
+ * \param name Name of the permutation function.
+ * \param key_words Returns a reference to the register that holds the
+ * "key_words" parameter.
+ * \param rounds Returns a reference to the register that holds the
+ * "rounds" parameter.
+ *
+ * The generated function will have the following prototype:
+ *
+ * \code
+ * void name(void *state, void *key, uint8_t key_words, uint8_t rounds);
+ * \endcode
+ *
+ * The "state" parameter will end up in the X register and the "key"
+ * parameter will end up in th "Z" register.
+ */
+void Code::prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds)
+{
+    // Set up the prologue type.
+    m_prologueType = TinyJAMBU;
+    m_name = name;
+    m_localsSize = 0;
+
+    // r20 will contain the "key_words" parameter and r18 will contain
+    // the "rounds" parameter on entry, so allocate them.
+    m_allocated |= (1 << 20) | (1 << 18);
+    m_usedRegs |= (1 << 22) | (1 << 18);
+    Reg reg1, reg2;
+    reg1.m_regs.push_back(20);
+    reg2.m_regs.push_back(18);
+    key_words = reg1;
+    rounds = reg2;
 }
 
 /**

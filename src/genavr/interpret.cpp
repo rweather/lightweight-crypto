@@ -513,3 +513,38 @@ void Code::exec_permutation
         throw std::invalid_argument("r1 is non-zero at the end of the code");
     memcpy(state, &(s.memory[state_address]), state_len);
 }
+
+/**
+ * \brief Executes the code in this object as a TinyJAMBI keyed permutation.
+ *
+ * \param state Points to the buffer containing the state on input and output.
+ * \param state_len Length of the state buffer.
+ * \param key Points to the buffer containing the key on input.
+ * \param key_len Length of the key in bytes.
+ * \param rounds Number of rounds to perform; e.g. 1024.
+ */
+void Code::exec_tinyjambu
+    (void *state, unsigned state_len, const void *key,
+     unsigned key_len, unsigned rounds)
+{
+    AVRState s;
+    unsigned state_address = s.alloc_buffer(state, state_len);
+    unsigned key_address = s.alloc_buffer(key, key_len);
+    s.setPair(26, state_address);   // X = state
+    s.setPair(30, key_address);     // Z = key
+    s.setPair(20, key_len / 4);     // key_words
+    s.setPair(18, rounds / 128);    // TINYJAMBU_ROUNDS(rounds)
+    s.push16(0xFFFF);               // return address
+    unsigned fp = s.pair(32) - m_localsSize;
+    s.setPair(28, fp);              // Y = frame pointer
+    s.setPair(32, fp);
+    while (s.pc != (int)m_insns.size()) {
+        if (s.pc < 0 || s.pc > (int)m_insns.size())
+            throw std::invalid_argument("program counter out of range");
+        Insn insn = m_insns[(s.pc)++];
+        exec_insn(s, *this, insn);
+    }
+    if (s.r[1] != 0x00)
+        throw std::invalid_argument("r1 is non-zero at the end of the code");
+    memcpy(state, &(s.memory[state_address]), state_len);
+}
