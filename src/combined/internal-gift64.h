@@ -39,6 +39,28 @@ extern "C" {
 #endif
 
 /**
+ * \var GIFT64_LOW_MEMORY
+ * \brief Define this to 1 to use a low memory version of the key schedule.
+ *
+ * The default is to use the fix-sliced version of GIFT-64 which is very
+ * fast on 32-bit platforms but requires 48 bytes to store the key schedule.
+ * The large key schedule may be a problem on 8-bit and 16-bit platforms.
+ * The fix-sliced version also encrypts two blocks at a time in 32-bit
+ * words which is an unnecessary optimization for 8-bit platforms.
+ *
+ * GIFT64_LOW_MEMORY can be defined to 1 to select the original non
+ * fix-sliced version which only requires 16 bytes to store the key,
+ * with the rest of the key schedule expanded on the fly.
+ */
+#if !defined(GIFT64_LOW_MEMORY)
+#if defined(__AVR__)
+#define GIFT64_LOW_MEMORY 1
+#else
+#define GIFT64_LOW_MEMORY 0
+#endif
+#endif
+
+/**
  * \brief Size of a GIFT-64 block in bytes.
  */
 #define GIFT64_BLOCK_SIZE 8
@@ -49,7 +71,9 @@ extern "C" {
 typedef struct
 {
     uint32_t k[4];      /**< Words of the key schedule */
+#if !GIFT64_LOW_MEMORY
     uint32_t rk[8];     /**< Pre-computed round keys for fixsliced form */
+#endif
 
 } gift64b_key_schedule_t;
 
