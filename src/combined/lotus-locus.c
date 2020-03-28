@@ -57,7 +57,7 @@ STATIC_INLINE void lotus_or_locus_mul_2(gift64n_key_schedule_t *ks)
     ks->k[1] = (ks->k[1] << 1) | (ks->k[2] >> 31);
     ks->k[2] = (ks->k[2] << 1) | (ks->k[3] >> 31);
     ks->k[3] = (ks->k[3] << 1) ^ (mask & 0x87);
-    gift64b_update_round_keys(ks);
+    gift64n_update_round_keys(ks);
 }
 
 /**

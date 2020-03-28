@@ -66,7 +66,7 @@ extern "C" {
 #define GIFT64_BLOCK_SIZE 8
 
 /**
- * \brief Structure of the key schedule for GIFT-64 (bit-sliced).
+ * \brief Structure of the key schedule for GIFT-64.
  */
 typedef struct
 {
@@ -75,27 +75,19 @@ typedef struct
     uint32_t rk[8];     /**< Pre-computed round keys for fixsliced form */
 #endif
 
-} gift64b_key_schedule_t;
+} gift64n_key_schedule_t;
 
 /**
- * \brief Initializes the key schedule for GIFT-64 (bit-sliced).
- *
- * \param ks Points to the key schedule to initialize.
- * \param key Points to the 16 bytes of the key data.
- */
-void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key);
-
-/**
+ * \fn void gift64n_update_round_keys(gift64n_key_schedule_t *ks);
  * \brief Updates the round keys after a change in the base key.
  *
  * \param ks Points to the key schedule to update.
  */
-void gift64b_update_round_keys(gift64b_key_schedule_t *ks);
-
-/**
- * \brief Structure of the key schedule for GIFT-64 (nibble-based).
- */
-typedef gift64b_key_schedule_t gift64n_key_schedule_t;
+#if GIFT64_LOW_MEMORY
+#define gift64n_update_round_keys(ks) do { ; } while (0) /* Not needed */
+#else
+void gift64n_update_round_keys(gift64n_key_schedule_t *ks);
+#endif
 
 /**
  * \brief Initializes the key schedule for GIFT-64 (nibble-based).

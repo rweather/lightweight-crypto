@@ -35,15 +35,6 @@ static uint32_t const GIFT64_RC[28] = {
     0x22008811, 0x00002288, 0x00118811, 0x880000bb
 };
 
-void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key)
-{
-    ks->k[0] = be_load_word32(key);
-    ks->k[1] = be_load_word32(key + 4);
-    ks->k[2] = be_load_word32(key + 8);
-    ks->k[3] = be_load_word32(key + 12);
-    gift64b_update_round_keys(ks);
-}
-
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
 #define bit_permute_step(_y, mask, shift) \
     do { \
@@ -247,7 +238,7 @@ void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key)
              ((out & 0x00000F00U) << 8) | ((out & 0x0000F000U) << 12); \
     } while (0)
 
-void gift64b_update_round_keys(gift64b_key_schedule_t *ks)
+void gift64n_update_round_keys(gift64n_key_schedule_t *ks)
 {
     uint32_t x;
 
@@ -291,7 +282,7 @@ void gift64b_update_round_keys(gift64b_key_schedule_t *ks)
  * \param Tweak value or zero if there is no tweak.
  */
 static void gift64b_encrypt_core
-    (const gift64b_key_schedule_t *ks, uint32_t state[4], uint32_t tweak)
+    (const gift64n_key_schedule_t *ks, uint32_t state[4], uint32_t tweak)
 {
     const uint32_t *rc = GIFT64_RC;
     uint32_t s0, s1, s2, s3, temp;
@@ -389,7 +380,7 @@ static void gift64b_encrypt_core
  * \param Tweak value or zero if there is no tweak.
  */
 static void gift64b_decrypt_core
-    (const gift64b_key_schedule_t *ks, uint32_t state[4], uint32_t tweak)
+    (const gift64n_key_schedule_t *ks, uint32_t state[4], uint32_t tweak)
 {
     const uint32_t *rc = GIFT64_RC + 28 - 4;
     uint32_t s0, s1, s2, s3, temp;
@@ -518,7 +509,7 @@ void gift64n_init(gift64n_key_schedule_t *ks, const unsigned char *key)
     ks->k[1] = le_load_word32(key + 8);
     ks->k[2] = le_load_word32(key + 4);
     ks->k[3] = le_load_word32(key);
-    gift64b_update_round_keys(ks);
+    gift64n_update_round_keys(ks);
 }
 
 /**
@@ -653,20 +644,6 @@ static uint8_t const GIFT64_RC[28] = {
     0x21, 0x02, 0x05, 0x0B
 };
 
-void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key)
-{
-    ks->k[0] = be_load_word32(key);
-    ks->k[1] = be_load_word32(key + 4);
-    ks->k[2] = be_load_word32(key + 8);
-    ks->k[3] = be_load_word32(key + 12);
-}
-
-void gift64b_update_round_keys(gift64b_key_schedule_t *ks)
-{
-    /* Nothing to do here for the low-memory version */
-    (void)ks;
-}
-
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
 #define bit_permute_step(_y, mask, shift) \
     do { \
@@ -752,8 +729,18 @@ void gift64b_update_round_keys(gift64b_key_schedule_t *ks)
         (x) = _x; \
     } while (0)
 
-void gift64b_encrypt
-    (const gift64b_key_schedule_t *ks, unsigned char *output,
+/**
+ * \brief Encrypts a 64-bit block with GIFT-64 (bit-sliced).
+ *
+ * \param ks Points to the GIFT-64 key schedule.
+ * \param output Output buffer which must be at least 8 bytes in length.
+ * \param input Input buffer which must be at least 8 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place encryption.
+ */
+static void gift64b_encrypt
+    (const gift64n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     uint16_t s0, s1, s2, s3;
@@ -814,8 +801,18 @@ void gift64b_encrypt
     be_store_word16(output + 6, s3);
 }
 
-void gift64b_decrypt
-    (const gift64b_key_schedule_t *ks, unsigned char *output,
+/**
+ * \brief Decrypts a 64-bit block with GIFT-64 (bit-sliced).
+ *
+ * \param ks Points to the GIFT-64 key schedule.
+ * \param output Output buffer which must be at least 8 bytes in length.
+ * \param input Input buffer which must be at least 8 bytes in length.
+ *
+ * The \a input and \a output buffers can be the same buffer for
+ * in-place decryption.
+ */
+static void gift64b_decrypt
+    (const gift64n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     uint16_t s0, s1, s2, s3;
