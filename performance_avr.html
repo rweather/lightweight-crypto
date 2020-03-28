@@ -103,6 +103,12 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>2.76</td><td>2.65</td><td>2.71 </td></tr>
 <tr>
+<td><b><em>TinyJAMBU-128</em></b> *</td><td>128</td><td>96</td><td>64</td><td>1.72</td><td>1.67</td><td>4.13</td><td>3.98</td><td>2.13 </td></tr>
+<tr>
+<td>TinyJAMBU-192 *</td><td>192</td><td>96</td><td>64</td><td>1.56</td><td>1.53</td><td>3.81</td><td>3.68</td><td>1.94 </td></tr>
+<tr>
+<td>TinyJAMBU-256 *</td><td>256</td><td>96</td><td>64</td><td>1.42</td><td>1.40</td><td>3.54</td><td>3.43</td><td>1.78 </td></tr>
+<tr>
 <td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>1.62</td><td>1.57</td><td>2.06</td><td>2.02</td><td>1.72 </td></tr>
 <tr>
 <td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>1.26</td><td>1.27</td><td>1.76</td><td>1.74</td><td>1.40 </td></tr>
@@ -163,8 +169,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>Romulus-N3</td><td>128</td><td>96</td><td>128</td><td>0.20</td><td>0.21</td><td>0.45</td><td>0.45</td><td>0.26 </td></tr>
 <tr>
-<td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>0.18</td><td>0.18</td><td>0.45</td><td>0.45</td><td>0.23 </td></tr>
-<tr>
 <td><b><em>Oribatida-256-64</em></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.18</td><td>0.43</td><td>0.43</td><td>0.23 </td></tr>
 <tr>
 <td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.17</td><td>0.18</td><td>0.34</td><td>0.34</td><td>0.21 </td></tr>
@@ -177,8 +181,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21 </td></tr>
 <tr>
-<td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.16</td><td>0.17</td><td>0.41</td><td>0.41</td><td>0.21 </td></tr>
-<tr>
 <td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.19</td><td>0.12</td><td>0.83</td><td>0.51</td><td>0.20 </td></tr>
 <tr>
 <td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.19</td><td>0.21</td><td>0.21</td><td>0.20 </td></tr>
@@ -186,8 +188,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>Romulus-N1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.17</td><td>0.32</td><td>0.32</td><td>0.20 </td></tr>
 <tr>
 <td><b><em>DryGASCON128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.15</td><td>0.15</td><td>0.33</td><td>0.33</td><td>0.19 </td></tr>
-<tr>
-<td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.14</td><td>0.15</td><td>0.38</td><td>0.38</td><td>0.19 </td></tr>
 <tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18 </td></tr>
 <tr>
@@ -294,6 +294,8 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>44</td><td>SPARKLE </td></tr>
 <tr>
+<td>21</td><td>TinyJAMBU </td></tr>
+<tr>
 <td>17</td><td>GIFT-COFB </td></tr>
 <tr>
 <td>14</td><td>HYENA </td></tr>
@@ -312,11 +314,11 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>3</td><td>SpoC </td></tr>
 <tr>
-<td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus SKINNY-AEAD, SPIX, Spook, TinyJAMBU </td></tr>
+<td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus, SKINNY-AEAD, SPIX, Spook </td></tr>
 <tr>
 <td>1</td><td>ACE, DryGASCON, ForkAE, ISAP </td></tr>
 <tr>
-<td>0</td><td>Pyjamask, WAGE, Elephant </td></tr>
+<td>0</td><td>Elephant, Pyjamask, Subterranean, WAGE </td></tr>
 </table>
 <p>Hash algorithm rankings:</p>
 <table class="doxtable">
@@ -338,7 +340,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 26 2020 05:00:42 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 28 2020 10:09:11 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
