@@ -35,17 +35,13 @@ static uint32_t const GIFT64_RC[28] = {
     0x22008811, 0x00002288, 0x00118811, 0x880000bb
 };
 
-int gift64b_init
-    (gift64b_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key)
 {
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = be_load_word32(key);
     ks->k[1] = be_load_word32(key + 4);
     ks->k[2] = be_load_word32(key + 8);
     ks->k[3] = be_load_word32(key + 12);
     gift64b_update_round_keys(ks);
-    return 1;
 }
 
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
@@ -515,18 +511,14 @@ static void gift64b_decrypt_core
     state[3] = s3;
 }
 
-int gift64n_init
-    (gift64n_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift64n_init(gift64n_key_schedule_t *ks, const unsigned char *key)
 {
     /* Use the little-endian byte order from the LOTUS-AEAD submission */
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = le_load_word32(key + 12);
     ks->k[1] = le_load_word32(key + 8);
     ks->k[2] = le_load_word32(key + 4);
     ks->k[3] = le_load_word32(key);
     gift64b_update_round_keys(ks);
-    return 1;
 }
 
 /**
@@ -661,16 +653,12 @@ static uint8_t const GIFT64_RC[28] = {
     0x21, 0x02, 0x05, 0x0B
 };
 
-int gift64b_init
-    (gift64b_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift64b_init(gift64b_key_schedule_t *ks, const unsigned char *key)
 {
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = be_load_word32(key);
     ks->k[1] = be_load_word32(key + 4);
     ks->k[2] = be_load_word32(key + 8);
     ks->k[3] = be_load_word32(key + 12);
-    return 1;
 }
 
 void gift64b_update_round_keys(gift64b_key_schedule_t *ks)
@@ -922,17 +910,13 @@ void gift64b_decrypt
     be_store_word16(output + 6, s3);
 }
 
-int gift64n_init
-    (gift64n_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift64n_init(gift64n_key_schedule_t *ks, const unsigned char *key)
 {
     /* Use the little-endian byte order from the LOTUS-AEAD submission */
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = le_load_word32(key + 12);
     ks->k[1] = le_load_word32(key + 8);
     ks->k[2] = le_load_word32(key + 4);
     ks->k[3] = le_load_word32(key);
-    return 1;
 }
 
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */

@@ -76,10 +76,7 @@ static int test_block_cipher_128_inner
     unsigned char temp[block_size];
 
     /* Set the encryption key */
-    if (!(*(cipher->init))(ks, test_vector->key, test_vector->key_len)) {
-        printf("cannot set key ... ");
-        return 0;
-    }
+    (*(cipher->init))(ks, test_vector->key);
 
     /* Test encryption */
     memset(temp, 0xAA, sizeof(temp));

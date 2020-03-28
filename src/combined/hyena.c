@@ -116,8 +116,7 @@ int hyena_aead_encrypt
     *clen = mlen + HYENA_TAG_SIZE;
 
     /* Set up the key schedule and use it to encrypt the nonce */
-    if (!gift128n_init(&ks, k, HYENA_KEY_SIZE))
-        return -1;
+    gift128n_init(&ks, k);
     Y[0] = 0;
     if (adlen == 0)
         Y[0] |= 0x01;
@@ -207,8 +206,7 @@ int hyena_aead_decrypt
     *mlen = clen - HYENA_TAG_SIZE;
 
     /* Set up the key schedule and use it to encrypt the nonce */
-    if (!gift128n_init(&ks, k, HYENA_KEY_SIZE))
-        return -1;
+    gift128n_init(&ks, k);
     Y[0] = 0;
     if (adlen == 0)
         Y[0] |= 0x01;

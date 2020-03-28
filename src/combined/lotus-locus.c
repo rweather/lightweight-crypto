@@ -77,11 +77,11 @@ static void lotus_or_locus_init
      const unsigned char *nonce,
      unsigned char *T)
 {
-    gift64n_init(ks, key, LOTUS_AEAD_KEY_SIZE);
+    gift64n_init(ks, key);
     memset(deltaN, 0, GIFT64_BLOCK_SIZE);
     gift64t_encrypt(ks, deltaN, deltaN, 0);
     lw_xor_block_2_src(T, key, nonce, LOTUS_AEAD_KEY_SIZE);
-    gift64n_init(ks, T, LOTUS_AEAD_KEY_SIZE);
+    gift64n_init(ks, T);
     gift64t_encrypt(ks, deltaN, deltaN, 1);
 }
 

@@ -140,8 +140,7 @@ static int sundae_gift_aead_encrypt
     *clen = mlen + SUNDAE_GIFT_TAG_SIZE;
 
     /* Set the key schedule */
-    if (!gift128b_init(&ks, k, SUNDAE_GIFT_KEY_SIZE))
-        return -1;
+    gift128b_init(&ks, k);
 
     /* Format and encrypt the initial domain separation block */
     if (adlen > 0)
@@ -205,8 +204,7 @@ static int sundae_gift_aead_decrypt
     len = *mlen = clen - SUNDAE_GIFT_TAG_SIZE;
 
     /* Set the key schedule */
-    if (!gift128b_init(&ks, k, SUNDAE_GIFT_KEY_SIZE))
-        return -1;
+    gift128b_init(&ks, k);
 
     /* Decrypt the ciphertext to produce the plaintext, using the
      * tag as the initialization vector for the decryption process */

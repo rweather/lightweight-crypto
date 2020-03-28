@@ -106,14 +106,9 @@ typedef struct
  * \brief Initializes the key schedule for GIFT-128 (bit-sliced).
  *
  * \param ks Points to the key schedule to initialize.
- * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 16.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
+ * \param key Points to the 16 bytes of the key data.
  */
-int gift128b_init
-    (gift128b_key_schedule_t *ks, const unsigned char *key, size_t key_len);
+void gift128b_init(gift128b_key_schedule_t *ks, const unsigned char *key);
 
 /**
  * \brief Encrypts a 128-bit block with GIFT-128 (bit-sliced).
@@ -170,14 +165,9 @@ typedef gift128b_key_schedule_t gift128n_key_schedule_t;
  * \brief Initializes the key schedule for GIFT-128 (nibble-based).
  *
  * \param ks Points to the key schedule to initialize.
- * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 16.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
+ * \param key Points to the 16 bytes of the key data.
  */
-int gift128n_init
-    (gift128n_key_schedule_t *ks, const unsigned char *key, size_t key_len);
+void gift128n_init(gift128n_key_schedule_t *ks, const unsigned char *key);
 
 /**
  * \brief Encrypts a 128-bit block with GIFT-128 (nibble-based).

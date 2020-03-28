@@ -27,8 +27,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-typedef int (*block_cipher_init_t)
-    (void *ks, const unsigned char *key, size_t key_len);
+typedef void (*block_cipher_init_t)(void *ks, const unsigned char *key);
 typedef void (*block_cipher_encrypt_t)
     (const void *ks, unsigned char *output, const unsigned char *input);
 typedef void (*block_cipher_decrypt_t)

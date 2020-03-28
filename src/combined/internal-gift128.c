@@ -210,15 +210,11 @@ static void gift128b_compute_round_keys
     }
 }
 
-int gift128b_init
-    (gift128b_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift128b_init(gift128b_key_schedule_t *ks, const unsigned char *key)
 {
-    if (!ks || !key || key_len != 16)
-        return 0;
     gift128b_compute_round_keys
         (ks, be_load_word32(key), be_load_word32(key + 4),
              be_load_word32(key + 8), be_load_word32(key + 12));
-    return 1;
 }
 
 /**
@@ -610,16 +606,12 @@ void gift128b_decrypt
     be_store_word32(output + 12, s3);
 }
 
-int gift128n_init
-    (gift128n_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift128n_init(gift128n_key_schedule_t *ks, const unsigned char *key)
 {
     /* Use the little-endian key byte order from the HYENA submission */
-    if (!ks || !key || key_len != 16)
-        return 0;
     gift128b_compute_round_keys
         (ks, le_load_word32(key + 12), le_load_word32(key + 8),
              le_load_word32(key + 4), le_load_word32(key));
-    return 1;
 }
 
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
@@ -861,16 +853,12 @@ static uint8_t const GIFT128_RC[40] = {
     0x31, 0x23, 0x06, 0x0D, 0x1B, 0x36, 0x2D, 0x1A
 };
 
-int gift128b_init
-    (gift128b_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift128b_init(gift128b_key_schedule_t *ks, const unsigned char *key)
 {
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = be_load_word32(key);
     ks->k[1] = be_load_word32(key + 4);
     ks->k[2] = be_load_word32(key + 8);
     ks->k[3] = be_load_word32(key + 12);
-    return 1;
 }
 
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
@@ -1184,17 +1172,13 @@ void gift128b_decrypt
     be_store_word32(output + 12, s3);
 }
 
-int gift128n_init
-    (gift128n_key_schedule_t *ks, const unsigned char *key, size_t key_len)
+void gift128n_init(gift128n_key_schedule_t *ks, const unsigned char *key)
 {
     /* Use the little-endian key byte order from the HYENA submission */
-    if (!ks || !key || key_len != 16)
-        return 0;
     ks->k[0] = le_load_word32(key + 12);
     ks->k[1] = le_load_word32(key + 8);
     ks->k[2] = le_load_word32(key + 4);
     ks->k[3] = le_load_word32(key);
-    return 1;
 }
 
 /**

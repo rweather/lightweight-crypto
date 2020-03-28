@@ -25,13 +25,9 @@
 #include <stdio.h>
 #include <string.h>
 
-static int clyde128_test_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void clyde128_test_init(unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 32)
-        return 0;
     memcpy(ks, key, 32);
-    return 1;
 }
 
 static void clyde128_test_encrypt

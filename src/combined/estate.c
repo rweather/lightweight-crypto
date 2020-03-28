@@ -148,8 +148,7 @@ int estate_twegift_aead_encrypt
     *clen = mlen + ESTATE_TWEGIFT_TAG_SIZE;
 
     /* Set up the key schedule and copy the nonce into the tag */
-    if (!gift128n_init(&ks, k, ESTATE_TWEGIFT_KEY_SIZE))
-        return -1;
+    gift128n_init(&ks, k);
     memcpy(tag, npub, 16);
 
     /* Authenticate the associated data and plaintext */
@@ -181,8 +180,7 @@ int estate_twegift_aead_decrypt
     *mlen = clen - ESTATE_TWEGIFT_TAG_SIZE;
 
     /* Set up the key schedule and copy the nonce into the tag */
-    if (!gift128n_init(&ks, k, ESTATE_TWEGIFT_KEY_SIZE))
-        return -1;
+    gift128n_init(&ks, k);
     memcpy(tag, npub, 16);
 
     /* Decrypt the ciphertext to generate the plaintext */

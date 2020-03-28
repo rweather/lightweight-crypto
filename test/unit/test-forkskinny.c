@@ -239,13 +239,10 @@ static block_cipher_test_vector_128_t const forkskinny_64_192_6 = {
     {0x10, 0xd0, 0xeb, 0x20, 0xe5, 0x98, 0x09, 0xfc}    /* ciphertext */
 };
 
-static int forkskinny_128_256_cipher_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void forkskinny_128_256_cipher_init
+    (unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 32)
-        return 0;
-    memcpy(ks, key, key_len);
-    return 1;
+    memcpy(ks, key, 32);
 }
 
 static void forkskinny_128_256_encrypt_left_only
@@ -338,13 +335,10 @@ static block_cipher_t const forkskinny_128_256_invert_right = {
     (block_cipher_decrypt_t)0
 };
 
-static int forkskinny_128_384_cipher_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void forkskinny_128_384_cipher_init
+    (unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 48)
-        return 0;
-    memcpy(ks, key, key_len);
-    return 1;
+    memcpy(ks, key, 48);
 }
 
 static void forkskinny_128_384_encrypt_left_only
@@ -437,13 +431,10 @@ static block_cipher_t const forkskinny_128_384_invert_right = {
     (block_cipher_decrypt_t)0
 };
 
-static int forkskinny_64_192_cipher_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void forkskinny_64_192_cipher_init
+    (unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 24)
-        return 0;
-    memcpy(ks, key, key_len);
-    return 1;
+    memcpy(ks, key, 24);
 }
 
 static void forkskinny_64_192_encrypt_left_only

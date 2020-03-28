@@ -24,22 +24,15 @@
 #include "test-cipher.h"
 #include <string.h>
 
-static int pyjamask_cipher_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void pyjamask_cipher_init(unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 16)
-        return 0;
     pyjamask_setup_key((pyjamask_key_schedule_t *)ks, key);
-    return 1;
 }
 
-static int pyjamask_masked_cipher_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void pyjamask_masked_cipher_init
+    (unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 16)
-        return 0;
     pyjamask_masked_setup_key((pyjamask_masked_key_schedule_t *)ks, key);
-    return 1;
 }
 
 /* Information block for the Pyjamask-128 block cipher */

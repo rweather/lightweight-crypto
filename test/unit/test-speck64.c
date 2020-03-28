@@ -25,13 +25,9 @@
 #include <stdio.h>
 #include <string.h>
 
-static int speck64_128_init
-    (unsigned char *ks, const unsigned char *key, size_t key_len)
+static void speck64_128_init(unsigned char *ks, const unsigned char *key)
 {
-    if (key_len != 16)
-        return 0;
     memcpy(ks, key, 16);
-    return 1;
 }
 
 /* Information block for the SPECK-64-128 block cipher */

@@ -206,8 +206,7 @@ int gift_cofb_aead_encrypt
     *clen = mlen + GIFT_COFB_TAG_SIZE;
 
     /* Set up the key schedule and use it to encrypt the nonce */
-    if (!gift128b_init(&ks, k, GIFT_COFB_KEY_SIZE))
-        return -1;
+    gift128b_init(&ks, k);
     Y.x[0] = be_load_word32(npub);
     Y.x[1] = be_load_word32(npub + 4);
     Y.x[2] = be_load_word32(npub + 8);
@@ -320,8 +319,7 @@ int gift_cofb_aead_decrypt
     *mlen = clen - GIFT_COFB_TAG_SIZE;
 
     /* Set up the key schedule and use it to encrypt the nonce */
-    if (!gift128b_init(&ks, k, GIFT_COFB_KEY_SIZE))
-        return -1;
+    gift128b_init(&ks, k);
     Y.x[0] = be_load_word32(npub);
     Y.x[1] = be_load_word32(npub + 4);
     Y.x[2] = be_load_word32(npub + 8);

@@ -25,18 +25,30 @@
 #include <stdio.h>
 #include <string.h>
 
+static void skinny_128_256_init_wrapper
+    (skinny_128_256_key_schedule_t *ks, const unsigned char *key)
+{
+    skinny_128_256_init(ks, key, 32);
+}
+
+static void skinny_128_384_init_wrapper
+    (skinny_128_384_key_schedule_t *ks, const unsigned char *key)
+{
+    skinny_128_384_init(ks, key, 48);
+}
+
 /* Information blocks for the SKINNY-128 block cipher variants */
 static block_cipher_t const skinny128_256 = {
     "SKINNY-128-256",
     sizeof(skinny_128_256_key_schedule_t),
-    (block_cipher_init_t)skinny_128_256_init,
+    (block_cipher_init_t)skinny_128_256_init_wrapper,
     (block_cipher_encrypt_t)skinny_128_256_encrypt,
     (block_cipher_decrypt_t)skinny_128_256_decrypt
 };
 static block_cipher_t const skinny128_384 = {
     "SKINNY-128-384",
     sizeof(skinny_128_384_key_schedule_t),
-    (block_cipher_init_t)skinny_128_384_init,
+    (block_cipher_init_t)skinny_128_384_init_wrapper,
     (block_cipher_encrypt_t)skinny_128_384_encrypt,
     (block_cipher_decrypt_t)skinny_128_384_decrypt
 };
@@ -71,15 +83,14 @@ static block_cipher_test_vector_128_t const skinny128_384_1 = {
 
 /* Alternative version of SKINNY-128-384 where TK2 is also tweakable */
 static unsigned char TK2[16];
-static int tk2_skinny_128_384_init
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len)
+static void tk2_skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char *key)
 {
     unsigned char tk[48];
     memcpy(tk, key, 48);
     memset(tk + 16, 0, 16);
     memcpy(TK2, key + 16, 16);
-    return skinny_128_384_init(ks, tk, sizeof(tk));
+    skinny_128_384_init(ks, tk, sizeof(tk));
 }
 static void tk2_skinny_128_384_encrypt
     (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
@@ -96,14 +107,10 @@ static block_cipher_t const skinny128_384_tk2 = {
 };
 
 /* Alternative version of SKINNY-128-384 where everything is tweakable */
-static int tk_full_skinny_128_384_init
-    (unsigned char ks[48], const unsigned char *key,
-     size_t key_len)
+static void tk_full_skinny_128_384_init
+    (unsigned char ks[48], const unsigned char *key)
 {
-    if (key_len != 48)
-        return 0;
-    memcpy(ks, key, key_len);
-    return 1;
+    memcpy(ks, key, 48);
 }
 static block_cipher_t const skinny128_384_tk_full = {
     "SKINNY-128-384-TK-FULL",
@@ -114,14 +121,10 @@ static block_cipher_t const skinny128_384_tk_full = {
 };
 
 /* Alternative version of SKINNY-128-256 where everything is tweakable */
-static int tk_full_skinny_128_256_init
-    (unsigned char ks[32], const unsigned char *key,
-     size_t key_len)
+static void tk_full_skinny_128_256_init
+    (unsigned char ks[32], const unsigned char *key)
 {
-    if (key_len != 32)
-        return 0;
-    memcpy(ks, key, key_len);
-    return 1;
+    memcpy(ks, key, 32);
 }
 static block_cipher_t const skinny128_256_tk_full = {
     "SKINNY-128-256-TK-FULL",
