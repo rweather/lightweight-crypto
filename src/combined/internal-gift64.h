@@ -144,34 +144,6 @@ void gift64n_decrypt
      const unsigned char *input);
 
 /**
- * \brief Encrypts a 64-bit block with GIFT-64 (nibble-based big-endian).
- *
- * \param ks Points to the GIFT-64 key schedule.
- * \param output Output buffer which must be at least 8 bytes in length.
- * \param input Input buffer which must be at least 8 bytes in length.
- *
- * The \a input and \a output buffers can be the same buffer for
- * in-place encryption.
- */
-void gift64nb_encrypt
-    (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input);
-
-/**
- * \brief Decrypts a 64-bit block with GIFT-64 (nibble-based big-endian).
- *
- * \param ks Points to the GIFT-64 key schedule.
- * \param output Output buffer which must be at least 8 bytes in length.
- * \param input Input buffer which must be at least 8 bytes in length.
- *
- * The \a input and \a output buffers can be the same buffer for
- * in-place decryption.
- */
-void gift64nb_decrypt
-    (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input);
-
-/**
  * \brief Encrypts a 64-bit block with TweGIFT-64 (tweakable variant).
  *
  * \param ks Points to the GIFT-64 key schedule.
