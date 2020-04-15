@@ -57,7 +57,7 @@ STATIC_INLINE void lotus_or_locus_mul_2(gift64n_key_schedule_t *ks)
     ks->k[1] = (ks->k[1] << 1) | (ks->k[2] >> 31);
     ks->k[2] = (ks->k[2] << 1) | (ks->k[3] >> 31);
     ks->k[3] = (ks->k[3] << 1) ^ (mask & 0x87);
-    gift64b_update_round_keys(ks);
+    gift64n_update_round_keys(ks);
 }
 
 /**
@@ -77,12 +77,12 @@ static void lotus_or_locus_init
      const unsigned char *nonce,
      unsigned char *T)
 {
-    gift64n_init(ks, key, LOTUS_AEAD_KEY_SIZE);
+    gift64n_init(ks, key);
     memset(deltaN, 0, GIFT64_BLOCK_SIZE);
-    gift64t_encrypt(ks, deltaN, deltaN, 0);
+    gift64t_encrypt(ks, deltaN, deltaN, GIFT64T_TWEAK_0);
     lw_xor_block_2_src(T, key, nonce, LOTUS_AEAD_KEY_SIZE);
-    gift64n_init(ks, T, LOTUS_AEAD_KEY_SIZE);
-    gift64t_encrypt(ks, deltaN, deltaN, 1);
+    gift64n_init(ks, T);
+    gift64t_encrypt(ks, deltaN, deltaN, GIFT64T_TWEAK_1);
 }
 
 /**
@@ -105,7 +105,7 @@ static void lotus_or_locus_process_ad
     while (adlen > GIFT64_BLOCK_SIZE) {
         lotus_or_locus_mul_2(ks);
         lw_xor_block_2_src(X, ad, deltaN, GIFT64_BLOCK_SIZE);
-        gift64t_encrypt(ks, X, X, 2);
+        gift64t_encrypt(ks, X, X, GIFT64T_TWEAK_2);
         lw_xor_block(V, X, GIFT64_BLOCK_SIZE);
         ad += GIFT64_BLOCK_SIZE;
         adlen -= GIFT64_BLOCK_SIZE;
@@ -116,10 +116,10 @@ static void lotus_or_locus_process_ad
         memcpy(X, deltaN, GIFT64_BLOCK_SIZE);
         lw_xor_block(X, ad, temp);
         X[temp] ^= 0x01;
-        gift64t_encrypt(ks, X, X, 3);
+        gift64t_encrypt(ks, X, X, GIFT64T_TWEAK_3);
     } else {
         lw_xor_block_2_src(X, ad, deltaN, GIFT64_BLOCK_SIZE);
-        gift64t_encrypt(ks, X, X, 2);
+        gift64t_encrypt(ks, X, X, GIFT64T_TWEAK_2);
     }
     lw_xor_block(V, X, GIFT64_BLOCK_SIZE);
 }
@@ -142,7 +142,7 @@ static void lotus_or_locus_gen_tag
     lotus_or_locus_mul_2(ks);
     lw_xor_block(W, deltaN, GIFT64_BLOCK_SIZE);
     lw_xor_block(W, V, GIFT64_BLOCK_SIZE);
-    gift64t_encrypt(ks, W, W, 6);
+    gift64t_encrypt(ks, W, W, GIFT64T_TWEAK_6);
     lw_xor_block_2_src(tag, W, deltaN, GIFT64_BLOCK_SIZE);
 }
 
@@ -180,15 +180,15 @@ int lotus_aead_encrypt
         while (mlen > (GIFT64_BLOCK_SIZE * 2)) {
             lotus_or_locus_mul_2(&ks);
             lw_xor_block_2_src(X1, m, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X1, 4);
+            gift64t_encrypt(&ks, X2, X1, GIFT64T_TWEAK_4);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 4);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_4);
             lw_xor_block_2_src
                 (X2, m + GIFT64_BLOCK_SIZE, X2, GIFT64_BLOCK_SIZE);
             lw_xor_block_2_src(c, X2, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 5);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_5);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 5);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_5);
             lw_xor_block_2_src
                 (c + GIFT64_BLOCK_SIZE, X1, X2, GIFT64_BLOCK_SIZE);
             c += GIFT64_BLOCK_SIZE * 2;
@@ -199,9 +199,9 @@ int lotus_aead_encrypt
         lotus_or_locus_mul_2(&ks);
         memcpy(X1, deltaN, GIFT64_BLOCK_SIZE);
         X1[0] ^= (unsigned char)temp;
-        gift64t_encrypt(&ks, X2, X1, 12);
+        gift64t_encrypt(&ks, X2, X1, GIFT64T_TWEAK_12);
         lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-        gift64t_encrypt(&ks, X2, X2, 12);
+        gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_12);
         if (temp <= GIFT64_BLOCK_SIZE) {
             lw_xor_block(WV, m, temp);
             lw_xor_block(X2, m, temp);
@@ -212,9 +212,9 @@ int lotus_aead_encrypt
             c += GIFT64_BLOCK_SIZE;
             m += GIFT64_BLOCK_SIZE;
             temp -= GIFT64_BLOCK_SIZE;
-            gift64t_encrypt(&ks, X2, X2, 13);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_13);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 13);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_13);
             lw_xor_block(WV, m, temp);
             lw_xor_block(X1, X2, temp);
             lw_xor_block_2_src(c, X1, m, temp);
@@ -265,14 +265,14 @@ int lotus_aead_decrypt
         while (clen > (GIFT64_BLOCK_SIZE * 2)) {
             lotus_or_locus_mul_2(&ks);
             lw_xor_block_2_src(X1, c, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X1, 5);
+            gift64t_encrypt(&ks, X2, X1, GIFT64T_TWEAK_5);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 5);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_5);
             lw_xor_block(X2, c + GIFT64_BLOCK_SIZE, GIFT64_BLOCK_SIZE);
             lw_xor_block_2_src(m, X2, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 4);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_4);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 4);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_4);
             lw_xor_block_2_src
                 (m + GIFT64_BLOCK_SIZE, X1, X2, GIFT64_BLOCK_SIZE);
             c += GIFT64_BLOCK_SIZE * 2;
@@ -283,9 +283,9 @@ int lotus_aead_decrypt
         lotus_or_locus_mul_2(&ks);
         memcpy(X1, deltaN, GIFT64_BLOCK_SIZE);
         X1[0] ^= (unsigned char)temp;
-        gift64t_encrypt(&ks, X2, X1, 12);
+        gift64t_encrypt(&ks, X2, X1, GIFT64T_TWEAK_12);
         lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-        gift64t_encrypt(&ks, X2, X2, 12);
+        gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_12);
         if (temp <= GIFT64_BLOCK_SIZE) {
             lw_xor_block_2_src(m, X2, c, temp);
             lw_xor_block(m, deltaN, temp);
@@ -298,9 +298,9 @@ int lotus_aead_decrypt
             c += GIFT64_BLOCK_SIZE;
             m += GIFT64_BLOCK_SIZE;
             temp -= GIFT64_BLOCK_SIZE;
-            gift64t_encrypt(&ks, X2, X2, 13);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_13);
             lw_xor_block(WV, X2, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X2, X2, 13);
+            gift64t_encrypt(&ks, X2, X2, GIFT64T_TWEAK_13);
             lw_xor_block(X1, X2, temp);
             lw_xor_block_2_src(m, X1, c, temp);
             lw_xor_block(WV, m, temp);
@@ -346,9 +346,9 @@ int locus_aead_encrypt
         while (mlen > GIFT64_BLOCK_SIZE) {
             lotus_or_locus_mul_2(&ks);
             lw_xor_block_2_src(X, m, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X, X, 4);
+            gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_4);
             lw_xor_block(WV, X, GIFT64_BLOCK_SIZE);
-            gift64t_encrypt(&ks, X, X, 4);
+            gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_4);
             lw_xor_block_2_src(c, X, deltaN, GIFT64_BLOCK_SIZE);
             c += GIFT64_BLOCK_SIZE;
             m += GIFT64_BLOCK_SIZE;
@@ -358,10 +358,10 @@ int locus_aead_encrypt
         lotus_or_locus_mul_2(&ks);
         memcpy(X, deltaN, GIFT64_BLOCK_SIZE);
         X[0] ^= (unsigned char)temp;
-        gift64t_encrypt(&ks, X, X, 5);
+        gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_5);
         lw_xor_block(WV, X, GIFT64_BLOCK_SIZE);
         lw_xor_block(WV, m, temp);
-        gift64t_encrypt(&ks, X, X, 5);
+        gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_5);
         lw_xor_block(X, deltaN, temp);
         lw_xor_block_2_src(c, m, X, temp);
         c += temp;
@@ -409,9 +409,9 @@ int locus_aead_decrypt
         while (clen > GIFT64_BLOCK_SIZE) {
             lotus_or_locus_mul_2(&ks);
             lw_xor_block_2_src(X, c, deltaN, GIFT64_BLOCK_SIZE);
-            gift64t_decrypt(&ks, X, X, 4);
+            gift64t_decrypt(&ks, X, X, GIFT64T_TWEAK_4);
             lw_xor_block(WV, X, GIFT64_BLOCK_SIZE);
-            gift64t_decrypt(&ks, X, X, 4);
+            gift64t_decrypt(&ks, X, X, GIFT64T_TWEAK_4);
             lw_xor_block_2_src(m, X, deltaN, GIFT64_BLOCK_SIZE);
             c += GIFT64_BLOCK_SIZE;
             m += GIFT64_BLOCK_SIZE;
@@ -421,9 +421,9 @@ int locus_aead_decrypt
         lotus_or_locus_mul_2(&ks);
         memcpy(X, deltaN, GIFT64_BLOCK_SIZE);
         X[0] ^= (unsigned char)temp;
-        gift64t_encrypt(&ks, X, X, 5);
+        gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_5);
         lw_xor_block(WV, X, GIFT64_BLOCK_SIZE);
-        gift64t_encrypt(&ks, X, X, 5);
+        gift64t_encrypt(&ks, X, X, GIFT64T_TWEAK_5);
         lw_xor_block(X, deltaN, temp);
         lw_xor_block_2_src(m, c, X, temp);
         lw_xor_block(WV, m, temp);

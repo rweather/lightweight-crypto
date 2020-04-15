@@ -104,6 +104,7 @@ LOTUS_FILES = \
     lotus-locus.h \
     internal-gift64.c \
     internal-gift64.h \
+    internal-gift64.S \
     $(COMMON_FILES)
 ORANGE_FILES = \
     orange.c \
