@@ -356,8 +356,9 @@ version of the GIFT-128 block cipher.  The algorithm has a 128-bit key,
 a 128-bit nonce, and a 128-bit authentication tag.
 
 The GIFT-128 block cipher was designed with hardware FPGA/ASIC implementations
-in mind, but with the "fixsliced" representation it is possible to acheive
-good software performance as well.  This library implements fixslicing.
+in mind, but with the <a href="https://eprint.iacr.org/2020/412.pdf">fixsliced</a>
+representation it is possible to acheive good software performance as well.
+This library implements fixslicing for 32-bit platforms.
 
 GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass
 algorithm used by SUNDAE-GIFT.  Out of all the GIFT-128 based submissions

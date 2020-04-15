@@ -28,6 +28,7 @@
  * \brief GIFT-64 block cipher.
  *
  * References: https://eprint.iacr.org/2017/622.pdf,
+ * https://eprint.iacr.org/2020/412.pdf,
  * https://giftcipher.github.io/gift/
  */
 
