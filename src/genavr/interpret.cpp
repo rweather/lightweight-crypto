@@ -444,7 +444,7 @@ void Code::exec_setup_key(void *schedule, unsigned schedule_len,
         Insn insn = m_insns[(s.pc)++];
         exec_insn(s, *this, insn);
     }
-    if (s.r[1] != 0x00)
+    if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
     memcpy(schedule, &(s.memory[schedule_address]), schedule_len);
 }
@@ -483,7 +483,7 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
         Insn insn = m_insns[(s.pc)++];
         exec_insn(s, *this, insn);
     }
-    if (s.r[1] != 0x00)
+    if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
     memcpy(output, &(s.memory[output_address]), output_len);
 }
@@ -512,7 +512,7 @@ void Code::exec_permutation
         Insn insn = m_insns[(s.pc)++];
         exec_insn(s, *this, insn);
     }
-    if (s.r[1] != 0x00)
+    if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
     memcpy(state, &(s.memory[state_address]), state_len);
 }
@@ -547,7 +547,7 @@ void Code::exec_tinyjambu
         Insn insn = m_insns[(s.pc)++];
         exec_insn(s, *this, insn);
     }
-    if (s.r[1] != 0x00)
+    if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
     memcpy(state, &(s.memory[state_address]), state_len);
 }

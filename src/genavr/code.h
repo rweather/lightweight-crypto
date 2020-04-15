@@ -365,6 +365,8 @@ public:
         TempZ    = 0x0008,      /**< Z pointer can be used as a temporary */
         Print    = 0x0010,      /**< Use diagnostic printing */
         NoLocals = 0x0020,      /**< No locals and Y will not be touched */
+        TempR0   = 0x0040,      /**< "r0" can be used as a temporary */
+        TempR1   = 0x0080,      /**< "r1" can be used as a temporary */
     };
 
     /**
@@ -565,6 +567,8 @@ public:
     void bitop(Insn::Type type, unsigned char reg, unsigned char bit);
     void immreg(Insn::Type type, unsigned char reg, unsigned char value);
     void memory(Insn::Type type, unsigned char reg, unsigned char offset);
+    void zeroreg(unsigned char reg, bool sideEffects = true);
+    void zeroreg_no_cc(unsigned char reg) { zeroreg(reg, false); }
 
     /**
      * \brief Writes the code in this object to an output stream.
@@ -599,6 +603,8 @@ private:
     unsigned char allocateSparePair(bool high);
     Reg allocateRegInternal(unsigned size, bool high, bool optional);
     unsigned char immtemp(unsigned char value);
+    unsigned char tempreg();
+    bool have_tempreg();
     void add_ptr(unsigned char reg, int offset);
     void ld_st(const Reg &reg, Insn::Type type, unsigned char offset);
     void ld_st_long(const Reg &reg, Insn::Type type, unsigned offset);

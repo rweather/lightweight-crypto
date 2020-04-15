@@ -518,6 +518,10 @@ void Code::write(std::ostream &ostream) const
         ostream << "\tpop r29" << std::endl;        // Pop Y
         ostream << "\tpop r28" << std::endl;
     }
+    if (hasFlag(TempR1)) {
+        // We need to set "r1" back to zero before we return.
+        ostream << "\teor r1,r1" << std::endl;
+    }
     ostream << "\tret" << std::endl;
 
     // Output the function footer.

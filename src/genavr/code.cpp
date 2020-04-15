@@ -314,8 +314,11 @@ void Code::adc(const Reg &reg1, const Reg &reg2)
     for (int index = 0; index < reg1.size(); ++index) {
         if (index < reg2.size()) {
             tworeg(Insn::ADC, reg1.reg(index), reg2.reg(index));
-        } else {
+        } else if (!hasFlag(TempR1)) {
             tworeg(Insn::ADC, reg1.reg(index), ZERO_REG);
+        } else {
+            unsigned char high_reg = immtemp(0);
+            tworeg(Insn::ADC, reg1.reg(index), high_reg);
         }
     }
 }
@@ -339,8 +342,11 @@ void Code::add(const Reg &reg1, const Reg &reg2)
             tworeg(Insn::ADD, reg1.reg(index), reg2.reg(index));
         } else if (index < reg2.size()) {
             tworeg(Insn::ADC, reg1.reg(index), reg2.reg(index));
-        } else {
+        } else if (!hasFlag(TempR1)) {
             tworeg(Insn::ADC, reg1.reg(index), ZERO_REG);
+        } else {
+            unsigned char high_reg = immtemp(0);
+            tworeg(Insn::ADC, reg1.reg(index), high_reg);
         }
     }
 }
@@ -360,8 +366,14 @@ void Code::add(const Reg &reg1, unsigned long long value, bool carryIn)
         if (bvalue == 0) {
             // Only need to add zero if we may have a carry out
             // from the previous byte.  Otherwise skip the byte.
-            if (haveCarry)
-                tworeg(Insn::ADC, reg1.reg(index), ZERO_REG);
+            if (haveCarry) {
+                if (!hasFlag(TempR1)) {
+                    tworeg(Insn::ADC, reg1.reg(index), ZERO_REG);
+                } else {
+                    unsigned char high_reg = immtemp(0);
+                    tworeg(Insn::ADC, reg1.reg(index), high_reg);
+                }
+            }
         } else if (bvalue == 1 && !haveCarry && reg1.size() == 1) {
             // Adding 1 to a single-byte register can be done with "inc".
             onereg(Insn::INC, reg1.reg(index));
@@ -469,6 +481,7 @@ void Code::bit_permute
     // bit cycles, where A <- B <- ... <- Z <- A.  We stop once all
     // elements in the permutation have been moved to their destination.
     unsigned char done[size];
+    unsigned char temp_reg = tempreg();
     memset(done, 0, size);
     for (index = 0; index < size; ++index) {
         int src = P[index];
@@ -483,7 +496,7 @@ void Code::bit_permute
 
         // Move the first bit in the cycle out into the temporary register.
         bit_get(reg, index);
-        bitop(Insn::BLD, TEMP_REG, 0);
+        bitop(Insn::BLD, temp_reg, 0);
         done[index] = 1;
 
         // Copy the rest of the bits in the cycle.  We stop once we
@@ -500,7 +513,7 @@ void Code::bit_permute
         }
 
         // Copy the saved bit in the temporary register to the last position.
-        bitop(Insn::BST, TEMP_REG, 0);
+        bitop(Insn::BST, temp_reg, 0);
         bit_put(reg, prev);
     }
 }
@@ -538,19 +551,27 @@ void Code::compare(const Reg& reg1, const Reg& reg2)
     int index;
     int minsize = reg1.size();
     Insn::Type type = Insn::CP;
+    unsigned char zero_reg = ZERO_REG;
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    if (hasFlag(TempR1) && (minsize < reg1.size() || minsize < reg2.size())) {
+        // We will need a temporary register with the value zero in it.
+        Reg temp = allocateReg(1);
+        zero_reg = temp.reg(0);
+        zeroreg(zero_reg);
+        releaseReg(temp);
+    }
     for (index = 0; index < minsize; ++index) {
         tworeg(type, reg1.reg(index), reg2.reg(index));
         type = Insn::CPC;
     }
     while (index < reg1.size()) {
-        tworeg(type, reg1.reg(index), ZERO_REG);
+        tworeg(type, reg1.reg(index), zero_reg);
         type = Insn::CPC;
         ++index;
     }
     while (index < reg2.size()) {
-        tworeg(type, ZERO_REG, reg2.reg(index));
+        tworeg(type, zero_reg, reg2.reg(index));
         type = Insn::CPC;
         ++index;
     }
@@ -570,18 +591,18 @@ void Code::compare(const Reg& reg1, unsigned long long value)
     if (reg1.size() == 0)
         return;
     unsigned char bvalue = (unsigned char)value;
-    if (bvalue == 0) {
+    if (bvalue == 0 && !hasFlag(TempR1)) {
         tworeg(Insn::CP, reg1.reg(0), ZERO_REG);
     } else if (reg1.reg(0) >= 16) {
-        immreg(Insn::CPI, reg1.reg(0), (unsigned char)value);
+        immreg(Insn::CPI, reg1.reg(0), bvalue);
     } else {
-        unsigned char high_reg = immtemp((unsigned char)value);
+        unsigned char high_reg = immtemp(bvalue);
         tworeg(Insn::CP, reg1.reg(0), high_reg);
     }
     for (int index = 1; index < reg1.size(); ++index) {
         value >>= 8;
         bvalue = (unsigned char)value;
-        if (bvalue == 0) {
+        if (bvalue == 0 && !hasFlag(TempR1)) {
             tworeg(Insn::CPC, reg1.reg(index), ZERO_REG);
         } else {
             unsigned char high_reg = immtemp((unsigned char)value);
@@ -609,13 +630,13 @@ void Code::compare_and_loop
         bool closeBy = false;
         if (label != 0 && (m_insns.size() - getLabel(label)) <= 50)
             closeBy = true;
-        if (value == 0 && closeBy) {
+        if (value == 0 && closeBy && !hasFlag(TempR1)) {
             tworeg(Insn::CP, reg1.reg(0), ZERO_REG);
             brne(label);
         } else if (reg1.reg(0) >= 16 && closeBy) {
             immreg(Insn::CPI, reg1.reg(0), (unsigned char)value);
             brne(label);
-        } else if (value == 0) {
+        } else if (value == 0 && !hasFlag(TempR1)) {
             tworeg(Insn::CPSE, reg1.reg(0), ZERO_REG);
             jmp(label);
         } else {
@@ -661,38 +682,39 @@ void Code::compare_and_set
 
     // Compute TEMP_REG = (R1[0] ^ R2[0]) | (R1[1] ^ R2[1]) | ...
     Reg temp = allocateReg(1);
-    tworeg(Insn::MOV, TEMP_REG, reg1.reg(0));
-    tworeg(Insn::EOR, TEMP_REG, reg2.reg(0));
+    unsigned char temp2 = tempreg();
+    tworeg(Insn::MOV, temp2, reg1.reg(0));
+    tworeg(Insn::EOR, temp2, reg2.reg(0));
     for (int index = 1; index < reg1.size(); ++index) {
         tworeg(Insn::MOV, temp.reg(0), reg1.reg(0));
         tworeg(Insn::EOR, temp.reg(0), reg2.reg(0));
-        tworeg(Insn::OR, TEMP_REG, temp.reg(0));
+        tworeg(Insn::OR, temp2, temp.reg(0));
     }
 
     // Subtract the result from zero.  If there is a carry out
     // then the two values are not equal.
-    tworeg(Insn::MOV, temp.reg(0), ZERO_REG);
-    tworeg(Insn::SUB, temp.reg(0), TEMP_REG);
+    zeroreg(temp.reg(0));
+    tworeg(Insn::SUB, temp.reg(0), temp2);
     releaseReg(temp);
 
     // Now determine how to set the result register.
     if (set == 0) {
         // Result should be zero if equal or all-0xFF if not equal.
-        tworeg(Insn::MOV, regout.reg(0), ZERO_REG);
-        tworeg(Insn::SBC, regout.reg(0), ZERO_REG);
+        zeroreg_no_cc(regout.reg(0));
+        tworeg(Insn::SBC, regout.reg(0), regout.reg(0));
         for (int index = 1; index < regout.size(); ++index)
             tworeg(Insn::MOV, regout.reg(index), regout.reg(0));
     } else if (set == 1) {
         // Result should be 1 if equal or zero if not equal.
-        tworeg(Insn::MOV, regout.reg(0), ZERO_REG);
+        zeroreg_no_cc(regout.reg(0));
         onereg(Insn::ROL, regout.reg(0));
         unsigned char high_reg = immtemp(0x01);
         tworeg(Insn::EOR, regout.reg(0), high_reg);
         for (int index = 1; index < regout.size(); ++index)
-            tworeg(Insn::MOV, regout.reg(index), ZERO_REG);
+            zeroreg(regout.reg(index));
     } else {
         // Result should be all-0xFF if equal or zero if not equal.
-        tworeg(Insn::MOV, regout.reg(0), ZERO_REG);
+        zeroreg_no_cc(regout.reg(0));
         onereg(Insn::ROL, regout.reg(0));
         onereg(Insn::DEC, regout.reg(0));
         for (int index = 1; index < regout.size(); ++index)
@@ -733,7 +755,7 @@ void Code::lsl(const Reg &reg, unsigned bits)
             unsigned char high_reg = immtemp(0xF0);
             tworeg(Insn::AND, reg.reg(0), high_reg);
         }
-    } else if ((bits % 8) <= 4) {
+    } else if ((bits % 8) <= 4 || !have_tempreg()) {
         // Shift left by 2, 3, or 4 bits plus a byte shift.
         lsl_bytes(reg, bits / 8);
         bits %= 8;
@@ -745,10 +767,11 @@ void Code::lsl(const Reg &reg, unsigned bits)
         // Shift left by 5, 6, or 7 bits plus a byte shift.  We do this
         // by shifting right by 3, 2, or 1 bits and then do the byte shift.
         unsigned count = bits / 8;
+        unsigned char temp_reg = tempreg();
         bits = (8 - (bits % 8));
-        tworeg(Insn::MOV, TEMP_REG, ZERO_REG);
+        zeroreg(temp_reg);
         Reg temp(reg, 0, reg.size() - count);
-        temp.m_regs.insert(temp.m_regs.begin(), TEMP_REG);
+        temp.m_regs.insert(temp.m_regs.begin(), temp_reg);
         while (bits > 0) {
             lsr(temp, 1);
             --bits;
@@ -817,7 +840,7 @@ void Code::lsr(const Reg &reg, unsigned bits)
             unsigned char high_reg = immtemp(0x0F);
             tworeg(Insn::AND, reg.reg(0), high_reg);
         }
-    } else if ((bits % 8) <= 4) {
+    } else if ((bits % 8) <= 4 || !have_tempreg()) {
         // Shift right by 2, 3, or 4 bits plus a byte shift.
         lsr_bytes(reg, bits / 8);
         bits %= 8;
@@ -829,10 +852,11 @@ void Code::lsr(const Reg &reg, unsigned bits)
         // Shift right by 5, 6, or 7 bits plus a byte shift.  We do this
         // by shifting left by 3, 2, or 1 bits and then do the byte shift.
         unsigned count = bits / 8;
+        unsigned char temp_reg = tempreg();
         bits = (8 - (bits % 8));
-        tworeg(Insn::MOV, TEMP_REG, ZERO_REG);
+        zeroreg(temp_reg);
         Reg temp(reg, count, reg.size() - count);
-        temp.m_regs.push_back(TEMP_REG);
+        temp.m_regs.push_back(temp_reg);
         while (bits > 0) {
             lsl(temp, 1);
             --bits;
@@ -968,7 +992,7 @@ void Code::move(const Reg &reg1, const Reg &reg2, bool zeroFill)
     }
     while (index < reg1.size() && zeroFill) {
         // Zero-fill the rest of the destination register.
-        tworeg(Insn::MOV, reg1.reg(index), ZERO_REG);
+        zeroreg(reg1.reg(index));
         ++index;
     }
 }
@@ -983,7 +1007,7 @@ void Code::move(const Reg &reg1, unsigned long long value)
 {
     for (int index = 0; index < reg1.size(); ++index) {
         unsigned char bvalue = (unsigned char)value;
-        if (bvalue == 0) {
+        if (bvalue == 0 && !hasFlag(TempR1)) {
             tworeg(Insn::MOV, reg1.reg(index), ZERO_REG);
         } else if (reg1.reg(index) >= 16) {
             immreg(Insn::LDI, reg1.reg(index), bvalue);
@@ -1075,7 +1099,7 @@ void Code::logand(const Reg &reg1, const Reg &reg2)
     }
     while (index < reg1.size()) {
         // Zero-fill the rest of the destination register.
-        tworeg(Insn::MOV, reg1.reg(index), ZERO_REG);
+        zeroreg(reg1.reg(index));
         ++index;
     }
 }
@@ -1092,7 +1116,7 @@ void Code::logand(const Reg &reg1, unsigned long long value)
         unsigned char bvalue = (unsigned char)value;
         if (bvalue == 0) {
             // AND'ing with zero simply sets the byte to zero.
-            tworeg(Insn::MOV, reg1.reg(index), ZERO_REG);
+            zeroreg(reg1.reg(index));
         } else if (bvalue == 0xFF) {
             // AND'ing with 0xFF does nothing to the byte.  Skip it.
         } else if (reg1.reg(index) >= 16) {
@@ -1125,11 +1149,12 @@ void Code::logand_not(const Reg &reg1, const Reg &reg2)
     int minsize = reg1.size();
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    unsigned char temp_reg = tempreg();
     for (index = 0; index < minsize; ++index) {
         // AND-NOT all bytes that the two registers have in common.
-        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
-        onereg(Insn::COM, TEMP_REG);
-        tworeg(Insn::AND, reg1.reg(index), TEMP_REG);
+        tworeg(Insn::MOV, temp_reg, reg2.reg(index));
+        onereg(Insn::COM, temp_reg);
+        tworeg(Insn::AND, reg1.reg(index), temp_reg);
     }
 }
 
@@ -1247,11 +1272,12 @@ void Code::logor_not(const Reg &reg1, const Reg &reg2)
     int minsize = reg1.size();
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    unsigned char temp_reg = tempreg();
     for (index = 0; index < minsize; ++index) {
         // OR-NOT all bytes that the two registers have in common.
-        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
-        onereg(Insn::COM, TEMP_REG);
-        tworeg(Insn::OR, reg1.reg(index), TEMP_REG);
+        tworeg(Insn::MOV, temp_reg, reg2.reg(index));
+        onereg(Insn::COM, temp_reg);
+        tworeg(Insn::OR, reg1.reg(index), temp_reg);
     }
     while (index < reg1.size()) {
         // Fill the rest of the destination register with 0xFF bytes.
@@ -1323,11 +1349,12 @@ void Code::logxor_not(const Reg &reg1, const Reg &reg2)
     int minsize = reg1.size();
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    unsigned char temp_reg = tempreg();
     for (index = 0; index < minsize; ++index) {
         // XOR-NOT all bytes that the two registers have in common.
-        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
-        onereg(Insn::COM, TEMP_REG);
-        tworeg(Insn::EOR, reg1.reg(index), TEMP_REG);
+        tworeg(Insn::MOV, temp_reg, reg2.reg(index));
+        onereg(Insn::COM, temp_reg);
+        tworeg(Insn::EOR, reg1.reg(index), temp_reg);
     }
     while (index < reg1.size()) {
         // XOR the rest of the destination register with 0xFF bytes.
@@ -1353,11 +1380,12 @@ void Code::logxor_and(const Reg &reg1, const Reg &reg2, const Reg &reg3)
     int minsize = reg1.size();
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    unsigned char temp_reg = tempreg();
     for (index = 0; index < minsize; ++index) {
         // XOR-AND all bytes that the two registers have in common.
-        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
-        tworeg(Insn::AND, TEMP_REG, reg3.reg(index));
-        tworeg(Insn::EOR, reg1.reg(index), TEMP_REG);
+        tworeg(Insn::MOV, temp_reg, reg2.reg(index));
+        tworeg(Insn::AND, temp_reg, reg3.reg(index));
+        tworeg(Insn::EOR, reg1.reg(index), temp_reg);
     }
 }
 
@@ -1378,11 +1406,12 @@ void Code::logxor_or(const Reg &reg1, const Reg &reg2, const Reg &reg3)
     int minsize = reg1.size();
     if (reg2.size() < minsize)
         minsize = reg2.size();
+    unsigned char temp_reg = tempreg();
     for (index = 0; index < minsize; ++index) {
         // XOR-OR all bytes that the two registers have in common.
-        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
-        tworeg(Insn::OR, TEMP_REG, reg3.reg(index));
-        tworeg(Insn::EOR, reg1.reg(index), TEMP_REG);
+        tworeg(Insn::MOV, temp_reg, reg2.reg(index));
+        tworeg(Insn::OR, temp_reg, reg3.reg(index));
+        tworeg(Insn::EOR, reg1.reg(index), temp_reg);
     }
 }
 
@@ -1429,7 +1458,7 @@ void Code::rol(const Reg &reg, unsigned bits)
     if (bits == 0 || reg.size() == 0) {
         // Nothing to do when rotating by zero bits.
         return;
-    } else if (bits == 1) {
+    } else if (bits == 1 && !hasFlag(TempR1)) {
         // Rotate left by a single bit.
         for (int index = 0; index < reg.size(); ++index) {
             if (index == 0)
@@ -1438,6 +1467,16 @@ void Code::rol(const Reg &reg, unsigned bits)
                 onereg(Insn::ROL, reg.reg(index));
         }
         tworeg(Insn::ADC, reg.reg(0), ZERO_REG);
+    } else if (bits == 1) {
+        // Rotate left by a single bit when we don't have "r1" available.
+        bitop(Insn::BST, reg.reg(reg.size() - 1), 7);
+        for (int index = 0; index < reg.size(); ++index) {
+            if (index == 0)
+                onereg(Insn::LSL, reg.reg(index));
+            else
+                onereg(Insn::ROL, reg.reg(index));
+        }
+        bitop(Insn::BLD, reg.reg(0), 0);
     } else if ((bits % 8) == 0) {
         // Rotation is a multiple of 8, so rotate the bytes instead.
         rol_bytes(reg, bits / 8);
@@ -1488,38 +1527,50 @@ void Code::rol_bytes(const Reg &reg, unsigned count)
         // only need a single temporary register to do the rotation.
         int strip_len = reg.size() / count;
         int from, to;
+        unsigned char temp_reg = have_tempreg() ? tempreg() : 0xFF;
         for (int strip = 0; strip < (int)count; ++strip) {
             from = (strip + (strip_len - 1) * count) % reg.size();
-            tworeg(Insn::MOV, TEMP_REG, reg.reg(from));
+            if (temp_reg != 0xFF)
+                tworeg(Insn::MOV, temp_reg, reg.reg(from));
+            else
+                onereg(Insn::PUSH, reg.reg(from));
             for (int posn = strip_len - 2; posn >= 0; --posn) {
                 from = (strip + posn * count) % reg.size();
                 to = (strip + (posn + 1) * count) % reg.size();
                 tworeg(Insn::MOV, reg.reg(to), reg.reg(from));
             }
-            tworeg(Insn::MOV, reg.reg(strip), TEMP_REG);
+            if (temp_reg != 0xFF)
+                tworeg(Insn::MOV, reg.reg(strip), temp_reg);
+            else
+                onereg(Insn::POP, reg.reg(strip));
         }
     } else {
         // We need multiple temporary registers to perform the rotation.
         // If we don't have enough registers free, use the stack instead.
         int index;
-        Reg temp = allocateOptionalReg(count - 1);
+        Reg temp;
+        if (!hasFlag(TempR0)) {
+            temp = allocateOptionalReg(count - 1);
+            temp.m_regs.push_back(TEMP_REG);
+        } else {
+            temp = allocateOptionalReg(count);
+        }
         for (index = 0; index < (int)count; ++index) {
             int from = reg.size() - count + index;
-            if (index == 0)
-                tworeg(Insn::MOV, TEMP_REG, reg.reg(from));
-            else if ((index - 1) < temp.size())
-                tworeg(Insn::MOV, temp.reg(index - 1), reg.reg(from));
+            if (index < temp.size())
+                tworeg(Insn::MOV, temp.reg(index), reg.reg(from));
             else
                 onereg(Insn::PUSH, reg.reg(from));
         }
         for (index = reg.size() - count - 1; index >= 0; --index) {
-            tworeg(Insn::MOV, temp.reg(index), reg.reg(index + count));
+            tworeg(Insn::MOV, reg.reg(index), reg.reg(index + count));
+        }
+        for (index = reg.size() - count - 1; index >= 0; --index) {
+            tworeg(Insn::MOV, reg.reg(index + count), reg.reg(index));
         }
         for (index = count - 1; index >= 0; --index) {
-            if (index == 0)
-                tworeg(Insn::MOV, reg.reg(index), TEMP_REG);
-            else if ((index - 1) < temp.size())
-                tworeg(Insn::MOV, reg.reg(index), temp.reg(index - 1));
+            if (index < temp.size())
+                tworeg(Insn::MOV, reg.reg(index), temp.reg(index));
             else
                 onereg(Insn::POP, reg.reg(index));
         }
@@ -1562,15 +1613,24 @@ void Code::ror(const Reg &reg, unsigned bits)
         // bits before OR'ing them back in again at the end.
         ror_bytes(reg, bits / 8);
         bits %= 8;
-        tworeg(Insn::MOV, TEMP_REG, ZERO_REG);
-        while (bits > 0) {
-            onereg(Insn::LSR, reg.reg(reg.size() - 1));
-            for (int index = reg.size() - 2; index >= 0; --index)
-                onereg(Insn::ROR, reg.reg(index));
-            onereg(Insn::ROR, TEMP_REG);
-            --bits;
+        if (have_tempreg()) {
+            unsigned char temp_reg = tempreg();
+            zeroreg(temp_reg);
+            while (bits > 0) {
+                onereg(Insn::LSR, reg.reg(reg.size() - 1));
+                for (int index = reg.size() - 2; index >= 0; --index)
+                    onereg(Insn::ROR, reg.reg(index));
+                onereg(Insn::ROR, temp_reg);
+                --bits;
+            }
+            tworeg(Insn::OR, reg.reg(reg.size() - 1), temp_reg);
+        } else {
+            // We don't have a temporary register to use, so do it bit by bit.
+            while (bits > 0) {
+                ror(reg, 1);
+                --bits;
+            }
         }
-        tworeg(Insn::OR, reg.reg(reg.size() - 1), TEMP_REG);
     } else {
         // Rotate right by between 5 and 7 bits.  We can do this with a
         // left bit rotation by "8 - bits" together with a byte rotation.
@@ -1607,26 +1667,37 @@ void Code::ror_bytes(const Reg &reg, unsigned count)
         // only need a single temporary register to do the rotation.
         int strip_len = reg.size() / count;
         int from, to;
+        unsigned char temp_reg = have_tempreg() ? tempreg() : 0xFF;
         for (int strip = 0; strip < (int)count; ++strip) {
-            tworeg(Insn::MOV, TEMP_REG, reg.reg(strip));
+            if (temp_reg != 0xFF)
+                tworeg(Insn::MOV, temp_reg, reg.reg(strip));
+            else
+                onereg(Insn::PUSH, reg.reg(strip));
             for (int posn = 1; posn < strip_len; ++posn) {
                 from = (strip + posn * count) % reg.size();
                 to = (strip + (posn - 1) * count) % reg.size();
                 tworeg(Insn::MOV, reg.reg(to), reg.reg(from));
             }
             to = (strip + (strip_len - 1) * count) % reg.size();
-            tworeg(Insn::MOV, reg.reg(to), TEMP_REG);
+            if (temp_reg != 0xFF)
+                tworeg(Insn::MOV, reg.reg(to), temp_reg);
+            else
+                onereg(Insn::POP, reg.reg(to));
         }
     } else {
         // We need multiple temporary registers to perform the rotation.
         // If we don't have enough registers free, use the stack instead.
         int index;
-        Reg temp = allocateOptionalReg(count - 1);
+        Reg temp;
+        if (!hasFlag(TempR0)) {
+            temp = allocateOptionalReg(count - 1);
+            temp.m_regs.push_back(TEMP_REG);
+        } else {
+            temp = allocateOptionalReg(count);
+        }
         for (index = 0; index < (int)count; ++index) {
-            if (index == 0)
-                tworeg(Insn::MOV, TEMP_REG, reg.reg(index));
-            else if ((index - 1) < temp.size())
-                tworeg(Insn::MOV, temp.reg(index - 1), reg.reg(index));
+            if (index < temp.size())
+                tworeg(Insn::MOV, temp.reg(index), reg.reg(index));
             else
                 onereg(Insn::PUSH, reg.reg(index));
         }
@@ -1635,10 +1706,8 @@ void Code::ror_bytes(const Reg &reg, unsigned count)
         }
         for (index = count - 1; index >= 0; --index) {
             int to = reg.size() - count + index;
-            if (index == 0)
-                tworeg(Insn::MOV, reg.reg(to), TEMP_REG);
-            else if ((index - 1) < temp.size())
-                tworeg(Insn::MOV, reg.reg(to), temp.reg(index - 1));
+            if (index < temp.size())
+                tworeg(Insn::MOV, reg.reg(to), temp.reg(index));
             else
                 onereg(Insn::POP, reg.reg(to));
         }
@@ -1661,8 +1730,11 @@ void Code::sbc(const Reg &reg1, const Reg &reg2)
     for (int index = 0; index < reg1.size(); ++index) {
         if (index < reg2.size()) {
             tworeg(Insn::SBC, reg1.reg(index), reg2.reg(index));
-        } else {
+        } else if (!hasFlag(TempR1)) {
             tworeg(Insn::SBC, reg1.reg(index), ZERO_REG);
+        } else {
+            unsigned char high_reg = immtemp(0);
+            tworeg(Insn::SBC, reg1.reg(index), high_reg);
         }
     }
 }
@@ -1686,8 +1758,11 @@ void Code::sub(const Reg &reg1, const Reg &reg2)
             tworeg(Insn::SUB, reg1.reg(index), reg2.reg(index));
         } else if (index < reg2.size()) {
             tworeg(Insn::SBC, reg1.reg(index), reg2.reg(index));
-        } else {
+        } else if (!hasFlag(TempR1)) {
             tworeg(Insn::SBC, reg1.reg(index), ZERO_REG);
+        } else {
+            unsigned char high_reg = immtemp(0);
+            tworeg(Insn::SBC, reg1.reg(index), high_reg);
         }
     }
 }
@@ -1707,8 +1782,14 @@ void Code::sub(const Reg &reg1, unsigned long long value, bool carryIn)
         if (bvalue == 0) {
             // Only need to subtract zero if we may have a carry out
             // from the previous byte.  Otherwise skip the byte.
-            if (haveCarry)
-                tworeg(Insn::SBC, reg1.reg(index), ZERO_REG);
+            if (haveCarry) {
+                if (!hasFlag(TempR1)) {
+                    tworeg(Insn::SBC, reg1.reg(index), ZERO_REG);
+                } else {
+                    unsigned char high_reg = immtemp(0);
+                    tworeg(Insn::SBC, reg1.reg(index), high_reg);
+                }
+            }
         } else if (bvalue == 1 && !haveCarry && reg1.size() == 1) {
             // Subtracting 1 from a single-byte register can be done with "dec".
             onereg(Insn::DEC, reg1.reg(index));
@@ -1748,7 +1829,7 @@ void Code::swap(const Reg &reg1, const Reg &reg2)
     if (minsize > reg2.size())
         minsize = reg2.size();
     for (int index = 0; index < minsize; ++index) {
-        if (m_usedRegs & (1 << TEMP_REG)) {
+        if (hasFlag(TempR0)) {
             // We are using the TEMP_REG for something else, so do an XOR swap.
             // https://en.wikipedia.org/wiki/XOR_swap_algorithm
             tworeg(Insn::EOR, reg1.reg(index), reg2.reg(index));
@@ -2001,19 +2082,20 @@ void Code::double_gf(const Reg &reg, unsigned feedback)
     Reg temp = allocateHighReg(1);
     if (feedback < 0x0100U || reg.size() == 1) {
         // Single byte feedback value.
-        tworeg(Insn::MOV, temp.reg(0), ZERO_REG);
-        tworeg(Insn::SBC, temp.reg(0), ZERO_REG);
+        zeroreg_no_cc(temp.reg(0));
+        tworeg(Insn::SBC, temp.reg(0), temp.reg(0));
         immreg(Insn::ANDI, temp.reg(0), (unsigned char)feedback);
         tworeg(Insn::EOR, reg.reg(0), temp.reg(0));
     } else {
         // Two byte feedback value.
-        tworeg(Insn::MOV, TEMP_REG, ZERO_REG);
-        tworeg(Insn::SBC, TEMP_REG, ZERO_REG);
+        unsigned char temp_reg = tempreg();
+        zeroreg_no_cc(temp_reg);
+        tworeg(Insn::SBC, temp_reg, temp_reg);
         immreg(Insn::LDI, temp.reg(0), (unsigned char)feedback);
-        tworeg(Insn::AND, temp.reg(0), TEMP_REG);
+        tworeg(Insn::AND, temp.reg(0), temp_reg);
         tworeg(Insn::EOR, reg.reg(0), temp.reg(0));
         immreg(Insn::LDI, temp.reg(0), (unsigned char)(feedback >> 8));
-        tworeg(Insn::AND, temp.reg(0), TEMP_REG);
+        tworeg(Insn::AND, temp.reg(0), temp_reg);
         tworeg(Insn::EOR, reg.reg(1), temp.reg(0));
     }
     releaseReg(temp);
@@ -2107,6 +2189,33 @@ void Code::memory(Insn::Type type, unsigned char reg, unsigned char offset)
     used(reg);
 }
 
+/**
+ * \brief Sets a register to zero.
+ *
+ * \param reg The register to set to zero.
+ * \param sideEffects Set to true if it is allowable to side-effect the
+ * status flags; or false if no change to the status flags is permitted.
+ */
+void Code::zeroreg(unsigned char reg, bool sideEffects)
+{
+    if (!hasFlag(TempR1)) {
+        // We can use "r1" which is pre-loaded with zero.
+        tworeg(Insn::MOV, reg, ZERO_REG);
+    } else if (reg >= 16) {
+        // We can load an immediate zero value directly into a high register.
+        immreg(Insn::LDI, reg, 0);
+    } else if (sideEffects) {
+        // We don't care if the status flags are affected so use the
+        // "clr" instruction which XOR's the register with itself.
+        tworeg(Insn::EOR, reg, reg);
+    } else {
+        // Side effects are not allowed, so use a temporary high register.
+        // This could fail if we don't have any temporary registers left.
+        tworeg(Insn::MOV, reg, immtemp(0));
+    }
+    used(reg);
+}
+
 void Code::resetRegs()
 {
     m_regOrder.clear();
@@ -2156,6 +2265,15 @@ void Code::resetRegs()
     m_regOrder.push_back(25);
     m_regOrder.push_back(16);
     m_regOrder.push_back(17);
+
+    // In extreme circumstances we can also use "r0" and "r1".
+    // Keep "r0" free as long as possible; i.e. use "r1" first.
+    if (hasFlag(TempR1)) {
+        m_regOrder.push_back(1);
+    }
+    if (hasFlag(TempR0)) {
+        m_regOrder.push_back(0);
+    }
 }
 
 void Code::used(unsigned char reg)
@@ -2293,6 +2411,46 @@ unsigned char Code::immtemp(unsigned char value)
     return reg;
 }
 
+/**
+ * \brief Get a register that we can use as a temporary.
+ *
+ * \return The register number for the temporary, typically TEMP_REG.
+ *
+ * \sa have_tempreg()
+ */
+unsigned char Code::tempreg()
+{
+    if (!hasFlag(TempR0) || (m_allocated & (1 << TEMP_REG)) == 0) {
+        // We can use "r0" itself.
+        return TEMP_REG;
+    } else {
+        // Use any free register that we can find.  This may fail.
+        Reg reg = allocateReg(1);
+        releaseReg(reg);
+        return reg.reg(0);
+    }
+}
+
+/**
+ * \brief Do we have a spare register that can be used for temporaries?
+ *
+ * \return Returns true if there is a spare register; false if there is not.
+ *
+ * \sa tempreg()
+ */
+bool Code::have_tempreg()
+{
+    if (!hasFlag(TempR0) || (m_allocated & (1 << TEMP_REG)) == 0) {
+        // We can use "r0" itself.
+        return true;
+    } else {
+        // Use any free register that we can find.
+        Reg reg = allocateOptionalReg(1);
+        releaseReg(reg);
+        return reg.size() != 0;
+    }
+}
+
 void Code::add_ptr(unsigned char reg, int offset)
 {
     if (offset == 0) {
@@ -2307,7 +2465,7 @@ void Code::add_ptr(unsigned char reg, int offset)
         unsigned char high = (unsigned char)(offset >> 8);
         if (low != 0) {
             immreg(Insn::SUBI, reg, low);
-            if (high != 0)
+            if (high != 0 || hasFlag(TempR1))
                 immreg(Insn::SBCI, reg + 1, high);
             else
                 tworeg(Insn::SBC, reg + 1, ZERO_REG);
@@ -2400,13 +2558,14 @@ void Code::ld_st_long(const Reg &reg, Insn::Type type, unsigned offset)
  */
 void Code::ld_xor(const Reg &reg, Insn::Type type, unsigned offset)
 {
+    unsigned char temp_reg = tempreg();
     if (reg.size() == 0) {
         // Nothing to do to XOR an empty register.
     } else if ((((int)offset) + reg.size()) <= 64) {
         // Load direct from the pointer and XOR with the register.
         for (int index = 0; index < reg.size(); ++index) {
-            memory(type, TEMP_REG, offset + index);
-            tworeg(Insn::EOR, reg.reg(index), TEMP_REG);
+            memory(type, temp_reg, offset + index);
+            tworeg(Insn::EOR, reg.reg(index), temp_reg);
         }
     } else {
         // Too far away, so adjust the Y or Z pointer before/after accessing.
@@ -2415,11 +2574,11 @@ void Code::ld_xor(const Reg &reg, Insn::Type type, unsigned offset)
         else
             add_ptr(30, offset);
         for (int index = 0; index < reg.size() - 1; ++index) {
-            memory(type, TEMP_REG, POST_INC);
-            tworeg(Insn::EOR, reg.reg(index), TEMP_REG);
+            memory(type, temp_reg, POST_INC);
+            tworeg(Insn::EOR, reg.reg(index), temp_reg);
         }
-        memory(type, TEMP_REG, 0);
-        tworeg(Insn::EOR, reg.reg(reg.size() - 1), TEMP_REG);
+        memory(type, temp_reg, 0);
+        tworeg(Insn::EOR, reg.reg(reg.size() - 1), temp_reg);
         if (type == Insn::LD_Y)
             add_ptr(28, -(offset + reg.size() - 1));
         else
