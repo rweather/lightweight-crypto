@@ -1,7 +1,7 @@
 
 include ../../options.mak
 
-.PHONY: all clean check
+.PHONY: all clean check generate
 
 CXXFLAGS += -g $(COMMON_CFLAGS) $(STDC_CXXFLAGS)
 
@@ -37,3 +37,10 @@ algorithm_sparkle.o: code.h gen.h
 algorithm_speck64.o: code.h gen.h
 algorithm_tinyjambu.o: code.h gen.h
 interpret.o: code.h
+
+generate: $(TARGET)
+	./$(TARGET) CHAM >../combined/internal-cham-avr.S
+	./$(TARGET) GIFT-64 >../combined/internal-gift64-avr.S
+	./$(TARGET) SPARKLE >../combined/internal-sparkle-avr.S
+	./$(TARGET) SPECK-64 >../combined/internal-speck64-avr.S
+	./$(TARGET) TinyJAMBU >../combined/internal-tinyjambu-avr.S
