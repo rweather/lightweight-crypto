@@ -1337,6 +1337,56 @@ void Code::logxor_not(const Reg &reg1, const Reg &reg2)
 }
 
 /**
+ * \brief Performs a logical XOR-AND between three registers.
+ *
+ * \param reg1 The destination register to XOR into.
+ * \param reg2 The first source register to AND.
+ * \param reg3 The second source register to AND.
+ *
+ * The result in reg1 will be set to (reg1 ^ (reg2 & reg3)).
+ *
+ * It is assumed that \a reg2 and \a reg3 have the same size.
+ */
+void Code::logxor_and(const Reg &reg1, const Reg &reg2, const Reg &reg3)
+{
+    int index;
+    int minsize = reg1.size();
+    if (reg2.size() < minsize)
+        minsize = reg2.size();
+    for (index = 0; index < minsize; ++index) {
+        // XOR-AND all bytes that the two registers have in common.
+        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
+        tworeg(Insn::AND, TEMP_REG, reg3.reg(index));
+        tworeg(Insn::EOR, reg1.reg(index), TEMP_REG);
+    }
+}
+
+/**
+ * \brief Performs a logical XOR-OR between three registers.
+ *
+ * \param reg1 The destination register to XOR into.
+ * \param reg2 The first source register to OR.
+ * \param reg3 The second source register to OR.
+ *
+ * The result in reg1 will be set to (reg1 ^ (reg2 | reg3)).
+ *
+ * It is assumed that \a reg2 and \a reg3 have the same size.
+ */
+void Code::logxor_or(const Reg &reg1, const Reg &reg2, const Reg &reg3)
+{
+    int index;
+    int minsize = reg1.size();
+    if (reg2.size() < minsize)
+        minsize = reg2.size();
+    for (index = 0; index < minsize; ++index) {
+        // XOR-OR all bytes that the two registers have in common.
+        tworeg(Insn::MOV, TEMP_REG, reg2.reg(index));
+        tworeg(Insn::OR, TEMP_REG, reg3.reg(index));
+        tworeg(Insn::EOR, reg1.reg(index), TEMP_REG);
+    }
+}
+
+/**
  * \brief Pops a register from the stack.
  *
  * \param reg The register to pop the values into.
@@ -1680,6 +1730,36 @@ void Code::sub(const Reg &reg1, unsigned long long value, bool carryIn)
             haveCarry = true;
         }
         value >>= 8;
+    }
+}
+
+/**
+ * \brief Swaps the contents of two registers.
+ *
+ * \param reg1 The first register.
+ * \param reg2 The second register, which must not be the same as \a reg1.
+ *
+ * The two registers are assumed to have the same size.  If not, only
+ * the low bytes that the two registers have in common will be swapped.
+ */
+void Code::swap(const Reg &reg1, const Reg &reg2)
+{
+    int minsize = reg1.size();
+    if (minsize > reg2.size())
+        minsize = reg2.size();
+    for (int index = 0; index < minsize; ++index) {
+        if (m_usedRegs & (1 << TEMP_REG)) {
+            // We are using the TEMP_REG for something else, so do an XOR swap.
+            // https://en.wikipedia.org/wiki/XOR_swap_algorithm
+            tworeg(Insn::EOR, reg1.reg(index), reg2.reg(index));
+            tworeg(Insn::EOR, reg2.reg(index), reg1.reg(index));
+            tworeg(Insn::EOR, reg1.reg(index), reg2.reg(index));
+        } else {
+            // Do a straight-forward swap via the TEMP_REG.
+            tworeg(Insn::MOV, TEMP_REG, reg1.reg(index));
+            tworeg(Insn::MOV, reg1.reg(index), reg2.reg(index));
+            tworeg(Insn::MOV, reg2.reg(index), TEMP_REG);
+        }
     }
 }
 

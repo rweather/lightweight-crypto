@@ -492,6 +492,8 @@ public:
     void logxor(const Reg &reg1, const Reg &reg2);
     void logxor(const Reg &reg1, unsigned long long value);
     void logxor_not(const Reg &reg1, const Reg &reg2);
+    void logxor_and(const Reg &reg1, const Reg &reg2, const Reg &reg3);
+    void logxor_or(const Reg &reg1, const Reg &reg2, const Reg &reg3);
     void pop(const Reg &reg);
     void push(const Reg &reg);
     void ret() { bare(Insn::RET); }
@@ -512,6 +514,7 @@ public:
     void stx_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_X, offset); }
     void sty_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset); }
     void stz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Z, offset); }
+    void swap(const Reg &reg1, const Reg &reg2);
 
     // Function prologue management.
     void prologue_setup_key(const char *name, unsigned size_locals);

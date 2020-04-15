@@ -59,8 +59,8 @@ designed for 32-bit.
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>1.00</td><td>1.01</td><td>1.74</td><td>1.74</td><td>1.18</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>1.00</td><td>1.01</td><td>1.74</td><td>1.74</td><td>1.18</td></tr>
 <tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>1.00</td><td>1.01</td><td>1.73</td><td>1.73</td><td>1.18</td></tr>
-<tr><td><b><i>LOTUS-AEAD</i></b> *</td><td>128</td><td>128</td><td>64</td><td>0.85</td><td>0.85</td><td>2.24</td><td>2.20</td><td>1.08</td></tr>
-<tr><td>LOCUS-AEAD *</td><td>128</td><td>128</td><td>64</td><td>0.84</td><td>0.84</td><td>2.23</td><td>2.18</td><td>1.07</td></tr>
+<tr><td><b><i>LOTUS-AEAD</i></b> *</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.84</td><td>2.21</td><td>2.17</td><td>1.06</td></tr>
+<tr><td>LOCUS-AEAD *</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.83</td><td>2.20</td><td>2.16</td><td>1.06</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.85</td><td>1.79</td><td>1.77</td><td>1.04</td></tr>
 <tr><td><b><i>KNOT-AEAD-128-256</i></b></td><td>128</td><td>128</td><td>128</td><td>0.79</td><td>0.80</td><td>1.62</td><td>1.61</td><td>0.96</td></tr>
 <tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.76</td><td>0.77</td><td>1.17</td><td>1.17</td><td>0.87</td></tr>

@@ -43,7 +43,7 @@ public:
     Reg k6, k7;
 
     // Temporaries.
-    Reg t1, t2;
+    Reg t1;
 
     void sub_cells(Code &code);
     void inv_sub_cells(Code &code);
@@ -54,9 +54,8 @@ public:
 
 Gift64State::Gift64State(Code &code, bool decrypt)
 {
-    // Allocate the temporaries (first needs to be in high registers).
+    // Allocate a temporary; must be in high register for constant loading.
     t1 = code.allocateHighReg(2);
-    t2 = code.allocateReg(2);
 
     // Allocate registers for the state.
     s0 = code.allocateReg(2);
@@ -115,19 +114,13 @@ Gift64State::Gift64State(Code &code, bool decrypt)
 void Gift64State::sub_cells(Code &code)
 {
     // s1 ^= s0 & s2;
-    code.move(t1, s0);
-    code.logand(t1, s2);
-    code.logxor(s1, t1);
+    code.logxor_and(s1, s0, s2);
 
     // s0 ^= s1 & s3;
-    code.move(t1, s3);
-    code.logand(t1, s1);
-    code.logxor(s0, t1);
+    code.logxor_and(s0, s1, s3);
 
     // s2 ^= s0 | s1;
-    code.move(t1, s0);
-    code.logor(t1, s1);
-    code.logxor(s2, t1);
+    code.logxor_or(s2, s0, s1);
 
     // s3 ^= s2;
     code.logxor(s3, s2);
@@ -140,9 +133,7 @@ void Gift64State::sub_cells(Code &code)
 
     // s2 ^= s0 & s1;
     code.move(t1, s0);
-    code.move(t2, s1);
-    code.logand(t2, t1);
-    code.logxor(s2, t2);
+    code.logxor_and(s2, s1, t1);
 
     // swap(s0, s3);
     code.move(s0, s3);
@@ -170,19 +161,13 @@ void Gift64State::inv_sub_cells(Code &code)
     code.logxor(s3, s2);
 
     // s2 ^= s0 | s1;
-    code.move(t1, s0);
-    code.move(t2, s1);
-    code.logor(t1, t2);
-    code.logxor(s2, t1);
+    code.logxor_or(s2, s0, s1);
 
     // s0 ^= s1 & s3;
-    code.logand(t2, s3);
-    code.logxor(s0, t2);
+    code.logxor_and(s0, s1, s3);
 
     // s1 ^= s0 & s2;
-    code.move(t1, s0);
-    code.logand(t1, s2);
-    code.logxor(s1, t1);
+    code.logxor_and(s1, s0, s2);
 }
 
 void Gift64State::perm_bits(Code &code, bool inverse)
