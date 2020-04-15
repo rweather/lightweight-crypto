@@ -109,14 +109,17 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:abfee87df206ebb6c569553e36b9eabe6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#abfee87df206ebb6c569553e36b9eabe6">GIFT128_LOW_MEMORY</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:abfee87df206ebb6c569553e36b9eabe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define this to 1 to use a low memory version of the key schedule.  <a href="#abfee87df206ebb6c569553e36b9eabe6">More...</a><br/></td></tr>
+<tr class="separator:abfee87df206ebb6c569553e36b9eabe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a642719cdc783743ff774f31b77513109"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a642719cdc783743ff774f31b77513109"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a642719cdc783743ff774f31b77513109">GIFT128_BLOCK_SIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:a642719cdc783743ff774f31b77513109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of a GIFT-128 block in bytes. <br/></td></tr>
 <tr class="separator:a642719cdc783743ff774f31b77513109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2aa6a99e9d2cf61a4579068480af51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa2aa6a99e9d2cf61a4579068480af51"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#afa2aa6a99e9d2cf61a4579068480af51">GIFT128_ROUND_KEYS</a>&#160;&#160;&#160;80</td></tr>
-<tr class="memdesc:afa2aa6a99e9d2cf61a4579068480af51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of round keys for the fixsliced representation of GIFT-128. <br/></td></tr>
-<tr class="separator:afa2aa6a99e9d2cf61a4579068480af51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5957cb1753fcdc528d2885707d06a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a5957cb1753fcdc528d2885707d06a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a3a5957cb1753fcdc528d2885707d06a8">GIFT128_ROUND_KEYS</a>&#160;&#160;&#160;80</td></tr>
+<tr class="memdesc:a3a5957cb1753fcdc528d2885707d06a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of round keys for the GIFT-128 key schedule. <br/></td></tr>
+<tr class="separator:a3a5957cb1753fcdc528d2885707d06a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -127,9 +130,9 @@ typedef <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ba0889c919a3b296579b4f600fe0333"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a0ba0889c919a3b296579b4f600fe0333">gift128b_init</a> (<a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, const unsigned char *key, size_t key_len)</td></tr>
-<tr class="memdesc:a0ba0889c919a3b296579b4f600fe0333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-128 (bit-sliced).  <a href="#a0ba0889c919a3b296579b4f600fe0333">More...</a><br/></td></tr>
-<tr class="separator:a0ba0889c919a3b296579b4f600fe0333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a263702f9f1840fa07a2c7f9bb13df8c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a263702f9f1840fa07a2c7f9bb13df8c1">gift128b_init</a> (<a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a263702f9f1840fa07a2c7f9bb13df8c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-128 (bit-sliced).  <a href="#a263702f9f1840fa07a2c7f9bb13df8c1">More...</a><br/></td></tr>
+<tr class="separator:a263702f9f1840fa07a2c7f9bb13df8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906bbcc9cd3dfd82444f493c0f924277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a906bbcc9cd3dfd82444f493c0f924277">gift128b_encrypt</a> (const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a906bbcc9cd3dfd82444f493c0f924277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with GIFT-128 (bit-sliced).  <a href="#a906bbcc9cd3dfd82444f493c0f924277">More...</a><br/></td></tr>
 <tr class="separator:a906bbcc9cd3dfd82444f493c0f924277"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,9 +142,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6013773ef83633ec436d35b7bba17db8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a6013773ef83633ec436d35b7bba17db8">gift128b_decrypt</a> (const <a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a6013773ef83633ec436d35b7bba17db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with GIFT-128 (bit-sliced).  <a href="#a6013773ef83633ec436d35b7bba17db8">More...</a><br/></td></tr>
 <tr class="separator:a6013773ef83633ec436d35b7bba17db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adde1a280e4018bfc0c23e33459d38db1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#adde1a280e4018bfc0c23e33459d38db1">gift128n_init</a> (<a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *ks, const unsigned char *key, size_t key_len)</td></tr>
-<tr class="memdesc:adde1a280e4018bfc0c23e33459d38db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-128 (nibble-based).  <a href="#adde1a280e4018bfc0c23e33459d38db1">More...</a><br/></td></tr>
-<tr class="separator:adde1a280e4018bfc0c23e33459d38db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90230cee327842ededad9b795b4755e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a90230cee327842ededad9b795b4755e2">gift128n_init</a> (<a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a90230cee327842ededad9b795b4755e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the key schedule for GIFT-128 (nibble-based).  <a href="#a90230cee327842ededad9b795b4755e2">More...</a><br/></td></tr>
+<tr class="separator:a90230cee327842ededad9b795b4755e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb0366799316b3087107637b87b11da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128_8h.html#a7cb0366799316b3087107637b87b11da">gift128n_encrypt</a> (const <a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
 <tr class="memdesc:a7cb0366799316b3087107637b87b11da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with GIFT-128 (nibble-based).  <a href="#a7cb0366799316b3087107637b87b11da">More...</a><br/></td></tr>
 <tr class="separator:a7cb0366799316b3087107637b87b11da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,7 +166,24 @@ Functions</h2></td></tr>
 <p>The third version is a variant on the HYENA nibble-based version that includes a 4-bit tweak value for domain separation. It is used by the ESTATE submission to NIST.</p>
 <p>Technically there is a fourth version of GIFT-128 which is the one that appeared in the original GIFT-128 paper. It is almost the same as the HYENA version except that the byte ordering is big-endian instead of HYENA's little-endian. The original version of GIFT-128 doesn't appear in any of the NIST submissions so we don't bother with it in this library.</p>
 <p>References: <a href="https://eprint.iacr.org/2017/622.pdf,">https://eprint.iacr.org/2017/622.pdf,</a> <a href="https://giftcipher.github.io/gift/">https://giftcipher.github.io/gift/</a> </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="abfee87df206ebb6c569553e36b9eabe6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GIFT128_LOW_MEMORY&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define this to 1 to use a low memory version of the key schedule. </p>
+<p>The default is to use the fix-sliced version of GIFT-128 which is very fast on 32-bit platforms but requires 320 bytes to store the key schedule. The large key schedule may be a problem on 8-bit and 16-bit platforms.</p>
+<p>GIFT128_LOW_MEMORY can be defined to 1 to select the original non fix-sliced version which only requires 16 bytes to store the key, with the rest of the key schedule expanded on the fly. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a6013773ef83633ec436d35b7bba17db8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -294,12 +314,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0ba0889c919a3b296579b4f600fe0333"></a>
+<a class="anchor" id="a263702f9f1840fa07a2c7f9bb13df8c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int gift128b_init </td>
+          <td class="memname">void gift128b_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structgift128b__key__schedule__t.html">gift128b_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
@@ -308,13 +328,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>key_len</em>&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -328,12 +342,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ks</td><td>Points to the key schedule to initialize. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the key data. </td></tr>
-    <tr><td class="paramname">key_len</td><td>Length of the key data, which must be 16.</td></tr>
+    <tr><td class="paramname">key</td><td>Points to the 16 bytes of the key data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Non-zero on success or zero if there is something wrong with the parameters. </dd></dl>
 
 </div>
 </div>
@@ -423,12 +435,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adde1a280e4018bfc0c23e33459d38db1"></a>
+<a class="anchor" id="a90230cee327842ededad9b795b4755e2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int gift128n_init </td>
+          <td class="memname">void gift128n_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="internal-gift128_8h.html#a4c3e44202d2f70b88b92cf3ba8849fc0">gift128n_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
@@ -437,13 +449,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>key_len</em>&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -457,12 +463,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ks</td><td>Points to the key schedule to initialize. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the key data. </td></tr>
-    <tr><td class="paramname">key_len</td><td>Length of the key data, which must be 16.</td></tr>
+    <tr><td class="paramname">key</td><td>Points to the 16 bytes of the key data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Non-zero on success or zero if there is something wrong with the parameters. </dd></dl>
 
 </div>
 </div>
@@ -571,7 +575,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 28 2020 10:09:11 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 15 2020 12:36:02 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

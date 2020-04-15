@@ -1,7 +1,7 @@
 var searchData=
 [
   ['r',['r',['../structpoly1305__state__t.html#a757291df58af5c2660d1418671e8083d',1,'poly1305_state_t::r()'],['../structdrysponge128__state__t.html#ae5deaf66d65a177b655dcd3ebae58f55',1,'drysponge128_state_t::r()'],['../structdrysponge256__state__t.html#a54c6ac424c580313e135d1f5d5577f48',1,'drysponge256_state_t::r()']]],
-  ['rk',['rk',['../structgift64b__key__schedule__t.html#a76c378bea6eafa48cffec371f059c493',1,'gift64b_key_schedule_t']]],
+  ['rk',['rk',['../structgift64n__key__schedule__t.html#aee805293b2de6cfcf6ff7cc4f16d0f5c',1,'gift64n_key_schedule_t']]],
   ['romulus_2eh',['romulus.h',['../romulus_8h.html',1,'']]],
   ['romulus1_5fnonce_5fsize',['ROMULUS1_NONCE_SIZE',['../romulus_8h.html#ae9ae52220eb8a555986fc85574ccf6e1',1,'romulus.h']]],
   ['romulus2_5fnonce_5fsize',['ROMULUS2_NONCE_SIZE',['../romulus_8h.html#a731e01313e83f1d086a88a3857c7196a',1,'romulus.h']]],
