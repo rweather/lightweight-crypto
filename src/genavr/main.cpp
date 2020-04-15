@@ -77,6 +77,107 @@ static bool cham64(enum Mode mode)
     return true;
 }
 
+static bool gift64_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_gift64n_setup_key(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64n_setup_key(code)) {
+            std::cout << "GIFT-64 key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64 key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift64n_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64n_encrypt(code)) {
+            std::cout << "GIFT-64 encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift64n_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64n_decrypt(code)) {
+            std::cout << "GIFT-64 decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64t_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift64t_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64t_encrypt(code)) {
+            std::cout << "TweGIFT-64 encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "TweGIFT-64 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64t_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift64t_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64t_decrypt(code)) {
+            std::cout << "TweGIFT-64 decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "TweGIFT-64 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64(enum Mode mode)
+{
+    bool ok = true;
+    if (!gift64_setup_key(mode))
+        ok = false;
+    if (!gift64_encrypt_block(mode))
+        ok = false;
+    if (!gift64_decrypt_block(mode))
+        ok = false;
+    if (!gift64t_encrypt_block(mode))
+        ok = false;
+    if (!gift64t_decrypt_block(mode))
+        ok = false;
+    return ok;
+}
+
 static bool speck64(enum Mode mode)
 {
     Code code;
@@ -182,6 +283,8 @@ int main(int argc, char *argv[])
         if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
+        } else if (!strcmp(argv[1], "GIFT-64")) {
+            gen1 = gift64;
         } else if (!strcmp(argv[1], "SPARKLE")) {
             gen1 = sparkle256;
             gen2 = sparkle384;
@@ -206,6 +309,8 @@ int main(int argc, char *argv[])
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))
+            exit_val = 1;
+        if (!gift64(Test))
             exit_val = 1;
         if (!speck64(Test))
             exit_val = 1;

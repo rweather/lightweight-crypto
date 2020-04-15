@@ -364,6 +364,7 @@ public:
         TempY    = 0x0004,      /**< Y pointer can be used as a temporary */
         TempZ    = 0x0008,      /**< Z pointer can be used as a temporary */
         Print    = 0x0010,      /**< Use diagnostic printing */
+        NoLocals = 0x0020,      /**< No locals and Y will not be touched */
     };
 
     /**
@@ -441,6 +442,9 @@ public:
     void add_ptr_y(int offset) { add_ptr(28, offset); }
     void add_ptr_z(int offset) { add_ptr(30, offset); }
     void asr(const Reg &reg);
+    void bit_get(const Reg &reg, int bit);
+    void bit_put(const Reg &reg, int bit);
+    void bit_permute(const Reg &reg, const unsigned char *perm, int size, bool inverse = false);
     void brcc(unsigned char &label) { branch(Insn::BRCC, label); }
     void brcs(unsigned char &label) { branch(Insn::BRCS, label); }
     void breq(unsigned char &label) { branch(Insn::BREQ, label); }
@@ -514,6 +518,9 @@ public:
     void prologue_encrypt_block(const char *name, unsigned size_locals);
     void prologue_decrypt_block(const char *name, unsigned size_locals)
         { prologue_encrypt_block(name, size_locals); }
+    Reg prologue_encrypt_block_with_tweak(const char *name, unsigned size_locals);
+    Reg prologue_decrypt_block_with_tweak(const char *name, unsigned size_locals)
+        { return prologue_encrypt_block_with_tweak(name, size_locals); }
     void prologue_permutation(const char *name, unsigned size_locals);
     Reg prologue_permutation_with_count(const char *name, unsigned size_locals);
     void prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds);
@@ -524,12 +531,14 @@ public:
                         const void *key, unsigned key_len);
     void exec_encrypt_block(const void *key, unsigned key_len,
                             void *output, unsigned output_len,
-                            const void *input, unsigned input_len);
+                            const void *input, unsigned input_len,
+                            unsigned tweak = 0);
     void exec_decrypt_block(const void *key, unsigned key_len,
                             void *output, unsigned output_len,
-                            const void *input, unsigned input_len)
+                            const void *input, unsigned input_len,
+                            unsigned tweak = 0)
         { exec_encrypt_block(key, key_len, output, output_len,
-                             input, input_len); }
+                             input, input_len, tweak); }
     void exec_permutation
         (void *state, unsigned state_len, unsigned char count = 0);
     void exec_tinyjambu

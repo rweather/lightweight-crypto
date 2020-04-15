@@ -458,10 +458,12 @@ void Code::exec_setup_key(void *schedule, unsigned schedule_len,
  * \param output_len Length of the output block buffer.
  * \param input Points to the buffer for the input block.
  * \param input_len Length of the input block buffer.
+ * \param tweak Tweak value for tweakable block ciphers.
  */
 void Code::exec_encrypt_block(const void *key, unsigned key_len,
                               void *output, unsigned output_len,
-                              const void *input, unsigned input_len)
+                              const void *input, unsigned input_len,
+                              unsigned tweak)
 {
     AVRState s;
     unsigned key_address = s.alloc_buffer(key, key_len);
@@ -474,6 +476,7 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
     unsigned fp = s.pair(32) - m_localsSize;
     s.setPair(28, fp);              // Y = frame pointer
     s.setPair(32, fp);
+    s.setPair(18, tweak);
     while (s.pc != (int)m_insns.size()) {
         if (s.pc < 0 || s.pc > (int)m_insns.size())
             throw std::invalid_argument("program counter out of range");

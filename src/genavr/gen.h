@@ -42,6 +42,18 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// GIFT-64 block cipher.
+void gen_gift64n_setup_key(Code &code);
+void gen_gift64n_encrypt(Code &code);
+void gen_gift64n_decrypt(Code &code);
+void gen_gift64t_encrypt(Code &code);
+void gen_gift64t_decrypt(Code &code);
+bool test_gift64n_setup_key(Code &code);
+bool test_gift64n_encrypt(Code &code);
+bool test_gift64n_decrypt(Code &code);
+bool test_gift64t_encrypt(Code &code);
+bool test_gift64t_decrypt(Code &code);
+
 // SPARKLE permutation.
 void gen_sparkle256_permutation(Code &code);
 void gen_sparkle384_permutation(Code &code);

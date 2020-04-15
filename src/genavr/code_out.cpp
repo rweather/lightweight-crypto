@@ -374,8 +374,10 @@ void Code::write(std::ostream &ostream) const
 
     // Push registers that we need to save on the stack.
     unsigned saved_regs = 2;
-    ostream << "\tpush r28" << std::endl; // Push Y
-    ostream << "\tpush r29" << std::endl;
+    if (!hasFlag(NoLocals) || m_localsSize != 0) {
+        ostream << "\tpush r28" << std::endl; // Push Y
+        ostream << "\tpush r29" << std::endl;
+    }
     for (int reg = 0; reg < 32; ++reg) {
         if ((saved & (1 << reg)) != 0 && (m_usedRegs & (1 << reg)) != 0) {
             Insn::reg1(Insn::PUSH, reg).write(ostream, *this, 0);
@@ -435,7 +437,9 @@ void Code::write(std::ostream &ostream) const
         break;
     }
     unsigned locals = m_localsSize;
-    if (locals <= 6) {
+    if (hasFlag(NoLocals) && locals == 0) {
+        // No local variables so we don't need to save or set up Y at all.
+    } else if (locals <= 6) {
         // Push some zeroes on the stack to create the locals as this
         // will involve less instructions than arithmetic on Y and SP.
         for (unsigned temp = 0; temp < locals; ++temp)
@@ -468,7 +472,9 @@ void Code::write(std::ostream &ostream) const
 
     // Pop the stack frame.
     locals += extras; // Also pop the local for the "output" pointer.
-    if (locals <= 6) {
+    if (hasFlag(NoLocals) && locals == 0) {
+        // No local variables so we don't need to restore the stack or Y.
+    } else if (locals <= 6) {
         // Pop the values directly from the stack because it will
         // involve less instructions than arithmetic on Y and SP.
         while (locals > 0) {
@@ -508,8 +514,10 @@ void Code::write(std::ostream &ostream) const
             Insn::reg1(Insn::POP, reg).write(ostream, *this, 0);
         }
     }
-    ostream << "\tpop r29" << std::endl;            // Pop Y
-    ostream << "\tpop r28" << std::endl;
+    if (!hasFlag(NoLocals)) {
+        ostream << "\tpop r29" << std::endl;        // Pop Y
+        ostream << "\tpop r28" << std::endl;
+    }
     ostream << "\tret" << std::endl;
 
     // Output the function footer.

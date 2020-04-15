@@ -400,6 +400,112 @@ void Code::asr(const Reg &reg)
 }
 
 /**
+ * \brief Gets a single bit out of a register and copies it to T.
+ *
+ * \param reg The source register.
+ * \param bit The index of the bit.
+ *
+ * \sa bit_put()
+ */
+void Code::bit_get(const Reg &reg, int bit)
+{
+    bitop(Insn::BST, reg.reg(bit / 8), bit % 8);
+}
+
+/**
+ * \brief Puts the contents of T into a single bit of a register.
+ *
+ * \param reg The destination register.
+ * \param bit The index of the bit.
+ *
+ * \sa bit_get()
+ */
+void Code::bit_put(const Reg &reg, int bit)
+{
+    bitop(Insn::BLD, reg.reg(bit / 8), bit % 8);
+}
+
+/**
+ * \brief Permutes the bits in a register by manually moving them 1 at a time.
+ *
+ * \param reg The register to be permuted.
+ * \param perm Points to the permutation to apply.
+ * \param size Size of the permutation which must be between 0 and 240
+ * and less than or equal to the size of the register.
+ * \param inverse Set to true if the permutation should be inverted.
+ *
+ * Each element in the permutation specifies the destination bit.  For example,
+ * the element at index 3 specifies the destination bit for source bit 3.
+ */
+void Code::bit_permute
+    (const Reg &reg, const unsigned char *perm, int size, bool inverse)
+{
+    int index, prev, next;
+
+    // Validate th size of the permutation.
+    if (size < 0 || size > (reg.size() * 8) || size > 240)
+        throw std::invalid_argument("invalid permutation size");
+
+    // Invert the permutation to convert "source bit goes to destination bit"
+    // into "destination bit comes from source bit".
+    unsigned char P[size];
+    if (!inverse) {
+        memset(P, 0xFF, size);
+        for (index = 0; index < size; ++index) {
+            int dest = perm[index];
+            if (dest >= size || P[dest] != 0xFF) {
+                // Invalid destination bit number, or multiple source bits
+                // are mapped to the same destination bit.
+                throw std::invalid_argument("invalid permutation data");
+            }
+            P[dest] = index;
+        }
+    } else {
+        // Permutation has already been inverted.
+        memcpy(P, perm, size);
+    }
+
+    // Scan through the inverted permutation multiple times to find all
+    // bit cycles, where A <- B <- ... <- Z <- A.  We stop once all
+    // elements in the permutation have been moved to their destination.
+    unsigned char done[size];
+    memset(done, 0, size);
+    for (index = 0; index < size; ++index) {
+        int src = P[index];
+        if (index == src) {
+            // Bit is moving to itself, so nothing to do.
+            done[index] = 1;
+            continue;
+        } else if (done[index]) {
+            // We already handled this bit as part of a previous bit cycle.
+            continue;
+        }
+
+        // Move the first bit in the cycle out into the temporary register.
+        bit_get(reg, index);
+        bitop(Insn::BLD, TEMP_REG, 0);
+        done[index] = 1;
+
+        // Copy the rest of the bits in the cycle.  We stop once we
+        // see something that is already done because that is the
+        // starting bit in the cycle.  Or at least it should be.
+        prev = index;
+        next = P[index];
+        while (!done[next]) {
+            bit_get(reg, next);
+            bit_put(reg, prev);
+            done[next] = 1;
+            prev = next;
+            next = P[prev];
+        }
+
+        // Copy the saved bit in the temporary register to the last position.
+        bitop(Insn::BST, TEMP_REG, 0);
+        bit_put(reg, prev);
+    }
+}
+
+/**
  * \brief Clears a register by XOR'ing it with itself.
  *
  * \param reg The register to clear.
@@ -1636,6 +1742,55 @@ void Code::prologue_encrypt_block(const char *name, unsigned size_locals)
     m_prologueType = EncryptBlock;
     m_name = name;
     m_localsSize = size_locals;
+}
+
+/**
+ * \brief Sets up the function prologue for a block encrypt function with an
+ * extra tweak parameter.
+ *
+ * \param name Name of the block encrypt function.
+ * \param size_locals Number of bytes of local variables that are needed.
+ *
+ * \return Returns a reference to the tweak byte.
+ *
+ * The generated function will have the following prototype:
+ *
+ * \code
+ * void name(const void *key, void *output, const void *input, unsigned char tweak)
+ * \endcode
+ *
+ * Where "key" points to the encryption key, or the key schedule if the
+ * schedule needs to be set up separately.  The "input" parameter points
+ * to the input block to be encrypted.  The "output" parameter points to
+ * the output block after encryption.  The "tweak" parameter is the
+ * tweak byte to use.
+ *
+ * In the generated code, Z will point to "key", X will point to
+ * "input" and Y will point to the local variable space.  The code
+ * should use load_output_ptr() later to load the "output" address
+ * into the X register at the end of the function.
+ *
+ * This function can also be used to set up a function prologue for a
+ * tweakable block decrypt function.
+ *
+ * \sa prologue_encrypt_block()
+ */
+Reg Code::prologue_encrypt_block_with_tweak
+    (const char *name, unsigned size_locals)
+{
+    m_prologueType = EncryptBlock;
+    m_name = name;
+    m_localsSize = size_locals;
+
+    // Output the standard encrypt block header.
+    prologue_encrypt_block(name, size_locals);
+
+    // r18 will contain the "tweak" parameter on entry, so allocate it.
+    m_allocated |= (1 << 18);
+    m_usedRegs |= (1 << 18);
+    Reg reg;
+    reg.m_regs.push_back(18);
+    return reg;
 }
 
 /**

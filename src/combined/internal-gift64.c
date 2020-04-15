@@ -616,25 +616,25 @@ static uint32_t const GIFT64_tweaks[16] = {
 
 void gift64t_encrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint16_t tweak)
 {
     uint32_t state[4];
     gift64n_to_words(state, input);
-    gift64b_encrypt_core(ks, state, GIFT64_tweaks[tweak]);
+    gift64b_encrypt_core(ks, state, GIFT64_tweaks[tweak & 0x0F]);
     gift64n_to_nibbles(output, state);
 }
 
 void gift64t_decrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint16_t tweak)
 {
     uint32_t state[4];
     gift64n_to_words(state, input);
-    gift64b_decrypt_core(ks, state, GIFT64_tweaks[tweak]);
+    gift64b_decrypt_core(ks, state, GIFT64_tweaks[tweak & 0x0F]);
     gift64n_to_nibbles(output, state);
 }
 
-#else /* GIFT64_LOW_MEMORY */
+#elif !defined(__AVR__) /* GIFT64_LOW_MEMORY */
 
 /* Round constants for GIFT-64 */
 static uint8_t const GIFT64_RC[28] = {
@@ -1032,15 +1032,9 @@ void gift64n_decrypt
     gift64n_to_nibbles(output, output);
 }
 
-/* 4-bit tweak values expanded to 16-bit */
-static uint16_t const GIFT64_tweaks[16] = {
-    0x0000, 0xe1e1, 0xd2d2, 0x3333, 0xb4b4, 0x5555, 0x6666, 0x8787,
-    0x7878, 0x9999, 0xaaaa, 0x4b4b, 0xcccc, 0x2d2d, 0x1e1e, 0xffff
-};
-
 void gift64t_encrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint16_t tweak)
 {
     uint16_t s0, s1, s2, s3;
     uint32_t w0, w1, w2, w3;
@@ -1087,7 +1081,7 @@ void gift64t_encrypt
 
         /* AddTweak - XOR in the tweak every 4 rounds except the last */
         if (((round + 1) % 4) == 0 && round < 27)
-            s2 ^= GIFT64_tweaks[tweak];
+            s2 ^= tweak;
 
         /* Rotate the key schedule */
         temp = w3;
@@ -1108,7 +1102,7 @@ void gift64t_encrypt
 
 void gift64t_decrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint16_t tweak)
 {
     uint16_t s0, s1, s2, s3;
     uint32_t w0, w1, w2, w3;
@@ -1174,7 +1168,7 @@ void gift64t_decrypt
 
         /* AddTweak - XOR in the tweak every 4 rounds except the last */
         if ((round % 4) == 0 && round != 28)
-            s2 ^= GIFT64_tweaks[tweak];
+            s2 ^= tweak;
 
         /* AddRoundKey - XOR in the key schedule and the round constant */
         s0 ^= (uint16_t)w3;

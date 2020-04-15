@@ -125,13 +125,31 @@ void gift64n_decrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
+/* 4-bit tweak values expanded to 16-bit for TweGIFT-64 */
+#define GIFT64T_TWEAK_0     0x0000      /**< TweGIFT-64 tweak value 0 */
+#define GIFT64T_TWEAK_1     0xe1e1      /**< TweGIFT-64 tweak value 1 */
+#define GIFT64T_TWEAK_2     0xd2d2      /**< TweGIFT-64 tweak value 2 */
+#define GIFT64T_TWEAK_3     0x3333      /**< TweGIFT-64 tweak value 3 */
+#define GIFT64T_TWEAK_4     0xb4b4      /**< TweGIFT-64 tweak value 4 */
+#define GIFT64T_TWEAK_5     0x5555      /**< TweGIFT-64 tweak value 5 */
+#define GIFT64T_TWEAK_6     0x6666      /**< TweGIFT-64 tweak value 6 */
+#define GIFT64T_TWEAK_7     0x8787      /**< TweGIFT-64 tweak value 7 */
+#define GIFT64T_TWEAK_8     0x7878      /**< TweGIFT-64 tweak value 8 */
+#define GIFT64T_TWEAK_9     0x9999      /**< TweGIFT-64 tweak value 9 */
+#define GIFT64T_TWEAK_10    0xaaaa      /**< TweGIFT-64 tweak value 10 */
+#define GIFT64T_TWEAK_11    0x4b4b      /**< TweGIFT-64 tweak value 11 */
+#define GIFT64T_TWEAK_12    0xcccc      /**< TweGIFT-64 tweak value 12 */
+#define GIFT64T_TWEAK_13    0x2d2d      /**< TweGIFT-64 tweak value 13 */
+#define GIFT64T_TWEAK_14    0x1e1e      /**< TweGIFT-64 tweak value 14 */
+#define GIFT64T_TWEAK_15    0xffff      /**< TweGIFT-64 tweak value 15 */
+
 /**
  * \brief Encrypts a 64-bit block with TweGIFT-64 (tweakable variant).
  *
  * \param ks Points to the GIFT-64 key schedule.
  * \param output Output buffer which must be at least 8 bytes in length.
  * \param input Input buffer which must be at least 8 bytes in length.
- * \param tweak 4-bit tweak value.
+ * \param tweak 4-bit tweak value expanded to 16-bit.
  *
  * The \a input and \a output buffers can be the same buffer for
  * in-place encryption.
@@ -143,7 +161,7 @@ void gift64n_decrypt
  */
 void gift64t_encrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak);
+     const unsigned char *input, uint16_t tweak);
 
 /**
  * \brief Decrypts a 64-bit block with TweGIFT-64 (tweakable variant).
@@ -151,7 +169,7 @@ void gift64t_encrypt
  * \param ks Points to the GIFT-64 key schedule.
  * \param output Output buffer which must be at least 8 bytes in length.
  * \param input Input buffer which must be at least 8 bytes in length.
- * \param tweak 4-bit tweak value.
+ * \param tweak 4-bit tweak value expanded to 16-bit.
  *
  * The \a input and \a output buffers can be the same buffer for
  * in-place encryption.
@@ -163,7 +181,7 @@ void gift64t_encrypt
  */
 void gift64t_decrypt
     (const gift64n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak);
+     const unsigned char *input, uint16_t tweak);
 
 #ifdef __cplusplus
 }

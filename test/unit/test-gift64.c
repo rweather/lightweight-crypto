@@ -61,7 +61,7 @@ static block_cipher_test_vector_128_t const gift64n_3 = {
     {0x08, 0x2d, 0xad, 0xcc, 0x6a, 0xe6, 0x3c, 0x64}    /* ciphertext */
 };
 
-static unsigned char gift64t_tweak_value = 0;
+static unsigned short gift64t_tweak_value = 0;
 
 static void gift64t_encrypt_wrapper
     (const gift64n_key_schedule_t *ks, unsigned char *output,
@@ -134,13 +134,13 @@ void test_gift64(void)
     test_block_cipher_end(&gift64n);
 
     test_block_cipher_start(&gift64t);
-    gift64t_tweak_value = 11;
+    gift64t_tweak_value = GIFT64T_TWEAK_11;
     test_block_cipher_other(&gift64t, &gift64t_1, 8);
-    gift64t_tweak_value = 4;
+    gift64t_tweak_value = GIFT64T_TWEAK_4;
     test_block_cipher_other(&gift64t, &gift64t_2, 8);
-    gift64t_tweak_value = 9;
+    gift64t_tweak_value = GIFT64T_TWEAK_9;
     test_block_cipher_other(&gift64t, &gift64t_3, 8);
-    gift64t_tweak_value = 0;
+    gift64t_tweak_value = GIFT64T_TWEAK_0;
     test_block_cipher_other(&gift64t, &gift64t_4, 8);
     test_block_cipher_end(&gift64t);
 }
