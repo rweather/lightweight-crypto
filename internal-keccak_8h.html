@@ -121,9 +121,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8aefd4da0dfa8cb624c870ab6fae2e02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-keccak_8h.html#a8aefd4da0dfa8cb624c870ab6fae2e02">keccakp_200_permute</a> (<a class="el" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a> *state, unsigned rounds)</td></tr>
-<tr class="memdesc:a8aefd4da0dfa8cb624c870ab6fae2e02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the Keccak-p[200] state.  <a href="#a8aefd4da0dfa8cb624c870ab6fae2e02">More...</a><br/></td></tr>
-<tr class="separator:a8aefd4da0dfa8cb624c870ab6fae2e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e3c3a6dcd1d710ba3bc77d35173e7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-keccak_8h.html#ae3e3c3a6dcd1d710ba3bc77d35173e7d">keccakp_200_permute</a> (<a class="el" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a> *state)</td></tr>
+<tr class="memdesc:ae3e3c3a6dcd1d710ba3bc77d35173e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the Keccak-p[200] state.  <a href="#ae3e3c3a6dcd1d710ba3bc77d35173e7d">More...</a><br/></td></tr>
+<tr class="separator:ae3e3c3a6dcd1d710ba3bc77d35173e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ea8bfa1024b53d5658e904e141cd2b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-keccak_8h.html#a7ea8bfa1024b53d5658e904e141cd2b9">keccakp_400_permute</a> (<a class="el" href="unionkeccakp__400__state__t.html">keccakp_400_state_t</a> *state, unsigned rounds)</td></tr>
 <tr class="memdesc:a7ea8bfa1024b53d5658e904e141cd2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the Keccak-p[400] state, which is assumed to be in little-endian byte order.  <a href="#a7ea8bfa1024b53d5658e904e141cd2b9">More...</a><br/></td></tr>
 <tr class="separator:a7ea8bfa1024b53d5658e904e141cd2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,7 +131,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal implementation of the Keccak-p permutation. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a8aefd4da0dfa8cb624c870ab6fae2e02"></a>
+<a class="anchor" id="ae3e3c3a6dcd1d710ba3bc77d35173e7d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -139,18 +139,8 @@ Functions</h2></td></tr>
           <td class="memname">void keccakp_200_permute </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="unionkeccakp__200__state__t.html">keccakp_200_state_t</a> *&#160;</td>
-          <td class="paramname"><em>state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>rounds</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -159,7 +149,6 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The Keccak-p[200] state to be permuted. </td></tr>
-    <tr><td class="paramname">rounds</td><td>The number of rounds to perform (up to 18). </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,7 +193,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 15 2020 13:14:30 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 09:57:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

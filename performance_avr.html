@@ -103,6 +103,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>2.76</td><td>2.65</td><td>2.71 </td></tr>
 <tr>
+<td>Delirium (Elephant) *</td><td>128</td><td>96</td><td>128</td><td>1.89</td><td>1.77</td><td>3.60</td><td>3.52</td><td>2.20 </td></tr>
+<tr>
 <td><b><em>TinyJAMBU-128</em></b> *</td><td>128</td><td>96</td><td>64</td><td>1.72</td><td>1.67</td><td>4.13</td><td>3.98</td><td>2.13 </td></tr>
 <tr>
 <td>TinyJAMBU-192 *</td><td>192</td><td>96</td><td>64</td><td>1.56</td><td>1.53</td><td>3.81</td><td>3.68</td><td>1.94 </td></tr>
@@ -145,9 +147,9 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>ORANGE-Zest</em></b></td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.40</td><td>0.53</td><td>0.53</td><td>0.44 </td></tr>
 <tr>
-<td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.34</td><td>0.35</td><td>0.64</td><td>0.65</td><td>0.41 </td></tr>
-<tr>
 <td><b><em>SpoC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.68</td><td>0.68</td><td>0.36 </td></tr>
+<tr>
+<td><b><em>ISAP-K-128A</em></b> *</td><td>128</td><td>128</td><td>128</td><td>0.32</td><td>0.33</td><td>0.25</td><td>0.25</td><td>0.30 </td></tr>
 <tr>
 <td><b><em>Spook-128-512-su</em></b></td><td>256</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.30</td><td>0.31</td><td>0.29 </td></tr>
 <tr>
@@ -209,8 +211,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.11</td><td>0.12</td><td>0.22</td><td>0.23</td><td>0.14 </td></tr>
 <tr>
-<td><b><em>ISAP-K-128A</em></b></td><td>128</td><td>128</td><td>128</td><td>0.14</td><td>0.14</td><td>0.11</td><td>0.11</td><td>0.13 </td></tr>
-<tr>
 <td><b><em>Subterranean</em></b></td><td>128</td><td>128</td><td>128</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12 </td></tr>
 <tr>
 <td><b><em>PAEF-ForkSkinny-128-288</em></b></td><td>128</td><td>104</td><td>128</td><td>0.10</td><td>0.07</td><td>0.41</td><td>0.28</td><td>0.11 </td></tr>
@@ -227,13 +227,13 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.04</td><td>0.04</td><td>0.06 </td></tr>
 <tr>
+<td>ISAP-K-128 *</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.06</td><td>0.03</td><td>0.03</td><td>0.04 </td></tr>
+<tr>
 <td><b><em>WAGE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.05</td><td>0.05</td><td>0.04 </td></tr>
 <tr>
 <td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
 <tr>
 <td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
-<tr>
-<td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
 <tr>
 <td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
 <tr>
@@ -312,11 +312,11 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>4</td><td>ORANGE </td></tr>
 <tr>
-<td>3</td><td>SpoC </td></tr>
+<td>3</td><td>ISAP, SpoC </td></tr>
 <tr>
 <td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus, SKINNY-AEAD, SPIX, Spook </td></tr>
 <tr>
-<td>1</td><td>ACE, DryGASCON, ForkAE, ISAP </td></tr>
+<td>1</td><td>ACE, DryGASCON, ForkAE </td></tr>
 <tr>
 <td>0</td><td>Elephant, Pyjamask, Subterranean, WAGE </td></tr>
 </table>
@@ -340,7 +340,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 15 2020 13:14:30 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 09:57:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

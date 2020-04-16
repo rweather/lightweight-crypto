@@ -319,7 +319,7 @@ ForkAE</h1>
 GIFT-COFB</h1>
 <p><b>Definition:</b> <a class="el" href="gift-cofb_8h.html">gift-cofb.h</a></p>
 <p>GIFT-COFB is an authenticated encryption algorithm that combines the COFB (COmbined FeedBack) block cipher mode with the bit-sliced version of the GIFT-128 block cipher. The algorithm has a 128-bit key, a 128-bit nonce, and a 128-bit authentication tag.</p>
-<p>The GIFT-128 block cipher was designed with hardware FPGA/ASIC implementations in mind, but with the "fixsliced" representation it is possible to acheive good software performance as well. This library implements fixslicing.</p>
+<p>The GIFT-128 block cipher was designed with hardware FPGA/ASIC implementations in mind, but with the <a href="https://eprint.iacr.org/2020/412.pdf">fixsliced</a> representation it is possible to acheive good software performance as well. This library implements fixslicing for 32-bit platforms.</p>
 <p>GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass algorithm used by SUNDAE-GIFT. Out of all the GIFT-128 based submissions to NIST, GIFT-COFB has the best software performance, although HYENA is fairly close.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_sundae_gift">SUNDAE-GIFT</a>, <a class="el" href="algorithms.html#alg_hyena">HYENA</a>, <a class="el" href="algorithms.html#alg_estate">ESTATE</a></p>
 <h1><a class="anchor" id="alg_gimli"></a>
@@ -557,7 +557,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 15 2020 13:14:30 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 09:57:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
