@@ -28,7 +28,7 @@ static unsigned char const addMod5Table[9] = {
 };
 #define addMod5(x, y) (addMod5Table[(x) + (y)])
 
-void keccakp_200_permute(keccakp_200_state_t *state, unsigned rounds)
+void keccakp_200_permute(keccakp_200_state_t *state)
 {
     static uint8_t const RC[18] = {
         0x01, 0x82, 0x8A, 0x00, 0x8B, 0x01, 0x81, 0x09,
@@ -39,7 +39,7 @@ void keccakp_200_permute(keccakp_200_state_t *state, unsigned rounds)
     uint8_t D;
     unsigned round;
     unsigned index, index2;
-    for (round = 18 - rounds; round < 18; ++round) {
+    for (round = 0; round < 18; ++round) {
         /* Step mapping theta.  The specification mentions two temporary
          * arrays of size 5 called C and D.  Compute D on the fly */
         for (index = 0; index < 5; ++index) {

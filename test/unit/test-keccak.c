@@ -26,7 +26,6 @@
 #include <string.h>
 
 /* Keccak-p[200] test vectors generated with the reference implementation */
-#define keccakp_200_rounds 18
 static unsigned char keccakp_200_in[25] = {
     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
     0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
@@ -66,7 +65,7 @@ static void test_keccakp_200(void)
     keccakp_200_state_t state;
     printf("    Keccak-p[200] ... ");
     memcpy(state.B, keccakp_200_in, sizeof(keccakp_200_in));
-    keccakp_200_permute(&state, keccakp_200_rounds);
+    keccakp_200_permute(&state);
     if (test_memcmp(state.B, keccakp_200_out, sizeof(keccakp_200_out))) {
         printf("failed\n");
         test_exit_result = 1;
