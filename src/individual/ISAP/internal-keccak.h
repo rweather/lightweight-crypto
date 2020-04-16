@@ -68,9 +68,8 @@ typedef union
  * \brief Permutes the Keccak-p[200] state.
  *
  * \param state The Keccak-p[200] state to be permuted.
- * \param rounds The number of rounds to perform (up to 18).
  */
-void keccakp_200_permute(keccakp_200_state_t *state, unsigned rounds);
+void keccakp_200_permute(keccakp_200_state_t *state);
 
 /**
  * \brief Permutes the Keccak-p[400] state, which is assumed to be in

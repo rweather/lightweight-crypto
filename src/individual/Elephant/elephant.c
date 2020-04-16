@@ -660,7 +660,7 @@ static void delirium_process_ad
         if (size <= adlen) {
             /* Process a complete block */
             lw_xor_block(state->B + posn, ad, size);
-            keccakp_200_permute(state, 18);
+            keccakp_200_permute(state);
             lw_xor_block(state->B, mask, DELIRIUM_TAG_SIZE);
             lw_xor_block(state->B, next, DELIRIUM_TAG_SIZE);
             lw_xor_block(tag, state->B, DELIRIUM_TAG_SIZE);
@@ -680,7 +680,7 @@ static void delirium_process_ad
 
     /* Pad and absorb the final block */
     state->B[posn] ^= 0x01;
-    keccakp_200_permute(state, 18);
+    keccakp_200_permute(state);
     lw_xor_block(state->B, mask, DELIRIUM_TAG_SIZE);
     lw_xor_block(state->B, next, DELIRIUM_TAG_SIZE);
     lw_xor_block(tag, state->B, DELIRIUM_TAG_SIZE);
@@ -707,7 +707,7 @@ int delirium_aead_encrypt
     /* Hash the key and generate the initial mask */
     memcpy(state.B, k, DELIRIUM_KEY_SIZE);
     memset(state.B + DELIRIUM_KEY_SIZE, 0, sizeof(state.B) - DELIRIUM_KEY_SIZE);
-    keccakp_200_permute(&state, 18);
+    keccakp_200_permute(&state);
     memcpy(mask, state.B, DELIRIUM_KEY_SIZE);
     memset(mask + DELIRIUM_KEY_SIZE, 0, sizeof(mask) - DELIRIUM_KEY_SIZE);
     memcpy(start, mask, sizeof(mask));
@@ -726,7 +726,7 @@ int delirium_aead_encrypt
         /* Encrypt using the current mask */
         memcpy(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, npub, DELIRIUM_NONCE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, m, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, mask, KECCAKP_200_STATE_SIZE);
         memcpy(c, state.B, KECCAKP_200_STATE_SIZE);
@@ -735,7 +735,7 @@ int delirium_aead_encrypt
         delirium_lfsr(next, mask);
         lw_xor_block(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, next, KECCAKP_200_STATE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);
@@ -751,7 +751,7 @@ int delirium_aead_encrypt
         unsigned temp = (unsigned)mlen;
         memcpy(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, npub, DELIRIUM_NONCE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, m, temp);
         lw_xor_block(state.B, mask, KECCAKP_200_STATE_SIZE);
         memcpy(c, state.B, temp);
@@ -762,7 +762,7 @@ int delirium_aead_encrypt
         memset(state.B + temp + 1, 0, KECCAKP_200_STATE_SIZE - temp - 1);
         lw_xor_block(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, next, KECCAKP_200_STATE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);
@@ -772,7 +772,7 @@ int delirium_aead_encrypt
         delirium_lfsr(next, mask);
         lw_xor_block_2_src(state.B, mask, next, KECCAKP_200_STATE_SIZE);
         state.B[0] ^= 0x01;
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);
@@ -807,7 +807,7 @@ int delirium_aead_decrypt
     /* Hash the key and generate the initial mask */
     memcpy(state.B, k, DELIRIUM_KEY_SIZE);
     memset(state.B + DELIRIUM_KEY_SIZE, 0, sizeof(state.B) - DELIRIUM_KEY_SIZE);
-    keccakp_200_permute(&state, 18);
+    keccakp_200_permute(&state);
     memcpy(mask, state.B, DELIRIUM_KEY_SIZE);
     memset(mask + DELIRIUM_KEY_SIZE, 0, sizeof(mask) - DELIRIUM_KEY_SIZE);
     memcpy(start, mask, sizeof(mask));
@@ -828,7 +828,7 @@ int delirium_aead_decrypt
         delirium_lfsr(next, mask);
         lw_xor_block_2_src(state.B, mask, next, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, c, KECCAKP_200_STATE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);
@@ -836,7 +836,7 @@ int delirium_aead_decrypt
         /* Decrypt using the current mask */
         memcpy(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, npub, DELIRIUM_NONCE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block_2_src(m, state.B, c, KECCAKP_200_STATE_SIZE);
 
@@ -853,7 +853,7 @@ int delirium_aead_decrypt
         lw_xor_block_2_src(state.B, mask, next, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, c, temp);
         state.B[temp] ^= 0x01;
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);
@@ -861,7 +861,7 @@ int delirium_aead_decrypt
         /* Decrypt the last block using the current mask */
         memcpy(state.B, mask, KECCAKP_200_STATE_SIZE);
         lw_xor_block(state.B, npub, DELIRIUM_NONCE_SIZE);
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, temp);
         lw_xor_block_2_src(m, state.B, c, temp);
         c += temp;
@@ -870,7 +870,7 @@ int delirium_aead_decrypt
         delirium_lfsr(next, mask);
         lw_xor_block_2_src(state.B, mask, next, KECCAKP_200_STATE_SIZE);
         state.B[0] ^= 0x01;
-        keccakp_200_permute(&state, 18);
+        keccakp_200_permute(&state);
         lw_xor_block(state.B, mask, DELIRIUM_TAG_SIZE);
         lw_xor_block(state.B, next, DELIRIUM_TAG_SIZE);
         lw_xor_block(tag, state.B, DELIRIUM_TAG_SIZE);

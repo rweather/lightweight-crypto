@@ -47,6 +47,7 @@
  * in any of the NIST submissions so we don't bother with it in this library.
  *
  * References: https://eprint.iacr.org/2017/622.pdf,
+ * https://eprint.iacr.org/2020/412.pdf,
  * https://giftcipher.github.io/gift/
  */
 
