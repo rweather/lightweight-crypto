@@ -54,6 +54,12 @@ bool test_gift64n_decrypt(Code &code);
 bool test_gift64t_encrypt(Code &code);
 bool test_gift64t_decrypt(Code &code);
 
+// Keccak permutation.
+void gen_keccakp_200_permutation(Code &code);
+void gen_keccakp_400_permutation(Code &code);
+bool test_keccakp_200_permutation(Code &code);
+bool test_keccakp_400_permutation(Code &code);
+
 // SPARKLE permutation.
 void gen_sparkle256_permutation(Code &code);
 void gen_sparkle384_permutation(Code &code);

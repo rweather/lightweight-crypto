@@ -2548,7 +2548,7 @@ void Code::ld_st_long(const Reg &reg, Insn::Type type, unsigned offset)
 }
 
 /**
- * \brief XOR's a register and a memory offset relative to X, Y, or Z.
+ * \brief XOR's a register and a memory offset relative to Y or Z.
  *
  * \param reg The register to XOR.
  * \param type The type of memory instruction, LD_Y or LD_Z.
@@ -2583,5 +2583,56 @@ void Code::ld_xor(const Reg &reg, Insn::Type type, unsigned offset)
             add_ptr(28, -(offset + reg.size() - 1));
         else
             add_ptr(30, -(offset + reg.size() - 1));
+    }
+}
+
+/**
+ * \brief XOR's a register into a memory offset relative to Y or Z.
+ *
+ * \param reg The register to XOR.
+ * \param type The type of memory instruction, LD_Y or LD_Z.
+ * \param offset An offset between 0 and 65355.
+ *
+ * This function is handy when XOR'ing a value against a state word in-place.
+ * It has the effect of "Y[offset] ^= reg" or "Z[offset] ^= reg".
+ */
+void Code::ld_xor_in(const Reg &reg, Insn::Type type, unsigned offset)
+{
+    unsigned char temp_reg = tempreg();
+    if (reg.size() == 0) {
+        // Nothing to do to XOR an empty register.
+    } else if ((((int)offset) + reg.size()) <= 64) {
+        // Load direct from the pointer and XOR with the register.
+        for (int index = 0; index < reg.size(); ++index) {
+            memory(type, temp_reg, offset + index);
+            tworeg(Insn::EOR, temp_reg, reg.reg(index));
+            if (type == Insn::LD_Y)
+                memory(Insn::ST_Y, temp_reg, offset + index);
+            else
+                memory(Insn::ST_Z, temp_reg, offset + index);
+        }
+    } else {
+        // Too far away, so adjust the Y or Z pointer before/after accessing.
+        if (type == Insn::LD_Y)
+            add_ptr(28, offset);
+        else
+            add_ptr(30, offset);
+        for (int index = 0; index < reg.size() - 1; ++index) {
+            memory(type, temp_reg, 0);
+            tworeg(Insn::EOR, temp_reg, reg.reg(index));
+            if (type == Insn::LD_Y)
+                memory(Insn::ST_Y, temp_reg, POST_INC);
+            else
+                memory(Insn::ST_Z, temp_reg, POST_INC);
+        }
+        memory(type, temp_reg, 0);
+        tworeg(Insn::EOR, temp_reg, reg.reg(reg.size() - 1));
+        if (type == Insn::LD_Y) {
+            memory(Insn::ST_Y, temp_reg, 0);
+            add_ptr(28, -(offset + reg.size() - 1));
+        } else {
+            memory(Insn::ST_Z, temp_reg, 0);
+            add_ptr(30, -(offset + reg.size() - 1));
+        }
     }
 }

@@ -178,6 +178,40 @@ static bool gift64(enum Mode mode)
     return ok;
 }
 
+static bool keccakp_200(enum Mode mode)
+{
+    Code code;
+    gen_keccakp_200_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_keccakp_200_permutation(code)) {
+            std::cout << "Keccak-p[200] tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Keccak-p[200] tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool keccakp_400(enum Mode mode)
+{
+    Code code;
+    gen_keccakp_400_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_keccakp_400_permutation(code)) {
+            std::cout << "Keccak-p[400] tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Keccak-p[400] tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool speck64(enum Mode mode)
 {
     Code code;
@@ -285,6 +319,9 @@ int main(int argc, char *argv[])
             gen2 = cham64;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
+        } else if (!strcmp(argv[1], "Keccak")) {
+            gen1 = keccakp_200;
+            gen2 = keccakp_400;
         } else if (!strcmp(argv[1], "SPARKLE")) {
             gen1 = sparkle256;
             gen2 = sparkle384;
@@ -311,6 +348,10 @@ int main(int argc, char *argv[])
         if (!cham64(Test))
             exit_val = 1;
         if (!gift64(Test))
+            exit_val = 1;
+        if (!keccakp_200(Test))
+            exit_val = 1;
+        if (!keccakp_400(Test))
             exit_val = 1;
         if (!speck64(Test))
             exit_val = 1;

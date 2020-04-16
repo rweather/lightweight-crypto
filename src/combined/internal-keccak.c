@@ -22,6 +22,8 @@
 
 #include "internal-keccak.h"
 
+#if !defined(__AVR__)
+
 /* Faster method to compute ((x + y) % 5) that avoids the division */
 static unsigned char const addMod5Table[9] = {
     0, 1, 2, 3, 4, 0, 1, 2, 3
@@ -208,3 +210,5 @@ void keccakp_400_permute(keccakp_400_state_t *state, unsigned rounds)
 }
 
 #endif
+
+#endif /* !__AVR__ */

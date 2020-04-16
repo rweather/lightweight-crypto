@@ -472,6 +472,8 @@ public:
     void ldz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::LD_Z, offset); }
     void ldy_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Y, offset); }
     void ldz_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Z, offset); }
+    void ldy_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Y, offset); }
+    void ldz_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Z, offset); }
 #if 0
     void lpm(unsigned char reg) { onereg(Insn::LPM, reg); }
 #endif
@@ -609,6 +611,7 @@ private:
     void ld_st(const Reg &reg, Insn::Type type, unsigned char offset);
     void ld_st_long(const Reg &reg, Insn::Type type, unsigned offset);
     void ld_xor(const Reg &reg, Insn::Type type, unsigned offset);
+    void ld_xor_in(const Reg &reg, Insn::Type type, unsigned offset);
 };
 
 #endif

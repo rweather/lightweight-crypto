@@ -149,13 +149,13 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.05</td><td>0.03</td></tr>
-<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02</td></tr>
+<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.03</td><td>0.03</td><td>0.02</td></tr>
 <tr><td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
 <tr><td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
-<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0036</td><td>0.0041</td><td>0.0016</td><td>0.0018</td><td>0.0023</td></tr>
+<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0034</td><td>0.0038</td><td>0.0015</td><td>0.0016</td><td>0.0021</td></tr>
 </table>
 
 Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload,
@@ -263,14 +263,14 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.08</td><td>0.06</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.04</td><td>0.03</td><td>0.14</td><td>0.10</td><td>0.06</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.04</td><td>0.04</td><td>0.04</td></tr>
-<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
+<tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.02</td><td>0.04</td><td>0.04</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
 <tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
-<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0033</td><td>0.0039</td><td>0.0015</td><td>0.0016</td><td>0.0021</td></tr>
+<tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0040</td><td>0.0047</td><td>0.0018</td><td>0.0020</td><td>0.0025</td></tr>
 </table>
 
 Hash algorithms:

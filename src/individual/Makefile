@@ -41,6 +41,7 @@ ELEPHANT_FILES = \
     elephant.h \
     internal-keccak.c \
     internal-keccak.h \
+    internal-keccak-avr.S \
     internal-spongent.c \
     internal-spongent.h \
     $(COMMON_FILES)
@@ -91,6 +92,7 @@ ISAP_FILES = \
     internal-isap.h \
     internal-keccak.c \
     internal-keccak.h \
+    internal-keccak-avr.S \
     $(COMMON_FILES)
 KNOT_FILES = \
     knot-aead.c \
