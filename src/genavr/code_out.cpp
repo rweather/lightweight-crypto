@@ -247,11 +247,6 @@ static void Insn_write_lpm(std::ostream &ostream, const Insn &insn, bool sbox)
         ostream << ",r0";
         ostream << std::endl;
     }
-    if (insn.reg2() == POST_INC) {
-        // We need to increment Z but the instruction doesn't support it.
-        // Do the increment ourselves with "adiw" after the fact.
-        ostream << "\tadiw r30,1" << std::endl;
-    }
     ostream << "#endif" << std::endl;
 }
 
@@ -327,7 +322,6 @@ void Insn::write(std::ostream &ostream, const Code &code, int offset) const
     case LD_Y:      Insn_write_load(ostream, "Y", *this); break;
     case LD_Z:      Insn_write_load(ostream, "Z", *this); break;
     case LDI:       Insn_write_immreg(ostream, "ldi", *this); break;
-    case LPM:       Insn_write_lpm(ostream, *this, false); break;
     case LPM_SBOX:  Insn_write_lpm(ostream, *this, true); break;
     case LPM_SETUP: Insn_write_lpm_setup(ostream, *this); break;
     case LPM_CLEAN: Insn_write_lpm_clean(ostream); break;
@@ -527,4 +521,17 @@ void Code::write(std::ostream &ostream) const
     // Output the function footer.
     ostream << "\t.size " << m_name;
     ostream << ", .-" << m_name << std::endl;
+}
+
+void Code::sbox_write
+    (std::ostream &ostream, unsigned char num, const Sbox &sbox)
+{
+    ostream << std::endl;
+    ostream << "\t.section\t.progmem.data,\"a\",@progbits" << std::endl;
+    ostream << "\t.p2align\t8" << std::endl; // Align on a 256-byte boundary.
+    ostream << ".type\tsbox_" << num << ", @object" << std::endl;
+    ostream << ".size\tsbox_" << num << ", " << sbox.size() << std::endl;
+    ostream << "sbox_" << num << ":" << std::endl;
+    for (int index = 0; index < sbox.size(); ++index)
+        ostream << "\t.byte\t" << sbox.lookup(index) << std::endl;
 }

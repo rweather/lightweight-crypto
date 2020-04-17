@@ -40,6 +40,7 @@ struct AVRState
     unsigned char memory[MEM_SIZE];
     unsigned used;
     int pc;
+    Sbox sbox;
 
     AVRState()
     {
@@ -270,10 +271,28 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
         // Load immediate into register.
         s.r[insn.reg1()] = insn.value();
         break;
-    case Insn::LPM:     break; // TODO
-    case Insn::LPM_SBOX:  break; // TODO
-    case Insn::LPM_SETUP: break; // TODO
-    case Insn::LPM_CLEAN: break; // TODO
+    case Insn::LPM_SBOX:
+        // Load a value from an S-box table in program memory.
+        s.r[insn.reg1()] = s.sbox.lookup(s.r[insn.reg2()]);
+        break;
+    case Insn::LPM_SETUP:
+        // Set up the S-box.
+        s.sbox = code.sbox_get(insn.reg1());
+
+        // Destroy the Z register.  Normally this will point to the
+        // S-box in program memory but we don't do it that way here.
+        s.setPair(30, 0xBEEF);
+
+        // Push a fake RAMPZ value on the stack to check for stacking
+        // errors later when we do the cleanup.
+        *s.ptr_sp(PRE_DEC) = 0xBA;
+        break;
+    case Insn::LPM_CLEAN:
+        // Pop the RAMPZ value, which we expect to be 0xBA.
+        temp = *s.ptr_sp(POST_INC);
+        if (temp != 0xBA)
+            throw std::invalid_argument("RAMPZ stacking error");
+        break;
     case Insn::LSL:
         // Logical shift left.
         temp = s.r[insn.reg1()];

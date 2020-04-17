@@ -200,6 +200,20 @@ Reg Reg::z_ptr()
     return ptr;
 }
 
+Sbox::Sbox(const unsigned char *data, unsigned size)
+{
+    if (size > 256)
+        throw std::invalid_argument("invalid S-box size");
+    m_data.assign(data, data + size);
+}
+
+unsigned char Sbox::lookup(int value) const
+{
+    if (value < 0 || value >= size())
+        throw std::invalid_argument("invalid S-box lookup");
+    return m_data[value];
+}
+
 Code::Code()
 {
     memset(m_immValues, 0, sizeof(m_immValues));
@@ -1842,6 +1856,55 @@ void Code::swap(const Reg &reg1, const Reg &reg2)
             tworeg(Insn::MOV, reg2.reg(index), TEMP_REG);
         }
     }
+}
+
+/**
+ * \brief Sets up the Z register to perform S-box table lookup operations.
+ *
+ * \param num Number of the S-box table if there is more than one.
+ * \param sbox Data for the S-box table, for use by the interpreter.
+ *
+ * This function will modify the Z and RAMPZ registers to point at the
+ * S-box table.  The previous verison of RAMPZ is pushed on the stack.
+ * The sbox_cleanup() function must be called later to restore RAMPZ
+ * from the stack before the function exits.
+ *
+ * \sa sbox_cleanup(), sbox_lookup()
+ */
+void Code::sbox_setup(unsigned char num, const Sbox &sbox)
+{
+    m_insns.push_back(Insn::reg1(Insn::LPM_SETUP, num));
+    m_sboxes[num] = sbox;
+}
+
+/**
+ * \brief Cleans up the RAMPZ register once S-box operations are finished.
+ *
+ * \sa sbox_setup(), sbox_lookup()
+ */
+void Code::sbox_cleanup(void)
+{
+    bare(Insn::LPM_CLEAN);
+}
+
+/**
+ * \brief Maps 8-bit values using an S-box.
+ *
+ * \param reg1 Destination for the mapped output values.
+ * \param reg2 Input values to the S-box; may be the same as \a reg1.
+ *
+ * If \a reg1 and \a reg2 contain multiple 8-bit sub-registers, then each
+ * sub-register will be mapped independently using the S-box.
+ *
+ * \sa sbox_setup(), sbox_cleanup()
+ */
+void Code::sbox_lookup(const Reg &reg1, const Reg &reg2)
+{
+    int minsize = reg1.size();
+    if (minsize > reg2.size())
+        minsize = reg2.size();
+    for (int index = 0; index < minsize; ++index)
+        tworeg(Insn::LPM_SBOX, reg1.reg(index), reg2.reg(index));
 }
 
 /**

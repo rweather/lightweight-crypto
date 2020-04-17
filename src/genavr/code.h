@@ -24,6 +24,7 @@
 #define GENAVR_CODE_H
 
 #include <vector>
+#include <map>
 #include <string>
 #include <ostream>
 
@@ -64,7 +65,6 @@ public:
         LD_Y,       /**< Load indirect using Y pointer (0-63 offset allowed) */
         LD_Z,       /**< Load indirect using Z pointer (0-63 offset allowed) */
         LDI,        /**< Load immediate into register (high reg only) */
-        LPM,        /**< Load from a table in program memory */
         LPM_SBOX,   /**< Load from a table in program memory with an index */
         LPM_SETUP,  /**< Set up to perform sbox lookups using "lpm" */
         LPM_CLEAN,  /**< Clean up after sbox lookups using "lpm" */
@@ -341,6 +341,27 @@ private:
 #define TEMP_REG 0  /**< AVR register number for the temporary register */
 #define ZERO_REG 1  /**< AVR register number for the zero register */
 
+class Sbox
+{
+public:
+    Sbox() {}
+    Sbox(const Sbox &other) : m_data(other.m_data) {}
+    Sbox(const unsigned char *data, unsigned size);
+    ~Sbox() {}
+
+    Sbox &operator=(const Sbox &other)
+    {
+        m_data = other.m_data;
+        return *this;
+    }
+
+    int size() const { return m_data.size(); }
+    unsigned char lookup(int value) const;
+
+private:
+    std::vector<unsigned char> m_data;
+};
+
 class Code
 {
 public:
@@ -474,9 +495,6 @@ public:
     void ldz_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Z, offset); }
     void ldy_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Y, offset); }
     void ldz_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Z, offset); }
-#if 0
-    void lpm(unsigned char reg) { onereg(Insn::LPM, reg); }
-#endif
     void lsl(const Reg &reg, unsigned bits);
     void lsl_bytes(const Reg &reg, unsigned count);
     void lsr(const Reg &reg, unsigned bits);
@@ -519,6 +537,13 @@ public:
     void sty_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset); }
     void stz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Z, offset); }
     void swap(const Reg &reg1, const Reg &reg2);
+
+    // S-box management.
+    void sbox_setup(unsigned char num, const Sbox &sbox);
+    void sbox_cleanup(void);
+    void sbox_lookup(const Reg &reg1, const Reg &reg2);
+    void sbox_write(std::ostream &ostream, unsigned char num, const Sbox &sbox);
+    Sbox sbox_get(unsigned char num) const { return m_sboxes.at(num); }
 
     // Function prologue management.
     void prologue_setup_key(const char *name, unsigned size_locals);
@@ -598,6 +623,7 @@ private:
     PrologueType m_prologueType;
     unsigned m_localsSize;
     std::string m_name;
+    std::map<unsigned char, Sbox> m_sboxes;
 
     void resetRegs();
     void used(unsigned char reg);
