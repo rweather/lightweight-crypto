@@ -13,6 +13,7 @@ OBJS = \
 	algorithm_keccak.o \
 	algorithm_sparkle.o \
 	algorithm_speck64.o \
+	algorithm_spongent.o \
 	algorithm_tinyjambu.o \
 	code.o \
 	code_out.o \
@@ -37,6 +38,7 @@ algorithm_gift64.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
 algorithm_sparkle.o: code.h gen.h
 algorithm_speck64.o: code.h gen.h
+algorithm_spongent.o: code.h gen.h
 algorithm_tinyjambu.o: code.h gen.h
 interpret.o: code.h
 
@@ -46,4 +48,5 @@ generate: $(TARGET)
 	./$(TARGET) Keccak >../combined/internal-keccak-avr.S
 	./$(TARGET) SPARKLE >../combined/internal-sparkle-avr.S
 	./$(TARGET) SPECK-64 >../combined/internal-speck64-avr.S
+	./$(TARGET) Spongent-pi >../combined/internal-spongent-avr.S
 	./$(TARGET) TinyJAMBU >../combined/internal-tinyjambu-avr.S

@@ -44,6 +44,7 @@ ELEPHANT_FILES = \
     internal-keccak-avr.S \
     internal-spongent.c \
     internal-spongent.h \
+    internal-spongent-avr.S \
     $(COMMON_FILES)
 ESTATE_FILES = \
     estate.c \

@@ -277,7 +277,7 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
         break;
     case Insn::LPM_SETUP:
         // Set up the S-box.
-        s.sbox = code.sbox_get(insn.reg1());
+        s.sbox = code.sbox_get(insn.value());
 
         // Destroy the Z register.  Normally this will point to the
         // S-box in program memory but we don't do it that way here.

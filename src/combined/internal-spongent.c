@@ -22,6 +22,8 @@
 
 #include "internal-spongent.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Applies the Spongent-pi S-box in parallel to the 8 nibbles
  * of a 32-bit word.
@@ -344,3 +346,5 @@ void spongent176_permute(spongent176_state_t *state)
     le_store_word16(state->B + 20, x5); /* Last word is only 16 bits */
 #endif
 }
+
+#endif /* !__AVR__ */

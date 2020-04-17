@@ -1873,7 +1873,9 @@ void Code::swap(const Reg &reg1, const Reg &reg2)
  */
 void Code::sbox_setup(unsigned char num, const Sbox &sbox)
 {
-    m_insns.push_back(Insn::reg1(Insn::LPM_SETUP, num));
+    Reg temp = allocateHighReg(1);
+    m_insns.push_back(Insn::reg2(Insn::LPM_SETUP, temp.reg(0), num));
+    releaseReg(temp);
     m_sboxes[num] = sbox;
 }
 

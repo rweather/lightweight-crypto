@@ -280,6 +280,41 @@ static bool sparkle512(enum Mode mode)
     return true;
 }
 
+static bool spongent160(enum Mode mode)
+{
+    Code code;
+    gen_spongent160_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_spongent_sbox());
+        code.write(std::cout);
+    } else {
+        if (!test_spongent160_permutation(code)) {
+            std::cout << "Spongent-pi[160] tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spongent-pi[160] tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool spongent176(enum Mode mode)
+{
+    Code code;
+    gen_spongent176_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_spongent176_permutation(code)) {
+            std::cout << "Spongent-pi[176] tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spongent-pi[176] tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool tinyjambu(enum Mode mode)
 {
     Code code;
@@ -326,6 +361,9 @@ int main(int argc, char *argv[])
             gen1 = sparkle256;
             gen2 = sparkle384;
             gen3 = sparkle512;
+        } else if (!strcmp(argv[1], "Spongent-pi")) {
+            gen1 = spongent160;
+            gen2 = spongent176;
         } else if (!strcmp(argv[1], "SPECK-64")) {
             gen1 = speck64;
         } else if (!strcmp(argv[1], "TinyJAMBU")) {
@@ -360,6 +398,10 @@ int main(int argc, char *argv[])
         if (!sparkle384(Test))
             exit_val = 1;
         if (!sparkle512(Test))
+            exit_val = 1;
+        if (!spongent160(Test))
+            exit_val = 1;
+        if (!spongent176(Test))
             exit_val = 1;
         if (!tinyjambu(Test))
             exit_val = 1;

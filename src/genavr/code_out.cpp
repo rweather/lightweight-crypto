@@ -228,17 +228,17 @@ static void Insn_write_lpm(std::ostream &ostream, const Insn &insn, bool sbox)
     ostream << "\telpm ";
     Insn_write_reg(ostream, insn.reg1());
     ostream << ",";
-    ostream << ptr_reg;
+    ostream << ptr_reg << std::endl;
     ostream << "#elif defined(__AVR_HAVE_LPMX__)" << std::endl;
     ostream << "\tlpm ";
     Insn_write_reg(ostream, insn.reg1());
     ostream << ",";
-    ostream << ptr_reg;
+    ostream << ptr_reg << std::endl;
     ostream << "#elif defined(__AVR_TINY__)" << std::endl;
     ostream << "\tld ";
     Insn_write_reg(ostream, insn.reg1());
     ostream << ",";
-    ostream << ptr_reg;
+    ostream << ptr_reg << std::endl;
     ostream << "#else" << std::endl;
     ostream << "\tlpm" << std::endl;
     if (insn.reg1() != 0) {
@@ -257,20 +257,24 @@ static void Insn_write_lpm_setup(std::ostream &ostream, const Insn &insn)
     // which indicates which global program memory label to reference.
     // The reg1() parameter is a temporary high register for loading RAMPZ.
     int table = insn.value();
-    ostream << "\tldi r30,low(sbox_";
+    // There is actually no point loading the low byte of the address.
+    // We always align S-boxes on a 256-byte boundary and then move the
+    // actual index into r30 when we need to look something up.  So the
+    // low byte of the address value will always be overwritten.
+    //ostream << "\tldi r30,lo8(sbox_";
+    //ostream << table;
+    //ostream << ")" << std::endl;
+    ostream << "\tldi r31,hi8(sbox_";
     ostream << table;
-    ostream << " * 2)" << std::endl;
-    ostream << "\tldi r31,high(sbox_";
-    ostream << table;
-    ostream << " * 2)" << std::endl;
+    ostream << ")" << std::endl;
     ostream << "#if defined(RAMPZ)" << std::endl;
     ostream << "\tin r0,_SFR_IO_ADDR(RAMPZ)" << std::endl;
     ostream << "\tpush r0" << std::endl;
     ostream << "\tldi ";
     Insn_write_reg(ostream, insn.reg1());
-    ostream << ",byte3(sbox_";
+    ostream << ",hh8(sbox_";
     ostream << table;
-    ostream << " * 2)" << std::endl;
+    ostream << ")" << std::endl;
     ostream << "\tout _SFR_IO_ADDR(RAMPZ),";
     Insn_write_reg(ostream, insn.reg1());
     ostream << std::endl;
@@ -529,9 +533,9 @@ void Code::sbox_write
     ostream << std::endl;
     ostream << "\t.section\t.progmem.data,\"a\",@progbits" << std::endl;
     ostream << "\t.p2align\t8" << std::endl; // Align on a 256-byte boundary.
-    ostream << ".type\tsbox_" << num << ", @object" << std::endl;
-    ostream << ".size\tsbox_" << num << ", " << sbox.size() << std::endl;
-    ostream << "sbox_" << num << ":" << std::endl;
+    ostream << "\t.type\tsbox_" << (int)num << ", @object" << std::endl;
+    ostream << "\t.size\tsbox_" << (int)num << ", " << sbox.size() << std::endl;
+    ostream << "sbox_" << (int)num << ":" << std::endl;
     for (int index = 0; index < sbox.size(); ++index)
-        ostream << "\t.byte\t" << sbox.lookup(index) << std::endl;
+        ostream << "\t.byte\t" << (int)(sbox.lookup(index)) << std::endl;
 }
