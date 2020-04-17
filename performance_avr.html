@@ -145,7 +145,11 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.49</td><td>0.60</td><td>0.60</td><td>0.52 </td></tr>
 <tr>
+<td><b><em>Dumbo</em></b> (Elephant) *</td><td>128</td><td>96</td><td>64</td><td>0.38</td><td>0.39</td><td>0.82</td><td>0.83</td><td>0.47 </td></tr>
+<tr>
 <td><b><em>ORANGE-Zest</em></b></td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.40</td><td>0.53</td><td>0.53</td><td>0.44 </td></tr>
+<tr>
+<td>Jumbo (Elephant) *</td><td>128</td><td>96</td><td>64</td><td>0.34</td><td>0.35</td><td>0.65</td><td>0.65</td><td>0.41 </td></tr>
 <tr>
 <td><b><em>SpoC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.68</td><td>0.68</td><td>0.36 </td></tr>
 <tr>
@@ -236,10 +240,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
 <tr>
 <td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
-<tr>
-<td><b><em>Dumbo</em></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.03</td><td>0.03</td><td>0.02 </td></tr>
-<tr>
-<td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.01 </td></tr>
 </table>
 <h1><a class="anchor" id="perf_avr_hash"></a>
 Performance of hash algorithms on AVR</h1>
@@ -310,7 +310,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>5</td><td>Gimli, Xoodyak, Saturnin </td></tr>
 <tr>
-<td>4</td><td>ORANGE </td></tr>
+<td>4</td><td>Elephant, ORANGE </td></tr>
 <tr>
 <td>3</td><td>ISAP, SpoC </td></tr>
 <tr>
@@ -318,7 +318,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>1</td><td>ACE, DryGASCON, ForkAE </td></tr>
 <tr>
-<td>0</td><td>Elephant, Pyjamask, Subterranean, WAGE </td></tr>
+<td>0</td><td>Pyjamask, Subterranean, WAGE </td></tr>
 </table>
 <p>Hash algorithm rankings:</p>
 <table class="doxtable">
@@ -340,7 +340,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 17 2020 09:57:09 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 18:18:05 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
