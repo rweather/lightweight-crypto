@@ -77,6 +77,191 @@ static bool cham64(enum Mode mode)
     return true;
 }
 
+static bool gift128b_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_setup_key(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_setup_key(code)) {
+            std::cout << "GIFT-128b key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_encrypt(code)) {
+            std::cout << "GIFT-128b encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_encrypt_block_preloaded(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_encrypt_preloaded(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_encrypt_preloaded(code)) {
+            std::cout << "GIFT-128b preloaded encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b preloaded encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_decrypt(code)) {
+            std::cout << "GIFT-128b decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b(enum Mode mode)
+{
+    bool ok = true;
+    if (!gift128b_setup_key(mode))
+        ok = false;
+    if (!gift128b_encrypt_block(mode))
+        ok = false;
+    if (!gift128b_encrypt_block_preloaded(mode))
+        ok = false;
+    if (!gift128b_decrypt_block(mode))
+        ok = false;
+    return ok;
+}
+
+static bool gift128n_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_gift128n_setup_key(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_setup_key(code)) {
+            std::cout << "GIFT-128n key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128n_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_encrypt(code)) {
+            std::cout << "GIFT-128n encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128n_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_decrypt(code)) {
+            std::cout << "GIFT-128n decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128t_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128t_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128t_encrypt(code)) {
+            std::cout << "TweGIFT-128 encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "TweGIFT-128 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128t_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_gift128t_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128t_decrypt(code)) {
+            std::cout << "TweGIFT-128 decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "TweGIFT-128 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n(enum Mode mode)
+{
+    bool ok = true;
+    if (!gift128n_setup_key(mode))
+        ok = false;
+    if (!gift128n_encrypt_block(mode))
+        ok = false;
+    if (!gift128n_decrypt_block(mode))
+        ok = false;
+    if (!gift128t_encrypt_block(mode))
+        ok = false;
+    if (!gift128t_decrypt_block(mode))
+        ok = false;
+    return ok;
+}
+
 static bool gift64_setup_key(enum Mode mode)
 {
     Code code;
@@ -352,6 +537,10 @@ int main(int argc, char *argv[])
         if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
+        } else if (!strcmp(argv[1], "GIFT-128b")) {
+            gen1 = gift128b;
+        } else if (!strcmp(argv[1], "GIFT-128n")) {
+            gen1 = gift128n;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
         } else if (!strcmp(argv[1], "Keccak")) {
@@ -384,6 +573,10 @@ int main(int argc, char *argv[])
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))
+            exit_val = 1;
+        if (!gift128b(Test))
+            exit_val = 1;
+        if (!gift128n(Test))
             exit_val = 1;
         if (!gift64(Test))
             exit_val = 1;

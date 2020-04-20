@@ -51,6 +51,7 @@ ESTATE_FILES = \
     estate.h \
     internal-gift128.c \
     internal-gift128.h \
+    internal-gift128n-avr.S \
     $(COMMON_FILES)
 FORKAE_FILES = \
     forkae.c \
@@ -66,6 +67,7 @@ GIFT_COFB_FILES = \
     gift-cofb.h \
     internal-gift128.c \
     internal-gift128.h \
+    internal-gift128b-avr.S \
     $(COMMON_FILES)
 GIMLI_FILES = \
     gimli24.c \
@@ -84,6 +86,7 @@ HYENA_FILES = \
     hyena.h \
     internal-gift128.c \
     internal-gift128.h \
+    internal-gift128n-avr.S \
     $(COMMON_FILES)
 ISAP_FILES = \
     isap.c \
@@ -196,6 +199,7 @@ SUNDAE_GIFT_FILES = \
     sundae-gift.h \
     internal-gift128.c \
     internal-gift128.h \
+    internal-gift128b-avr.S \
     $(COMMON_FILES)
 TINYJAMBU_FILES = \
     tinyjambu.c \

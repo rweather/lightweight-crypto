@@ -754,19 +754,11 @@ void gift128n_decrypt
     gift128n_to_nibbles(output, output);
 }
 
-/* 4-bit tweak values expanded to 32-bit */
-static uint32_t const GIFT128_tweaks[16] = {
-    0x00000000, 0xe1e1e1e1, 0xd2d2d2d2, 0x33333333,
-    0xb4b4b4b4, 0x55555555, 0x66666666, 0x87878787,
-    0x78787878, 0x99999999, 0xaaaaaaaa, 0x4b4b4b4b,
-    0xcccccccc, 0x2d2d2d2d, 0x1e1e1e1e, 0xffffffff
-};
-
 void gift128t_encrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint32_t tweak)
 {
-    uint32_t s0, s1, s2, s3, tword;
+    uint32_t s0, s1, s2, s3;
 
     /* Copy the plaintext into the state buffer and convert from nibbles */
     gift128n_to_words(output, input);
@@ -777,21 +769,20 @@ void gift128t_encrypt
 
     /* Perform all 40 rounds five at a time using the fixsliced method.
      * Every 5 rounds except the last we add the tweak value to the state */
-    tword = GIFT128_tweaks[tweak];
     gift128b_encrypt_5_rounds(ks->k, GIFT128_RC);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 10, GIFT128_RC + 5);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 20, GIFT128_RC + 10);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 30, GIFT128_RC + 15);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 40, GIFT128_RC + 20);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 50, GIFT128_RC + 25);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 60, GIFT128_RC + 30);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_encrypt_5_rounds(ks->k + 70, GIFT128_RC + 35);
 
     /* Pack the state into the ciphertext buffer in nibble form */
@@ -804,9 +795,9 @@ void gift128t_encrypt
 
 void gift128t_decrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint32_t tweak)
 {
-    uint32_t s0, s1, s2, s3, tword;
+    uint32_t s0, s1, s2, s3;
 
     /* Copy the ciphertext into the state buffer and convert from nibbles */
     gift128n_to_words(output, input);
@@ -817,21 +808,20 @@ void gift128t_decrypt
 
     /* Perform all 40 rounds five at a time using the fixsliced method.
      * Every 5 rounds except the first we add the tweak value to the state */
-    tword = GIFT128_tweaks[tweak];
     gift128b_decrypt_5_rounds(ks->k + 70, GIFT128_RC + 35);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 60, GIFT128_RC + 30);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 50, GIFT128_RC + 25);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 40, GIFT128_RC + 20);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 30, GIFT128_RC + 15);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 20, GIFT128_RC + 10);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k + 10, GIFT128_RC + 5);
-    s0 ^= tword;
+    s0 ^= tweak;
     gift128b_decrypt_5_rounds(ks->k, GIFT128_RC);
 
     /* Pack the state into the plaintext buffer in nibble form */
@@ -842,7 +832,7 @@ void gift128t_decrypt
     gift128n_to_nibbles(output, output);
 }
 
-#else /* GIFT128_LOW_MEMORY */
+#elif !defined(__AVR__) /* GIFT128_LOW_MEMORY */
 
 /* Round constants for GIFT-128 */
 static uint8_t const GIFT128_RC[40] = {
@@ -1313,17 +1303,9 @@ void gift128n_decrypt
     gift128n_to_nibbles(output, output);
 }
 
-/* 4-bit tweak values expanded to 32-bit */
-static uint32_t const GIFT128_tweaks[16] = {
-    0x00000000, 0xe1e1e1e1, 0xd2d2d2d2, 0x33333333,
-    0xb4b4b4b4, 0x55555555, 0x66666666, 0x87878787,
-    0x78787878, 0x99999999, 0xaaaaaaaa, 0x4b4b4b4b,
-    0xcccccccc, 0x2d2d2d2d, 0x1e1e1e1e, 0xffffffff
-};
-
 void gift128t_encrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint32_t tweak)
 {
     uint32_t s0, s1, s2, s3;
     uint32_t w0, w1, w2, w3;
@@ -1370,7 +1352,7 @@ void gift128t_encrypt
 
         /* AddTweak - XOR in the tweak every 5 rounds except the last */
         if (((round + 1) % 5) == 0 && round < 39)
-            s0 ^= GIFT128_tweaks[tweak];
+            s0 ^= tweak;
 
         /* Rotate the key schedule */
         temp = w3;
@@ -1391,7 +1373,7 @@ void gift128t_encrypt
 
 void gift128t_decrypt
     (const gift128n_key_schedule_t *ks, unsigned char *output,
-     const unsigned char *input, unsigned char tweak)
+     const unsigned char *input, uint32_t tweak)
 {
     uint32_t s0, s1, s2, s3;
     uint32_t w0, w1, w2, w3;
@@ -1457,7 +1439,7 @@ void gift128t_decrypt
 
         /* AddTweak - XOR in the tweak every 5 rounds except the last */
         if ((round % 5) == 0 && round < 40)
-            s0 ^= GIFT128_tweaks[tweak];
+            s0 ^= tweak;
 
         /* AddRoundKey - XOR in the key schedule and the round constant */
         s2 ^= w1;

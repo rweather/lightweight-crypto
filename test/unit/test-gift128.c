@@ -131,7 +131,7 @@ static block_cipher_test_vector_128_t const gift128n_3 = {
      0xd3, 0x72, 0xe8, 0xbe, 0xf3, 0x43, 0x06, 0x02}
 };
 
-static unsigned char gift128t_tweak_value = 0;
+static uint32_t gift128t_tweak_value = 0;
 
 static void gift128t_encrypt_wrapper
     (const gift128n_key_schedule_t *ks, unsigned char *output,
@@ -220,14 +220,14 @@ void test_gift128(void)
     test_block_cipher_end(&gift128n);
 
     test_block_cipher_start(&gift128t);
-    gift128t_tweak_value = 0;
+    gift128t_tweak_value = GIFT128T_TWEAK_0;
     test_block_cipher_128(&gift128t, &gift128t_1);
-    gift128t_tweak_value = 11;
+    gift128t_tweak_value = GIFT128T_TWEAK_11;
     test_block_cipher_128(&gift128t, &gift128t_2);
-    gift128t_tweak_value = 4;
+    gift128t_tweak_value = GIFT128T_TWEAK_4;
     test_block_cipher_128(&gift128t, &gift128t_3);
     /* Check that encrypting with tweak = 0 is the same as untweaked GIFT-n */
-    gift128t_tweak_value = 0;
+    gift128t_tweak_value = GIFT128T_TWEAK_0;
     test_block_cipher_128(&gift128t, &gift128t_4);
     test_block_cipher_128(&gift128n, &gift128t_4);
     test_block_cipher_end(&gift128t);

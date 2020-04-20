@@ -48,7 +48,7 @@ aead_cipher_t const estate_twegift_cipher = {
 static void estate_twegift_fcbc
     (const gift128n_key_schedule_t *ks, unsigned char tag[16],
      const unsigned char *m, unsigned long long mlen,
-     unsigned char tweak1, unsigned char tweak2)
+     uint32_t tweak1, uint32_t tweak2)
 {
     while (mlen > 16) {
         lw_xor_block(tag, m, 16);
@@ -84,24 +84,29 @@ static void estate_twegift_authenticate
 {
     /* Handle the case where both the message and associated data are empty */
     if (mlen == 0 && adlen == 0) {
-        gift128t_encrypt(ks, tag, tag, /*tweak=*/8);
+        gift128t_encrypt(ks, tag, tag, GIFT128T_TWEAK_8);
         return;
     }
 
     /* Encrypt the nonce */
-    gift128t_encrypt(ks, tag, tag, /*tweak=*/1);
+    gift128t_encrypt(ks, tag, tag, GIFT128T_TWEAK_1);
 
     /* Compute the FCBC MAC over the associated data */
     if (adlen != 0) {
-        if (mlen != 0)
-            estate_twegift_fcbc(ks, tag, ad, adlen, /*tweak1=*/2, /*tweak2=*/3);
-        else
-            estate_twegift_fcbc(ks, tag, ad, adlen, /*tweak1=*/6, /*tweak2=*/7);
+        if (mlen != 0) {
+            estate_twegift_fcbc
+                (ks, tag, ad, adlen, GIFT128T_TWEAK_2, GIFT128T_TWEAK_3);
+        } else {
+            estate_twegift_fcbc
+                (ks, tag, ad, adlen, GIFT128T_TWEAK_6, GIFT128T_TWEAK_7);
+        }
     }
 
     /* Compute the FCBC MAC over the message data */
-    if (mlen != 0)
-        estate_twegift_fcbc(ks, tag, m, mlen, /*tweak1=*/4, /*tweak2=*/5);
+    if (mlen != 0) {
+        estate_twegift_fcbc
+            (ks, tag, m, mlen, GIFT128T_TWEAK_4, GIFT128T_TWEAK_5);
+    }
 }
 
 /**

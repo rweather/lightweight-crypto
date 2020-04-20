@@ -42,6 +42,28 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// GIFT-128 block cipher.
+Sbox get_gift128_round_constants();
+void gen_gift128b_setup_key(Code &code);
+void gen_gift128b_encrypt(Code &code);
+void gen_gift128b_encrypt_preloaded(Code &code);
+void gen_gift128b_decrypt(Code &code);
+void gen_gift128n_setup_key(Code &code);
+void gen_gift128n_encrypt(Code &code);
+void gen_gift128n_decrypt(Code &code);
+void gen_gift128t_encrypt(Code &code);
+void gen_gift128t_decrypt(Code &code);
+bool test_gift128b_setup_key(Code &code);
+bool test_gift128n_setup_key(Code &code);
+bool test_gift128b_encrypt(Code &code);
+bool test_gift128b_encrypt_preloaded(Code &code);
+bool test_gift128b_decrypt(Code &code);
+bool test_gift128n_setup_key(Code &code);
+bool test_gift128n_encrypt(Code &code);
+bool test_gift128n_decrypt(Code &code);
+bool test_gift128t_encrypt(Code &code);
+bool test_gift128t_decrypt(Code &code);
+
 // GIFT-64 block cipher.
 void gen_gift64n_setup_key(Code &code);
 void gen_gift64n_encrypt(Code &code);
