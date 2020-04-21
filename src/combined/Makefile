@@ -96,12 +96,12 @@ ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 comet.o: comet.h aead-common.h internal-cham.h internal-speck64.h internal-util.h
 drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 elephant.o: elephant.h aead-common.h internal-keccak.h internal-spongent.h internal-util.h
-estate.o: estate.h aead-common.h internal-gift128.h internal-util.h
+estate.o: estate.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 forkae.o: forkae.h aead-common.h internal-forkskinny.h internal-forkae-paef.h internal-forkae-saef.h internal-util.h
-gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-util.h
+gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
 grain128.o: grain128.h internal-grain128.h aead-common.h internal-util.h
-hyena.o: hyena.h aead-common.h internal-gift128.h internal-util.h
+hyena.o: hyena.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h internal-util.h
 knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
 knot-hash.o: knot.h aead-common.h internal-knot.h internal-util.h
@@ -120,7 +120,7 @@ spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 subterranean.o: subterranean.h aead-common.h internal-util.h internal-subterranean.h
-sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-util.h
+sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
@@ -130,7 +130,7 @@ internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h
 internal-drysponge.o: internal-drysponge.h internal-util.h
 internal-forkskinny.o: internal-forkskinny.h internal-skinnyutil.h internal-util.h
-internal-gift128.o: internal-gift128.h internal-util.h
+internal-gift128.o: internal-gift128.h internal-gift128-config.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-gimli24.o: internal-gimli24.h internal-util.h
 internal-grain128.o: internal-grain128.h internal-util.h
