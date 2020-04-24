@@ -43,6 +43,23 @@ static void footer(std::ostream &ostream)
     ostream << "#endif" << std::endl;
 }
 
+static bool ascon(enum Mode mode)
+{
+    Code code;
+    gen_ascon_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_ascon_permutation(code)) {
+            std::cout << "ASCON tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "ASCON tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool cham128(enum Mode mode)
 {
     Code code;
@@ -534,7 +551,9 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Usage: %s algorithm-name\n", argv[0]);
             return 1;
         }
-        if (!strcmp(argv[1], "CHAM")) {
+        if (!strcmp(argv[1], "ASCON")) {
+            gen1 = ascon;
+        } else if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
         } else if (!strcmp(argv[1], "GIFT-128b")) {
@@ -570,6 +589,8 @@ int main(int argc, char *argv[])
             gen3(Generate);
         footer(std::cout);
     } else {
+        if (!ascon(Test))
+            exit_val = 1;
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))

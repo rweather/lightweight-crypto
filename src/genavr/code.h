@@ -244,7 +244,7 @@ public:
      *
      * \return The register number at \a index.
      */
-    unsigned char reg(int index) const { return m_regs[index]; }
+    unsigned char reg(int index) const { return m_regs.at(index); }
 
     /**
      * \brief Gets a byte-reversed version of this register.

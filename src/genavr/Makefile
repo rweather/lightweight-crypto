@@ -8,6 +8,7 @@ CXXFLAGS += -g $(COMMON_CFLAGS) $(STDC_CXXFLAGS)
 TARGET = genavr
 
 OBJS = \
+	algorithm_ascon.o \
 	algorithm_cham.o \
 	algorithm_gift128.o \
 	algorithm_gift64.o \
@@ -34,6 +35,7 @@ check: all
 
 code.o: code.h
 code_out.o: code.h
+algorithm_ascon.o: code.h gen.h
 algorithm_cham.o: code.h gen.h
 algorithm_gift128.o: code.h gen.h
 algorithm_gift64.o: code.h gen.h
@@ -45,6 +47,7 @@ algorithm_tinyjambu.o: code.h gen.h
 interpret.o: code.h
 
 generate: $(TARGET)
+	./$(TARGET) ASCON >../combined/internal-ascon-avr.S
 	./$(TARGET) CHAM >../combined/internal-cham-avr.S
 	./$(TARGET) GIFT-128b >../combined/internal-gift128b-avr.S
 	./$(TARGET) GIFT-128n >../combined/internal-gift128n-avr.S

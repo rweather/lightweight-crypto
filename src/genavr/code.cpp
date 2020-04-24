@@ -1577,9 +1577,6 @@ void Code::rol_bytes(const Reg &reg, unsigned count)
                 onereg(Insn::PUSH, reg.reg(from));
         }
         for (index = reg.size() - count - 1; index >= 0; --index) {
-            tworeg(Insn::MOV, reg.reg(index), reg.reg(index + count));
-        }
-        for (index = reg.size() - count - 1; index >= 0; --index) {
             tworeg(Insn::MOV, reg.reg(index + count), reg.reg(index));
         }
         for (index = count - 1; index >= 0; --index) {
@@ -1716,7 +1713,7 @@ void Code::ror_bytes(const Reg &reg, unsigned count)
                 onereg(Insn::PUSH, reg.reg(index));
         }
         for (index = 0; index < (int)(reg.size() - count); ++index) {
-            tworeg(Insn::MOV, temp.reg(index), reg.reg(index + count));
+            tworeg(Insn::MOV, reg.reg(index), reg.reg(index + count));
         }
         for (index = count - 1; index >= 0; --index) {
             int to = reg.size() - count + index;

@@ -19,6 +19,7 @@ ASCON_FILES = \
     ascon-xof.c \
     internal-ascon.c \
     internal-ascon.h \
+    internal-ascon-avr.S \
     $(COMMON_FILES)
 COMET_FILES = \
     comet.c \
@@ -96,6 +97,7 @@ ISAP_FILES = \
     isap.h \
     internal-ascon.c \
     internal-ascon.h \
+    internal-ascon-avr.S \
     internal-isap.h \
     internal-keccak.c \
     internal-keccak.h \

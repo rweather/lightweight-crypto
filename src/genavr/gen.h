@@ -36,6 +36,10 @@ typedef struct
 
 } block_cipher_test_vector_t;
 
+// ASCON permutation.
+void gen_ascon_permutation(Code &code);
+bool test_ascon_permutation(Code &code);
+
 // CHAM-128 and CHAM-64 block ciphers.
 void gen_cham128_encrypt(Code &code);
 void gen_cham64_encrypt(Code &code);

@@ -22,6 +22,8 @@
 
 #include "internal-ascon.h"
 
+#if !defined(__AVR__)
+
 void ascon_permute(ascon_state_t *state, uint8_t first_round)
 {
     uint64_t t0, t1, t2, t3, t4;
@@ -74,3 +76,5 @@ void ascon_permute(ascon_state_t *state, uint8_t first_round)
     state->S[4] = x4;
 #endif
 }
+
+#endif /* !__AVR__ */
