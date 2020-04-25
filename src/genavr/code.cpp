@@ -154,7 +154,7 @@ Reg Reg::shuffle(const unsigned char *pattern) const
 }
 
 Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
-                 unsigned char offset2, unsigned char offset3)
+                 unsigned char offset2, unsigned char offset3) const
 {
     unsigned char pattern[4] = {offset0, offset1, offset2, offset3};
     if (size() != 4)
@@ -165,7 +165,7 @@ Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
 Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
                  unsigned char offset2, unsigned char offset3,
                  unsigned char offset4, unsigned char offset5,
-                 unsigned char offset6, unsigned char offset7)
+                 unsigned char offset6, unsigned char offset7) const
 {
     unsigned char pattern[8] = {
         offset0, offset1, offset2, offset3,
@@ -2697,4 +2697,48 @@ void Code::ld_xor_in(const Reg &reg, Insn::Type type, unsigned offset)
             add_ptr(30, -(offset + reg.size() - 1));
         }
     }
+}
+
+/**
+ * \brief Stores zero bytes to a memory offset relative to X, Y, or Z.
+ *
+ * \param type The type of memory instruction, ST_X, ST_Y, or ST_Z.
+ * \param offset The offset from the base register to start zero'ing at.
+ * Cannot use pre-decrement or post-increment.
+ * \param count The number of bytes to be zero'ed.
+ */
+void Code::st_zero(Insn::Type type, unsigned offset, unsigned count)
+{
+    Reg zeroreg;
+    unsigned index;
+    if (hasFlag(TempR1)) {
+        zeroreg = allocateReg(1);
+        tworeg(Insn::EOR, zeroreg.reg(0), zeroreg.reg(0));
+    } else {
+        zeroreg.m_regs.push_back(ZERO_REG);
+    }
+    if (type == Insn::ST_X || (offset + count) > 64) {
+        // Too far away from the base register, so increase the pointer,
+        // zero the region, and then decrease the pointer to the start.
+        if (type == Insn::ST_X)
+            add_ptr(26, offset);
+        else if (type == Insn::ST_Y)
+            add_ptr(28, offset);
+        else
+            add_ptr(30, offset);
+        for (index = 0; index < count; ++index)
+            memory(type, zeroreg.reg(0), POST_INC);
+        int reverse = -(offset + count);
+        if (type == Insn::ST_X)
+            add_ptr(26, reverse);
+        else if (type == Insn::ST_Y)
+            add_ptr(28, reverse);
+        else
+            add_ptr(30, reverse);
+    } else {
+        // We can directly set using explicit offsets from the base register.
+        for (index = 0; index < count; ++index)
+            memory(type, zeroreg.reg(0), offset + index);
+    }
+    releaseReg(zeroreg);
 }

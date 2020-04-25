@@ -94,6 +94,94 @@ static bool cham64(enum Mode mode)
     return true;
 }
 
+static bool gascon128_core(enum Mode mode)
+{
+    Code code;
+    gen_gascon128_core_round(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gascon128_core_round(code)) {
+            std::cout << "GASCON-128 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GASCON-128 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gascon128_g(enum Mode mode)
+{
+    Code code;
+    gen_drysponge128_g(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_drysponge128_g(code)) {
+            std::cout << "GASCON-128-G tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GASCON-128-G tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gascon128(enum Mode mode)
+{
+    bool ok = true;
+    if (!gascon128_core(mode))
+        ok = false;
+    if (!gascon128_g(mode))
+        ok = false;
+    return ok;
+}
+
+static bool gascon256_core(enum Mode mode)
+{
+    Code code;
+    gen_gascon256_core_round(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gascon256_core_round(code)) {
+            std::cout << "GASCON-256 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GASCON-256 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gascon256_g(enum Mode mode)
+{
+    Code code;
+    gen_drysponge256_g(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_drysponge256_g(code)) {
+            std::cout << "GASCON-256-G tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GASCON-256-G tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gascon256(enum Mode mode)
+{
+    bool ok = true;
+    if (!gascon256_core(mode))
+        ok = false;
+    if (!gascon256_g(mode))
+        ok = false;
+    return ok;
+}
+
 static bool gift128b_setup_key(enum Mode mode)
 {
     Code code;
@@ -556,6 +644,9 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
+        } else if (!strcmp(argv[1], "GASCON")) {
+            gen1 = gascon128;
+            gen2 = gascon256;
         } else if (!strcmp(argv[1], "GIFT-128b")) {
             gen1 = gift128b;
         } else if (!strcmp(argv[1], "GIFT-128n")) {
@@ -594,6 +685,10 @@ int main(int argc, char *argv[])
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))
+            exit_val = 1;
+        if (!gascon128(Test))
+            exit_val = 1;
+        if (!gascon256(Test))
             exit_val = 1;
         if (!gift128b(Test))
             exit_val = 1;

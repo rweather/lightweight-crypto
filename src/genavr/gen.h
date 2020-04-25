@@ -46,6 +46,16 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// GASCON permutation and DrySPONGE helper functions.
+void gen_gascon128_core_round(Code &code);
+void gen_drysponge128_g(Code &code);
+void gen_gascon256_core_round(Code &code);
+void gen_drysponge256_g(Code &code);
+bool test_gascon128_core_round(Code &code);
+bool test_drysponge128_g(Code &code);
+bool test_gascon256_core_round(Code &code);
+bool test_drysponge256_g(Code &code);
+
 // GIFT-128 block cipher.
 Sbox get_gift128_round_constants();
 void gen_gift128b_setup_key(Code &code);

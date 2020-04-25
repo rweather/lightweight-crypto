@@ -36,6 +36,7 @@ DRYGASCON_FILES = \
     drygascon.h \
     internal-drysponge.c \
     internal-drysponge.h \
+    internal-drysponge-avr.S \
     $(COMMON_FILES)
 ELEPHANT_FILES = \
     elephant.c \

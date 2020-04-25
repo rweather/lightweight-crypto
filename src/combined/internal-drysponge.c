@@ -23,6 +23,8 @@
 #include "internal-drysponge.h"
 #include <string.h>
 
+#if !defined(__AVR__)
+
 /* Right rotations in bit-interleaved format */
 #define intRightRotateEven(x,bits) \
     (__extension__ ({ \
@@ -289,6 +291,8 @@ void drysponge256_g(drysponge256_state_t *state)
     }
 }
 
+#endif /* !__AVR__ */
+
 void drysponge128_g_core(drysponge128_state_t *state)
 {
     unsigned round;
@@ -304,6 +308,7 @@ void drysponge256_g_core(drysponge256_state_t *state)
 }
 
 /**
+ * \fn uint32_t drysponge_select_x(const uint32_t x[4], uint8_t index)
  * \brief Selects an element of x in constant time.
  *
  * \param x Points to the four elements of x.
@@ -311,6 +316,7 @@ void drysponge256_g_core(drysponge256_state_t *state)
  *
  * \return The selected element of x.
  */
+#if !defined(__AVR__)
 STATIC_INLINE uint32_t drysponge_select_x(const uint32_t x[4], uint8_t index)
 {
     /* We need to be careful how we select each element of x because
@@ -340,6 +346,11 @@ STATIC_INLINE uint32_t drysponge_select_x(const uint32_t x[4], uint8_t index)
     mask = -((uint32_t)((0x04 - (index ^ 0x03)) >> 2));
     return result ^ (x[3] & mask);
 }
+#else
+/* AVR is more or less immune to cache timing issues because it doesn't
+ * have anything like an L1 or L2 cache.  Select the word directly */
+#define drysponge_select_x(x, index) ((x)[(index)])
+#endif
 
 /**
  * \brief Mixes a 32-bit value into the DrySPONGE128 state.

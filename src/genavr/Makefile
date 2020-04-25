@@ -10,6 +10,7 @@ TARGET = genavr
 OBJS = \
 	algorithm_ascon.o \
 	algorithm_cham.o \
+	algorithm_gascon.o \
 	algorithm_gift128.o \
 	algorithm_gift64.o \
 	algorithm_keccak.o \
@@ -37,6 +38,7 @@ code.o: code.h
 code_out.o: code.h
 algorithm_ascon.o: code.h gen.h
 algorithm_cham.o: code.h gen.h
+algorithm_gascon.o: code.h gen.h
 algorithm_gift128.o: code.h gen.h
 algorithm_gift64.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
@@ -49,6 +51,7 @@ interpret.o: code.h
 generate: $(TARGET)
 	./$(TARGET) ASCON >../combined/internal-ascon-avr.S
 	./$(TARGET) CHAM >../combined/internal-cham-avr.S
+	./$(TARGET) GASCON >../combined/internal-drysponge-avr.S
 	./$(TARGET) GIFT-128b >../combined/internal-gift128b-avr.S
 	./$(TARGET) GIFT-128n >../combined/internal-gift128n-avr.S
 	./$(TARGET) GIFT-64 >../combined/internal-gift64-avr.S

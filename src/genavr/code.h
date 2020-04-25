@@ -282,7 +282,7 @@ public:
      * \return The shuffled version of this register.
      */
     Reg shuffle(unsigned char offset0, unsigned char offset1,
-                unsigned char offset2, unsigned char offset3);
+                unsigned char offset2, unsigned char offset3) const;
 
     /**
      * \brief Shuffles the bytes in a 64-bit register.
@@ -309,7 +309,7 @@ public:
     Reg shuffle(unsigned char offset0, unsigned char offset1,
                 unsigned char offset2, unsigned char offset3,
                 unsigned char offset4, unsigned char offset5,
-                unsigned char offset6, unsigned char offset7);
+                unsigned char offset6, unsigned char offset7) const;
 
     /**
      * \brief Gets a reference to the X pointer.
@@ -533,6 +533,9 @@ public:
     void stx(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_X, offset); }
     void sty(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_Y, offset); }
     void stz(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_Z, offset); }
+    void stx_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_X, offset, count); }
+    void sty_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_Y, offset, count); }
+    void stz_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_Z, offset, count); }
     void stx_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_X, offset); }
     void sty_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset); }
     void stz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Z, offset); }
@@ -638,6 +641,7 @@ private:
     void ld_st_long(const Reg &reg, Insn::Type type, unsigned offset);
     void ld_xor(const Reg &reg, Insn::Type type, unsigned offset);
     void ld_xor_in(const Reg &reg, Insn::Type type, unsigned offset);
+    void st_zero(Insn::Type type, unsigned offset, unsigned count);
 };
 
 #endif
