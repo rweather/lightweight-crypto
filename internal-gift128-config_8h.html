@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: internal-simp.h File Reference</title>
+<title>Lightweight Cryptography Primitives: internal-gift128-config.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,111 +85,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
-<div class="title">internal-simp.h File Reference</div>  </div>
+<div class="title">internal-gift128-config.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>SimP permutation family.  
+<p>Configures the variant of GIFT-128 to use.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;internal-util.h&quot;</code><br/>
-</div>
-<p><a href="internal-simp_8h_source.html">Go to the source code of this file.</a></p>
+
+<p><a href="internal-gift128-config_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a183b5f44f4ba845452cc48d82d1aee63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a183b5f44f4ba845452cc48d82d1aee63"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-simp_8h.html#a183b5f44f4ba845452cc48d82d1aee63">SIMP_256_STATE_SIZE</a>&#160;&#160;&#160;32</td></tr>
-<tr class="memdesc:a183b5f44f4ba845452cc48d82d1aee63"><td class="mdescLeft">&#160;</td><td class="mdescRight">State size of the SimP-256 permutation. <br/></td></tr>
-<tr class="separator:a183b5f44f4ba845452cc48d82d1aee63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b7c9a995a3176cf15542ff9e3cd7ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55b7c9a995a3176cf15542ff9e3cd7ce"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-simp_8h.html#a55b7c9a995a3176cf15542ff9e3cd7ce">SIMP_192_STATE_SIZE</a>&#160;&#160;&#160;24</td></tr>
-<tr class="memdesc:a55b7c9a995a3176cf15542ff9e3cd7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">State size of the SimP-192 permutation. <br/></td></tr>
-<tr class="separator:a55b7c9a995a3176cf15542ff9e3cd7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ad07dca6bfc29cd04a0be6d6ec85c10c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-simp_8h.html#ad07dca6bfc29cd04a0be6d6ec85c10c0">simp_256_permute</a> (unsigned char state[<a class="el" href="internal-simp_8h.html#a183b5f44f4ba845452cc48d82d1aee63">SIMP_256_STATE_SIZE</a>], unsigned steps)</td></tr>
-<tr class="memdesc:ad07dca6bfc29cd04a0be6d6ec85c10c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes a state with SimP-256.  <a href="#ad07dca6bfc29cd04a0be6d6ec85c10c0">More...</a><br/></td></tr>
-<tr class="separator:ad07dca6bfc29cd04a0be6d6ec85c10c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a0caa1c7ea98e4290ca426f5c06e512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-simp_8h.html#a6a0caa1c7ea98e4290ca426f5c06e512">simp_192_permute</a> (unsigned char state[<a class="el" href="internal-simp_8h.html#a55b7c9a995a3176cf15542ff9e3cd7ce">SIMP_192_STATE_SIZE</a>], unsigned steps)</td></tr>
-<tr class="memdesc:a6a0caa1c7ea98e4290ca426f5c06e512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes a state with SimP-192.  <a href="#a6a0caa1c7ea98e4290ca426f5c06e512">More...</a><br/></td></tr>
-<tr class="separator:a6a0caa1c7ea98e4290ca426f5c06e512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d4707d5d1fd67250d9e015eda6949c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128-config_8h.html#a52d4707d5d1fd67250d9e015eda6949c">GIFT128_VARIANT_FULL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a52d4707d5d1fd67250d9e015eda6949c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the full variant of GIFT-128.  <a href="#a52d4707d5d1fd67250d9e015eda6949c">More...</a><br/></td></tr>
+<tr class="separator:a52d4707d5d1fd67250d9e015eda6949c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea74b4ecb86cc23d943d7d11dae1ef9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128-config_8h.html#a1ea74b4ecb86cc23d943d7d11dae1ef9">GIFT128_VARIANT_SMALL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a1ea74b4ecb86cc23d943d7d11dae1ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the small variant of GIFT-128.  <a href="#a1ea74b4ecb86cc23d943d7d11dae1ef9">More...</a><br/></td></tr>
+<tr class="separator:a1ea74b4ecb86cc23d943d7d11dae1ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb5ea8560d1d59cbcbb62507ab28af41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128-config_8h.html#abb5ea8560d1d59cbcbb62507ab28af41">GIFT128_VARIANT_TINY</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:abb5ea8560d1d59cbcbb62507ab28af41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the tiny variant of GIFT-128.  <a href="#abb5ea8560d1d59cbcbb62507ab28af41">More...</a><br/></td></tr>
+<tr class="separator:abb5ea8560d1d59cbcbb62507ab28af41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ccfbfeba9cce6eaa3928c3b7d0b7817"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ccfbfeba9cce6eaa3928c3b7d0b7817"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128-config_8h.html#a3ccfbfeba9cce6eaa3928c3b7d0b7817">GIFT128_VARIANT</a>&#160;&#160;&#160;<a class="el" href="internal-gift128-config_8h.html#a52d4707d5d1fd67250d9e015eda6949c">GIFT128_VARIANT_FULL</a></td></tr>
+<tr class="memdesc:a3ccfbfeba9cce6eaa3928c3b7d0b7817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the default variant of GIFT-128 to use on this platform. <br/></td></tr>
+<tr class="separator:a3ccfbfeba9cce6eaa3928c3b7d0b7817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb8261c5ecd74f18d642aaba1fcdba84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb8261c5ecd74f18d642aaba1fcdba84"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gift128-config_8h.html#aeb8261c5ecd74f18d642aaba1fcdba84">GIFT128_VARIANT_ASM</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:aeb8261c5ecd74f18d642aaba1fcdba84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined to 1 if the GIFT-128 implementation has been replaced with an assembly code version. <br/></td></tr>
+<tr class="separator:aeb8261c5ecd74f18d642aaba1fcdba84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>SimP permutation family. </p>
-<p>SimP-256 and SimP-192 are used by the Oribatida submission to round 2 of the NIST Lightweight Cryptography Competition. The permutations are built around reduced-round variants of the Simon-128-128 and Simon-96-96 block ciphers.</p>
-<p>References: <a href="https://www.isical.ac.in/~lightweight/oribatida/">https://www.isical.ac.in/~lightweight/oribatida/</a> </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a6a0caa1c7ea98e4290ca426f5c06e512"></a>
+<div class="textblock"><p>Configures the variant of GIFT-128 to use. </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a52d4707d5d1fd67250d9e015eda6949c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void simp_192_permute </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>state</em>[SIMP_192_STATE_SIZE], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>steps</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">#define GIFT128_VARIANT_FULL&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Permutes a state with SimP-192. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>State to be permuted. </td></tr>
-    <tr><td class="paramname">steps</td><td>Number of steps to perform (usually 2 or 4). </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Select the full variant of GIFT-128. </p>
+<p>The full variant requires 320 bytes for the key schedule and uses the fixslicing method to implement encryption and decryption. </p>
 
 </div>
 </div>
-<a class="anchor" id="ad07dca6bfc29cd04a0be6d6ec85c10c0"></a>
+<a class="anchor" id="a1ea74b4ecb86cc23d943d7d11dae1ef9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void simp_256_permute </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>state</em>[SIMP_256_STATE_SIZE], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>steps</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">#define GIFT128_VARIANT_SMALL&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Permutes a state with SimP-256. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>State to be permuted. </td></tr>
-    <tr><td class="paramname">steps</td><td>Number of steps to perform (usually 2 or 4). </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Select the small variant of GIFT-128. </p>
+<p>The small variant requires 80 bytes for the key schedule. The rest of the key schedule is expanded on the fly during encryption.</p>
+<p>The fixslicing method is used to implement encryption and the slower bitslicing method is used to implement decryption. The small variant is suitable when memory is at a premium, decryption is not needed, but encryption performance is still important. </p>
+
+</div>
+</div>
+<a class="anchor" id="abb5ea8560d1d59cbcbb62507ab28af41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GIFT128_VARIANT_TINY&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Select the tiny variant of GIFT-128. </p>
+<p>The tiny variant requires 16 bytes for the key schedule and uses the bitslicing method to implement encryption and decryption. It is suitable for use when memory is very tight and performance is not critical. </p>
 
 </div>
 </div>

@@ -101,7 +101,13 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>Schwaemm256-256 (SPARKLE) *</td><td>256</td><td>256</td><td>256</td><td>3.03</td><td>2.75</td><td>3.45</td><td>3.33</td><td>3.04 </td></tr>
 <tr>
+<td>ASCON-128a *</td><td>128</td><td>128</td><td>128</td><td>2.79</td><td>2.57</td><td>4.10</td><td>3.91</td><td>3.02 </td></tr>
+<tr>
 <td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>2.76</td><td>2.65</td><td>2.71 </td></tr>
+<tr>
+<td><b><em>ASCON-128</em></b> *</td><td>128</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.50</td><td>2.36 </td></tr>
+<tr>
+<td>ASCON-80pq *</td><td>160</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.52</td><td>2.36 </td></tr>
 <tr>
 <td>Delirium (Elephant) *</td><td>128</td><td>96</td><td>128</td><td>1.89</td><td>1.77</td><td>3.60</td><td>3.52</td><td>2.20 </td></tr>
 <tr>
@@ -114,6 +120,8 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>GIFT-COFB</em></b> *</td><td>128</td><td>128</td><td>128</td><td>1.24</td><td>1.23</td><td>2.20</td><td>2.15</td><td>1.45 </td></tr>
 <tr>
 <td><b><em>HYENA</em></b> *</td><td>128</td><td>96</td><td>128</td><td>1.17</td><td>1.17</td><td>2.12</td><td>2.09</td><td>1.38 </td></tr>
+<tr>
+<td><b><em>DryGASCON128</em></b> *</td><td>128</td><td>128</td><td>128</td><td>0.89</td><td>0.89</td><td>1.93</td><td>1.90</td><td>1.09 </td></tr>
 <tr>
 <td><b><em>LOTUS-AEAD</em></b> *</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.84</td><td>2.21</td><td>2.17</td><td>1.06 </td></tr>
 <tr>
@@ -131,11 +139,7 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>SUNDAE-GIFT-128 *</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.72</td><td>1.67</td><td>1.67</td><td>0.89 </td></tr>
 <tr>
-<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.76</td><td>0.77</td><td>1.17</td><td>1.17</td><td>0.87 </td></tr>
-<tr>
-<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.52</td><td>0.53</td><td>1.00</td><td>1.00</td><td>0.63 </td></tr>
-<tr>
-<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.52</td><td>0.53</td><td>1.00</td><td>1.00</td><td>0.63 </td></tr>
+<td>DryGASCON256 *</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>0.53</td><td>0.54</td><td>0.64</td><td>0.65</td><td>0.57 </td></tr>
 <tr>
@@ -152,6 +156,8 @@ Performance of AEAD algorithms on AVR</h1>
 <td>Jumbo (Elephant) *</td><td>128</td><td>96</td><td>64</td><td>0.34</td><td>0.35</td><td>0.65</td><td>0.65</td><td>0.41 </td></tr>
 <tr>
 <td><b><em>SpoC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.68</td><td>0.68</td><td>0.36 </td></tr>
+<tr>
+<td>ISAP-A-128A *</td><td>128</td><td>128</td><td>128</td><td>0.37</td><td>0.38</td><td>0.31</td><td>0.32</td><td>0.35 </td></tr>
 <tr>
 <td><b><em>ISAP-K-128A</em></b> *</td><td>128</td><td>128</td><td>128</td><td>0.32</td><td>0.33</td><td>0.25</td><td>0.25</td><td>0.30 </td></tr>
 <tr>
@@ -193,8 +199,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>Romulus-N1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.17</td><td>0.32</td><td>0.32</td><td>0.20 </td></tr>
 <tr>
-<td><b><em>DryGASCON128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.15</td><td>0.15</td><td>0.33</td><td>0.33</td><td>0.19 </td></tr>
-<tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18 </td></tr>
 <tr>
 <td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.14</td><td>0.34</td><td>0.34</td><td>0.18 </td></tr>
@@ -219,8 +223,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>PAEF-ForkSkinny-128-288</em></b></td><td>128</td><td>104</td><td>128</td><td>0.10</td><td>0.07</td><td>0.41</td><td>0.28</td><td>0.11 </td></tr>
 <tr>
-<td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.09</td><td>0.09</td><td>0.17</td><td>0.17</td><td>0.11 </td></tr>
-<tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.09</td><td>0.13</td><td>0.13</td><td>0.10 </td></tr>
 <tr>
 <td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.08</td><td>0.08</td><td>0.11</td><td>0.11</td><td>0.09 </td></tr>
@@ -229,7 +231,7 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.21</td><td>0.08 </td></tr>
 <tr>
-<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.04</td><td>0.04</td><td>0.06 </td></tr>
+<td>ISAP-A-128 *</td><td>128</td><td>128</td><td>128</td><td>0.07</td><td>0.08</td><td>0.04</td><td>0.04</td><td>0.06 </td></tr>
 <tr>
 <td>ISAP-K-128 *</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.06</td><td>0.03</td><td>0.03</td><td>0.04 </td></tr>
 <tr>
@@ -238,8 +240,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td>Pyjamask-96-AEAD-Masked</td><td>128</td><td>64</td><td>96</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
 <tr>
 <td>Pyjamask-128-AEAD-Masked</td><td>128</td><td>96</td><td>128</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
-<tr>
-<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02 </td></tr>
 </table>
 <h1><a class="anchor" id="perf_avr_hash"></a>
 Performance of hash algorithms on AVR</h1>
@@ -251,17 +251,19 @@ Performance of hash algorithms on AVR</h1>
 <tr>
 <td>Esch384 (SPARKLE) *</td><td>384</td><td>1.20</td><td>0.96</td><td>1.48</td><td>1.21 </td></tr>
 <tr>
+<td><b><em>DryGASCON128-HASH</em></b> *</td><td>256</td><td>0.53</td><td>0.51</td><td>1.62</td><td>0.88 </td></tr>
+<tr>
+<td><b><em>ASCON-HASH</em></b> *</td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71 </td></tr>
+<tr>
 <td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.38</td><td>0.31</td><td>0.77</td><td>0.49 </td></tr>
+<tr>
+<td>DryGASCON256-HASH *</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>256</td><td>0.30</td><td>0.27</td><td>0.60</td><td>0.39 </td></tr>
 <tr>
 <td><b><em>GIMLI-24-HASH</em></b></td><td>256</td><td>0.33</td><td>0.27</td><td>0.46</td><td>0.35 </td></tr>
 <tr>
-<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.18</td><td>0.15</td><td>0.25</td><td>0.20 </td></tr>
-<tr>
 <td><b><em>KNOT-HASH-256-256</em></b></td><td>256</td><td>0.11</td><td>0.10</td><td>0.29</td><td>0.17 </td></tr>
-<tr>
-<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.09</td><td>0.09</td><td>0.27</td><td>0.15 </td></tr>
 <tr>
 <td><b><em>ORANGISH</em></b></td><td>256</td><td>0.12</td><td>0.10</td><td>0.17</td><td>0.13 </td></tr>
 <tr>
@@ -270,8 +272,6 @@ Performance of hash algorithms on AVR</h1>
 <td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.08</td><td>0.13</td><td>0.10 </td></tr>
 <tr>
 <td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.06</td><td>0.05</td><td>0.08</td><td>0.06 </td></tr>
-<tr>
-<td>DryGASCON256-HASH</td><td>512</td><td>0.06</td><td>0.05</td><td>0.09</td><td>0.06 </td></tr>
 <tr>
 <td>KNOT-HASH-384-384</td><td>384</td><td>0.03</td><td>0.03</td><td>0.07</td><td>0.04 </td></tr>
 <tr>
@@ -294,19 +294,19 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>44</td><td>SPARKLE </td></tr>
 <tr>
+<td>23</td><td>ASCON </td></tr>
+<tr>
 <td>21</td><td>TinyJAMBU </td></tr>
 <tr>
 <td>14</td><td>GIFT-COFB </td></tr>
 <tr>
 <td>13</td><td>HYENA </td></tr>
 <tr>
-<td>10</td><td>LOTUS </td></tr>
+<td>10</td><td>DryGASCON, LOTUS </td></tr>
 <tr>
 <td>9</td><td>ESTATE, KNOT </td></tr>
 <tr>
 <td>8</td><td>SUNDAE-GIFT </td></tr>
-<tr>
-<td>6</td><td>ASCON </td></tr>
 <tr>
 <td>5</td><td>Gimli, Xoodyak, Saturnin </td></tr>
 <tr>
@@ -316,7 +316,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Romulus, SKINNY-AEAD, SPIX, Spook </td></tr>
 <tr>
-<td>1</td><td>ACE, DryGASCON, ForkAE </td></tr>
+<td>1</td><td>ACE, ForkAE </td></tr>
 <tr>
 <td>0</td><td>Pyjamask, Subterranean, WAGE </td></tr>
 </table>
@@ -327,20 +327,22 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>22</td><td>SPARKLE </td></tr>
 <tr>
+<td>8</td><td>DryGASCON </td></tr>
+<tr>
+<td>7</td><td>ASCON </td></tr>
+<tr>
 <td>4</td><td>Saturnin </td></tr>
 <tr>
 <td>3</td><td>Gimli, Xoodyak </td></tr>
 <tr>
-<td>2</td><td>ASCON </td></tr>
-<tr>
-<td>1</td><td>DryGASCON, KNOT, ORANGE, PHOTON-Beetle </td></tr>
+<td>1</td><td>KNOT, ORANGE, PHOTON-Beetle </td></tr>
 <tr>
 <td>0</td><td>ACE, SKINNY-AEAD, Subterranean </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 20 2020 19:15:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 25 2020 13:47:34 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
