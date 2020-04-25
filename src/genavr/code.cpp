@@ -2348,7 +2348,7 @@ void Code::used(unsigned char reg)
  *
  * \param high Set to true if the register must be a high register.
  *
- * \return The register number or zero if there are no free registers left.
+ * \return The register number or 0xFF if there are no free registers left.
  */
 unsigned char Code::allocateSpare(bool high)
 {
@@ -2362,7 +2362,7 @@ unsigned char Code::allocateSpare(bool high)
         m_immRegs &= ~(1 << reg);
         return reg;
     }
-    return 0;
+    return 0xFF;
 }
 
 /**
@@ -2371,7 +2371,7 @@ unsigned char Code::allocateSpare(bool high)
  * \param high Set to true if the register pair must be in high registers.
  *
  * \return The register number of the first register in the pair,
- * or zero if there are no free register pairs left.
+ * or 0xFF if there are no free register pairs left.
  *
  * This function is intended to optimize for using MOVW instructions later.
  */
@@ -2392,7 +2392,7 @@ unsigned char Code::allocateSparePair(bool high)
         m_immRegs &= ~((1 << reg1) | (1 << reg2));
         return reg1;
     }
-    return 0;
+    return 0xFF;
 }
 
 Reg Code::allocateRegInternal(unsigned size, bool high, bool optional)
@@ -2403,7 +2403,7 @@ Reg Code::allocateRegInternal(unsigned size, bool high, bool optional)
         if ((result.m_regs.size() % 2) == 0 && size >= 2) {
             // Try allocating a register pair in this position.
             reg = allocateSparePair(high);
-            if (reg != 0) {
+            if (reg != 0xFF) {
                 result.m_regs.push_back(reg);
                 result.m_regs.push_back(reg + 1);
                 size -= 2;
@@ -2411,7 +2411,7 @@ Reg Code::allocateRegInternal(unsigned size, bool high, bool optional)
             }
         }
         reg = allocateSpare(high);
-        if (reg == 0) {
+        if (reg == 0xFF) {
             if (optional)
                 break;
             releaseReg(result);
@@ -2464,7 +2464,7 @@ unsigned char Code::immtemp(unsigned char value)
 
     // Try finding any high register, reusing immediates if we have to.
     unsigned char reg = allocateSpare(true);
-    if (reg == 0)
+    if (reg == 0xFF)
         throw std::overflow_error("too many registers in use");
     m_allocated &= ~(1 << reg); // Not really allocated.
     m_immRegs |= (1 << reg);
