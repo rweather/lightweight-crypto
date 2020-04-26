@@ -226,6 +226,7 @@ XOODYAK_FILES = \
     xoodyak.h \
     internal-xoodoo.c \
     internal-xoodoo.h \
+    internal-xoodoo-avr.S \
     $(COMMON_FILES)
 
 ALL_ALGORITHMS = \

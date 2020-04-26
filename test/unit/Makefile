@@ -35,7 +35,8 @@ OBJS1 = \
     test-spook.o \
     test-subterranean.o \
     test-tinyjambu.o \
-    test-wage.o
+    test-wage.o \
+    test-xoodoo.o
 
 DEPS = $(LIBSRC_DIR)/libcryptolw.a
 
@@ -75,5 +76,6 @@ test-spook.o: $(LIBSRC_DIR)/internal-spook.h $(TEST_CIPHER_INC)
 test-subterranean.o: $(LIBSRC_DIR)/internal-subterranean.h $(TEST_CIPHER_INC)
 test-tinyjambu.o: $(LIBSRC_DIR)/internal-tinyjambu.h $(TEST_CIPHER_INC)
 test-wage.o: $(LIBSRC_DIR)/internal-wage.h $(TEST_CIPHER_INC)
+test-xoodoo.o: $(LIBSRC_DIR)/internal-xoodoo.h $(TEST_CIPHER_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
 test-main.o: $(TEST_CIPHER_INC)

@@ -22,6 +22,8 @@
 
 #include "internal-xoodoo.h"
 
+#if !defined(__AVR__)
+
 void xoodoo_permute(xoodoo_state_t *state)
 {
     static uint16_t const rc[XOODOO_ROUNDS] = {
@@ -160,3 +162,5 @@ void xoodoo_permute(xoodoo_state_t *state)
     le_store_word32(state->B + 44, x23);
 #endif
 }
+
+#endif /* !__AVR__ */

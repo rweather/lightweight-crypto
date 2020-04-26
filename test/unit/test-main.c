@@ -46,6 +46,7 @@ void test_spongent(void);
 void test_subterranean(void);
 void test_tinyjambu(void);
 void test_wage(void);
+void test_xoodoo(void);
 
 int main(int argc, char *argv[])
 {
@@ -73,5 +74,6 @@ int main(int argc, char *argv[])
     test_subterranean();
     test_tinyjambu();
     test_wage();
+    test_xoodoo();
     return test_exit_result;
 }

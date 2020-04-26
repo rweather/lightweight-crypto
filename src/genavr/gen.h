@@ -119,4 +119,8 @@ bool test_spongent176_permutation(Code &code);
 void gen_tinyjambu_permutation(Code &code);
 bool test_tinyjambu_permutation(Code &code);
 
+// Xoodoo permutation.
+void gen_xoodoo_permutation(Code &code);
+bool test_xoodoo_permutation(Code &code);
+
 #endif
