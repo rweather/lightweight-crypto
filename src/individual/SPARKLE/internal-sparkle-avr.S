@@ -25,8 +25,6 @@ sparkle_256:
 	push r16
 	push r17
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	push r22
 	ld r22,Z
@@ -706,8 +704,6 @@ sparkle_384:
 	push r16
 	push r17
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	push r22
 	ld r22,Z
@@ -1658,8 +1654,6 @@ sparkle_512:
 	push r16
 	push r17
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	push r22
 	ld r22,Z

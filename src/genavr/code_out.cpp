@@ -372,7 +372,7 @@ void Code::write(std::ostream &ostream) const
 
     // Push registers that we need to save on the stack.
     unsigned saved_regs = 2;
-    if (!hasFlag(NoLocals) || m_localsSize != 0) {
+    if (!hasFlag(NoLocals) || hasFlag(TempY)) {
         ostream << "\tpush r28" << std::endl; // Push Y
         ostream << "\tpush r29" << std::endl;
     }
@@ -442,8 +442,10 @@ void Code::write(std::ostream &ostream) const
         // will involve less instructions than arithmetic on Y and SP.
         for (unsigned temp = 0; temp < locals; ++temp)
             ostream << "\tpush r1" << std::endl;
-        ostream << "\tin r28,0x3d" << std::endl;    // Y = SP
-        ostream << "\tin r29,0x3e" << std::endl;
+        if (locals != 0 || !hasFlag(TempY)) {
+            ostream << "\tin r28,0x3d" << std::endl;    // Y = SP
+            ostream << "\tin r29,0x3e" << std::endl;
+        }
     } else {
         ostream << "\tin r28,0x3d" << std::endl;    // Y = SP
         ostream << "\tin r29,0x3e" << std::endl;
@@ -512,7 +514,7 @@ void Code::write(std::ostream &ostream) const
             Insn::reg1(Insn::POP, reg).write(ostream, *this, 0);
         }
     }
-    if (!hasFlag(NoLocals)) {
+    if (!hasFlag(NoLocals) || hasFlag(TempY)) {
         ostream << "\tpop r29" << std::endl;        // Pop Y
         ostream << "\tpop r28" << std::endl;
     }

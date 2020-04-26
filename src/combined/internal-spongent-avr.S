@@ -285,8 +285,6 @@ spongent160_permute:
 	push r14
 	push r15
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 16
 	ld r22,Z
 	ldd r23,Z+1
@@ -952,8 +950,6 @@ spongent176_permute:
 	push r16
 	push r17
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	ld r22,Z
 	ldd r23,Z+1

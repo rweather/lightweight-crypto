@@ -26,8 +26,6 @@ tiny_jambu_permutation:
 	push r17
 	movw r26,r24
 	movw r30,r22
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	ld r22,X+
 	ld r23,X+

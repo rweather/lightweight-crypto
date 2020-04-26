@@ -25,8 +25,6 @@ keccakp_200_permute:
 	push r16
 	push r17
 	movw r30,r24
-	in r28,0x3d
-	in r29,0x3e
 .L__stack_usage = 18
 	ld r18,Z
 	ldd r19,Z+1
