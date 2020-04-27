@@ -468,6 +468,23 @@ static bool gift64(enum Mode mode)
     return ok;
 }
 
+static bool gimli24(enum Mode mode)
+{
+    Code code;
+    gen_gimli24_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gimli24_permutation(code)) {
+            std::cout << "GIMLI-24 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIMLI-24 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool keccakp_200(enum Mode mode)
 {
     Code code;
@@ -670,6 +687,8 @@ int main(int argc, char *argv[])
             gen1 = gift128n;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
+        } else if (!strcmp(argv[1], "GIMLI-24")) {
+            gen1 = gimli24;
         } else if (!strcmp(argv[1], "Keccak")) {
             gen1 = keccakp_200;
             gen2 = keccakp_400;
@@ -714,6 +733,8 @@ int main(int argc, char *argv[])
         if (!gift128n(Test))
             exit_val = 1;
         if (!gift64(Test))
+            exit_val = 1;
+        if (!gimli24(Test))
             exit_val = 1;
         if (!keccakp_200(Test))
             exit_val = 1;

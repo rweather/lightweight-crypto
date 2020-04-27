@@ -22,6 +22,8 @@
 
 #include "internal-gimli24.h"
 
+#if !defined(__AVR__)
+
 /* Apply the SP-box to a specific column in the state array */
 #define GIMLI24_SP(s0, s4, s8) \
     do { \
@@ -136,3 +138,5 @@ void gimli24_permute(uint32_t state[12])
     le_store_word32(((unsigned char *)(&(state[11]))), s11);
 #endif
 }
+
+#endif /* !__AVR__ */

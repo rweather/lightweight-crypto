@@ -78,6 +78,7 @@ GIMLI_FILES = \
     gimli24.h \
     internal-gimli24.c \
     internal-gimli24.h \
+    internal-gimli24-avr.S \
     $(COMMON_FILES)
 GRAIN128_FILES = \
     grain128.c \
