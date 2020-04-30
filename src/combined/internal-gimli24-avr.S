@@ -52,24 +52,16 @@ gimli24_permute:
 	ldd r15,Z+39
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -77,8 +69,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -99,9 +93,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -136,40 +131,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -177,8 +160,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -199,9 +184,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -236,54 +222,36 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,24
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	ldi r31,24
+	eor r4,r31
+	ldi r30,121
+	eor r5,r30
+	ldi r25,55
+	eor r6,r25
+	ldi r24,158
+	eor r7,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -291,31 +259,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -350,40 +321,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -391,31 +350,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -450,40 +412,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -491,31 +441,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -550,40 +503,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -591,31 +532,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -650,28 +594,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	st Z,r18
-	std Z+1,r19
-	std Z+2,r20
-	std Z+3,r21
+	st Z,r4
+	std Z+1,r5
+	std Z+2,r6
+	std Z+3,r7
 	std Z+16,r22
 	std Z+17,r23
 	std Z+18,r26
@@ -680,10 +620,10 @@ gimli24_permute:
 	std Z+33,r29
 	std Z+34,r2
 	std Z+35,r3
-	std Z+4,r4
-	std Z+5,r5
-	std Z+6,r6
-	std Z+7,r7
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r20
+	std Z+7,r21
 	std Z+20,r8
 	std Z+21,r9
 	std Z+22,r10
@@ -692,10 +632,10 @@ gimli24_permute:
 	std Z+37,r13
 	std Z+38,r14
 	std Z+39,r15
-	ldd r18,Z+8
-	ldd r19,Z+9
-	ldd r20,Z+10
-	ldd r21,Z+11
+	ldd r4,Z+8
+	ldd r5,Z+9
+	ldd r6,Z+10
+	ldd r7,Z+11
 	ldd r22,Z+24
 	ldd r23,Z+25
 	ldd r26,Z+26
@@ -704,10 +644,10 @@ gimli24_permute:
 	ldd r29,Z+41
 	ldd r2,Z+42
 	ldd r3,Z+43
-	ldd r4,Z+12
-	ldd r5,Z+13
-	ldd r6,Z+14
-	ldd r7,Z+15
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r20,Z+14
+	ldd r21,Z+15
 	ldd r8,Z+28
 	ldd r9,Z+29
 	ldd r10,Z+30
@@ -718,24 +658,16 @@ gimli24_permute:
 	ldd r15,Z+47
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -743,31 +675,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -802,146 +737,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -949,31 +766,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -1008,40 +828,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -1049,8 +857,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -1071,9 +881,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -1108,40 +919,119 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -1149,8 +1039,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -1171,9 +1063,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -1208,40 +1101,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -1249,8 +1130,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -1271,9 +1154,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -1308,22 +1192,18 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -1344,24 +1224,16 @@ gimli24_permute:
 	ldd r7,Z+7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -1369,8 +1241,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -1391,9 +1265,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -1428,40 +1303,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -1469,8 +1332,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -1491,9 +1356,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -1528,40 +1394,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -1569,8 +1423,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -1591,9 +1447,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -1628,146 +1485,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -1775,8 +1514,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -1797,9 +1538,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -1834,40 +1576,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -1875,31 +1605,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -1934,53 +1667,43 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
 	lsl r16
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
 	lsl r18
 	rol r19
 	rol r20
@@ -1997,9 +1720,101 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -2034,40 +1849,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -2075,31 +1878,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -2134,28 +1940,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	std Z+8,r18
-	std Z+9,r19
-	std Z+10,r20
-	std Z+11,r21
+	std Z+8,r4
+	std Z+9,r5
+	std Z+10,r6
+	std Z+11,r7
 	std Z+24,r22
 	std Z+25,r23
 	std Z+26,r26
@@ -2164,10 +1966,10 @@ gimli24_permute:
 	std Z+41,r29
 	std Z+42,r2
 	std Z+43,r3
-	std Z+12,r4
-	std Z+13,r5
-	std Z+14,r6
-	std Z+15,r7
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r20
+	std Z+15,r21
 	std Z+28,r8
 	std Z+29,r9
 	std Z+30,r10
@@ -2176,10 +1978,10 @@ gimli24_permute:
 	std Z+45,r13
 	std Z+46,r14
 	std Z+47,r15
-	ld r18,Z
-	ldd r19,Z+1
-	ldd r20,Z+2
-	ldd r21,Z+3
+	ld r4,Z
+	ldd r5,Z+1
+	ldd r6,Z+2
+	ldd r7,Z+3
 	ldd r22,Z+16
 	ldd r23,Z+17
 	ldd r26,Z+18
@@ -2188,10 +1990,10 @@ gimli24_permute:
 	ldd r29,Z+33
 	ldd r2,Z+34
 	ldd r3,Z+35
-	ldd r4,Z+4
-	ldd r5,Z+5
-	ldd r6,Z+6
-	ldd r7,Z+7
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r20,Z+6
+	ldd r21,Z+7
 	ldd r8,Z+20
 	ldd r9,Z+21
 	ldd r10,Z+22
@@ -2200,34 +2002,26 @@ gimli24_permute:
 	ldd r13,Z+37
 	ldd r14,Z+38
 	ldd r15,Z+39
-	pop r4
-	pop r5
-	pop r6
-	pop r7
 	pop r18
 	pop r19
 	pop r20
 	pop r21
+	pop r4
+	pop r5
+	pop r6
+	pop r7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -2235,31 +2029,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -2294,554 +2091,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
-	movw r22,r30
-	movw r26,r24
-	or r22,r28
-	or r23,r29
-	or r26,r2
-	or r27,r3
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	eor r22,r30
-	eor r23,r31
-	eor r26,r24
-	eor r27,r25
-	eor r22,r16
-	eor r23,r17
-	eor r26,r1
-	eor r27,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,20
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -2849,31 +2120,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -2908,40 +2182,400 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	ldi r31,20
+	eor r18,r31
+	ldi r30,121
+	eor r19,r30
+	ldi r25,55
+	eor r20,r25
+	ldi r24,158
+	eor r21,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -2949,8 +2583,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -2971,9 +2607,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -3008,22 +2645,109 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
+	and r18,r28
+	and r19,r29
+	and r20,r2
+	and r21,r3
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
+	movw r22,r30
+	movw r26,r24
+	or r22,r28
+	or r23,r29
+	or r26,r2
+	or r27,r3
+	lsl r22
+	rol r23
+	rol r26
+	rol r27
+	eor r22,r30
+	eor r23,r31
+	eor r26,r24
+	eor r27,r25
+	eor r22,r16
+	eor r23,r17
+	eor r26,r1
+	eor r27,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -3044,24 +2768,16 @@ gimli24_permute:
 	ldd r7,Z+15
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -3069,8 +2785,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -3091,9 +2809,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -3128,40 +2847,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -3169,8 +2876,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -3191,9 +2900,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -3228,40 +2938,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -3269,8 +2967,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -3291,9 +2991,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -3328,154 +3029,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,16
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -3483,8 +3058,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -3505,9 +3082,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -3542,40 +3120,36 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	ldi r31,16
+	eor r4,r31
+	ldi r30,121
+	eor r5,r30
+	ldi r25,55
+	eor r6,r25
+	ldi r24,158
+	eor r7,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -3583,31 +3157,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -3642,53 +3219,43 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
 	lsl r16
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
 	lsl r18
 	rol r19
 	rol r20
@@ -3705,9 +3272,101 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -3742,40 +3401,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -3783,31 +3430,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -3842,28 +3492,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	st Z,r18
-	std Z+1,r19
-	std Z+2,r20
-	std Z+3,r21
+	st Z,r4
+	std Z+1,r5
+	std Z+2,r6
+	std Z+3,r7
 	std Z+16,r22
 	std Z+17,r23
 	std Z+18,r26
@@ -3872,10 +3518,10 @@ gimli24_permute:
 	std Z+33,r29
 	std Z+34,r2
 	std Z+35,r3
-	std Z+4,r4
-	std Z+5,r5
-	std Z+6,r6
-	std Z+7,r7
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r20
+	std Z+7,r21
 	std Z+20,r8
 	std Z+21,r9
 	std Z+22,r10
@@ -3884,10 +3530,10 @@ gimli24_permute:
 	std Z+37,r13
 	std Z+38,r14
 	std Z+39,r15
-	ldd r18,Z+8
-	ldd r19,Z+9
-	ldd r20,Z+10
-	ldd r21,Z+11
+	ldd r4,Z+8
+	ldd r5,Z+9
+	ldd r6,Z+10
+	ldd r7,Z+11
 	ldd r22,Z+24
 	ldd r23,Z+25
 	ldd r26,Z+26
@@ -3896,10 +3542,10 @@ gimli24_permute:
 	ldd r29,Z+41
 	ldd r2,Z+42
 	ldd r3,Z+43
-	ldd r4,Z+12
-	ldd r5,Z+13
-	ldd r6,Z+14
-	ldd r7,Z+15
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r20,Z+14
+	ldd r21,Z+15
 	ldd r8,Z+28
 	ldd r9,Z+29
 	ldd r10,Z+30
@@ -3908,34 +3554,26 @@ gimli24_permute:
 	ldd r13,Z+45
 	ldd r14,Z+46
 	ldd r15,Z+47
-	pop r4
-	pop r5
-	pop r6
-	pop r7
 	pop r18
 	pop r19
 	pop r20
 	pop r21
+	pop r4
+	pop r5
+	pop r6
+	pop r7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -3943,31 +3581,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -4002,546 +3643,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
-	movw r22,r30
-	movw r26,r24
-	or r22,r28
-	or r23,r29
-	or r26,r2
-	or r27,r3
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	eor r22,r30
-	eor r23,r31
-	eor r26,r24
-	eor r27,r25
-	eor r22,r16
-	eor r23,r17
-	eor r26,r1
-	eor r27,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -4549,31 +3672,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -4608,40 +3734,392 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -4649,8 +4127,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -4671,9 +4151,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -4708,22 +4189,109 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
+	and r18,r28
+	and r19,r29
+	and r20,r2
+	and r21,r3
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
+	movw r22,r30
+	movw r26,r24
+	or r22,r28
+	or r23,r29
+	or r26,r2
+	or r27,r3
+	lsl r22
+	rol r23
+	rol r26
+	rol r27
+	eor r22,r30
+	eor r23,r31
+	eor r26,r24
+	eor r27,r25
+	eor r22,r16
+	eor r23,r17
+	eor r26,r1
+	eor r27,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -4744,24 +4312,16 @@ gimli24_permute:
 	ldd r7,Z+7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -4769,8 +4329,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -4791,9 +4353,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -4828,40 +4391,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -4869,8 +4420,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -4891,9 +4444,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -4928,40 +4482,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -4969,8 +4511,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -4991,9 +4535,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -5028,146 +4573,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -5175,8 +4602,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -5197,9 +4626,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -5234,40 +4664,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -5275,31 +4693,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -5334,53 +4755,43 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
 	lsl r16
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
 	lsl r18
 	rol r19
 	rol r20
@@ -5397,9 +4808,101 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -5434,40 +4937,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -5475,31 +4966,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -5534,28 +5028,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	std Z+8,r18
-	std Z+9,r19
-	std Z+10,r20
-	std Z+11,r21
+	std Z+8,r4
+	std Z+9,r5
+	std Z+10,r6
+	std Z+11,r7
 	std Z+24,r22
 	std Z+25,r23
 	std Z+26,r26
@@ -5564,10 +5054,10 @@ gimli24_permute:
 	std Z+41,r29
 	std Z+42,r2
 	std Z+43,r3
-	std Z+12,r4
-	std Z+13,r5
-	std Z+14,r6
-	std Z+15,r7
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r20
+	std Z+15,r21
 	std Z+28,r8
 	std Z+29,r9
 	std Z+30,r10
@@ -5576,10 +5066,10 @@ gimli24_permute:
 	std Z+45,r13
 	std Z+46,r14
 	std Z+47,r15
-	ld r18,Z
-	ldd r19,Z+1
-	ldd r20,Z+2
-	ldd r21,Z+3
+	ld r4,Z
+	ldd r5,Z+1
+	ldd r6,Z+2
+	ldd r7,Z+3
 	ldd r22,Z+16
 	ldd r23,Z+17
 	ldd r26,Z+18
@@ -5588,10 +5078,10 @@ gimli24_permute:
 	ldd r29,Z+33
 	ldd r2,Z+34
 	ldd r3,Z+35
-	ldd r4,Z+4
-	ldd r5,Z+5
-	ldd r6,Z+6
-	ldd r7,Z+7
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r20,Z+6
+	ldd r21,Z+7
 	ldd r8,Z+20
 	ldd r9,Z+21
 	ldd r10,Z+22
@@ -5600,34 +5090,26 @@ gimli24_permute:
 	ldd r13,Z+37
 	ldd r14,Z+38
 	ldd r15,Z+39
-	pop r4
-	pop r5
-	pop r6
-	pop r7
 	pop r18
 	pop r19
 	pop r20
 	pop r21
+	pop r4
+	pop r5
+	pop r6
+	pop r7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -5635,31 +5117,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -5694,554 +5179,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
-	movw r22,r30
-	movw r26,r24
-	or r22,r28
-	or r23,r29
-	or r26,r2
-	or r27,r3
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	eor r22,r30
-	eor r23,r31
-	eor r26,r24
-	eor r27,r25
-	eor r22,r16
-	eor r23,r17
-	eor r26,r1
-	eor r27,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,12
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -6249,31 +5208,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -6308,40 +5270,400 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	ldi r31,12
+	eor r18,r31
+	ldi r30,121
+	eor r19,r30
+	ldi r25,55
+	eor r20,r25
+	ldi r24,158
+	eor r21,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -6349,8 +5671,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -6371,9 +5695,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -6408,22 +5733,109 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
+	and r18,r28
+	and r19,r29
+	and r20,r2
+	and r21,r3
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
+	movw r22,r30
+	movw r26,r24
+	or r22,r28
+	or r23,r29
+	or r26,r2
+	or r27,r3
+	lsl r22
+	rol r23
+	rol r26
+	rol r27
+	eor r22,r30
+	eor r23,r31
+	eor r26,r24
+	eor r27,r25
+	eor r22,r16
+	eor r23,r17
+	eor r26,r1
+	eor r27,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -6444,24 +5856,16 @@ gimli24_permute:
 	ldd r7,Z+15
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -6469,8 +5873,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -6491,9 +5897,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -6528,40 +5935,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -6569,8 +5964,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -6591,9 +5988,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -6628,40 +6026,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -6669,8 +6055,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -6691,9 +6079,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -6728,154 +6117,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,8
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -6883,8 +6146,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -6905,9 +6170,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -6942,40 +6208,36 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	ldi r31,8
+	eor r4,r31
+	ldi r30,121
+	eor r5,r30
+	ldi r25,55
+	eor r6,r25
+	ldi r24,158
+	eor r7,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -6983,31 +6245,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -7042,53 +6307,43 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
 	lsl r16
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
 	lsl r18
 	rol r19
 	rol r20
@@ -7105,9 +6360,101 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -7142,40 +6489,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -7183,31 +6518,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -7242,28 +6580,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	st Z,r18
-	std Z+1,r19
-	std Z+2,r20
-	std Z+3,r21
+	st Z,r4
+	std Z+1,r5
+	std Z+2,r6
+	std Z+3,r7
 	std Z+16,r22
 	std Z+17,r23
 	std Z+18,r26
@@ -7272,10 +6606,10 @@ gimli24_permute:
 	std Z+33,r29
 	std Z+34,r2
 	std Z+35,r3
-	std Z+4,r4
-	std Z+5,r5
-	std Z+6,r6
-	std Z+7,r7
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r20
+	std Z+7,r21
 	std Z+20,r8
 	std Z+21,r9
 	std Z+22,r10
@@ -7284,10 +6618,10 @@ gimli24_permute:
 	std Z+37,r13
 	std Z+38,r14
 	std Z+39,r15
-	ldd r18,Z+8
-	ldd r19,Z+9
-	ldd r20,Z+10
-	ldd r21,Z+11
+	ldd r4,Z+8
+	ldd r5,Z+9
+	ldd r6,Z+10
+	ldd r7,Z+11
 	ldd r22,Z+24
 	ldd r23,Z+25
 	ldd r26,Z+26
@@ -7296,10 +6630,10 @@ gimli24_permute:
 	ldd r29,Z+41
 	ldd r2,Z+42
 	ldd r3,Z+43
-	ldd r4,Z+12
-	ldd r5,Z+13
-	ldd r6,Z+14
-	ldd r7,Z+15
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r20,Z+14
+	ldd r21,Z+15
 	ldd r8,Z+28
 	ldd r9,Z+29
 	ldd r10,Z+30
@@ -7308,34 +6642,26 @@ gimli24_permute:
 	ldd r13,Z+45
 	ldd r14,Z+46
 	ldd r15,Z+47
-	pop r4
-	pop r5
-	pop r6
-	pop r7
 	pop r18
 	pop r19
 	pop r20
 	pop r21
+	pop r4
+	pop r5
+	pop r6
+	pop r7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -7343,31 +6669,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -7402,546 +6731,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
-	movw r22,r30
-	movw r26,r24
-	or r22,r28
-	or r23,r29
-	or r26,r2
-	or r27,r3
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	eor r22,r30
-	eor r23,r31
-	eor r26,r24
-	eor r27,r25
-	eor r22,r16
-	eor r23,r17
-	eor r26,r1
-	eor r27,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -7949,31 +6760,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8008,40 +6822,392 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -8049,8 +7215,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -8071,9 +7239,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8108,22 +7277,109 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
+	and r18,r28
+	and r19,r29
+	and r20,r2
+	and r21,r3
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
+	movw r22,r30
+	movw r26,r24
+	or r22,r28
+	or r23,r29
+	or r26,r2
+	or r27,r3
+	lsl r22
+	rol r23
+	rol r26
+	rol r27
+	eor r22,r30
+	eor r23,r31
+	eor r26,r24
+	eor r27,r25
+	eor r22,r16
+	eor r23,r17
+	eor r26,r1
+	eor r27,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -8144,24 +7400,16 @@ gimli24_permute:
 	ldd r7,Z+7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -8169,8 +7417,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -8191,9 +7441,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8228,40 +7479,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -8269,8 +7508,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -8291,9 +7532,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8328,40 +7570,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -8369,8 +7599,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -8391,9 +7623,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -8428,146 +7661,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
 	movw r4,r30
 	movw r6,r24
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -8575,8 +7690,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -8597,9 +7714,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -8634,40 +7752,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -8675,31 +7781,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -8734,53 +7843,43 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
 	lsl r16
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
 	lsl r18
 	rol r19
 	rol r20
@@ -8797,9 +7896,101 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8834,40 +8025,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -8875,31 +8054,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -8934,28 +8116,24 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
-	std Z+8,r18
-	std Z+9,r19
-	std Z+10,r20
-	std Z+11,r21
+	std Z+8,r4
+	std Z+9,r5
+	std Z+10,r6
+	std Z+11,r7
 	std Z+24,r22
 	std Z+25,r23
 	std Z+26,r26
@@ -8964,10 +8142,10 @@ gimli24_permute:
 	std Z+41,r29
 	std Z+42,r2
 	std Z+43,r3
-	std Z+12,r4
-	std Z+13,r5
-	std Z+14,r6
-	std Z+15,r7
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r20
+	std Z+15,r21
 	std Z+28,r8
 	std Z+29,r9
 	std Z+30,r10
@@ -8976,10 +8154,10 @@ gimli24_permute:
 	std Z+45,r13
 	std Z+46,r14
 	std Z+47,r15
-	ld r18,Z
-	ldd r19,Z+1
-	ldd r20,Z+2
-	ldd r21,Z+3
+	ld r4,Z
+	ldd r5,Z+1
+	ldd r6,Z+2
+	ldd r7,Z+3
 	ldd r22,Z+16
 	ldd r23,Z+17
 	ldd r26,Z+18
@@ -8988,10 +8166,10 @@ gimli24_permute:
 	ldd r29,Z+33
 	ldd r2,Z+34
 	ldd r3,Z+35
-	ldd r4,Z+4
-	ldd r5,Z+5
-	ldd r6,Z+6
-	ldd r7,Z+7
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r20,Z+6
+	ldd r21,Z+7
 	ldd r8,Z+20
 	ldd r9,Z+21
 	ldd r10,Z+22
@@ -9000,34 +8178,26 @@ gimli24_permute:
 	ldd r13,Z+37
 	ldd r14,Z+38
 	ldd r15,Z+39
-	pop r4
-	pop r5
-	pop r6
-	pop r7
 	pop r18
 	pop r19
 	pop r20
 	pop r21
+	pop r4
+	pop r5
+	pop r6
+	pop r7
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -9035,31 +8205,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -9094,554 +8267,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
-	movw r16,r28
-	mov r1,r2
-	mov r0,r3
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
-	movw r22,r30
-	movw r26,r24
-	or r22,r28
-	or r23,r29
-	or r26,r2
-	or r27,r3
-	lsl r22
-	rol r23
-	rol r26
-	rol r27
-	eor r22,r30
-	eor r23,r31
-	eor r26,r24
-	eor r27,r25
-	eor r22,r16
-	eor r23,r17
-	eor r26,r1
-	eor r27,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	movw r30,r18
-	movw r24,r20
-	movw r18,r4
-	movw r20,r6
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
 	movw r4,r30
 	movw r6,r24
-	ldi r30,4
-	ldi r31,121
-	ldi r24,55
-	ldi r25,158
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
-	movw r16,r12
-	mov r1,r14
-	mov r0,r15
-	lsl r16
-	rol r17
-	rol r1
-	rol r0
-	movw r4,r8
-	movw r6,r10
-	and r4,r12
-	and r5,r13
-	and r6,r14
-	and r7,r15
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	lsl r4
-	rol r5
-	rol r6
-	rol r7
-	eor r4,r16
-	eor r5,r17
-	eor r6,r1
-	eor r7,r0
-	eor r4,r30
-	eor r5,r31
-	eor r6,r24
-	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
-	movw r8,r30
-	movw r10,r24
-	or r8,r12
-	or r9,r13
-	or r10,r14
-	or r11,r15
-	lsl r8
-	rol r9
-	rol r10
-	rol r11
-	eor r8,r30
-	eor r9,r31
-	eor r10,r24
-	eor r11,r25
-	eor r8,r16
-	eor r9,r17
-	eor r10,r1
-	eor r11,r0
-	and r30,r16
-	and r31,r17
-	and r24,r1
-	and r25,r0
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	lsl r30
-	rol r31
-	rol r24
-	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -9649,31 +8296,34 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
-	and r18,r28
-	and r19,r29
-	and r20,r2
-	and r21,r3
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	lsl r18
-	rol r19
-	rol r20
-	rol r21
-	eor r18,r16
-	eor r19,r17
-	eor r20,r1
-	eor r21,r0
-	eor r18,r30
-	eor r19,r31
-	eor r20,r24
-	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r4,r27
+	mov r5,r22
+	mov r6,r23
+	mov r7,r26
+	and r4,r28
+	and r5,r29
+	and r6,r2
+	and r7,r3
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -9708,40 +8358,400 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r4
+	movw r2,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r11
+	mov r19,r8
+	mov r20,r9
+	mov r21,r10
+	and r18,r12
+	and r19,r13
+	and r20,r14
+	and r21,r15
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r18
+	movw r14,r20
+	movw r18,r30
+	movw r20,r24
+	ldi r31,4
+	eor r18,r31
+	ldi r30,121
+	eor r19,r30
+	ldi r25,55
+	eor r20,r25
+	ldi r24,158
+	eor r21,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r10,7
+	lsl r11
+	rol r8
+	rol r9
+	rol r10
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
+	movw r16,r12
+	mov r1,r14
+	mov r0,r15
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
+	and r4,r12
+	and r5,r13
+	and r6,r14
+	and r7,r15
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	lsl r4
+	rol r5
+	rol r6
+	rol r7
+	eor r4,r16
+	eor r5,r17
+	eor r6,r1
+	eor r7,r0
+	eor r4,r30
+	eor r5,r31
+	eor r6,r24
+	eor r7,r25
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
+	movw r8,r30
+	movw r10,r24
+	or r8,r12
+	or r9,r13
+	or r10,r14
+	or r11,r15
+	lsl r8
+	rol r9
+	rol r10
+	rol r11
+	eor r8,r30
+	eor r9,r31
+	eor r10,r24
+	eor r11,r25
+	eor r8,r16
+	eor r9,r17
+	eor r10,r1
+	eor r11,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -9749,8 +8759,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -9771,9 +8783,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -9808,22 +8821,109 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r26,7
+	lsl r27
+	rol r22
+	rol r23
+	rol r26
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
+	movw r16,r28
+	mov r1,r2
+	mov r0,r3
+	lsl r16
+	rol r17
+	rol r1
+	rol r0
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
+	and r18,r28
+	and r19,r29
+	and r20,r2
+	and r21,r3
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	lsl r18
+	rol r19
+	rol r20
+	rol r21
+	eor r18,r16
+	eor r19,r17
+	eor r20,r1
+	eor r21,r0
+	eor r18,r30
+	eor r19,r31
+	eor r20,r24
+	eor r21,r25
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
+	movw r22,r30
+	movw r26,r24
+	or r22,r28
+	or r23,r29
+	or r26,r2
+	or r27,r3
+	lsl r22
+	rol r23
+	rol r26
+	rol r27
+	eor r22,r30
+	eor r23,r31
+	eor r26,r24
+	eor r27,r25
+	eor r22,r16
+	eor r23,r17
+	eor r26,r1
+	eor r27,r0
+	and r30,r16
+	and r31,r17
+	and r24,r1
+	and r25,r0
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	lsl r30
+	rol r31
+	rol r24
+	rol r25
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
 	pop r30
 	pop r31
 	push r21
@@ -9844,24 +8944,16 @@ gimli24_permute:
 	ldd r7,Z+15
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -9869,8 +8961,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -9891,9 +8985,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -9928,40 +9023,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -9969,8 +9052,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -9991,9 +9076,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -10028,22 +9114,18 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
 	st Z,r18
@@ -10104,24 +9186,16 @@ gimli24_permute:
 	pop r21
 	push r31
 	push r30
-	push r18
-	mov r18,r19
-	mov r19,r20
-	mov r20,r21
-	pop r21
-	push r27
-	mov r27,r26
-	mov r26,r23
-	mov r23,r22
-	pop r22
-	bst r27,7
-	lsl r22
+	bst r26,7
+	lsl r27
+	rol r22
 	rol r23
 	rol r26
-	rol r27
-	bld r22,0
-	movw r30,r18
-	movw r24,r20
+	bld r27,0
+	mov r30,r19
+	mov r31,r20
+	mov r24,r21
+	mov r25,r18
 	movw r16,r28
 	mov r1,r2
 	mov r0,r3
@@ -10129,8 +9203,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r18,r22
-	movw r20,r26
+	mov r18,r27
+	mov r19,r22
+	mov r20,r23
+	mov r21,r26
 	and r18,r28
 	and r19,r29
 	and r20,r2
@@ -10151,9 +9227,10 @@ gimli24_permute:
 	eor r19,r31
 	eor r20,r24
 	eor r21,r25
-	movw r16,r22
-	mov r1,r26
-	mov r0,r27
+	mov r16,r27
+	mov r17,r22
+	mov r1,r23
+	mov r0,r26
 	movw r22,r30
 	movw r26,r24
 	or r22,r28
@@ -10188,40 +9265,28 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r28,r16
-	eor r29,r17
-	eor r2,r1
-	eor r3,r0
-	movw r16,r18
-	mov r1,r20
-	mov r0,r21
-	movw r18,r28
-	movw r20,r2
-	movw r28,r16
-	mov r2,r1
-	mov r3,r0
-	push r4
-	mov r4,r5
-	mov r5,r6
-	mov r6,r7
-	pop r7
-	push r11
-	mov r11,r10
-	mov r10,r9
-	mov r9,r8
-	pop r8
-	bst r11,7
-	lsl r8
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r28
+	eor r31,r29
+	eor r24,r2
+	eor r25,r3
+	movw r28,r18
+	movw r2,r20
+	movw r18,r30
+	movw r20,r24
+	bst r10,7
+	lsl r11
+	rol r8
 	rol r9
 	rol r10
-	rol r11
-	bld r8,0
-	movw r30,r4
-	movw r24,r6
+	bld r11,0
+	mov r30,r5
+	mov r31,r6
+	mov r24,r7
+	mov r25,r4
 	movw r16,r12
 	mov r1,r14
 	mov r0,r15
@@ -10229,8 +9294,10 @@ gimli24_permute:
 	rol r17
 	rol r1
 	rol r0
-	movw r4,r8
-	movw r6,r10
+	mov r4,r11
+	mov r5,r8
+	mov r6,r9
+	mov r7,r10
 	and r4,r12
 	and r5,r13
 	and r6,r14
@@ -10251,9 +9318,10 @@ gimli24_permute:
 	eor r5,r31
 	eor r6,r24
 	eor r7,r25
-	movw r16,r8
-	mov r1,r10
-	mov r0,r11
+	mov r16,r11
+	mov r17,r8
+	mov r1,r9
+	mov r0,r10
 	movw r8,r30
 	movw r10,r24
 	or r8,r12
@@ -10288,22 +9356,18 @@ gimli24_permute:
 	rol r31
 	rol r24
 	rol r25
-	eor r16,r30
-	eor r17,r31
-	eor r1,r24
-	eor r0,r25
-	eor r12,r16
-	eor r13,r17
-	eor r14,r1
-	eor r15,r0
-	movw r16,r4
-	mov r1,r6
-	mov r0,r7
-	movw r4,r12
-	movw r6,r14
-	movw r12,r16
-	mov r14,r1
-	mov r15,r0
+	eor r30,r16
+	eor r31,r17
+	eor r24,r1
+	eor r25,r0
+	eor r30,r12
+	eor r31,r13
+	eor r24,r14
+	eor r25,r15
+	movw r12,r4
+	movw r14,r6
+	movw r4,r30
+	movw r6,r24
 	pop r30
 	pop r31
 	std Z+8,r18

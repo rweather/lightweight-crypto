@@ -57,22 +57,23 @@ void SPbox(Code &code, const Reg &x, const Reg &y, const Reg &z)
   Reg t1 = code.allocateReg(4);
   Reg t0 = code.allocateReg(4);
   
-  // Rotate x and y left
-  code.rol(x, 24);
-  code.rol(y, 9);
+  // Rotate x and y left by shuffling the bytes
+  Reg xrot = x.shuffle(1, 2, 3, 0); // xrot = x rotated left by 24
+  Reg yrot = y.shuffle(3, 0, 1, 2); // yrot = y rotated left by 9
+  code.rol(yrot, 1);
 
   // Compute x 
-  code.move(t1, x);
+  code.move(t1, xrot);
   code.move(t0, z);
   code.lsl(t0, 1);
-  code.move(x, y),
+  code.move(x, yrot),
   code.logand(x, z);
   code.lsl(x, 2);
   code.logxor(x, t0);
   code.logxor(x, t1);
 
   // Compute y
-  code.move(t0, y);
+  code.move(t0, yrot);
   code.move(y, t1);
   code.logor(y, z);
   code.lsl(y, 1);
@@ -82,13 +83,12 @@ void SPbox(Code &code, const Reg &x, const Reg &y, const Reg &z)
   // Compute z
   code.logand(t1, t0);
   code.lsl(t1, 3);
-  code.logxor(t0, t1);
-  code.logxor(z, t0);
+  code.logxor(t1, t0);
+  code.logxor(t1, z);
 
-  // Swap x and z
-  code.move(t0, x);
-  code.move(x, z);
-  code.move(z, t0); 
+  // Swap x and z (the final value of z is in t1 from the previous step)
+  code.move(z, x);
+  code.move(x, t1); 
 
   code.releaseReg(t0);
   code.releaseReg(t1);
@@ -164,15 +164,11 @@ void store_right_half(Code &code,
 }
 
 void small_swap(Code &code, Reg &x0, Reg &x1) {
-  
-  Reg t0 = code.allocateReg(4);
-    
-  code.move(t0, x0);
-  code.move(x0, x1);
-  code.move(x1, t0); 
-  
-  code.releaseReg(t0);
-
+  // We can swap the registers without any instructions being generated.
+  (void)code;
+  Reg t0 = x0;
+  x0 = x1;
+  x1 = t0;
 }
 
 void gen_gimli24_permutation(Code &code) {
@@ -193,8 +189,6 @@ void gen_gimli24_permutation(Code &code) {
   Reg x1 = code.allocateReg(4);
   Reg y1 = code.allocateReg(4);
   Reg z1 = code.allocateReg(4);
-  Reg t0;
-
 
   // Load left half state
   load_left_half(code, x0, y0, z0, x1, y1, z1);
@@ -210,10 +204,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
 
   // XOR round constant for first iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_24);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_24);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
@@ -290,10 +281,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
   
   // XOR round constant for 5th iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_20);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_20);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
@@ -323,10 +311,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
   
   // XOR round constant for 9th iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_16);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_16);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
@@ -410,10 +395,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
   
   // XOR round constant for 13th iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_12);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_12);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
@@ -443,10 +425,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
   
   // XOR round constant for 17th iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_8);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_8);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
@@ -530,10 +509,7 @@ void gen_gimli24_permutation(Code &code) {
   small_swap(code, x0, x1);
   
   // XOR round constant for 21st iteration 
-  t0 = code.allocateReg(4);
-  code.move(t0, RC_4);
-  code.logxor(x0, t0);
-  code.releaseReg(t0);
+  code.logxor(x0, RC_4);
   
   SPbox(code, x1, y1, z1);
   SPbox(code, x1, y1, z1);
