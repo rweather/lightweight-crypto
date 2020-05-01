@@ -62,7 +62,9 @@
 
 #define OCB_DOUBLE_L OCB_CONCAT(OCB_ALG_NAME,_double_l)
 
-/* Double a value in GF(128) - default implementation */
+#if OCB_BLOCK_SIZE == 16
+
+/* Double a value in GF(128) */
 static void OCB_DOUBLE_L(unsigned char out[16], const unsigned char in[16])
 {
     unsigned index;
@@ -71,6 +73,24 @@ static void OCB_DOUBLE_L(unsigned char out[16], const unsigned char in[16])
         out[index] = (in[index] << 1) | (in[index + 1] >> 7);
     out[15] = (in[15] << 1) ^ (mask & 0x87);
 }
+
+#elif OCB_BLOCK_SIZE == 12
+
+/* Double a value in GF(96) */
+static void OCB_DOUBLE_L
+    (unsigned char out[12], const unsigned char in[12])
+{
+    unsigned index;
+    unsigned char mask = (unsigned char)(((signed char)in[0]) >> 7);
+    for (index = 0; index < 11; ++index)
+        out[index] = (in[index] << 1) | (in[index + 1] >> 7);
+    out[11] = (in[11] << 1) ^ (mask & 0x41);
+    out[10] ^= (mask & 0x06);
+}
+
+#else
+#error "Unknown block size for OCB"
+#endif
 
 #endif
 

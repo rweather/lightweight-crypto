@@ -33,18 +33,6 @@ aead_cipher_t const pyjamask_masked_96_cipher = {
     pyjamask_masked_96_aead_decrypt
 };
 
-/* Double a value in GF(96) */
-static void pyjamask_96_double_l
-    (unsigned char out[12], const unsigned char in[12])
-{
-    unsigned index;
-    unsigned char mask = (unsigned char)(((signed char)in[0]) >> 7);
-    for (index = 0; index < 11; ++index)
-        out[index] = (in[index] << 1) | (in[index + 1] >> 7);
-    out[11] = (in[11] << 1) ^ (mask & 0x41);
-    out[10] ^= (mask & 0x06);
-}
-
 #define OCB_ALG_NAME pyjamask_masked_96
 #define OCB_BLOCK_SIZE 12
 #define OCB_NONCE_SIZE PYJAMASK_96_NONCE_SIZE
@@ -53,5 +41,4 @@ static void pyjamask_96_double_l
 #define OCB_SETUP_KEY pyjamask_masked_96_setup_key
 #define OCB_ENCRYPT_BLOCK pyjamask_masked_96_encrypt
 #define OCB_DECRYPT_BLOCK pyjamask_masked_96_decrypt
-#define OCB_DOUBLE_L pyjamask_96_double_l
 #include "internal-ocb.h"
