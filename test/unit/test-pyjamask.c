@@ -24,22 +24,11 @@
 #include "test-cipher.h"
 #include <string.h>
 
-static void pyjamask_cipher_init(unsigned char *ks, const unsigned char *key)
-{
-    pyjamask_setup_key((pyjamask_key_schedule_t *)ks, key);
-}
-
-static void pyjamask_masked_cipher_init
-    (unsigned char *ks, const unsigned char *key)
-{
-    pyjamask_masked_setup_key((pyjamask_masked_key_schedule_t *)ks, key);
-}
-
 /* Information block for the Pyjamask-128 block cipher */
 static block_cipher_t const pyjamask_128 = {
     "Pyjamask-128",
-    sizeof(pyjamask_key_schedule_t),
-    (block_cipher_init_t)pyjamask_cipher_init,
+    sizeof(pyjamask_128_key_schedule_t),
+    (block_cipher_init_t)pyjamask_128_setup_key,
     (block_cipher_encrypt_t)pyjamask_128_encrypt,
     (block_cipher_decrypt_t)pyjamask_128_decrypt
 };
@@ -47,8 +36,8 @@ static block_cipher_t const pyjamask_128 = {
 /* Information block for the masked Pyjamask-128 block cipher */
 static block_cipher_t const pyjamask_masked_128 = {
     "Pyjamask-128-Masked",
-    sizeof(pyjamask_masked_key_schedule_t),
-    (block_cipher_init_t)pyjamask_masked_cipher_init,
+    sizeof(pyjamask_masked_128_key_schedule_t),
+    (block_cipher_init_t)pyjamask_masked_128_setup_key,
     (block_cipher_encrypt_t)pyjamask_masked_128_encrypt,
     (block_cipher_decrypt_t)pyjamask_masked_128_decrypt
 };
@@ -56,8 +45,8 @@ static block_cipher_t const pyjamask_masked_128 = {
 /* Information block for the Pyjamask-96 block cipher */
 static block_cipher_t const pyjamask_96 = {
     "Pyjamask-96",
-    sizeof(pyjamask_key_schedule_t),
-    (block_cipher_init_t)pyjamask_cipher_init,
+    sizeof(pyjamask_96_key_schedule_t),
+    (block_cipher_init_t)pyjamask_96_setup_key,
     (block_cipher_encrypt_t)pyjamask_96_encrypt,
     (block_cipher_decrypt_t)pyjamask_96_decrypt
 };
@@ -65,8 +54,8 @@ static block_cipher_t const pyjamask_96 = {
 /* Information block for the masked Pyjamask-96 block cipher */
 static block_cipher_t const pyjamask_masked_96 = {
     "Pyjamask-96-Masked",
-    sizeof(pyjamask_masked_key_schedule_t),
-    (block_cipher_init_t)pyjamask_masked_cipher_init,
+    sizeof(pyjamask_masked_96_key_schedule_t),
+    (block_cipher_init_t)pyjamask_masked_96_setup_key,
     (block_cipher_encrypt_t)pyjamask_masked_96_encrypt,
     (block_cipher_decrypt_t)pyjamask_masked_96_decrypt
 };

@@ -110,7 +110,9 @@ orange.o: orange.h aead-common.h internal-photon256.h internal-util.h
 oribatida.o: oribatida.h aead-common.h internal-simp.h internal-util.h
 photon-beetle.o: photon-beetle.h internal-photon256.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
+pyjamask-128-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
+pyjamask-96-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 romulus.o: romulus.h internal-skinny128.h aead-common.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h

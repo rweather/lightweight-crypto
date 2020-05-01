@@ -50,7 +50,8 @@ STATIC_INLINE uint32_t pyjamask_matrix_multiply(uint32_t x, uint32_t y)
     return result;
 }
 
-static void pyjamask_masked_setup_internal(uint32_t *rk, int round_constants)
+static void pyjamask_masked_128_setup_internal
+    (uint32_t *rk, int round_constants)
 {
     uint32_t k0, k1, k2, k3;
     uint32_t temp;
@@ -96,8 +97,8 @@ static void pyjamask_masked_setup_internal(uint32_t *rk, int round_constants)
     }
 }
 
-void pyjamask_masked_setup_key
-    (pyjamask_masked_key_schedule_t *ks, const unsigned char *key)
+void pyjamask_masked_128_setup_key
+    (pyjamask_masked_128_key_schedule_t *ks, const unsigned char *key)
 {
     uint32_t k0, k1, k2, k3;
     uint8_t order;
@@ -127,7 +128,90 @@ void pyjamask_masked_setup_key
 
     /* Generate the key schedules for all masked keys */
     for (order = 0; order < PYJAMASK_MASKING_ORDER; ++order) {
-        pyjamask_masked_setup_internal(ks->k + order * 4, order == 0);
+        pyjamask_masked_128_setup_internal(ks->k + order * 4, order == 0);
+    }
+}
+
+static void pyjamask_masked_96_setup_internal
+    (uint32_t *rk, uint32_t k3, int round_constants)
+{
+    uint32_t k0, k1, k2;
+    uint32_t temp;
+    uint8_t round;
+
+    /* The first round key is the same as the key itself (k3 is passed in) */
+    k0 = rk[0];
+    k1 = rk[1];
+    k2 = rk[2];
+    rk += 12;
+
+    /* Derive the round keys for all of the other rounds */
+    for (round = 0; round < PYJAMASK_ROUNDS; ++round, rk += 12) {
+        /* Mix the columns */
+        temp = k0 ^ k1 ^ k2 ^ k3;
+        k0 ^= temp;
+        k1 ^= temp;
+        k2 ^= temp;
+        k3 ^= temp;
+
+        /* Mix the rows and add the round constants.  Note that the Pyjamask
+         * specification says that k1/k2/k3 should be rotated left by 8, 15,
+         * and 18 bits.  But the reference code actually rotates the words
+         * right.  And the test vectors in the specification match up with
+         * right rotations, not left.  We match the reference code here */
+        k0 = pyjamask_matrix_multiply(0xb881b9caU, k0);
+        k1 = rightRotate8(k1);
+        k2 = rightRotate15(k2);
+        k3 = rightRotate18(k3);
+        if (round_constants) {
+            k0 ^= 0x00000080U ^ round;
+            k1 ^= 0x00006a00U;
+            k2 ^= 0x003f0000U;
+            k3 ^= 0x24000000U;
+        }
+
+        /* Write the round key to the schedule */
+        rk[0] = k0;
+        rk[1] = k1;
+        rk[2] = k2;
+    }
+}
+
+void pyjamask_masked_96_setup_key
+    (pyjamask_masked_96_key_schedule_t *ks, const unsigned char *key)
+{
+    uint32_t k3masked[PYJAMASK_MASKING_ORDER - 1];
+    uint32_t k0, k1, k2, k3;
+    uint8_t order;
+
+    /* Make sure that the system random number generator is initialized */
+    aead_masking_init();
+
+    /* Generate the random masking keys */
+    aead_masking_generate
+        (ks->k + 3, (PYJAMASK_MASKING_ORDER - 1) * 3 * sizeof(uint32_t));
+    aead_masking_generate(k3masked, sizeof(k3masked));
+
+    /* Mask the primary key by XOR'ing it against all the random keys */
+    k0 = be_load_word32(key);
+    k1 = be_load_word32(key + 4);
+    k2 = be_load_word32(key + 8);
+    k3 = be_load_word32(key + 12);
+    for (order = 1; order < PYJAMASK_MASKING_ORDER; ++order) {
+        k0 ^= ks->k[order * 3];
+        k1 ^= ks->k[order * 3 + 1];
+        k2 ^= ks->k[order * 3 + 2];
+        k3 ^= k3masked[order - 1];
+    }
+    ks->k[0] = k0;
+    ks->k[1] = k1;
+    ks->k[2] = k2;
+
+    /* Generate the key schedules for all masked keys */
+    pyjamask_masked_96_setup_internal(ks->k, k3, 1);
+    for (order = 1; order < PYJAMASK_MASKING_ORDER; ++order) {
+        pyjamask_masked_96_setup_internal
+            (ks->k + order * 3, k3masked[order - 1], 0);
     }
 }
 
@@ -175,7 +259,7 @@ void pyjamask_masked_setup_key
     } while (0)
 
 void pyjamask_masked_128_encrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     const uint32_t *rk = ks->k;
@@ -270,7 +354,7 @@ void pyjamask_masked_128_encrypt
 }
 
 void pyjamask_masked_128_decrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     const uint32_t *rk =
@@ -369,7 +453,7 @@ void pyjamask_masked_128_decrypt
 }
 
 void pyjamask_masked_96_encrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     const uint32_t *rk = ks->k;
@@ -386,13 +470,13 @@ void pyjamask_masked_96_encrypt
     s2 = be_load_word32(input + 8)  ^ m[0][2] ^ m[1][2] ^ m[2][2];
 
     /* Perform all encryption rounds */
-    for (round = 0; round < PYJAMASK_ROUNDS; ++round, rk += 4) {
+    for (round = 0; round < PYJAMASK_ROUNDS; ++round, rk += 3) {
         /* Add the round key to the state */
         s0 ^= rk[0];
         s1 ^= rk[1];
         s2 ^= rk[2];
         for (order = 0; order < (PYJAMASK_MASKING_ORDER - 1); ++order) {
-            rk += 4;
+            rk += 3;
             m[order][0] ^= rk[0];
             m[order][1] ^= rk[1];
             m[order][2] ^= rk[2];
@@ -434,7 +518,7 @@ void pyjamask_masked_96_encrypt
     s1 ^= rk[1];
     s2 ^= rk[2];
     for (order = 0; order < (PYJAMASK_MASKING_ORDER - 1); ++order) {
-        rk += 4;
+        rk += 3;
         m[order][0] ^= rk[0];
         m[order][1] ^= rk[1];
         m[order][2] ^= rk[2];
@@ -452,11 +536,11 @@ void pyjamask_masked_96_encrypt
 }
 
 void pyjamask_masked_96_decrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
     const uint32_t *rk =
-        ks->k + PYJAMASK_MASKING_ORDER * (PYJAMASK_ROUNDS + 1) * 4;
+        ks->k + PYJAMASK_MASKING_ORDER * (PYJAMASK_ROUNDS + 1) * 3;
     uint32_t s0, s1, s2, temp;
     uint32_t m[PYJAMASK_MASKING_ORDER - 1][3];
     uint8_t round;
@@ -472,12 +556,12 @@ void pyjamask_masked_96_decrypt
 
     /* Mix in the last round key */
     for (order = PYJAMASK_MASKING_ORDER - 2; order >= 0; --order) {
-        rk -= 4;
+        rk -= 3;
         m[order][0] ^= rk[0];
         m[order][1] ^= rk[1];
         m[order][2] ^= rk[2];
     }
-    rk -= 4;
+    rk -= 3;
     s0 ^= rk[0];
     s1 ^= rk[1];
     s2 ^= rk[2];
@@ -516,12 +600,12 @@ void pyjamask_masked_96_decrypt
 
         /* Add the round key to the state */
         for (order = PYJAMASK_MASKING_ORDER - 2; order >= 0; --order) {
-            rk -= 4;
+            rk -= 3;
             m[order][0] ^= rk[0];
             m[order][1] ^= rk[1];
             m[order][2] ^= rk[2];
         }
-        rk -= 4;
+        rk -= 3;
         s0 ^= rk[0];
         s1 ^= rk[1];
         s2 ^= rk[2];
