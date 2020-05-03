@@ -45,31 +45,60 @@ extern "C" {
 #define PYJAMASK_MASKING_ORDER 4
 
 /**
- * \brief Structure of the key schedule for Pyjamask block ciphers.
+ * \brief Structure of the key schedule for the Pyjamask-128 block cipher.
  */
 typedef struct
 {
     uint32_t k[(PYJAMASK_ROUNDS + 1) * 4]; /**< Words of the key schedule */
 
-} pyjamask_key_schedule_t;
+} pyjamask_128_key_schedule_t;
 
 /**
- * \brief Structure of the key schedule for masked Pyjamask block ciphers.
+ * \brief Structure of the key schedule for the Pyjamask-96 block cipher.
+ */
+typedef struct
+{
+    uint32_t k[(PYJAMASK_ROUNDS + 1) * 3]; /**< Words of the key schedule */
+
+} pyjamask_96_key_schedule_t;
+
+/**
+ * \brief Structure of the key schedule for masked Pyjamask-128.
  */
 typedef struct
 {
     /** Words of the key schedule */
     uint32_t k[PYJAMASK_MASKING_ORDER * (PYJAMASK_ROUNDS + 1) * 4];
 
-} pyjamask_masked_key_schedule_t;
+} pyjamask_masked_128_key_schedule_t;
 
 /**
- * \brief Sets up the key schedule for the Pyjamask block cipher.
+ * \brief Structure of the key schedule for masked Pyjamask-96.
+ */
+typedef struct
+{
+    /** Words of the key schedule */
+    uint32_t k[PYJAMASK_MASKING_ORDER * (PYJAMASK_ROUNDS + 1) * 3];
+
+} pyjamask_masked_96_key_schedule_t;
+
+/**
+ * \brief Sets up the key schedule for the Pyjamask-128 block cipher.
  *
  * \param ks The key schedule on output.
  * \param key The 16 bytes of the key on input.
  */
-void pyjamask_setup_key(pyjamask_key_schedule_t *ks, const unsigned char *key);
+void pyjamask_128_setup_key
+    (pyjamask_128_key_schedule_t *ks, const unsigned char *key);
+
+/**
+ * \brief Sets up the key schedule for the Pyjamask-96 block cipher.
+ *
+ * \param ks The key schedule on output.
+ * \param key The 16 bytes of the key on input.
+ */
+void pyjamask_96_setup_key
+    (pyjamask_96_key_schedule_t *ks, const unsigned char *key);
 
 /**
  * \brief Encrypts a 128-bit block with Pyjamask-128.
@@ -84,7 +113,7 @@ void pyjamask_setup_key(pyjamask_key_schedule_t *ks, const unsigned char *key);
  * \sa pyjamask_128_decrypt()
  */
 void pyjamask_128_encrypt
-    (const pyjamask_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -100,7 +129,7 @@ void pyjamask_128_encrypt
  * \sa pyjamask_128_encrypt()
  */
 void pyjamask_128_decrypt
-    (const pyjamask_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -116,7 +145,7 @@ void pyjamask_128_decrypt
  * \sa pyjamask_96_decrypt()
  */
 void pyjamask_96_encrypt
-    (const pyjamask_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -132,17 +161,26 @@ void pyjamask_96_encrypt
  * \sa pyjamask_96_encrypt()
  */
 void pyjamask_96_decrypt
-    (const pyjamask_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
- * \brief Sets up the key schedule for the masked Pyjamask block cipher.
+ * \brief Sets up the key schedule for the masked Pyjamask-128 block cipher.
  *
  * \param ks The key schedule on output.
  * \param key The 16 bytes of the key on input.
  */
-void pyjamask_masked_setup_key
-    (pyjamask_masked_key_schedule_t *ks, const unsigned char *key);
+void pyjamask_masked_128_setup_key
+    (pyjamask_masked_128_key_schedule_t *ks, const unsigned char *key);
+
+/**
+ * \brief Sets up the key schedule for the masked Pyjamask-96 block cipher.
+ *
+ * \param ks The key schedule on output.
+ * \param key The 16 bytes of the key on input.
+ */
+void pyjamask_masked_96_setup_key
+    (pyjamask_masked_96_key_schedule_t *ks, const unsigned char *key);
 
 /**
  * \brief Encrypts a 128-bit block with Pyjamask-128 in masked mode.
@@ -157,7 +195,7 @@ void pyjamask_masked_setup_key
  * \sa pyjamask_masked_128_decrypt()
  */
 void pyjamask_masked_128_encrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -173,7 +211,7 @@ void pyjamask_masked_128_encrypt
  * \sa pyjamask_masked_128_encrypt()
  */
 void pyjamask_masked_128_decrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_128_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -189,7 +227,7 @@ void pyjamask_masked_128_decrypt
  * \sa pyjamask_masked_96_decrypt()
  */
 void pyjamask_masked_96_encrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 /**
@@ -205,7 +243,7 @@ void pyjamask_masked_96_encrypt
  * \sa pyjamask_masked_96_encrypt()
  */
 void pyjamask_masked_96_decrypt
-    (const pyjamask_masked_key_schedule_t *ks, unsigned char *output,
+    (const pyjamask_masked_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input);
 
 #ifdef __cplusplus

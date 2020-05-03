@@ -37,8 +37,8 @@ aead_cipher_t const pyjamask_masked_128_cipher = {
 #define OCB_BLOCK_SIZE 16
 #define OCB_NONCE_SIZE PYJAMASK_128_NONCE_SIZE
 #define OCB_TAG_SIZE PYJAMASK_128_TAG_SIZE
-#define OCB_KEY_SCHEDULE pyjamask_masked_key_schedule_t
-#define OCB_SETUP_KEY pyjamask_masked_setup_key
+#define OCB_KEY_SCHEDULE pyjamask_masked_128_key_schedule_t
+#define OCB_SETUP_KEY pyjamask_masked_128_setup_key
 #define OCB_ENCRYPT_BLOCK pyjamask_masked_128_encrypt
 #define OCB_DECRYPT_BLOCK pyjamask_masked_128_decrypt
 #include "internal-ocb.h"
