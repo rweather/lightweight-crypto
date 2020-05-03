@@ -84,15 +84,9 @@ typedef struct
  *
  * \param ks Points to the key schedule to initialize.
  * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 32 or 48,
- * where 32 is used for the tweakable variant.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
  */
-int skinny_128_384_init
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len);
+void skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char key[48]);
 
 /**
  * \brief Encrypts a 128-bit block with SKINNY-128-384.
@@ -189,15 +183,9 @@ typedef struct
  *
  * \param ks Points to the key schedule to initialize.
  * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 16 or 32,
- * where 16 is used for the tweakable variant.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
  */
-int skinny_128_256_init
-    (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len);
+void skinny_128_256_init
+    (skinny_128_256_key_schedule_t *ks, const unsigned char key[32]);
 
 /**
  * \brief Encrypts a 128-bit block with SKINNY-128-256.

@@ -105,11 +105,12 @@ static void skinny_aead_128_384_init
     (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
      const unsigned char *nonce, unsigned nonce_len)
 {
-    unsigned char k[32];
-    memcpy(k, nonce, nonce_len);
-    memset(k + nonce_len, 0, 16 - nonce_len);
-    memcpy(k + 16, key, 16);
-    skinny_128_384_init(ks, k, 32);
+    unsigned char k[48];
+    memset(k, 0, sizeof(k));
+    memcpy(k + 16, nonce, nonce_len);
+    memset(k + 16 + nonce_len, 0, 16 - nonce_len);
+    memcpy(k + 32, key, 16);
+    skinny_128_384_init(ks, k);
 }
 
 /**
@@ -520,7 +521,7 @@ static void skinny_aead_128_256_init
     memset(k, 0, 16 - nonce_len);
     memcpy(k + 16 - nonce_len, nonce, nonce_len);
     memcpy(k + 16, key, 16);
-    skinny_128_256_init(ks, k, 32);
+    skinny_128_256_init(ks, k);
 }
 
 /**

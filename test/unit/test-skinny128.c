@@ -25,30 +25,18 @@
 #include <stdio.h>
 #include <string.h>
 
-static void skinny_128_256_init_wrapper
-    (skinny_128_256_key_schedule_t *ks, const unsigned char *key)
-{
-    skinny_128_256_init(ks, key, 32);
-}
-
-static void skinny_128_384_init_wrapper
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key)
-{
-    skinny_128_384_init(ks, key, 48);
-}
-
 /* Information blocks for the SKINNY-128 block cipher variants */
 static block_cipher_t const skinny128_256 = {
     "SKINNY-128-256",
     sizeof(skinny_128_256_key_schedule_t),
-    (block_cipher_init_t)skinny_128_256_init_wrapper,
+    (block_cipher_init_t)skinny_128_256_init,
     (block_cipher_encrypt_t)skinny_128_256_encrypt,
     (block_cipher_decrypt_t)skinny_128_256_decrypt
 };
 static block_cipher_t const skinny128_384 = {
     "SKINNY-128-384",
     sizeof(skinny_128_384_key_schedule_t),
-    (block_cipher_init_t)skinny_128_384_init_wrapper,
+    (block_cipher_init_t)skinny_128_384_init,
     (block_cipher_encrypt_t)skinny_128_384_encrypt,
     (block_cipher_decrypt_t)skinny_128_384_decrypt
 };
@@ -90,7 +78,7 @@ static void tk2_skinny_128_384_init
     memcpy(tk, key, 48);
     memset(tk + 16, 0, 16);
     memcpy(TK2, key + 16, 16);
-    skinny_128_384_init(ks, tk, sizeof(tk));
+    skinny_128_384_init(ks, tk);
 }
 static void tk2_skinny_128_384_encrypt
     (const skinny_128_384_key_schedule_t *ks, unsigned char *output,

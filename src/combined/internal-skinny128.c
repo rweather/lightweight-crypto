@@ -55,9 +55,8 @@ STATIC_INLINE void skinny128_fast_forward_tk(uint32_t *tk)
             ((row3 << 24) & 0xFF000000U);
 }
 
-int skinny_128_384_init
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len)
+void skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char key[48])
 {
 #if !SKINNY_128_SMALL_SCHEDULE
     uint32_t TK2[4];
@@ -67,44 +66,22 @@ int skinny_128_384_init
     uint8_t rc;
 #endif
 
-    /* Validate the parameters */
-    if (!ks || !key || (key_len != 32 && key_len != 48))
-        return 0;
-
 #if SKINNY_128_SMALL_SCHEDULE
     /* Copy the input key as-is when using the small key schedule version */
-    if (key_len == 32) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        memcpy(ks->TK2, key, sizeof(ks->TK2));
-        memcpy(ks->TK3, key + 16, sizeof(ks->TK3));
-    } else {
-        memcpy(ks->TK1, key, sizeof(ks->TK1));
-        memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
-        memcpy(ks->TK3, key + 32, sizeof(ks->TK3));
-    }
+    memcpy(ks->TK1, key, sizeof(ks->TK1));
+    memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
+    memcpy(ks->TK3, key + 32, sizeof(ks->TK3));
 #else
     /* Set the initial states of TK1, TK2, and TK3 */
-    if (key_len == 32) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        TK2[0] = le_load_word32(key);
-        TK2[1] = le_load_word32(key + 4);
-        TK2[2] = le_load_word32(key + 8);
-        TK2[3] = le_load_word32(key + 12);
-        TK3[0] = le_load_word32(key + 16);
-        TK3[1] = le_load_word32(key + 20);
-        TK3[2] = le_load_word32(key + 24);
-        TK3[3] = le_load_word32(key + 28);
-    } else {
-        memcpy(ks->TK1, key, 16);
-        TK2[0] = le_load_word32(key + 16);
-        TK2[1] = le_load_word32(key + 20);
-        TK2[2] = le_load_word32(key + 24);
-        TK2[3] = le_load_word32(key + 28);
-        TK3[0] = le_load_word32(key + 32);
-        TK3[1] = le_load_word32(key + 36);
-        TK3[2] = le_load_word32(key + 40);
-        TK3[3] = le_load_word32(key + 44);
-    }
+    memcpy(ks->TK1, key, 16);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
+    TK3[0] = le_load_word32(key + 32);
+    TK3[1] = le_load_word32(key + 36);
+    TK3[2] = le_load_word32(key + 40);
+    TK3[3] = le_load_word32(key + 44);
 
     /* Set up the key schedule using TK2 and TK3.  TK1 is not added
      * to the key schedule because we will derive that part of the
@@ -131,7 +108,6 @@ int skinny_128_384_init
         skinny128_LFSR3(TK3[1]);
     }
 #endif
-    return 1;
 }
 
 void skinny_128_384_encrypt
@@ -517,9 +493,8 @@ void skinny_128_384_encrypt_tk_full
 
 #endif
 
-int skinny_128_256_init
-    (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len)
+void skinny_128_256_init
+    (skinny_128_256_key_schedule_t *ks, const unsigned char key[32])
 {
 #if !SKINNY_128_SMALL_SCHEDULE
     uint32_t TK2[4];
@@ -528,34 +503,17 @@ int skinny_128_256_init
     uint8_t rc;
 #endif
 
-    /* Validate the parameters */
-    if (!ks || !key || (key_len != 16 && key_len != 32))
-        return 0;
-
 #if SKINNY_128_SMALL_SCHEDULE
     /* Copy the input key as-is when using the small key schedule version */
-    if (key_len == 16) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        memcpy(ks->TK2, key, sizeof(ks->TK2));
-    } else {
-        memcpy(ks->TK1, key, sizeof(ks->TK1));
-        memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
-    }
+    memcpy(ks->TK1, key, sizeof(ks->TK1));
+    memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
 #else
     /* Set the initial states of TK1 and TK2 */
-    if (key_len == 16) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        TK2[0] = le_load_word32(key);
-        TK2[1] = le_load_word32(key + 4);
-        TK2[2] = le_load_word32(key + 8);
-        TK2[3] = le_load_word32(key + 12);
-    } else {
-        memcpy(ks->TK1, key, 16);
-        TK2[0] = le_load_word32(key + 16);
-        TK2[1] = le_load_word32(key + 20);
-        TK2[2] = le_load_word32(key + 24);
-        TK2[3] = le_load_word32(key + 28);
-    }
+    memcpy(ks->TK1, key, 16);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
 
     /* Set up the key schedule using TK2.  TK1 is not added
      * to the key schedule because we will derive that part of the
@@ -579,7 +537,6 @@ int skinny_128_256_init
         skinny128_LFSR2(TK2[1]);
     }
 #endif
-    return 1;
 }
 
 void skinny_128_256_encrypt
