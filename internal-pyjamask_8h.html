@@ -101,11 +101,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for Pyjamask block ciphers.  <a href="structpyjamask__key__schedule__t.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for the Pyjamask-128 block cipher.  <a href="structpyjamask__128__key__schedule__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for masked Pyjamask block ciphers.  <a href="structpyjamask__masked__key__schedule__t.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for the Pyjamask-96 block cipher.  <a href="structpyjamask__96__key__schedule__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for masked Pyjamask-128.  <a href="structpyjamask__masked__128__key__schedule__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the key schedule for masked Pyjamask-96.  <a href="structpyjamask__masked__96__key__schedule__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -121,48 +127,54 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2abedf3f2ff71467f16160786011dffa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a2abedf3f2ff71467f16160786011dffa">pyjamask_setup_key</a> (<a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
-<tr class="memdesc:a2abedf3f2ff71467f16160786011dffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the Pyjamask block cipher.  <a href="#a2abedf3f2ff71467f16160786011dffa">More...</a><br/></td></tr>
-<tr class="separator:a2abedf3f2ff71467f16160786011dffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d845d7656fd85adaff2a0caf4020c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#aa9d845d7656fd85adaff2a0caf4020c3">pyjamask_128_encrypt</a> (const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:aa9d845d7656fd85adaff2a0caf4020c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with Pyjamask-128.  <a href="#aa9d845d7656fd85adaff2a0caf4020c3">More...</a><br/></td></tr>
-<tr class="separator:aa9d845d7656fd85adaff2a0caf4020c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86dd718b4cff21a292b8d1ebeb0d471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#aa86dd718b4cff21a292b8d1ebeb0d471">pyjamask_128_decrypt</a> (const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:aa86dd718b4cff21a292b8d1ebeb0d471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with Pyjamask-128.  <a href="#aa86dd718b4cff21a292b8d1ebeb0d471">More...</a><br/></td></tr>
-<tr class="separator:aa86dd718b4cff21a292b8d1ebeb0d471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59213a61a3272db4cb08cb28fb19775c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a59213a61a3272db4cb08cb28fb19775c">pyjamask_96_encrypt</a> (const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a59213a61a3272db4cb08cb28fb19775c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 96-bit block with Pyjamask-96.  <a href="#a59213a61a3272db4cb08cb28fb19775c">More...</a><br/></td></tr>
-<tr class="separator:a59213a61a3272db4cb08cb28fb19775c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06a59f6ab0b96844cacd7a82f192d40f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a06a59f6ab0b96844cacd7a82f192d40f">pyjamask_96_decrypt</a> (const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a06a59f6ab0b96844cacd7a82f192d40f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 96-bit block with Pyjamask-96.  <a href="#a06a59f6ab0b96844cacd7a82f192d40f">More...</a><br/></td></tr>
-<tr class="separator:a06a59f6ab0b96844cacd7a82f192d40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4b0e337feaae211309081f9308a1272"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#af4b0e337feaae211309081f9308a1272">pyjamask_masked_setup_key</a> (<a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
-<tr class="memdesc:af4b0e337feaae211309081f9308a1272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the masked Pyjamask block cipher.  <a href="#af4b0e337feaae211309081f9308a1272">More...</a><br/></td></tr>
-<tr class="separator:af4b0e337feaae211309081f9308a1272"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af85818cc41a75d55b75d0c713cfc6024"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#af85818cc41a75d55b75d0c713cfc6024">pyjamask_masked_128_encrypt</a> (const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:af85818cc41a75d55b75d0c713cfc6024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with Pyjamask-128 in masked mode.  <a href="#af85818cc41a75d55b75d0c713cfc6024">More...</a><br/></td></tr>
-<tr class="separator:af85818cc41a75d55b75d0c713cfc6024"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e9e2bcec75c22fb7d47e4db971bd1ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a4e9e2bcec75c22fb7d47e4db971bd1ab">pyjamask_masked_128_decrypt</a> (const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a4e9e2bcec75c22fb7d47e4db971bd1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with Pyjamask-128 in masked mode.  <a href="#a4e9e2bcec75c22fb7d47e4db971bd1ab">More...</a><br/></td></tr>
-<tr class="separator:a4e9e2bcec75c22fb7d47e4db971bd1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6924d70c12d8cfa7826a543b0b0c4b30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a6924d70c12d8cfa7826a543b0b0c4b30">pyjamask_masked_96_encrypt</a> (const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a6924d70c12d8cfa7826a543b0b0c4b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 96-bit block with Pyjamask-96 in masked mode.  <a href="#a6924d70c12d8cfa7826a543b0b0c4b30">More...</a><br/></td></tr>
-<tr class="separator:a6924d70c12d8cfa7826a543b0b0c4b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6847ea1b66de6287ccfe9ae0e4bb5a12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a6847ea1b66de6287ccfe9ae0e4bb5a12">pyjamask_masked_96_decrypt</a> (const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
-<tr class="memdesc:a6847ea1b66de6287ccfe9ae0e4bb5a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 96-bit block with Pyjamask-96 in masked mode.  <a href="#a6847ea1b66de6287ccfe9ae0e4bb5a12">More...</a><br/></td></tr>
-<tr class="separator:a6847ea1b66de6287ccfe9ae0e4bb5a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dee805909a565822a22dc8738c27dd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a7dee805909a565822a22dc8738c27dd1">pyjamask_128_setup_key</a> (<a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a7dee805909a565822a22dc8738c27dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the Pyjamask-128 block cipher.  <a href="#a7dee805909a565822a22dc8738c27dd1">More...</a><br/></td></tr>
+<tr class="separator:a7dee805909a565822a22dc8738c27dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b49c7690131f008efd74d5cbd4bf255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a5b49c7690131f008efd74d5cbd4bf255">pyjamask_96_setup_key</a> (<a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a5b49c7690131f008efd74d5cbd4bf255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the Pyjamask-96 block cipher.  <a href="#a5b49c7690131f008efd74d5cbd4bf255">More...</a><br/></td></tr>
+<tr class="separator:a5b49c7690131f008efd74d5cbd4bf255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b75b8a41a4b561fee896b374d41a1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#ae1b75b8a41a4b561fee896b374d41a1e">pyjamask_128_encrypt</a> (const <a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:ae1b75b8a41a4b561fee896b374d41a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with Pyjamask-128.  <a href="#ae1b75b8a41a4b561fee896b374d41a1e">More...</a><br/></td></tr>
+<tr class="separator:ae1b75b8a41a4b561fee896b374d41a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c9667b902a84d21da01a868008779f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a87c9667b902a84d21da01a868008779f">pyjamask_128_decrypt</a> (const <a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a87c9667b902a84d21da01a868008779f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with Pyjamask-128.  <a href="#a87c9667b902a84d21da01a868008779f">More...</a><br/></td></tr>
+<tr class="separator:a87c9667b902a84d21da01a868008779f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7f8ab26b1ef1b87753a7bc0b1f5f71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a2f7f8ab26b1ef1b87753a7bc0b1f5f71">pyjamask_96_encrypt</a> (const <a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a2f7f8ab26b1ef1b87753a7bc0b1f5f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 96-bit block with Pyjamask-96.  <a href="#a2f7f8ab26b1ef1b87753a7bc0b1f5f71">More...</a><br/></td></tr>
+<tr class="separator:a2f7f8ab26b1ef1b87753a7bc0b1f5f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a412e1f8ea7347f320dd0584d1ee3aec1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a412e1f8ea7347f320dd0584d1ee3aec1">pyjamask_96_decrypt</a> (const <a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a412e1f8ea7347f320dd0584d1ee3aec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 96-bit block with Pyjamask-96.  <a href="#a412e1f8ea7347f320dd0584d1ee3aec1">More...</a><br/></td></tr>
+<tr class="separator:a412e1f8ea7347f320dd0584d1ee3aec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331174491c071fcdf1aeb2a1473821de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a331174491c071fcdf1aeb2a1473821de">pyjamask_masked_128_setup_key</a> (<a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a331174491c071fcdf1aeb2a1473821de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the masked Pyjamask-128 block cipher.  <a href="#a331174491c071fcdf1aeb2a1473821de">More...</a><br/></td></tr>
+<tr class="separator:a331174491c071fcdf1aeb2a1473821de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e07590135f9f9d3a559f0463127c5fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a6e07590135f9f9d3a559f0463127c5fc">pyjamask_masked_96_setup_key</a> (<a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *ks, const unsigned char *key)</td></tr>
+<tr class="memdesc:a6e07590135f9f9d3a559f0463127c5fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the key schedule for the masked Pyjamask-96 block cipher.  <a href="#a6e07590135f9f9d3a559f0463127c5fc">More...</a><br/></td></tr>
+<tr class="separator:a6e07590135f9f9d3a559f0463127c5fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa531f821050f32e273b2839c11f0beb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#aa531f821050f32e273b2839c11f0beb4">pyjamask_masked_128_encrypt</a> (const <a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:aa531f821050f32e273b2839c11f0beb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 128-bit block with Pyjamask-128 in masked mode.  <a href="#aa531f821050f32e273b2839c11f0beb4">More...</a><br/></td></tr>
+<tr class="separator:aa531f821050f32e273b2839c11f0beb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76073310888f50194fc766d79f3b426"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#ac76073310888f50194fc766d79f3b426">pyjamask_masked_128_decrypt</a> (const <a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:ac76073310888f50194fc766d79f3b426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 128-bit block with Pyjamask-128 in masked mode.  <a href="#ac76073310888f50194fc766d79f3b426">More...</a><br/></td></tr>
+<tr class="separator:ac76073310888f50194fc766d79f3b426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c076d0296ad5149b5f950e477cf8152"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a1c076d0296ad5149b5f950e477cf8152">pyjamask_masked_96_encrypt</a> (const <a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a1c076d0296ad5149b5f950e477cf8152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a 96-bit block with Pyjamask-96 in masked mode.  <a href="#a1c076d0296ad5149b5f950e477cf8152">More...</a><br/></td></tr>
+<tr class="separator:a1c076d0296ad5149b5f950e477cf8152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d6805e55c1f2476e16ea5c1996d3a65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-pyjamask_8h.html#a4d6805e55c1f2476e16ea5c1996d3a65">pyjamask_masked_96_decrypt</a> (const <a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *ks, unsigned char *output, const unsigned char *input)</td></tr>
+<tr class="memdesc:a4d6805e55c1f2476e16ea5c1996d3a65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a 96-bit block with Pyjamask-96 in masked mode.  <a href="#a4d6805e55c1f2476e16ea5c1996d3a65">More...</a><br/></td></tr>
+<tr class="separator:a4d6805e55c1f2476e16ea5c1996d3a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Pyjamask block cipher. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aa86dd718b4cff21a292b8d1ebeb0d471"></a>
+<a class="anchor" id="a87c9667b902a84d21da01a868008779f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_128_decrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -195,18 +207,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#aa9d845d7656fd85adaff2a0caf4020c3" title="Encrypts a 128-bit block with Pyjamask-128. ">pyjamask_128_encrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#ae1b75b8a41a4b561fee896b374d41a1e" title="Encrypts a 128-bit block with Pyjamask-128. ">pyjamask_128_encrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aa9d845d7656fd85adaff2a0caf4020c3"></a>
+<a class="anchor" id="ae1b75b8a41a4b561fee896b374d41a1e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_128_encrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -239,18 +251,53 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#aa86dd718b4cff21a292b8d1ebeb0d471" title="Decrypts a 128-bit block with Pyjamask-128. ">pyjamask_128_decrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a87c9667b902a84d21da01a868008779f" title="Decrypts a 128-bit block with Pyjamask-128. ">pyjamask_128_decrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a06a59f6ab0b96844cacd7a82f192d40f"></a>
+<a class="anchor" id="a7dee805909a565822a22dc8738c27dd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pyjamask_128_setup_key </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpyjamask__128__key__schedule__t.html">pyjamask_128_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the key schedule for the Pyjamask-128 block cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>The key schedule on output. </td></tr>
+    <tr><td class="paramname">key</td><td>The 16 bytes of the key on input. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a412e1f8ea7347f320dd0584d1ee3aec1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_96_decrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -283,18 +330,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a59213a61a3272db4cb08cb28fb19775c" title="Encrypts a 96-bit block with Pyjamask-96. ">pyjamask_96_encrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a2f7f8ab26b1ef1b87753a7bc0b1f5f71" title="Encrypts a 96-bit block with Pyjamask-96. ">pyjamask_96_encrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a59213a61a3272db4cb08cb28fb19775c"></a>
+<a class="anchor" id="a2f7f8ab26b1ef1b87753a7bc0b1f5f71"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_96_encrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -327,18 +374,53 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a06a59f6ab0b96844cacd7a82f192d40f" title="Decrypts a 96-bit block with Pyjamask-96. ">pyjamask_96_decrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a412e1f8ea7347f320dd0584d1ee3aec1" title="Decrypts a 96-bit block with Pyjamask-96. ">pyjamask_96_decrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a4e9e2bcec75c22fb7d47e4db971bd1ab"></a>
+<a class="anchor" id="a5b49c7690131f008efd74d5cbd4bf255"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pyjamask_96_setup_key </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpyjamask__96__key__schedule__t.html">pyjamask_96_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the key schedule for the Pyjamask-96 block cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>The key schedule on output. </td></tr>
+    <tr><td class="paramname">key</td><td>The 16 bytes of the key on input. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac76073310888f50194fc766d79f3b426"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_masked_128_decrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -371,18 +453,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#af85818cc41a75d55b75d0c713cfc6024" title="Encrypts a 128-bit block with Pyjamask-128 in masked mode. ">pyjamask_masked_128_encrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#aa531f821050f32e273b2839c11f0beb4" title="Encrypts a 128-bit block with Pyjamask-128 in masked mode. ">pyjamask_masked_128_encrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="af85818cc41a75d55b75d0c713cfc6024"></a>
+<a class="anchor" id="aa531f821050f32e273b2839c11f0beb4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_masked_128_encrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -415,18 +497,53 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a4e9e2bcec75c22fb7d47e4db971bd1ab" title="Decrypts a 128-bit block with Pyjamask-128 in masked mode. ">pyjamask_masked_128_decrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#ac76073310888f50194fc766d79f3b426" title="Decrypts a 128-bit block with Pyjamask-128 in masked mode. ">pyjamask_masked_128_decrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a6847ea1b66de6287ccfe9ae0e4bb5a12"></a>
+<a class="anchor" id="a331174491c071fcdf1aeb2a1473821de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pyjamask_masked_128_setup_key </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpyjamask__masked__128__key__schedule__t.html">pyjamask_masked_128_key_schedule_t</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the key schedule for the masked Pyjamask-128 block cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ks</td><td>The key schedule on output. </td></tr>
+    <tr><td class="paramname">key</td><td>The 16 bytes of the key on input. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d6805e55c1f2476e16ea5c1996d3a65"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_masked_96_decrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -459,18 +576,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place decryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a6924d70c12d8cfa7826a543b0b0c4b30" title="Encrypts a 96-bit block with Pyjamask-96 in masked mode. ">pyjamask_masked_96_encrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a1c076d0296ad5149b5f950e477cf8152" title="Encrypts a 96-bit block with Pyjamask-96 in masked mode. ">pyjamask_masked_96_encrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a6924d70c12d8cfa7826a543b0b0c4b30"></a>
+<a class="anchor" id="a1c076d0296ad5149b5f950e477cf8152"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pyjamask_masked_96_encrypt </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -503,18 +620,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The <em>input</em> and <em>output</em> buffers can be the same buffer for in-place encryption.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a6847ea1b66de6287ccfe9ae0e4bb5a12" title="Decrypts a 96-bit block with Pyjamask-96 in masked mode. ">pyjamask_masked_96_decrypt()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-pyjamask_8h.html#a4d6805e55c1f2476e16ea5c1996d3a65" title="Decrypts a 96-bit block with Pyjamask-96 in masked mode. ">pyjamask_masked_96_decrypt()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="af4b0e337feaae211309081f9308a1272"></a>
+<a class="anchor" id="a6e07590135f9f9d3a559f0463127c5fc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void pyjamask_masked_setup_key </td>
+          <td class="memname">void pyjamask_masked_96_setup_key </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structpyjamask__masked__key__schedule__t.html">pyjamask_masked_key_schedule_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structpyjamask__masked__96__key__schedule__t.html">pyjamask_masked_96_key_schedule_t</a> *&#160;</td>
           <td class="paramname"><em>ks</em>, </td>
         </tr>
         <tr>
@@ -531,42 +648,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the key schedule for the masked Pyjamask block cipher. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ks</td><td>The key schedule on output. </td></tr>
-    <tr><td class="paramname">key</td><td>The 16 bytes of the key on input. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a2abedf3f2ff71467f16160786011dffa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void pyjamask_setup_key </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structpyjamask__key__schedule__t.html">pyjamask_key_schedule_t</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets up the key schedule for the Pyjamask block cipher. </p>
+<p>Sets up the key schedule for the masked Pyjamask-96 block cipher. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ks</td><td>The key schedule on output. </td></tr>
@@ -580,7 +662,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 1 2020 04:39:51 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 3 2020 12:48:33 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

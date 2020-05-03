@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: keccakp_200_state_t Union Reference</title>
+<title>Lightweight Cryptography Primitives: pyjamask_masked_128_key_schedule_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,53 +84,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">keccakp_200_state_t Union Reference</div>  </div>
+<div class="title">pyjamask_masked_128_key_schedule_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Structure of the internal state of the Keccak-p[200] permutation.  
- <a href="unionkeccakp__200__state__t.html#details">More...</a></p>
+<p>Structure of the key schedule for masked Pyjamask-128.  
+ <a href="structpyjamask__masked__128__key__schedule__t.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="internal-keccak_8h_source.html">internal-keccak.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="internal-pyjamask_8h_source.html">internal-pyjamask.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:aca7f7d56e61d703a093597efe9934480"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionkeccakp__200__state__t.html#aca7f7d56e61d703a093597efe9934480">A</a> [5][5]</td></tr>
-<tr class="separator:aca7f7d56e61d703a093597efe9934480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7561f05040b63e341ec7466c00c4d5b4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionkeccakp__200__state__t.html#a7561f05040b63e341ec7466c00c4d5b4">B</a> [25]</td></tr>
-<tr class="separator:a7561f05040b63e341ec7466c00c4d5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeefc06043153a5287800019b37a7a0c9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpyjamask__masked__128__key__schedule__t.html#aeefc06043153a5287800019b37a7a0c9">k</a> [<a class="el" href="internal-pyjamask_8h.html#a2b4a3b6732f267fc734a4fdbb8038da3">PYJAMASK_MASKING_ORDER</a> *(<a class="el" href="internal-pyjamask_8h.html#aa0c8baebe8dc3aa77119209f53d9245a">PYJAMASK_ROUNDS</a>+1)*4]</td></tr>
+<tr class="separator:aeefc06043153a5287800019b37a7a0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Structure of the internal state of the Keccak-p[200] permutation. </p>
+<div class="textblock"><p>Structure of the key schedule for masked Pyjamask-128. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a class="anchor" id="aca7f7d56e61d703a093597efe9934480"></a>
+<a class="anchor" id="aeefc06043153a5287800019b37a7a0c9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t keccakp_200_state_t::A[5][5]</td>
+          <td class="memname">uint32_t pyjamask_masked_128_key_schedule_t::k[<a class="el" href="internal-pyjamask_8h.html#a2b4a3b6732f267fc734a4fdbb8038da3">PYJAMASK_MASKING_ORDER</a> *(<a class="el" href="internal-pyjamask_8h.html#aa0c8baebe8dc3aa77119209f53d9245a">PYJAMASK_ROUNDS</a>+1)*4]</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Keccak-p[200] state as a 5x5 array of lanes </p>
+<p>Words of the key schedule </p>
 
 </div>
 </div>
-<a class="anchor" id="a7561f05040b63e341ec7466c00c4d5b4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t keccakp_200_state_t::B[25]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Keccak-p[200] state as a byte array </p>
-
-</div>
-</div>
-<hr/>The documentation for this union was generated from the following file:<ul>
-<li><a class="el" href="internal-keccak_8h_source.html">internal-keccak.h</a></li>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="internal-pyjamask_8h_source.html">internal-pyjamask.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
