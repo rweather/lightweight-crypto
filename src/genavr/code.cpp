@@ -1877,6 +1877,26 @@ void Code::sbox_setup(unsigned char num, const Sbox &sbox)
 }
 
 /**
+ * \brief Sets up the Z register to perform S-box table lookup operations.
+ *
+ * \param num Number of the S-box table if there is more than one.
+ * \param sbox Data for the S-box table, for use by the interpreter.
+ *
+ * This function switches directly to the new Z and RAMPZ values without
+ * saving RAMPZ on the stack.  It is assumed that RAMPZ was already saved
+ * by a previous call to sbox_setup();
+ *
+ * \sa sbox_setup()
+ */
+void Code::sbox_switch(unsigned char num, const Sbox &sbox)
+{
+    Reg temp = allocateHighReg(1);
+    m_insns.push_back(Insn::reg2(Insn::LPM_SWITCH, temp.reg(0), num));
+    releaseReg(temp);
+    m_sboxes[num] = sbox;
+}
+
+/**
  * \brief Cleans up the RAMPZ register once S-box operations are finished.
  *
  * \sa sbox_setup(), sbox_lookup()

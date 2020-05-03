@@ -287,6 +287,10 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
         // errors later when we do the cleanup.
         *s.ptr_sp(PRE_DEC) = 0xBA;
         break;
+    case Insn::LPM_SWITCH:
+        // Switch to a different S-box.
+        s.sbox = code.sbox_get(insn.value());
+        break;
     case Insn::LPM_CLEAN:
         // Pop the RAMPZ value, which we expect to be 0xBA.
         temp = *s.ptr_sp(POST_INC);

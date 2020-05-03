@@ -67,6 +67,7 @@ public:
         LDI,        /**< Load immediate into register (high reg only) */
         LPM_SBOX,   /**< Load from a table in program memory with an index */
         LPM_SETUP,  /**< Set up to perform sbox lookups using "lpm" */
+        LPM_SWITCH, /**< Switch to a different sbox */
         LPM_CLEAN,  /**< Clean up after sbox lookups using "lpm" */
         LSL,        /**< Logical shift left */
         LSR,        /**< Logical shift right */
@@ -543,6 +544,7 @@ public:
 
     // S-box management.
     void sbox_setup(unsigned char num, const Sbox &sbox);
+    void sbox_switch(unsigned char num, const Sbox &sbox);
     void sbox_cleanup(void);
     void sbox_lookup(const Reg &reg1, const Reg &reg2);
     void sbox_write(std::ostream &ostream, unsigned char num, const Sbox &sbox);
@@ -606,6 +608,14 @@ public:
      * \param ostream The output stream to write to.
      */
     void write(std::ostream &ostream) const;
+
+    /**
+     * \brief Writes a strong alias for this function.
+     *
+     * \param ostream The output stream to write to.
+     * \param name Name of the alias.
+     */
+    void write_alias(std::ostream &ostream, const std::string &name) const;
 
 private:
     enum PrologueType {

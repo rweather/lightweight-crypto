@@ -281,6 +281,28 @@ static void Insn_write_lpm_setup(std::ostream &ostream, const Insn &insn)
     ostream << "#endif" << std::endl;
 }
 
+static void Insn_write_lpm_switch(std::ostream &ostream, const Insn &insn)
+{
+    // Set up Z and RAMPZ, but no need to save the previous RAMPZ value.
+    int table = insn.value();
+    //ostream << "\tldi r30,lo8(sbox_";
+    //ostream << table;
+    //ostream << ")" << std::endl;
+    ostream << "\tldi r31,hi8(sbox_";
+    ostream << table;
+    ostream << ")" << std::endl;
+    ostream << "#if defined(RAMPZ)" << std::endl;
+    ostream << "\tldi ";
+    Insn_write_reg(ostream, insn.reg1());
+    ostream << ",hh8(sbox_";
+    ostream << table;
+    ostream << ")" << std::endl;
+    ostream << "\tout _SFR_IO_ADDR(RAMPZ),";
+    Insn_write_reg(ostream, insn.reg1());
+    ostream << std::endl;
+    ostream << "#endif" << std::endl;
+}
+
 static void Insn_write_lpm_clean(std::ostream &ostream)
 {
     // Pop the previous state of the RAMPZ register.
@@ -328,6 +350,7 @@ void Insn::write(std::ostream &ostream, const Code &code, int offset) const
     case LDI:       Insn_write_immreg(ostream, "ldi", *this); break;
     case LPM_SBOX:  Insn_write_lpm(ostream, *this, true); break;
     case LPM_SETUP: Insn_write_lpm_setup(ostream, *this); break;
+    case LPM_SWITCH:Insn_write_lpm_switch(ostream, *this); break;
     case LPM_CLEAN: Insn_write_lpm_clean(ostream); break;
     case LSL:       Insn_write_onereg(ostream, "lsl", *this); break;
     case LSR:       Insn_write_onereg(ostream, "lsr", *this); break;
@@ -540,4 +563,11 @@ void Code::sbox_write
     ostream << "sbox_" << (int)num << ":" << std::endl;
     for (int index = 0; index < sbox.size(); ++index)
         ostream << "\t.byte\t" << (int)(sbox.lookup(index)) << std::endl;
+}
+
+void Code::write_alias(std::ostream &ostream, const std::string &name) const
+{
+    ostream << std::endl;
+    ostream << ".global " << name << std::endl;
+    ostream << "\t.set " << name << "," << m_name << std::endl;
 }
