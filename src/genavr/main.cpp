@@ -648,15 +648,15 @@ static void skinny128_sboxes(enum Mode mode)
     }
 }
 
-static bool skinny128_384_encrypt_tk_full(enum Mode mode)
+static bool skinny128_384_encrypt(enum Mode mode)
 {
     Code code;
-    gen_skinny128_384_encrypt_tk_full(code);
+    gen_skinny128_384_encrypt(code);
     if (mode == Generate) {
         code.write(std::cout);
-        //code.write_alias(std::cout, "skinny_128_384_encrypt");
+        code.write_alias(std::cout, "skinny_128_384_encrypt_tk_full");
     } else {
-        if (!test_skinny128_384_encrypt_tk_full(code)) {
+        if (!test_skinny128_384_encrypt(code)) {
             std::cout << "SKINNY-128-384 encrypt tests failed" << std::endl;
             return false;
         } else {
@@ -666,15 +666,14 @@ static bool skinny128_384_encrypt_tk_full(enum Mode mode)
     return true;
 }
 
-static bool skinny128_384_decrypt_tk_full(enum Mode mode)
+static bool skinny128_384_decrypt(enum Mode mode)
 {
     Code code;
-    gen_skinny128_384_decrypt_tk_full(code);
+    gen_skinny128_384_decrypt(code);
     if (mode == Generate) {
         code.write(std::cout);
-        //code.write_alias(std::cout, "skinny_128_384_decrypt");
     } else {
-        if (!test_skinny128_384_decrypt_tk_full(code)) {
+        if (!test_skinny128_384_decrypt(code)) {
             std::cout << "SKINNY-128-384 decrypt tests failed" << std::endl;
             return false;
         } else {
@@ -684,15 +683,15 @@ static bool skinny128_384_decrypt_tk_full(enum Mode mode)
     return true;
 }
 
-static bool skinny128_256_encrypt_tk_full(enum Mode mode)
+static bool skinny128_256_encrypt(enum Mode mode)
 {
     Code code;
-    gen_skinny128_256_encrypt_tk_full(code);
+    gen_skinny128_256_encrypt(code);
     if (mode == Generate) {
         code.write(std::cout);
-        //code.write_alias(std::cout, "skinny_128_256_encrypt");
+        code.write_alias(std::cout, "skinny_128_256_encrypt_tk_full");
     } else {
-        if (!test_skinny128_256_encrypt_tk_full(code)) {
+        if (!test_skinny128_256_encrypt(code)) {
             std::cout << "SKINNY-128-256 encrypt tests failed" << std::endl;
             return false;
         } else {
@@ -702,15 +701,14 @@ static bool skinny128_256_encrypt_tk_full(enum Mode mode)
     return true;
 }
 
-static bool skinny128_256_decrypt_tk_full(enum Mode mode)
+static bool skinny128_256_decrypt(enum Mode mode)
 {
     Code code;
-    gen_skinny128_256_decrypt_tk_full(code);
+    gen_skinny128_256_decrypt(code);
     if (mode == Generate) {
         code.write(std::cout);
-        //code.write_alias(std::cout, "skinny_128_256_decrypt");
     } else {
-        if (!test_skinny128_256_decrypt_tk_full(code)) {
+        if (!test_skinny128_256_decrypt(code)) {
             std::cout << "SKINNY-128-256 decrypt tests failed" << std::endl;
             return false;
         } else {
@@ -724,13 +722,13 @@ static bool skinny128(enum Mode mode)
 {
     bool ok = true;
     skinny128_sboxes(mode);
-    if (!skinny128_384_encrypt_tk_full(mode))
+    if (!skinny128_384_encrypt(mode))
         ok = false;
-    if (!skinny128_384_decrypt_tk_full(mode))
+    if (!skinny128_384_decrypt(mode))
         ok = false;
-    if (!skinny128_256_encrypt_tk_full(mode))
+    if (!skinny128_256_encrypt(mode))
         ok = false;
-    if (!skinny128_256_decrypt_tk_full(mode))
+    if (!skinny128_256_decrypt(mode))
         ok = false;
     return ok;
 }

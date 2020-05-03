@@ -39,6 +39,16 @@ extern "C" {
 #endif
 
 /**
+ * \def SKINNY_128_SMALL_SCHEDULE
+ * \brief Defined to 1 to use the small key schedule version of SKINNY-128.
+ */
+#if defined(__AVR__)
+#define SKINNY_128_SMALL_SCHEDULE 1
+#else
+#define SKINNY_128_SMALL_SCHEDULE 0
+#endif
+
+/**
  * \brief Size of a block for SKINNY-128 block ciphers.
  */
 #define SKINNY_128_BLOCK_SIZE 16
@@ -56,8 +66,16 @@ typedef struct
     /** TK1 for the tweakable part of the key schedule */
     uint8_t TK1[16];
 
-    /** Words of the key schedule */
+#if SKINNY_128_SMALL_SCHEDULE
+    /** TK2 for the small key schedule */
+    uint8_t TK2[16];
+
+    /** TK3 for the small key schedule */
+    uint8_t TK3[16];
+#else
+    /** Words of the full key schedule */
     uint32_t k[SKINNY_128_384_ROUNDS * 2];
+#endif
 
 } skinny_128_384_key_schedule_t;
 
@@ -156,8 +174,13 @@ typedef struct
     /** TK1 for the tweakable part of the key schedule */
     uint8_t TK1[16];
 
-    /** Words of the key schedule */
+#if SKINNY_128_SMALL_SCHEDULE
+    /** TK2 for the small key schedule */
+    uint8_t TK2[16];
+#else
+    /** Words of the full key schedule */
     uint32_t k[SKINNY_128_256_ROUNDS * 2];
+#endif
 
 } skinny_128_256_key_schedule_t;
 

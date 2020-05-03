@@ -483,24 +483,24 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
     code.stx(s3, POST_INC);
 }
 
-void gen_skinny128_384_encrypt_tk_full(Code &code)
+void gen_skinny128_384_encrypt(Code &code)
 {
-    gen_skinny128_encrypt(code, "skinny_128_384_encrypt_tk_full", 48);
+    gen_skinny128_encrypt(code, "skinny_128_384_encrypt", 48);
 }
 
-void gen_skinny128_256_encrypt_tk_full(Code &code)
+void gen_skinny128_256_encrypt(Code &code)
 {
-    gen_skinny128_encrypt(code, "skinny_128_256_encrypt_tk_full", 32);
+    gen_skinny128_encrypt(code, "skinny_128_256_encrypt", 32);
 }
 
-void gen_skinny128_384_decrypt_tk_full(Code &code)
+void gen_skinny128_384_decrypt(Code &code)
 {
-    gen_skinny128_decrypt(code, "skinny_128_384_decrypt_tk_full", 48);
+    gen_skinny128_decrypt(code, "skinny_128_384_decrypt", 48);
 }
 
-void gen_skinny128_256_decrypt_tk_full(Code &code)
+void gen_skinny128_256_decrypt(Code &code)
 {
-    gen_skinny128_decrypt(code, "skinny_128_256_decrypt_tk_full", 32);
+    gen_skinny128_decrypt(code, "skinny_128_256_decrypt", 32);
 }
 
 /* Test vectors for SKINNY-128 from https://eprint.iacr.org/2016/660.pdf */
@@ -531,7 +531,7 @@ static block_cipher_test_vector_t const skinny128_384_1 = {
      0x1b, 0x38, 0xc6, 0x34, 0x6a, 0x10, 0xdc, 0xfa}
 };
 
-bool test_skinny128_384_encrypt_tk_full(Code &code)
+bool test_skinny128_384_encrypt(Code &code)
 {
     unsigned char output[16];
     code.exec_encrypt_block(skinny128_384_1.key, skinny128_384_1.key_len,
@@ -539,7 +539,7 @@ bool test_skinny128_384_encrypt_tk_full(Code &code)
     return !memcmp(output, skinny128_384_1.ciphertext, 16);
 }
 
-bool test_skinny128_256_encrypt_tk_full(Code &code)
+bool test_skinny128_256_encrypt(Code &code)
 {
     unsigned char output[16];
     code.exec_encrypt_block(skinny128_256_1.key, skinny128_256_1.key_len,
@@ -547,7 +547,7 @@ bool test_skinny128_256_encrypt_tk_full(Code &code)
     return !memcmp(output, skinny128_256_1.ciphertext, 16);
 }
 
-bool test_skinny128_384_decrypt_tk_full(Code &code)
+bool test_skinny128_384_decrypt(Code &code)
 {
     unsigned char output[16];
     code.exec_decrypt_block(skinny128_384_1.key, skinny128_384_1.key_len,
@@ -555,7 +555,7 @@ bool test_skinny128_384_decrypt_tk_full(Code &code)
     return !memcmp(output, skinny128_384_1.plaintext, 16);
 }
 
-bool test_skinny128_256_decrypt_tk_full(Code &code)
+bool test_skinny128_256_decrypt(Code &code)
 {
     unsigned char output[16];
     code.exec_decrypt_block(skinny128_256_1.key, skinny128_256_1.key_len,
