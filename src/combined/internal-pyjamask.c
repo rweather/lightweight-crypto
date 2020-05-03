@@ -23,6 +23,8 @@
 #include "internal-pyjamask.h"
 #include "internal-util.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Performs a circulant binary matrix multiplication.
  *
@@ -350,3 +352,5 @@ void pyjamask_96_decrypt
     be_store_word32(output + 4,  s1);
     be_store_word32(output + 8,  s2);
 }
+
+#endif /* !__AVR__ */

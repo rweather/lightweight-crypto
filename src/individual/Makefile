@@ -148,6 +148,7 @@ PYJAMASK_FILES = \
     internal-pyjamask.c \
     internal-pyjamask.h \
     internal-pyjamask-m.c \
+    internal-pyjamask-avr.S \
     internal-ocb.h \
     $(COMMON_FILES)
 ROMULUS_FILES = \

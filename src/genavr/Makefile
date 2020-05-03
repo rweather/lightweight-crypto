@@ -15,6 +15,7 @@ OBJS = \
 	algorithm_gift64.o \
 	algorithm_gimli24.o \
 	algorithm_keccak.o \
+	algorithm_pyjamask.o \
 	algorithm_sparkle.o \
 	algorithm_speck64.o \
 	algorithm_spongent.o \
@@ -45,6 +46,7 @@ algorithm_gift128.o: code.h gen.h
 algorithm_gift64.o: code.h gen.h
 algorithm_gimli24.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
+algorithm_pyjamask.o: code.h gen.h
 algorithm_sparkle.o: code.h gen.h
 algorithm_speck64.o: code.h gen.h
 algorithm_spongent.o: code.h gen.h
@@ -61,6 +63,7 @@ generate: $(TARGET)
 	./$(TARGET) GIFT-64 >../combined/internal-gift64-avr.S
 	./$(TARGET) GIMLI-24 >../combined/internal-gimli24-avr.S
 	./$(TARGET) Keccak >../combined/internal-keccak-avr.S
+	./$(TARGET) Pyjamask >../combined/internal-pyjamask-avr.S
 	./$(TARGET) SPARKLE >../combined/internal-sparkle-avr.S
 	./$(TARGET) SPECK-64 >../combined/internal-speck64-avr.S
 	./$(TARGET) Spongent-pi >../combined/internal-spongent-avr.S

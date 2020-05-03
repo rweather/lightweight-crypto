@@ -100,6 +100,20 @@ void gen_keccakp_400_permutation(Code &code);
 bool test_keccakp_200_permutation(Code &code);
 bool test_keccakp_400_permutation(Code &code);
 
+// Pyjamask block cipher.
+void gen_pyjamask_128_setup_key(Code &code);
+void gen_pyjamask_128_encrypt(Code &code);
+void gen_pyjamask_128_decrypt(Code &code);
+void gen_pyjamask_96_setup_key(Code &code);
+void gen_pyjamask_96_encrypt(Code &code);
+void gen_pyjamask_96_decrypt(Code &code);
+bool test_pyjamask_128_setup_key(Code &code);
+bool test_pyjamask_128_encrypt(Code &code);
+bool test_pyjamask_128_decrypt(Code &code);
+bool test_pyjamask_96_setup_key(Code &code);
+bool test_pyjamask_96_encrypt(Code &code);
+bool test_pyjamask_96_decrypt(Code &code);
+
 // SPARKLE permutation.
 void gen_sparkle256_permutation(Code &code);
 void gen_sparkle384_permutation(Code &code);

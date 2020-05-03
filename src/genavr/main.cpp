@@ -519,6 +519,126 @@ static bool keccakp_400(enum Mode mode)
     return true;
 }
 
+static bool pyjamask_96_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_96_setup_key(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_96_setup_key(code)) {
+            std::cout << "Pyjamask-96 key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-96 key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask_96_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_96_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_96_encrypt(code)) {
+            std::cout << "Pyjamask-96 encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-96 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask_96_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_96_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_96_decrypt(code)) {
+            std::cout << "Pyjamask-96 decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-96 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask_128_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_128_setup_key(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_128_setup_key(code)) {
+            std::cout << "Pyjamask-128 key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-128 key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask_128_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_128_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_128_encrypt(code)) {
+            std::cout << "Pyjamask-128 encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-128 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask_128_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_pyjamask_128_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_pyjamask_128_decrypt(code)) {
+            std::cout << "Pyjamask-128 decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "Pyjamask-128 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool pyjamask(enum Mode mode)
+{
+    bool ok = true;
+    if (!pyjamask_96_setup_key(mode))
+        ok = false;
+    if (!pyjamask_96_encrypt_block(mode))
+        ok = false;
+    if (!pyjamask_96_decrypt_block(mode))
+        ok = false;
+    if (!pyjamask_128_setup_key(mode))
+        ok = false;
+    if (!pyjamask_128_encrypt_block(mode))
+        ok = false;
+    if (!pyjamask_128_decrypt_block(mode))
+        ok = false;
+    return ok;
+}
+
 static bool speck64(enum Mode mode)
 {
     Code code;
@@ -692,6 +812,8 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "Keccak")) {
             gen1 = keccakp_200;
             gen2 = keccakp_400;
+        } else if (!strcmp(argv[1], "Pyjamask")) {
+            gen1 = pyjamask;
         } else if (!strcmp(argv[1], "SPARKLE")) {
             gen1 = sparkle256;
             gen2 = sparkle384;
@@ -739,6 +861,8 @@ int main(int argc, char *argv[])
         if (!keccakp_200(Test))
             exit_val = 1;
         if (!keccakp_400(Test))
+            exit_val = 1;
+        if (!pyjamask(Test))
             exit_val = 1;
         if (!speck64(Test))
             exit_val = 1;
