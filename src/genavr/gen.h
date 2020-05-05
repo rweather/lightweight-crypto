@@ -117,6 +117,8 @@ bool test_pyjamask_96_decrypt(Code &code);
 // SKINNY-128 block cipher.
 #define SKINNY128_SBOX_COUNT 5
 Sbox get_skinny128_sbox(int num);
+void gen_skinny128_384_setup_key(Code &code);
+void gen_skinny128_256_setup_key(Code &code);
 void gen_skinny128_384_encrypt(Code &code);
 void gen_skinny128_256_encrypt(Code &code);
 void gen_skinny128_384_decrypt(Code &code);

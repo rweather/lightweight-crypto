@@ -25,6 +25,8 @@
 #include "internal-util.h"
 #include <string.h>
 
+#if !defined(__AVR__)
+
 STATIC_INLINE void skinny128_fast_forward_tk(uint32_t *tk)
 {
     /* This function is used to fast-forward the TK1 tweak value
@@ -315,7 +317,7 @@ void skinny_128_384_decrypt
 }
 
 void skinny_128_384_encrypt_tk2
-    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, const unsigned char *tk2)
 {
     uint32_t s0, s1, s2, s3;
@@ -409,8 +411,6 @@ void skinny_128_384_encrypt_tk2
     le_store_word32(output + 12, s3);
 }
 
-#if !defined(__AVR__)
-
 void skinny_128_384_encrypt_tk_full
     (const unsigned char key[48], unsigned char *output,
      const unsigned char *input)
@@ -490,8 +490,6 @@ void skinny_128_384_encrypt_tk_full
     le_store_word32(output + 8,  s2);
     le_store_word32(output + 12, s3);
 }
-
-#endif
 
 void skinny_128_256_init
     (skinny_128_256_key_schedule_t *ks, const unsigned char key[32])
@@ -718,8 +716,6 @@ void skinny_128_256_decrypt
     le_store_word32(output + 12, s3);
 }
 
-#if !defined(__AVR__)
-
 void skinny_128_256_encrypt_tk_full
     (const unsigned char key[32], unsigned char *output,
      const unsigned char *input)
@@ -792,4 +788,14 @@ void skinny_128_256_encrypt_tk_full
     le_store_word32(output + 12, s3);
 }
 
-#endif
+#else /* __AVR__ */
+
+void skinny_128_384_encrypt_tk2
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, const unsigned char *tk2)
+{
+    memcpy(ks->TK2, tk2, 16);
+    skinny_128_384_encrypt(ks, output, input);
+}
+
+#endif /* __AVR__ */

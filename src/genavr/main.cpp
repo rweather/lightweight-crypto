@@ -648,6 +648,15 @@ static void skinny128_sboxes(enum Mode mode)
     }
 }
 
+static bool skinny128_384_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_skinny128_384_setup_key(code);
+    if (mode == Generate)
+        code.write(std::cout);
+    return true;
+}
+
 static bool skinny128_384_encrypt(enum Mode mode)
 {
     Code code;
@@ -680,6 +689,15 @@ static bool skinny128_384_decrypt(enum Mode mode)
             std::cout << "SKINNY-128-384 decrypt tests succeeded" << std::endl;
         }
     }
+    return true;
+}
+
+static bool skinny128_256_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_skinny128_256_setup_key(code);
+    if (mode == Generate)
+        code.write(std::cout);
     return true;
 }
 
@@ -722,9 +740,13 @@ static bool skinny128(enum Mode mode)
 {
     bool ok = true;
     skinny128_sboxes(mode);
+    if (!skinny128_384_setup_key(mode))
+        ok = false;
     if (!skinny128_384_encrypt(mode))
         ok = false;
     if (!skinny128_384_decrypt(mode))
+        ok = false;
+    if (!skinny128_256_setup_key(mode))
         ok = false;
     if (!skinny128_256_encrypt(mode))
         ok = false;

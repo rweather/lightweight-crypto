@@ -106,7 +106,7 @@ static void skinny_aead_128_384_init
      const unsigned char *nonce, unsigned nonce_len)
 {
     unsigned char k[48];
-    memset(k, 0, sizeof(k));
+    memset(k, 0, 16);
     memcpy(k + 16, nonce, nonce_len);
     memset(k + 16 + nonce_len, 0, 16 - nonce_len);
     memcpy(k + 32, key, 16);
@@ -137,7 +137,7 @@ static void skinny_aead_128_384_init
 #define skinny_aead_128_384_update_lfsr(lfsr) \
     do { \
         uint8_t feedback = ((lfsr) & (1ULL << 63)) ? 0x1B : 0x00; \
-        (lfsr) = ((lfsr) << 1) | feedback; \
+        (lfsr) = ((lfsr) << 1) ^ feedback; \
     } while (0)
 
 /**

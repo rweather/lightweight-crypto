@@ -157,6 +157,7 @@ ROMULUS_FILES = \
     internal-skinny128.c \
     internal-skinny128.h \
     internal-skinnyutil.h \
+    internal-skinny128-avr.S \
     $(COMMON_FILES)
 SATURNIN_FILES = \
     saturnin.c \
@@ -169,6 +170,7 @@ SKINNY_AEAD_FILES = \
     skinny-hash.h \
     internal-skinny128.c \
     internal-skinny128.h \
+    internal-skinny128-avr.S \
     internal-skinnyutil.h \
     $(COMMON_FILES)
 SPARKLE_FILES = \

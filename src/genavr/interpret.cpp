@@ -469,6 +469,8 @@ void Code::exec_setup_key(void *schedule, unsigned schedule_len,
     }
     if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
+    if (s.pair(32) != fp)
+        throw std::invalid_argument("stack size is incorrect on code exit");
     memcpy(schedule, &(s.memory[schedule_address]), schedule_len);
 }
 
@@ -508,6 +510,8 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
     }
     if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
+    if (s.pair(32) != fp)
+        throw std::invalid_argument("stack size is incorrect on code exit");
     memcpy(output, &(s.memory[output_address]), output_len);
 }
 
@@ -537,6 +541,8 @@ void Code::exec_permutation
     }
     if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
+    if (s.pair(32) != fp)
+        throw std::invalid_argument("stack size is incorrect on code exit");
     memcpy(state, &(s.memory[state_address]), state_len);
 }
 
@@ -572,5 +578,7 @@ void Code::exec_tinyjambu
     }
     if (s.r[1] != 0x00 && !hasFlag(TempR1))
         throw std::invalid_argument("r1 is non-zero at the end of the code");
+    if (s.pair(32) != fp)
+        throw std::invalid_argument("stack size is incorrect on code exit");
     memcpy(state, &(s.memory[state_address]), state_len);
 }

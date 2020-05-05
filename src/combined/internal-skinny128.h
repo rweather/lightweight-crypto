@@ -131,9 +131,12 @@ void skinny_128_384_decrypt
  * This version is useful when both TK1 and TK2 change from block to block.
  * When the key is initialized with skinny_128_384_init(), the TK2 part of
  * the key value should be set to zero.
+ *
+ * \note Some versions of this function may modify the key schedule to
+ * copy tk2 into place.
  */
 void skinny_128_384_encrypt_tk2
-    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, const unsigned char *tk2);
 
 /**

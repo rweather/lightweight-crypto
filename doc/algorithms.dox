@@ -653,10 +653,14 @@ based around the SKINNY-128-256 tweakable block cipher.
 
 This library's implementation of SKINNY-128-384 requires 464 bytes of RAM
 for the key schedule, which makes it one of the heavier algorithms amongst
-the NIST submissions when it comes to RAM size.  It is possible to
-implement SKINNY in a way that the key schedule is expanded on the fly
-during encryption which would save 416 bytes of RAM.  But it would come
-at the cost of performance.
+the NIST submissions when it comes to RAM size.
+
+If the SKINNY_128_SMALL_SCHEDULE macro is defined to 1 in the
+"internal-skinny128.h" header, then an alternative implementation
+is used that reduces the key schedule for SKINNY-128-384 to 48 bytes,
+and the key schedule for SKINNY-128-256 to 32 bytes.  The full key
+schedule is expanded on the fly, which comes at the cost of performance.
+The AVR implementation enables the small schedule version by default.
 
 The SKINNY-AEAD family also includes two hash algorithms:
 
@@ -665,7 +669,7 @@ SKINNY-128-384 tweakable block cipher.
 \li SKINNY-tk2-HASH with a 256-bit hash output, based around the
 SKINNY-128-256 tweakable block cipher.
 
-The hash algorithms use a more memory-efficient version of SKINNY
+The hash algorithms use a more memory-efficient version of SKINNY-128
 that expands the key schedule on the fly because the key needs to
 change every block.  It does however have a performance cost to do this.
 

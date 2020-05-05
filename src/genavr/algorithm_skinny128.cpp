@@ -206,6 +206,27 @@ static void skinny128_apply_lfsr(Code &code, int offset, int rounds)
     code.releaseReg(temp);
 }
 
+// Generate the SKINNY-128 key setup function.
+static void gen_skinny128_setup_key(Code &code, const char *name, int ks_size)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // X points to the key, and Z points to the key schedule.
+    code.prologue_setup_key(name, 0);
+    code.setFlag(Code::NoLocals); // Don't need to save the Y register.
+
+    // Copy all of the key bytes to the schedule.  We expand the schedule
+    // on the fly so no need to do anything else but a copy.
+    Reg temp = code.allocateReg(4);
+    Reg size = code.allocateHighReg(1);
+    unsigned char label = 0;
+    code.move(size, ks_size / 4);
+    code.label(label);
+    code.ldx(temp, POST_INC);
+    code.stz(temp, POST_INC);
+    code.dec(size);
+    code.brne(label);
+}
+
 // Generate the SKINNY-128 encryption function.  We assume that the key
 // schedule is always "ks_size" bytes and expanded on the fly.
 static void gen_skinny128_encrypt(Code &code, const char *name, int ks_size)
@@ -253,7 +274,7 @@ static void gen_skinny128_encrypt(Code &code, const char *name, int ks_size)
 
     // XOR the round constant for this round.
     Reg rc = code.allocateReg(1);
-    code.sbox_setup(SBOX_RC, get_skinny128_sbox(SBOX_RC));
+    code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
     code.sbox_lookup(rc, round);
     code.logxor(s0, rc);
     code.inc(round);
@@ -448,7 +469,7 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
 
     // XOR the round constant for this round.
     Reg rc = code.allocateReg(1);
-    code.sbox_setup(SBOX_RC, get_skinny128_sbox(SBOX_RC));
+    code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
     code.dec(round);
     code.sbox_lookup(rc, round);
     code.logxor(s1, rc);
@@ -481,6 +502,16 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
     code.stx(s1, POST_INC);
     code.stx(s2, POST_INC);
     code.stx(s3, POST_INC);
+}
+
+void gen_skinny128_384_setup_key(Code &code)
+{
+    gen_skinny128_setup_key(code, "skinny_128_384_init", 48);
+}
+
+void gen_skinny128_256_setup_key(Code &code)
+{
+    gen_skinny128_setup_key(code, "skinny_128_256_init", 32);
 }
 
 void gen_skinny128_384_encrypt(Code &code)
