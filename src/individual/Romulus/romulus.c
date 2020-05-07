@@ -116,14 +116,15 @@ static void romulus1_init
     (skinny_128_384_key_schedule_t *ks,
      const unsigned char *k, const unsigned char *npub)
 {
-    unsigned char TK[32];
+    unsigned char TK[48];
+    TK[0] = 0x01; /* Initialize the 56-bit LFSR counter */
+    memset(TK + 1, 0, 15);
     if (npub)
-        memcpy(TK, npub, 16);
+        memcpy(TK + 16, npub, 16);
     else
-        memset(TK, 0, 16);
-    memcpy(TK + 16, k, 16);
-    skinny_128_384_init(ks, TK, sizeof(TK));
-    ks->TK1[0] = 0x01; /* Initialize the 56-bit LFSR counter */
+        memset(TK + 16, 0, 16);
+    memcpy(TK + 32, k, 16);
+    skinny_128_384_init(ks, TK);
 }
 
 /**
@@ -138,14 +139,18 @@ static void romulus2_init
     (skinny_128_384_key_schedule_t *ks,
      const unsigned char *k, const unsigned char *npub)
 {
-    unsigned char TK[32];
-    memcpy(TK, k, 16);
-    memset(TK + 16, 0, 16);
-    TK[16] = 0x01; /* Initialize the high 24 bits of the LFSR counter */
-    skinny_128_384_init(ks, TK, sizeof(TK));
-    ks->TK1[0] = 0x01; /* Initialize the low 24 bits of the LFSR counter */
-    if (npub)
-        memcpy(ks->TK1 + 4, npub, 12);
+    unsigned char TK[48];
+    TK[0] = 0x01; /* Initialize the low 24 bits of the LFSR counter */
+    if (npub) {
+        TK[1] = TK[2] = TK[3] = 0;
+        memcpy(TK + 4, npub, 12);
+    } else {
+        memset(TK + 1, 0, 15);
+    }
+    memcpy(TK + 16, k, 16);
+    TK[32] = 0x01; /* Initialize the high 24 bits of the LFSR counter */
+    memset(TK + 33, 0, 15);
+    skinny_128_384_init(ks, TK);
 }
 
 /**
@@ -160,10 +165,16 @@ static void romulus3_init
     (skinny_128_256_key_schedule_t *ks,
      const unsigned char *k, const unsigned char *npub)
 {
-    skinny_128_256_init(ks, k, 16);
-    ks->TK1[0] = 0x01; /* Initialize the 24-bit LFSR counter */
-    if (npub)
-        memcpy(ks->TK1 + 4, npub, 12);
+    unsigned char TK[32];
+    TK[0] = 0x01; /* Initialize the 24-bit LFSR counter */
+    if (npub) {
+        TK[1] = TK[2] = TK[3] = 0;
+        memcpy(TK + 4, npub, 12);
+    } else {
+        memset(TK + 1, 0, 15);
+    }
+    memcpy(TK + 16, k, 16);
+    skinny_128_256_init(ks, TK);
 }
 
 /**

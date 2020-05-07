@@ -39,6 +39,16 @@ extern "C" {
 #endif
 
 /**
+ * \def SKINNY_128_SMALL_SCHEDULE
+ * \brief Defined to 1 to use the small key schedule version of SKINNY-128.
+ */
+#if defined(__AVR__)
+#define SKINNY_128_SMALL_SCHEDULE 1
+#else
+#define SKINNY_128_SMALL_SCHEDULE 0
+#endif
+
+/**
  * \brief Size of a block for SKINNY-128 block ciphers.
  */
 #define SKINNY_128_BLOCK_SIZE 16
@@ -56,8 +66,16 @@ typedef struct
     /** TK1 for the tweakable part of the key schedule */
     uint8_t TK1[16];
 
-    /** Words of the key schedule */
+#if SKINNY_128_SMALL_SCHEDULE
+    /** TK2 for the small key schedule */
+    uint8_t TK2[16];
+
+    /** TK3 for the small key schedule */
+    uint8_t TK3[16];
+#else
+    /** Words of the full key schedule */
     uint32_t k[SKINNY_128_384_ROUNDS * 2];
+#endif
 
 } skinny_128_384_key_schedule_t;
 
@@ -66,15 +84,9 @@ typedef struct
  *
  * \param ks Points to the key schedule to initialize.
  * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 32 or 48,
- * where 32 is used for the tweakable variant.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
  */
-int skinny_128_384_init
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len);
+void skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char key[48]);
 
 /**
  * \brief Encrypts a 128-bit block with SKINNY-128-384.
@@ -119,9 +131,12 @@ void skinny_128_384_decrypt
  * This version is useful when both TK1 and TK2 change from block to block.
  * When the key is initialized with skinny_128_384_init(), the TK2 part of
  * the key value should be set to zero.
+ *
+ * \note Some versions of this function may modify the key schedule to
+ * copy tk2 into place.
  */
 void skinny_128_384_encrypt_tk2
-    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, const unsigned char *tk2);
 
 /**
@@ -156,8 +171,13 @@ typedef struct
     /** TK1 for the tweakable part of the key schedule */
     uint8_t TK1[16];
 
-    /** Words of the key schedule */
+#if SKINNY_128_SMALL_SCHEDULE
+    /** TK2 for the small key schedule */
+    uint8_t TK2[16];
+#else
+    /** Words of the full key schedule */
     uint32_t k[SKINNY_128_256_ROUNDS * 2];
+#endif
 
 } skinny_128_256_key_schedule_t;
 
@@ -166,15 +186,9 @@ typedef struct
  *
  * \param ks Points to the key schedule to initialize.
  * \param key Points to the key data.
- * \param key_len Length of the key data, which must be 16 or 32,
- * where 16 is used for the tweakable variant.
- *
- * \return Non-zero on success or zero if there is something wrong
- * with the parameters.
  */
-int skinny_128_256_init
-    (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len);
+void skinny_128_256_init
+    (skinny_128_256_key_schedule_t *ks, const unsigned char key[32]);
 
 /**
  * \brief Encrypts a 128-bit block with SKINNY-128-256.

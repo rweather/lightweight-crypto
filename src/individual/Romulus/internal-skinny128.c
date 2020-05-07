@@ -25,6 +25,8 @@
 #include "internal-util.h"
 #include <string.h>
 
+#if !defined(__AVR__)
+
 STATIC_INLINE void skinny128_fast_forward_tk(uint32_t *tk)
 {
     /* This function is used to fast-forward the TK1 tweak value
@@ -55,42 +57,33 @@ STATIC_INLINE void skinny128_fast_forward_tk(uint32_t *tk)
             ((row3 << 24) & 0xFF000000U);
 }
 
-int skinny_128_384_init
-    (skinny_128_384_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len)
+void skinny_128_384_init
+    (skinny_128_384_key_schedule_t *ks, const unsigned char key[48])
 {
+#if !SKINNY_128_SMALL_SCHEDULE
     uint32_t TK2[4];
     uint32_t TK3[4];
     uint32_t *schedule;
     unsigned round;
     uint8_t rc;
+#endif
 
-    /* Validate the parameters */
-    if (!ks || !key || (key_len != 32 && key_len != 48))
-        return 0;
-
+#if SKINNY_128_SMALL_SCHEDULE
+    /* Copy the input key as-is when using the small key schedule version */
+    memcpy(ks->TK1, key, sizeof(ks->TK1));
+    memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
+    memcpy(ks->TK3, key + 32, sizeof(ks->TK3));
+#else
     /* Set the initial states of TK1, TK2, and TK3 */
-    if (key_len == 32) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        TK2[0] = le_load_word32(key);
-        TK2[1] = le_load_word32(key + 4);
-        TK2[2] = le_load_word32(key + 8);
-        TK2[3] = le_load_word32(key + 12);
-        TK3[0] = le_load_word32(key + 16);
-        TK3[1] = le_load_word32(key + 20);
-        TK3[2] = le_load_word32(key + 24);
-        TK3[3] = le_load_word32(key + 28);
-    } else {
-        memcpy(ks->TK1, key, 16);
-        TK2[0] = le_load_word32(key + 16);
-        TK2[1] = le_load_word32(key + 20);
-        TK2[2] = le_load_word32(key + 24);
-        TK2[3] = le_load_word32(key + 28);
-        TK3[0] = le_load_word32(key + 32);
-        TK3[1] = le_load_word32(key + 36);
-        TK3[2] = le_load_word32(key + 40);
-        TK3[3] = le_load_word32(key + 44);
-    }
+    memcpy(ks->TK1, key, 16);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
+    TK3[0] = le_load_word32(key + 32);
+    TK3[1] = le_load_word32(key + 36);
+    TK3[2] = le_load_word32(key + 40);
+    TK3[3] = le_load_word32(key + 44);
 
     /* Set up the key schedule using TK2 and TK3.  TK1 is not added
      * to the key schedule because we will derive that part of the
@@ -116,7 +109,7 @@ int skinny_128_384_init
         skinny128_LFSR3(TK3[0]);
         skinny128_LFSR3(TK3[1]);
     }
-    return 1;
+#endif
 }
 
 void skinny_128_384_encrypt
@@ -125,7 +118,13 @@ void skinny_128_384_encrypt
 {
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
+#if SKINNY_128_SMALL_SCHEDULE
+    uint32_t TK2[4];
+    uint32_t TK3[4];
+    uint8_t rc = 0;
+#else
     const uint32_t *schedule = ks->k;
+#endif
     uint32_t temp;
     unsigned round;
 
@@ -135,14 +134,24 @@ void skinny_128_384_encrypt
     s2 = le_load_word32(input + 8);
     s3 = le_load_word32(input + 12);
 
-    /* Make a local copy of the tweakable part of the state, TK1 */
+    /* Make a local copy of the tweakable part of the state */
     TK1[0] = le_load_word32(ks->TK1);
     TK1[1] = le_load_word32(ks->TK1 + 4);
     TK1[2] = le_load_word32(ks->TK1 + 8);
     TK1[3] = le_load_word32(ks->TK1 + 12);
+#if SKINNY_128_SMALL_SCHEDULE
+    TK2[0] = le_load_word32(ks->TK2);
+    TK2[1] = le_load_word32(ks->TK2 + 4);
+    TK2[2] = le_load_word32(ks->TK2 + 8);
+    TK2[3] = le_load_word32(ks->TK2 + 12);
+    TK3[0] = le_load_word32(ks->TK3);
+    TK3[1] = le_load_word32(ks->TK3 + 4);
+    TK3[2] = le_load_word32(ks->TK3 + 8);
+    TK3[3] = le_load_word32(ks->TK3 + 12);
+#endif
 
     /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round, schedule += 2) {
+    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
         /* Apply the S-box to all bytes in the state */
         skinny128_sbox(s0);
         skinny128_sbox(s1);
@@ -150,8 +159,15 @@ void skinny_128_384_encrypt
         skinny128_sbox(s3);
 
         /* Apply the subkey for this round */
+#if SKINNY_128_SMALL_SCHEDULE
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+#else
         s0 ^= schedule[0] ^ TK1[0];
         s1 ^= schedule[1] ^ TK1[1];
+#endif
         s2 ^= 0x02;
 
         /* Shift the cells in the rows right, which moves the cell
@@ -172,6 +188,16 @@ void skinny_128_384_encrypt
 
         /* Permute TK1 for the next round */
         skinny128_permute_tk(TK1);
+#if SKINNY_128_SMALL_SCHEDULE
+        skinny128_permute_tk(TK2);
+        skinny128_permute_tk(TK3);
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+        skinny128_LFSR3(TK3[0]);
+        skinny128_LFSR3(TK3[1]);
+#else
+        schedule += 2;
+#endif
     }
 
     /* Pack the result into the output buffer */
@@ -187,7 +213,13 @@ void skinny_128_384_decrypt
 {
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
-    const uint32_t *schedule;
+#if SKINNY_128_SMALL_SCHEDULE
+    uint32_t TK2[4];
+    uint32_t TK3[4];
+    uint8_t rc = 0x15;
+#else
+    const uint32_t *schedule = &(ks->k[SKINNY_128_384_ROUNDS * 2 - 2]);
+#endif
     uint32_t temp;
     unsigned round;
 
@@ -202,15 +234,47 @@ void skinny_128_384_decrypt
     TK1[1] = le_load_word32(ks->TK1 + 4);
     TK1[2] = le_load_word32(ks->TK1 + 8);
     TK1[3] = le_load_word32(ks->TK1 + 12);
+#if SKINNY_128_SMALL_SCHEDULE
+    TK2[0] = le_load_word32(ks->TK2);
+    TK2[1] = le_load_word32(ks->TK2 + 4);
+    TK2[2] = le_load_word32(ks->TK2 + 8);
+    TK2[3] = le_load_word32(ks->TK2 + 12);
+    TK3[0] = le_load_word32(ks->TK3);
+    TK3[1] = le_load_word32(ks->TK3 + 4);
+    TK3[2] = le_load_word32(ks->TK3 + 8);
+    TK3[3] = le_load_word32(ks->TK3 + 12);
+#endif
 
     /* Permute TK1 to fast-forward it to the end of the key schedule */
     skinny128_fast_forward_tk(TK1);
+#if SKINNY_128_SMALL_SCHEDULE
+    skinny128_fast_forward_tk(TK2);
+    skinny128_fast_forward_tk(TK3);
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 2) {
+        // Also fast-forward the LFSR's on every byte of TK2 and TK3.
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+        skinny128_LFSR2(TK2[2]);
+        skinny128_LFSR2(TK2[3]);
+        skinny128_LFSR3(TK3[0]);
+        skinny128_LFSR3(TK3[1]);
+        skinny128_LFSR3(TK3[2]);
+        skinny128_LFSR3(TK3[3]);
+    }
+#endif
 
     /* Perform all decryption rounds */
-    schedule = &(ks->k[SKINNY_128_384_ROUNDS * 2 - 2]);
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round, schedule -= 2) {
+    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
         /* Inverse permutation on TK1 for this round */
         skinny128_inv_permute_tk(TK1);
+#if SKINNY_128_SMALL_SCHEDULE
+        skinny128_inv_permute_tk(TK2);
+        skinny128_inv_permute_tk(TK3);
+        skinny128_LFSR3(TK2[2]);
+        skinny128_LFSR3(TK2[3]);
+        skinny128_LFSR2(TK3[2]);
+        skinny128_LFSR2(TK3[3]);
+#endif
 
         /* Inverse mix of the columns */
         temp = s3;
@@ -227,8 +291,15 @@ void skinny_128_384_decrypt
         s3 = leftRotate8(s3);
 
         /* Apply the subkey for this round */
+#if SKINNY_128_SMALL_SCHEDULE
+        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20);
+        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+#else
         s0 ^= schedule[0] ^ TK1[0];
         s1 ^= schedule[1] ^ TK1[1];
+        schedule -= 2;
+#endif
         s2 ^= 0x02;
 
         /* Apply the inverse of the S-box to all bytes in the state */
@@ -246,13 +317,18 @@ void skinny_128_384_decrypt
 }
 
 void skinny_128_384_encrypt_tk2
-    (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input, const unsigned char *tk2)
 {
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
     uint32_t TK2[4];
+#if SKINNY_128_SMALL_SCHEDULE
+    uint32_t TK3[4];
+    uint8_t rc = 0;
+#else
     const uint32_t *schedule = ks->k;
+#endif
     uint32_t temp;
     unsigned round;
 
@@ -262,7 +338,7 @@ void skinny_128_384_encrypt_tk2
     s2 = le_load_word32(input + 8);
     s3 = le_load_word32(input + 12);
 
-    /* Make a local copy of the tweakable part of the state, TK1/TK2 */
+    /* Make a local copy of the tweakable part of the state */
     TK1[0] = le_load_word32(ks->TK1);
     TK1[1] = le_load_word32(ks->TK1 + 4);
     TK1[2] = le_load_word32(ks->TK1 + 8);
@@ -271,9 +347,15 @@ void skinny_128_384_encrypt_tk2
     TK2[1] = le_load_word32(tk2 + 4);
     TK2[2] = le_load_word32(tk2 + 8);
     TK2[3] = le_load_word32(tk2 + 12);
+#if SKINNY_128_SMALL_SCHEDULE
+    TK3[0] = le_load_word32(ks->TK3);
+    TK3[1] = le_load_word32(ks->TK3 + 4);
+    TK3[2] = le_load_word32(ks->TK3 + 8);
+    TK3[3] = le_load_word32(ks->TK3 + 12);
+#endif
 
     /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round, schedule += 2) {
+    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
         /* Apply the S-box to all bytes in the state */
         skinny128_sbox(s0);
         skinny128_sbox(s1);
@@ -281,8 +363,15 @@ void skinny_128_384_encrypt_tk2
         skinny128_sbox(s3);
 
         /* Apply the subkey for this round */
+#if SKINNY_128_SMALL_SCHEDULE
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+#else
         s0 ^= schedule[0] ^ TK1[0] ^ TK2[0];
         s1 ^= schedule[1] ^ TK1[1] ^ TK2[1];
+#endif
         s2 ^= 0x02;
 
         /* Shift the cells in the rows right, which moves the cell
@@ -306,6 +395,13 @@ void skinny_128_384_encrypt_tk2
         skinny128_permute_tk(TK2);
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
+#if SKINNY_128_SMALL_SCHEDULE
+        skinny128_permute_tk(TK3);
+        skinny128_LFSR3(TK3[0]);
+        skinny128_LFSR3(TK3[1]);
+#else
+        schedule += 2;
+#endif
     }
 
     /* Pack the result into the output buffer */
@@ -395,33 +491,27 @@ void skinny_128_384_encrypt_tk_full
     le_store_word32(output + 12, s3);
 }
 
-int skinny_128_256_init
-    (skinny_128_256_key_schedule_t *ks, const unsigned char *key,
-     size_t key_len)
+void skinny_128_256_init
+    (skinny_128_256_key_schedule_t *ks, const unsigned char key[32])
 {
+#if !SKINNY_128_SMALL_SCHEDULE
     uint32_t TK2[4];
     uint32_t *schedule;
     unsigned round;
     uint8_t rc;
+#endif
 
-    /* Validate the parameters */
-    if (!ks || !key || (key_len != 16 && key_len != 32))
-        return 0;
-
+#if SKINNY_128_SMALL_SCHEDULE
+    /* Copy the input key as-is when using the small key schedule version */
+    memcpy(ks->TK1, key, sizeof(ks->TK1));
+    memcpy(ks->TK2, key + 16, sizeof(ks->TK2));
+#else
     /* Set the initial states of TK1 and TK2 */
-    if (key_len == 16) {
-        memset(ks->TK1, 0, sizeof(ks->TK1));
-        TK2[0] = le_load_word32(key);
-        TK2[1] = le_load_word32(key + 4);
-        TK2[2] = le_load_word32(key + 8);
-        TK2[3] = le_load_word32(key + 12);
-    } else {
-        memcpy(ks->TK1, key, 16);
-        TK2[0] = le_load_word32(key + 16);
-        TK2[1] = le_load_word32(key + 20);
-        TK2[2] = le_load_word32(key + 24);
-        TK2[3] = le_load_word32(key + 28);
-    }
+    memcpy(ks->TK1, key, 16);
+    TK2[0] = le_load_word32(key + 16);
+    TK2[1] = le_load_word32(key + 20);
+    TK2[2] = le_load_word32(key + 24);
+    TK2[3] = le_load_word32(key + 28);
 
     /* Set up the key schedule using TK2.  TK1 is not added
      * to the key schedule because we will derive that part of the
@@ -444,7 +534,7 @@ int skinny_128_256_init
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
     }
-    return 1;
+#endif
 }
 
 void skinny_128_256_encrypt
@@ -453,7 +543,12 @@ void skinny_128_256_encrypt
 {
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
+#if SKINNY_128_SMALL_SCHEDULE
+    uint32_t TK2[4];
+    uint8_t rc = 0;
+#else
     const uint32_t *schedule = ks->k;
+#endif
     uint32_t temp;
     unsigned round;
 
@@ -468,18 +563,31 @@ void skinny_128_256_encrypt
     TK1[1] = le_load_word32(ks->TK1 + 4);
     TK1[2] = le_load_word32(ks->TK1 + 8);
     TK1[3] = le_load_word32(ks->TK1 + 12);
+#if SKINNY_128_SMALL_SCHEDULE
+    TK2[0] = le_load_word32(ks->TK2);
+    TK2[1] = le_load_word32(ks->TK2 + 4);
+    TK2[2] = le_load_word32(ks->TK2 + 8);
+    TK2[3] = le_load_word32(ks->TK2 + 12);
+#endif
 
     /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round, schedule += 2) {
+    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
         /* Apply the S-box to all bytes in the state */
         skinny128_sbox(s0);
         skinny128_sbox(s1);
         skinny128_sbox(s2);
         skinny128_sbox(s3);
 
-        /* Apply the subkey for this round */
+        /* XOR the round constant and the subkey for this round */
+#if SKINNY_128_SMALL_SCHEDULE
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
+#else
         s0 ^= schedule[0] ^ TK1[0];
         s1 ^= schedule[1] ^ TK1[1];
+#endif
         s2 ^= 0x02;
 
         /* Shift the cells in the rows right, which moves the cell
@@ -498,8 +606,15 @@ void skinny_128_256_encrypt
         s1 = s0;
         s0 = temp;
 
-        /* Permute TK1 for the next round */
+        /* Permute TK1 and TK2 for the next round */
         skinny128_permute_tk(TK1);
+#if SKINNY_128_SMALL_SCHEDULE
+        skinny128_permute_tk(TK2);
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+#else
+        schedule += 2;
+#endif
     }
 
     /* Pack the result into the output buffer */
@@ -515,7 +630,12 @@ void skinny_128_256_decrypt
 {
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
-    const uint32_t *schedule;
+#if SKINNY_128_SMALL_SCHEDULE
+    uint32_t TK2[4];
+    uint8_t rc = 0x09;
+#else
+    const uint32_t *schedule = &(ks->k[SKINNY_128_256_ROUNDS * 2 - 2]);
+#endif
     uint32_t temp;
     unsigned round;
 
@@ -532,12 +652,29 @@ void skinny_128_256_decrypt
     TK1[1] = le_load_word32(ks->TK1 + 4);
     TK1[2] = le_load_word32(ks->TK1 + 8);
     TK1[3] = le_load_word32(ks->TK1 + 12);
+#if SKINNY_128_SMALL_SCHEDULE
+    TK2[0] = le_load_word32(ks->TK2);
+    TK2[1] = le_load_word32(ks->TK2 + 4);
+    TK2[2] = le_load_word32(ks->TK2 + 8);
+    TK2[3] = le_load_word32(ks->TK2 + 12);
+    for (round = 0; round < SKINNY_128_256_ROUNDS; round += 2) {
+        // Also fast-forward the LFSR's on every byte of TK2.
+        skinny128_LFSR2(TK2[0]);
+        skinny128_LFSR2(TK2[1]);
+        skinny128_LFSR2(TK2[2]);
+        skinny128_LFSR2(TK2[3]);
+    }
+#endif
 
     /* Perform all decryption rounds */
-    schedule = &(ks->k[SKINNY_128_256_ROUNDS * 2 - 2]);
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round, schedule -= 2) {
+    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
         /* Inverse permutation on TK1 for this round */
         skinny128_inv_permute_tk(TK1);
+#if SKINNY_128_SMALL_SCHEDULE
+        skinny128_inv_permute_tk(TK2);
+        skinny128_LFSR3(TK2[2]);
+        skinny128_LFSR3(TK2[3]);
+#endif
 
         /* Inverse mix of the columns */
         temp = s3;
@@ -554,8 +691,15 @@ void skinny_128_256_decrypt
         s3 = leftRotate8(s3);
 
         /* Apply the subkey for this round */
+#if SKINNY_128_SMALL_SCHEDULE
+        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20);
+        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
+        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
+#else
         s0 ^= schedule[0] ^ TK1[0];
         s1 ^= schedule[1] ^ TK1[1];
+        schedule -= 2;
+#endif
         s2 ^= 0x02;
 
         /* Apply the inverse of the S-box to all bytes in the state */
@@ -643,3 +787,15 @@ void skinny_128_256_encrypt_tk_full
     le_store_word32(output + 8,  s2);
     le_store_word32(output + 12, s3);
 }
+
+#else /* __AVR__ */
+
+void skinny_128_384_encrypt_tk2
+    (skinny_128_384_key_schedule_t *ks, unsigned char *output,
+     const unsigned char *input, const unsigned char *tk2)
+{
+    memcpy(ks->TK2, tk2, 16);
+    skinny_128_384_encrypt(ks, output, input);
+}
+
+#endif /* __AVR__ */
