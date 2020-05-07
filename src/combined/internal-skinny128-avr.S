@@ -1552,6 +1552,7 @@ skinny_128_384_encrypt:
 	mov r27,r0
 #endif
 	eor r22,r27
+	inc r26
 	ldi r27,2
 	eor r4,r27
 	ld r0,Y
@@ -1626,25 +1627,10 @@ skinny_128_384_encrypt:
 	eor r5,r19
 	eor r6,r20
 	eor r7,r21
-	movw r12,r8
-	movw r14,r10
-	eor r12,r4
-	eor r13,r5
-	eor r14,r6
-	eor r15,r7
-	movw r8,r4
-	movw r10,r6
-	movw r4,r22
-	movw r6,r2
-	movw r22,r18
-	movw r2,r20
-	movw r18,r12
-	movw r20,r14
-	inc r26
-	cpi r26,112
-	brne 5227f
-	rjmp 344f
-5227:
+	eor r8,r4
+	eor r9,r5
+	eor r10,r6
+	eor r11,r7
 	ldd r12,Y+8
 	ldd r13,Y+9
 	ldd r14,Y+10
@@ -1653,30 +1639,14 @@ skinny_128_384_encrypt:
 	ldd r25,Y+13
 	ldd r16,Y+14
 	ldd r17,Y+15
-	ld r0,Y
-	std Y+8,r0
-	ldd r0,Y+1
-	std Y+9,r0
-	ldd r0,Y+2
-	std Y+10,r0
-	ldd r0,Y+3
-	std Y+11,r0
-	ldd r0,Y+4
-	std Y+12,r0
-	ldd r0,Y+5
-	std Y+13,r0
-	ldd r0,Y+6
-	std Y+14,r0
-	ldd r0,Y+7
-	std Y+15,r0
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	std Y+8,r13
+	std Y+9,r17
+	std Y+10,r12
+	std Y+11,r25
+	std Y+12,r14
+	std Y+13,r16
+	std Y+14,r24
+	std Y+15,r15
 	ldi r31,hi8(sbox_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(sbox_2)
@@ -1690,22 +1660,530 @@ skinny_128_384_encrypt:
 	ldd r25,Y+29
 	ldd r16,Y+30
 	ldd r17,Y+31
-	ldd r0,Y+16
-	std Y+24,r0
-	ldd r0,Y+17
-	std Y+25,r0
-	ldd r0,Y+18
-	std Y+26,r0
-	ldd r0,Y+19
-	std Y+27,r0
-	ldd r0,Y+20
-	std Y+28,r0
-	ldd r0,Y+21
-	std Y+29,r0
-	ldd r0,Y+22
-	std Y+30,r0
-	ldd r0,Y+23
-	std Y+31,r0
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r13
+	std Y+25,r17
+	std Y+26,r12
+	std Y+27,r25
+	std Y+28,r14
+	std Y+29,r16
+	std Y+30,r24
+	std Y+31,r15
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+40
+	ldd r13,Y+41
+	ldd r14,Y+42
+	ldd r15,Y+43
+	ldd r24,Y+44
+	ldd r25,Y+45
+	ldd r16,Y+46
+	ldd r17,Y+47
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+40,r13
+	std Y+41,r17
+	std Y+42,r12
+	std Y+43,r25
+	std Y+44,r14
+	std Y+45,r16
+	std Y+46,r24
+	std Y+47,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r18,r27
+	inc r26
+	ldi r27,2
+	eor r22,r27
+	ldd r0,Y+8
+	eor r8,r0
+	ldd r0,Y+9
+	eor r9,r0
+	ldd r0,Y+10
+	eor r10,r0
+	ldd r0,Y+11
+	eor r11,r0
+	ldd r0,Y+24
+	eor r8,r0
+	ldd r0,Y+25
+	eor r9,r0
+	ldd r0,Y+26
+	eor r10,r0
+	ldd r0,Y+27
+	eor r11,r0
+	ldd r0,Y+40
+	eor r8,r0
+	ldd r0,Y+41
+	eor r9,r0
+	ldd r0,Y+42
+	eor r10,r0
+	ldd r0,Y+43
+	eor r11,r0
+	ldd r0,Y+12
+	eor r18,r0
+	ldd r0,Y+13
+	eor r19,r0
+	ldd r0,Y+14
+	eor r20,r0
+	ldd r0,Y+15
+	eor r21,r0
+	ldd r0,Y+28
+	eor r18,r0
+	ldd r0,Y+29
+	eor r19,r0
+	ldd r0,Y+30
+	eor r20,r0
+	ldd r0,Y+31
+	eor r21,r0
+	ldd r0,Y+44
+	eor r18,r0
+	ldd r0,Y+45
+	eor r19,r0
+	ldd r0,Y+46
+	eor r20,r0
+	ldd r0,Y+47
+	eor r21,r0
+	mov r0,r21
+	mov r21,r20
+	mov r20,r19
+	mov r19,r18
+	mov r18,r0
+	mov r0,r2
+	mov r2,r22
+	mov r22,r0
+	mov r0,r3
+	mov r3,r23
+	mov r23,r0
+	mov r0,r4
+	mov r4,r5
+	mov r5,r6
+	mov r6,r7
+	mov r7,r0
+	eor r18,r22
+	eor r19,r23
+	eor r20,r2
+	eor r21,r3
+	eor r22,r8
+	eor r23,r9
+	eor r2,r10
+	eor r3,r11
+	eor r4,r22
+	eor r5,r23
+	eor r6,r2
+	eor r7,r3
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r13
+	std Y+1,r17
+	std Y+2,r12
+	std Y+3,r25
+	std Y+4,r14
+	std Y+5,r16
+	std Y+6,r24
+	std Y+7,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -1807,6 +2285,530 @@ skinny_128_384_encrypt:
 	ldi r27,hh8(sbox_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
+	ldd r12,Y+32
+	ldd r13,Y+33
+	ldd r14,Y+34
+	ldd r15,Y+35
+	ldd r24,Y+36
+	ldd r25,Y+37
+	ldd r16,Y+38
+	ldd r17,Y+39
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+32,r13
+	std Y+33,r17
+	std Y+34,r12
+	std Y+35,r25
+	std Y+36,r14
+	std Y+37,r16
+	std Y+38,r24
+	std Y+39,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	inc r26
+	ldi r27,2
+	eor r18,r27
+	ld r0,Y
+	eor r4,r0
+	ldd r0,Y+1
+	eor r5,r0
+	ldd r0,Y+2
+	eor r6,r0
+	ldd r0,Y+3
+	eor r7,r0
+	ldd r0,Y+16
+	eor r4,r0
+	ldd r0,Y+17
+	eor r5,r0
+	ldd r0,Y+18
+	eor r6,r0
+	ldd r0,Y+19
+	eor r7,r0
+	ldd r0,Y+32
+	eor r4,r0
+	ldd r0,Y+33
+	eor r5,r0
+	ldd r0,Y+34
+	eor r6,r0
+	ldd r0,Y+35
+	eor r7,r0
+	ldd r0,Y+4
+	eor r8,r0
+	ldd r0,Y+5
+	eor r9,r0
+	ldd r0,Y+6
+	eor r10,r0
+	ldd r0,Y+7
+	eor r11,r0
+	ldd r0,Y+20
+	eor r8,r0
+	ldd r0,Y+21
+	eor r9,r0
+	ldd r0,Y+22
+	eor r10,r0
+	ldd r0,Y+23
+	eor r11,r0
+	ldd r0,Y+36
+	eor r8,r0
+	ldd r0,Y+37
+	eor r9,r0
+	ldd r0,Y+38
+	eor r10,r0
+	ldd r0,Y+39
+	eor r11,r0
+	mov r0,r11
+	mov r11,r10
+	mov r10,r9
+	mov r9,r8
+	mov r8,r0
+	mov r0,r20
+	mov r20,r18
+	mov r18,r0
+	mov r0,r21
+	mov r21,r19
+	mov r19,r0
+	mov r0,r22
+	mov r22,r23
+	mov r23,r2
+	mov r2,r3
+	mov r3,r0
+	eor r8,r18
+	eor r9,r19
+	eor r10,r20
+	eor r11,r21
+	eor r18,r4
+	eor r19,r5
+	eor r20,r6
+	eor r21,r7
+	eor r22,r18
+	eor r23,r19
+	eor r2,r20
+	eor r3,r21
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r13
+	std Y+9,r17
+	std Y+10,r12
+	std Y+11,r25
+	std Y+12,r14
+	std Y+13,r16
+	std Y+14,r24
+	std Y+15,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r13
+	std Y+25,r17
+	std Y+26,r12
+	std Y+27,r25
+	std Y+28,r14
+	std Y+29,r16
+	std Y+30,r24
+	std Y+31,r15
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
 	ldd r12,Y+40
 	ldd r13,Y+41
 	ldd r14,Y+42
@@ -1815,22 +2817,534 @@ skinny_128_384_encrypt:
 	ldd r25,Y+45
 	ldd r16,Y+46
 	ldd r17,Y+47
-	ldd r0,Y+32
-	std Y+40,r0
-	ldd r0,Y+33
-	std Y+41,r0
-	ldd r0,Y+34
-	std Y+42,r0
-	ldd r0,Y+35
-	std Y+43,r0
-	ldd r0,Y+36
-	std Y+44,r0
-	ldd r0,Y+37
-	std Y+45,r0
-	ldd r0,Y+38
-	std Y+46,r0
-	ldd r0,Y+39
-	std Y+47,r0
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+40,r13
+	std Y+41,r17
+	std Y+42,r12
+	std Y+43,r25
+	std Y+44,r14
+	std Y+45,r16
+	std Y+46,r24
+	std Y+47,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r22,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	inc r26
+	ldi r27,2
+	eor r8,r27
+	ldd r0,Y+8
+	eor r22,r0
+	ldd r0,Y+9
+	eor r23,r0
+	ldd r0,Y+10
+	eor r2,r0
+	ldd r0,Y+11
+	eor r3,r0
+	ldd r0,Y+24
+	eor r22,r0
+	ldd r0,Y+25
+	eor r23,r0
+	ldd r0,Y+26
+	eor r2,r0
+	ldd r0,Y+27
+	eor r3,r0
+	ldd r0,Y+40
+	eor r22,r0
+	ldd r0,Y+41
+	eor r23,r0
+	ldd r0,Y+42
+	eor r2,r0
+	ldd r0,Y+43
+	eor r3,r0
+	ldd r0,Y+12
+	eor r4,r0
+	ldd r0,Y+13
+	eor r5,r0
+	ldd r0,Y+14
+	eor r6,r0
+	ldd r0,Y+15
+	eor r7,r0
+	ldd r0,Y+28
+	eor r4,r0
+	ldd r0,Y+29
+	eor r5,r0
+	ldd r0,Y+30
+	eor r6,r0
+	ldd r0,Y+31
+	eor r7,r0
+	ldd r0,Y+44
+	eor r4,r0
+	ldd r0,Y+45
+	eor r5,r0
+	ldd r0,Y+46
+	eor r6,r0
+	ldd r0,Y+47
+	eor r7,r0
+	mov r0,r7
+	mov r7,r6
+	mov r6,r5
+	mov r5,r4
+	mov r4,r0
+	mov r0,r10
+	mov r10,r8
+	mov r8,r0
+	mov r0,r11
+	mov r11,r9
+	mov r9,r0
+	mov r0,r18
+	mov r18,r19
+	mov r19,r20
+	mov r20,r21
+	mov r21,r0
+	eor r4,r8
+	eor r5,r9
+	eor r6,r10
+	eor r7,r11
+	eor r8,r22
+	eor r9,r23
+	eor r10,r2
+	eor r11,r3
+	eor r18,r8
+	eor r19,r9
+	eor r20,r10
+	eor r21,r11
+	cpi r26,112
+	brne 5721f
+	rjmp 790f
+5721:
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r13
+	std Y+1,r17
+	std Y+2,r12
+	std Y+3,r25
+	std Y+4,r14
+	std Y+5,r16
+	std Y+6,r24
+	std Y+7,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r13
+	std Y+17,r17
+	std Y+18,r12
+	std Y+19,r25
+	std Y+20,r14
+	std Y+21,r16
+	std Y+22,r24
+	std Y+23,r15
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+32
+	ldd r13,Y+33
+	ldd r14,Y+34
+	ldd r15,Y+35
+	ldd r24,Y+36
+	ldd r25,Y+37
+	ldd r16,Y+38
+	ldd r17,Y+39
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -1933,7 +3447,7 @@ skinny_128_384_encrypt:
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 114b
-344:
+790:
 #if defined(RAMPZ)
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
@@ -2587,30 +4101,14 @@ skinny_128_384_decrypt:
 	ldd r25,Y+5
 	ldd r16,Y+6
 	ldd r17,Y+7
-	ldd r0,Y+8
-	st Y,r0
-	ldd r0,Y+9
-	std Y+1,r0
-	ldd r0,Y+10
-	std Y+2,r0
-	ldd r0,Y+11
-	std Y+3,r0
-	ldd r0,Y+12
-	std Y+4,r0
-	ldd r0,Y+13
-	std Y+5,r0
-	ldd r0,Y+14
-	std Y+6,r0
-	ldd r0,Y+15
-	std Y+7,r0
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
+	st Y,r14
+	std Y+1,r12
+	std Y+2,r24
+	std Y+3,r17
+	std Y+4,r16
+	std Y+5,r15
+	std Y+6,r25
+	std Y+7,r13
 	ldd r12,Y+16
 	ldd r13,Y+17
 	ldd r14,Y+18
@@ -2619,22 +4117,530 @@ skinny_128_384_decrypt:
 	ldd r25,Y+21
 	ldd r16,Y+22
 	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r14
+	std Y+17,r12
+	std Y+18,r24
+	std Y+19,r17
+	std Y+20,r16
+	std Y+21,r15
+	std Y+22,r25
+	std Y+23,r13
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+32
+	ldd r13,Y+33
+	ldd r14,Y+34
+	ldd r15,Y+35
+	ldd r24,Y+36
+	ldd r25,Y+37
+	ldd r16,Y+38
+	ldd r17,Y+39
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+32,r14
+	std Y+33,r12
+	std Y+34,r24
+	std Y+35,r17
+	std Y+36,r16
+	std Y+37,r15
+	std Y+38,r25
+	std Y+39,r13
+	eor r18,r8
+	eor r19,r9
+	eor r20,r10
+	eor r21,r11
+	eor r8,r22
+	eor r9,r23
+	eor r10,r2
+	eor r11,r3
+	eor r4,r8
+	eor r5,r9
+	eor r6,r10
+	eor r7,r11
+	mov r0,r4
+	mov r4,r5
+	mov r5,r6
+	mov r6,r7
+	mov r7,r0
+	mov r0,r8
+	mov r8,r10
+	mov r10,r0
+	mov r0,r9
+	mov r9,r11
+	mov r11,r0
+	mov r0,r21
+	mov r21,r20
+	mov r20,r19
+	mov r19,r18
+	mov r18,r0
+	ldd r0,Y+8
+	eor r22,r0
+	ldd r0,Y+9
+	eor r23,r0
+	ldd r0,Y+10
+	eor r2,r0
+	ldd r0,Y+11
+	eor r3,r0
 	ldd r0,Y+24
-	std Y+16,r0
+	eor r22,r0
 	ldd r0,Y+25
-	std Y+17,r0
+	eor r23,r0
 	ldd r0,Y+26
-	std Y+18,r0
+	eor r2,r0
 	ldd r0,Y+27
-	std Y+19,r0
+	eor r3,r0
+	ldd r0,Y+40
+	eor r22,r0
+	ldd r0,Y+41
+	eor r23,r0
+	ldd r0,Y+42
+	eor r2,r0
+	ldd r0,Y+43
+	eor r3,r0
+	ldd r0,Y+12
+	eor r4,r0
+	ldd r0,Y+13
+	eor r5,r0
+	ldd r0,Y+14
+	eor r6,r0
+	ldd r0,Y+15
+	eor r7,r0
 	ldd r0,Y+28
-	std Y+20,r0
+	eor r4,r0
 	ldd r0,Y+29
-	std Y+21,r0
+	eor r5,r0
 	ldd r0,Y+30
-	std Y+22,r0
+	eor r6,r0
 	ldd r0,Y+31
-	std Y+23,r0
+	eor r7,r0
+	ldd r0,Y+44
+	eor r4,r0
+	ldd r0,Y+45
+	eor r5,r0
+	ldd r0,Y+46
+	eor r6,r0
+	ldd r0,Y+47
+	eor r7,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r22,r27
+	ldi r27,2
+	eor r8,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r14
+	std Y+9,r12
+	std Y+10,r24
+	std Y+11,r17
+	std Y+12,r16
+	std Y+13,r15
+	std Y+14,r25
+	std Y+15,r13
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2736,30 +4742,14 @@ skinny_128_384_decrypt:
 	ldi r27,hh8(sbox_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
-	ldd r0,Y+40
-	std Y+32,r0
-	ldd r0,Y+41
-	std Y+33,r0
-	ldd r0,Y+42
-	std Y+34,r0
-	ldd r0,Y+43
-	std Y+35,r0
-	ldd r0,Y+44
-	std Y+36,r0
-	ldd r0,Y+45
-	std Y+37,r0
-	ldd r0,Y+46
-	std Y+38,r0
-	ldd r0,Y+47
-	std Y+39,r0
+	ldd r12,Y+40
+	ldd r13,Y+41
+	ldd r14,Y+42
+	ldd r15,Y+43
+	ldd r24,Y+44
+	ldd r25,Y+45
+	ldd r16,Y+46
+	ldd r17,Y+47
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2856,20 +4846,1058 @@ skinny_128_384_decrypt:
 	std Y+45,r15
 	std Y+46,r25
 	std Y+47,r13
-	movw r12,r8
-	movw r14,r10
-	movw r8,r18
-	movw r10,r20
-	movw r18,r22
-	movw r20,r2
-	movw r22,r4
-	movw r2,r6
-	eor r8,r12
-	eor r9,r13
-	eor r10,r14
-	eor r11,r15
-	movw r4,r12
-	movw r6,r14
+	eor r22,r18
+	eor r23,r19
+	eor r2,r20
+	eor r3,r21
+	eor r18,r4
+	eor r19,r5
+	eor r20,r6
+	eor r21,r7
+	eor r8,r18
+	eor r9,r19
+	eor r10,r20
+	eor r11,r21
+	mov r0,r8
+	mov r8,r9
+	mov r9,r10
+	mov r10,r11
+	mov r11,r0
+	mov r0,r18
+	mov r18,r20
+	mov r20,r0
+	mov r0,r19
+	mov r19,r21
+	mov r21,r0
+	mov r0,r3
+	mov r3,r2
+	mov r2,r23
+	mov r23,r22
+	mov r22,r0
+	ld r0,Y
+	eor r4,r0
+	ldd r0,Y+1
+	eor r5,r0
+	ldd r0,Y+2
+	eor r6,r0
+	ldd r0,Y+3
+	eor r7,r0
+	ldd r0,Y+16
+	eor r4,r0
+	ldd r0,Y+17
+	eor r5,r0
+	ldd r0,Y+18
+	eor r6,r0
+	ldd r0,Y+19
+	eor r7,r0
+	ldd r0,Y+32
+	eor r4,r0
+	ldd r0,Y+33
+	eor r5,r0
+	ldd r0,Y+34
+	eor r6,r0
+	ldd r0,Y+35
+	eor r7,r0
+	ldd r0,Y+4
+	eor r8,r0
+	ldd r0,Y+5
+	eor r9,r0
+	ldd r0,Y+6
+	eor r10,r0
+	ldd r0,Y+7
+	eor r11,r0
+	ldd r0,Y+20
+	eor r8,r0
+	ldd r0,Y+21
+	eor r9,r0
+	ldd r0,Y+22
+	eor r10,r0
+	ldd r0,Y+23
+	eor r11,r0
+	ldd r0,Y+36
+	eor r8,r0
+	ldd r0,Y+37
+	eor r9,r0
+	ldd r0,Y+38
+	eor r10,r0
+	ldd r0,Y+39
+	eor r11,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	ldi r27,2
+	eor r18,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r14
+	std Y+1,r12
+	std Y+2,r24
+	std Y+3,r17
+	std Y+4,r16
+	std Y+5,r15
+	std Y+6,r25
+	std Y+7,r13
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r14
+	std Y+17,r12
+	std Y+18,r24
+	std Y+19,r17
+	std Y+20,r16
+	std Y+21,r15
+	std Y+22,r25
+	std Y+23,r13
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+32
+	ldd r13,Y+33
+	ldd r14,Y+34
+	ldd r15,Y+35
+	ldd r24,Y+36
+	ldd r25,Y+37
+	ldd r16,Y+38
+	ldd r17,Y+39
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+32,r14
+	std Y+33,r12
+	std Y+34,r24
+	std Y+35,r17
+	std Y+36,r16
+	std Y+37,r15
+	std Y+38,r25
+	std Y+39,r13
+	eor r4,r22
+	eor r5,r23
+	eor r6,r2
+	eor r7,r3
+	eor r22,r8
+	eor r23,r9
+	eor r2,r10
+	eor r3,r11
+	eor r18,r22
+	eor r19,r23
+	eor r20,r2
+	eor r21,r3
+	mov r0,r18
+	mov r18,r19
+	mov r19,r20
+	mov r20,r21
+	mov r21,r0
+	mov r0,r22
+	mov r22,r2
+	mov r2,r0
+	mov r0,r23
+	mov r23,r3
+	mov r3,r0
+	mov r0,r7
+	mov r7,r6
+	mov r6,r5
+	mov r5,r4
+	mov r4,r0
+	ldd r0,Y+8
+	eor r8,r0
+	ldd r0,Y+9
+	eor r9,r0
+	ldd r0,Y+10
+	eor r10,r0
+	ldd r0,Y+11
+	eor r11,r0
+	ldd r0,Y+24
+	eor r8,r0
+	ldd r0,Y+25
+	eor r9,r0
+	ldd r0,Y+26
+	eor r10,r0
+	ldd r0,Y+27
+	eor r11,r0
+	ldd r0,Y+40
+	eor r8,r0
+	ldd r0,Y+41
+	eor r9,r0
+	ldd r0,Y+42
+	eor r10,r0
+	ldd r0,Y+43
+	eor r11,r0
+	ldd r0,Y+12
+	eor r18,r0
+	ldd r0,Y+13
+	eor r19,r0
+	ldd r0,Y+14
+	eor r20,r0
+	ldd r0,Y+15
+	eor r21,r0
+	ldd r0,Y+28
+	eor r18,r0
+	ldd r0,Y+29
+	eor r19,r0
+	ldd r0,Y+30
+	eor r20,r0
+	ldd r0,Y+31
+	eor r21,r0
+	ldd r0,Y+44
+	eor r18,r0
+	ldd r0,Y+45
+	eor r19,r0
+	ldd r0,Y+46
+	eor r20,r0
+	ldd r0,Y+47
+	eor r21,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r18,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	ldi r27,2
+	eor r22,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r14
+	std Y+9,r12
+	std Y+10,r24
+	std Y+11,r17
+	std Y+12,r16
+	std Y+13,r15
+	std Y+14,r25
+	std Y+15,r13
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r14
+	std Y+25,r12
+	std Y+26,r24
+	std Y+27,r17
+	std Y+28,r16
+	std Y+29,r15
+	std Y+30,r25
+	std Y+31,r13
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+40
+	ldd r13,Y+41
+	ldd r14,Y+42
+	ldd r15,Y+43
+	ldd r24,Y+44
+	ldd r25,Y+45
+	ldd r16,Y+46
+	ldd r17,Y+47
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+40,r14
+	std Y+41,r12
+	std Y+42,r24
+	std Y+43,r17
+	std Y+44,r16
+	std Y+45,r15
+	std Y+46,r25
+	std Y+47,r13
+	eor r8,r4
+	eor r9,r5
+	eor r10,r6
+	eor r11,r7
 	eor r4,r18
 	eor r5,r19
 	eor r6,r20
@@ -3157,14 +6185,14 @@ skinny_128_384_decrypt:
 	mov r11,r0
 #endif
 	cp r26,r1
-	breq 457f
+	breq 903f
 	ldi r31,hi8(sbox_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(sbox_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 227b
-457:
+903:
 #if defined(RAMPZ)
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
@@ -3566,6 +6594,7 @@ skinny_128_256_encrypt:
 	mov r27,r0
 #endif
 	eor r22,r27
+	inc r26
 	ldi r27,2
 	eor r4,r27
 	ld r0,Y
@@ -3624,25 +6653,10 @@ skinny_128_256_encrypt:
 	eor r5,r19
 	eor r6,r20
 	eor r7,r21
-	movw r12,r8
-	movw r14,r10
-	eor r12,r4
-	eor r13,r5
-	eor r14,r6
-	eor r15,r7
-	movw r8,r4
-	movw r10,r6
-	movw r4,r22
-	movw r6,r2
-	movw r22,r18
-	movw r2,r20
-	movw r18,r12
-	movw r20,r14
-	inc r26
-	cpi r26,96
-	brne 5179f
-	rjmp 255f
-5179:
+	eor r8,r4
+	eor r9,r5
+	eor r10,r6
+	eor r11,r7
 	ldd r12,Y+8
 	ldd r13,Y+9
 	ldd r14,Y+10
@@ -3651,30 +6665,14 @@ skinny_128_256_encrypt:
 	ldd r25,Y+13
 	ldd r16,Y+14
 	ldd r17,Y+15
-	ld r0,Y
-	std Y+8,r0
-	ldd r0,Y+1
-	std Y+9,r0
-	ldd r0,Y+2
-	std Y+10,r0
-	ldd r0,Y+3
-	std Y+11,r0
-	ldd r0,Y+4
-	std Y+12,r0
-	ldd r0,Y+5
-	std Y+13,r0
-	ldd r0,Y+6
-	std Y+14,r0
-	ldd r0,Y+7
-	std Y+15,r0
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	std Y+8,r13
+	std Y+9,r17
+	std Y+10,r12
+	std Y+11,r25
+	std Y+12,r14
+	std Y+13,r16
+	std Y+14,r24
+	std Y+15,r15
 	ldi r31,hi8(sbox_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(sbox_2)
@@ -3688,22 +6686,1205 @@ skinny_128_256_encrypt:
 	ldd r25,Y+29
 	ldd r16,Y+30
 	ldd r17,Y+31
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r13
+	std Y+25,r17
+	std Y+26,r12
+	std Y+27,r25
+	std Y+28,r14
+	std Y+29,r16
+	std Y+30,r24
+	std Y+31,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r18,r27
+	inc r26
+	ldi r27,2
+	eor r22,r27
+	ldd r0,Y+8
+	eor r8,r0
+	ldd r0,Y+9
+	eor r9,r0
+	ldd r0,Y+10
+	eor r10,r0
+	ldd r0,Y+11
+	eor r11,r0
+	ldd r0,Y+24
+	eor r8,r0
+	ldd r0,Y+25
+	eor r9,r0
+	ldd r0,Y+26
+	eor r10,r0
+	ldd r0,Y+27
+	eor r11,r0
+	ldd r0,Y+12
+	eor r18,r0
+	ldd r0,Y+13
+	eor r19,r0
+	ldd r0,Y+14
+	eor r20,r0
+	ldd r0,Y+15
+	eor r21,r0
+	ldd r0,Y+28
+	eor r18,r0
+	ldd r0,Y+29
+	eor r19,r0
+	ldd r0,Y+30
+	eor r20,r0
+	ldd r0,Y+31
+	eor r21,r0
+	mov r0,r21
+	mov r21,r20
+	mov r20,r19
+	mov r19,r18
+	mov r18,r0
+	mov r0,r2
+	mov r2,r22
+	mov r22,r0
+	mov r0,r3
+	mov r3,r23
+	mov r23,r0
+	mov r0,r4
+	mov r4,r5
+	mov r5,r6
+	mov r6,r7
+	mov r7,r0
+	eor r18,r22
+	eor r19,r23
+	eor r20,r2
+	eor r21,r3
+	eor r22,r8
+	eor r23,r9
+	eor r2,r10
+	eor r3,r11
+	eor r4,r22
+	eor r5,r23
+	eor r6,r2
+	eor r7,r3
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r13
+	std Y+1,r17
+	std Y+2,r12
+	std Y+3,r25
+	std Y+4,r14
+	std Y+5,r16
+	std Y+6,r24
+	std Y+7,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r13
+	std Y+17,r17
+	std Y+18,r12
+	std Y+19,r25
+	std Y+20,r14
+	std Y+21,r16
+	std Y+22,r24
+	std Y+23,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	inc r26
+	ldi r27,2
+	eor r18,r27
+	ld r0,Y
+	eor r4,r0
+	ldd r0,Y+1
+	eor r5,r0
+	ldd r0,Y+2
+	eor r6,r0
+	ldd r0,Y+3
+	eor r7,r0
 	ldd r0,Y+16
-	std Y+24,r0
+	eor r4,r0
 	ldd r0,Y+17
-	std Y+25,r0
+	eor r5,r0
 	ldd r0,Y+18
-	std Y+26,r0
+	eor r6,r0
 	ldd r0,Y+19
-	std Y+27,r0
+	eor r7,r0
+	ldd r0,Y+4
+	eor r8,r0
+	ldd r0,Y+5
+	eor r9,r0
+	ldd r0,Y+6
+	eor r10,r0
+	ldd r0,Y+7
+	eor r11,r0
 	ldd r0,Y+20
-	std Y+28,r0
+	eor r8,r0
 	ldd r0,Y+21
-	std Y+29,r0
+	eor r9,r0
 	ldd r0,Y+22
-	std Y+30,r0
+	eor r10,r0
 	ldd r0,Y+23
-	std Y+31,r0
+	eor r11,r0
+	mov r0,r11
+	mov r11,r10
+	mov r10,r9
+	mov r9,r8
+	mov r8,r0
+	mov r0,r20
+	mov r20,r18
+	mov r18,r0
+	mov r0,r21
+	mov r21,r19
+	mov r19,r0
+	mov r0,r22
+	mov r22,r23
+	mov r23,r2
+	mov r2,r3
+	mov r3,r0
+	eor r8,r18
+	eor r9,r19
+	eor r10,r20
+	eor r11,r21
+	eor r18,r4
+	eor r19,r5
+	eor r20,r6
+	eor r21,r7
+	eor r22,r18
+	eor r23,r19
+	eor r2,r20
+	eor r3,r21
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r13
+	std Y+9,r17
+	std Y+10,r12
+	std Y+11,r25
+	std Y+12,r14
+	std Y+13,r16
+	std Y+14,r24
+	std Y+15,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r13
+	std Y+25,r17
+	std Y+26,r12
+	std Y+27,r25
+	std Y+28,r14
+	std Y+29,r16
+	std Y+30,r24
+	std Y+31,r15
+	ldi r31,hi8(sbox_0)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_0)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r22,r27
+	inc r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	inc r26
+	ldi r27,2
+	eor r8,r27
+	ldd r0,Y+8
+	eor r22,r0
+	ldd r0,Y+9
+	eor r23,r0
+	ldd r0,Y+10
+	eor r2,r0
+	ldd r0,Y+11
+	eor r3,r0
+	ldd r0,Y+24
+	eor r22,r0
+	ldd r0,Y+25
+	eor r23,r0
+	ldd r0,Y+26
+	eor r2,r0
+	ldd r0,Y+27
+	eor r3,r0
+	ldd r0,Y+12
+	eor r4,r0
+	ldd r0,Y+13
+	eor r5,r0
+	ldd r0,Y+14
+	eor r6,r0
+	ldd r0,Y+15
+	eor r7,r0
+	ldd r0,Y+28
+	eor r4,r0
+	ldd r0,Y+29
+	eor r5,r0
+	ldd r0,Y+30
+	eor r6,r0
+	ldd r0,Y+31
+	eor r7,r0
+	mov r0,r7
+	mov r7,r6
+	mov r6,r5
+	mov r5,r4
+	mov r4,r0
+	mov r0,r10
+	mov r10,r8
+	mov r8,r0
+	mov r0,r11
+	mov r11,r9
+	mov r9,r0
+	mov r0,r18
+	mov r18,r19
+	mov r19,r20
+	mov r20,r21
+	mov r21,r0
+	eor r4,r8
+	eor r5,r9
+	eor r6,r10
+	eor r7,r11
+	eor r8,r22
+	eor r9,r23
+	eor r10,r2
+	eor r11,r3
+	eor r18,r8
+	eor r19,r9
+	eor r20,r10
+	eor r21,r11
+	cpi r26,96
+	breq 594f
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r13
+	std Y+1,r17
+	std Y+2,r12
+	std Y+3,r25
+	std Y+4,r14
+	std Y+5,r16
+	std Y+6,r24
+	std Y+7,r15
+	ldi r31,hi8(sbox_2)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_2)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -3806,7 +7987,7 @@ skinny_128_256_encrypt:
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 82b
-255:
+594:
 #if defined(RAMPZ)
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
@@ -4212,30 +8393,14 @@ skinny_128_256_decrypt:
 	ldd r25,Y+5
 	ldd r16,Y+6
 	ldd r17,Y+7
-	ldd r0,Y+8
-	st Y,r0
-	ldd r0,Y+9
-	std Y+1,r0
-	ldd r0,Y+10
-	std Y+2,r0
-	ldd r0,Y+11
-	std Y+3,r0
-	ldd r0,Y+12
-	std Y+4,r0
-	ldd r0,Y+13
-	std Y+5,r0
-	ldd r0,Y+14
-	std Y+6,r0
-	ldd r0,Y+15
-	std Y+7,r0
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
+	st Y,r14
+	std Y+1,r12
+	std Y+2,r24
+	std Y+3,r17
+	std Y+4,r16
+	std Y+5,r15
+	std Y+6,r25
+	std Y+7,r13
 	ldd r12,Y+16
 	ldd r13,Y+17
 	ldd r14,Y+18
@@ -4244,22 +8409,405 @@ skinny_128_256_decrypt:
 	ldd r25,Y+21
 	ldd r16,Y+22
 	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r14
+	std Y+17,r12
+	std Y+18,r24
+	std Y+19,r17
+	std Y+20,r16
+	std Y+21,r15
+	std Y+22,r25
+	std Y+23,r13
+	eor r18,r8
+	eor r19,r9
+	eor r20,r10
+	eor r21,r11
+	eor r8,r22
+	eor r9,r23
+	eor r10,r2
+	eor r11,r3
+	eor r4,r8
+	eor r5,r9
+	eor r6,r10
+	eor r7,r11
+	mov r0,r4
+	mov r4,r5
+	mov r5,r6
+	mov r6,r7
+	mov r7,r0
+	mov r0,r8
+	mov r8,r10
+	mov r10,r0
+	mov r0,r9
+	mov r9,r11
+	mov r11,r0
+	mov r0,r21
+	mov r21,r20
+	mov r20,r19
+	mov r19,r18
+	mov r18,r0
+	ldd r0,Y+8
+	eor r22,r0
+	ldd r0,Y+9
+	eor r23,r0
+	ldd r0,Y+10
+	eor r2,r0
+	ldd r0,Y+11
+	eor r3,r0
 	ldd r0,Y+24
-	std Y+16,r0
+	eor r22,r0
 	ldd r0,Y+25
-	std Y+17,r0
+	eor r23,r0
 	ldd r0,Y+26
-	std Y+18,r0
+	eor r2,r0
 	ldd r0,Y+27
-	std Y+19,r0
+	eor r3,r0
+	ldd r0,Y+12
+	eor r4,r0
+	ldd r0,Y+13
+	eor r5,r0
+	ldd r0,Y+14
+	eor r6,r0
+	ldd r0,Y+15
+	eor r7,r0
 	ldd r0,Y+28
-	std Y+20,r0
+	eor r4,r0
 	ldd r0,Y+29
-	std Y+21,r0
+	eor r5,r0
 	ldd r0,Y+30
-	std Y+22,r0
+	eor r6,r0
 	ldd r0,Y+31
-	std Y+23,r0
+	eor r7,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r22,r27
+	ldi r27,2
+	eor r8,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r14
+	std Y+9,r12
+	std Y+10,r24
+	std Y+11,r17
+	std Y+12,r16
+	std Y+13,r15
+	std Y+14,r25
+	std Y+15,r13
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -4356,20 +8904,808 @@ skinny_128_256_decrypt:
 	std Y+29,r15
 	std Y+30,r25
 	std Y+31,r13
-	movw r12,r8
-	movw r14,r10
-	movw r8,r18
-	movw r10,r20
-	movw r18,r22
-	movw r20,r2
-	movw r22,r4
-	movw r2,r6
-	eor r8,r12
-	eor r9,r13
-	eor r10,r14
-	eor r11,r15
-	movw r4,r12
-	movw r6,r14
+	eor r22,r18
+	eor r23,r19
+	eor r2,r20
+	eor r3,r21
+	eor r18,r4
+	eor r19,r5
+	eor r20,r6
+	eor r21,r7
+	eor r8,r18
+	eor r9,r19
+	eor r10,r20
+	eor r11,r21
+	mov r0,r8
+	mov r8,r9
+	mov r9,r10
+	mov r10,r11
+	mov r11,r0
+	mov r0,r18
+	mov r18,r20
+	mov r20,r0
+	mov r0,r19
+	mov r19,r21
+	mov r21,r0
+	mov r0,r3
+	mov r3,r2
+	mov r2,r23
+	mov r23,r22
+	mov r22,r0
+	ld r0,Y
+	eor r4,r0
+	ldd r0,Y+1
+	eor r5,r0
+	ldd r0,Y+2
+	eor r6,r0
+	ldd r0,Y+3
+	eor r7,r0
+	ldd r0,Y+16
+	eor r4,r0
+	ldd r0,Y+17
+	eor r5,r0
+	ldd r0,Y+18
+	eor r6,r0
+	ldd r0,Y+19
+	eor r7,r0
+	ldd r0,Y+4
+	eor r8,r0
+	ldd r0,Y+5
+	eor r9,r0
+	ldd r0,Y+6
+	eor r10,r0
+	ldd r0,Y+7
+	eor r11,r0
+	ldd r0,Y+20
+	eor r8,r0
+	ldd r0,Y+21
+	eor r9,r0
+	ldd r0,Y+22
+	eor r10,r0
+	ldd r0,Y+23
+	eor r11,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r4,r27
+	ldi r27,2
+	eor r18,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ld r12,Y
+	ldd r13,Y+1
+	ldd r14,Y+2
+	ldd r15,Y+3
+	ldd r24,Y+4
+	ldd r25,Y+5
+	ldd r16,Y+6
+	ldd r17,Y+7
+	st Y,r14
+	std Y+1,r12
+	std Y+2,r24
+	std Y+3,r17
+	std Y+4,r16
+	std Y+5,r15
+	std Y+6,r25
+	std Y+7,r13
+	ldd r12,Y+16
+	ldd r13,Y+17
+	ldd r14,Y+18
+	ldd r15,Y+19
+	ldd r24,Y+20
+	ldd r25,Y+21
+	ldd r16,Y+22
+	ldd r17,Y+23
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+16,r14
+	std Y+17,r12
+	std Y+18,r24
+	std Y+19,r17
+	std Y+20,r16
+	std Y+21,r15
+	std Y+22,r25
+	std Y+23,r13
+	eor r4,r22
+	eor r5,r23
+	eor r6,r2
+	eor r7,r3
+	eor r22,r8
+	eor r23,r9
+	eor r2,r10
+	eor r3,r11
+	eor r18,r22
+	eor r19,r23
+	eor r20,r2
+	eor r21,r3
+	mov r0,r18
+	mov r18,r19
+	mov r19,r20
+	mov r20,r21
+	mov r21,r0
+	mov r0,r22
+	mov r22,r2
+	mov r2,r0
+	mov r0,r23
+	mov r23,r3
+	mov r3,r0
+	mov r0,r7
+	mov r7,r6
+	mov r6,r5
+	mov r5,r4
+	mov r4,r0
+	ldd r0,Y+8
+	eor r8,r0
+	ldd r0,Y+9
+	eor r9,r0
+	ldd r0,Y+10
+	eor r10,r0
+	ldd r0,Y+11
+	eor r11,r0
+	ldd r0,Y+24
+	eor r8,r0
+	ldd r0,Y+25
+	eor r9,r0
+	ldd r0,Y+26
+	eor r10,r0
+	ldd r0,Y+27
+	eor r11,r0
+	ldd r0,Y+12
+	eor r18,r0
+	ldd r0,Y+13
+	eor r19,r0
+	ldd r0,Y+14
+	eor r20,r0
+	ldd r0,Y+15
+	eor r21,r0
+	ldd r0,Y+28
+	eor r18,r0
+	ldd r0,Y+29
+	eor r19,r0
+	ldd r0,Y+30
+	eor r20,r0
+	ldd r0,Y+31
+	eor r21,r0
+	ldi r31,hi8(sbox_4)
+#if defined(RAMPZ)
+	ldi r24,hh8(sbox_4)
+	out _SFR_IO_ADDR(RAMPZ),r24
+#endif
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r18,r27
+	dec r26
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	eor r8,r27
+	ldi r27,2
+	eor r22,r27
+	ldi r31,hi8(sbox_1)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_1)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r22,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r22,Z
+#elif defined(__AVR_TINY__)
+	ld r22,Z
+#else
+	lpm
+	mov r22,r0
+#endif
+	mov r30,r23
+#if defined(RAMPZ)
+	elpm r23,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r23,Z
+#elif defined(__AVR_TINY__)
+	ld r23,Z
+#else
+	lpm
+	mov r23,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldi r31,hi8(sbox_3)
+#if defined(RAMPZ)
+	ldi r27,hh8(sbox_3)
+	out _SFR_IO_ADDR(RAMPZ),r27
+#endif
+	ldd r12,Y+8
+	ldd r13,Y+9
+	ldd r14,Y+10
+	ldd r15,Y+11
+	ldd r24,Y+12
+	ldd r25,Y+13
+	ldd r16,Y+14
+	ldd r17,Y+15
+	std Y+8,r14
+	std Y+9,r12
+	std Y+10,r24
+	std Y+11,r17
+	std Y+12,r16
+	std Y+13,r15
+	std Y+14,r25
+	std Y+15,r13
+	ldd r12,Y+24
+	ldd r13,Y+25
+	ldd r14,Y+26
+	ldd r15,Y+27
+	ldd r24,Y+28
+	ldd r25,Y+29
+	ldd r16,Y+30
+	ldd r17,Y+31
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	std Y+24,r14
+	std Y+25,r12
+	std Y+26,r24
+	std Y+27,r17
+	std Y+28,r16
+	std Y+29,r15
+	std Y+30,r25
+	std Y+31,r13
+	eor r8,r4
+	eor r9,r5
+	eor r10,r6
+	eor r11,r7
 	eor r4,r18
 	eor r5,r19
 	eor r6,r20
@@ -4641,14 +9977,14 @@ skinny_128_256_decrypt:
 	mov r11,r0
 #endif
 	cp r26,r1
-	breq 312f
+	breq 651f
 	ldi r31,hi8(sbox_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(sbox_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 139b
-312:
+651:
 #if defined(RAMPZ)
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0

@@ -22,6 +22,7 @@
 
 #include "gen.h"
 #include <cstring>
+#include <iostream>
 
 // S-box tables that are used by SKINNY-128.
 #define SBOX_MAIN 0
@@ -120,14 +121,12 @@ Sbox get_skinny128_sbox(int num)
 static void skinny128_permute_tk(Code &code, unsigned offset, bool with_lfsr)
 {
     // PT = [9, 15, 8, 13, 10, 14, 12, 11, 0, 1, 2, 3, 4, 5, 6, 7]
+    // The caller implicitly swaps the two halves so we only need to
+    // care about what used to be the second half - now the first.
     Reg row2 = code.allocateReg(4);
     Reg row3 = code.allocateReg(4);
-    code.ldy(row2, offset + 8);
-    code.ldy(row3, offset + 12);
-    for (unsigned posn = 0; posn < 8; ++posn) {
-        code.memory(Insn::LD_Y, TEMP_REG, offset + posn);
-        code.memory(Insn::ST_Y, TEMP_REG, offset + 8 + posn);
-    }
+    code.ldy(row2, offset);
+    code.ldy(row3, offset + 4);
     if (with_lfsr) {
         code.sbox_lookup(row2, row2);
         code.sbox_lookup(row3, row3);
@@ -150,26 +149,24 @@ static void skinny128_inv_permute_tk
     (Code &code, unsigned offset, bool with_lfsr)
 {
     // PT' = [8, 9, 10, 11, 12, 13, 14, 15, 2, 0, 4, 7, 6, 3, 5, 1]
+    // The caller implicitly swaps the two halves so we only need to
+    // care about what used to be the first half - now the second.
     Reg row0 = code.allocateReg(4);
     Reg row1 = code.allocateReg(4);
     code.ldy(row0, offset);
     code.ldy(row1, offset + 4);
-    for (unsigned posn = 0; posn < 8; ++posn) {
-        code.memory(Insn::LD_Y, TEMP_REG, offset + 8 + posn);
-        code.memory(Insn::ST_Y, TEMP_REG, offset + posn);
-    }
     if (with_lfsr) {
         code.sbox_lookup(row0, row0);
         code.sbox_lookup(row1, row1);
     }
-    code.memory(Insn::ST_Y, row0.reg(2), offset + 8);   // 2
-    code.memory(Insn::ST_Y, row0.reg(0), offset + 9);   // 0
-    code.memory(Insn::ST_Y, row1.reg(0), offset + 10);  // 4
-    code.memory(Insn::ST_Y, row1.reg(3), offset + 11);  // 7
-    code.memory(Insn::ST_Y, row1.reg(2), offset + 12);  // 6
-    code.memory(Insn::ST_Y, row0.reg(3), offset + 13);  // 3
-    code.memory(Insn::ST_Y, row1.reg(1), offset + 14);  // 5
-    code.memory(Insn::ST_Y, row0.reg(1), offset + 15);  // 1
+    code.memory(Insn::ST_Y, row0.reg(2), offset);       // 2
+    code.memory(Insn::ST_Y, row0.reg(0), offset + 1);   // 0
+    code.memory(Insn::ST_Y, row1.reg(0), offset + 2);   // 4
+    code.memory(Insn::ST_Y, row1.reg(3), offset + 3);   // 7
+    code.memory(Insn::ST_Y, row1.reg(2), offset + 4);   // 6
+    code.memory(Insn::ST_Y, row0.reg(3), offset + 5);   // 3
+    code.memory(Insn::ST_Y, row1.reg(1), offset + 6);   // 5
+    code.memory(Insn::ST_Y, row0.reg(1), offset + 7);   // 1
     code.releaseReg(row0);
     code.releaseReg(row1);
 }
@@ -259,81 +256,90 @@ static void gen_skinny128_encrypt(Code &code, const char *name, int ks_size)
     // Set up Z to point at the main S-box table.
     code.sbox_setup(SBOX_MAIN, get_skinny128_sbox(SBOX_MAIN));
 
-    // Top of the round loop.
+    // Top of the round loop.  We unroll four rounds at a time to
+    // reduce the permutation overhead from round to round.
     unsigned char top_label = 0;
     unsigned char end_label = 0;
+    int rounds = (ks_size == 48) ? 56 : 48;
     Reg round = code.allocateHighReg(1);
     code.move(round, 0);
     code.label(top_label);
 
-    // Apply the S-box to all bytes in the state.
-    code.sbox_lookup(s0, s0);
-    code.sbox_lookup(s1, s1);
-    code.sbox_lookup(s2, s2);
-    code.sbox_lookup(s3, s3);
+    // Execute the 4 unrolled inner rounds.
+    int shift = 0;
+    for (int inner = 0; inner < 4; ++inner) {
+        // Apply the S-box to all bytes in the state.
+        code.sbox_lookup(s0, s0);
+        code.sbox_lookup(s1, s1);
+        code.sbox_lookup(s2, s2);
+        code.sbox_lookup(s3, s3);
 
-    // XOR the round constant for this round.
-    Reg rc = code.allocateReg(1);
-    code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
-    code.sbox_lookup(rc, round);
-    code.logxor(s0, rc);
-    code.inc(round);
-    code.sbox_lookup(rc, round);
-    code.logxor(s1, rc);
-    code.releaseReg(rc);
-    code.logxor(s2, 2);
+        // XOR the round constant for this round.
+        Reg rc = code.allocateReg(1);
+        code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
+        code.sbox_lookup(rc, round);
+        code.logxor(s0, rc);
+        code.inc(round);
+        code.sbox_lookup(rc, round);
+        code.logxor(s1, rc);
+        code.inc(round);
+        code.releaseReg(rc);
+        code.logxor(s2, 2);
 
-    // XOR the subkeys for this round.
-    int rounds;
-    if (ks_size == 48) {
-        code.ldy_xor(s0, 0);        // TK1[0]
-        code.ldy_xor(s0, 16);       // TK2[0]
-        code.ldy_xor(s0, 32);       // TK3[0]
-        code.ldy_xor(s1, 4);        // TK1[1]
-        code.ldy_xor(s1, 20);       // TK2[1]
-        code.ldy_xor(s1, 36);       // TK3[1]
-        rounds = 56;
-    } else {
-        code.ldy_xor(s0, 0);        // TK1[0]
-        code.ldy_xor(s0, 16);       // TK2[0]
-        code.ldy_xor(s1, 4);        // TK1[1]
-        code.ldy_xor(s1, 20);       // TK2[1]
-        rounds = 48;
+        // XOR the subkeys for this round.
+        if (ks_size == 48) {
+            code.ldy_xor(s0, shift + 0);    // TK1[0]
+            code.ldy_xor(s0, shift + 16);   // TK2[0]
+            code.ldy_xor(s0, shift + 32);   // TK3[0]
+            code.ldy_xor(s1, shift + 4);    // TK1[1]
+            code.ldy_xor(s1, shift + 20);   // TK2[1]
+            code.ldy_xor(s1, shift + 36);   // TK3[1]
+        } else {
+            code.ldy_xor(s0, shift + 0);    // TK1[0]
+            code.ldy_xor(s0, shift + 16);   // TK2[0]
+            code.ldy_xor(s1, shift + 4);    // TK1[1]
+            code.ldy_xor(s1, shift + 20);   // TK2[1]
+        }
+
+        // Shift the cells in the rows.
+        code.rol(s1, 8);
+        code.rol(s2, 16);
+        code.rol(s3, 24);
+
+        // Mix the columns.  This involves rotating the four words
+        // of the state.  We do the rotation virtually.  After four
+        // rounds the order will return to the original position.
+        code.logxor(s1, s2);
+        code.logxor(s2, s0);
+        code.logxor(s3, s2);
+        Reg t0 = s3;
+        s3 = s2;
+        s2 = s1;
+        s1 = s0;
+        s0 = t0;
+
+        // Bail out if this is the last round.  We only need to do this
+        // on the last inner round out of the set of 4.
+        if (inner == 3) {
+            code.compare(round, rounds * 2);
+            code.breq(end_label);
+        }
+
+        // Permute TK1, TK2, and TK3 for the next round.  Normally we would
+        // need to swap the two halves, but we do that virtually and only
+        // rearrange one of the halves.
+        shift ^= 8;
+        skinny128_permute_tk(code, shift, false);           // TK1
+        code.sbox_switch(SBOX_LFSR2, get_skinny128_sbox(SBOX_LFSR2));
+        skinny128_permute_tk(code, 16 + shift, true);       // TK2
+        if (ks_size == 48) {
+            code.sbox_switch(SBOX_LFSR3, get_skinny128_sbox(SBOX_LFSR3));
+            skinny128_permute_tk(code, 32 + shift, true);   // TK3
+        }
+
+        // Reset the S-box pointer for the next round.
+        code.sbox_switch(SBOX_MAIN, get_skinny128_sbox(SBOX_MAIN));
     }
-
-    // Shift the cells in the rows.
-    code.rol(s1, 8);
-    code.rol(s2, 16);
-    code.rol(s3, 24);
-
-    // Mix the columns.
-    Reg t0 = code.allocateReg(4);
-    code.logxor(s1, s2);
-    code.logxor(s2, s0);
-    code.move(t0, s3);
-    code.logxor(t0, s2);
-    code.move(s3, s2);
-    code.move(s2, s1);
-    code.move(s1, s0);
-    code.move(s0, t0);
-    code.releaseReg(t0);
-
-    // Increment the round counter and bail out if this is the last round.
-    code.inc(round);
-    code.compare(round, rounds * 2); // Counter increments by 2 each round.
-    code.breq(end_label);
-
-    // Permute TK1, TK2, and TK3 for the next round.
-    skinny128_permute_tk(code, 0, false);       // TK1
-    code.sbox_switch(SBOX_LFSR2, get_skinny128_sbox(SBOX_LFSR2));
-    skinny128_permute_tk(code, 16, true);       // TK2
-    if (ks_size == 48) {
-        code.sbox_switch(SBOX_LFSR3, get_skinny128_sbox(SBOX_LFSR3));
-        skinny128_permute_tk(code, 32, true);   // TK3
-    }
-
-    // Reset the S-box pointer and loop.
-    code.sbox_switch(SBOX_MAIN, get_skinny128_sbox(SBOX_MAIN));
     code.jmp(top_label);
 
     // Clean up and save the state to the output buffer.
@@ -371,7 +377,7 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
         code.ldz(s2, offset + 8);
         code.ldz(s3, offset + 12);
         if (ks_size == 48) {
-            // Apply the permutation as we store the TK2 or TK3 value to locals.
+            // Apply the permutation as we store the TK value to locals.
             code.sty(Reg(s1, 1, 1), offset);        // 5
             code.sty(Reg(s1, 2, 1), offset + 1);    // 6
             code.sty(Reg(s0, 3, 1), offset + 2);    // 3
@@ -420,78 +426,86 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
         code.sbox_switch(SBOX_LFSR3, get_skinny128_sbox(SBOX_LFSR3));
     }
 
-    // Top of the round loop.
+    // Top of the round loop.  We unroll four rounds at a time to
+    // reduce the permutation overhead from round to round.
     unsigned char top_label = 0;
     unsigned char end_label = 0;
     Reg round = code.allocateHighReg(1);
     code.move(round, rounds * 2);
     code.label(top_label);
 
-    // Inverse permutation of TK1, TK2, and TK3 for the next round.
-    skinny128_inv_permute_tk(code, 0, false);       // TK1
-    skinny128_inv_permute_tk(code, 16, true);       // TK2
-    if (ks_size == 48) {
-        code.sbox_switch(SBOX_LFSR2, get_skinny128_sbox(SBOX_LFSR2));
-        skinny128_inv_permute_tk(code, 32, true);   // TK3
+    // Execute the 4 unrolled inner rounds.
+    int shift = 0;
+    for (int inner = 0; inner < 4; ++inner) {
+        // Inverse permutation of TK1, TK2, and TK3 for the next round.
+        skinny128_inv_permute_tk(code, shift + 0, false);       // TK1
+        skinny128_inv_permute_tk(code, shift + 16, true);       // TK2
+        if (ks_size == 48) {
+            code.sbox_switch(SBOX_LFSR2, get_skinny128_sbox(SBOX_LFSR2));
+            skinny128_inv_permute_tk(code, shift + 32, true);   // TK3
+        }
+        shift ^= 8;
+
+        // Inverse mix of the columns.  This involves rotating the four words
+        // of the state.  We do the rotation virtually.  After four rounds
+        // the order will return to the original position.
+        Reg t0 = s3;
+        s3 = s0;
+        s0 = s1;
+        s1 = s2;
+        s2 = t0;
+        code.logxor(s3, t0);
+        code.logxor(s2, s0);
+        code.logxor(s1, s2);
+
+        // Inverse shift of the cells in the rows.
+        code.ror(s1, 8);
+        code.ror(s2, 16);
+        code.ror(s3, 24);
+
+        // XOR the subkeys for this round.
+        if (ks_size == 48) {
+            code.ldy_xor(s0, shift + 0);        // TK1[0]
+            code.ldy_xor(s0, shift + 16);       // TK2[0]
+            code.ldy_xor(s0, shift + 32);       // TK3[0]
+            code.ldy_xor(s1, shift + 4);        // TK1[1]
+            code.ldy_xor(s1, shift + 20);       // TK2[1]
+            code.ldy_xor(s1, shift + 36);       // TK3[1]
+        } else {
+            code.ldy_xor(s0, shift + 0);        // TK1[0]
+            code.ldy_xor(s0, shift + 16);       // TK2[0]
+            code.ldy_xor(s1, shift + 4);        // TK1[1]
+            code.ldy_xor(s1, shift + 20);       // TK2[1]
+        }
+
+        // XOR the round constant for this round.
+        Reg rc = code.allocateReg(1);
+        code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
+        code.dec(round);
+        code.sbox_lookup(rc, round);
+        code.logxor(s1, rc);
+        code.dec(round);
+        code.sbox_lookup(rc, round);
+        code.logxor(s0, rc);
+        code.releaseReg(rc);
+        code.logxor(s2, 2);
+
+        // Apply the inverse of the S-box to all bytes in the state.
+        code.sbox_switch(SBOX_MAIN_INV, get_skinny128_sbox(SBOX_MAIN_INV));
+        code.sbox_lookup(s0, s0);
+        code.sbox_lookup(s1, s1);
+        code.sbox_lookup(s2, s2);
+        code.sbox_lookup(s3, s3);
+
+        // Test for the last round at the bottom of the inner loop.
+        if (inner == 3) {
+            code.compare(round, 0);
+            code.breq(end_label);
+        }
+
+        // Reset the LFSR3 pointer for the next iteration.
+        code.sbox_switch(SBOX_LFSR3, get_skinny128_sbox(SBOX_LFSR3));
     }
-
-    // Inverse mix of the columns.
-    Reg t0 = code.allocateReg(4);
-    code.move(t0, s3);
-    code.move(s3, s0);
-    code.move(s0, s1);
-    code.move(s1, s2);
-    code.logxor(s3, t0);
-    code.move(s2, t0);
-    code.logxor(s2, s0);
-    code.logxor(s1, s2);
-    code.releaseReg(t0);
-
-    // Inverse shift of the cells in the rows.
-    code.ror(s1, 8);
-    code.ror(s2, 16);
-    code.ror(s3, 24);
-
-    // XOR the subkeys for this round.
-    if (ks_size == 48) {
-        code.ldy_xor(s0, 0);        // TK1[0]
-        code.ldy_xor(s0, 16);       // TK2[0]
-        code.ldy_xor(s0, 32);       // TK3[0]
-        code.ldy_xor(s1, 4);        // TK1[1]
-        code.ldy_xor(s1, 20);       // TK2[1]
-        code.ldy_xor(s1, 36);       // TK3[1]
-    } else {
-        code.ldy_xor(s0, 0);        // TK1[0]
-        code.ldy_xor(s0, 16);       // TK2[0]
-        code.ldy_xor(s1, 4);        // TK1[1]
-        code.ldy_xor(s1, 20);       // TK2[1]
-    }
-
-    // XOR the round constant for this round.
-    Reg rc = code.allocateReg(1);
-    code.sbox_switch(SBOX_RC, get_skinny128_sbox(SBOX_RC));
-    code.dec(round);
-    code.sbox_lookup(rc, round);
-    code.logxor(s1, rc);
-    code.dec(round);
-    code.sbox_lookup(rc, round);
-    code.logxor(s0, rc);
-    code.releaseReg(rc);
-    code.logxor(s2, 2);
-
-    // Apply the inverse of the S-box to all bytes in the state.
-    code.sbox_switch(SBOX_MAIN_INV, get_skinny128_sbox(SBOX_MAIN_INV));
-    code.sbox_lookup(s0, s0);
-    code.sbox_lookup(s1, s1);
-    code.sbox_lookup(s2, s2);
-    code.sbox_lookup(s3, s3);
-
-    // Bottom of the loop.
-    code.compare(round, 0);
-    code.breq(end_label);
-
-    // Reset the LFSR3 pointer and loop.
-    code.sbox_switch(SBOX_LFSR3, get_skinny128_sbox(SBOX_LFSR3));
     code.jmp(top_label);
 
     // Clean up and save the state to the output buffer.

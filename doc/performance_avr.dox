@@ -54,30 +54,36 @@ designed for 32-bit.
 <tr><td><b><i>ASCON-128</i></b> *</td><td>128</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.50</td><td>2.36</td></tr>
 <tr><td>ASCON-80pq *</td><td>160</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.52</td><td>2.36</td></tr>
 <tr><td>Delirium (Elephant) *</td><td>128</td><td>96</td><td>128</td><td>1.89</td><td>1.77</td><td>3.60</td><td>3.52</td><td>2.20</td></tr>
+<tr><td>Romulus-N3 *</td><td>128</td><td>96</td><td>128</td><td>1.78</td><td>1.72</td><td>4.11</td><td>3.92</td><td>2.17</td></tr>
 <tr><td><b><i>TinyJAMBU-128</i></b> *</td><td>128</td><td>96</td><td>64</td><td>1.72</td><td>1.67</td><td>4.13</td><td>3.98</td><td>2.13</td></tr>
+<tr><td>SKINNY-AEAD-M6 *</td><td>128</td><td>96</td><td>64</td><td>1.81</td><td>1.58</td><td>4.14</td><td>3.76</td><td>2.10</td></tr>
+<tr><td>SKINNY-AEAD-M5 *</td><td>128</td><td>96</td><td>128</td><td>1.81</td><td>1.57</td><td>4.13</td><td>3.75</td><td>2.10</td></tr>
 <tr><td><b><i>GIMLI-24</i></b> *</td><td>256</td><td>128</td><td>128</td><td>1.89</td><td>1.82</td><td>2.75</td><td>2.69</td><td>2.08</td></tr>
 <tr><td>TinyJAMBU-192 *</td><td>192</td><td>96</td><td>64</td><td>1.56</td><td>1.53</td><td>3.81</td><td>3.68</td><td>1.94</td></tr>
 <tr><td>TinyJAMBU-256 *</td><td>256</td><td>96</td><td>64</td><td>1.42</td><td>1.40</td><td>3.54</td><td>3.43</td><td>1.78</td></tr>
-<tr><td>Romulus-N3 *</td><td>128</td><td>96</td><td>128</td><td>1.40</td><td>1.38</td><td>3.27</td><td>3.16</td><td>1.73</td></tr>
 <tr><td><b><i>Xoodyak</i></b> *</td><td>128</td><td>128</td><td>128</td><td>1.64</td><td>1.58</td><td>1.99</td><td>1.95</td><td>1.72</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b> *<td>128</td><td>128</td><td>128</td></td><td>1.24</td><td>1.23</td><td>2.20</td><td>2.15</td><td>1.45</td></tr>
+<tr><td>Romulus-N2 *</td><td>128</td><td>96</td><td>128</td><td>1.16</td><td>1.15</td><td>2.69</td><td>2.63</td><td>1.44</td></tr>
+<tr><td><b><i>Romulus-N1</i></b> *</td><td>128</td><td>128</td><td>128</td><td>1.16</td><td>1.15</td><td>2.69</td><td>2.62</td><td>1.43</td></tr>
+<tr><td>Romulus-M3 *</td><td>128</td><td>96</td><td>128</td><td>1.15</td><td>1.14</td><td>2.72</td><td>2.67</td><td>1.43</td></tr>
 <tr><td><b><i>HYENA</i></b> *<td>128</td><td>96</td><td>128</td></td><td>1.17</td><td>1.17</td><td>2.12</td><td>2.09</td><td>1.38</td></tr>
-<tr><td>Romulus-M3 *</td><td>128</td><td>96</td><td>128</td><td>0.90</td><td>0.91</td><td>2.17</td><td>2.14</td><td>1.13</td></tr>
-<tr><td>Romulus-N2 *</td><td>128</td><td>96</td><td>128</td><td>0.90</td><td>0.90</td><td>2.11</td><td>2.07</td><td>1.12</td></tr>
-<tr><td><b><i>Romulus-N1</i></b> *</td><td>128</td><td>128</td><td>128</td><td>0.90</td><td>0.90</td><td>2.10</td><td>2.07</td><td>1.12</td></tr>
+<tr><td>SKINNY-AEAD-M3 *</td><td>128</td><td>128</td><td>64</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31</td></tr>
+<tr><td>SKINNY-AEAD-M4 *</td><td>128</td><td>96</td><td>64</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31</td></tr>
+<tr><td>SKINNY-AEAD-M2 *</td><td>128</td><td>96</td><td>128</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31</td></tr>
+<tr><td><b><i>SKINNY-AEAD-M1</i></b> *</td><td>128</td><td>128</td><td>128</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31</td></tr>
 <tr><td><b><i>DryGASCON128</i></b> *</td><td>128</td><td>128</td><td>128</td><td>0.89</td><td>0.89</td><td>1.93</td><td>1.90</td><td>1.09</td></tr>
 <tr><td><b><i>LOTUS-AEAD</i></b> *</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.84</td><td>2.21</td><td>2.17</td><td>1.06</td></tr>
 <tr><td>LOCUS-AEAD *</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.83</td><td>2.20</td><td>2.16</td><td>1.06</td></tr>
+<tr><td>Romulus-M1 *</td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.81</td><td>1.81</td><td>1.78</td><td>1.00</td></tr>
 <tr><td>SUNDAE-GIFT-0 *</td><td>128</td><td>0</td><td>128</td><td>0.75</td><td>0.76</td><td>2.21</td><td>2.20</td><td>0.98</td></tr>
 <tr><td><b><i>KNOT-AEAD-128-256</i></b></td><td>128</td><td>128</td><td>128</td><td>0.79</td><td>0.80</td><td>1.62</td><td>1.61</td><td>0.96</td></tr>
+<tr><td>Romulus-M2 *</td><td>128</td><td>96</td><td>128</td><td>0.75</td><td>0.76</td><td>1.81</td><td>1.78</td><td>0.94</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b> *</td><td>128</td><td>128</td><td>128</td><td>0.72</td><td>0.73</td><td>2.04</td><td>2.01</td><td>0.93</td></tr>
 <tr><td>SUNDAE-GIFT-64 *</td><td>128</td><td>64</td><td>128</td><td>0.71</td><td>0.72</td><td>1.67</td><td>1.68</td><td>0.89</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b> *</td><td>128</td><td>96</td><td>128</td><td>0.71</td><td>0.72</td><td>1.67</td><td>1.68</td><td>0.89</td></tr>
 <tr><td>SUNDAE-GIFT-128 *</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.72</td><td>1.67</td><td>1.67</td><td>0.89</td></tr>
-<tr><td>Romulus-M1 *</td><td>128</td><td>128</td><td>128</td><td>0.62</td><td>0.63</td><td>1.41</td><td>1.40</td><td>0.78</td></tr>
 <tr><td>DryGASCON256 *</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75</td></tr>
 <tr><td>Pyjamask-96-AEAD *</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74</td></tr>
-<tr><td>Romulus-M2 *</td><td>128</td><td>96</td><td>128</td><td>0.58</td><td>0.59</td><td>1.41</td><td>1.40</td><td>0.73</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b> *</td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71</td></tr>
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.46</td><td>0.47</td><td>0.68</td><td>0.68</td><td>0.53</td></tr>
 <tr><td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.49</td><td>0.60</td><td>0.60</td><td>0.52</td></tr>
@@ -94,13 +100,7 @@ designed for 32-bit.
 <tr><td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.22</td><td>0.23</td><td>0.36</td><td>0.38</td><td>0.26</td></tr>
 <tr><td>Spook-128-384-mu</td><td>128</td><td>128</td><td>128</td><td>0.22</td><td>0.23</td><td>0.36</td><td>0.38</td><td>0.26</td></tr>
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.21</td><td>0.22</td><td>0.42</td><td>0.43</td><td>0.26</td></tr>
-<tr><td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.21</td><td>0.21</td><td>0.48</td><td>0.47</td><td>0.26</td></tr>
-<tr><td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.21</td><td>0.21</td><td>0.48</td><td>0.47</td><td>0.26</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.18</td><td>0.43</td><td>0.43</td><td>0.23</td></tr>
-<tr><td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
-<tr><td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
-<tr><td>SKINNY-AEAD-M2</td><td>128</td><td>96</td><td>128</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
-<tr><td><b><i>SKINNY-AEAD-M1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.17</td><td>0.38</td><td>0.37</td><td>0.21</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.19</td><td>0.12</td><td>0.83</td><td>0.51</td><td>0.20</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.19</td><td>0.21</td><td>0.21</td><td>0.20</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18</td></tr>
@@ -133,9 +133,9 @@ designed for 32-bit.
 <tr><td><b><i>ASCON-HASH</i></b> *</td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71</td></tr>
 <tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.38</td><td>0.31</td><td>0.77</td><td>0.49</td></tr>
 <tr><td>DryGASCON256-HASH *</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47</td></tr>
-<tr><td><b><i>SKINNY-tk3-HASH</i></b> *</td><td>256</td><td>0.17</td><td>0.14</td><td>0.23</td><td>0.18</td></tr>
+<tr><td><b><i>SKINNY-tk3-HASH</i></b> *</td><td>256</td><td>0.22</td><td>0.18</td><td>0.31</td><td>0.21</td></tr>
+<tr><td>SKINNY-tk2-HASH *</td><td>256</td><td>0.13</td><td>0.13</td><td>0.36</td><td>0.21</td></tr>
 <tr><td><b><i>KNOT-HASH-256-256</i></b></td><td>256</td><td>0.11</td><td>0.10</td><td>0.29</td><td>0.17</td></tr>
-<tr><td>SKINNY-tk2-HASH *</td><td>256</td><td>0.10</td><td>0.10</td><td>0.28</td><td>0.16</td></tr>
 <tr><td><b><i>ORANGISH</i></b></td><td>256</td><td>0.12</td><td>0.10</td><td>0.17</td><td>0.13</td></tr>
 <tr><td><b><i>PHOTON-Beetle-HASH</i></b></td><td>256</td><td>0.03</td><td>0.03</td><td>0.26</td><td>0.11</td></tr>
 <tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.08</td><td>0.13</td><td>0.10</td></tr>
@@ -157,9 +157,8 @@ AEAD algorithm rankings:
 <tr><td>21</td><td>TinyJAMBU</td></tr>
 <tr><td>20</td><td>Gimli</td></tr>
 <tr><td>17</td><td>Xoodyak</td></tr>
-<tr><td>14</td><td>GIFT-COFB</td></tr>
-<tr><td>13</td><td>HYENA</td></tr>
-<tr><td>11</td><td>Romulus</td></tr>
+<tr><td>14</td><td>GIFT-COFB, Romulus</td></tr>
+<tr><td>13</td><td>HYENA, SKINNY-AEAD</td></tr>
 <tr><td>10</td><td>DryGASCON, LOTUS</td></tr>
 <tr><td>9</td><td>ESTATE, KNOT</td></tr>
 <tr><td>8</td><td>SUNDAE-GIFT</td></tr>
@@ -167,7 +166,7 @@ AEAD algorithm rankings:
 <tr><td>5</td><td>Saturnin</td></tr>
 <tr><td>4</td><td>Elephant, ORANGE</td></tr>
 <tr><td>3</td><td>ISAP, SpoC</td></tr>
-<tr><td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, SKINNY-AEAD, SPIX, Spook</td></tr>
+<tr><td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, SPIX, Spook</td></tr>
 <tr><td>1</td><td>ACE, ForkAE</td></tr>
 <tr><td>0</td><td>Subterranean, WAGE</td></tr>
 </table>
@@ -182,7 +181,8 @@ Hash algorithm rankings:
 <tr><td>8</td><td>DryGASCON</td></tr>
 <tr><td>7</td><td>ASCON</td></tr>
 <tr><td>4</td><td>Saturnin</td></tr>
-<tr><td>1</td><td>KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD</td></tr>
+<tr><td>2</td><td>SKINNY-AEAD</td></tr>
+<tr><td>1</td><td>KNOT, ORANGE, PHOTON-Beetle</td></tr>
 <tr><td>0</td><td>ACE, Subterranean</td></tr>
 </table>
 
