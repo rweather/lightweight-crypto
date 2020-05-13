@@ -81,7 +81,7 @@ void test_sliscp_light(void)
     fflush(stdout);
     memset(state, 0, sizeof(state));
     sliscp_light256_swap_spoc(state);
-    sliscp_light256_permute_spoc(state, 18);
+    sliscp_light256_permute_spoc(state);
     sliscp_light256_swap_spoc(state);
     if (!test_memcmp(state, sliscp256_output, sizeof(sliscp256_output))) {
         printf("ok\n");

@@ -755,6 +755,87 @@ static bool skinny128(enum Mode mode)
     return ok;
 }
 
+static bool sliscp256_spix(enum Mode mode)
+{
+    Code code;
+    gen_sliscp_light256_spix_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_sliscp_light256_round_constants());
+        code.write(std::cout);
+        Code code2;
+        gen_sliscp_light256_swap_spix(code2);
+        code2.write(std::cout);
+    } else {
+        if (!test_sliscp_light256_spix_permutation(code)) {
+            std::cout << "sLiSCP-light-256-SPIX tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "sLiSCP-light-256-SPIX tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool sliscp256_spoc(enum Mode mode)
+{
+    Code code;
+    gen_sliscp_light256_spoc_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_sliscp_light256_round_constants());
+        code.write(std::cout);
+        Code code2;
+        gen_sliscp_light256_swap_spoc(code2);
+        code2.write(std::cout);
+    } else {
+        if (!test_sliscp_light256_spoc_permutation(code)) {
+            std::cout << "sLiSCP-light-256-SpoC tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "sLiSCP-light-256-SpoC tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool sliscp192(enum Mode mode)
+{
+    Code code;
+    gen_sliscp_light192_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_sliscp_light192_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_sliscp_light192_permutation(code)) {
+            std::cout << "sLiSCP-light-192 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "sLiSCP-light-192 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool sliscp320(enum Mode mode)
+{
+    Code code;
+    gen_sliscp_light320_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_sliscp_light320_round_constants());
+        code.write(std::cout);
+        Code code2;
+        gen_sliscp_light320_swap(code2);
+        code2.write(std::cout);
+    } else {
+        if (!test_sliscp_light320_permutation(code)) {
+            std::cout << "sLiSCP-light-320 tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "sLiSCP-light-320 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool speck64(enum Mode mode)
 {
     Code code;
@@ -932,6 +1013,14 @@ int main(int argc, char *argv[])
             gen1 = pyjamask;
         } else if (!strcmp(argv[1], "SKINNY-128")) {
             gen1 = skinny128;
+        } else if (!strcmp(argv[1], "sLiSCP-light-256-SPIX")) {
+            gen1 = sliscp256_spix;
+        } else if (!strcmp(argv[1], "sLiSCP-light-256-SpoC")) {
+            gen1 = sliscp256_spoc;
+        } else if (!strcmp(argv[1], "sLiSCP-light-192")) {
+            gen1 = sliscp192;
+        } else if (!strcmp(argv[1], "sLiSCP-light-320")) {
+            gen1 = sliscp320;
         } else if (!strcmp(argv[1], "SPARKLE")) {
             gen1 = sparkle256;
             gen2 = sparkle384;
@@ -983,6 +1072,14 @@ int main(int argc, char *argv[])
         if (!pyjamask(Test))
             exit_val = 1;
         if (!skinny128(Test))
+            exit_val = 1;
+        if (!sliscp256_spix(Test))
+            exit_val = 1;
+        if (!sliscp256_spoc(Test))
+            exit_val = 1;
+        if (!sliscp192(Test))
+            exit_val = 1;
+        if (!sliscp320(Test))
             exit_val = 1;
         if (!speck64(Test))
             exit_val = 1;

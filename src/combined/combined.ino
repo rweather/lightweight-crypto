@@ -400,7 +400,7 @@ unsigned long perfHash_N
 
     start = micros();
     for (count = 0; count < loops; ++count) {
-        hash_alg->hash(ciphertext, plaintext, size);
+        hash_alg->hash(ciphertext, hash_buffer, size);
     }
     elapsed = micros() - start;
 

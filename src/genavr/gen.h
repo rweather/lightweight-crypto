@@ -128,6 +128,22 @@ bool test_skinny128_256_encrypt(Code &code);
 bool test_skinny128_384_decrypt(Code &code);
 bool test_skinny128_256_decrypt(Code &code);
 
+// sLiSCP-light-192 permutation.
+Sbox get_sliscp_light256_round_constants();
+Sbox get_sliscp_light192_round_constants();
+Sbox get_sliscp_light320_round_constants();
+void gen_sliscp_light256_spix_permutation(Code &code);
+void gen_sliscp_light256_spoc_permutation(Code &code);
+void gen_sliscp_light256_swap_spix(Code &code);
+void gen_sliscp_light256_swap_spoc(Code &code);
+void gen_sliscp_light192_permutation(Code &code);
+void gen_sliscp_light320_permutation(Code &code);
+void gen_sliscp_light320_swap(Code &code);
+bool test_sliscp_light256_spix_permutation(Code &code);
+bool test_sliscp_light256_spoc_permutation(Code &code);
+bool test_sliscp_light192_permutation(Code &code);
+bool test_sliscp_light320_permutation(Code &code);
+
 // SPARKLE permutation.
 void gen_sparkle256_permutation(Code &code);
 void gen_sparkle384_permutation(Code &code);

@@ -11,6 +11,7 @@ ACE_FILES = \
     ace.h \
     internal-sliscp-light.c \
     internal-sliscp-light.h \
+    internal-sliscp-320-avr.S \
     $(COMMON_FILES)
 ASCON_FILES = \
     ascon128.c \
@@ -185,12 +186,15 @@ SPIX_FILES = \
     spix.h \
     internal-sliscp-light.c \
     internal-sliscp-light.h \
+    internal-sliscp-256-spix-avr.S \
     $(COMMON_FILES)
 SPOC_FILES = \
     spoc.c \
     spoc.h \
     internal-sliscp-light.c \
     internal-sliscp-light.h \
+    internal-sliscp-192-avr.S \
+    internal-sliscp-256-spoc-avr.S \
     $(COMMON_FILES)
 SPOOK_FILES = \
     spook.c \

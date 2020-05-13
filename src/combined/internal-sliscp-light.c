@@ -22,6 +22,8 @@
 
 #include "internal-sliscp-light.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Performs one round of the Simeck-64 block cipher.
  *
@@ -173,11 +175,12 @@ void sliscp_light256_swap_spix(unsigned char block[32])
     le_store_word32(block + 12, t2);
 }
 
-void sliscp_light256_permute_spoc(unsigned char block[32], unsigned rounds)
+void sliscp_light256_permute_spoc(unsigned char block[32])
 {
     const unsigned char *rc = sliscp_light256_RC;
     uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
     uint32_t t0, t1;
+    unsigned round;
 
     /* Load the block into local state variables */
     x0 = be_load_word32(block);
@@ -190,7 +193,7 @@ void sliscp_light256_permute_spoc(unsigned char block[32], unsigned rounds)
     x7 = be_load_word32(block + 28);
 
     /* Perform all permutation rounds */
-    for (; rounds > 0; --rounds, rc += 4) {
+    for (round = 0; round < 18; ++round, rc += 4) {
         /* Apply Simeck-64 to two of the 64-bit sub-blocks */
         simeck64_box(x2, x3, rc[0]);
         simeck64_box(x6, x7, rc[1]);
@@ -406,3 +409,5 @@ void sliscp_light320_swap(unsigned char block[40])
     le_store_word32(block + 16, t1);
     le_store_word32(block +  4, t2);
 }
+
+#endif /* !__AVR__ */

@@ -92,7 +92,6 @@ void sliscp_light256_swap_spix(unsigned char block[32]);
  * \brief Performs the sLiSCP-light permutation on a 256-bit block.
  *
  * \param block Points to the block to be permuted.
- * \param rounds Number of rounds to be performed, usually 9 or 18.
  *
  * The bytes of the block are assumed to be rearranged to match the
  * requirements of the SpoC-128 cipher.  SpoC-128 interleaves the
@@ -112,7 +111,7 @@ void sliscp_light256_swap_spix(unsigned char block[32]);
  *
  * \sa sliscp_light256_swap_spoc()
  */
-void sliscp_light256_permute_spoc(unsigned char block[32], unsigned rounds);
+void sliscp_light256_permute_spoc(unsigned char block[32]);
 
 /**
  * \brief Swaps rate bytes in a sLiSCP-light 256-bit block for SpoC-128.
