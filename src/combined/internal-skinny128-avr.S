@@ -4,9 +4,9 @@
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_0, @object
-	.size	sbox_0, 256
-sbox_0:
+	.type	table_0, @object
+	.size	table_0, 256
+table_0:
 	.byte	101
 	.byte	76
 	.byte	106
@@ -266,9 +266,9 @@ sbox_0:
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_1, @object
-	.size	sbox_1, 256
-sbox_1:
+	.type	table_1, @object
+	.size	table_1, 256
+table_1:
 	.byte	172
 	.byte	232
 	.byte	104
@@ -528,9 +528,9 @@ sbox_1:
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_2, @object
-	.size	sbox_2, 256
-sbox_2:
+	.type	table_2, @object
+	.size	table_2, 256
+table_2:
 	.byte	0
 	.byte	2
 	.byte	4
@@ -790,9 +790,9 @@ sbox_2:
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_3, @object
-	.size	sbox_3, 256
-sbox_3:
+	.type	table_3, @object
+	.size	table_3, 256
+table_3:
 	.byte	0
 	.byte	128
 	.byte	1
@@ -1052,9 +1052,9 @@ sbox_3:
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_4, @object
-	.size	sbox_4, 112
-sbox_4:
+	.type	table_4, @object
+	.size	table_4, 112
+table_4:
 	.byte	1
 	.byte	0
 	.byte	3
@@ -1337,11 +1337,11 @@ skinny_128_384_encrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(sbox_0)
+	ldi r26,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	mov r26,r1
@@ -1522,9 +1522,9 @@ skinny_128_384_encrypt:
 	lpm
 	mov r11,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -1647,9 +1647,9 @@ skinny_128_384_encrypt:
 	std Y+13,r16
 	std Y+14,r24
 	std Y+15,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+24
@@ -1756,9 +1756,9 @@ skinny_128_384_encrypt:
 	std Y+29,r16
 	std Y+30,r24
 	std Y+31,r15
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+40
@@ -1865,9 +1865,9 @@ skinny_128_384_encrypt:
 	std Y+45,r16
 	std Y+46,r24
 	std Y+47,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r8
@@ -2046,9 +2046,9 @@ skinny_128_384_encrypt:
 	lpm
 	mov r7,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -2171,9 +2171,9 @@ skinny_128_384_encrypt:
 	std Y+5,r16
 	std Y+6,r24
 	std Y+7,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+16
@@ -2280,9 +2280,9 @@ skinny_128_384_encrypt:
 	std Y+21,r16
 	std Y+22,r24
 	std Y+23,r15
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+32
@@ -2389,9 +2389,9 @@ skinny_128_384_encrypt:
 	std Y+37,r16
 	std Y+38,r24
 	std Y+39,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r4
@@ -2570,9 +2570,9 @@ skinny_128_384_encrypt:
 	lpm
 	mov r3,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -2695,9 +2695,9 @@ skinny_128_384_encrypt:
 	std Y+13,r16
 	std Y+14,r24
 	std Y+15,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+24
@@ -2804,9 +2804,9 @@ skinny_128_384_encrypt:
 	std Y+29,r16
 	std Y+30,r24
 	std Y+31,r15
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+40
@@ -2913,9 +2913,9 @@ skinny_128_384_encrypt:
 	std Y+45,r16
 	std Y+46,r24
 	std Y+47,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r22
@@ -3094,9 +3094,9 @@ skinny_128_384_encrypt:
 	lpm
 	mov r21,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -3223,9 +3223,9 @@ skinny_128_384_encrypt:
 	std Y+5,r16
 	std Y+6,r24
 	std Y+7,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+16
@@ -3332,9 +3332,9 @@ skinny_128_384_encrypt:
 	std Y+21,r16
 	std Y+22,r24
 	std Y+23,r15
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+32
@@ -3441,9 +3441,9 @@ skinny_128_384_encrypt:
 	std Y+37,r16
 	std Y+38,r24
 	std Y+39,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 114b
@@ -3647,11 +3647,11 @@ skinny_128_384_decrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(sbox_2)
+	ldi r26,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,28
@@ -3870,9 +3870,9 @@ skinny_128_384_decrypt:
 	std Y+29,r25
 	std Y+30,r16
 	std Y+31,r17
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r26,hh8(sbox_3)
+	ldi r26,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,28
@@ -4213,9 +4213,9 @@ skinny_128_384_decrypt:
 	std Y+21,r15
 	std Y+22,r25
 	std Y+23,r13
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+32
@@ -4398,9 +4398,9 @@ skinny_128_384_decrypt:
 	eor r6,r0
 	ldd r0,Y+47
 	eor r7,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -4431,9 +4431,9 @@ skinny_128_384_decrypt:
 	eor r22,r27
 	ldi r27,2
 	eor r8,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r22
@@ -4612,9 +4612,9 @@ skinny_128_384_decrypt:
 	lpm
 	mov r21,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+8
@@ -4737,9 +4737,9 @@ skinny_128_384_decrypt:
 	std Y+29,r15
 	std Y+30,r25
 	std Y+31,r13
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+40
@@ -4922,9 +4922,9 @@ skinny_128_384_decrypt:
 	eor r10,r0
 	ldd r0,Y+39
 	eor r11,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -4955,9 +4955,9 @@ skinny_128_384_decrypt:
 	eor r4,r27
 	ldi r27,2
 	eor r18,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r4
@@ -5136,9 +5136,9 @@ skinny_128_384_decrypt:
 	lpm
 	mov r3,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ld r12,Y
@@ -5261,9 +5261,9 @@ skinny_128_384_decrypt:
 	std Y+21,r15
 	std Y+22,r25
 	std Y+23,r13
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+32
@@ -5446,9 +5446,9 @@ skinny_128_384_decrypt:
 	eor r20,r0
 	ldd r0,Y+47
 	eor r21,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -5479,9 +5479,9 @@ skinny_128_384_decrypt:
 	eor r8,r27
 	ldi r27,2
 	eor r22,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r8
@@ -5660,9 +5660,9 @@ skinny_128_384_decrypt:
 	lpm
 	mov r7,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+8
@@ -5785,9 +5785,9 @@ skinny_128_384_decrypt:
 	std Y+29,r15
 	std Y+30,r25
 	std Y+31,r13
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+40
@@ -5970,9 +5970,9 @@ skinny_128_384_decrypt:
 	eor r2,r0
 	ldd r0,Y+39
 	eor r3,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -6003,9 +6003,9 @@ skinny_128_384_decrypt:
 	eor r18,r27
 	ldi r27,2
 	eor r4,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r18
@@ -6186,9 +6186,9 @@ skinny_128_384_decrypt:
 #endif
 	cp r26,r1
 	breq 903f
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 227b
@@ -6379,11 +6379,11 @@ skinny_128_256_encrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(sbox_0)
+	ldi r26,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	mov r26,r1
@@ -6564,9 +6564,9 @@ skinny_128_256_encrypt:
 	lpm
 	mov r11,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -6673,9 +6673,9 @@ skinny_128_256_encrypt:
 	std Y+13,r16
 	std Y+14,r24
 	std Y+15,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+24
@@ -6782,9 +6782,9 @@ skinny_128_256_encrypt:
 	std Y+29,r16
 	std Y+30,r24
 	std Y+31,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r8
@@ -6963,9 +6963,9 @@ skinny_128_256_encrypt:
 	lpm
 	mov r7,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -7072,9 +7072,9 @@ skinny_128_256_encrypt:
 	std Y+5,r16
 	std Y+6,r24
 	std Y+7,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+16
@@ -7181,9 +7181,9 @@ skinny_128_256_encrypt:
 	std Y+21,r16
 	std Y+22,r24
 	std Y+23,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r4
@@ -7362,9 +7362,9 @@ skinny_128_256_encrypt:
 	lpm
 	mov r3,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -7471,9 +7471,9 @@ skinny_128_256_encrypt:
 	std Y+13,r16
 	std Y+14,r24
 	std Y+15,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+24
@@ -7580,9 +7580,9 @@ skinny_128_256_encrypt:
 	std Y+29,r16
 	std Y+30,r24
 	std Y+31,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r22
@@ -7761,9 +7761,9 @@ skinny_128_256_encrypt:
 	lpm
 	mov r21,r0
 #endif
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	mov r30,r26
@@ -7872,9 +7872,9 @@ skinny_128_256_encrypt:
 	std Y+5,r16
 	std Y+6,r24
 	std Y+7,r15
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_2)
+	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+16
@@ -7981,9 +7981,9 @@ skinny_128_256_encrypt:
 	std Y+21,r16
 	std Y+22,r24
 	std Y+23,r15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_0)
+	ldi r27,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 82b
@@ -8155,11 +8155,11 @@ skinny_128_256_decrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
-	ldi r31,hi8(sbox_2)
+	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(sbox_2)
+	ldi r26,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,24
@@ -8378,9 +8378,9 @@ skinny_128_256_decrypt:
 	std Y+29,r25
 	std Y+30,r16
 	std Y+31,r17
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r26,hh8(sbox_3)
+	ldi r26,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,96
@@ -8565,9 +8565,9 @@ skinny_128_256_decrypt:
 	eor r6,r0
 	ldd r0,Y+31
 	eor r7,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -8598,9 +8598,9 @@ skinny_128_256_decrypt:
 	eor r22,r27
 	ldi r27,2
 	eor r8,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r22
@@ -8779,9 +8779,9 @@ skinny_128_256_decrypt:
 	lpm
 	mov r21,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+8
@@ -8964,9 +8964,9 @@ skinny_128_256_decrypt:
 	eor r10,r0
 	ldd r0,Y+23
 	eor r11,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -8997,9 +8997,9 @@ skinny_128_256_decrypt:
 	eor r4,r27
 	ldi r27,2
 	eor r18,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r4
@@ -9178,9 +9178,9 @@ skinny_128_256_decrypt:
 	lpm
 	mov r3,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ld r12,Y
@@ -9363,9 +9363,9 @@ skinny_128_256_decrypt:
 	eor r20,r0
 	ldd r0,Y+31
 	eor r21,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -9396,9 +9396,9 @@ skinny_128_256_decrypt:
 	eor r8,r27
 	ldi r27,2
 	eor r22,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r8
@@ -9577,9 +9577,9 @@ skinny_128_256_decrypt:
 	lpm
 	mov r7,r0
 #endif
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	ldd r12,Y+8
@@ -9762,9 +9762,9 @@ skinny_128_256_decrypt:
 	eor r2,r0
 	ldd r0,Y+23
 	eor r3,r0
-	ldi r31,hi8(sbox_4)
+	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
-	ldi r24,hh8(sbox_4)
+	ldi r24,hh8(table_4)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	dec r26
@@ -9795,9 +9795,9 @@ skinny_128_256_decrypt:
 	eor r18,r27
 	ldi r27,2
 	eor r4,r27
-	ldi r31,hi8(sbox_1)
+	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_1)
+	ldi r27,hh8(table_1)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	mov r30,r18
@@ -9978,9 +9978,9 @@ skinny_128_256_decrypt:
 #endif
 	cp r26,r1
 	breq 651f
-	ldi r31,hi8(sbox_3)
+	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
-	ldi r27,hh8(sbox_3)
+	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
 	rjmp 139b

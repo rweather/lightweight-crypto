@@ -4,9 +4,9 @@
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_0, @object
-	.size	sbox_0, 96
-sbox_0:
+	.type	table_0, @object
+	.size	table_0, 96
+table_0:
 	.byte	7
 	.byte	83
 	.byte	67
@@ -194,11 +194,11 @@ sliscp_light320_permute:
 	ldd r14,Z+29
 	push r31
 	push r30
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r16,hh8(sbox_0)
+	ldi r16,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r16
 #endif
 	ldi r30,0

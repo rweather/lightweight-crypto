@@ -261,10 +261,10 @@ static void Insn_write_lpm_setup(std::ostream &ostream, const Insn &insn)
     // We always align S-boxes on a 256-byte boundary and then move the
     // actual index into r30 when we need to look something up.  So the
     // low byte of the address value will always be overwritten.
-    //ostream << "\tldi r30,lo8(sbox_";
+    //ostream << "\tldi r30,lo8(table_";
     //ostream << table;
     //ostream << ")" << std::endl;
-    ostream << "\tldi r31,hi8(sbox_";
+    ostream << "\tldi r31,hi8(table_";
     ostream << table;
     ostream << ")" << std::endl;
     ostream << "#if defined(RAMPZ)" << std::endl;
@@ -272,7 +272,7 @@ static void Insn_write_lpm_setup(std::ostream &ostream, const Insn &insn)
     ostream << "\tpush r0" << std::endl;
     ostream << "\tldi ";
     Insn_write_reg(ostream, insn.reg1());
-    ostream << ",hh8(sbox_";
+    ostream << ",hh8(table_";
     ostream << table;
     ostream << ")" << std::endl;
     ostream << "\tout _SFR_IO_ADDR(RAMPZ),";
@@ -285,16 +285,16 @@ static void Insn_write_lpm_switch(std::ostream &ostream, const Insn &insn)
 {
     // Set up Z and RAMPZ, but no need to save the previous RAMPZ value.
     int table = insn.value();
-    //ostream << "\tldi r30,lo8(sbox_";
+    //ostream << "\tldi r30,lo8(table_";
     //ostream << table;
     //ostream << ")" << std::endl;
-    ostream << "\tldi r31,hi8(sbox_";
+    ostream << "\tldi r31,hi8(table_";
     ostream << table;
     ostream << ")" << std::endl;
     ostream << "#if defined(RAMPZ)" << std::endl;
     ostream << "\tldi ";
     Insn_write_reg(ostream, insn.reg1());
-    ostream << ",hh8(sbox_";
+    ostream << ",hh8(table_";
     ostream << table;
     ostream << ")" << std::endl;
     ostream << "\tout _SFR_IO_ADDR(RAMPZ),";
@@ -558,9 +558,9 @@ void Code::sbox_write
     ostream << std::endl;
     ostream << "\t.section\t.progmem.data,\"a\",@progbits" << std::endl;
     ostream << "\t.p2align\t8" << std::endl; // Align on a 256-byte boundary.
-    ostream << "\t.type\tsbox_" << (int)num << ", @object" << std::endl;
-    ostream << "\t.size\tsbox_" << (int)num << ", " << sbox.size() << std::endl;
-    ostream << "sbox_" << (int)num << ":" << std::endl;
+    ostream << "\t.type\ttable_" << (int)num << ", @object" << std::endl;
+    ostream << "\t.size\ttable_" << (int)num << ", " << sbox.size() << std::endl;
+    ostream << "table_" << (int)num << ":" << std::endl;
     for (int index = 0; index < sbox.size(); ++index)
         ostream << "\t.byte\t" << (int)(sbox.lookup(index)) << std::endl;
 }

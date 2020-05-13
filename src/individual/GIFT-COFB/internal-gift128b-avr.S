@@ -4,9 +4,9 @@
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_0, @object
-	.size	sbox_0, 40
-sbox_0:
+	.type	table_0, @object
+	.size	table_0, 40
+table_0:
 	.byte	1
 	.byte	3
 	.byte	7
@@ -169,11 +169,11 @@ gift128b_encrypt:
 	ldd r27,Z+13
 	ldd r24,Z+14
 	ldd r25,Z+15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(sbox_0)
+	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	mov r16,r1
@@ -818,11 +818,11 @@ gift128b_encrypt_preloaded:
 	ldd r27,Z+13
 	ldd r24,Z+14
 	ldd r25,Z+15
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(sbox_0)
+	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	mov r16,r1
@@ -1534,11 +1534,11 @@ gift128b_decrypt:
 	ror r24
 	ror r0
 	or r25,r0
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(sbox_0)
+	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	ldi r16,40

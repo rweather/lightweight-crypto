@@ -4,9 +4,9 @@
 
 	.section	.progmem.data,"a",@progbits
 	.p2align	8
-	.type	sbox_0, @object
-	.size	sbox_0, 256
-sbox_0:
+	.type	table_0, @object
+	.size	table_0, 256
+table_0:
 	.byte	238
 	.byte	237
 	.byte	235
@@ -307,11 +307,11 @@ spongent160_permute:
 	ldd r24,Z+18
 	ldd r25,Z+19
 	movw r26,r30
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r21,hh8(sbox_0)
+	ldi r21,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r21
 #endif
 	ldi r18,80
@@ -974,11 +974,11 @@ spongent176_permute:
 	ldd r16,Z+20
 	ldd r17,Z+21
 	movw r26,r30
-	ldi r31,hi8(sbox_0)
+	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r21,hh8(sbox_0)
+	ldi r21,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r21
 #endif
 	ldi r18,90
