@@ -123,6 +123,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>1.56</td><td>1.53</td><td>3.81</td><td>3.68</td><td>1.94 </td></tr>
 <tr>
+<td><b><em>SpoC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.46</td><td>1.44</td><td>3.47</td><td>3.37</td><td>1.81 </td></tr>
+<tr>
 <td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>1.42</td><td>1.40</td><td>3.54</td><td>3.43</td><td>1.78 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>1.64</td><td>1.58</td><td>1.99</td><td>1.95</td><td>1.72 </td></tr>
@@ -137,6 +139,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>1.17</td><td>1.17</td><td>2.12</td><td>2.09</td><td>1.38 </td></tr>
 <tr>
+<td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>1.10</td><td>1.10</td><td>2.64</td><td>2.59</td><td>1.38 </td></tr>
+<tr>
 <td>SKINNY-AEAD-M3</td><td>128</td><td>128</td><td>64</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31 </td></tr>
@@ -150,6 +154,8 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.84</td><td>2.21</td><td>2.17</td><td>1.06 </td></tr>
 <tr>
 <td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.83</td><td>2.20</td><td>2.16</td><td>1.06 </td></tr>
+<tr>
+<td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.98</td><td>0.99</td><td>1.11</td><td>1.11</td><td>1.03 </td></tr>
 <tr>
 <td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.81</td><td>1.81</td><td>1.78</td><td>1.00 </td></tr>
 <tr>
@@ -179,11 +185,11 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>Dumbo</em></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.38</td><td>0.39</td><td>0.82</td><td>0.83</td><td>0.47 </td></tr>
 <tr>
+<td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.42</td><td>0.60</td><td>0.61</td><td>0.46 </td></tr>
+<tr>
 <td><b><em>ORANGE-Zest</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.40</td><td>0.53</td><td>0.53</td><td>0.44 </td></tr>
 <tr>
 <td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.34</td><td>0.35</td><td>0.65</td><td>0.65</td><td>0.41 </td></tr>
-<tr>
-<td><b><em>SpoC-128</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.68</td><td>0.68</td><td>0.36 </td></tr>
 <tr>
 <td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.37</td><td>0.38</td><td>0.31</td><td>0.32</td><td>0.35 </td></tr>
 <tr>
@@ -207,11 +213,7 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>PAEF-ForkSkinny-64-192 +++</td><td>128</td><td>48</td><td>64</td><td>0.19</td><td>0.12</td><td>0.83</td><td>0.51</td><td>0.20 </td></tr>
 <tr>
-<td><b><em>SPIX</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.19</td><td>0.19</td><td>0.21</td><td>0.21</td><td>0.20 </td></tr>
-<tr>
 <td>KNOT-AEAD-256-512 +++</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18 </td></tr>
-<tr>
-<td>SpoC-64 +++</td><td>128</td><td>128</td><td>64</td><td>0.14</td><td>0.14</td><td>0.34</td><td>0.34</td><td>0.18 </td></tr>
 <tr>
 <td>SAEF-ForkSkinny-128-192 +++</td><td>128</td><td>56</td><td>128</td><td>0.13</td><td>0.10</td><td>0.55</td><td>0.41</td><td>0.15 </td></tr>
 <tr>
@@ -221,15 +223,13 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>PAEF-ForkSkinny-128-192 +++</td><td>128</td><td>48</td><td>128</td><td>0.13</td><td>0.10</td><td>0.54</td><td>0.41</td><td>0.15 </td></tr>
 <tr>
-<td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.24</td><td>0.24</td><td>0.14 </td></tr>
+<td>Oribatida-192-96 +++</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.24</td><td>0.24</td><td>0.14 </td></tr>
 <tr>
 <td><b><em>Subterranean</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12 </td></tr>
 <tr>
 <td><b><em>PAEF-ForkSkinny-128-288</em></b> +++</td><td>128</td><td>104</td><td>128</td><td>0.10</td><td>0.07</td><td>0.41</td><td>0.28</td><td>0.11 </td></tr>
 <tr>
-<td><b><em>ACE</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.09</td><td>0.13</td><td>0.13</td><td>0.10 </td></tr>
-<tr>
-<td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.21</td><td>0.08 </td></tr>
+<td>PHOTON-Beetle-AEAD-ENC-32 +++</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.21</td><td>0.08 </td></tr>
 <tr>
 <td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.07</td><td>0.08</td><td>0.04</td><td>0.04</td><td>0.06 </td></tr>
 <tr>
@@ -259,9 +259,11 @@ Performance of hash algorithms on AVR</h1>
 <tr>
 <td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71 </td></tr>
 <tr>
-<td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.38</td><td>0.31</td><td>0.77</td><td>0.49 </td></tr>
+<td><b><em>SATURNIN-Hash</em></b> +++</td><td>256</td><td>0.38</td><td>0.31</td><td>0.77</td><td>0.49 </td></tr>
 <tr>
 <td>DryGASCON256-HASH</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47 </td></tr>
+<tr>
+<td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.28</td><td>0.23</td><td>0.38</td><td>0.30 </td></tr>
 <tr>
 <td><b><em>SKINNY-tk3-HASH</em></b></td><td>256</td><td>0.22</td><td>0.18</td><td>0.31</td><td>0.21 </td></tr>
 <tr>
@@ -274,8 +276,6 @@ Performance of hash algorithms on AVR</h1>
 <td><b><em>PHOTON-Beetle-HASH</em></b> +++</td><td>256</td><td>0.03</td><td>0.03</td><td>0.26</td><td>0.11 </td></tr>
 <tr>
 <td>KNOT-HASH-256-384 +++</td><td>256</td><td>0.09</td><td>0.08</td><td>0.13</td><td>0.10 </td></tr>
-<tr>
-<td><b><em>ACE-HASH</em></b> +++</td><td>256</td><td>0.06</td><td>0.05</td><td>0.08</td><td>0.06 </td></tr>
 <tr>
 <td>KNOT-HASH-384-384 +++</td><td>384</td><td>0.03</td><td>0.03</td><td>0.07</td><td>0.04 </td></tr>
 <tr>
@@ -300,13 +300,15 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>20</td><td>Gimli </td></tr>
 <tr>
+<td>18</td><td>SpoC </td></tr>
+<tr>
 <td>17</td><td>Xoodyak </td></tr>
 <tr>
 <td>14</td><td>GIFT-COFB, Romulus </td></tr>
 <tr>
 <td>13</td><td>HYENA, SKINNY-AEAD </td></tr>
 <tr>
-<td>10</td><td>DryGASCON, LOTUS </td></tr>
+<td>10</td><td>DryGASCON, LOTUS, SPIX </td></tr>
 <tr>
 <td>9</td><td>ESTATE, KNOT </td></tr>
 <tr>
@@ -316,13 +318,13 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>5</td><td>Saturnin </td></tr>
 <tr>
-<td>4</td><td>Elephant, ORANGE </td></tr>
+<td>4</td><td>ACE, Elephant, ORANGE </td></tr>
 <tr>
-<td>3</td><td>ISAP, SpoC </td></tr>
+<td>3</td><td>ISAP </td></tr>
 <tr>
-<td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, SPIX, Spook </td></tr>
+<td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Spook </td></tr>
 <tr>
-<td>1</td><td>ACE, ForkAE </td></tr>
+<td>1</td><td>ForkAE </td></tr>
 <tr>
 <td>0</td><td>Subterranean, WAGE </td></tr>
 </table>
@@ -343,16 +345,18 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>4</td><td>Saturnin </td></tr>
 <tr>
+<td>3</td><td>ACE </td></tr>
+<tr>
 <td>2</td><td>SKINNY-AEAD </td></tr>
 <tr>
 <td>1</td><td>KNOT, ORANGE, PHOTON-Beetle </td></tr>
 <tr>
-<td>0</td><td>ACE, Subterranean </td></tr>
+<td>0</td><td>Subterranean </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 7 2020 19:56:11 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 14 2020 04:11:56 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

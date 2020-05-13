@@ -45,7 +45,7 @@ var searchData=
   ['skinny_5ftk3_5fhash',['skinny_tk3_hash',['../skinny-hash_8h.html#a32c5fd26f0921da16c762c1c43bcb983',1,'skinny-hash.c']]],
   ['sliscp_5flight192_5fpermute',['sliscp_light192_permute',['../internal-sliscp-light_8h.html#ae5734241881e3149ba4b9eb267c00583',1,'internal-sliscp-light.c']]],
   ['sliscp_5flight256_5fpermute_5fspix',['sliscp_light256_permute_spix',['../internal-sliscp-light_8h.html#a3d7ffbb47a61d77e9b8ecea5ccfd474b',1,'internal-sliscp-light.c']]],
-  ['sliscp_5flight256_5fpermute_5fspoc',['sliscp_light256_permute_spoc',['../internal-sliscp-light_8h.html#a416fb219fc786842b49ab0ccbe3349cc',1,'internal-sliscp-light.c']]],
+  ['sliscp_5flight256_5fpermute_5fspoc',['sliscp_light256_permute_spoc',['../internal-sliscp-light_8h.html#a1380ef1b12f6de6fc054f69fb0aef1d4',1,'internal-sliscp-light.c']]],
   ['sliscp_5flight256_5fswap_5fspix',['sliscp_light256_swap_spix',['../internal-sliscp-light_8h.html#a5cf515a3cb0d201dc126f97b319defc4',1,'internal-sliscp-light.c']]],
   ['sliscp_5flight256_5fswap_5fspoc',['sliscp_light256_swap_spoc',['../internal-sliscp-light_8h.html#a0ce3952fb44fc0d3d2667cdb7170bdbe',1,'internal-sliscp-light.c']]],
   ['sliscp_5flight320_5fpermute',['sliscp_light320_permute',['../internal-sliscp-light_8h.html#a921a83c00a30c09b7f00ca55cf3a5249',1,'internal-sliscp-light.c']]],
