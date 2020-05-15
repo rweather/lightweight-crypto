@@ -1954,6 +1954,26 @@ void Code::prologue_setup_key(const char *name, unsigned size_locals)
 }
 
 /**
+ * \brief Sets up the function prologue for a key setup function with
+ * reversed arguments.
+ *
+ * \param name Name of the key setup function.
+ * \param size_locals Number of bytes of local variables that are needed.
+ *
+ * The generated function will have the following prototype:
+ *
+ * \code
+ * void name(const void *key, void *schedule)
+ * \endcode
+ */
+void Code::prologue_setup_key_reversed(const char *name, unsigned size_locals)
+{
+    m_prologueType = KeySetupReversed;
+    m_name = name;
+    m_localsSize = size_locals;
+}
+
+/**
  * \brief Sets up the function prologue for a block encrypt function.
  *
  * \param name Name of the block encrypt function.
@@ -2034,6 +2054,20 @@ Reg Code::prologue_encrypt_block_with_tweak
     Reg reg;
     reg.m_regs.push_back(18);
     return reg;
+}
+
+/**
+ * \brief Sets up the function prologue for a block encrypt function
+ * with the key schedule as the second parameter instead of the first.
+ *
+ * \param name Name of the block encrypt function.
+ * \param size_locals Number of bytes of local variables that are needed.
+ */
+void Code::prologue_encrypt_block_key2(const char *name, unsigned size_locals)
+{
+    m_prologueType = EncryptBlockKey2;
+    m_name = name;
+    m_localsSize = size_locals;
 }
 
 /**

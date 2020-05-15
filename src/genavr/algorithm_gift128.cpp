@@ -36,6 +36,7 @@ enum {
     StateBE,    /**< Load and store in bit-sliced big-endian byte order */
     StateLE,    /**< Load and store in bit-sliced little-endian byte order */
     StateNibble,/**< Load and store in nibble order */
+    StateNibbleBE,/**< Load and store in big-endian nibble order */
     StateTweak  /**< Nibble-based with in-place tweaked key schedule */
 };
 
@@ -275,6 +276,22 @@ void Gift128State::load_state(Code &code, int ordering)
         code.ldx(s1, POST_INC);
         code.ldx(s2, POST_INC);
         code.ldx(s3, POST_INC);
+    } else if (ordering == StateNibbleBE) {
+        int word, bit;
+        for (word = 0; word < 4; ++word) {
+            code.ldx(t1.reversed(), POST_INC);
+            for (bit = 0; bit < 32; ++bit) {
+                Reg dst;
+                switch (bit % 4) {
+                case 0: default:    dst = s3; break;
+                case 1:             dst = s2; break;
+                case 2:             dst = s1; break;
+                case 3:             dst = s0; break;
+                }
+                code.bit_get(t1, 31 - bit);
+                code.bit_put(dst, ((31 - bit) / 4) + ((3 - word) * 8));
+            }
+        }
     } else {
         int word, bit;
         for (word = 0; word < 4; ++word) {
@@ -306,6 +323,22 @@ void Gift128State::store_state(Code &code, int ordering)
         code.stx(s1, POST_INC);
         code.stx(s2, POST_INC);
         code.stx(s3, POST_INC);
+    } else if (ordering == StateNibbleBE) {
+        int word, bit;
+        for (word = 0; word < 4; ++word) {
+            for (bit = 0; bit < 32; ++bit) {
+                Reg src;
+                switch (bit % 4) {
+                case 0: default:    src = s3; break;
+                case 1:             src = s2; break;
+                case 2:             src = s1; break;
+                case 3:             src = s0; break;
+                }
+                code.bit_get(src, ((31 - bit) / 4) + ((3 - word) * 8));
+                code.bit_put(t1, 31 - bit);
+            }
+            code.stx(t1.reversed(), POST_INC);
+        }
     } else {
         int word, bit;
         for (word = 0; word < 4; ++word) {
@@ -375,6 +408,35 @@ void gen_gift128b_setup_key(Code &code)
 }
 
 /**
+ * \brief Generates the AVR code for the gift128b key setup function,
+ * with alternative naming.
+ *
+ * \param code The code block to generate into.
+ */
+void gen_gift128b_setup_key_alt(Code &code)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // X points to the key, and Z points to the key schedule.
+    code.prologue_setup_key_reversed("gift128_keyschedule", 0);
+    code.setFlag(Code::NoLocals); // Don't need to save the Y register.
+
+    // Copy the key into the key schedule structure and rearrange:
+    //      ks->k[0] = be_load_word32(key);
+    //      ks->k[1] = be_load_word32(key + 4);
+    //      ks->k[2] = be_load_word32(key + 8);
+    //      ks->k[3] = be_load_word32(key + 12);
+    Reg temp = code.allocateReg(4);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 0);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 4);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 8);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 12);
+}
+
+/**
  * \brief Generates the AVR code for the gift128n key setup function.
  *
  * \param code The code block to generate into.
@@ -408,13 +470,17 @@ void gen_gift128n_setup_key(Code &code)
  * \param code The code block to generate into.
  * \param name Name of the encryption function to generate.
  * \param ordering Ordering of the state on input and output.
+ * \param alt Set to true for alternative function argument order.
  */
-static void gen_gift128_encrypt(Code &code, const char *name, int ordering)
+static void gen_gift128_encrypt
+    (Code &code, const char *name, int ordering, bool alt = false)
 {
     // Set up the function prologue with 16 bytes of local variable storage.
     // X will point to the input, Z points to the key, Y is local variables.
     Reg tweak;
-    if (ordering != StateTweak)
+    if (alt)
+        code.prologue_encrypt_block_key2(name, 16);
+    else if (ordering != StateTweak)
         code.prologue_encrypt_block(name, 16);
     else
         tweak = code.prologue_encrypt_block_with_tweak(name, 16);
@@ -525,13 +591,17 @@ static void gen_gift128_encrypt(Code &code, const char *name, int ordering)
  * \param code The code block to generate into.
  * \param name Name of the decryption function to generate.
  * \param ordering Ordering of the state on input and output.
+ * \param alt Set to true for alternative function argument order.
  */
-static void gen_gift128_decrypt(Code &code, const char *name, int ordering)
+static void gen_gift128_decrypt
+    (Code &code, const char *name, int ordering, bool alt = false)
 {
     // Set up the function prologue with 16 bytes of local variable storage.
     // X will point to the input, Z points to the key, Y is local variables.
     Reg tweak;
-    if (ordering != StateTweak)
+    if (alt)
+        code.prologue_decrypt_block_key2(name, 16);
+    else if (ordering != StateTweak)
         code.prologue_decrypt_block(name, 16);
     else
         tweak = code.prologue_decrypt_block_with_tweak(name, 16);
@@ -652,6 +722,16 @@ void gen_gift128b_decrypt(Code &code)
     gen_gift128_decrypt(code, "gift128b_decrypt", StateBE);
 }
 
+void gen_gift128b_encrypt_alt(Code &code)
+{
+    gen_gift128_encrypt(code, "giftb128_encrypt_block", StateBE, true);
+}
+
+void gen_gift128b_decrypt_alt(Code &code)
+{
+    gen_gift128_decrypt(code, "giftb128_decrypt_block", StateBE, true);
+}
+
 void gen_gift128n_encrypt(Code &code)
 {
     gen_gift128_encrypt(code, "gift128n_encrypt", StateNibble);
@@ -670,6 +750,16 @@ void gen_gift128t_encrypt(Code &code)
 void gen_gift128t_decrypt(Code &code)
 {
     gen_gift128_decrypt(code, "gift128t_decrypt", StateTweak);
+}
+
+void gen_gift128n_encrypt_alt(Code &code)
+{
+    gen_gift128_encrypt(code, "gift128_encrypt_block", StateNibbleBE, true);
+}
+
+void gen_gift128n_decrypt_alt(Code &code)
+{
+    gen_gift128_decrypt(code, "gift128_decrypt_block", StateNibbleBE, true);
 }
 
 /* Test vectors for GIFT-128 (bit-sliced version) */
@@ -911,6 +1001,38 @@ static block_cipher_test_vector_t const gift128n_3 = {
      0xd3, 0x72, 0xe8, 0xbe, 0xf3, 0x43, 0x06, 0x02}
 };
 
+/* Test vectors for GIFT-128 (big endian nibble-based version) */
+static block_cipher_test_vector_t const gift128n_alt_1 = {
+    "Test Vector 1",
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,    /* key */
+     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    16,                                                 /* key_len */
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,    /* plaintext */
+     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0xcd, 0x0b, 0xd7, 0x38, 0x38, 0x8a, 0xd3, 0xf6,    /* ciphertext */
+     0x68, 0xb1, 0x5a, 0x36, 0xce, 0xb6, 0xff, 0x92}
+};
+static block_cipher_test_vector_t const gift128n_alt_2 = {
+    "Test Vector 2",
+    {0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,    /* key */
+     0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10},
+    16,                                                 /* key_len */
+    {0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,    /* plaintext */
+     0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10},
+    {0x84, 0x22, 0x24, 0x1a, 0x6d, 0xbf, 0x5a, 0x93,    /* ciphertext */
+     0x46, 0xaf, 0x46, 0x84, 0x09, 0xee, 0x01, 0x52}
+};
+static block_cipher_test_vector_t const gift128n_alt_3 = {
+    "Test Vector 3",
+    {0xd0, 0xf5, 0xc5, 0x9a, 0x77, 0x00, 0xd3, 0xe7,    /* key */
+     0x99, 0x02, 0x8f, 0xa9, 0xf9, 0x0a, 0xd8, 0x37},
+    16,                                                 /* key_len */
+    {0xe3, 0x9c, 0x14, 0x1f, 0xa5, 0x7d, 0xba, 0x43,    /* plaintext */
+     0xf0, 0x8a, 0x85, 0xb6, 0xa9, 0x1f, 0x86, 0xc1},
+    {0x13, 0xed, 0xe6, 0x7c, 0xbd, 0xcc, 0x3d, 0xbf,    /* ciphertext */
+     0x40, 0x0a, 0x62, 0xd6, 0x97, 0x72, 0x65, 0xea}
+};
+
 // Set up the key schedule for GIFT-128 (nibble version).
 static void gift128n_setup
     (unsigned char schedule[16], const block_cipher_test_vector_t *test)
@@ -982,6 +1104,17 @@ bool test_gift128n_encrypt(Code &code)
     return true;
 }
 
+bool test_gift128n_encrypt_alt(Code &code)
+{
+    if (!test_gift128b_encrypt(code, &gift128n_alt_1))
+        return false;
+    if (!test_gift128b_encrypt(code, &gift128n_alt_2))
+        return false;
+    if (!test_gift128b_encrypt(code, &gift128n_alt_3))
+        return false;
+    return true;
+}
+
 static bool test_gift128n_decrypt
     (Code &code, const block_cipher_test_vector_t *test, unsigned tweak = 0)
 {
@@ -1003,6 +1136,17 @@ bool test_gift128n_decrypt(Code &code)
     if (!test_gift128n_decrypt(code, &gift128n_2))
         return false;
     if (!test_gift128n_decrypt(code, &gift128n_3))
+        return false;
+    return true;
+}
+
+bool test_gift128n_decrypt_alt(Code &code)
+{
+    if (!test_gift128b_decrypt(code, &gift128n_alt_1))
+        return false;
+    if (!test_gift128b_decrypt(code, &gift128n_alt_2))
+        return false;
+    if (!test_gift128b_decrypt(code, &gift128n_alt_3))
         return false;
     return true;
 }

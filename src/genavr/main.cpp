@@ -265,6 +265,108 @@ static bool gift128b(enum Mode mode)
     return ok;
 }
 
+static bool gift128b_setup_key_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_setup_key_alt(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_setup_key(code)) {
+            std::cout << "GIFT-128b-alt key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_encrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_encrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_encrypt(code)) {
+            std::cout << "GIFT-128b-alt encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_decrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift128b_decrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_decrypt(code)) {
+            std::cout << "GIFT-128b-alt decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_encrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift128n_encrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_encrypt_alt(code)) {
+            std::cout << "GIFT-128n-alt encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-alt encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_decrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift128n_decrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_decrypt_alt(code)) {
+            std::cout << "GIFT-128n-alt decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-alt decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128_alt(enum Mode mode)
+{
+    bool ok = true;
+    if (!gift128b_setup_key_alt(mode))
+        ok = false;
+    if (!gift128b_encrypt_block_alt(mode))
+        ok = false;
+    if (!gift128b_decrypt_block_alt(mode))
+        ok = false;
+    if (!gift128n_encrypt_block_alt(mode))
+        ok = false;
+    if (!gift128n_decrypt_block_alt(mode))
+        ok = false;
+    return ok;
+}
+
 static bool gift128n_setup_key(enum Mode mode)
 {
     Code code;
@@ -1002,6 +1104,8 @@ int main(int argc, char *argv[])
             gen1 = gift128b;
         } else if (!strcmp(argv[1], "GIFT-128n")) {
             gen1 = gift128n;
+        } else if (!strcmp(argv[1], "GIFT-128-alt")) {
+            gen1 = gift128_alt;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
         } else if (!strcmp(argv[1], "GIMLI-24")) {
@@ -1058,6 +1162,8 @@ int main(int argc, char *argv[])
         if (!gascon256(Test))
             exit_val = 1;
         if (!gift128b(Test))
+            exit_val = 1;
+        if (!gift128_alt(Test))
             exit_val = 1;
         if (!gift128n(Test))
             exit_val = 1;

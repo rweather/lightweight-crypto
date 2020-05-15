@@ -552,12 +552,16 @@ public:
 
     // Function prologue management.
     void prologue_setup_key(const char *name, unsigned size_locals);
+    void prologue_setup_key_reversed(const char *name, unsigned size_locals);
     void prologue_encrypt_block(const char *name, unsigned size_locals);
     void prologue_decrypt_block(const char *name, unsigned size_locals)
         { prologue_encrypt_block(name, size_locals); }
     Reg prologue_encrypt_block_with_tweak(const char *name, unsigned size_locals);
     Reg prologue_decrypt_block_with_tweak(const char *name, unsigned size_locals)
         { return prologue_encrypt_block_with_tweak(name, size_locals); }
+    void prologue_encrypt_block_key2(const char *name, unsigned size_locals);
+    void prologue_decrypt_block_key2(const char *name, unsigned size_locals)
+        { prologue_encrypt_block_key2(name, size_locals); }
     void prologue_permutation(const char *name, unsigned size_locals);
     Reg prologue_permutation_with_count(const char *name, unsigned size_locals);
     void prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds);
@@ -620,7 +624,9 @@ public:
 private:
     enum PrologueType {
         EncryptBlock,
+        EncryptBlockKey2,
         KeySetup,
+        KeySetupReversed,
         Permutation,
         TinyJAMBU
     };

@@ -260,21 +260,23 @@ static void Insn_write_lpm_setup(std::ostream &ostream, const Insn &insn)
     // There is actually no point loading the low byte of the address.
     // We always align S-boxes on a 256-byte boundary and then move the
     // actual index into r30 when we need to look something up.  So the
-    // low byte of the address value will always be overwritten.
-    //ostream << "\tldi r30,lo8(table_";
-    //ostream << table;
-    //ostream << ")" << std::endl;
+    // low byte of the address value will always be overwritten.  However,
+    // the linker will not relocate the program address properly if we don't
+    // load both the high and low bytes.  So we have no choice but to load.
+    ostream << "\tldi r30,lo8(table_";
+    ostream << table;
+    ostream << ")" << std::endl;
     ostream << "\tldi r31,hi8(table_";
     ostream << table;
     ostream << ")" << std::endl;
     ostream << "#if defined(RAMPZ)" << std::endl;
-    ostream << "\tin r0,_SFR_IO_ADDR(RAMPZ)" << std::endl;
-    ostream << "\tpush r0" << std::endl;
     ostream << "\tldi ";
     Insn_write_reg(ostream, insn.reg1());
     ostream << ",hh8(table_";
     ostream << table;
     ostream << ")" << std::endl;
+    ostream << "\tin r0,_SFR_IO_ADDR(RAMPZ)" << std::endl;
+    ostream << "\tpush r0" << std::endl;
     ostream << "\tout _SFR_IO_ADDR(RAMPZ),";
     Insn_write_reg(ostream, insn.reg1());
     ostream << std::endl;
@@ -285,9 +287,9 @@ static void Insn_write_lpm_switch(std::ostream &ostream, const Insn &insn)
 {
     // Set up Z and RAMPZ, but no need to save the previous RAMPZ value.
     int table = insn.value();
-    //ostream << "\tldi r30,lo8(table_";
-    //ostream << table;
-    //ostream << ")" << std::endl;
+    ostream << "\tldi r30,lo8(table_";
+    ostream << table;
+    ostream << ")" << std::endl;
     ostream << "\tldi r31,hi8(table_";
     ostream << table;
     ostream << ")" << std::endl;
@@ -424,6 +426,21 @@ void Code::write(std::ostream &ostream) const
         }
         break;
 
+    case EncryptBlockKey2:
+        ostream << "\tpush r25" << std::endl;
+        ostream << "\tpush r24" << std::endl;
+        extras = 2;
+        if (hasFlag(MoveWord)) {
+            ostream << "\tmovw r30,r22" << std::endl;
+            ostream << "\tmovw r26,r20" << std::endl;
+        } else {
+            ostream << "\tmov r30,r22" << std::endl;
+            ostream << "\tmov r31,r23" << std::endl;
+            ostream << "\tmov r26,r20" << std::endl;
+            ostream << "\tmov r27,r21" << std::endl;
+        }
+        break;
+
     case KeySetup:
         if (hasFlag(MoveWord)) {
             ostream << "\tmovw r30,r24" << std::endl;
@@ -433,6 +450,18 @@ void Code::write(std::ostream &ostream) const
             ostream << "\tmov r31,r25" << std::endl;
             ostream << "\tmov r26,r22" << std::endl;
             ostream << "\tmov r27,r23" << std::endl;
+        }
+        break;
+
+    case KeySetupReversed:
+        if (hasFlag(MoveWord)) {
+            ostream << "\tmovw r30,r22" << std::endl;
+            ostream << "\tmovw r26,r24" << std::endl;
+        } else {
+            ostream << "\tmov r30,r22" << std::endl;
+            ostream << "\tmov r31,r23" << std::endl;
+            ostream << "\tmov r26,r24" << std::endl;
+            ostream << "\tmov r27,r25" << std::endl;
         }
         break;
 
