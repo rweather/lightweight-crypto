@@ -75,26 +75,26 @@ gift64n_encrypt:
 	ldd r7,Z+1
 	ldd r8,Z+2
 	ldd r9,Z+3
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
 	ldd r6,Z+4
 	ldd r7,Z+5
 	ldd r8,Z+6
 	ldd r9,Z+7
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
 	ldd r6,Z+8
 	ldd r7,Z+9
 	ldd r8,Z+10
 	ldd r9,Z+11
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
 	ldd r6,Z+12
 	ldd r7,Z+13
 	ldd r8,Z+14
@@ -260,14 +260,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,3
 	ldi r19,128
@@ -293,14 +293,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,7
 	ldi r19,128
@@ -326,14 +326,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,15
 	ldi r19,128
@@ -359,14 +359,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,31
 	ldi r19,128
@@ -392,14 +392,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,62
 	ldi r19,128
@@ -425,14 +425,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,61
 	ldi r19,128
@@ -458,14 +458,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,59
 	ldi r19,128
@@ -491,14 +491,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,55
 	ldi r19,128
@@ -524,14 +524,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,47
 	ldi r19,128
@@ -557,14 +557,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,30
 	ldi r19,128
@@ -590,14 +590,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,60
 	ldi r19,128
@@ -623,14 +623,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,57
 	ldi r19,128
@@ -656,14 +656,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,51
 	ldi r19,128
@@ -689,14 +689,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,39
 	ldi r19,128
@@ -722,14 +722,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,14
 	ldi r19,128
@@ -755,14 +755,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,29
 	ldi r19,128
@@ -788,14 +788,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,58
 	ldi r19,128
@@ -821,14 +821,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,53
 	ldi r19,128
@@ -854,14 +854,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,43
 	ldi r19,128
@@ -887,14 +887,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,22
 	ldi r19,128
@@ -920,14 +920,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,44
 	ldi r19,128
@@ -953,14 +953,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,24
 	ldi r19,128
@@ -986,14 +986,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,48
 	ldi r19,128
@@ -1019,14 +1019,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	rcall 1061f
 	ldi r18,33
 	ldi r19,128
@@ -1052,14 +1052,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	rcall 1061f
 	ldi r18,2
 	ldi r19,128
@@ -1085,14 +1085,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	rcall 1061f
 	ldi r18,5
 	ldi r19,128
@@ -1118,14 +1118,14 @@ gift64n_encrypt:
 	ror r8
 	ror r0
 	or r9,r0
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	rcall 1061f
 	ldi r18,11
 	ldi r19,128
@@ -1324,8 +1324,8 @@ gift64n_encrypt:
 	eor r23,r9
 	ret 
 1252:
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	bst r20,0
 	bld r18,0
 	bst r22,0
@@ -1533,10 +1533,10 @@ gift64n_decrypt:
 	lsl r8
 	rol r9
 	adc r8,r1
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
 	ldd r6,Z+4
 	ldd r7,Z+5
 	ldd r8,Z+6
@@ -1562,10 +1562,10 @@ gift64n_decrypt:
 	lsl r8
 	rol r9
 	adc r8,r1
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
 	ldd r6,Z+8
 	ldd r7,Z+9
 	ldd r8,Z+10
@@ -1591,10 +1591,10 @@ gift64n_decrypt:
 	lsl r8
 	rol r9
 	adc r8,r1
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
 	ldd r6,Z+12
 	ldd r7,Z+13
 	ldd r8,Z+14
@@ -1756,14 +1756,14 @@ gift64n_decrypt:
 	bld r3,7
 	bst r19,7
 	bld r5,7
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1789,14 +1789,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1822,14 +1822,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1855,14 +1855,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1888,14 +1888,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1921,14 +1921,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1954,14 +1954,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -1987,14 +1987,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2020,14 +2020,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2053,14 +2053,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2086,14 +2086,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2119,14 +2119,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2152,14 +2152,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2185,14 +2185,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2218,14 +2218,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2251,14 +2251,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2284,14 +2284,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2317,14 +2317,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2350,14 +2350,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2383,14 +2383,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2416,14 +2416,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2449,14 +2449,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2482,14 +2482,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2515,14 +2515,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2548,14 +2548,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
-	ld r6,Y
-	ldd r7,Y+1
-	ldd r8,Y+2
-	ldd r9,Y+3
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
+	ldd r6,Y+1
+	ldd r7,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2581,14 +2581,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	st Y,r6
-	std Y+1,r7
-	std Y+2,r8
-	std Y+3,r9
-	ldd r6,Y+4
-	ldd r7,Y+5
-	ldd r8,Y+6
-	ldd r9,Y+7
+	std Y+1,r6
+	std Y+2,r7
+	std Y+3,r8
+	std Y+4,r9
+	ldd r6,Y+5
+	ldd r7,Y+6
+	ldd r8,Y+7
+	ldd r9,Y+8
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2614,14 +2614,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
-	ldd r6,Y+8
-	ldd r7,Y+9
-	ldd r8,Y+10
-	ldd r9,Y+11
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
+	ldd r6,Y+9
+	ldd r7,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2647,14 +2647,14 @@ gift64n_decrypt:
 	eor r4,r18
 	eor r5,r19
 	rcall 1173f
-	std Y+8,r6
-	std Y+9,r7
-	std Y+10,r8
-	std Y+11,r9
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	std Y+9,r6
+	std Y+10,r7
+	std Y+11,r8
+	std Y+12,r9
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	mov r0,r1
 	lsr r7
 	ror r6
@@ -2871,8 +2871,8 @@ gift64n_decrypt:
 	eor r23,r0
 	ret 
 1362:
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	bst r20,0
 	bld r18,0
 	bst r22,0
@@ -3061,26 +3061,26 @@ gift64t_encrypt:
 	ldd r9,Z+1
 	ldd r10,Z+2
 	ldd r11,Z+3
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
 	ldd r8,Z+4
 	ldd r9,Z+5
 	ldd r10,Z+6
 	ldd r11,Z+7
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
 	ldd r8,Z+8
 	ldd r9,Z+9
 	ldd r10,Z+10
 	ldd r11,Z+11
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
 	ldd r8,Z+12
 	ldd r9,Z+13
 	ldd r10,Z+14
@@ -3246,14 +3246,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,3
 	ldi r21,128
@@ -3279,14 +3279,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,7
 	ldi r21,128
@@ -3312,14 +3312,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,15
 	ldi r21,128
@@ -3347,14 +3347,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,31
 	ldi r21,128
@@ -3380,14 +3380,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,62
 	ldi r21,128
@@ -3413,14 +3413,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,61
 	ldi r21,128
@@ -3446,14 +3446,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,59
 	ldi r21,128
@@ -3481,14 +3481,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,55
 	ldi r21,128
@@ -3514,14 +3514,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,47
 	ldi r21,128
@@ -3547,14 +3547,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,30
 	ldi r21,128
@@ -3580,14 +3580,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,60
 	ldi r21,128
@@ -3615,14 +3615,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,57
 	ldi r21,128
@@ -3648,14 +3648,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,51
 	ldi r21,128
@@ -3681,14 +3681,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,39
 	ldi r21,128
@@ -3714,14 +3714,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,14
 	ldi r21,128
@@ -3749,14 +3749,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,29
 	ldi r21,128
@@ -3782,14 +3782,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,58
 	ldi r21,128
@@ -3815,14 +3815,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,53
 	ldi r21,128
@@ -3848,14 +3848,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,43
 	ldi r21,128
@@ -3883,14 +3883,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,22
 	ldi r21,128
@@ -3916,14 +3916,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,44
 	ldi r21,128
@@ -3949,14 +3949,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,24
 	ldi r21,128
@@ -3982,14 +3982,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,48
 	ldi r21,128
@@ -4017,14 +4017,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	rcall 1073f
 	ldi r20,33
 	ldi r21,128
@@ -4050,14 +4050,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	rcall 1073f
 	ldi r20,2
 	ldi r21,128
@@ -4083,14 +4083,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	rcall 1073f
 	ldi r20,5
 	ldi r21,128
@@ -4116,14 +4116,14 @@ gift64t_encrypt:
 	ror r10
 	ror r0
 	or r11,r0
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	rcall 1073f
 	ldi r20,11
 	ldi r21,128
@@ -4322,8 +4322,8 @@ gift64t_encrypt:
 	eor r3,r11
 	ret 
 1264:
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	bst r22,0
 	bld r20,0
 	bst r2,0
@@ -4535,10 +4535,10 @@ gift64t_decrypt:
 	lsl r10
 	rol r11
 	adc r10,r1
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
 	ldd r8,Z+4
 	ldd r9,Z+5
 	ldd r10,Z+6
@@ -4564,10 +4564,10 @@ gift64t_decrypt:
 	lsl r10
 	rol r11
 	adc r10,r1
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
 	ldd r8,Z+8
 	ldd r9,Z+9
 	ldd r10,Z+10
@@ -4593,10 +4593,10 @@ gift64t_decrypt:
 	lsl r10
 	rol r11
 	adc r10,r1
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
 	ldd r8,Z+12
 	ldd r9,Z+13
 	ldd r10,Z+14
@@ -4758,14 +4758,14 @@ gift64t_decrypt:
 	bld r5,7
 	bst r21,7
 	bld r7,7
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4791,14 +4791,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4824,14 +4824,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4857,14 +4857,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4890,14 +4890,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4925,14 +4925,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4958,14 +4958,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -4991,14 +4991,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5024,14 +5024,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5059,14 +5059,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5092,14 +5092,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5125,14 +5125,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5158,14 +5158,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5193,14 +5193,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5226,14 +5226,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5259,14 +5259,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5292,14 +5292,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5327,14 +5327,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5360,14 +5360,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5393,14 +5393,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5426,14 +5426,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5461,14 +5461,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5494,14 +5494,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5527,14 +5527,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5560,14 +5560,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
-	ld r8,Y
-	ldd r9,Y+1
-	ldd r10,Y+2
-	ldd r11,Y+3
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
+	ldd r8,Y+1
+	ldd r9,Y+2
+	ldd r10,Y+3
+	ldd r11,Y+4
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5595,14 +5595,14 @@ gift64t_decrypt:
 	eor r4,r18
 	eor r5,r18
 	rcall 1185f
-	st Y,r8
-	std Y+1,r9
-	std Y+2,r10
-	std Y+3,r11
-	ldd r8,Y+4
-	ldd r9,Y+5
-	ldd r10,Y+6
-	ldd r11,Y+7
+	std Y+1,r8
+	std Y+2,r9
+	std Y+3,r10
+	std Y+4,r11
+	ldd r8,Y+5
+	ldd r9,Y+6
+	ldd r10,Y+7
+	ldd r11,Y+8
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5628,14 +5628,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+4,r8
-	std Y+5,r9
-	std Y+6,r10
-	std Y+7,r11
-	ldd r8,Y+8
-	ldd r9,Y+9
-	ldd r10,Y+10
-	ldd r11,Y+11
+	std Y+5,r8
+	std Y+6,r9
+	std Y+7,r10
+	std Y+8,r11
+	ldd r8,Y+9
+	ldd r9,Y+10
+	ldd r10,Y+11
+	ldd r11,Y+12
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5661,14 +5661,14 @@ gift64t_decrypt:
 	eor r6,r20
 	eor r7,r21
 	rcall 1185f
-	std Y+8,r8
-	std Y+9,r9
-	std Y+10,r10
-	std Y+11,r11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	std Y+9,r8
+	std Y+10,r9
+	std Y+11,r10
+	std Y+12,r11
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	mov r0,r1
 	lsr r9
 	ror r8
@@ -5885,8 +5885,8 @@ gift64t_decrypt:
 	eor r3,r0
 	ret 
 1374:
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	bst r22,0
 	bld r20,0
 	bst r2,0

@@ -126,22 +126,22 @@ sliscp_light256_permute_spix:
 	ldd r10,Z+21
 	ldd r9,Z+22
 	ldd r8,Z+23
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r2
-	std Y+7,r3
-	std Y+8,r4
-	std Y+9,r5
-	std Y+10,r6
-	std Y+11,r7
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r2
+	std Y+8,r3
+	std Y+9,r4
+	std Y+10,r5
+	std Y+11,r6
+	std Y+12,r7
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
 	ldd r21,Z+8
 	ldd r20,Z+9
 	ldd r19,Z+10
@@ -160,11 +160,12 @@ sliscp_light256_permute_spix:
 	ldd r8,Z+31
 	push r31
 	push r30
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r23,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r23,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r23
 #endif
 	mov r30,r1
@@ -927,10 +928,10 @@ sliscp_light256_permute_spix:
 	lsr r23
 	rol r24
 	eor r4,r24
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
 	com r12
 	com r13
 	com r14
@@ -939,14 +940,14 @@ sliscp_light256_permute_spix:
 	eor r13,r19
 	eor r14,r20
 	eor r15,r21
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
-	ldd r18,Y+8
-	ldd r19,Y+9
-	ldd r20,Y+10
-	ldd r21,Y+11
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
 	com r18
 	com r19
 	com r20
@@ -955,16 +956,16 @@ sliscp_light256_permute_spix:
 	eor r19,r5
 	eor r20,r6
 	eor r21,r7
-	std Y+8,r4
-	std Y+9,r5
-	std Y+10,r6
-	std Y+11,r7
+	std Y+9,r4
+	std Y+10,r5
+	std Y+11,r6
+	std Y+12,r7
 	movw r4,r12
 	movw r6,r14
-	ldd r12,Y+4
-	ldd r13,Y+5
-	ldd r14,Y+6
-	ldd r15,Y+7
+	ldd r12,Y+5
+	ldd r13,Y+6
+	ldd r14,Y+7
+	ldd r15,Y+8
 	com r13
 	com r14
 	com r15
@@ -984,14 +985,14 @@ sliscp_light256_permute_spix:
 	eor r13,r27
 	eor r14,r2
 	eor r15,r3
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r2
-	std Y+7,r3
-	ldd r26,Y+12
-	ldd r27,Y+13
-	ldd r2,Y+14
-	ldd r3,Y+15
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r2
+	std Y+8,r3
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r2,Y+15
+	ldd r3,Y+16
 	com r27
 	com r2
 	com r3
@@ -1011,10 +1012,10 @@ sliscp_light256_permute_spix:
 	eor r27,r9
 	eor r2,r10
 	eor r3,r11
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
 	movw r8,r12
 	movw r10,r14
 	dec r22
@@ -1043,22 +1044,22 @@ sliscp_light256_permute_spix:
 	std Z+29,r10
 	std Z+30,r9
 	std Z+31,r8
-	ld r18,Y
-	ldd r19,Y+1
-	ldd r20,Y+2
-	ldd r21,Y+3
-	ldd r26,Y+4
-	ldd r27,Y+5
-	ldd r2,Y+6
-	ldd r3,Y+7
-	ldd r4,Y+8
-	ldd r5,Y+9
-	ldd r6,Y+10
-	ldd r7,Y+11
-	ldd r8,Y+12
-	ldd r9,Y+13
-	ldd r10,Y+14
-	ldd r11,Y+15
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r2,Y+7
+	ldd r3,Y+8
+	ldd r4,Y+9
+	ldd r5,Y+10
+	ldd r6,Y+11
+	ldd r7,Y+12
+	ldd r8,Y+13
+	ldd r9,Y+14
+	ldd r10,Y+15
+	ldd r11,Y+16
 	st Z,r21
 	std Z+1,r20
 	std Z+2,r19

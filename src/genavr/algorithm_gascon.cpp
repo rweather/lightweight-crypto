@@ -367,7 +367,7 @@ static void gascon256_substitute
 
     // Write x0 to x3 and x5 to x8 back to the state.  We keep x4 in a
     // register in preparation for the diffusion step that follows.
-    code.sty(x0, offset); // "x0" is spilled out to Y, not Z.
+    code.stlocal(x0, offset); // "x0" is spilled out to Y, not Z.
     code.stz(x1, GASCON256_BYTE(1, offset));
     code.stz(x2, GASCON256_BYTE(2, offset));
     code.stz(x3, GASCON256_BYTE(3, offset));
@@ -404,7 +404,7 @@ static void gascon256_diffuse
     // Compute "x ^= (x >>> shift1) ^ (x >>> shift2)".
     Reg t = code.allocateReg(8);
     if (word == 0)
-        code.ldy(x, 0); // "x0" is spilled out to Y, not Z.
+        code.ldlocal(x, 0); // "x0" is spilled out to Y, not Z.
     else if (word != 4)
         code.ldz(x, GASCON256_WORD(word));
     code.move(t, x);
@@ -487,13 +487,13 @@ void gen_drysponge256_g(Code &code)
     Reg count = code.allocateReg(1);
     code.ldz(count, 108); // Offset of "rounds" in "drysponge256_state_t".
     code.move(round, 0xF0);
-    code.sty(count, 24);
-    code.sty(round, 25);
+    code.stlocal(count, 24);
+    code.stlocal(round, 25);
     code.releaseReg(count);
     code.releaseReg(round);
 
     // Zero the rate bytes before we start.
-    code.sty_zero(GASCON256_RATE_WORD(0), 16);
+    code.stlocal_zero(GASCON256_RATE_WORD(0), 16);
 
     // Preload "x0" and "x4" into registers and advance Z to point at "x1".
     Reg x0 = code.allocateReg(8);
@@ -507,10 +507,10 @@ void gen_drysponge256_g(Code &code)
 
     // XOR the round constant with the low byte of "x4" and update it.
     round = code.allocateHighReg(1);
-    code.ldy(round, 25);
+    code.ldlocal(round, 25);
     code.logxor(x4, round);
     code.sub(round, 0x0F);
-    code.sty(round, 25);
+    code.stlocal(round, 25);
     code.releaseReg(round);
 
     // Perform the substitution layer byte by byte.
@@ -533,37 +533,37 @@ void gen_drysponge256_g(Code &code)
 
     // Collect up the rate bytes for this round.
     Reg temp = code.allocateReg(4);
-    code.ldy(temp, GASCON256_RATE_WORD(0));
+    code.ldlocal(temp, GASCON256_RATE_WORD(0));
     code.logxor(temp, Reg(x0, 0, 4));
     code.ldz_xor(temp, GASCON256_WORD32(5));
     code.ldz_xor(temp, GASCON256_WORD32(10));
     code.ldz_xor(temp, GASCON256_WORD32(15));
-    code.sty(temp, GASCON256_RATE_WORD(0));
-    code.ldy(temp, GASCON256_RATE_WORD(1));
+    code.stlocal(temp, GASCON256_RATE_WORD(0));
+    code.ldlocal(temp, GASCON256_RATE_WORD(1));
     code.logxor(temp, Reg(x0, 4, 4));
     code.ldz_xor(temp, GASCON256_WORD32(6));
     code.ldz_xor(temp, GASCON256_WORD32(11));
     code.ldz_xor(temp, GASCON256_WORD32(12));
-    code.sty(temp, GASCON256_RATE_WORD(1));
-    code.ldy(temp, GASCON256_RATE_WORD(2));
+    code.stlocal(temp, GASCON256_RATE_WORD(1));
+    code.ldlocal(temp, GASCON256_RATE_WORD(2));
     code.logxor(temp, Reg(x4, 0, 4));
     code.ldz_xor(temp, GASCON256_WORD32(2));
     code.ldz_xor(temp, GASCON256_WORD32(7));
     code.ldz_xor(temp, GASCON256_WORD32(13));
-    code.sty(temp, GASCON256_RATE_WORD(2));
-    code.ldy(temp, GASCON256_RATE_WORD(3));
+    code.stlocal(temp, GASCON256_RATE_WORD(2));
+    code.ldlocal(temp, GASCON256_RATE_WORD(3));
     code.logxor(temp, Reg(x4, 4, 4));
     code.ldz_xor(temp, GASCON256_WORD32(3));
     code.ldz_xor(temp, GASCON256_WORD32(4));
     code.ldz_xor(temp, GASCON256_WORD32(14));
-    code.sty(temp, GASCON256_RATE_WORD(3));
+    code.stlocal(temp, GASCON256_RATE_WORD(3));
     code.releaseReg(temp);
 
     // Bottom of the round loop.
     count = code.allocateReg(1);
-    code.ldy(count, 24);
+    code.ldlocal(count, 24);
     code.dec(count);
-    code.sty(count, 24);
+    code.stlocal(count, 24);
     code.brne(top_label);
     code.releaseReg(count);
 
@@ -573,8 +573,8 @@ void gen_drysponge256_g(Code &code)
 
     // Copy the rate data from the stack to the state.
     code.add(Reg::z_ptr(), 72);
-    code.ldy(x0, 8);
-    code.ldy(x4, 16);
+    code.ldlocal(x0, 8);
+    code.ldlocal(x4, 16);
     code.stz(x0, 0);
     code.stz(x4, 8);
 }

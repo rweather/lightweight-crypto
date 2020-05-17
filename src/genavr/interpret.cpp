@@ -458,7 +458,7 @@ void Code::exec_setup_key(void *schedule, unsigned schedule_len,
     s.setPair(30, schedule_address);    // Z = schedule
     s.setPair(26, key_address);         // X = key
     s.push16(0xFFFF);                   // return address
-    unsigned fp = s.pair(32) - m_localsSize;
+    unsigned fp = s.pair(32) - m_localsSize - 1;
     s.setPair(28, fp);                  // Y = frame pointer
     s.setPair(32, fp);
     while (s.pc != (int)m_insns.size()) {
@@ -498,7 +498,7 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
     s.setPair(30, key_address);     // Z = key
     s.push16(0xFFFF);               // return address
     s.push16(output_address);       // output address in a local variable
-    unsigned fp = s.pair(32) - m_localsSize;
+    unsigned fp = s.pair(32) - m_localsSize - 1;
     s.setPair(28, fp);              // Y = frame pointer
     s.setPair(32, fp);
     s.setPair(18, tweak);
@@ -529,7 +529,7 @@ void Code::exec_permutation
     unsigned state_address = s.alloc_buffer(state, state_len);
     s.setPair(30, state_address);   // Z = state
     s.push16(0xFFFF);               // return address
-    unsigned fp = s.pair(32) - m_localsSize;
+    unsigned fp = s.pair(32) - m_localsSize - 1;
     s.setPair(28, fp);              // Y = frame pointer
     s.setPair(32, fp);
     s.setPair(22, count);           // Pass the count parameter in r22:r23
@@ -567,7 +567,7 @@ void Code::exec_tinyjambu
     s.setPair(20, key_len / 4);     // key_words
     s.setPair(18, rounds / 128);    // TINYJAMBU_ROUNDS(rounds)
     s.push16(0xFFFF);               // return address
-    unsigned fp = s.pair(32) - m_localsSize;
+    unsigned fp = s.pair(32) - m_localsSize - 1;
     s.setPair(28, fp);              // Y = frame pointer
     s.setPair(32, fp);
     while (s.pc != (int)m_insns.size()) {

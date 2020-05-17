@@ -130,11 +130,12 @@ sliscp_light192_permute:
 	ldd r14,Z+23
 	push r31
 	push r30
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r24,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r24,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r24
 #endif
 	ldi r24,0

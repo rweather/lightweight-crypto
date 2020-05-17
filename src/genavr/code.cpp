@@ -2172,7 +2172,7 @@ void Code::prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds)
 void Code::load_output_ptr()
 {
     // The output pointer is after the locals within the stack frame.
-    ldy(Reg::x_ptr(), m_localsSize);
+    ldlocal(Reg::x_ptr(), m_localsSize);
 }
 
 /**

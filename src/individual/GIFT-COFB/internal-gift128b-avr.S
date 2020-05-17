@@ -145,158 +145,48 @@ gift128b_encrypt:
 	ldd r27,Z+1
 	ldd r24,Z+2
 	ldd r25,Z+3
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
 	ldd r26,Z+4
 	ldd r27,Z+5
 	ldd r24,Z+6
 	ldd r25,Z+7
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
 	ldd r26,Z+8
 	ldd r27,Z+9
 	ldd r24,Z+10
 	ldd r25,Z+11
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
 	ldd r26,Z+12
 	ldd r27,Z+13
 	ldd r24,Z+14
 	ldd r25,Z+15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r17,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	mov r16,r1
 46:
 	rcall 199f
-	ldd r0,Y+4
-	eor r8,r0
 	ldd r0,Y+5
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+6
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+7
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+12,r26
-	std Y+13,r27
-	std Y+14,r24
-	std Y+15,r25
-	ldd r26,Y+8
-	ldd r27,Y+9
-	ldd r24,Y+10
-	ldd r25,Y+11
-	rcall 199f
-	ld r0,Y
-	eor r8,r0
-	ldd r0,Y+1
-	eor r9,r0
-	ldd r0,Y+2
 	eor r10,r0
-	ldd r0,Y+3
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
-	ldd r26,Y+4
-	ldd r27,Y+5
-	ldd r24,Y+6
-	ldd r25,Y+7
-	rcall 199f
-	ldd r0,Y+12
-	eor r8,r0
-	ldd r0,Y+13
-	eor r9,r0
-	ldd r0,Y+14
-	eor r10,r0
-	ldd r0,Y+15
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
-	ld r26,Y
-	ldd r27,Y+1
-	ldd r24,Y+2
-	ldd r25,Y+3
-	rcall 199f
 	ldd r0,Y+8
-	eor r8,r0
-	ldd r0,Y+9
-	eor r9,r0
-	ldd r0,Y+10
-	eor r10,r0
-	ldd r0,Y+11
 	eor r11,r0
 	lsl r26
 	rol r27
@@ -318,14 +208,125 @@ gift128b_encrypt:
 	ror r24
 	ror r0
 	or r25,r0
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
-	ldd r26,Y+12
-	ldd r27,Y+13
-	ldd r24,Y+14
-	ldd r25,Y+15
+	std Y+13,r26
+	std Y+14,r27
+	std Y+15,r24
+	std Y+16,r25
+	ldd r26,Y+9
+	ldd r27,Y+10
+	ldd r24,Y+11
+	ldd r25,Y+12
+	rcall 199f
+	ldd r0,Y+1
+	eor r8,r0
+	ldd r0,Y+2
+	eor r9,r0
+	ldd r0,Y+3
+	eor r10,r0
+	ldd r0,Y+4
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
+	rcall 199f
+	ldd r0,Y+13
+	eor r8,r0
+	ldd r0,Y+14
+	eor r9,r0
+	ldd r0,Y+15
+	eor r10,r0
+	ldd r0,Y+16
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
+	ldd r26,Y+1
+	ldd r27,Y+2
+	ldd r24,Y+3
+	ldd r25,Y+4
+	rcall 199f
+	ldd r0,Y+9
+	eor r8,r0
+	ldd r0,Y+10
+	eor r9,r0
+	ldd r0,Y+11
+	eor r10,r0
+	ldd r0,Y+12
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r24,Y+15
+	ldd r25,Y+16
 	ldi r17,40
 	cpse r16,r17
 	rjmp 46b
@@ -694,8 +695,8 @@ gift128b_encrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	st X+,r3
 	st X+,r2
 	st X+,r23
@@ -794,158 +795,48 @@ gift128b_encrypt_preloaded:
 	ldd r27,Z+1
 	ldd r24,Z+2
 	ldd r25,Z+3
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
 	ldd r26,Z+4
 	ldd r27,Z+5
 	ldd r24,Z+6
 	ldd r25,Z+7
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
 	ldd r26,Z+8
 	ldd r27,Z+9
 	ldd r24,Z+10
 	ldd r25,Z+11
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
 	ldd r26,Z+12
 	ldd r27,Z+13
 	ldd r24,Z+14
 	ldd r25,Z+15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r17,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	mov r16,r1
 46:
 	rcall 199f
-	ldd r0,Y+4
-	eor r8,r0
 	ldd r0,Y+5
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+6
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+7
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+12,r26
-	std Y+13,r27
-	std Y+14,r24
-	std Y+15,r25
-	ldd r26,Y+8
-	ldd r27,Y+9
-	ldd r24,Y+10
-	ldd r25,Y+11
-	rcall 199f
-	ld r0,Y
-	eor r8,r0
-	ldd r0,Y+1
-	eor r9,r0
-	ldd r0,Y+2
 	eor r10,r0
-	ldd r0,Y+3
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
-	ldd r26,Y+4
-	ldd r27,Y+5
-	ldd r24,Y+6
-	ldd r25,Y+7
-	rcall 199f
-	ldd r0,Y+12
-	eor r8,r0
-	ldd r0,Y+13
-	eor r9,r0
-	ldd r0,Y+14
-	eor r10,r0
-	ldd r0,Y+15
-	eor r11,r0
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	lsl r26
-	rol r27
-	adc r26,r1
-	mov r0,r1
-	lsr r25
-	ror r24
-	ror r0
-	lsr r25
-	ror r24
-	ror r0
-	or r25,r0
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
-	ld r26,Y
-	ldd r27,Y+1
-	ldd r24,Y+2
-	ldd r25,Y+3
-	rcall 199f
 	ldd r0,Y+8
-	eor r8,r0
-	ldd r0,Y+9
-	eor r9,r0
-	ldd r0,Y+10
-	eor r10,r0
-	ldd r0,Y+11
 	eor r11,r0
 	lsl r26
 	rol r27
@@ -967,14 +858,125 @@ gift128b_encrypt_preloaded:
 	ror r24
 	ror r0
 	or r25,r0
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
-	ldd r26,Y+12
-	ldd r27,Y+13
-	ldd r24,Y+14
-	ldd r25,Y+15
+	std Y+13,r26
+	std Y+14,r27
+	std Y+15,r24
+	std Y+16,r25
+	ldd r26,Y+9
+	ldd r27,Y+10
+	ldd r24,Y+11
+	ldd r25,Y+12
+	rcall 199f
+	ldd r0,Y+1
+	eor r8,r0
+	ldd r0,Y+2
+	eor r9,r0
+	ldd r0,Y+3
+	eor r10,r0
+	ldd r0,Y+4
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
+	rcall 199f
+	ldd r0,Y+13
+	eor r8,r0
+	ldd r0,Y+14
+	eor r9,r0
+	ldd r0,Y+15
+	eor r10,r0
+	ldd r0,Y+16
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
+	ldd r26,Y+1
+	ldd r27,Y+2
+	ldd r24,Y+3
+	ldd r25,Y+4
+	rcall 199f
+	ldd r0,Y+9
+	eor r8,r0
+	ldd r0,Y+10
+	eor r9,r0
+	ldd r0,Y+11
+	eor r10,r0
+	ldd r0,Y+12
+	eor r11,r0
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	lsl r26
+	rol r27
+	adc r26,r1
+	mov r0,r1
+	lsr r25
+	ror r24
+	ror r0
+	lsr r25
+	ror r24
+	ror r0
+	or r25,r0
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r24,Y+15
+	ldd r25,Y+16
 	ldi r17,40
 	cpse r16,r17
 	rjmp 46b
@@ -1343,8 +1345,8 @@ gift128b_encrypt_preloaded:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	st X+,r22
 	st X+,r23
 	st X+,r2
@@ -1459,10 +1461,10 @@ gift128b_decrypt:
 	ror r24
 	ror r0
 	or r25,r0
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
 	ldd r26,Z+4
 	ldd r27,Z+5
 	ldd r24,Z+6
@@ -1484,10 +1486,10 @@ gift128b_decrypt:
 	ror r24
 	ror r0
 	or r25,r0
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
 	ldd r26,Z+8
 	ldd r27,Z+9
 	ldd r24,Z+10
@@ -1509,10 +1511,10 @@ gift128b_decrypt:
 	ror r24
 	ror r0
 	or r25,r0
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
 	ldd r26,Z+12
 	ldd r27,Z+13
 	ldd r24,Z+14
@@ -1534,68 +1536,69 @@ gift128b_decrypt:
 	ror r24
 	ror r0
 	or r25,r0
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r17,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r17,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r17
 #endif
 	ldi r16,40
 114:
-	ldd r0,Y+8
-	eor r8,r0
 	ldd r0,Y+9
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+10
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+11
-	eor r11,r0
-	std Y+12,r26
-	std Y+13,r27
-	std Y+14,r24
-	std Y+15,r25
-	ld r26,Y
-	ldd r27,Y+1
-	ldd r24,Y+2
-	ldd r25,Y+3
-	mov r0,r1
-	lsr r27
-	ror r26
-	ror r0
-	lsr r27
-	ror r26
-	ror r0
-	lsr r27
-	ror r26
-	ror r0
-	lsr r27
-	ror r26
-	ror r0
-	or r27,r0
-	lsl r24
-	rol r25
-	adc r24,r1
-	lsl r24
-	rol r25
-	adc r24,r1
-	rcall 266f
+	eor r10,r0
 	ldd r0,Y+12
-	eor r8,r0
+	eor r11,r0
+	std Y+13,r26
+	std Y+14,r27
+	std Y+15,r24
+	std Y+16,r25
+	ldd r26,Y+1
+	ldd r27,Y+2
+	ldd r24,Y+3
+	ldd r25,Y+4
+	mov r0,r1
+	lsr r27
+	ror r26
+	ror r0
+	lsr r27
+	ror r26
+	ror r0
+	lsr r27
+	ror r26
+	ror r0
+	lsr r27
+	ror r26
+	ror r0
+	or r27,r0
+	lsl r24
+	rol r25
+	adc r24,r1
+	lsl r24
+	rol r25
+	adc r24,r1
+	rcall 266f
 	ldd r0,Y+13
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+14
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+15
+	eor r10,r0
+	ldd r0,Y+16
 	eor r11,r0
-	st Y,r26
-	std Y+1,r27
-	std Y+2,r24
-	std Y+3,r25
-	ldd r26,Y+4
-	ldd r27,Y+5
-	ldd r24,Y+6
-	ldd r25,Y+7
+	std Y+1,r26
+	std Y+2,r27
+	std Y+3,r24
+	std Y+4,r25
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
 	mov r0,r1
 	lsr r27
 	ror r26
@@ -1617,22 +1620,22 @@ gift128b_decrypt:
 	rol r25
 	adc r24,r1
 	rcall 266f
-	ld r0,Y
-	eor r8,r0
 	ldd r0,Y+1
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+2
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+3
+	eor r10,r0
+	ldd r0,Y+4
 	eor r11,r0
-	std Y+4,r26
-	std Y+5,r27
-	std Y+6,r24
-	std Y+7,r25
-	ldd r26,Y+8
-	ldd r27,Y+9
-	ldd r24,Y+10
-	ldd r25,Y+11
+	std Y+5,r26
+	std Y+6,r27
+	std Y+7,r24
+	std Y+8,r25
+	ldd r26,Y+9
+	ldd r27,Y+10
+	ldd r24,Y+11
+	ldd r25,Y+12
 	mov r0,r1
 	lsr r27
 	ror r26
@@ -1654,22 +1657,22 @@ gift128b_decrypt:
 	rol r25
 	adc r24,r1
 	rcall 266f
-	ldd r0,Y+4
-	eor r8,r0
 	ldd r0,Y+5
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+6
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+7
+	eor r10,r0
+	ldd r0,Y+8
 	eor r11,r0
-	std Y+8,r26
-	std Y+9,r27
-	std Y+10,r24
-	std Y+11,r25
-	ldd r26,Y+12
-	ldd r27,Y+13
-	ldd r24,Y+14
-	ldd r25,Y+15
+	std Y+9,r26
+	std Y+10,r27
+	std Y+11,r24
+	std Y+12,r25
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r24,Y+15
+	ldd r25,Y+16
 	mov r0,r1
 	lsr r27
 	ror r26
@@ -2054,8 +2057,8 @@ gift128b_decrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+16
-	ldd r27,Y+17
+	ldd r26,Y+17
+	ldd r27,Y+18
 	st X+,r3
 	st X+,r2
 	st X+,r23

@@ -56,10 +56,10 @@ cham128_128_encrypt:
 	eor r19,r22
 	eor r20,r23
 	eor r21,r24
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
 	lsl r6
 	rol r7
 	rol r8
@@ -74,10 +74,10 @@ cham128_128_encrypt:
 	eor r3,r6
 	eor r4,r7
 	eor r5,r8
-	std Y+20,r2
-	std Y+21,r3
-	std Y+22,r4
-	std Y+23,r5
+	std Y+21,r2
+	std Y+22,r3
+	std Y+23,r4
+	std Y+24,r5
 	ldd r18,Z+4
 	ldd r19,Z+5
 	ldd r20,Z+6
@@ -101,10 +101,10 @@ cham128_128_encrypt:
 	eor r19,r22
 	eor r20,r23
 	eor r21,r24
-	std Y+4,r18
-	std Y+5,r19
-	std Y+6,r20
-	std Y+7,r21
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
 	lsl r6
 	rol r7
 	rol r8
@@ -119,10 +119,10 @@ cham128_128_encrypt:
 	eor r3,r6
 	eor r4,r7
 	eor r5,r8
-	std Y+16,r2
-	std Y+17,r3
-	std Y+18,r4
-	std Y+19,r5
+	std Y+17,r2
+	std Y+18,r3
+	std Y+19,r4
+	std Y+20,r5
 	ldd r18,Z+8
 	ldd r19,Z+9
 	ldd r20,Z+10
@@ -146,10 +146,10 @@ cham128_128_encrypt:
 	eor r19,r22
 	eor r20,r23
 	eor r21,r24
-	std Y+8,r18
-	std Y+9,r19
-	std Y+10,r20
-	std Y+11,r21
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
 	lsl r6
 	rol r7
 	rol r8
@@ -164,10 +164,10 @@ cham128_128_encrypt:
 	eor r3,r6
 	eor r4,r7
 	eor r5,r8
-	std Y+28,r2
-	std Y+29,r3
-	std Y+30,r4
-	std Y+31,r5
+	std Y+29,r2
+	std Y+30,r3
+	std Y+31,r4
+	std Y+32,r5
 	ldd r18,Z+12
 	ldd r19,Z+13
 	ldd r20,Z+14
@@ -191,10 +191,10 @@ cham128_128_encrypt:
 	eor r19,r22
 	eor r20,r23
 	eor r21,r24
-	std Y+12,r18
-	std Y+13,r19
-	std Y+14,r20
-	std Y+15,r21
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
 	lsl r6
 	rol r7
 	rol r8
@@ -209,10 +209,10 @@ cham128_128_encrypt:
 	eor r3,r6
 	eor r4,r7
 	eor r5,r8
-	std Y+24,r2
-	std Y+25,r3
-	std Y+26,r4
-	std Y+27,r5
+	std Y+25,r2
+	std Y+26,r3
+	std Y+27,r4
+	std Y+28,r5
 	ld r19,X+
 	ld r20,X+
 	ld r21,X+
@@ -239,13 +239,13 @@ cham128_128_encrypt:
 	rol r12
 	rol r13
 	adc r10,r1
-	ld r0,Y
-	eor r10,r0
 	ldd r0,Y+1
-	eor r11,r0
+	eor r10,r0
 	ldd r0,Y+2
-	eor r12,r0
+	eor r11,r0
 	ldd r0,Y+3
+	eor r12,r0
+	ldd r0,Y+4
 	eor r13,r0
 	add r19,r10
 	adc r20,r11
@@ -258,10 +258,10 @@ cham128_128_encrypt:
 	mov r4,r3
 	mov r3,r2
 	mov r2,r0
-	ldd r10,Y+4
-	ldd r11,Y+5
-	ldd r12,Y+6
-	ldd r13,Y+7
+	ldd r10,Y+5
+	ldd r11,Y+6
+	ldd r12,Y+7
+	ldd r13,Y+8
 	eor r10,r2
 	eor r11,r3
 	eor r12,r4
@@ -284,13 +284,13 @@ cham128_128_encrypt:
 	rol r12
 	rol r13
 	adc r10,r1
-	ldd r0,Y+8
-	eor r10,r0
 	ldd r0,Y+9
-	eor r11,r0
+	eor r10,r0
 	ldd r0,Y+10
-	eor r12,r0
+	eor r11,r0
 	ldd r0,Y+11
+	eor r12,r0
+	ldd r0,Y+12
 	eor r13,r0
 	add r3,r10
 	adc r4,r11
@@ -303,10 +303,10 @@ cham128_128_encrypt:
 	mov r20,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r10,Y+12
-	ldd r11,Y+13
-	ldd r12,Y+14
-	ldd r13,Y+15
+	ldd r10,Y+13
+	ldd r11,Y+14
+	ldd r12,Y+15
+	ldd r13,Y+16
 	eor r10,r18
 	eor r11,r19
 	eor r12,r20
@@ -329,13 +329,13 @@ cham128_128_encrypt:
 	rol r12
 	rol r13
 	adc r10,r1
-	ldd r0,Y+16
-	eor r10,r0
 	ldd r0,Y+17
-	eor r11,r0
+	eor r10,r0
 	ldd r0,Y+18
-	eor r12,r0
+	eor r11,r0
 	ldd r0,Y+19
+	eor r12,r0
+	ldd r0,Y+20
 	eor r13,r0
 	add r19,r10
 	adc r20,r11
@@ -348,10 +348,10 @@ cham128_128_encrypt:
 	mov r4,r3
 	mov r3,r2
 	mov r2,r0
-	ldd r10,Y+20
-	ldd r11,Y+21
-	ldd r12,Y+22
-	ldd r13,Y+23
+	ldd r10,Y+21
+	ldd r11,Y+22
+	ldd r12,Y+23
+	ldd r13,Y+24
 	eor r10,r2
 	eor r11,r3
 	eor r12,r4
@@ -374,13 +374,13 @@ cham128_128_encrypt:
 	rol r12
 	rol r13
 	adc r10,r1
-	ldd r0,Y+24
-	eor r10,r0
 	ldd r0,Y+25
-	eor r11,r0
+	eor r10,r0
 	ldd r0,Y+26
-	eor r12,r0
+	eor r11,r0
 	ldd r0,Y+27
+	eor r12,r0
+	ldd r0,Y+28
 	eor r13,r0
 	add r3,r10
 	adc r4,r11
@@ -393,10 +393,10 @@ cham128_128_encrypt:
 	mov r20,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r10,Y+28
-	ldd r11,Y+29
-	ldd r12,Y+30
-	ldd r13,Y+31
+	ldd r10,Y+29
+	ldd r11,Y+30
+	ldd r12,Y+31
+	ldd r13,Y+32
 	eor r10,r18
 	eor r11,r19
 	eor r12,r20
@@ -414,8 +414,8 @@ cham128_128_encrypt:
 	ldi r31,80
 	cpse r30,r31
 	rjmp 197b
-	ldd r26,Y+32
-	ldd r27,Y+33
+	ldd r26,Y+33
+	ldd r27,Y+34
 	st X+,r19
 	st X+,r20
 	st X+,r21
@@ -488,8 +488,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	st Y,r18
-	std Y+1,r19
+	std Y+1,r18
+	std Y+2,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -498,8 +498,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+18,r22
-	std Y+19,r23
+	std Y+19,r22
+	std Y+20,r23
 	ldd r18,Z+2
 	ldd r19,Z+3
 	movw r20,r18
@@ -512,8 +512,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+2,r18
-	std Y+3,r19
+	std Y+3,r18
+	std Y+4,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -522,8 +522,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+16,r22
-	std Y+17,r23
+	std Y+17,r22
+	std Y+18,r23
 	ldd r18,Z+4
 	ldd r19,Z+5
 	movw r20,r18
@@ -536,8 +536,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+4,r18
-	std Y+5,r19
+	std Y+5,r18
+	std Y+6,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -546,8 +546,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+22,r22
-	std Y+23,r23
+	std Y+23,r22
+	std Y+24,r23
 	ldd r18,Z+6
 	ldd r19,Z+7
 	movw r20,r18
@@ -560,8 +560,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+6,r18
-	std Y+7,r19
+	std Y+7,r18
+	std Y+8,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -570,8 +570,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+20,r22
-	std Y+21,r23
+	std Y+21,r22
+	std Y+22,r23
 	ldd r18,Z+8
 	ldd r19,Z+9
 	movw r20,r18
@@ -584,8 +584,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+8,r18
-	std Y+9,r19
+	std Y+9,r18
+	std Y+10,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -594,8 +594,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+26,r22
-	std Y+27,r23
+	std Y+27,r22
+	std Y+28,r23
 	ldd r18,Z+10
 	ldd r19,Z+11
 	movw r20,r18
@@ -608,8 +608,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+10,r18
-	std Y+11,r19
+	std Y+11,r18
+	std Y+12,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -618,8 +618,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+24,r22
-	std Y+25,r23
+	std Y+25,r22
+	std Y+26,r23
 	ldd r18,Z+12
 	ldd r19,Z+13
 	movw r20,r18
@@ -632,8 +632,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+12,r18
-	std Y+13,r19
+	std Y+13,r18
+	std Y+14,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -642,8 +642,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+30,r22
-	std Y+31,r23
+	std Y+31,r22
+	std Y+32,r23
 	ldd r18,Z+14
 	ldd r19,Z+15
 	movw r20,r18
@@ -656,8 +656,8 @@ cham64_128_encrypt:
 	movw r22,r18
 	eor r18,r21
 	eor r19,r20
-	std Y+14,r18
-	std Y+15,r19
+	std Y+15,r18
+	std Y+16,r19
 	lsl r24
 	rol r25
 	adc r24,r1
@@ -666,8 +666,8 @@ cham64_128_encrypt:
 	adc r24,r1
 	eor r22,r25
 	eor r23,r24
-	std Y+28,r22
-	std Y+29,r23
+	std Y+29,r22
+	std Y+30,r23
 	ld r19,X+
 	ld r18,X+
 	ld r20,X+
@@ -683,9 +683,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ld r0,Y
-	eor r30,r0
 	ldd r0,Y+1
+	eor r30,r0
+	ldd r0,Y+2
 	eor r31,r0
 	add r19,r30
 	adc r18,r31
@@ -694,8 +694,8 @@ cham64_128_encrypt:
 	mov r0,r23
 	mov r23,r22
 	mov r22,r0
-	ldd r30,Y+2
-	ldd r31,Y+3
+	ldd r30,Y+3
+	ldd r31,Y+4
 	eor r30,r22
 	eor r31,r23
 	add r20,r30
@@ -709,9 +709,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+4
-	eor r30,r0
 	ldd r0,Y+5
+	eor r30,r0
+	ldd r0,Y+6
 	eor r31,r0
 	add r23,r30
 	adc r22,r31
@@ -720,8 +720,8 @@ cham64_128_encrypt:
 	mov r0,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r30,Y+6
-	ldd r31,Y+7
+	ldd r30,Y+7
+	ldd r31,Y+8
 	eor r30,r18
 	eor r31,r19
 	add r24,r30
@@ -735,9 +735,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+8
-	eor r30,r0
 	ldd r0,Y+9
+	eor r30,r0
+	ldd r0,Y+10
 	eor r31,r0
 	add r19,r30
 	adc r18,r31
@@ -746,8 +746,8 @@ cham64_128_encrypt:
 	mov r0,r23
 	mov r23,r22
 	mov r22,r0
-	ldd r30,Y+10
-	ldd r31,Y+11
+	ldd r30,Y+11
+	ldd r31,Y+12
 	eor r30,r22
 	eor r31,r23
 	add r20,r30
@@ -761,9 +761,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+12
-	eor r30,r0
 	ldd r0,Y+13
+	eor r30,r0
+	ldd r0,Y+14
 	eor r31,r0
 	add r23,r30
 	adc r22,r31
@@ -772,8 +772,8 @@ cham64_128_encrypt:
 	mov r0,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r30,Y+14
-	ldd r31,Y+15
+	ldd r30,Y+15
+	ldd r31,Y+16
 	eor r30,r18
 	eor r31,r19
 	add r24,r30
@@ -787,9 +787,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+16
-	eor r30,r0
 	ldd r0,Y+17
+	eor r30,r0
+	ldd r0,Y+18
 	eor r31,r0
 	add r19,r30
 	adc r18,r31
@@ -798,8 +798,8 @@ cham64_128_encrypt:
 	mov r0,r23
 	mov r23,r22
 	mov r22,r0
-	ldd r30,Y+18
-	ldd r31,Y+19
+	ldd r30,Y+19
+	ldd r31,Y+20
 	eor r30,r22
 	eor r31,r23
 	add r20,r30
@@ -813,9 +813,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+20
-	eor r30,r0
 	ldd r0,Y+21
+	eor r30,r0
+	ldd r0,Y+22
 	eor r31,r0
 	add r23,r30
 	adc r22,r31
@@ -824,8 +824,8 @@ cham64_128_encrypt:
 	mov r0,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r30,Y+22
-	ldd r31,Y+23
+	ldd r30,Y+23
+	ldd r31,Y+24
 	eor r30,r18
 	eor r31,r19
 	add r24,r30
@@ -839,9 +839,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+24
-	eor r30,r0
 	ldd r0,Y+25
+	eor r30,r0
+	ldd r0,Y+26
 	eor r31,r0
 	add r19,r30
 	adc r18,r31
@@ -850,8 +850,8 @@ cham64_128_encrypt:
 	mov r0,r23
 	mov r23,r22
 	mov r22,r0
-	ldd r30,Y+26
-	ldd r31,Y+27
+	ldd r30,Y+27
+	ldd r31,Y+28
 	eor r30,r22
 	eor r31,r23
 	add r20,r30
@@ -865,9 +865,9 @@ cham64_128_encrypt:
 	lsl r30
 	rol r31
 	adc r30,r1
-	ldd r0,Y+28
-	eor r30,r0
 	ldd r0,Y+29
+	eor r30,r0
+	ldd r0,Y+30
 	eor r31,r0
 	add r23,r30
 	adc r22,r31
@@ -876,8 +876,8 @@ cham64_128_encrypt:
 	mov r0,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r30,Y+30
-	ldd r31,Y+31
+	ldd r30,Y+31
+	ldd r31,Y+32
 	eor r30,r18
 	eor r31,r19
 	add r24,r30
@@ -889,8 +889,8 @@ cham64_128_encrypt:
 	ldi r17,80
 	cpse r16,r17
 	rjmp 201b
-	ldd r26,Y+32
-	ldd r27,Y+33
+	ldd r26,Y+33
+	ldd r27,Y+34
 	st X+,r19
 	st X+,r18
 	st X+,r20

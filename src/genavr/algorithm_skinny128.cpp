@@ -125,20 +125,20 @@ static void skinny128_permute_tk(Code &code, unsigned offset, bool with_lfsr)
     // care about what used to be the second half - now the first.
     Reg row2 = code.allocateReg(4);
     Reg row3 = code.allocateReg(4);
-    code.ldy(row2, offset);
-    code.ldy(row3, offset + 4);
+    code.ldlocal(row2, offset);
+    code.ldlocal(row3, offset + 4);
     if (with_lfsr) {
         code.sbox_lookup(row2, row2);
         code.sbox_lookup(row3, row3);
     }
-    code.memory(Insn::ST_Y, row2.reg(1), offset);       // 9
-    code.memory(Insn::ST_Y, row3.reg(3), offset + 1);   // 15
-    code.memory(Insn::ST_Y, row2.reg(0), offset + 2);   // 8
-    code.memory(Insn::ST_Y, row3.reg(1), offset + 3);   // 13
-    code.memory(Insn::ST_Y, row2.reg(2), offset + 4);   // 10
-    code.memory(Insn::ST_Y, row3.reg(2), offset + 5);   // 14
-    code.memory(Insn::ST_Y, row3.reg(0), offset + 6);   // 12
-    code.memory(Insn::ST_Y, row2.reg(3), offset + 7);   // 11
+    code.memory(Insn::ST_Y, row2.reg(1), 1 + offset);       // 9
+    code.memory(Insn::ST_Y, row3.reg(3), 1 + offset + 1);   // 15
+    code.memory(Insn::ST_Y, row2.reg(0), 1 + offset + 2);   // 8
+    code.memory(Insn::ST_Y, row3.reg(1), 1 + offset + 3);   // 13
+    code.memory(Insn::ST_Y, row2.reg(2), 1 + offset + 4);   // 10
+    code.memory(Insn::ST_Y, row3.reg(2), 1 + offset + 5);   // 14
+    code.memory(Insn::ST_Y, row3.reg(0), 1 + offset + 6);   // 12
+    code.memory(Insn::ST_Y, row2.reg(3), 1 + offset + 7);   // 11
     code.releaseReg(row2);
     code.releaseReg(row3);
 }
@@ -153,20 +153,20 @@ static void skinny128_inv_permute_tk
     // care about what used to be the first half - now the second.
     Reg row0 = code.allocateReg(4);
     Reg row1 = code.allocateReg(4);
-    code.ldy(row0, offset);
-    code.ldy(row1, offset + 4);
+    code.ldlocal(row0, offset);
+    code.ldlocal(row1, offset + 4);
     if (with_lfsr) {
         code.sbox_lookup(row0, row0);
         code.sbox_lookup(row1, row1);
     }
-    code.memory(Insn::ST_Y, row0.reg(2), offset);       // 2
-    code.memory(Insn::ST_Y, row0.reg(0), offset + 1);   // 0
-    code.memory(Insn::ST_Y, row1.reg(0), offset + 2);   // 4
-    code.memory(Insn::ST_Y, row1.reg(3), offset + 3);   // 7
-    code.memory(Insn::ST_Y, row1.reg(2), offset + 4);   // 6
-    code.memory(Insn::ST_Y, row0.reg(3), offset + 5);   // 3
-    code.memory(Insn::ST_Y, row1.reg(1), offset + 6);   // 5
-    code.memory(Insn::ST_Y, row0.reg(1), offset + 7);   // 1
+    code.memory(Insn::ST_Y, row0.reg(2), 1 + offset);       // 2
+    code.memory(Insn::ST_Y, row0.reg(0), 1 + offset + 1);   // 0
+    code.memory(Insn::ST_Y, row1.reg(0), 1 + offset + 2);   // 4
+    code.memory(Insn::ST_Y, row1.reg(3), 1 + offset + 3);   // 7
+    code.memory(Insn::ST_Y, row1.reg(2), 1 + offset + 4);   // 6
+    code.memory(Insn::ST_Y, row0.reg(3), 1 + offset + 5);   // 3
+    code.memory(Insn::ST_Y, row1.reg(1), 1 + offset + 6);   // 5
+    code.memory(Insn::ST_Y, row0.reg(1), 1 + offset + 7);   // 1
     code.releaseReg(row0);
     code.releaseReg(row1);
 }
@@ -181,22 +181,22 @@ static void skinny128_apply_lfsr(Code &code, int offset, int rounds)
     // Deal with the left half of the TK value.
     label = 0;
     code.move(round, rounds / 2);
-    code.ldy(temp, offset);
+    code.ldlocal(temp, offset);
     code.label(label);
     code.sbox_lookup(temp, temp);
     code.dec(round);
     code.brne(label);
-    code.sty(temp, offset);
+    code.stlocal(temp, offset);
 
     // Deal with the right half of the TK value.
     label = 0;
     code.move(round, rounds / 2);
-    code.ldy(temp, offset + 8);
+    code.ldlocal(temp, offset + 8);
     code.label(label);
     code.sbox_lookup(temp, temp);
     code.dec(round);
     code.brne(label);
-    code.sty(temp, offset + 8);
+    code.stlocal(temp, offset + 8);
 
     // Clean up.
     code.releaseReg(round);
@@ -241,7 +241,7 @@ static void gen_skinny128_encrypt(Code &code, const char *name, int ks_size)
     // Copy the key schedule to local variables.
     for (int offset = 0; offset < ks_size; offset += 4) {
         code.ldz(s0, offset);
-        code.sty(s0, offset);
+        code.stlocal(s0, offset);
     }
 
     // Load the input state from X into registers.
@@ -288,17 +288,17 @@ static void gen_skinny128_encrypt(Code &code, const char *name, int ks_size)
 
         // XOR the subkeys for this round.
         if (ks_size == 48) {
-            code.ldy_xor(s0, shift + 0);    // TK1[0]
-            code.ldy_xor(s0, shift + 16);   // TK2[0]
-            code.ldy_xor(s0, shift + 32);   // TK3[0]
-            code.ldy_xor(s1, shift + 4);    // TK1[1]
-            code.ldy_xor(s1, shift + 20);   // TK2[1]
-            code.ldy_xor(s1, shift + 36);   // TK3[1]
+            code.ldlocal_xor(s0, shift + 0);    // TK1[0]
+            code.ldlocal_xor(s0, shift + 16);   // TK2[0]
+            code.ldlocal_xor(s0, shift + 32);   // TK3[0]
+            code.ldlocal_xor(s1, shift + 4);    // TK1[1]
+            code.ldlocal_xor(s1, shift + 20);   // TK2[1]
+            code.ldlocal_xor(s1, shift + 36);   // TK3[1]
         } else {
-            code.ldy_xor(s0, shift + 0);    // TK1[0]
-            code.ldy_xor(s0, shift + 16);   // TK2[0]
-            code.ldy_xor(s1, shift + 4);    // TK1[1]
-            code.ldy_xor(s1, shift + 20);   // TK2[1]
+            code.ldlocal_xor(s0, shift + 0);    // TK1[0]
+            code.ldlocal_xor(s0, shift + 16);   // TK2[0]
+            code.ldlocal_xor(s1, shift + 4);    // TK1[1]
+            code.ldlocal_xor(s1, shift + 20);   // TK2[1]
         }
 
         // Shift the cells in the rows.
@@ -378,28 +378,28 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
         code.ldz(s3, offset + 12);
         if (ks_size == 48) {
             // Apply the permutation as we store the TK value to locals.
-            code.sty(Reg(s1, 1, 1), offset);        // 5
-            code.sty(Reg(s1, 2, 1), offset + 1);    // 6
-            code.sty(Reg(s0, 3, 1), offset + 2);    // 3
-            code.sty(Reg(s0, 2, 1), offset + 3);    // 2
-            code.sty(Reg(s1, 3, 1), offset + 4);    // 7
-            code.sty(Reg(s0, 0, 1), offset + 5);    // 0
-            code.sty(Reg(s0, 1, 1), offset + 6);    // 1
-            code.sty(Reg(s1, 0, 1), offset + 7);    // 4
-            code.sty(Reg(s3, 1, 1), offset + 8);    // 13
-            code.sty(Reg(s3, 2, 1), offset + 9);    // 14
-            code.sty(Reg(s2, 3, 1), offset + 10);   // 11
-            code.sty(Reg(s2, 2, 1), offset + 11);   // 10
-            code.sty(Reg(s3, 3, 1), offset + 12);   // 15
-            code.sty(Reg(s2, 0, 1), offset + 13);   // 8
-            code.sty(Reg(s2, 1, 1), offset + 14);   // 9
-            code.sty(Reg(s3, 0, 1), offset + 15);   // 12
+            code.stlocal(Reg(s1, 1, 1), offset);        // 5
+            code.stlocal(Reg(s1, 2, 1), offset + 1);    // 6
+            code.stlocal(Reg(s0, 3, 1), offset + 2);    // 3
+            code.stlocal(Reg(s0, 2, 1), offset + 3);    // 2
+            code.stlocal(Reg(s1, 3, 1), offset + 4);    // 7
+            code.stlocal(Reg(s0, 0, 1), offset + 5);    // 0
+            code.stlocal(Reg(s0, 1, 1), offset + 6);    // 1
+            code.stlocal(Reg(s1, 0, 1), offset + 7);    // 4
+            code.stlocal(Reg(s3, 1, 1), offset + 8);    // 13
+            code.stlocal(Reg(s3, 2, 1), offset + 9);    // 14
+            code.stlocal(Reg(s2, 3, 1), offset + 10);   // 11
+            code.stlocal(Reg(s2, 2, 1), offset + 11);   // 10
+            code.stlocal(Reg(s3, 3, 1), offset + 12);   // 15
+            code.stlocal(Reg(s2, 0, 1), offset + 13);   // 8
+            code.stlocal(Reg(s2, 1, 1), offset + 14);   // 9
+            code.stlocal(Reg(s3, 0, 1), offset + 15);   // 12
         } else {
             // Copy the value as-is for SKINNY-128-256.
-            code.sty(s0, offset);
-            code.sty(s1, offset + 4);
-            code.sty(s2, offset + 8);
-            code.sty(s3, offset + 12);
+            code.stlocal(s0, offset);
+            code.stlocal(s1, offset + 4);
+            code.stlocal(s2, offset + 8);
+            code.stlocal(s3, offset + 12);
         }
     }
 
@@ -465,17 +465,17 @@ static void gen_skinny128_decrypt(Code &code, const char *name, int ks_size)
 
         // XOR the subkeys for this round.
         if (ks_size == 48) {
-            code.ldy_xor(s0, shift + 0);        // TK1[0]
-            code.ldy_xor(s0, shift + 16);       // TK2[0]
-            code.ldy_xor(s0, shift + 32);       // TK3[0]
-            code.ldy_xor(s1, shift + 4);        // TK1[1]
-            code.ldy_xor(s1, shift + 20);       // TK2[1]
-            code.ldy_xor(s1, shift + 36);       // TK3[1]
+            code.ldlocal_xor(s0, shift + 0);        // TK1[0]
+            code.ldlocal_xor(s0, shift + 16);       // TK2[0]
+            code.ldlocal_xor(s0, shift + 32);       // TK3[0]
+            code.ldlocal_xor(s1, shift + 4);        // TK1[1]
+            code.ldlocal_xor(s1, shift + 20);       // TK2[1]
+            code.ldlocal_xor(s1, shift + 36);       // TK3[1]
         } else {
-            code.ldy_xor(s0, shift + 0);        // TK1[0]
-            code.ldy_xor(s0, shift + 16);       // TK2[0]
-            code.ldy_xor(s1, shift + 4);        // TK1[1]
-            code.ldy_xor(s1, shift + 20);       // TK2[1]
+            code.ldlocal_xor(s0, shift + 0);        // TK1[0]
+            code.ldlocal_xor(s0, shift + 16);       // TK2[0]
+            code.ldlocal_xor(s1, shift + 4);        // TK1[1]
+            code.ldlocal_xor(s1, shift + 20);       // TK2[1]
         }
 
         // XOR the round constant for this round.

@@ -1229,98 +1229,98 @@ skinny_128_384_encrypt:
 	ldd r19,Z+1
 	ldd r20,Z+2
 	ldd r21,Z+3
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
 	ldd r18,Z+4
 	ldd r19,Z+5
 	ldd r20,Z+6
 	ldd r21,Z+7
-	std Y+4,r18
-	std Y+5,r19
-	std Y+6,r20
-	std Y+7,r21
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
 	ldd r18,Z+8
 	ldd r19,Z+9
 	ldd r20,Z+10
 	ldd r21,Z+11
-	std Y+8,r18
-	std Y+9,r19
-	std Y+10,r20
-	std Y+11,r21
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
 	ldd r18,Z+12
 	ldd r19,Z+13
 	ldd r20,Z+14
 	ldd r21,Z+15
-	std Y+12,r18
-	std Y+13,r19
-	std Y+14,r20
-	std Y+15,r21
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
 	ldd r18,Z+16
 	ldd r19,Z+17
 	ldd r20,Z+18
 	ldd r21,Z+19
-	std Y+16,r18
-	std Y+17,r19
-	std Y+18,r20
-	std Y+19,r21
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r20
+	std Y+20,r21
 	ldd r18,Z+20
 	ldd r19,Z+21
 	ldd r20,Z+22
 	ldd r21,Z+23
-	std Y+20,r18
-	std Y+21,r19
-	std Y+22,r20
-	std Y+23,r21
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r20
+	std Y+24,r21
 	ldd r18,Z+24
 	ldd r19,Z+25
 	ldd r20,Z+26
 	ldd r21,Z+27
-	std Y+24,r18
-	std Y+25,r19
-	std Y+26,r20
-	std Y+27,r21
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r20
+	std Y+28,r21
 	ldd r18,Z+28
 	ldd r19,Z+29
 	ldd r20,Z+30
 	ldd r21,Z+31
-	std Y+28,r18
-	std Y+29,r19
-	std Y+30,r20
-	std Y+31,r21
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r20
+	std Y+32,r21
 	ldd r18,Z+32
 	ldd r19,Z+33
 	ldd r20,Z+34
 	ldd r21,Z+35
-	std Y+32,r18
-	std Y+33,r19
-	std Y+34,r20
-	std Y+35,r21
+	std Y+33,r18
+	std Y+34,r19
+	std Y+35,r20
+	std Y+36,r21
 	ldd r18,Z+36
 	ldd r19,Z+37
 	ldd r20,Z+38
 	ldd r21,Z+39
-	std Y+36,r18
-	std Y+37,r19
-	std Y+38,r20
-	std Y+39,r21
+	std Y+37,r18
+	std Y+38,r19
+	std Y+39,r20
+	std Y+40,r21
 	ldd r18,Z+40
 	ldd r19,Z+41
 	ldd r20,Z+42
 	ldd r21,Z+43
-	std Y+40,r18
-	std Y+41,r19
-	std Y+42,r20
-	std Y+43,r21
+	std Y+41,r18
+	std Y+42,r19
+	std Y+43,r20
+	std Y+44,r21
 	ldd r18,Z+44
 	ldd r19,Z+45
 	ldd r20,Z+46
 	ldd r21,Z+47
-	std Y+44,r18
-	std Y+45,r19
-	std Y+46,r20
-	std Y+47,r21
+	std Y+45,r18
+	std Y+46,r19
+	std Y+47,r20
+	std Y+48,r21
 	ld r18,X+
 	ld r19,X+
 	ld r20,X+
@@ -1337,11 +1337,12 @@ skinny_128_384_encrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r26,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	mov r26,r1
@@ -1522,6 +1523,7 @@ skinny_128_384_encrypt:
 	lpm
 	mov r11,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -1555,53 +1557,53 @@ skinny_128_384_encrypt:
 	inc r26
 	ldi r27,2
 	eor r4,r27
-	ld r0,Y
-	eor r18,r0
 	ldd r0,Y+1
-	eor r19,r0
+	eor r18,r0
 	ldd r0,Y+2
-	eor r20,r0
+	eor r19,r0
 	ldd r0,Y+3
-	eor r21,r0
-	ldd r0,Y+16
-	eor r18,r0
-	ldd r0,Y+17
-	eor r19,r0
-	ldd r0,Y+18
 	eor r20,r0
-	ldd r0,Y+19
-	eor r21,r0
-	ldd r0,Y+32
-	eor r18,r0
-	ldd r0,Y+33
-	eor r19,r0
-	ldd r0,Y+34
-	eor r20,r0
-	ldd r0,Y+35
-	eor r21,r0
 	ldd r0,Y+4
-	eor r22,r0
-	ldd r0,Y+5
-	eor r23,r0
-	ldd r0,Y+6
-	eor r2,r0
-	ldd r0,Y+7
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+17
+	eor r18,r0
+	ldd r0,Y+18
+	eor r19,r0
+	ldd r0,Y+19
+	eor r20,r0
 	ldd r0,Y+20
-	eor r22,r0
-	ldd r0,Y+21
-	eor r23,r0
-	ldd r0,Y+22
-	eor r2,r0
-	ldd r0,Y+23
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+33
+	eor r18,r0
+	ldd r0,Y+34
+	eor r19,r0
+	ldd r0,Y+35
+	eor r20,r0
 	ldd r0,Y+36
+	eor r21,r0
+	ldd r0,Y+5
 	eor r22,r0
-	ldd r0,Y+37
+	ldd r0,Y+6
 	eor r23,r0
-	ldd r0,Y+38
+	ldd r0,Y+7
 	eor r2,r0
+	ldd r0,Y+8
+	eor r3,r0
+	ldd r0,Y+21
+	eor r22,r0
+	ldd r0,Y+22
+	eor r23,r0
+	ldd r0,Y+23
+	eor r2,r0
+	ldd r0,Y+24
+	eor r3,r0
+	ldd r0,Y+37
+	eor r22,r0
+	ldd r0,Y+38
+	eor r23,r0
 	ldd r0,Y+39
+	eor r2,r0
+	ldd r0,Y+40
 	eor r3,r0
 	mov r0,r3
 	mov r3,r2
@@ -1631,35 +1633,36 @@ skinny_128_384_encrypt:
 	eor r9,r5
 	eor r10,r6
 	eor r11,r7
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r13
-	std Y+9,r17
-	std Y+10,r12
-	std Y+11,r25
-	std Y+12,r14
-	std Y+13,r16
-	std Y+14,r24
-	std Y+15,r15
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r13
+	std Y+10,r17
+	std Y+11,r12
+	std Y+12,r25
+	std Y+13,r14
+	std Y+14,r16
+	std Y+15,r24
+	std Y+16,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -1748,27 +1751,28 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r13
-	std Y+25,r17
-	std Y+26,r12
-	std Y+27,r25
-	std Y+28,r14
-	std Y+29,r16
-	std Y+30,r24
-	std Y+31,r15
+	std Y+25,r13
+	std Y+26,r17
+	std Y+27,r12
+	std Y+28,r25
+	std Y+29,r14
+	std Y+30,r16
+	std Y+31,r24
+	std Y+32,r15
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+40
-	ldd r13,Y+41
-	ldd r14,Y+42
-	ldd r15,Y+43
-	ldd r24,Y+44
-	ldd r25,Y+45
-	ldd r16,Y+46
-	ldd r17,Y+47
+	ldd r12,Y+41
+	ldd r13,Y+42
+	ldd r14,Y+43
+	ldd r15,Y+44
+	ldd r24,Y+45
+	ldd r25,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -1857,14 +1861,15 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+40,r13
-	std Y+41,r17
-	std Y+42,r12
-	std Y+43,r25
-	std Y+44,r14
-	std Y+45,r16
-	std Y+46,r24
-	std Y+47,r15
+	std Y+41,r13
+	std Y+42,r17
+	std Y+43,r12
+	std Y+44,r25
+	std Y+45,r14
+	std Y+46,r16
+	std Y+47,r24
+	std Y+48,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -2046,6 +2051,7 @@ skinny_128_384_encrypt:
 	lpm
 	mov r7,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -2079,53 +2085,53 @@ skinny_128_384_encrypt:
 	inc r26
 	ldi r27,2
 	eor r22,r27
-	ldd r0,Y+8
-	eor r8,r0
 	ldd r0,Y+9
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+10
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+11
-	eor r11,r0
-	ldd r0,Y+24
-	eor r8,r0
-	ldd r0,Y+25
-	eor r9,r0
-	ldd r0,Y+26
 	eor r10,r0
-	ldd r0,Y+27
-	eor r11,r0
-	ldd r0,Y+40
-	eor r8,r0
-	ldd r0,Y+41
-	eor r9,r0
-	ldd r0,Y+42
-	eor r10,r0
-	ldd r0,Y+43
-	eor r11,r0
 	ldd r0,Y+12
-	eor r18,r0
-	ldd r0,Y+13
-	eor r19,r0
-	ldd r0,Y+14
-	eor r20,r0
-	ldd r0,Y+15
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+25
+	eor r8,r0
+	ldd r0,Y+26
+	eor r9,r0
+	ldd r0,Y+27
+	eor r10,r0
 	ldd r0,Y+28
-	eor r18,r0
-	ldd r0,Y+29
-	eor r19,r0
-	ldd r0,Y+30
-	eor r20,r0
-	ldd r0,Y+31
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+41
+	eor r8,r0
+	ldd r0,Y+42
+	eor r9,r0
+	ldd r0,Y+43
+	eor r10,r0
 	ldd r0,Y+44
+	eor r11,r0
+	ldd r0,Y+13
 	eor r18,r0
-	ldd r0,Y+45
+	ldd r0,Y+14
 	eor r19,r0
-	ldd r0,Y+46
+	ldd r0,Y+15
 	eor r20,r0
+	ldd r0,Y+16
+	eor r21,r0
+	ldd r0,Y+29
+	eor r18,r0
+	ldd r0,Y+30
+	eor r19,r0
+	ldd r0,Y+31
+	eor r20,r0
+	ldd r0,Y+32
+	eor r21,r0
+	ldd r0,Y+45
+	eor r18,r0
+	ldd r0,Y+46
+	eor r19,r0
 	ldd r0,Y+47
+	eor r20,r0
+	ldd r0,Y+48
 	eor r21,r0
 	mov r0,r21
 	mov r21,r20
@@ -2155,35 +2161,36 @@ skinny_128_384_encrypt:
 	eor r5,r23
 	eor r6,r2
 	eor r7,r3
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r13
+	std Y+2,r17
+	std Y+3,r12
+	std Y+4,r25
+	std Y+5,r14
+	std Y+6,r16
+	std Y+7,r24
+	std Y+8,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2272,27 +2279,28 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r13
-	std Y+17,r17
-	std Y+18,r12
-	std Y+19,r25
-	std Y+20,r14
-	std Y+21,r16
-	std Y+22,r24
-	std Y+23,r15
+	std Y+17,r13
+	std Y+18,r17
+	std Y+19,r12
+	std Y+20,r25
+	std Y+21,r14
+	std Y+22,r16
+	std Y+23,r24
+	std Y+24,r15
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
+	ldd r12,Y+33
+	ldd r13,Y+34
+	ldd r14,Y+35
+	ldd r15,Y+36
+	ldd r24,Y+37
+	ldd r25,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2381,14 +2389,15 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+32,r13
-	std Y+33,r17
-	std Y+34,r12
-	std Y+35,r25
-	std Y+36,r14
-	std Y+37,r16
-	std Y+38,r24
-	std Y+39,r15
+	std Y+33,r13
+	std Y+34,r17
+	std Y+35,r12
+	std Y+36,r25
+	std Y+37,r14
+	std Y+38,r16
+	std Y+39,r24
+	std Y+40,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -2570,6 +2579,7 @@ skinny_128_384_encrypt:
 	lpm
 	mov r3,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -2603,53 +2613,53 @@ skinny_128_384_encrypt:
 	inc r26
 	ldi r27,2
 	eor r18,r27
-	ld r0,Y
-	eor r4,r0
 	ldd r0,Y+1
-	eor r5,r0
+	eor r4,r0
 	ldd r0,Y+2
-	eor r6,r0
+	eor r5,r0
 	ldd r0,Y+3
-	eor r7,r0
-	ldd r0,Y+16
-	eor r4,r0
-	ldd r0,Y+17
-	eor r5,r0
-	ldd r0,Y+18
 	eor r6,r0
-	ldd r0,Y+19
-	eor r7,r0
-	ldd r0,Y+32
-	eor r4,r0
-	ldd r0,Y+33
-	eor r5,r0
-	ldd r0,Y+34
-	eor r6,r0
-	ldd r0,Y+35
-	eor r7,r0
 	ldd r0,Y+4
-	eor r8,r0
-	ldd r0,Y+5
-	eor r9,r0
-	ldd r0,Y+6
-	eor r10,r0
-	ldd r0,Y+7
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+17
+	eor r4,r0
+	ldd r0,Y+18
+	eor r5,r0
+	ldd r0,Y+19
+	eor r6,r0
 	ldd r0,Y+20
-	eor r8,r0
-	ldd r0,Y+21
-	eor r9,r0
-	ldd r0,Y+22
-	eor r10,r0
-	ldd r0,Y+23
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+33
+	eor r4,r0
+	ldd r0,Y+34
+	eor r5,r0
+	ldd r0,Y+35
+	eor r6,r0
 	ldd r0,Y+36
+	eor r7,r0
+	ldd r0,Y+5
 	eor r8,r0
-	ldd r0,Y+37
+	ldd r0,Y+6
 	eor r9,r0
-	ldd r0,Y+38
+	ldd r0,Y+7
 	eor r10,r0
+	ldd r0,Y+8
+	eor r11,r0
+	ldd r0,Y+21
+	eor r8,r0
+	ldd r0,Y+22
+	eor r9,r0
+	ldd r0,Y+23
+	eor r10,r0
+	ldd r0,Y+24
+	eor r11,r0
+	ldd r0,Y+37
+	eor r8,r0
+	ldd r0,Y+38
+	eor r9,r0
 	ldd r0,Y+39
+	eor r10,r0
+	ldd r0,Y+40
 	eor r11,r0
 	mov r0,r11
 	mov r11,r10
@@ -2679,35 +2689,36 @@ skinny_128_384_encrypt:
 	eor r23,r19
 	eor r2,r20
 	eor r3,r21
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r13
-	std Y+9,r17
-	std Y+10,r12
-	std Y+11,r25
-	std Y+12,r14
-	std Y+13,r16
-	std Y+14,r24
-	std Y+15,r15
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r13
+	std Y+10,r17
+	std Y+11,r12
+	std Y+12,r25
+	std Y+13,r14
+	std Y+14,r16
+	std Y+15,r24
+	std Y+16,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2796,27 +2807,28 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r13
-	std Y+25,r17
-	std Y+26,r12
-	std Y+27,r25
-	std Y+28,r14
-	std Y+29,r16
-	std Y+30,r24
-	std Y+31,r15
+	std Y+25,r13
+	std Y+26,r17
+	std Y+27,r12
+	std Y+28,r25
+	std Y+29,r14
+	std Y+30,r16
+	std Y+31,r24
+	std Y+32,r15
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+40
-	ldd r13,Y+41
-	ldd r14,Y+42
-	ldd r15,Y+43
-	ldd r24,Y+44
-	ldd r25,Y+45
-	ldd r16,Y+46
-	ldd r17,Y+47
+	ldd r12,Y+41
+	ldd r13,Y+42
+	ldd r14,Y+43
+	ldd r15,Y+44
+	ldd r24,Y+45
+	ldd r25,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -2905,14 +2917,15 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+40,r13
-	std Y+41,r17
-	std Y+42,r12
-	std Y+43,r25
-	std Y+44,r14
-	std Y+45,r16
-	std Y+46,r24
-	std Y+47,r15
+	std Y+41,r13
+	std Y+42,r17
+	std Y+43,r12
+	std Y+44,r25
+	std Y+45,r14
+	std Y+46,r16
+	std Y+47,r24
+	std Y+48,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -3094,6 +3107,7 @@ skinny_128_384_encrypt:
 	lpm
 	mov r21,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -3127,53 +3141,53 @@ skinny_128_384_encrypt:
 	inc r26
 	ldi r27,2
 	eor r8,r27
-	ldd r0,Y+8
-	eor r22,r0
 	ldd r0,Y+9
-	eor r23,r0
+	eor r22,r0
 	ldd r0,Y+10
-	eor r2,r0
+	eor r23,r0
 	ldd r0,Y+11
-	eor r3,r0
-	ldd r0,Y+24
-	eor r22,r0
-	ldd r0,Y+25
-	eor r23,r0
-	ldd r0,Y+26
 	eor r2,r0
-	ldd r0,Y+27
-	eor r3,r0
-	ldd r0,Y+40
-	eor r22,r0
-	ldd r0,Y+41
-	eor r23,r0
-	ldd r0,Y+42
-	eor r2,r0
-	ldd r0,Y+43
-	eor r3,r0
 	ldd r0,Y+12
-	eor r4,r0
-	ldd r0,Y+13
-	eor r5,r0
-	ldd r0,Y+14
-	eor r6,r0
-	ldd r0,Y+15
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+25
+	eor r22,r0
+	ldd r0,Y+26
+	eor r23,r0
+	ldd r0,Y+27
+	eor r2,r0
 	ldd r0,Y+28
-	eor r4,r0
-	ldd r0,Y+29
-	eor r5,r0
-	ldd r0,Y+30
-	eor r6,r0
-	ldd r0,Y+31
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+41
+	eor r22,r0
+	ldd r0,Y+42
+	eor r23,r0
+	ldd r0,Y+43
+	eor r2,r0
 	ldd r0,Y+44
+	eor r3,r0
+	ldd r0,Y+13
 	eor r4,r0
-	ldd r0,Y+45
+	ldd r0,Y+14
 	eor r5,r0
-	ldd r0,Y+46
+	ldd r0,Y+15
 	eor r6,r0
+	ldd r0,Y+16
+	eor r7,r0
+	ldd r0,Y+29
+	eor r4,r0
+	ldd r0,Y+30
+	eor r5,r0
+	ldd r0,Y+31
+	eor r6,r0
+	ldd r0,Y+32
+	eor r7,r0
+	ldd r0,Y+45
+	eor r4,r0
+	ldd r0,Y+46
+	eor r5,r0
 	ldd r0,Y+47
+	eor r6,r0
+	ldd r0,Y+48
 	eor r7,r0
 	mov r0,r7
 	mov r7,r6
@@ -3207,35 +3221,36 @@ skinny_128_384_encrypt:
 	brne 5721f
 	rjmp 790f
 5721:
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r13
+	std Y+2,r17
+	std Y+3,r12
+	std Y+4,r25
+	std Y+5,r14
+	std Y+6,r16
+	std Y+7,r24
+	std Y+8,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -3324,27 +3339,28 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r13
-	std Y+17,r17
-	std Y+18,r12
-	std Y+19,r25
-	std Y+20,r14
-	std Y+21,r16
-	std Y+22,r24
-	std Y+23,r15
+	std Y+17,r13
+	std Y+18,r17
+	std Y+19,r12
+	std Y+20,r25
+	std Y+21,r14
+	std Y+22,r16
+	std Y+23,r24
+	std Y+24,r15
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
+	ldd r12,Y+33
+	ldd r13,Y+34
+	ldd r14,Y+35
+	ldd r15,Y+36
+	ldd r24,Y+37
+	ldd r25,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -3433,14 +3449,15 @@ skinny_128_384_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+32,r13
-	std Y+33,r17
-	std Y+34,r12
-	std Y+35,r25
-	std Y+36,r14
-	std Y+37,r16
-	std Y+38,r24
-	std Y+39,r15
+	std Y+33,r13
+	std Y+34,r17
+	std Y+35,r12
+	std Y+36,r25
+	std Y+37,r14
+	std Y+38,r16
+	std Y+39,r24
+	std Y+40,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -3452,8 +3469,8 @@ skinny_128_384_encrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+48
-	ldd r27,Y+49
+	ldd r26,Y+49
+	ldd r27,Y+50
 	st X+,r18
 	st X+,r19
 	st X+,r20
@@ -3551,22 +3568,22 @@ skinny_128_384_decrypt:
 	ldd r9,Z+13
 	ldd r10,Z+14
 	ldd r11,Z+15
-	st Y,r23
-	std Y+1,r2
-	std Y+2,r21
-	std Y+3,r20
-	std Y+4,r3
-	std Y+5,r18
-	std Y+6,r19
-	std Y+7,r22
-	std Y+8,r9
-	std Y+9,r10
-	std Y+10,r7
-	std Y+11,r6
-	std Y+12,r11
-	std Y+13,r4
-	std Y+14,r5
-	std Y+15,r8
+	std Y+1,r23
+	std Y+2,r2
+	std Y+3,r21
+	std Y+4,r20
+	std Y+5,r3
+	std Y+6,r18
+	std Y+7,r19
+	std Y+8,r22
+	std Y+9,r9
+	std Y+10,r10
+	std Y+11,r7
+	std Y+12,r6
+	std Y+13,r11
+	std Y+14,r4
+	std Y+15,r5
+	std Y+16,r8
 	ldd r18,Z+16
 	ldd r19,Z+17
 	ldd r20,Z+18
@@ -3583,22 +3600,22 @@ skinny_128_384_decrypt:
 	ldd r9,Z+29
 	ldd r10,Z+30
 	ldd r11,Z+31
-	std Y+16,r23
-	std Y+17,r2
-	std Y+18,r21
-	std Y+19,r20
-	std Y+20,r3
-	std Y+21,r18
-	std Y+22,r19
-	std Y+23,r22
-	std Y+24,r9
-	std Y+25,r10
-	std Y+26,r7
-	std Y+27,r6
-	std Y+28,r11
-	std Y+29,r4
-	std Y+30,r5
-	std Y+31,r8
+	std Y+17,r23
+	std Y+18,r2
+	std Y+19,r21
+	std Y+20,r20
+	std Y+21,r3
+	std Y+22,r18
+	std Y+23,r19
+	std Y+24,r22
+	std Y+25,r9
+	std Y+26,r10
+	std Y+27,r7
+	std Y+28,r6
+	std Y+29,r11
+	std Y+30,r4
+	std Y+31,r5
+	std Y+32,r8
 	ldd r18,Z+32
 	ldd r19,Z+33
 	ldd r20,Z+34
@@ -3615,22 +3632,22 @@ skinny_128_384_decrypt:
 	ldd r9,Z+45
 	ldd r10,Z+46
 	ldd r11,Z+47
-	std Y+32,r23
-	std Y+33,r2
-	std Y+34,r21
-	std Y+35,r20
-	std Y+36,r3
-	std Y+37,r18
-	std Y+38,r19
-	std Y+39,r22
-	std Y+40,r9
-	std Y+41,r10
-	std Y+42,r7
-	std Y+43,r6
-	std Y+44,r11
-	std Y+45,r4
-	std Y+46,r5
-	std Y+47,r8
+	std Y+33,r23
+	std Y+34,r2
+	std Y+35,r21
+	std Y+36,r20
+	std Y+37,r3
+	std Y+38,r18
+	std Y+39,r19
+	std Y+40,r22
+	std Y+41,r9
+	std Y+42,r10
+	std Y+43,r7
+	std Y+44,r6
+	std Y+45,r11
+	std Y+46,r4
+	std Y+47,r5
+	std Y+48,r8
 	ld r18,X+
 	ld r19,X+
 	ld r20,X+
@@ -3647,22 +3664,23 @@ skinny_128_384_decrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
+	ldi r26,hh8(table_2)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,28
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 122:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -3754,23 +3772,23 @@ skinny_128_384_decrypt:
 #endif
 	dec r26
 	brne 122b
-	std Y+16,r12
-	std Y+17,r13
-	std Y+18,r14
-	std Y+19,r15
-	std Y+20,r24
-	std Y+21,r25
-	std Y+22,r16
-	std Y+23,r17
+	std Y+17,r12
+	std Y+18,r13
+	std Y+19,r14
+	std Y+20,r15
+	std Y+21,r24
+	std Y+22,r25
+	std Y+23,r16
+	std Y+24,r17
 	ldi r26,28
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 150:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -3862,28 +3880,29 @@ skinny_128_384_decrypt:
 #endif
 	dec r26
 	brne 150b
-	std Y+24,r12
-	std Y+25,r13
-	std Y+26,r14
-	std Y+27,r15
-	std Y+28,r24
-	std Y+29,r25
-	std Y+30,r16
-	std Y+31,r17
+	std Y+25,r12
+	std Y+26,r13
+	std Y+27,r14
+	std Y+28,r15
+	std Y+29,r24
+	std Y+30,r25
+	std Y+31,r16
+	std Y+32,r17
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r26,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,28
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
+	ldd r12,Y+33
+	ldd r13,Y+34
+	ldd r14,Y+35
+	ldd r15,Y+36
+	ldd r24,Y+37
+	ldd r25,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
 179:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -3975,23 +3994,23 @@ skinny_128_384_decrypt:
 #endif
 	dec r26
 	brne 179b
-	std Y+32,r12
-	std Y+33,r13
-	std Y+34,r14
-	std Y+35,r15
-	std Y+36,r24
-	std Y+37,r25
-	std Y+38,r16
-	std Y+39,r17
+	std Y+33,r12
+	std Y+34,r13
+	std Y+35,r14
+	std Y+36,r15
+	std Y+37,r24
+	std Y+38,r25
+	std Y+39,r16
+	std Y+40,r17
 	ldi r26,28
-	ldd r12,Y+40
-	ldd r13,Y+41
-	ldd r14,Y+42
-	ldd r15,Y+43
-	ldd r24,Y+44
-	ldd r25,Y+45
-	ldd r16,Y+46
-	ldd r17,Y+47
+	ldd r12,Y+41
+	ldd r13,Y+42
+	ldd r14,Y+43
+	ldd r15,Y+44
+	ldd r24,Y+45
+	ldd r25,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
 207:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -4083,40 +4102,40 @@ skinny_128_384_decrypt:
 #endif
 	dec r26
 	brne 207b
-	std Y+40,r12
-	std Y+41,r13
-	std Y+42,r14
-	std Y+43,r15
-	std Y+44,r24
-	std Y+45,r25
-	std Y+46,r16
-	std Y+47,r17
+	std Y+41,r12
+	std Y+42,r13
+	std Y+43,r14
+	std Y+44,r15
+	std Y+45,r24
+	std Y+46,r25
+	std Y+47,r16
+	std Y+48,r17
 	ldi r26,112
 227:
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r14
-	std Y+1,r12
-	std Y+2,r24
-	std Y+3,r17
-	std Y+4,r16
-	std Y+5,r15
-	std Y+6,r25
-	std Y+7,r13
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r14
+	std Y+2,r12
+	std Y+3,r24
+	std Y+4,r17
+	std Y+5,r16
+	std Y+6,r15
+	std Y+7,r25
+	std Y+8,r13
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -4205,27 +4224,28 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r14
-	std Y+17,r12
-	std Y+18,r24
-	std Y+19,r17
-	std Y+20,r16
-	std Y+21,r15
-	std Y+22,r25
-	std Y+23,r13
+	std Y+17,r14
+	std Y+18,r12
+	std Y+19,r24
+	std Y+20,r17
+	std Y+21,r16
+	std Y+22,r15
+	std Y+23,r25
+	std Y+24,r13
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
+	ldd r12,Y+33
+	ldd r13,Y+34
+	ldd r14,Y+35
+	ldd r15,Y+36
+	ldd r24,Y+37
+	ldd r25,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -4314,14 +4334,14 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+32,r14
-	std Y+33,r12
-	std Y+34,r24
-	std Y+35,r17
-	std Y+36,r16
-	std Y+37,r15
-	std Y+38,r25
-	std Y+39,r13
+	std Y+33,r14
+	std Y+34,r12
+	std Y+35,r24
+	std Y+36,r17
+	std Y+37,r16
+	std Y+38,r15
+	std Y+39,r25
+	std Y+40,r13
 	eor r18,r8
 	eor r19,r9
 	eor r20,r10
@@ -4350,54 +4370,55 @@ skinny_128_384_decrypt:
 	mov r20,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r0,Y+8
-	eor r22,r0
 	ldd r0,Y+9
-	eor r23,r0
+	eor r22,r0
 	ldd r0,Y+10
-	eor r2,r0
+	eor r23,r0
 	ldd r0,Y+11
-	eor r3,r0
-	ldd r0,Y+24
-	eor r22,r0
-	ldd r0,Y+25
-	eor r23,r0
-	ldd r0,Y+26
 	eor r2,r0
-	ldd r0,Y+27
-	eor r3,r0
-	ldd r0,Y+40
-	eor r22,r0
-	ldd r0,Y+41
-	eor r23,r0
-	ldd r0,Y+42
-	eor r2,r0
-	ldd r0,Y+43
-	eor r3,r0
 	ldd r0,Y+12
-	eor r4,r0
-	ldd r0,Y+13
-	eor r5,r0
-	ldd r0,Y+14
-	eor r6,r0
-	ldd r0,Y+15
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+25
+	eor r22,r0
+	ldd r0,Y+26
+	eor r23,r0
+	ldd r0,Y+27
+	eor r2,r0
 	ldd r0,Y+28
-	eor r4,r0
-	ldd r0,Y+29
-	eor r5,r0
-	ldd r0,Y+30
-	eor r6,r0
-	ldd r0,Y+31
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+41
+	eor r22,r0
+	ldd r0,Y+42
+	eor r23,r0
+	ldd r0,Y+43
+	eor r2,r0
 	ldd r0,Y+44
+	eor r3,r0
+	ldd r0,Y+13
 	eor r4,r0
-	ldd r0,Y+45
+	ldd r0,Y+14
 	eor r5,r0
-	ldd r0,Y+46
+	ldd r0,Y+15
 	eor r6,r0
-	ldd r0,Y+47
+	ldd r0,Y+16
 	eor r7,r0
+	ldd r0,Y+29
+	eor r4,r0
+	ldd r0,Y+30
+	eor r5,r0
+	ldd r0,Y+31
+	eor r6,r0
+	ldd r0,Y+32
+	eor r7,r0
+	ldd r0,Y+45
+	eor r4,r0
+	ldd r0,Y+46
+	eor r5,r0
+	ldd r0,Y+47
+	eor r6,r0
+	ldd r0,Y+48
+	eor r7,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -4431,6 +4452,7 @@ skinny_128_384_decrypt:
 	eor r22,r27
 	ldi r27,2
 	eor r8,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -4612,35 +4634,36 @@ skinny_128_384_decrypt:
 	lpm
 	mov r21,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r14
+	std Y+10,r12
+	std Y+11,r24
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r15
+	std Y+15,r25
+	std Y+16,r13
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -4729,27 +4752,28 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r14
-	std Y+25,r12
-	std Y+26,r24
-	std Y+27,r17
-	std Y+28,r16
-	std Y+29,r15
-	std Y+30,r25
-	std Y+31,r13
+	std Y+25,r14
+	std Y+26,r12
+	std Y+27,r24
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r15
+	std Y+31,r25
+	std Y+32,r13
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+40
-	ldd r13,Y+41
-	ldd r14,Y+42
-	ldd r15,Y+43
-	ldd r24,Y+44
-	ldd r25,Y+45
-	ldd r16,Y+46
-	ldd r17,Y+47
+	ldd r12,Y+41
+	ldd r13,Y+42
+	ldd r14,Y+43
+	ldd r15,Y+44
+	ldd r24,Y+45
+	ldd r25,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -4838,14 +4862,14 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+40,r14
-	std Y+41,r12
-	std Y+42,r24
-	std Y+43,r17
-	std Y+44,r16
-	std Y+45,r15
-	std Y+46,r25
-	std Y+47,r13
+	std Y+41,r14
+	std Y+42,r12
+	std Y+43,r24
+	std Y+44,r17
+	std Y+45,r16
+	std Y+46,r15
+	std Y+47,r25
+	std Y+48,r13
 	eor r22,r18
 	eor r23,r19
 	eor r2,r20
@@ -4874,54 +4898,55 @@ skinny_128_384_decrypt:
 	mov r2,r23
 	mov r23,r22
 	mov r22,r0
-	ld r0,Y
-	eor r4,r0
 	ldd r0,Y+1
-	eor r5,r0
+	eor r4,r0
 	ldd r0,Y+2
-	eor r6,r0
+	eor r5,r0
 	ldd r0,Y+3
-	eor r7,r0
-	ldd r0,Y+16
-	eor r4,r0
-	ldd r0,Y+17
-	eor r5,r0
-	ldd r0,Y+18
 	eor r6,r0
-	ldd r0,Y+19
-	eor r7,r0
-	ldd r0,Y+32
-	eor r4,r0
-	ldd r0,Y+33
-	eor r5,r0
-	ldd r0,Y+34
-	eor r6,r0
-	ldd r0,Y+35
-	eor r7,r0
 	ldd r0,Y+4
-	eor r8,r0
-	ldd r0,Y+5
-	eor r9,r0
-	ldd r0,Y+6
-	eor r10,r0
-	ldd r0,Y+7
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+17
+	eor r4,r0
+	ldd r0,Y+18
+	eor r5,r0
+	ldd r0,Y+19
+	eor r6,r0
 	ldd r0,Y+20
-	eor r8,r0
-	ldd r0,Y+21
-	eor r9,r0
-	ldd r0,Y+22
-	eor r10,r0
-	ldd r0,Y+23
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+33
+	eor r4,r0
+	ldd r0,Y+34
+	eor r5,r0
+	ldd r0,Y+35
+	eor r6,r0
 	ldd r0,Y+36
+	eor r7,r0
+	ldd r0,Y+5
 	eor r8,r0
-	ldd r0,Y+37
+	ldd r0,Y+6
 	eor r9,r0
-	ldd r0,Y+38
+	ldd r0,Y+7
 	eor r10,r0
-	ldd r0,Y+39
+	ldd r0,Y+8
 	eor r11,r0
+	ldd r0,Y+21
+	eor r8,r0
+	ldd r0,Y+22
+	eor r9,r0
+	ldd r0,Y+23
+	eor r10,r0
+	ldd r0,Y+24
+	eor r11,r0
+	ldd r0,Y+37
+	eor r8,r0
+	ldd r0,Y+38
+	eor r9,r0
+	ldd r0,Y+39
+	eor r10,r0
+	ldd r0,Y+40
+	eor r11,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -4955,6 +4980,7 @@ skinny_128_384_decrypt:
 	eor r4,r27
 	ldi r27,2
 	eor r18,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -5136,35 +5162,36 @@ skinny_128_384_decrypt:
 	lpm
 	mov r3,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r14
-	std Y+1,r12
-	std Y+2,r24
-	std Y+3,r17
-	std Y+4,r16
-	std Y+5,r15
-	std Y+6,r25
-	std Y+7,r13
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r14
+	std Y+2,r12
+	std Y+3,r24
+	std Y+4,r17
+	std Y+5,r16
+	std Y+6,r15
+	std Y+7,r25
+	std Y+8,r13
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -5253,27 +5280,28 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r14
-	std Y+17,r12
-	std Y+18,r24
-	std Y+19,r17
-	std Y+20,r16
-	std Y+21,r15
-	std Y+22,r25
-	std Y+23,r13
+	std Y+17,r14
+	std Y+18,r12
+	std Y+19,r24
+	std Y+20,r17
+	std Y+21,r16
+	std Y+22,r15
+	std Y+23,r25
+	std Y+24,r13
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+32
-	ldd r13,Y+33
-	ldd r14,Y+34
-	ldd r15,Y+35
-	ldd r24,Y+36
-	ldd r25,Y+37
-	ldd r16,Y+38
-	ldd r17,Y+39
+	ldd r12,Y+33
+	ldd r13,Y+34
+	ldd r14,Y+35
+	ldd r15,Y+36
+	ldd r24,Y+37
+	ldd r25,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -5362,14 +5390,14 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+32,r14
-	std Y+33,r12
-	std Y+34,r24
-	std Y+35,r17
-	std Y+36,r16
-	std Y+37,r15
-	std Y+38,r25
-	std Y+39,r13
+	std Y+33,r14
+	std Y+34,r12
+	std Y+35,r24
+	std Y+36,r17
+	std Y+37,r16
+	std Y+38,r15
+	std Y+39,r25
+	std Y+40,r13
 	eor r4,r22
 	eor r5,r23
 	eor r6,r2
@@ -5398,54 +5426,55 @@ skinny_128_384_decrypt:
 	mov r6,r5
 	mov r5,r4
 	mov r4,r0
-	ldd r0,Y+8
-	eor r8,r0
 	ldd r0,Y+9
-	eor r9,r0
+	eor r8,r0
 	ldd r0,Y+10
-	eor r10,r0
+	eor r9,r0
 	ldd r0,Y+11
-	eor r11,r0
-	ldd r0,Y+24
-	eor r8,r0
-	ldd r0,Y+25
-	eor r9,r0
-	ldd r0,Y+26
 	eor r10,r0
-	ldd r0,Y+27
-	eor r11,r0
-	ldd r0,Y+40
-	eor r8,r0
-	ldd r0,Y+41
-	eor r9,r0
-	ldd r0,Y+42
-	eor r10,r0
-	ldd r0,Y+43
-	eor r11,r0
 	ldd r0,Y+12
-	eor r18,r0
-	ldd r0,Y+13
-	eor r19,r0
-	ldd r0,Y+14
-	eor r20,r0
-	ldd r0,Y+15
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+25
+	eor r8,r0
+	ldd r0,Y+26
+	eor r9,r0
+	ldd r0,Y+27
+	eor r10,r0
 	ldd r0,Y+28
-	eor r18,r0
-	ldd r0,Y+29
-	eor r19,r0
-	ldd r0,Y+30
-	eor r20,r0
-	ldd r0,Y+31
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+41
+	eor r8,r0
+	ldd r0,Y+42
+	eor r9,r0
+	ldd r0,Y+43
+	eor r10,r0
 	ldd r0,Y+44
+	eor r11,r0
+	ldd r0,Y+13
 	eor r18,r0
-	ldd r0,Y+45
+	ldd r0,Y+14
 	eor r19,r0
-	ldd r0,Y+46
+	ldd r0,Y+15
 	eor r20,r0
-	ldd r0,Y+47
+	ldd r0,Y+16
 	eor r21,r0
+	ldd r0,Y+29
+	eor r18,r0
+	ldd r0,Y+30
+	eor r19,r0
+	ldd r0,Y+31
+	eor r20,r0
+	ldd r0,Y+32
+	eor r21,r0
+	ldd r0,Y+45
+	eor r18,r0
+	ldd r0,Y+46
+	eor r19,r0
+	ldd r0,Y+47
+	eor r20,r0
+	ldd r0,Y+48
+	eor r21,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -5479,6 +5508,7 @@ skinny_128_384_decrypt:
 	eor r8,r27
 	ldi r27,2
 	eor r22,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -5660,35 +5690,36 @@ skinny_128_384_decrypt:
 	lpm
 	mov r7,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r14
+	std Y+10,r12
+	std Y+11,r24
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r15
+	std Y+15,r25
+	std Y+16,r13
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -5777,27 +5808,28 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r14
-	std Y+25,r12
-	std Y+26,r24
-	std Y+27,r17
-	std Y+28,r16
-	std Y+29,r15
-	std Y+30,r25
-	std Y+31,r13
+	std Y+25,r14
+	std Y+26,r12
+	std Y+27,r24
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r15
+	std Y+31,r25
+	std Y+32,r13
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+40
-	ldd r13,Y+41
-	ldd r14,Y+42
-	ldd r15,Y+43
-	ldd r24,Y+44
-	ldd r25,Y+45
-	ldd r16,Y+46
-	ldd r17,Y+47
+	ldd r12,Y+41
+	ldd r13,Y+42
+	ldd r14,Y+43
+	ldd r15,Y+44
+	ldd r24,Y+45
+	ldd r25,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -5886,14 +5918,14 @@ skinny_128_384_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+40,r14
-	std Y+41,r12
-	std Y+42,r24
-	std Y+43,r17
-	std Y+44,r16
-	std Y+45,r15
-	std Y+46,r25
-	std Y+47,r13
+	std Y+41,r14
+	std Y+42,r12
+	std Y+43,r24
+	std Y+44,r17
+	std Y+45,r16
+	std Y+46,r15
+	std Y+47,r25
+	std Y+48,r13
 	eor r8,r4
 	eor r9,r5
 	eor r10,r6
@@ -5922,54 +5954,55 @@ skinny_128_384_decrypt:
 	mov r10,r9
 	mov r9,r8
 	mov r8,r0
-	ld r0,Y
-	eor r18,r0
 	ldd r0,Y+1
-	eor r19,r0
+	eor r18,r0
 	ldd r0,Y+2
-	eor r20,r0
+	eor r19,r0
 	ldd r0,Y+3
-	eor r21,r0
-	ldd r0,Y+16
-	eor r18,r0
-	ldd r0,Y+17
-	eor r19,r0
-	ldd r0,Y+18
 	eor r20,r0
-	ldd r0,Y+19
-	eor r21,r0
-	ldd r0,Y+32
-	eor r18,r0
-	ldd r0,Y+33
-	eor r19,r0
-	ldd r0,Y+34
-	eor r20,r0
-	ldd r0,Y+35
-	eor r21,r0
 	ldd r0,Y+4
-	eor r22,r0
-	ldd r0,Y+5
-	eor r23,r0
-	ldd r0,Y+6
-	eor r2,r0
-	ldd r0,Y+7
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+17
+	eor r18,r0
+	ldd r0,Y+18
+	eor r19,r0
+	ldd r0,Y+19
+	eor r20,r0
 	ldd r0,Y+20
-	eor r22,r0
-	ldd r0,Y+21
-	eor r23,r0
-	ldd r0,Y+22
-	eor r2,r0
-	ldd r0,Y+23
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+33
+	eor r18,r0
+	ldd r0,Y+34
+	eor r19,r0
+	ldd r0,Y+35
+	eor r20,r0
 	ldd r0,Y+36
+	eor r21,r0
+	ldd r0,Y+5
 	eor r22,r0
-	ldd r0,Y+37
+	ldd r0,Y+6
 	eor r23,r0
-	ldd r0,Y+38
+	ldd r0,Y+7
 	eor r2,r0
-	ldd r0,Y+39
+	ldd r0,Y+8
 	eor r3,r0
+	ldd r0,Y+21
+	eor r22,r0
+	ldd r0,Y+22
+	eor r23,r0
+	ldd r0,Y+23
+	eor r2,r0
+	ldd r0,Y+24
+	eor r3,r0
+	ldd r0,Y+37
+	eor r22,r0
+	ldd r0,Y+38
+	eor r23,r0
+	ldd r0,Y+39
+	eor r2,r0
+	ldd r0,Y+40
+	eor r3,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -6003,6 +6036,7 @@ skinny_128_384_decrypt:
 	eor r18,r27
 	ldi r27,2
 	eor r4,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -6186,6 +6220,7 @@ skinny_128_384_decrypt:
 #endif
 	cp r26,r1
 	breq 903f
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
@@ -6197,8 +6232,8 @@ skinny_128_384_decrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+48
-	ldd r27,Y+49
+	ldd r26,Y+49
+	ldd r27,Y+50
 	st X+,r18
 	st X+,r19
 	st X+,r20
@@ -6303,66 +6338,66 @@ skinny_128_256_encrypt:
 	ldd r19,Z+1
 	ldd r20,Z+2
 	ldd r21,Z+3
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
 	ldd r18,Z+4
 	ldd r19,Z+5
 	ldd r20,Z+6
 	ldd r21,Z+7
-	std Y+4,r18
-	std Y+5,r19
-	std Y+6,r20
-	std Y+7,r21
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
 	ldd r18,Z+8
 	ldd r19,Z+9
 	ldd r20,Z+10
 	ldd r21,Z+11
-	std Y+8,r18
-	std Y+9,r19
-	std Y+10,r20
-	std Y+11,r21
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
 	ldd r18,Z+12
 	ldd r19,Z+13
 	ldd r20,Z+14
 	ldd r21,Z+15
-	std Y+12,r18
-	std Y+13,r19
-	std Y+14,r20
-	std Y+15,r21
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
 	ldd r18,Z+16
 	ldd r19,Z+17
 	ldd r20,Z+18
 	ldd r21,Z+19
-	std Y+16,r18
-	std Y+17,r19
-	std Y+18,r20
-	std Y+19,r21
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r20
+	std Y+20,r21
 	ldd r18,Z+20
 	ldd r19,Z+21
 	ldd r20,Z+22
 	ldd r21,Z+23
-	std Y+20,r18
-	std Y+21,r19
-	std Y+22,r20
-	std Y+23,r21
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r20
+	std Y+24,r21
 	ldd r18,Z+24
 	ldd r19,Z+25
 	ldd r20,Z+26
 	ldd r21,Z+27
-	std Y+24,r18
-	std Y+25,r19
-	std Y+26,r20
-	std Y+27,r21
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r20
+	std Y+28,r21
 	ldd r18,Z+28
 	ldd r19,Z+29
 	ldd r20,Z+30
 	ldd r21,Z+31
-	std Y+28,r18
-	std Y+29,r19
-	std Y+30,r20
-	std Y+31,r21
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r20
+	std Y+32,r21
 	ld r18,X+
 	ld r19,X+
 	ld r20,X+
@@ -6379,11 +6414,12 @@ skinny_128_256_encrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r26,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	mov r26,r1
@@ -6564,6 +6600,7 @@ skinny_128_256_encrypt:
 	lpm
 	mov r11,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -6597,37 +6634,37 @@ skinny_128_256_encrypt:
 	inc r26
 	ldi r27,2
 	eor r4,r27
-	ld r0,Y
-	eor r18,r0
 	ldd r0,Y+1
-	eor r19,r0
-	ldd r0,Y+2
-	eor r20,r0
-	ldd r0,Y+3
-	eor r21,r0
-	ldd r0,Y+16
 	eor r18,r0
-	ldd r0,Y+17
+	ldd r0,Y+2
 	eor r19,r0
-	ldd r0,Y+18
+	ldd r0,Y+3
 	eor r20,r0
-	ldd r0,Y+19
-	eor r21,r0
 	ldd r0,Y+4
-	eor r22,r0
-	ldd r0,Y+5
-	eor r23,r0
-	ldd r0,Y+6
-	eor r2,r0
-	ldd r0,Y+7
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+17
+	eor r18,r0
+	ldd r0,Y+18
+	eor r19,r0
+	ldd r0,Y+19
+	eor r20,r0
 	ldd r0,Y+20
+	eor r21,r0
+	ldd r0,Y+5
 	eor r22,r0
-	ldd r0,Y+21
+	ldd r0,Y+6
 	eor r23,r0
-	ldd r0,Y+22
+	ldd r0,Y+7
 	eor r2,r0
+	ldd r0,Y+8
+	eor r3,r0
+	ldd r0,Y+21
+	eor r22,r0
+	ldd r0,Y+22
+	eor r23,r0
 	ldd r0,Y+23
+	eor r2,r0
+	ldd r0,Y+24
 	eor r3,r0
 	mov r0,r3
 	mov r3,r2
@@ -6657,35 +6694,36 @@ skinny_128_256_encrypt:
 	eor r9,r5
 	eor r10,r6
 	eor r11,r7
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r13
-	std Y+9,r17
-	std Y+10,r12
-	std Y+11,r25
-	std Y+12,r14
-	std Y+13,r16
-	std Y+14,r24
-	std Y+15,r15
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r13
+	std Y+10,r17
+	std Y+11,r12
+	std Y+12,r25
+	std Y+13,r14
+	std Y+14,r16
+	std Y+15,r24
+	std Y+16,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -6774,14 +6812,15 @@ skinny_128_256_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r13
-	std Y+25,r17
-	std Y+26,r12
-	std Y+27,r25
-	std Y+28,r14
-	std Y+29,r16
-	std Y+30,r24
-	std Y+31,r15
+	std Y+25,r13
+	std Y+26,r17
+	std Y+27,r12
+	std Y+28,r25
+	std Y+29,r14
+	std Y+30,r16
+	std Y+31,r24
+	std Y+32,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -6963,6 +7002,7 @@ skinny_128_256_encrypt:
 	lpm
 	mov r7,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -6996,37 +7036,37 @@ skinny_128_256_encrypt:
 	inc r26
 	ldi r27,2
 	eor r22,r27
-	ldd r0,Y+8
-	eor r8,r0
 	ldd r0,Y+9
-	eor r9,r0
-	ldd r0,Y+10
-	eor r10,r0
-	ldd r0,Y+11
-	eor r11,r0
-	ldd r0,Y+24
 	eor r8,r0
-	ldd r0,Y+25
+	ldd r0,Y+10
 	eor r9,r0
-	ldd r0,Y+26
+	ldd r0,Y+11
 	eor r10,r0
-	ldd r0,Y+27
-	eor r11,r0
 	ldd r0,Y+12
-	eor r18,r0
-	ldd r0,Y+13
-	eor r19,r0
-	ldd r0,Y+14
-	eor r20,r0
-	ldd r0,Y+15
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+25
+	eor r8,r0
+	ldd r0,Y+26
+	eor r9,r0
+	ldd r0,Y+27
+	eor r10,r0
 	ldd r0,Y+28
+	eor r11,r0
+	ldd r0,Y+13
 	eor r18,r0
-	ldd r0,Y+29
+	ldd r0,Y+14
 	eor r19,r0
-	ldd r0,Y+30
+	ldd r0,Y+15
 	eor r20,r0
+	ldd r0,Y+16
+	eor r21,r0
+	ldd r0,Y+29
+	eor r18,r0
+	ldd r0,Y+30
+	eor r19,r0
 	ldd r0,Y+31
+	eor r20,r0
+	ldd r0,Y+32
 	eor r21,r0
 	mov r0,r21
 	mov r21,r20
@@ -7056,35 +7096,36 @@ skinny_128_256_encrypt:
 	eor r5,r23
 	eor r6,r2
 	eor r7,r3
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r13
+	std Y+2,r17
+	std Y+3,r12
+	std Y+4,r25
+	std Y+5,r14
+	std Y+6,r16
+	std Y+7,r24
+	std Y+8,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -7173,14 +7214,15 @@ skinny_128_256_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r13
-	std Y+17,r17
-	std Y+18,r12
-	std Y+19,r25
-	std Y+20,r14
-	std Y+21,r16
-	std Y+22,r24
-	std Y+23,r15
+	std Y+17,r13
+	std Y+18,r17
+	std Y+19,r12
+	std Y+20,r25
+	std Y+21,r14
+	std Y+22,r16
+	std Y+23,r24
+	std Y+24,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -7362,6 +7404,7 @@ skinny_128_256_encrypt:
 	lpm
 	mov r3,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -7395,37 +7438,37 @@ skinny_128_256_encrypt:
 	inc r26
 	ldi r27,2
 	eor r18,r27
-	ld r0,Y
-	eor r4,r0
 	ldd r0,Y+1
-	eor r5,r0
-	ldd r0,Y+2
-	eor r6,r0
-	ldd r0,Y+3
-	eor r7,r0
-	ldd r0,Y+16
 	eor r4,r0
-	ldd r0,Y+17
+	ldd r0,Y+2
 	eor r5,r0
-	ldd r0,Y+18
+	ldd r0,Y+3
 	eor r6,r0
-	ldd r0,Y+19
-	eor r7,r0
 	ldd r0,Y+4
-	eor r8,r0
-	ldd r0,Y+5
-	eor r9,r0
-	ldd r0,Y+6
-	eor r10,r0
-	ldd r0,Y+7
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+17
+	eor r4,r0
+	ldd r0,Y+18
+	eor r5,r0
+	ldd r0,Y+19
+	eor r6,r0
 	ldd r0,Y+20
+	eor r7,r0
+	ldd r0,Y+5
 	eor r8,r0
-	ldd r0,Y+21
+	ldd r0,Y+6
 	eor r9,r0
-	ldd r0,Y+22
+	ldd r0,Y+7
 	eor r10,r0
+	ldd r0,Y+8
+	eor r11,r0
+	ldd r0,Y+21
+	eor r8,r0
+	ldd r0,Y+22
+	eor r9,r0
 	ldd r0,Y+23
+	eor r10,r0
+	ldd r0,Y+24
 	eor r11,r0
 	mov r0,r11
 	mov r11,r10
@@ -7455,35 +7498,36 @@ skinny_128_256_encrypt:
 	eor r23,r19
 	eor r2,r20
 	eor r3,r21
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r13
-	std Y+9,r17
-	std Y+10,r12
-	std Y+11,r25
-	std Y+12,r14
-	std Y+13,r16
-	std Y+14,r24
-	std Y+15,r15
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r13
+	std Y+10,r17
+	std Y+11,r12
+	std Y+12,r25
+	std Y+13,r14
+	std Y+14,r16
+	std Y+15,r24
+	std Y+16,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -7572,14 +7616,15 @@ skinny_128_256_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r13
-	std Y+25,r17
-	std Y+26,r12
-	std Y+27,r25
-	std Y+28,r14
-	std Y+29,r16
-	std Y+30,r24
-	std Y+31,r15
+	std Y+25,r13
+	std Y+26,r17
+	std Y+27,r12
+	std Y+28,r25
+	std Y+29,r14
+	std Y+30,r16
+	std Y+31,r24
+	std Y+32,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -7761,6 +7806,7 @@ skinny_128_256_encrypt:
 	lpm
 	mov r21,r0
 #endif
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -7794,37 +7840,37 @@ skinny_128_256_encrypt:
 	inc r26
 	ldi r27,2
 	eor r8,r27
-	ldd r0,Y+8
-	eor r22,r0
 	ldd r0,Y+9
-	eor r23,r0
-	ldd r0,Y+10
-	eor r2,r0
-	ldd r0,Y+11
-	eor r3,r0
-	ldd r0,Y+24
 	eor r22,r0
-	ldd r0,Y+25
+	ldd r0,Y+10
 	eor r23,r0
-	ldd r0,Y+26
+	ldd r0,Y+11
 	eor r2,r0
-	ldd r0,Y+27
-	eor r3,r0
 	ldd r0,Y+12
-	eor r4,r0
-	ldd r0,Y+13
-	eor r5,r0
-	ldd r0,Y+14
-	eor r6,r0
-	ldd r0,Y+15
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+25
+	eor r22,r0
+	ldd r0,Y+26
+	eor r23,r0
+	ldd r0,Y+27
+	eor r2,r0
 	ldd r0,Y+28
+	eor r3,r0
+	ldd r0,Y+13
 	eor r4,r0
-	ldd r0,Y+29
+	ldd r0,Y+14
 	eor r5,r0
-	ldd r0,Y+30
+	ldd r0,Y+15
 	eor r6,r0
+	ldd r0,Y+16
+	eor r7,r0
+	ldd r0,Y+29
+	eor r4,r0
+	ldd r0,Y+30
+	eor r5,r0
 	ldd r0,Y+31
+	eor r6,r0
+	ldd r0,Y+32
 	eor r7,r0
 	mov r0,r7
 	mov r7,r6
@@ -7856,35 +7902,36 @@ skinny_128_256_encrypt:
 	eor r21,r11
 	cpi r26,96
 	breq 594f
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r13
-	std Y+1,r17
-	std Y+2,r12
-	std Y+3,r25
-	std Y+4,r14
-	std Y+5,r16
-	std Y+6,r24
-	std Y+7,r15
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r13
+	std Y+2,r17
+	std Y+3,r12
+	std Y+4,r25
+	std Y+5,r14
+	std Y+6,r16
+	std Y+7,r24
+	std Y+8,r15
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -7973,14 +8020,15 @@ skinny_128_256_encrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r13
-	std Y+17,r17
-	std Y+18,r12
-	std Y+19,r25
-	std Y+20,r14
-	std Y+21,r16
-	std Y+22,r24
-	std Y+23,r15
+	std Y+17,r13
+	std Y+18,r17
+	std Y+19,r12
+	std Y+20,r25
+	std Y+21,r14
+	std Y+22,r16
+	std Y+23,r24
+	std Y+24,r15
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_0)
@@ -7992,8 +8040,8 @@ skinny_128_256_encrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+32
-	ldd r27,Y+33
+	ldd r26,Y+33
+	ldd r27,Y+34
 	st X+,r18
 	st X+,r19
 	st X+,r20
@@ -8091,22 +8139,22 @@ skinny_128_256_decrypt:
 	ldd r9,Z+13
 	ldd r10,Z+14
 	ldd r11,Z+15
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
-	std Y+4,r22
-	std Y+5,r23
-	std Y+6,r2
-	std Y+7,r3
-	std Y+8,r4
-	std Y+9,r5
-	std Y+10,r6
-	std Y+11,r7
-	std Y+12,r8
-	std Y+13,r9
-	std Y+14,r10
-	std Y+15,r11
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	std Y+5,r22
+	std Y+6,r23
+	std Y+7,r2
+	std Y+8,r3
+	std Y+9,r4
+	std Y+10,r5
+	std Y+11,r6
+	std Y+12,r7
+	std Y+13,r8
+	std Y+14,r9
+	std Y+15,r10
+	std Y+16,r11
 	ldd r18,Z+16
 	ldd r19,Z+17
 	ldd r20,Z+18
@@ -8123,22 +8171,22 @@ skinny_128_256_decrypt:
 	ldd r9,Z+29
 	ldd r10,Z+30
 	ldd r11,Z+31
-	std Y+16,r18
-	std Y+17,r19
-	std Y+18,r20
-	std Y+19,r21
-	std Y+20,r22
-	std Y+21,r23
-	std Y+22,r2
-	std Y+23,r3
-	std Y+24,r4
-	std Y+25,r5
-	std Y+26,r6
-	std Y+27,r7
-	std Y+28,r8
-	std Y+29,r9
-	std Y+30,r10
-	std Y+31,r11
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r20
+	std Y+20,r21
+	std Y+21,r22
+	std Y+22,r23
+	std Y+23,r2
+	std Y+24,r3
+	std Y+25,r4
+	std Y+26,r5
+	std Y+27,r6
+	std Y+28,r7
+	std Y+29,r8
+	std Y+30,r9
+	std Y+31,r10
+	std Y+32,r11
 	ld r18,X+
 	ld r19,X+
 	ld r20,X+
@@ -8155,22 +8203,23 @@ skinny_128_256_decrypt:
 	ld r9,X+
 	ld r10,X+
 	ld r11,X+
+	ldi r30,lo8(table_2)
 	ldi r31,hi8(table_2)
 #if defined(RAMPZ)
+	ldi r26,hh8(table_2)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r26,hh8(table_2)
 	out _SFR_IO_ADDR(RAMPZ),r26
 #endif
 	ldi r26,24
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 90:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -8262,23 +8311,23 @@ skinny_128_256_decrypt:
 #endif
 	dec r26
 	brne 90b
-	std Y+16,r12
-	std Y+17,r13
-	std Y+18,r14
-	std Y+19,r15
-	std Y+20,r24
-	std Y+21,r25
-	std Y+22,r16
-	std Y+23,r17
+	std Y+17,r12
+	std Y+18,r13
+	std Y+19,r14
+	std Y+20,r15
+	std Y+21,r24
+	std Y+22,r25
+	std Y+23,r16
+	std Y+24,r17
 	ldi r26,24
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 118:
 	mov r30,r12
 #if defined(RAMPZ)
@@ -8370,14 +8419,15 @@ skinny_128_256_decrypt:
 #endif
 	dec r26
 	brne 118b
-	std Y+24,r12
-	std Y+25,r13
-	std Y+26,r14
-	std Y+27,r15
-	std Y+28,r24
-	std Y+29,r25
-	std Y+30,r16
-	std Y+31,r17
+	std Y+25,r12
+	std Y+26,r13
+	std Y+27,r14
+	std Y+28,r15
+	std Y+29,r24
+	std Y+30,r25
+	std Y+31,r16
+	std Y+32,r17
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r26,hh8(table_3)
@@ -8385,30 +8435,30 @@ skinny_128_256_decrypt:
 #endif
 	ldi r26,96
 139:
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r14
-	std Y+1,r12
-	std Y+2,r24
-	std Y+3,r17
-	std Y+4,r16
-	std Y+5,r15
-	std Y+6,r25
-	std Y+7,r13
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r14
+	std Y+2,r12
+	std Y+3,r24
+	std Y+4,r17
+	std Y+5,r16
+	std Y+6,r15
+	std Y+7,r25
+	std Y+8,r13
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -8497,14 +8547,14 @@ skinny_128_256_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r14
-	std Y+17,r12
-	std Y+18,r24
-	std Y+19,r17
-	std Y+20,r16
-	std Y+21,r15
-	std Y+22,r25
-	std Y+23,r13
+	std Y+17,r14
+	std Y+18,r12
+	std Y+19,r24
+	std Y+20,r17
+	std Y+21,r16
+	std Y+22,r15
+	std Y+23,r25
+	std Y+24,r13
 	eor r18,r8
 	eor r19,r9
 	eor r20,r10
@@ -8533,38 +8583,39 @@ skinny_128_256_decrypt:
 	mov r20,r19
 	mov r19,r18
 	mov r18,r0
-	ldd r0,Y+8
-	eor r22,r0
 	ldd r0,Y+9
-	eor r23,r0
-	ldd r0,Y+10
-	eor r2,r0
-	ldd r0,Y+11
-	eor r3,r0
-	ldd r0,Y+24
 	eor r22,r0
-	ldd r0,Y+25
+	ldd r0,Y+10
 	eor r23,r0
-	ldd r0,Y+26
+	ldd r0,Y+11
 	eor r2,r0
-	ldd r0,Y+27
-	eor r3,r0
 	ldd r0,Y+12
-	eor r4,r0
-	ldd r0,Y+13
-	eor r5,r0
-	ldd r0,Y+14
-	eor r6,r0
-	ldd r0,Y+15
-	eor r7,r0
+	eor r3,r0
+	ldd r0,Y+25
+	eor r22,r0
+	ldd r0,Y+26
+	eor r23,r0
+	ldd r0,Y+27
+	eor r2,r0
 	ldd r0,Y+28
+	eor r3,r0
+	ldd r0,Y+13
 	eor r4,r0
-	ldd r0,Y+29
+	ldd r0,Y+14
 	eor r5,r0
-	ldd r0,Y+30
+	ldd r0,Y+15
 	eor r6,r0
-	ldd r0,Y+31
+	ldd r0,Y+16
 	eor r7,r0
+	ldd r0,Y+29
+	eor r4,r0
+	ldd r0,Y+30
+	eor r5,r0
+	ldd r0,Y+31
+	eor r6,r0
+	ldd r0,Y+32
+	eor r7,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -8598,6 +8649,7 @@ skinny_128_256_decrypt:
 	eor r22,r27
 	ldi r27,2
 	eor r8,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -8779,35 +8831,36 @@ skinny_128_256_decrypt:
 	lpm
 	mov r21,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r14
+	std Y+10,r12
+	std Y+11,r24
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r15
+	std Y+15,r25
+	std Y+16,r13
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -8896,14 +8949,14 @@ skinny_128_256_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r14
-	std Y+25,r12
-	std Y+26,r24
-	std Y+27,r17
-	std Y+28,r16
-	std Y+29,r15
-	std Y+30,r25
-	std Y+31,r13
+	std Y+25,r14
+	std Y+26,r12
+	std Y+27,r24
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r15
+	std Y+31,r25
+	std Y+32,r13
 	eor r22,r18
 	eor r23,r19
 	eor r2,r20
@@ -8932,38 +8985,39 @@ skinny_128_256_decrypt:
 	mov r2,r23
 	mov r23,r22
 	mov r22,r0
-	ld r0,Y
-	eor r4,r0
 	ldd r0,Y+1
-	eor r5,r0
-	ldd r0,Y+2
-	eor r6,r0
-	ldd r0,Y+3
-	eor r7,r0
-	ldd r0,Y+16
 	eor r4,r0
-	ldd r0,Y+17
+	ldd r0,Y+2
 	eor r5,r0
-	ldd r0,Y+18
+	ldd r0,Y+3
 	eor r6,r0
-	ldd r0,Y+19
-	eor r7,r0
 	ldd r0,Y+4
-	eor r8,r0
-	ldd r0,Y+5
-	eor r9,r0
-	ldd r0,Y+6
-	eor r10,r0
-	ldd r0,Y+7
-	eor r11,r0
+	eor r7,r0
+	ldd r0,Y+17
+	eor r4,r0
+	ldd r0,Y+18
+	eor r5,r0
+	ldd r0,Y+19
+	eor r6,r0
 	ldd r0,Y+20
+	eor r7,r0
+	ldd r0,Y+5
 	eor r8,r0
-	ldd r0,Y+21
+	ldd r0,Y+6
 	eor r9,r0
-	ldd r0,Y+22
+	ldd r0,Y+7
 	eor r10,r0
-	ldd r0,Y+23
+	ldd r0,Y+8
 	eor r11,r0
+	ldd r0,Y+21
+	eor r8,r0
+	ldd r0,Y+22
+	eor r9,r0
+	ldd r0,Y+23
+	eor r10,r0
+	ldd r0,Y+24
+	eor r11,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -8997,6 +9051,7 @@ skinny_128_256_decrypt:
 	eor r4,r27
 	ldi r27,2
 	eor r18,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -9178,35 +9233,36 @@ skinny_128_256_decrypt:
 	lpm
 	mov r3,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ld r12,Y
-	ldd r13,Y+1
-	ldd r14,Y+2
-	ldd r15,Y+3
-	ldd r24,Y+4
-	ldd r25,Y+5
-	ldd r16,Y+6
-	ldd r17,Y+7
-	st Y,r14
-	std Y+1,r12
-	std Y+2,r24
-	std Y+3,r17
-	std Y+4,r16
-	std Y+5,r15
-	std Y+6,r25
-	std Y+7,r13
-	ldd r12,Y+16
-	ldd r13,Y+17
-	ldd r14,Y+18
-	ldd r15,Y+19
-	ldd r24,Y+20
-	ldd r25,Y+21
-	ldd r16,Y+22
-	ldd r17,Y+23
+	ldd r12,Y+1
+	ldd r13,Y+2
+	ldd r14,Y+3
+	ldd r15,Y+4
+	ldd r24,Y+5
+	ldd r25,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	std Y+1,r14
+	std Y+2,r12
+	std Y+3,r24
+	std Y+4,r17
+	std Y+5,r16
+	std Y+6,r15
+	std Y+7,r25
+	std Y+8,r13
+	ldd r12,Y+17
+	ldd r13,Y+18
+	ldd r14,Y+19
+	ldd r15,Y+20
+	ldd r24,Y+21
+	ldd r25,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -9295,14 +9351,14 @@ skinny_128_256_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+16,r14
-	std Y+17,r12
-	std Y+18,r24
-	std Y+19,r17
-	std Y+20,r16
-	std Y+21,r15
-	std Y+22,r25
-	std Y+23,r13
+	std Y+17,r14
+	std Y+18,r12
+	std Y+19,r24
+	std Y+20,r17
+	std Y+21,r16
+	std Y+22,r15
+	std Y+23,r25
+	std Y+24,r13
 	eor r4,r22
 	eor r5,r23
 	eor r6,r2
@@ -9331,38 +9387,39 @@ skinny_128_256_decrypt:
 	mov r6,r5
 	mov r5,r4
 	mov r4,r0
-	ldd r0,Y+8
-	eor r8,r0
 	ldd r0,Y+9
-	eor r9,r0
-	ldd r0,Y+10
-	eor r10,r0
-	ldd r0,Y+11
-	eor r11,r0
-	ldd r0,Y+24
 	eor r8,r0
-	ldd r0,Y+25
+	ldd r0,Y+10
 	eor r9,r0
-	ldd r0,Y+26
+	ldd r0,Y+11
 	eor r10,r0
-	ldd r0,Y+27
-	eor r11,r0
 	ldd r0,Y+12
-	eor r18,r0
-	ldd r0,Y+13
-	eor r19,r0
-	ldd r0,Y+14
-	eor r20,r0
-	ldd r0,Y+15
-	eor r21,r0
+	eor r11,r0
+	ldd r0,Y+25
+	eor r8,r0
+	ldd r0,Y+26
+	eor r9,r0
+	ldd r0,Y+27
+	eor r10,r0
 	ldd r0,Y+28
+	eor r11,r0
+	ldd r0,Y+13
 	eor r18,r0
-	ldd r0,Y+29
+	ldd r0,Y+14
 	eor r19,r0
-	ldd r0,Y+30
+	ldd r0,Y+15
 	eor r20,r0
-	ldd r0,Y+31
+	ldd r0,Y+16
 	eor r21,r0
+	ldd r0,Y+29
+	eor r18,r0
+	ldd r0,Y+30
+	eor r19,r0
+	ldd r0,Y+31
+	eor r20,r0
+	ldd r0,Y+32
+	eor r21,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -9396,6 +9453,7 @@ skinny_128_256_decrypt:
 	eor r8,r27
 	ldi r27,2
 	eor r22,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -9577,35 +9635,36 @@ skinny_128_256_decrypt:
 	lpm
 	mov r7,r0
 #endif
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
 	out _SFR_IO_ADDR(RAMPZ),r27
 #endif
-	ldd r12,Y+8
-	ldd r13,Y+9
-	ldd r14,Y+10
-	ldd r15,Y+11
-	ldd r24,Y+12
-	ldd r25,Y+13
-	ldd r16,Y+14
-	ldd r17,Y+15
-	std Y+8,r14
-	std Y+9,r12
-	std Y+10,r24
-	std Y+11,r17
-	std Y+12,r16
-	std Y+13,r15
-	std Y+14,r25
-	std Y+15,r13
-	ldd r12,Y+24
-	ldd r13,Y+25
-	ldd r14,Y+26
-	ldd r15,Y+27
-	ldd r24,Y+28
-	ldd r25,Y+29
-	ldd r16,Y+30
-	ldd r17,Y+31
+	ldd r12,Y+9
+	ldd r13,Y+10
+	ldd r14,Y+11
+	ldd r15,Y+12
+	ldd r24,Y+13
+	ldd r25,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	std Y+9,r14
+	std Y+10,r12
+	std Y+11,r24
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r15
+	std Y+15,r25
+	std Y+16,r13
+	ldd r12,Y+25
+	ldd r13,Y+26
+	ldd r14,Y+27
+	ldd r15,Y+28
+	ldd r24,Y+29
+	ldd r25,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
 	mov r30,r12
 #if defined(RAMPZ)
 	elpm r12,Z
@@ -9694,14 +9753,14 @@ skinny_128_256_decrypt:
 	lpm
 	mov r17,r0
 #endif
-	std Y+24,r14
-	std Y+25,r12
-	std Y+26,r24
-	std Y+27,r17
-	std Y+28,r16
-	std Y+29,r15
-	std Y+30,r25
-	std Y+31,r13
+	std Y+25,r14
+	std Y+26,r12
+	std Y+27,r24
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r15
+	std Y+31,r25
+	std Y+32,r13
 	eor r8,r4
 	eor r9,r5
 	eor r10,r6
@@ -9730,38 +9789,39 @@ skinny_128_256_decrypt:
 	mov r10,r9
 	mov r9,r8
 	mov r8,r0
-	ld r0,Y
-	eor r18,r0
 	ldd r0,Y+1
-	eor r19,r0
-	ldd r0,Y+2
-	eor r20,r0
-	ldd r0,Y+3
-	eor r21,r0
-	ldd r0,Y+16
 	eor r18,r0
-	ldd r0,Y+17
+	ldd r0,Y+2
 	eor r19,r0
-	ldd r0,Y+18
+	ldd r0,Y+3
 	eor r20,r0
-	ldd r0,Y+19
-	eor r21,r0
 	ldd r0,Y+4
-	eor r22,r0
-	ldd r0,Y+5
-	eor r23,r0
-	ldd r0,Y+6
-	eor r2,r0
-	ldd r0,Y+7
-	eor r3,r0
+	eor r21,r0
+	ldd r0,Y+17
+	eor r18,r0
+	ldd r0,Y+18
+	eor r19,r0
+	ldd r0,Y+19
+	eor r20,r0
 	ldd r0,Y+20
+	eor r21,r0
+	ldd r0,Y+5
 	eor r22,r0
-	ldd r0,Y+21
+	ldd r0,Y+6
 	eor r23,r0
-	ldd r0,Y+22
+	ldd r0,Y+7
 	eor r2,r0
-	ldd r0,Y+23
+	ldd r0,Y+8
 	eor r3,r0
+	ldd r0,Y+21
+	eor r22,r0
+	ldd r0,Y+22
+	eor r23,r0
+	ldd r0,Y+23
+	eor r2,r0
+	ldd r0,Y+24
+	eor r3,r0
+	ldi r30,lo8(table_4)
 	ldi r31,hi8(table_4)
 #if defined(RAMPZ)
 	ldi r24,hh8(table_4)
@@ -9795,6 +9855,7 @@ skinny_128_256_decrypt:
 	eor r18,r27
 	ldi r27,2
 	eor r4,r27
+	ldi r30,lo8(table_1)
 	ldi r31,hi8(table_1)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_1)
@@ -9978,6 +10039,7 @@ skinny_128_256_decrypt:
 #endif
 	cp r26,r1
 	breq 651f
+	ldi r30,lo8(table_3)
 	ldi r31,hi8(table_3)
 #if defined(RAMPZ)
 	ldi r27,hh8(table_3)
@@ -9989,8 +10051,8 @@ skinny_128_256_decrypt:
 	pop r0
 	out _SFR_IO_ADDR(RAMPZ),r0
 #endif
-	ldd r26,Y+32
-	ldd r27,Y+33
+	ldd r26,Y+33
+	ldd r27,Y+34
 	st X+,r18
 	st X+,r19
 	st X+,r20

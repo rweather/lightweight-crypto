@@ -152,22 +152,22 @@ sliscp_light320_permute:
 	ldd r8,Z+29
 	ldd r7,Z+30
 	ldd r6,Z+31
-	st Y,r18
-	std Y+1,r19
-	std Y+2,r20
-	std Y+3,r21
-	std Y+4,r22
-	std Y+5,r23
-	std Y+6,r26
-	std Y+7,r27
-	std Y+8,r2
-	std Y+9,r3
-	std Y+10,r4
-	std Y+11,r5
-	std Y+12,r6
-	std Y+13,r7
-	std Y+14,r8
-	std Y+15,r9
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	std Y+5,r22
+	std Y+6,r23
+	std Y+7,r26
+	std Y+8,r27
+	std Y+9,r2
+	std Y+10,r3
+	std Y+11,r4
+	std Y+12,r5
+	std Y+13,r6
+	std Y+14,r7
+	std Y+15,r8
+	std Y+16,r9
 	ld r21,Z
 	ldd r20,Z+1
 	ldd r19,Z+2
@@ -194,11 +194,12 @@ sliscp_light320_permute:
 	ldd r14,Z+29
 	push r31
 	push r30
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r16,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r16,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r16
 #endif
 	ldi r30,0
@@ -1493,10 +1494,10 @@ sliscp_light320_permute:
 	rol r16
 	eor r10,r16
 	pop r30
-	ld r16,Y
-	ldd r17,Y+1
-	ldd r1,Y+2
-	ldd r0,Y+3
+	ldd r16,Y+1
+	ldd r17,Y+2
+	ldd r1,Y+3
+	ldd r0,Y+4
 	eor r16,r2
 	eor r17,r3
 	eor r1,r4
@@ -1505,14 +1506,14 @@ sliscp_light320_permute:
 	com r17
 	com r1
 	com r0
-	st Y,r16
-	std Y+1,r17
-	std Y+2,r1
-	std Y+3,r0
-	ldd r16,Y+4
-	ldd r17,Y+5
-	ldd r1,Y+6
-	ldd r0,Y+7
+	std Y+1,r16
+	std Y+2,r17
+	std Y+3,r1
+	std Y+4,r0
+	ldd r16,Y+5
+	ldd r17,Y+6
+	ldd r1,Y+7
+	ldd r0,Y+8
 	eor r16,r6
 	eor r17,r7
 	eor r1,r8
@@ -1520,9 +1521,9 @@ sliscp_light320_permute:
 	com r17
 	com r1
 	com r0
-	std Y+5,r17
-	std Y+6,r1
-	std Y+7,r0
+	std Y+6,r17
+	std Y+7,r1
+	std Y+8,r0
 #if defined(RAMPZ)
 	elpm r0,Z
 #elif defined(__AVR_HAVE_LPMX__)
@@ -1534,11 +1535,11 @@ sliscp_light320_permute:
 #endif
 	inc r30
 	eor r16,r0
-	std Y+4,r16
-	ldd r16,Y+8
-	ldd r17,Y+9
-	ldd r1,Y+10
-	ldd r0,Y+11
+	std Y+5,r16
+	ldd r16,Y+9
+	ldd r17,Y+10
+	ldd r1,Y+11
+	ldd r0,Y+12
 	eor r16,r10
 	eor r17,r11
 	eor r1,r12
@@ -1547,14 +1548,14 @@ sliscp_light320_permute:
 	com r17
 	com r1
 	com r0
-	std Y+8,r16
-	std Y+9,r17
-	std Y+10,r1
-	std Y+11,r0
-	ldd r16,Y+12
-	ldd r17,Y+13
-	ldd r1,Y+14
-	ldd r0,Y+15
+	std Y+9,r16
+	std Y+10,r17
+	std Y+11,r1
+	std Y+12,r0
+	ldd r16,Y+13
+	ldd r17,Y+14
+	ldd r1,Y+15
+	ldd r0,Y+16
 	eor r16,r14
 	eor r17,r15
 	eor r1,r24
@@ -1562,9 +1563,9 @@ sliscp_light320_permute:
 	com r17
 	com r1
 	com r0
-	std Y+13,r17
-	std Y+14,r1
-	std Y+15,r0
+	std Y+14,r17
+	std Y+15,r1
+	std Y+16,r0
 #if defined(RAMPZ)
 	elpm r0,Z
 #elif defined(__AVR_HAVE_LPMX__)
@@ -1576,7 +1577,7 @@ sliscp_light320_permute:
 #endif
 	inc r30
 	eor r16,r0
-	std Y+12,r16
+	std Y+13,r16
 	eor r10,r18
 	eor r11,r19
 	eor r12,r20
@@ -1606,45 +1607,45 @@ sliscp_light320_permute:
 	movw r16,r10
 	mov r1,r12
 	mov r0,r13
-	ld r10,Y
-	ldd r11,Y+1
-	ldd r12,Y+2
-	ldd r13,Y+3
-	st Y,r2
-	std Y+1,r3
-	std Y+2,r4
-	std Y+3,r5
+	ldd r10,Y+1
+	ldd r11,Y+2
+	ldd r12,Y+3
+	ldd r13,Y+4
+	std Y+1,r2
+	std Y+2,r3
+	std Y+3,r4
+	std Y+4,r5
 	movw r2,r18
 	movw r4,r20
-	ldd r18,Y+8
-	ldd r19,Y+9
-	ldd r20,Y+10
-	ldd r21,Y+11
-	std Y+8,r16
-	std Y+9,r17
-	std Y+10,r1
-	std Y+11,r0
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	std Y+9,r16
+	std Y+10,r17
+	std Y+11,r1
+	std Y+12,r0
 	movw r16,r14
 	mov r1,r24
 	mov r0,r25
-	ldd r14,Y+4
-	ldd r15,Y+5
-	ldd r24,Y+6
-	ldd r25,Y+7
-	std Y+4,r6
-	std Y+5,r7
-	std Y+6,r8
-	std Y+7,r9
+	ldd r14,Y+5
+	ldd r15,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
+	std Y+5,r6
+	std Y+6,r7
+	std Y+7,r8
+	std Y+8,r9
 	movw r6,r22
 	movw r8,r26
-	ldd r22,Y+12
-	ldd r23,Y+13
-	ldd r26,Y+14
-	ldd r27,Y+15
-	std Y+12,r16
-	std Y+13,r17
-	std Y+14,r1
-	std Y+15,r0
+	ldd r22,Y+13
+	ldd r23,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	std Y+13,r16
+	std Y+14,r17
+	std Y+15,r1
+	std Y+16,r0
 	ldi r17,96
 	cpse r30,r17
 	rjmp 60b
@@ -1678,22 +1679,22 @@ sliscp_light320_permute:
 	std Z+37,r24
 	std Z+38,r15
 	std Z+39,r14
-	ld r18,Y
-	ldd r19,Y+1
-	ldd r20,Y+2
-	ldd r21,Y+3
-	ldd r22,Y+4
-	ldd r23,Y+5
-	ldd r26,Y+6
-	ldd r27,Y+7
-	ldd r2,Y+8
-	ldd r3,Y+9
-	ldd r4,Y+10
-	ldd r5,Y+11
-	ldd r6,Y+12
-	ldd r7,Y+13
-	ldd r8,Y+14
-	ldd r9,Y+15
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r22,Y+5
+	ldd r23,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	ldd r2,Y+9
+	ldd r3,Y+10
+	ldd r4,Y+11
+	ldd r5,Y+12
+	ldd r6,Y+13
+	ldd r7,Y+14
+	ldd r8,Y+15
+	ldd r9,Y+16
 	std Z+8,r21
 	std Z+9,r20
 	std Z+10,r19

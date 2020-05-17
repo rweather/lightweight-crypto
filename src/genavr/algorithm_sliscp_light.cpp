@@ -192,10 +192,10 @@ static void gen_sliscp_light256_permutation
         code.ldz(x3.reversed(), 4);     // x1
         code.ldz(x6.reversed(), 16);    // x4
         code.ldz(x7.reversed(), 20);    // x5
-        code.sty(x2, 0);
-        code.sty(x3, 4);
-        code.sty(x6, 8);
-        code.sty(x7, 12);
+        code.stlocal(x2, 0);
+        code.stlocal(x3, 4);
+        code.stlocal(x6, 8);
+        code.stlocal(x7, 12);
         code.ldz(x2.reversed(), 8);     // x2
         code.ldz(x3.reversed(), 24);    // x3
         code.ldz(x6.reversed(), 12);    // x6
@@ -206,10 +206,10 @@ static void gen_sliscp_light256_permutation
         code.ldz(x3.reversed(), 4);     // x1
         code.ldz(x6.reversed(), 8);     // x4
         code.ldz(x7.reversed(), 12);    // x5
-        code.sty(x2, 0);
-        code.sty(x3, 4);
-        code.sty(x6, 8);
-        code.sty(x7, 12);
+        code.stlocal(x2, 0);
+        code.stlocal(x3, 4);
+        code.stlocal(x6, 8);
+        code.stlocal(x7, 12);
         code.ldz(x2.reversed(), 16);    // x2
         code.ldz(x3.reversed(), 20);    // x3
         code.ldz(x6.reversed(), 24);    // x6
@@ -233,29 +233,29 @@ static void gen_sliscp_light256_permutation
 
     // Mix the sub-blocks and apply step constants.
     Reg t0 = code.allocateReg(4);
-    code.ldy(t0, 0);                    // t0 = (x0 ^ 0xFFFFFFFFU) ^ x2;
+    code.ldlocal(t0, 0);                // t0 = (x0 ^ 0xFFFFFFFFU) ^ x2;
     code.lognot(t0);
     code.logxor(t0, x2);
-    code.sty(x2, 0);                    // x0 = x2;
-    code.ldy(x2, 8);                    // x2 = (x4 ^ 0xFFFFFFFFU) ^ x6;
+    code.stlocal(x2, 0);                // x0 = x2;
+    code.ldlocal(x2, 8);                // x2 = (x4 ^ 0xFFFFFFFFU) ^ x6;
     code.lognot(x2);
     code.logxor(x2, x6);
-    code.sty(x6, 8);                    // x4 = x6;
+    code.stlocal(x6, 8);                // x4 = x6;
     code.move(x6, t0);                  // x6 = t0;
-    code.ldy(t0, 4);                    // x1 ^= 0xFFFFFF00U ^ rc[2];
+    code.ldlocal(t0, 4);                // x1 ^= 0xFFFFFF00U ^ rc[2];
     code.lognot(Reg(t0, 1, 3));
     code.sbox_lookup(rc, round);
     code.logxor(t0, rc);
     code.inc(round);
     code.logxor(t0, x3);                // t0 = x1 ^ x3;
-    code.sty(x3, 4);                    // x1 = x3;
-    code.ldy(x3, 12);                   // x5 ^= 0xFFFFFF00U ^ rc[3];
+    code.stlocal(x3, 4);                // x1 = x3;
+    code.ldlocal(x3, 12);               // x5 ^= 0xFFFFFF00U ^ rc[3];
     code.lognot(Reg(x3, 1, 3));
     code.sbox_lookup(rc, round);
     code.logxor(x3, rc);
     code.inc(round);
     code.logxor(x3, x7);                // x3 = x5 ^ x7;
-    code.sty(x7, 12);                   // x5 = x7;
+    code.stlocal(x7, 12);               // x5 = x7;
     code.move(x7, t0);                  // x7 = t0;
     code.releaseReg(t0);
 
@@ -276,10 +276,10 @@ static void gen_sliscp_light256_permutation
         code.stz(x3.reversed(), 24);    // x3
         code.stz(x6.reversed(), 12);    // x6
         code.stz(x7.reversed(), 28);    // x7
-        code.ldy(x2, 0);
-        code.ldy(x3, 4);
-        code.ldy(x6, 8);
-        code.ldy(x7, 12);
+        code.ldlocal(x2, 0);
+        code.ldlocal(x3, 4);
+        code.ldlocal(x6, 8);
+        code.ldlocal(x7, 12);
         code.stz(x2.reversed(), 0);     // x0
         code.stz(x3.reversed(), 4);     // x1
         code.stz(x6.reversed(), 16);    // x4
@@ -290,10 +290,10 @@ static void gen_sliscp_light256_permutation
         code.stz(x3.reversed(), 20);    // x3
         code.stz(x6.reversed(), 24);    // x6
         code.stz(x7.reversed(), 28);    // x7
-        code.ldy(x2, 0);
-        code.ldy(x3, 4);
-        code.ldy(x6, 8);
-        code.ldy(x7, 12);
+        code.ldlocal(x2, 0);
+        code.ldlocal(x3, 4);
+        code.ldlocal(x6, 8);
+        code.ldlocal(x7, 12);
         code.stz(x2.reversed(), 0);     // x0
         code.stz(x3.reversed(), 4);     // x1
         code.stz(x6.reversed(), 8);     // x4
@@ -458,10 +458,10 @@ void gen_sliscp_light320_permutation(Code &code)
     code.ldz(x1.reversed(), 12);    // x3
     code.ldz(x4.reversed(), 24);    // x6
     code.ldz(x5.reversed(), 28);    // x7
-    code.sty(x0, 0);
-    code.sty(x1, 4);
-    code.sty(x4, 8);
-    code.sty(x5, 12);
+    code.stlocal(x0, 0);
+    code.stlocal(x1, 4);
+    code.stlocal(x4, 8);
+    code.stlocal(x5, 12);
     code.ldz(x0.reversed(), 0);     // x0
     code.ldz(x1.reversed(), 16);    // x1
     code.ldz(x4.reversed(), 4);     // x4
@@ -487,30 +487,30 @@ void gen_sliscp_light320_permutation(Code &code)
     // Mix the blocks and apply step constants.
     Reg t0 = code.allocateReg(4);
     Reg rc = Reg(t0, 3, 1);
-    code.ldy(t0, 0);                    // x2 ^= x4;
+    code.ldlocal(t0, 0);                // x2 ^= x4;
     code.logxor(t0, x4);
     code.lognot(t0);                    // x2 ^= 0xFFFFFFFFU;
-    code.sty(t0, 0);
-    code.ldy(t0, 4);                    // x3 ^= x5;
+    code.stlocal(t0, 0);
+    code.ldlocal(t0, 4);                // x3 ^= x5;
     code.logxor(t0, x5);
     code.lognot(Reg(t0, 1, 3));         // x3 ^= 0xFFFFFF00U ^ rc[3];
-    code.sty(Reg(t0, 1, 3), 5);
+    code.stlocal(Reg(t0, 1, 3), 5);
     code.sbox_lookup(rc, round);
     code.inc(round);
     code.logxor(Reg(t0, 0, 1), rc);
-    code.sty(Reg(t0, 0, 1), 4);
-    code.ldy(t0, 8);                    // x6 ^= x8;
+    code.stlocal(Reg(t0, 0, 1), 4);
+    code.ldlocal(t0, 8);                // x6 ^= x8;
     code.logxor(t0, x8);
     code.lognot(t0);                    // x6 ^= 0xFFFFFFFFU;
-    code.sty(t0, 8);
-    code.ldy(t0, 12);                   // x7 ^= x9;
+    code.stlocal(t0, 8);
+    code.ldlocal(t0, 12);               // x7 ^= x9;
     code.logxor(t0, x9);
     code.lognot(Reg(t0, 1, 3));         // x7 ^= 0xFFFFFF00U ^ rc[4];
-    code.sty(Reg(t0, 1, 3), 13);
+    code.stlocal(Reg(t0, 1, 3), 13);
     code.sbox_lookup(rc, round);
     code.inc(round);
     code.logxor(Reg(t0, 0, 1), rc);
-    code.sty(Reg(t0, 0, 1), 12);
+    code.stlocal(Reg(t0, 0, 1), 12);
     code.logxor(x8, x0);                // x8 ^= x0;
     code.lognot(x8);                    // x8 ^= 0xFFFFFFFFU;
     code.logxor(x9, x1);                // x9 ^= x1;
@@ -521,17 +521,17 @@ void gen_sliscp_light320_permutation(Code &code)
 
     // Rotate the sub-blocks.
     code.move(t0, x8);                  // t0 = x8;
-    code.ldy(x8, 0);                    // x8 = x2;
-    code.sty(x4, 0);                    // x2 = x4;
+    code.ldlocal(x8, 0);                // x8 = x2;
+    code.stlocal(x4, 0);                // x2 = x4;
     code.move(x4, x0);                  // x4 = x0;
-    code.ldy(x0, 8);                    // x0 = x6;
-    code.sty(t0, 8);                    // x6 = t0;
+    code.ldlocal(x0, 8);                // x0 = x6;
+    code.stlocal(t0, 8);                // x6 = t0;
     code.move(t0, x9);                  // t0 = x9;
-    code.ldy(x9, 4);                    // x9 = x3;
-    code.sty(x5, 4);                    // x3 = x5;
+    code.ldlocal(x9, 4);                // x9 = x3;
+    code.stlocal(x5, 4);                // x3 = x5;
     code.move(x5, x1);                  // x5 = x1;
-    code.ldy(x1, 12);                   // x1 = x7;
-    code.sty(t0, 12);                   // x7 = t0;
+    code.ldlocal(x1, 12);               // x1 = x7;
+    code.stlocal(t0, 12);               // x7 = t0;
     code.releaseReg(t0);
 
     // Bottom of the round loop.
@@ -546,10 +546,10 @@ void gen_sliscp_light320_permutation(Code &code)
     code.stz(x5.reversed(), 20);
     code.stz(x8.reversed(), 32);
     code.stz(x9.reversed(), 36);
-    code.ldy(x0, 0);                // x2
-    code.ldy(x1, 4);                // x3
-    code.ldy(x4, 8);                // x6
-    code.ldy(x5, 12);               // x7
+    code.ldlocal(x0, 0);                // x2
+    code.ldlocal(x1, 4);                // x3
+    code.ldlocal(x4, 8);                // x6
+    code.ldlocal(x5, 12);               // x7
     code.stz(x0.reversed(), 8);
     code.stz(x1.reversed(), 12);
     code.stz(x4.reversed(), 24);

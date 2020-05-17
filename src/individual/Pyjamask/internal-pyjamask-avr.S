@@ -2242,8 +2242,8 @@ pyjamask_96_encrypt:
 	eor r5,r9
 	eor r6,r10
 	eor r7,r11
-	ld r26,Y
-	ldd r27,Y+1
+	ldd r26,Y+1
+	ldd r27,Y+2
 	st X+,r21
 	st X+,r20
 	st X+,r19
@@ -3874,8 +3874,8 @@ pyjamask_96_decrypt:
 	breq 6571f
 	rjmp 39b
 6571:
-	ld r26,Y
-	ldd r27,Y+1
+	ldd r26,Y+1
+	ldd r27,Y+2
 	st X+,r21
 	st X+,r20
 	st X+,r19
@@ -6677,8 +6677,8 @@ pyjamask_128_encrypt:
 	eor r9,r13
 	eor r10,r14
 	eor r11,r15
-	ld r26,Y
-	ldd r27,Y+1
+	ldd r26,Y+1
+	ldd r27,Y+2
 	st X+,r21
 	st X+,r20
 	st X+,r19
@@ -8839,8 +8839,8 @@ pyjamask_128_decrypt:
 	breq 7089f
 	rjmp 51b
 7089:
-	ld r26,Y
-	ldd r27,Y+1
+	ldd r26,Y+1
+	ldd r27,Y+2
 	st X+,r21
 	st X+,r20
 	st X+,r19

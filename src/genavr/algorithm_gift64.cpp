@@ -71,16 +71,16 @@ Gift64State::Gift64State(Code &code, bool decrypt)
     if (!decrypt) {
         code.ldz(k6, 0);
         code.ldz(k7, 2);
-        code.sty(k6, 0);
-        code.sty(k7, 2);
+        code.stlocal(k6, 0);
+        code.stlocal(k7, 2);
         code.ldz(k6, 4);
         code.ldz(k7, 6);
-        code.sty(k6, 4);
-        code.sty(k7, 6);
+        code.stlocal(k6, 4);
+        code.stlocal(k7, 6);
         code.ldz(k6, 8);
         code.ldz(k7, 10);
-        code.sty(k6, 8);
-        code.sty(k7, 10);
+        code.stlocal(k6, 8);
+        code.stlocal(k7, 10);
         code.ldz(k6, 12);   // Leave the last two words in k6 and k7.
         code.ldz(k7, 14);
     } else {
@@ -90,20 +90,20 @@ Gift64State::Gift64State(Code &code, bool decrypt)
         code.ldz(k7, 2);
         code.rol(k6, 12);
         code.ror(k7, 14);
-        code.sty(k6, 0);
-        code.sty(k7, 2);
+        code.stlocal(k6, 0);
+        code.stlocal(k7, 2);
         code.ldz(k6, 4);
         code.ldz(k7, 6);
         code.rol(k6, 12);
         code.ror(k7, 14);
-        code.sty(k6, 4);
-        code.sty(k7, 6);
+        code.stlocal(k6, 4);
+        code.stlocal(k7, 6);
         code.ldz(k6, 8);
         code.ldz(k7, 10);
         code.rol(k6, 12);
         code.ror(k7, 14);
-        code.sty(k6, 8);
-        code.sty(k7, 10);
+        code.stlocal(k6, 8);
+        code.stlocal(k7, 10);
         code.ldz(k6, 12);
         code.ldz(k7, 14);
         code.rol(k6, 12);
@@ -215,10 +215,10 @@ void Gift64State::rotate_key(Code &code, int round)
     }
     code.rol(k6, 4);
     code.ror(k7, 2);
-    code.sty(k6, curr_offset);
-    code.sty(k7, curr_offset + 2);
-    code.ldy(k6, next_offset);
-    code.ldy(k7, next_offset + 2);
+    code.stlocal(k6, curr_offset);
+    code.stlocal(k7, curr_offset + 2);
+    code.ldlocal(k6, next_offset);
+    code.ldlocal(k7, next_offset + 2);
 }
 
 void Gift64State::inv_rotate_key(Code &code, int round)
@@ -243,10 +243,10 @@ void Gift64State::inv_rotate_key(Code &code, int round)
         next_offset = 12;
         break;
     }
-    code.sty(k6, next_offset);
-    code.sty(k7, next_offset + 2);
-    code.ldy(k6, curr_offset);
-    code.ldy(k7, curr_offset + 2);
+    code.stlocal(k6, next_offset);
+    code.stlocal(k7, next_offset + 2);
+    code.ldlocal(k6, curr_offset);
+    code.ldlocal(k7, curr_offset + 2);
     code.ror(k6, 4);
     code.rol(k7, 2);
 }

@@ -89,25 +89,25 @@ Gift128State::Gift128State(Code &code, int ordering, bool decrypt)
     // we also fast-forward the key schedule to the end of the schedule.
     if (!decrypt) {
         code.ldz(w3, 0);
-        code.sty(w3, 0);
+        code.stlocal(w3, 0);
         code.ldz(w3, 4);
-        code.sty(w3, 4);
+        code.stlocal(w3, 4);
         code.ldz(w3, 8);
-        code.sty(w3, 8);
+        code.stlocal(w3, 8);
         code.ldz(w3, 12); // Leave the last word in a register.
     } else {
         code.ldz(w3, 0);
         code.rol(Reg(w3, 0, 2), 8);
         code.ror(Reg(w3, 2, 2), 4);
-        code.sty(w3, 0);
+        code.stlocal(w3, 0);
         code.ldz(w3, 4);
         code.rol(Reg(w3, 0, 2), 8);
         code.ror(Reg(w3, 2, 2), 4);
-        code.sty(w3, 4);
+        code.stlocal(w3, 4);
         code.ldz(w3, 8);
         code.rol(Reg(w3, 0, 2), 8);
         code.ror(Reg(w3, 2, 2), 4);
-        code.sty(w3, 8);
+        code.stlocal(w3, 8);
         code.ldz(w3, 12); // Leave the last word in a register.
         code.rol(Reg(w3, 0, 2), 8);
         code.ror(Reg(w3, 2, 2), 4);
@@ -117,7 +117,7 @@ Gift128State::Gift128State(Code &code, int ordering, bool decrypt)
     // Always load the key schedule in-place from local stack space.
     inplace = false;
     if (ordering == StateTweak) {
-        code.sty(w3, 12);
+        code.stlocal(w3, 12);
         code.releaseReg(w3);
         w3 = Reg();
         inplace = true;
@@ -232,8 +232,8 @@ void Gift128State::rotate_key(Code &code, int round)
     }
     code.rol(Reg(w3, 0, 2), 4);
     code.ror(Reg(w3, 2, 2), 2);
-    code.sty(w3, curr_offset);
-    code.ldy(w3, next_offset);
+    code.stlocal(w3, curr_offset);
+    code.ldlocal(w3, next_offset);
 }
 
 void Gift128State::inv_rotate_key(Code &code, int round)
@@ -258,8 +258,8 @@ void Gift128State::inv_rotate_key(Code &code, int round)
         next_offset = 12;
         break;
     }
-    code.sty(w3, next_offset);
-    code.ldy(w3, curr_offset);
+    code.stlocal(w3, next_offset);
+    code.ldlocal(w3, curr_offset);
     code.ror(Reg(w3, 0, 2), 4);
     code.rol(Reg(w3, 2, 2), 2);
 }
@@ -507,22 +507,22 @@ static void gen_gift128_encrypt
 
         // Round 1 out of 4.
         code.call(subroutine);
-        code.ldy_xor(s.s2, 4);
+        code.ldlocal_xor(s.s2, 4);
         s.rotate_key(code, 0);
 
         // Round 2 out of 4.
         code.call(subroutine);
-        code.ldy_xor(s.s2, 0);
+        code.ldlocal_xor(s.s2, 0);
         s.rotate_key(code, 1);
 
         // Round 3 out of 4.
         code.call(subroutine);
-        code.ldy_xor(s.s2, 12);
+        code.ldlocal_xor(s.s2, 12);
         s.rotate_key(code, 2);
 
         // Round 4 out of 4.
         code.call(subroutine);
-        code.ldy_xor(s.s2, 8);
+        code.ldlocal_xor(s.s2, 8);
         s.rotate_key(code, 3);
 
         // Bottom of the round loop and the inner subroutine.
@@ -546,20 +546,20 @@ static void gen_gift128_encrypt
         code.label(top_label);
         s.sub_cells(code);
         s.perm_bits(code);
-        code.ldy_xor(s.s2, 4);
-        code.ldy(s.t1, 12);
+        code.ldlocal_xor(s.s2, 4);
+        code.ldlocal(s.t1, 12);
         code.logxor(s.s1, s.t1);
         code.rol(Reg(s.t1, 0, 2), 4);
         code.ror(Reg(s.t1, 2, 2), 2);
         for (int index = 0; index < 4; ++index) {
             // Rotate the key schedule one byte at a time.
-            code.memory(Insn::LD_Y, TEMP_REG, index);
-            code.memory(Insn::ST_Y, s.t1.reg(index), index);
-            code.memory(Insn::LD_Y, s.t1.reg(index), 4 + index);
-            code.memory(Insn::ST_Y, TEMP_REG, 4 + index);
-            code.memory(Insn::LD_Y, TEMP_REG, 8 + index);
-            code.memory(Insn::ST_Y, s.t1.reg(index), 8 + index);
-            code.memory(Insn::ST_Y, TEMP_REG, 12 + index);
+            code.memory(Insn::LD_Y, TEMP_REG, index + 1);
+            code.memory(Insn::ST_Y, s.t1.reg(index), index + 1);
+            code.memory(Insn::LD_Y, s.t1.reg(index), 4 + index + 1);
+            code.memory(Insn::ST_Y, TEMP_REG, 4 + index + 1);
+            code.memory(Insn::LD_Y, TEMP_REG, 8 + index + 1);
+            code.memory(Insn::ST_Y, s.t1.reg(index), 8 + index + 1);
+            code.memory(Insn::ST_Y, TEMP_REG, 12 + index + 1);
         }
         code.move(Reg(s.t1, 0, 1), 0x80);
         code.logxor(Reg(s.s3, 3, 1), Reg(s.t1, 0, 1));
@@ -627,22 +627,22 @@ static void gen_gift128_decrypt
         code.label(top_label);
 
         // Round 4 out of 4.
-        code.ldy_xor(s.s2, 8);
+        code.ldlocal_xor(s.s2, 8);
         s.inv_rotate_key(code, 3);
         code.call(subroutine);
 
         // Round 3 out of 4.
-        code.ldy_xor(s.s2, 12);
+        code.ldlocal_xor(s.s2, 12);
         s.inv_rotate_key(code, 2);
         code.call(subroutine);
 
         // Round 2 out of 4.
-        code.ldy_xor(s.s2, 0);
+        code.ldlocal_xor(s.s2, 0);
         s.inv_rotate_key(code, 1);
         code.call(subroutine);
 
         // Round 1 out of 4.
-        code.ldy_xor(s.s2, 4);
+        code.ldlocal_xor(s.s2, 4);
         s.inv_rotate_key(code, 0);
         code.call(subroutine);
 
@@ -668,19 +668,19 @@ static void gen_gift128_decrypt
         for (int index = 0; index < 4; ++index) {
             // Rotate the key schedule backwards one byte at a time.
             // Set things up so that the final version of w3 is in t1.
-            code.memory(Insn::LD_Y, TEMP_REG, 12 + index);
-            code.memory(Insn::LD_Y, s.t1.reg(index), 8 + index);
-            code.memory(Insn::ST_Y, TEMP_REG, 8 + index);
-            code.memory(Insn::LD_Y, TEMP_REG, 4 + index);
-            code.memory(Insn::ST_Y, s.t1.reg(index), 4 + index);
-            code.memory(Insn::LD_Y, s.t1.reg(index), index);
-            code.memory(Insn::ST_Y, TEMP_REG, index);
+            code.memory(Insn::LD_Y, TEMP_REG, 12 + index + 1);
+            code.memory(Insn::LD_Y, s.t1.reg(index), 8 + index + 1);
+            code.memory(Insn::ST_Y, TEMP_REG, 8 + index + 1);
+            code.memory(Insn::LD_Y, TEMP_REG, 4 + index + 1);
+            code.memory(Insn::ST_Y, s.t1.reg(index), 4 + index + 1);
+            code.memory(Insn::LD_Y, s.t1.reg(index), index + 1);
+            code.memory(Insn::ST_Y, TEMP_REG, index + 1);
         }
         code.ror(Reg(s.t1, 0, 2), 4);
         code.rol(Reg(s.t1, 2, 2), 2);
-        code.sty(s.t1, 12);
+        code.stlocal(s.t1, 12);
         code.logxor(s.s1, s.t1);
-        code.ldy_xor(s.s2, 4);
+        code.ldlocal_xor(s.s2, 4);
         code.move(Reg(s.t1, 0, 1), 0x80);
         code.logxor(Reg(s.s3, 3, 1), Reg(s.t1, 0, 1));
         code.dec(counter);

@@ -307,11 +307,12 @@ spongent160_permute:
 	ldd r24,Z+18
 	ldd r25,Z+19
 	movw r26,r30
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r21,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r21,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r21
 #endif
 	ldi r18,80
@@ -974,11 +975,12 @@ spongent176_permute:
 	ldd r16,Z+20
 	ldd r17,Z+21
 	movw r26,r30
+	ldi r30,lo8(table_0)
 	ldi r31,hi8(table_0)
 #if defined(RAMPZ)
+	ldi r21,hh8(table_0)
 	in r0,_SFR_IO_ADDR(RAMPZ)
 	push r0
-	ldi r21,hh8(table_0)
 	out _SFR_IO_ADDR(RAMPZ),r21
 #endif
 	ldi r18,90

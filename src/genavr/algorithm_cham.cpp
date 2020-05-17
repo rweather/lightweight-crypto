@@ -41,12 +41,12 @@ static void gen_cham_double_round
     logxor_shifted_8(code, x0, round); // x0 is already pre-rotated by 8.
     code.move(temp, x1);
     code.rol(temp, 1);
-    code.ldy_xor(temp, ks_offset * x0.size());
+    code.ldlocal_xor(temp, ks_offset * x0.size());
     code.add(Reg(x0, 1, 4), temp);
     code.inc(round);
     code.logxor(x1, round);
     code.rol(x2, 8);
-    code.ldy(temp, (ks_offset + 1) * x0.size());
+    code.ldlocal(temp, (ks_offset + 1) * x0.size());
     code.logxor(temp, x2);
     code.add(x1, temp);
     code.rol(x1, 1);
@@ -81,27 +81,27 @@ void gen_cham128_encrypt(Code &code)
         code.logxor(x0, x3);            // x0 ^= x3
         code.move(x2, x0);              // x2 = x0 = (x0 ^ leftRotate1(x0))
         code.logxor(x0, Reg(x1, 3, 4)); // x0 ^= leftRotate8(x1)
-        code.sty(x0, offset * 4);
+        code.stlocal(x0, offset * 4);
         code.rol(x3, 2);                // x3 = leftRotate11(x1)
         code.logxor(x2, Reg(x3, 3, 4)); // x2 ^= x3
-        code.sty(x2, (offset ^ 0x05) * 4);
+        code.stlocal(x2, (offset ^ 0x05) * 4);
     }
 
     // Print the contents of the key schedule in diagnostic mode.
     if (code.hasFlag(Code::Print)) {
         code.print("Key : ");
-        code.ldy(x0, 0);
-        code.ldy(x1, 4);
-        code.ldy(x2, 8);
-        code.ldy(x3, 12);
+        code.ldlocal(x0, 0);
+        code.ldlocal(x1, 4);
+        code.ldlocal(x2, 8);
+        code.ldlocal(x3, 12);
         code.print(x0);
         code.print(x1);
         code.print(x2);
         code.print(x3);
-        code.ldy(x0, 16);
-        code.ldy(x1, 20);
-        code.ldy(x2, 24);
-        code.ldy(x3, 28);
+        code.ldlocal(x0, 16);
+        code.ldlocal(x1, 20);
+        code.ldlocal(x2, 24);
+        code.ldlocal(x3, 28);
         code.println();
         code.print("      ");
         code.print(x0);
@@ -194,10 +194,10 @@ void gen_cham64_encrypt(Code &code)
         code.logxor(x0, x3);            // x0 ^= x3
         code.move(x2, x0);              // x2 = x0 = (x0 ^ leftRotate1(x0))
         code.logxor(x0, Reg(x1, 1, 2)); // x0 ^= leftRotate8(x1)
-        code.sty(x0, offset * 2);
+        code.stlocal(x0, offset * 2);
         code.rol(x3, 2);                // x3 = leftRotate11(x1)
         code.logxor(x2, Reg(x3, 1, 2)); // x2 ^= x3
-        code.sty(x2, (offset ^ 0x09) * 2);
+        code.stlocal(x2, (offset ^ 0x09) * 2);
     }
 
     // We no longer need the Z register so allow it to be used for temporaries.

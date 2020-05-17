@@ -1942,7 +1942,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r18,r24
 	com r4
-	st Y,r18
+	std Y+1,r18
 	st Z,r22
 	std Z+8,r23
 	std Z+16,r12
@@ -2013,7 +2013,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r19,r24
 	com r5
-	std Y+1,r19
+	std Y+2,r19
 	std Z+1,r22
 	std Z+9,r23
 	std Z+17,r12
@@ -2084,7 +2084,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r20,r24
 	com r6
-	std Y+2,r20
+	std Y+3,r20
 	std Z+2,r22
 	std Z+10,r23
 	std Z+18,r12
@@ -2155,7 +2155,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r21,r24
 	com r7
-	std Y+3,r21
+	std Y+4,r21
 	std Z+3,r22
 	std Z+11,r23
 	std Z+19,r12
@@ -2226,7 +2226,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r26,r24
 	com r8
-	std Y+4,r26
+	std Y+5,r26
 	std Z+4,r22
 	std Z+12,r23
 	std Z+20,r12
@@ -2297,7 +2297,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r27,r24
 	com r9
-	std Y+5,r27
+	std Y+6,r27
 	std Z+5,r22
 	std Z+13,r23
 	std Z+21,r12
@@ -2368,7 +2368,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r2,r24
 	com r10
-	std Y+6,r2
+	std Y+7,r2
 	std Z+6,r22
 	std Z+14,r23
 	std Z+22,r12
@@ -2439,7 +2439,7 @@ gascon256_core_round:
 	eor r15,r14
 	eor r3,r24
 	com r11
-	std Y+7,r3
+	std Y+8,r3
 	std Z+7,r22
 	std Z+15,r23
 	std Z+23,r12
@@ -3221,14 +3221,14 @@ gascon256_core_round:
 	std Z+61,r27
 	std Z+62,r2
 	std Z+63,r3
-	ld r18,Y
-	ldd r19,Y+1
-	ldd r20,Y+2
-	ldd r21,Y+3
-	ldd r26,Y+4
-	ldd r27,Y+5
-	ldd r2,Y+6
-	ldd r3,Y+7
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r2,Y+7
+	ldd r3,Y+8
 	movw r22,r18
 	movw r12,r20
 	movw r14,r26
@@ -3391,9 +3391,8 @@ drysponge256_g:
 	subi r30,108
 	sbc r31,r1
 	ldi r18,240
-	std Y+24,r19
-	std Y+25,r18
-	std Y+8,r1
+	std Y+25,r19
+	std Y+26,r18
 	std Y+9,r1
 	std Y+10,r1
 	std Y+11,r1
@@ -3409,6 +3408,7 @@ drysponge256_g:
 	std Y+21,r1
 	std Y+22,r1
 	std Y+23,r1
+	std Y+24,r1
 	ld r18,Z+
 	ld r19,Z+
 	ld r20,Z+
@@ -3426,10 +3426,10 @@ drysponge256_g:
 	ldd r8,Z+30
 	ldd r9,Z+31
 40:
-	ldd r24,Y+25
+	ldd r24,Y+26
 	eor r2,r24
 	subi r24,15
-	std Y+25,r24
+	std Y+26,r24
 	ld r10,Z
 	ldd r11,Z+8
 	ldd r12,Z+16
@@ -3493,7 +3493,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r18,r24
 	com r2
-	st Y,r18
+	std Y+1,r18
 	st Z,r10
 	std Z+8,r11
 	std Z+16,r12
@@ -3564,7 +3564,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r19,r24
 	com r3
-	std Y+1,r19
+	std Y+2,r19
 	std Z+1,r10
 	std Z+9,r11
 	std Z+17,r12
@@ -3635,7 +3635,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r20,r24
 	com r4
-	std Y+2,r20
+	std Y+3,r20
 	std Z+2,r10
 	std Z+10,r11
 	std Z+18,r12
@@ -3706,7 +3706,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r21,r24
 	com r5
-	std Y+3,r21
+	std Y+4,r21
 	std Z+3,r10
 	std Z+11,r11
 	std Z+19,r12
@@ -3777,7 +3777,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r22,r24
 	com r6
-	std Y+4,r22
+	std Y+5,r22
 	std Z+4,r10
 	std Z+12,r11
 	std Z+20,r12
@@ -3848,7 +3848,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r23,r24
 	com r7
-	std Y+5,r23
+	std Y+6,r23
 	std Z+5,r10
 	std Z+13,r11
 	std Z+21,r12
@@ -3919,7 +3919,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r26,r24
 	com r8
-	std Y+6,r26
+	std Y+7,r26
 	std Z+6,r10
 	std Z+14,r11
 	std Z+22,r12
@@ -3990,7 +3990,7 @@ drysponge256_g:
 	eor r15,r14
 	eor r27,r24
 	com r9
-	std Y+7,r27
+	std Y+8,r27
 	std Z+7,r10
 	std Z+15,r11
 	std Z+23,r12
@@ -4772,14 +4772,14 @@ drysponge256_g:
 	std Z+61,r23
 	std Z+62,r26
 	std Z+63,r27
-	ld r18,Y
-	ldd r19,Y+1
-	ldd r20,Y+2
-	ldd r21,Y+3
-	ldd r22,Y+4
-	ldd r23,Y+5
-	ldd r26,Y+6
-	ldd r27,Y+7
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r22,Y+5
+	ldd r23,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
 	movw r10,r18
 	movw r12,r20
 	movw r14,r22
@@ -4861,10 +4861,10 @@ drysponge256_g:
 	eor r23,r11
 	eor r26,r12
 	eor r27,r13
-	ldd r10,Y+8
-	ldd r11,Y+9
-	ldd r12,Y+10
-	ldd r13,Y+11
+	ldd r10,Y+9
+	ldd r11,Y+10
+	ldd r12,Y+11
+	ldd r13,Y+12
 	eor r10,r18
 	eor r11,r19
 	eor r12,r20
@@ -4893,14 +4893,14 @@ drysponge256_g:
 	eor r12,r0
 	ldd r0,Z+55
 	eor r13,r0
-	std Y+8,r10
-	std Y+9,r11
-	std Y+10,r12
-	std Y+11,r13
-	ldd r10,Y+12
-	ldd r11,Y+13
-	ldd r12,Y+14
-	ldd r13,Y+15
+	std Y+9,r10
+	std Y+10,r11
+	std Y+11,r12
+	std Y+12,r13
+	ldd r10,Y+13
+	ldd r11,Y+14
+	ldd r12,Y+15
+	ldd r13,Y+16
 	eor r10,r22
 	eor r11,r23
 	eor r12,r26
@@ -4929,14 +4929,14 @@ drysponge256_g:
 	eor r12,r0
 	ldd r0,Z+43
 	eor r13,r0
-	std Y+12,r10
-	std Y+13,r11
-	std Y+14,r12
-	std Y+15,r13
-	ldd r10,Y+16
-	ldd r11,Y+17
-	ldd r12,Y+18
-	ldd r13,Y+19
+	std Y+13,r10
+	std Y+14,r11
+	std Y+15,r12
+	std Y+16,r13
+	ldd r10,Y+17
+	ldd r11,Y+18
+	ldd r12,Y+19
+	ldd r13,Y+20
 	eor r10,r2
 	eor r11,r3
 	eor r12,r4
@@ -4965,14 +4965,14 @@ drysponge256_g:
 	eor r12,r0
 	ldd r0,Z+47
 	eor r13,r0
-	std Y+16,r10
-	std Y+17,r11
-	std Y+18,r12
-	std Y+19,r13
-	ldd r10,Y+20
-	ldd r11,Y+21
-	ldd r12,Y+22
-	ldd r13,Y+23
+	std Y+17,r10
+	std Y+18,r11
+	std Y+19,r12
+	std Y+20,r13
+	ldd r10,Y+21
+	ldd r11,Y+22
+	ldd r12,Y+23
+	ldd r13,Y+24
 	eor r10,r6
 	eor r11,r7
 	eor r12,r8
@@ -5001,13 +5001,13 @@ drysponge256_g:
 	eor r12,r0
 	ldd r0,Z+51
 	eor r13,r0
-	std Y+20,r10
-	std Y+21,r11
-	std Y+22,r12
-	std Y+23,r13
-	ldd r10,Y+24
+	std Y+21,r10
+	std Y+22,r11
+	std Y+23,r12
+	std Y+24,r13
+	ldd r10,Y+25
 	dec r10
-	std Y+24,r10
+	std Y+25,r10
 	breq 6623f
 	rjmp 40b
 6623:
@@ -5030,22 +5030,22 @@ drysponge256_g:
 	ldi r25,72
 	add r30,r25
 	adc r31,r1
-	ldd r18,Y+8
-	ldd r19,Y+9
-	ldd r20,Y+10
-	ldd r21,Y+11
-	ldd r22,Y+12
-	ldd r23,Y+13
-	ldd r26,Y+14
-	ldd r27,Y+15
-	ldd r2,Y+16
-	ldd r3,Y+17
-	ldd r4,Y+18
-	ldd r5,Y+19
-	ldd r6,Y+20
-	ldd r7,Y+21
-	ldd r8,Y+22
-	ldd r9,Y+23
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	ldd r22,Y+13
+	ldd r23,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	ldd r2,Y+17
+	ldd r3,Y+18
+	ldd r4,Y+19
+	ldd r5,Y+20
+	ldd r6,Y+21
+	ldd r7,Y+22
+	ldd r8,Y+23
+	ldd r9,Y+24
 	st Z,r18
 	std Z+1,r19
 	std Z+2,r20

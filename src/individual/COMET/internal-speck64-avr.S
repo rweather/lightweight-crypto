@@ -236,8 +236,8 @@ speck64_128_encrypt:
 	ldi r17,27
 	cpse r16,r17
 	rjmp 25b
-	ld r26,Y
-	ldd r27,Y+1
+	ldd r26,Y+1
+	ldd r27,Y+2
 	st X+,r14
 	st X+,r15
 	st X+,r24

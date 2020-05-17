@@ -488,13 +488,17 @@ public:
     void label(unsigned char &label) { branch(Insn::LABEL, label); }
     void ldx(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::LD_X, offset); }
     void ldy(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::LD_Y, offset); }
+    void ldlocal(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::LD_Y, offset + 1); }
     void ldz(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::LD_Z, offset); }
     void ldx_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::LD_X, offset); }
     void ldy_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::LD_Y, offset); }
+    void ldlocal_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::LD_Y, offset + 1); }
     void ldz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::LD_Z, offset); }
     void ldy_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Y, offset); }
+    void ldlocal_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Y, offset + 1); }
     void ldz_xor(const Reg &reg, unsigned offset) { ld_xor(reg, Insn::LD_Z, offset); }
     void ldy_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Y, offset); }
+    void ldlocal_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Y, offset + 1); }
     void ldz_xor_in(const Reg &reg, unsigned offset) { ld_xor_in(reg, Insn::LD_Z, offset); }
     void lsl(const Reg &reg, unsigned bits);
     void lsl_bytes(const Reg &reg, unsigned count);
@@ -533,12 +537,15 @@ public:
     void sub_ptr_z(int offset) { add_ptr_z(-offset); }
     void stx(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_X, offset); }
     void sty(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_Y, offset); }
+    void stlocal(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_Y, offset + 1); }
     void stz(const Reg &reg, unsigned char offset) { ld_st(reg, Insn::ST_Z, offset); }
     void stx_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_X, offset, count); }
     void sty_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_Y, offset, count); }
+    void stlocal_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_Y, offset + 1, count); }
     void stz_zero(unsigned offset, unsigned count) { st_zero(Insn::ST_Z, offset, count); }
     void stx_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_X, offset); }
     void sty_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset); }
+    void stlocal_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset + 1); }
     void stz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Z, offset); }
     void swap(const Reg &reg1, const Reg &reg2);
 
