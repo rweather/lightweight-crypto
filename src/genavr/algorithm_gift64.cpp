@@ -280,26 +280,73 @@ void gen_gift64n_setup_key(Code &code)
 }
 
 /**
+ * \brief Generates the AVR code for the gift64 key setup function
+ * with alternative big endian byte order.
+ *
+ * \param code The code block to generate into.
+ */
+void gen_gift64_setup_key_alt(Code &code)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // X points to the key, and Z points to the key schedule.
+    code.prologue_setup_key_reversed("gift64_keyschedule", 0);
+    code.setFlag(Code::NoLocals); // Don't need to save the Y register.
+
+    // Copy the key into the key schedule structure and rearrange:
+    //      ks->k[0] = be_load_word32(key);
+    //      ks->k[1] = be_load_word32(key + 4);
+    //      ks->k[2] = be_load_word32(key + 8);
+    //      ks->k[3] = be_load_word32(key + 12);
+    Reg temp = code.allocateReg(4);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 0);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 4);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 8);
+    code.ldx(temp.reversed(), POST_INC);
+    code.stz(temp, 12);
+}
+
+/**
  * \brief Load the 64-bit input state from X and convert into bit-sliced form.
  *
  * \param code The code block to generate into.
  * \param s State register information.
+ * \param big_endian Set to true if the input byte order is big endian.
  */
-static void gen_load_state(Code &code, Gift64State &s)
+static void gen_load_state(Code &code, Gift64State &s, bool big_endian)
 {
     int word, bit;
-    for (word = 0; word < 4; ++word) {
-        code.ldx(s.t1, POST_INC);
-        for (bit = 0; bit < 16; ++bit) {
-            Reg dst;
-            switch (bit % 4) {
-            case 0: default:    dst = s.s0; break;
-            case 1:             dst = s.s1; break;
-            case 2:             dst = s.s2; break;
-            case 3:             dst = s.s3; break;
+    if (big_endian) {
+        for (word = 0; word < 4; ++word) {
+            code.ldx(s.t1.reversed(), POST_INC);
+            for (bit = 0; bit < 16; ++bit) {
+                Reg dst;
+                switch (bit % 4) {
+                case 0: default:    dst = s.s3; break;
+                case 1:             dst = s.s2; break;
+                case 2:             dst = s.s1; break;
+                case 3:             dst = s.s0; break;
+                }
+                code.bit_get(s.t1, 15 - bit);
+                code.bit_put(dst, ((15 - bit) / 4) + ((3 - word) * 4));
             }
-            code.bit_get(s.t1, bit);
-            code.bit_put(dst, (bit / 4) + (word * 4));
+        }
+    } else {
+        for (word = 0; word < 4; ++word) {
+            code.ldx(s.t1, POST_INC);
+            for (bit = 0; bit < 16; ++bit) {
+                Reg dst;
+                switch (bit % 4) {
+                case 0: default:    dst = s.s0; break;
+                case 1:             dst = s.s1; break;
+                case 2:             dst = s.s2; break;
+                case 3:             dst = s.s3; break;
+                }
+                code.bit_get(s.t1, bit);
+                code.bit_put(dst, (bit / 4) + (word * 4));
+            }
         }
     }
 }
@@ -309,23 +356,41 @@ static void gen_load_state(Code &code, Gift64State &s)
  *
  * \param code The code block to generate into.
  * \param s State register information.
+ * \param big_endian Set to true if the input byte order is big endian.
  */
-static void gen_store_state(Code &code, Gift64State &s)
+static void gen_store_state(Code &code, Gift64State &s, bool big_endian)
 {
     int word, bit;
-    for (word = 0; word < 4; ++word) {
-        for (bit = 0; bit < 16; ++bit) {
-            Reg src;
-            switch (bit % 4) {
-            case 0: default:    src = s.s0; break;
-            case 1:             src = s.s1; break;
-            case 2:             src = s.s2; break;
-            case 3:             src = s.s3; break;
+    if (big_endian) {
+        for (word = 0; word < 4; ++word) {
+            for (bit = 0; bit < 16; ++bit) {
+                Reg src;
+                switch (bit % 4) {
+                case 0: default:    src = s.s3; break;
+                case 1:             src = s.s2; break;
+                case 2:             src = s.s1; break;
+                case 3:             src = s.s0; break;
+                }
+                code.bit_get(src, ((15 - bit) / 4) + ((3 - word) * 4));
+                code.bit_put(s.t1, 15 - bit);
             }
-            code.bit_get(src, (bit / 4) + (word * 4));
-            code.bit_put(s.t1, bit);
+            code.stx(s.t1.reversed(), POST_INC);
         }
-        code.stx(s.t1, POST_INC);
+    } else {
+        for (word = 0; word < 4; ++word) {
+            for (bit = 0; bit < 16; ++bit) {
+                Reg src;
+                switch (bit % 4) {
+                case 0: default:    src = s.s0; break;
+                case 1:             src = s.s1; break;
+                case 2:             src = s.s2; break;
+                case 3:             src = s.s3; break;
+                }
+                code.bit_get(src, (bit / 4) + (word * 4));
+                code.bit_put(s.t1, bit);
+            }
+            code.stx(s.t1, POST_INC);
+        }
     }
 }
 
@@ -334,13 +399,16 @@ static void gen_store_state(Code &code, Gift64State &s)
  *
  * \param code The code block to generate into.
  * \param has_tweak Set to true if we are generating the tweakable version.
+ * \param big_endian Set to true if the input byte order is big endian.
  */
-static void gen_gift64_encrypt(Code &code, bool has_tweak)
+static void gen_gift64_encrypt(Code &code, bool has_tweak, bool big_endian)
 {
     // Set up the function prologue with 16 bytes of local variable storage.
     // X will point to the input, Z points to the key, Y is local variables.
     Reg tweak;
-    if (!has_tweak)
+    if (big_endian)
+        code.prologue_encrypt_block_key2("gift64_encrypt_block", 16);
+    else if (!has_tweak)
         code.prologue_encrypt_block("gift64n_encrypt", 16);
     else
         tweak = code.prologue_encrypt_block_with_tweak("gift64t_encrypt", 16);
@@ -349,7 +417,7 @@ static void gen_gift64_encrypt(Code &code, bool has_tweak)
     Gift64State s(code);
 
     // Load the state and convert into bit-sliced form.
-    gen_load_state(code, s);
+    gen_load_state(code, s, big_endian);
 
     // Perform all encryption rounds.  The bulk of the round is in a
     // subroutine with the outer loop unrolled to deal with rotating
@@ -381,7 +449,7 @@ static void gen_gift64_encrypt(Code &code, bool has_tweak)
     // Store the state to the output and convert into nibble form.
     code.label(end_label);
     code.load_output_ptr();
-    gen_store_state(code, s);
+    gen_store_state(code, s, big_endian);
 }
 
 /**
@@ -389,13 +457,16 @@ static void gen_gift64_encrypt(Code &code, bool has_tweak)
  *
  * \param code The code block to generate into.
  * \param has_tweak Set to true if we are generating the tweakable version.
+ * \param big_endian Set to true if the input byte order is big endian.
  */
-static void gen_gift64_decrypt(Code &code, bool has_tweak)
+static void gen_gift64_decrypt(Code &code, bool has_tweak, bool big_endian)
 {
     // Set up the function prologue with 16 bytes of local variable storage.
     // X will point to the input, Z points to the key, Y is local variables.
     Reg tweak;
-    if (!has_tweak)
+    if (big_endian)
+        code.prologue_decrypt_block_key2("gift64_decrypt_block", 16);
+    else if (!has_tweak)
         code.prologue_decrypt_block("gift64n_decrypt", 16);
     else
         tweak = code.prologue_decrypt_block_with_tweak("gift64t_decrypt", 16);
@@ -404,7 +475,7 @@ static void gen_gift64_decrypt(Code &code, bool has_tweak)
     Gift64State s(code, true);
 
     // Load the state and convert into bit-sliced form.
-    gen_load_state(code, s);
+    gen_load_state(code, s, big_endian);
 
     // Perform all decryption rounds.  The bulk of the round is in a
     // subroutine with the outer loop unrolled to deal with rotating
@@ -433,27 +504,37 @@ static void gen_gift64_decrypt(Code &code, bool has_tweak)
     // Store the state to the output and convert into nibble form.
     code.label(end_label);
     code.load_output_ptr();
-    gen_store_state(code, s);
+    gen_store_state(code, s, big_endian);
 }
 
 void gen_gift64n_encrypt(Code &code)
 {
-    gen_gift64_encrypt(code, false);
+    gen_gift64_encrypt(code, false, false);
 }
 
 void gen_gift64n_decrypt(Code &code)
 {
-    gen_gift64_decrypt(code, false);
+    gen_gift64_decrypt(code, false, false);
 }
 
 void gen_gift64t_encrypt(Code &code)
 {
-    gen_gift64_encrypt(code, true);
+    gen_gift64_encrypt(code, true, false);
 }
 
 void gen_gift64t_decrypt(Code &code)
 {
-    gen_gift64_decrypt(code, true);
+    gen_gift64_decrypt(code, true, false);
+}
+
+void gen_gift64_encrypt_alt(Code &code)
+{
+    gen_gift64_encrypt(code, false, true);
+}
+
+void gen_gift64_decrypt_alt(Code &code)
+{
+    gen_gift64_decrypt(code, false, true);
 }
 
 /* Test vectors for GIFT-64 */
@@ -629,6 +710,122 @@ bool test_gift64t_decrypt(Code &code)
     if (!test_gift64n_decrypt(code, &gift64t_3, 0x9999))
         return false;
     if (!test_gift64n_decrypt(code, &gift64t_4, 0x0000))
+        return false;
+    return true;
+}
+
+/* Test vectors for GIFT-64 with alternative byte ordering */
+static block_cipher_test_vector_t const gift64_alt_1 = {
+    "Test Vector 1",
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,    /* key */
+     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    16,                                                 /* key_len */
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},   /* plaintext */
+    {0xf6, 0x2b, 0xc3, 0xef, 0x34, 0xf7, 0x75, 0xac}    /* ciphertext */
+};
+static block_cipher_test_vector_t const gift64_alt_2 = {
+    "Test Vector 2",
+    {0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,    /* key */
+     0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10},
+    16,                                                 /* key_len */
+    {0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10},   /* plaintext */
+    {0xc1, 0xb7, 0x1f, 0x66, 0x16, 0x0f, 0xf5, 0x87}    /* ciphertext */
+};
+static block_cipher_test_vector_t const gift64_alt_3 = {
+    "Test Vector 3",
+    {0xbd, 0x91, 0x73, 0x1e, 0xb6, 0xbc, 0x27, 0x13,    /* key */
+     0xa1, 0xf9, 0xf6, 0xff, 0xc7, 0x50, 0x44, 0xe7},
+    16,                                                 /* key_len */
+    {0xc4, 0x50, 0xc7, 0x72, 0x7a, 0x9b, 0x8a, 0x7d},   /* plaintext */
+    {0xe3, 0x27, 0x28, 0x85, 0xfa, 0x94, 0xba, 0x8b}    /* ciphertext */
+};
+
+// Set up the key schedule which is a byte-reversed version of the input key.
+static void gift64_setup_alt
+    (unsigned char schedule[16], const block_cipher_test_vector_t *test)
+{
+    for (int offset = 0; offset < 16; offset += 4) {
+        schedule[offset]     = test->key[offset + 3];
+        schedule[offset + 1] = test->key[offset + 2];
+        schedule[offset + 2] = test->key[offset + 1];
+        schedule[offset + 3] = test->key[offset];
+    }
+}
+
+static bool test_gift64_setup_key_alt
+    (Code &code, const block_cipher_test_vector_t *test)
+{
+    unsigned char schedule[16];
+    unsigned char expected[16];
+
+    // Set up the key schedule.
+    code.exec_setup_key(schedule, sizeof(schedule),
+                        test->key, test->key_len);
+
+    // We expect the words to be byte-reversed, but otherwise copied as-is.
+    gift64_setup_alt(expected, test);
+    if (memcmp(schedule, expected, sizeof(schedule)) != 0)
+        return false;
+    return true;
+}
+
+bool test_gift64_setup_key_alt(Code &code)
+{
+    if (!test_gift64_setup_key_alt(code, &gift64_alt_1))
+        return false;
+    if (!test_gift64_setup_key_alt(code, &gift64_alt_2))
+        return false;
+    if (!test_gift64_setup_key_alt(code, &gift64_alt_3))
+        return false;
+    return true;
+}
+
+static bool test_gift64_encrypt_alt
+    (Code &code, const block_cipher_test_vector_t *test)
+{
+    unsigned char schedule[16];
+    unsigned char output[8];
+    gift64_setup_alt(schedule, test);
+    code.exec_encrypt_block(schedule, sizeof(schedule),
+                            output, sizeof(output),
+                            test->plaintext, 8);
+    if (memcmp(output, test->ciphertext, 8) != 0)
+        return false;
+    return true;
+}
+
+bool test_gift64_encrypt_alt(Code &code)
+{
+    if (!test_gift64_encrypt_alt(code, &gift64_alt_1))
+        return false;
+    if (!test_gift64_encrypt_alt(code, &gift64_alt_2))
+        return false;
+    if (!test_gift64_encrypt_alt(code, &gift64_alt_3))
+        return false;
+    return true;
+}
+
+static bool test_gift64_decrypt_alt
+    (Code &code, const block_cipher_test_vector_t *test)
+{
+    unsigned char schedule[16];
+    unsigned char output[8];
+    gift64_setup_alt(schedule, test);
+    code.exec_decrypt_block(schedule, sizeof(schedule),
+                            output, sizeof(output),
+                            test->ciphertext, 8);
+    if (memcmp(output, test->plaintext, 8) != 0)
+        return false;
+    return true;
+}
+
+bool test_gift64_decrypt_alt(Code &code)
+{
+    if (!test_gift64_decrypt_alt(code, &gift64_alt_1))
+        return false;
+    if (!test_gift64_decrypt_alt(code, &gift64_alt_2))
+        return false;
+    if (!test_gift64_decrypt_alt(code, &gift64_alt_3))
         return false;
     return true;
 }

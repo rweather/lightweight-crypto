@@ -87,15 +87,21 @@ bool test_gift128n_decrypt_alt(Code &code);
 
 // GIFT-64 block cipher.
 void gen_gift64n_setup_key(Code &code);
+void gen_gift64_setup_key_alt(Code &code);
 void gen_gift64n_encrypt(Code &code);
 void gen_gift64n_decrypt(Code &code);
 void gen_gift64t_encrypt(Code &code);
 void gen_gift64t_decrypt(Code &code);
+void gen_gift64_encrypt_alt(Code &code);
+void gen_gift64_decrypt_alt(Code &code);
 bool test_gift64n_setup_key(Code &code);
+bool test_gift64_setup_key_alt(Code &code);
 bool test_gift64n_encrypt(Code &code);
 bool test_gift64n_decrypt(Code &code);
 bool test_gift64t_encrypt(Code &code);
 bool test_gift64t_decrypt(Code &code);
+bool test_gift64_encrypt_alt(Code &code);
+bool test_gift64_decrypt_alt(Code &code);
 
 // GIMLI-24 permutation.
 void gen_gimli24_permutation(Code &code);

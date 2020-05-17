@@ -570,6 +570,69 @@ static bool gift64(enum Mode mode)
     return ok;
 }
 
+static bool gift64_setup_key_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift64_setup_key_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64_setup_key_alt(code)) {
+            std::cout << "GIFT-64-alt key setup tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64-alt key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64_encrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift64_encrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64_encrypt_alt(code)) {
+            std::cout << "GIFT-64-alt encrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64-alt encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64_decrypt_block_alt(enum Mode mode)
+{
+    Code code;
+    gen_gift64_decrypt_alt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift64_decrypt_alt(code)) {
+            std::cout << "GIFT-64-alt decrypt tests failed" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-64-alt decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift64_alt(enum Mode mode)
+{
+    bool ok = true;
+    if (!gift64_setup_key_alt(mode))
+        ok = false;
+    if (!gift64_encrypt_block_alt(mode))
+        ok = false;
+    if (!gift64_decrypt_block_alt(mode))
+        ok = false;
+    return ok;
+}
+
 static bool gimli24(enum Mode mode)
 {
     Code code;
@@ -1108,6 +1171,8 @@ int main(int argc, char *argv[])
             gen1 = gift128_alt;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
+        } else if (!strcmp(argv[1], "GIFT-64-alt")) {
+            gen1 = gift64_alt;
         } else if (!strcmp(argv[1], "GIMLI-24")) {
             gen1 = gimli24;
         } else if (!strcmp(argv[1], "Keccak")) {
@@ -1168,6 +1233,8 @@ int main(int argc, char *argv[])
         if (!gift128n(Test))
             exit_val = 1;
         if (!gift64(Test))
+            exit_val = 1;
+        if (!gift64_alt(Test))
             exit_val = 1;
         if (!gimli24(Test))
             exit_val = 1;
