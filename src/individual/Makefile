@@ -55,7 +55,9 @@ ESTATE_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
-    internal-gift128n-avr.S \
+    internal-gift128n-full-avr.S \
+    internal-gift128n-small-avr.S \
+    internal-gift128n-tiny-avr.S \
     $(COMMON_FILES)
 FORKAE_FILES = \
     forkae.c \
@@ -72,7 +74,9 @@ GIFT_COFB_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
-    internal-gift128b-avr.S \
+    internal-gift128b-full-avr.S \
+    internal-gift128b-small-avr.S \
+    internal-gift128b-tiny-avr.S \
     $(COMMON_FILES)
 GIMLI_FILES = \
     gimli24.c \
@@ -93,7 +97,9 @@ HYENA_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
-    internal-gift128n-avr.S \
+    internal-gift128n-full-avr.S \
+    internal-gift128n-small-avr.S \
+    internal-gift128n-tiny-avr.S \
     $(COMMON_FILES)
 ISAP_FILES = \
     isap.c \
@@ -214,7 +220,9 @@ SUNDAE_GIFT_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
-    internal-gift128b-avr.S \
+    internal-gift128b-full-avr.S \
+    internal-gift128b-small-avr.S \
+    internal-gift128b-tiny-avr.S \
     $(COMMON_FILES)
 TINYJAMBU_FILES = \
     tinyjambu.c \

@@ -64,8 +64,12 @@ generate: $(TARGET)
 	./$(TARGET) ASCON >../combined/internal-ascon-avr.S
 	./$(TARGET) CHAM >../combined/internal-cham-avr.S
 	./$(TARGET) GASCON >../combined/internal-drysponge-avr.S
-	./$(TARGET) GIFT-128b >../combined/internal-gift128b-avr.S
-	./$(TARGET) GIFT-128n >../combined/internal-gift128n-avr.S
+	./$(TARGET) GIFT-128b-fs-4 >../combined/internal-gift128b-tiny-avr.S
+	./$(TARGET) GIFT-128b-fs-20 >../combined/internal-gift128b-small-avr.S
+	./$(TARGET) GIFT-128b-fs-80 >../combined/internal-gift128b-full-avr.S
+	./$(TARGET) GIFT-128n-fs-4 >../combined/internal-gift128n-tiny-avr.S
+	./$(TARGET) GIFT-128n-fs-20 >../combined/internal-gift128n-small-avr.S
+	./$(TARGET) GIFT-128n-fs-80 >../combined/internal-gift128n-full-avr.S
 	./$(TARGET) GIFT-64 >../combined/internal-gift64-avr.S
 	./$(TARGET) GIMLI-24 >../combined/internal-gimli24-avr.S
 	./$(TARGET) Keccak >../combined/internal-keccak-avr.S

@@ -67,13 +67,11 @@
  * \brief Defined to 1 if the GIFT-128 implementation has been replaced
  * with an assembly code version.
  */
-#if !defined(GIFT128_VARIANT)
-#if defined(__AVR__)
-#define GIFT128_VARIANT GIFT128_VARIANT_TINY
+#if defined(__AVR__) && !defined(GIFT128_VARIANT_ASM)
 #define GIFT128_VARIANT_ASM 1
-#else
-#define GIFT128_VARIANT GIFT128_VARIANT_FULL
 #endif
+#if !defined(GIFT128_VARIANT)
+#define GIFT128_VARIANT GIFT128_VARIANT_FULL
 #endif
 #if !defined(GIFT128_VARIANT_ASM)
 #define GIFT128_VARIANT_ASM 0

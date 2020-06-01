@@ -543,6 +543,18 @@ static bool gift128b_fs_decrypt_block(enum Mode mode, int num_keys)
 static bool gift128b_fs(enum Mode mode, int num_keys)
 {
     bool ok = true;
+    if (mode == Generate) {
+        std::cout << std::endl;
+        std::cout << "#include \"internal-gift128-config.h\"" << std::endl;
+        std::cout << std::endl;
+        std::cout << "#if GIFT128_VARIANT == ";
+        if (num_keys == 4)
+            std::cout << "GIFT128_VARIANT_TINY" << std::endl;
+        else if (num_keys == 20)
+            std::cout << "GIFT128_VARIANT_SMALL" << std::endl;
+        else
+            std::cout << "GIFT128_VARIANT_FULL" << std::endl;
+    }
     if (!gift128b_fs_setup_key(mode, num_keys))
         ok = false;
     if (!gift128b_fs_encrypt_block(mode, num_keys))
@@ -551,6 +563,10 @@ static bool gift128b_fs(enum Mode mode, int num_keys)
         ok = false;
     if (!gift128b_fs_decrypt_block(mode, num_keys))
         ok = false;
+    if (mode == Generate) {
+        std::cout << std::endl;
+        std::cout << "#endif" << std::endl;
+    }
     return ok;
 }
 
@@ -660,6 +676,18 @@ static bool gift128t_fs_decrypt_block(enum Mode mode, int num_keys)
 static bool gift128n_fs(enum Mode mode, int num_keys)
 {
     bool ok = true;
+    if (mode == Generate) {
+        std::cout << std::endl;
+        std::cout << "#include \"internal-gift128-config.h\"" << std::endl;
+        std::cout << std::endl;
+        std::cout << "#if GIFT128_VARIANT == ";
+        if (num_keys == 4)
+            std::cout << "GIFT128_VARIANT_TINY" << std::endl;
+        else if (num_keys == 20)
+            std::cout << "GIFT128_VARIANT_SMALL" << std::endl;
+        else
+            std::cout << "GIFT128_VARIANT_FULL" << std::endl;
+    }
     if (!gift128n_fs_setup_key(mode, num_keys))
         ok = false;
     if (!gift128n_fs_encrypt_block(mode, num_keys))
@@ -670,6 +698,10 @@ static bool gift128n_fs(enum Mode mode, int num_keys)
         ok = false;
     if (!gift128t_fs_decrypt_block(mode, num_keys))
         ok = false;
+    if (mode == Generate) {
+        std::cout << std::endl;
+        std::cout << "#endif" << std::endl;
+    }
     return ok;
 }
 
