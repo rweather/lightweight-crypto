@@ -502,10 +502,10 @@ void Code::write(std::ostream &ostream) const
         ostream << "\tin r28,0x3d" << std::endl;    // Y = SP
         ostream << "\tin r29,0x3e" << std::endl;
         if ((locals % 256) == 0) {
-            ostream << "\tsubi r29," << (locals / 256) << std::endl;
+            ostream << "\tsubi r29," << ((locals / 256) & 0xFF) << std::endl;
         } else if (locals > 63 || !hasFlag(MoveWord)) {
-            ostream << "\tsubi r28," << (locals % 256) << std::endl;
-            ostream << "\tsbci r29," << (locals / 256) << std::endl;
+            ostream << "\tsubi r28," << (locals & 0xFF) << std::endl;
+            ostream << "\tsbci r29," << ((locals / 256) & 0xFF) << std::endl;
         } else {
             ostream << "\tsbiw r28," << locals << std::endl;
         }
@@ -547,10 +547,10 @@ void Code::write(std::ostream &ostream) const
             // It is more efficient to subtract the negative.
             locals = -locals;
             if ((locals % 256) == 0) {
-                ostream << "\tsubi r29," << (locals / 256) << std::endl;
+                ostream << "\tsubi r29," << ((locals / 256) & 0xFF) << std::endl;
             } else {
-                ostream << "\tsubi r28," << (locals % 256) << std::endl;
-                ostream << "\tsbci r29," << (locals / 256) << std::endl;
+                ostream << "\tsubi r28," << (locals & 0xFF) << std::endl;
+                ostream << "\tsbci r29," << ((locals / 256) & 0xFF) << std::endl;
             }
         }
         ostream << "\tin r0,0x3f" << std::endl;     // r0 = SREG

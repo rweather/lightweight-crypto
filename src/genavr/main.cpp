@@ -51,7 +51,7 @@ static bool ascon(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_ascon_permutation(code)) {
-            std::cout << "ASCON tests failed" << std::endl;
+            std::cout << "ASCON tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "ASCON tests succeeded" << std::endl;
@@ -68,7 +68,7 @@ static bool cham128(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_cham128_encrypt(code)) {
-            std::cout << "CHAM128-128 tests failed" << std::endl;
+            std::cout << "CHAM128-128 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "CHAM128-128 tests succeeded" << std::endl;
@@ -85,7 +85,7 @@ static bool cham64(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_cham64_encrypt(code)) {
-            std::cout << "CHAM64-128 tests failed" << std::endl;
+            std::cout << "CHAM64-128 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "CHAM64-128 tests succeeded" << std::endl;
@@ -102,7 +102,7 @@ static bool gascon128_core(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gascon128_core_round(code)) {
-            std::cout << "GASCON-128 tests failed" << std::endl;
+            std::cout << "GASCON-128 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GASCON-128 tests succeeded" << std::endl;
@@ -119,7 +119,7 @@ static bool gascon128_g(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_drysponge128_g(code)) {
-            std::cout << "GASCON-128-G tests failed" << std::endl;
+            std::cout << "GASCON-128-G tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GASCON-128-G tests succeeded" << std::endl;
@@ -146,7 +146,7 @@ static bool gascon256_core(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gascon256_core_round(code)) {
-            std::cout << "GASCON-256 tests failed" << std::endl;
+            std::cout << "GASCON-256 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GASCON-256 tests succeeded" << std::endl;
@@ -163,7 +163,7 @@ static bool gascon256_g(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_drysponge256_g(code)) {
-            std::cout << "GASCON-256-G tests failed" << std::endl;
+            std::cout << "GASCON-256-G tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GASCON-256-G tests succeeded" << std::endl;
@@ -191,7 +191,7 @@ static bool gift128b_setup_key(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_setup_key(code)) {
-            std::cout << "GIFT-128b key setup tests failed" << std::endl;
+            std::cout << "GIFT-128b key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b key setup tests succeeded" << std::endl;
@@ -208,7 +208,7 @@ static bool gift128b_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_encrypt(code)) {
-            std::cout << "GIFT-128b encrypt tests failed" << std::endl;
+            std::cout << "GIFT-128b encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b encrypt tests succeeded" << std::endl;
@@ -225,7 +225,7 @@ static bool gift128b_encrypt_block_preloaded(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_encrypt_preloaded(code)) {
-            std::cout << "GIFT-128b preloaded encrypt tests failed" << std::endl;
+            std::cout << "GIFT-128b preloaded encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b preloaded encrypt tests succeeded" << std::endl;
@@ -242,7 +242,7 @@ static bool gift128b_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_decrypt(code)) {
-            std::cout << "GIFT-128b decrypt tests failed" << std::endl;
+            std::cout << "GIFT-128b decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b decrypt tests succeeded" << std::endl;
@@ -274,7 +274,7 @@ static bool gift128b_setup_key_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_setup_key(code)) {
-            std::cout << "GIFT-128b-alt key setup tests failed" << std::endl;
+            std::cout << "GIFT-128b-alt key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b-alt key setup tests succeeded" << std::endl;
@@ -291,7 +291,7 @@ static bool gift128b_encrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_encrypt(code)) {
-            std::cout << "GIFT-128b-alt encrypt tests failed" << std::endl;
+            std::cout << "GIFT-128b-alt encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b-alt encrypt tests succeeded" << std::endl;
@@ -308,7 +308,7 @@ static bool gift128b_decrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128b_decrypt(code)) {
-            std::cout << "GIFT-128b-alt decrypt tests failed" << std::endl;
+            std::cout << "GIFT-128b-alt decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128b-alt decrypt tests succeeded" << std::endl;
@@ -325,7 +325,7 @@ static bool gift128n_encrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128n_encrypt_alt(code)) {
-            std::cout << "GIFT-128n-alt encrypt tests failed" << std::endl;
+            std::cout << "GIFT-128n-alt encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128n-alt encrypt tests succeeded" << std::endl;
@@ -342,7 +342,7 @@ static bool gift128n_decrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128n_decrypt_alt(code)) {
-            std::cout << "GIFT-128n-alt decrypt tests failed" << std::endl;
+            std::cout << "GIFT-128n-alt decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128n-alt decrypt tests succeeded" << std::endl;
@@ -376,7 +376,7 @@ static bool gift128n_setup_key(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128n_setup_key(code)) {
-            std::cout << "GIFT-128n key setup tests failed" << std::endl;
+            std::cout << "GIFT-128n key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128n key setup tests succeeded" << std::endl;
@@ -393,7 +393,7 @@ static bool gift128n_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128n_encrypt(code)) {
-            std::cout << "GIFT-128n encrypt tests failed" << std::endl;
+            std::cout << "GIFT-128n encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128n encrypt tests succeeded" << std::endl;
@@ -410,7 +410,7 @@ static bool gift128n_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128n_decrypt(code)) {
-            std::cout << "GIFT-128n decrypt tests failed" << std::endl;
+            std::cout << "GIFT-128n decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-128n decrypt tests succeeded" << std::endl;
@@ -427,7 +427,7 @@ static bool gift128t_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128t_encrypt(code)) {
-            std::cout << "TweGIFT-128 encrypt tests failed" << std::endl;
+            std::cout << "TweGIFT-128 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "TweGIFT-128 encrypt tests succeeded" << std::endl;
@@ -444,7 +444,7 @@ static bool gift128t_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift128t_decrypt(code)) {
-            std::cout << "TweGIFT-128 decrypt tests failed" << std::endl;
+            std::cout << "TweGIFT-128 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "TweGIFT-128 decrypt tests succeeded" << std::endl;
@@ -469,6 +469,344 @@ static bool gift128n(enum Mode mode)
     return ok;
 }
 
+static bool gift128b_fs_setup_key(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_setup_key(code, num_keys);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_fs_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_setup_key(code, num_keys)) {
+            std::cout << "GIFT-128b-fs-" << num_keys << " key setup tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-fs-" << num_keys << " key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_fs_encrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_encrypt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_encrypt(code, num_keys)) {
+            std::cout << "GIFT-128b-fs-" << num_keys << " encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-fs-" << num_keys << " encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_fs_encrypt_block_preloaded(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_encrypt_preloaded(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_encrypt_preloaded(code, num_keys)) {
+            std::cout << "GIFT-128b-fs-" << num_keys << " preloaded encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-fs-" << num_keys << " preloaded encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_fs_decrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_decrypt(code, num_keys);
+    if (mode == Generate) {
+        if (num_keys != 80)
+            code.sbox_write(std::cout, 1, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_decrypt(code, num_keys)) {
+            std::cout << "GIFT-128b-fs-" << num_keys << " decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-fs-" << num_keys << " decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_fs(enum Mode mode, int num_keys)
+{
+    bool ok = true;
+    if (!gift128b_fs_setup_key(mode, num_keys))
+        ok = false;
+    if (!gift128b_fs_encrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128b_fs_encrypt_block_preloaded(mode, num_keys))
+        ok = false;
+    if (!gift128b_fs_decrypt_block(mode, num_keys))
+        ok = false;
+    return ok;
+}
+
+static bool gift128b_fs_4(enum Mode mode)
+{
+    return gift128b_fs(mode, 4);
+}
+
+static bool gift128b_fs_20(enum Mode mode)
+{
+    return gift128b_fs(mode, 20);
+}
+
+static bool gift128b_fs_80(enum Mode mode)
+{
+    return gift128b_fs(mode, 80);
+}
+
+static bool gift128n_fs_setup_key(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128n_fs_setup_key(code, num_keys);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_fs_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_fs_setup_key(code, num_keys)) {
+            std::cout << "GIFT-128n-fs-" << num_keys << " key setup tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-fs-" << num_keys << " key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_fs_encrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128n_fs_encrypt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_fs_encrypt(code, num_keys)) {
+            std::cout << "GIFT-128n-fs-" << num_keys << " encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-fs-" << num_keys << " encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_fs_decrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128n_fs_decrypt(code, num_keys);
+    if (mode == Generate) {
+        if (num_keys != 80)
+            code.sbox_write(std::cout, 1, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_fs_decrypt(code, num_keys)) {
+            std::cout << "GIFT-128n-fs-" << num_keys << " decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-fs-" << num_keys << " decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128t_fs_encrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128t_fs_encrypt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128t_fs_encrypt(code, num_keys)) {
+            std::cout << "GIFT-128t-fs-" << num_keys << " encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128t-fs-" << num_keys << " encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128t_fs_decrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128t_fs_decrypt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128t_fs_decrypt(code, num_keys)) {
+            std::cout << "GIFT-128t-fs-" << num_keys << " decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128t-fs-" << num_keys << " decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_fs(enum Mode mode, int num_keys)
+{
+    bool ok = true;
+    if (!gift128n_fs_setup_key(mode, num_keys))
+        ok = false;
+    if (!gift128n_fs_encrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128n_fs_decrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128t_fs_encrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128t_fs_decrypt_block(mode, num_keys))
+        ok = false;
+    return ok;
+}
+
+static bool gift128n_fs_4(enum Mode mode)
+{
+    return gift128n_fs(mode, 4);
+}
+
+static bool gift128n_fs_20(enum Mode mode)
+{
+    return gift128n_fs(mode, 20);
+}
+
+static bool gift128n_fs_80(enum Mode mode)
+{
+    return gift128n_fs(mode, 80);
+}
+
+static bool gift128b_alt_fs_setup_key(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_setup_key_alt(code, num_keys);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_gift128_fs_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_setup_key(code, num_keys)) {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " key setup tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_alt_fs_encrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_encrypt_alt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_encrypt(code, num_keys)) {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128b_alt_fs_decrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128b_fs_decrypt_alt(code, num_keys);
+    if (mode == Generate) {
+        if (num_keys != 80)
+            code.sbox_write(std::cout, 1, get_gift128_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_gift128b_fs_decrypt(code, num_keys)) {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128b-alt-fs-" << num_keys << " decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_alt_fs_encrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128n_fs_encrypt_alt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_fs_encrypt_alt(code, num_keys)) {
+            std::cout << "GIFT-128n-alt-fs-" << num_keys << " encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-alt-fs-" << num_keys << " encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128n_alt_fs_decrypt_block(enum Mode mode, int num_keys)
+{
+    Code code;
+    gen_gift128n_fs_decrypt_alt(code, num_keys);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gift128n_fs_decrypt_alt(code, num_keys)) {
+            std::cout << "GIFT-128n-alt-fs-" << num_keys << " decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GIFT-128n-alt-fs-" << num_keys << " decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool gift128_alt_fs(enum Mode mode, int num_keys)
+{
+    bool ok = true;
+    if (!gift128b_alt_fs_setup_key(mode, num_keys))
+        ok = false;
+    if (!gift128b_alt_fs_encrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128b_alt_fs_decrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128n_alt_fs_encrypt_block(mode, num_keys))
+        ok = false;
+    if (!gift128n_alt_fs_decrypt_block(mode, num_keys))
+        ok = false;
+    return ok;
+}
+
+static bool gift128_alt_fs_4(enum Mode mode)
+{
+    return gift128_alt_fs(mode, 4);
+}
+
+static bool gift128_alt_fs_20(enum Mode mode)
+{
+    return gift128_alt_fs(mode, 20);
+}
+
+static bool gift128_alt_fs_80(enum Mode mode)
+{
+    return gift128_alt_fs(mode, 80);
+}
+
 static bool gift64_setup_key(enum Mode mode)
 {
     Code code;
@@ -477,7 +815,7 @@ static bool gift64_setup_key(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64n_setup_key(code)) {
-            std::cout << "GIFT-64 key setup tests failed" << std::endl;
+            std::cout << "GIFT-64 key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64 key setup tests succeeded" << std::endl;
@@ -494,7 +832,7 @@ static bool gift64_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64n_encrypt(code)) {
-            std::cout << "GIFT-64 encrypt tests failed" << std::endl;
+            std::cout << "GIFT-64 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64 encrypt tests succeeded" << std::endl;
@@ -511,7 +849,7 @@ static bool gift64_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64n_decrypt(code)) {
-            std::cout << "GIFT-64 decrypt tests failed" << std::endl;
+            std::cout << "GIFT-64 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64 decrypt tests succeeded" << std::endl;
@@ -528,7 +866,7 @@ static bool gift64t_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64t_encrypt(code)) {
-            std::cout << "TweGIFT-64 encrypt tests failed" << std::endl;
+            std::cout << "TweGIFT-64 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "TweGIFT-64 encrypt tests succeeded" << std::endl;
@@ -545,7 +883,7 @@ static bool gift64t_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64t_decrypt(code)) {
-            std::cout << "TweGIFT-64 decrypt tests failed" << std::endl;
+            std::cout << "TweGIFT-64 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "TweGIFT-64 decrypt tests succeeded" << std::endl;
@@ -578,7 +916,7 @@ static bool gift64_setup_key_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64_setup_key_alt(code)) {
-            std::cout << "GIFT-64-alt key setup tests failed" << std::endl;
+            std::cout << "GIFT-64-alt key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64-alt key setup tests succeeded" << std::endl;
@@ -595,7 +933,7 @@ static bool gift64_encrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64_encrypt_alt(code)) {
-            std::cout << "GIFT-64-alt encrypt tests failed" << std::endl;
+            std::cout << "GIFT-64-alt encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64-alt encrypt tests succeeded" << std::endl;
@@ -612,7 +950,7 @@ static bool gift64_decrypt_block_alt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gift64_decrypt_alt(code)) {
-            std::cout << "GIFT-64-alt decrypt tests failed" << std::endl;
+            std::cout << "GIFT-64-alt decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIFT-64-alt decrypt tests succeeded" << std::endl;
@@ -641,7 +979,7 @@ static bool gimli24(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_gimli24_permutation(code)) {
-            std::cout << "GIMLI-24 tests failed" << std::endl;
+            std::cout << "GIMLI-24 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "GIMLI-24 tests succeeded" << std::endl;
@@ -658,7 +996,7 @@ static bool keccakp_200(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_keccakp_200_permutation(code)) {
-            std::cout << "Keccak-p[200] tests failed" << std::endl;
+            std::cout << "Keccak-p[200] tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Keccak-p[200] tests succeeded" << std::endl;
@@ -675,7 +1013,7 @@ static bool keccakp_400(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_keccakp_400_permutation(code)) {
-            std::cout << "Keccak-p[400] tests failed" << std::endl;
+            std::cout << "Keccak-p[400] tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Keccak-p[400] tests succeeded" << std::endl;
@@ -692,7 +1030,7 @@ static bool pyjamask_96_setup_key(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_96_setup_key(code)) {
-            std::cout << "Pyjamask-96 key setup tests failed" << std::endl;
+            std::cout << "Pyjamask-96 key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-96 key setup tests succeeded" << std::endl;
@@ -709,7 +1047,7 @@ static bool pyjamask_96_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_96_encrypt(code)) {
-            std::cout << "Pyjamask-96 encrypt tests failed" << std::endl;
+            std::cout << "Pyjamask-96 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-96 encrypt tests succeeded" << std::endl;
@@ -726,7 +1064,7 @@ static bool pyjamask_96_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_96_decrypt(code)) {
-            std::cout << "Pyjamask-96 decrypt tests failed" << std::endl;
+            std::cout << "Pyjamask-96 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-96 decrypt tests succeeded" << std::endl;
@@ -743,7 +1081,7 @@ static bool pyjamask_128_setup_key(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_128_setup_key(code)) {
-            std::cout << "Pyjamask-128 key setup tests failed" << std::endl;
+            std::cout << "Pyjamask-128 key setup tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-128 key setup tests succeeded" << std::endl;
@@ -760,7 +1098,7 @@ static bool pyjamask_128_encrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_128_encrypt(code)) {
-            std::cout << "Pyjamask-128 encrypt tests failed" << std::endl;
+            std::cout << "Pyjamask-128 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-128 encrypt tests succeeded" << std::endl;
@@ -777,7 +1115,7 @@ static bool pyjamask_128_decrypt_block(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_pyjamask_128_decrypt(code)) {
-            std::cout << "Pyjamask-128 decrypt tests failed" << std::endl;
+            std::cout << "Pyjamask-128 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Pyjamask-128 decrypt tests succeeded" << std::endl;
@@ -831,7 +1169,7 @@ static bool skinny128_384_encrypt(enum Mode mode)
         code.write_alias(std::cout, "skinny_128_384_encrypt_tk_full");
     } else {
         if (!test_skinny128_384_encrypt(code)) {
-            std::cout << "SKINNY-128-384 encrypt tests failed" << std::endl;
+            std::cout << "SKINNY-128-384 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SKINNY-128-384 encrypt tests succeeded" << std::endl;
@@ -848,7 +1186,7 @@ static bool skinny128_384_decrypt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_skinny128_384_decrypt(code)) {
-            std::cout << "SKINNY-128-384 decrypt tests failed" << std::endl;
+            std::cout << "SKINNY-128-384 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SKINNY-128-384 decrypt tests succeeded" << std::endl;
@@ -875,7 +1213,7 @@ static bool skinny128_256_encrypt(enum Mode mode)
         code.write_alias(std::cout, "skinny_128_256_encrypt_tk_full");
     } else {
         if (!test_skinny128_256_encrypt(code)) {
-            std::cout << "SKINNY-128-256 encrypt tests failed" << std::endl;
+            std::cout << "SKINNY-128-256 encrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SKINNY-128-256 encrypt tests succeeded" << std::endl;
@@ -892,7 +1230,7 @@ static bool skinny128_256_decrypt(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_skinny128_256_decrypt(code)) {
-            std::cout << "SKINNY-128-256 decrypt tests failed" << std::endl;
+            std::cout << "SKINNY-128-256 decrypt tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SKINNY-128-256 decrypt tests succeeded" << std::endl;
@@ -932,7 +1270,7 @@ static bool sliscp256_spix(enum Mode mode)
         code2.write(std::cout);
     } else {
         if (!test_sliscp_light256_spix_permutation(code)) {
-            std::cout << "sLiSCP-light-256-SPIX tests failed" << std::endl;
+            std::cout << "sLiSCP-light-256-SPIX tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "sLiSCP-light-256-SPIX tests succeeded" << std::endl;
@@ -953,7 +1291,7 @@ static bool sliscp256_spoc(enum Mode mode)
         code2.write(std::cout);
     } else {
         if (!test_sliscp_light256_spoc_permutation(code)) {
-            std::cout << "sLiSCP-light-256-SpoC tests failed" << std::endl;
+            std::cout << "sLiSCP-light-256-SpoC tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "sLiSCP-light-256-SpoC tests succeeded" << std::endl;
@@ -971,7 +1309,7 @@ static bool sliscp192(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_sliscp_light192_permutation(code)) {
-            std::cout << "sLiSCP-light-192 tests failed" << std::endl;
+            std::cout << "sLiSCP-light-192 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "sLiSCP-light-192 tests succeeded" << std::endl;
@@ -992,7 +1330,7 @@ static bool sliscp320(enum Mode mode)
         code2.write(std::cout);
     } else {
         if (!test_sliscp_light320_permutation(code)) {
-            std::cout << "sLiSCP-light-320 tests failed" << std::endl;
+            std::cout << "sLiSCP-light-320 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "sLiSCP-light-320 tests succeeded" << std::endl;
@@ -1009,7 +1347,7 @@ static bool speck64(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_speck64_encrypt(code)) {
-            std::cout << "SPECK-64 tests failed" << std::endl;
+            std::cout << "SPECK-64 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SPECK-64 tests succeeded" << std::endl;
@@ -1026,7 +1364,7 @@ static bool sparkle256(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_sparkle256_permutation(code)) {
-            std::cout << "SPARKLE-256 tests failed" << std::endl;
+            std::cout << "SPARKLE-256 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SPARKLE-256 tests succeeded" << std::endl;
@@ -1043,7 +1381,7 @@ static bool sparkle384(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_sparkle384_permutation(code)) {
-            std::cout << "SPARKLE-384 tests failed" << std::endl;
+            std::cout << "SPARKLE-384 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SPARKLE-384 tests succeeded" << std::endl;
@@ -1060,7 +1398,7 @@ static bool sparkle512(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_sparkle512_permutation(code)) {
-            std::cout << "SPARKLE-512 tests failed" << std::endl;
+            std::cout << "SPARKLE-512 tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "SPARKLE-512 tests succeeded" << std::endl;
@@ -1078,7 +1416,7 @@ static bool spongent160(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_spongent160_permutation(code)) {
-            std::cout << "Spongent-pi[160] tests failed" << std::endl;
+            std::cout << "Spongent-pi[160] tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Spongent-pi[160] tests succeeded" << std::endl;
@@ -1095,7 +1433,7 @@ static bool spongent176(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_spongent176_permutation(code)) {
-            std::cout << "Spongent-pi[176] tests failed" << std::endl;
+            std::cout << "Spongent-pi[176] tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Spongent-pi[176] tests succeeded" << std::endl;
@@ -1112,7 +1450,7 @@ static bool tinyjambu(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_tinyjambu_permutation(code)) {
-            std::cout << "TinyJAMBU tests failed" << std::endl;
+            std::cout << "TinyJAMBU tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "TinyJAMBU tests succeeded" << std::endl;
@@ -1129,7 +1467,7 @@ static bool xoodoo(enum Mode mode)
         code.write(std::cout);
     } else {
         if (!test_xoodoo_permutation(code)) {
-            std::cout << "Xoodoo tests failed" << std::endl;
+            std::cout << "Xoodoo tests FAILED" << std::endl;
             return false;
         } else {
             std::cout << "Xoodoo tests succeeded" << std::endl;
@@ -1169,6 +1507,24 @@ int main(int argc, char *argv[])
             gen1 = gift128n;
         } else if (!strcmp(argv[1], "GIFT-128-alt")) {
             gen1 = gift128_alt;
+        } else if (!strcmp(argv[1], "GIFT-128b-fs-4")) {
+            gen1 = gift128b_fs_4;
+        } else if (!strcmp(argv[1], "GIFT-128b-fs-20")) {
+            gen1 = gift128b_fs_20;
+        } else if (!strcmp(argv[1], "GIFT-128b-fs-80")) {
+            gen1 = gift128b_fs_80;
+        } else if (!strcmp(argv[1], "GIFT-128n-fs-4")) {
+            gen1 = gift128n_fs_4;
+        } else if (!strcmp(argv[1], "GIFT-128n-fs-20")) {
+            gen1 = gift128n_fs_20;
+        } else if (!strcmp(argv[1], "GIFT-128n-fs-80")) {
+            gen1 = gift128n_fs_80;
+        } else if (!strcmp(argv[1], "GIFT-128-alt-fs-4")) {
+            gen1 = gift128_alt_fs_4;
+        } else if (!strcmp(argv[1], "GIFT-128-alt-fs-20")) {
+            gen1 = gift128_alt_fs_20;
+        } else if (!strcmp(argv[1], "GIFT-128-alt-fs-80")) {
+            gen1 = gift128_alt_fs_80;
         } else if (!strcmp(argv[1], "GIFT-64")) {
             gen1 = gift64;
         } else if (!strcmp(argv[1], "GIFT-64-alt")) {
@@ -1231,6 +1587,24 @@ int main(int argc, char *argv[])
         if (!gift128_alt(Test))
             exit_val = 1;
         if (!gift128n(Test))
+            exit_val = 1;
+        if (!gift128b_fs_4(Test))
+            exit_val = 1;
+        if (!gift128b_fs_20(Test))
+            exit_val = 1;
+        if (!gift128b_fs_80(Test))
+            exit_val = 1;
+        if (!gift128n_fs_4(Test))
+            exit_val = 1;
+        if (!gift128n_fs_20(Test))
+            exit_val = 1;
+        if (!gift128n_fs_80(Test))
+            exit_val = 1;
+        if (!gift128_alt_fs_4(Test))
+            exit_val = 1;
+        if (!gift128_alt_fs_20(Test))
+            exit_val = 1;
+        if (!gift128_alt_fs_80(Test))
             exit_val = 1;
         if (!gift64(Test))
             exit_val = 1;

@@ -115,7 +115,7 @@ Insn Insn::memory(Type type, unsigned char reg, unsigned char offset)
  * \param offset The offset into the low-level register list to start at.
  * \param count The number of registers to copy starting at \a offset.
  *
- * If \a count is zero then all low-level registers starting at \a offset
+ * If \a count is 0xFF then all low-level registers starting at \a offset
  * are copied, with registers before \a offset omitted.
  *
  * If \a offset + \a count exceeds the register size, then the copy
@@ -126,7 +126,7 @@ Reg::Reg(const Reg &other, unsigned char offset, unsigned char count)
 {
     if (offset >= other.size())
         return;
-    if (count == 0)
+    if (count == 0xFF)
         count = other.size() - offset;
     else if (count >= other.size())
         count = other.size();
@@ -1856,6 +1856,111 @@ void Code::swap(const Reg &reg1, const Reg &reg2)
 }
 
 /**
+ * \brief Performs a bit swap and move operation on a word register.
+ *
+ * \param reg The word register to apply the operation to.
+ * \param mask The mask to use to extract the desired bits.
+ * \param shift The shift amount.
+ * \param temp An optional register to use as a temporary.
+ *
+ * This function is equivalent to the following code:
+ *
+ * \code
+ * t = (reg ^ (reg >> shift)) & mask;
+ * reg ^= t;
+ * reg ^= (t << shift);
+ * \endcode
+ */
+void Code::swapmove
+    (const Reg &reg, unsigned long long mask, unsigned shift, const Reg &temp)
+{
+    swapmove(reg, reg, mask, shift, temp);
+}
+
+/**
+ * \brief Performs a bit swap and move operation on two word registers.
+ *
+ * \param reg1 The first word register to apply the operation to.
+ * \param reg2 The second word register to apply the operation to, which
+ * must the same size as \a reg1.
+ * \param mask The mask to use to extract the desired bits.
+ * \param shift The shift amount.
+ * \param temp An optional register to use as a temporary.
+ *
+ * This function is equivalent to the following code:
+ *
+ * \code
+ * t = (reg2 ^ (reg1 >> shift)) & mask;
+ * reg2 ^= t;
+ * reg1 ^= (t << shift);
+ * \endcode
+ */
+void Code::swapmove
+    (const Reg &reg1, const Reg &reg2, unsigned long long mask,
+     unsigned shift, const Reg &temp)
+{
+    // Validate the register sizes.
+    if (reg1.size() != reg2.size())
+        throw std::invalid_argument("swapmove registers must be the same size");
+
+    // Recognize some special forms that can be done more efficiently.
+    if (mask == 0xFFU && shift == (unsigned)((reg1.size() - 1) * 8)) {
+        // Swap the high byte of reg1 with the low byte of reg2.
+        swap(Reg(reg1, reg1.size() - 1, 1), Reg(reg2, 0, 1));
+        return;
+    } else if (mask == 0xFFFFU && shift == 16 && reg1.size() == 4) {
+        // Swap the top half of reg1 with the bottom half of reg2.
+        swap(Reg(reg1, 2, 2), Reg(reg2, 0, 2));
+        return;
+    }
+
+    // Allocate a temporary register.  We try to allocate high registers
+    // because they are more efficient when doing the AND with the mask.
+    Reg t;
+    if (temp.size() == 0)
+        t = allocateRegPreferHigh(reg1.size());
+    else
+        t = temp; // Use the caller-supplied temporary instead.
+
+    // Some more special cases for masks with specific patterns.
+    if (reg1.size() == 4 && (mask & 0x0000FFFFU) == 0) {
+        // Mask has the form 0xNNNN0000 so we only need to worry about
+        // the top two bytes in the argument registers.
+        move(Reg(t, 0, 2), Reg(reg1, 2, 2));
+        lsr(Reg(t, 0, 2), shift);
+        logxor(Reg(t, 0, 2), Reg(reg2, 2, 2));
+        logand(Reg(t, 0, 2), mask >> 16);
+        logxor(Reg(reg2, 2, 2), Reg(t, 0, 2));
+        lsl(Reg(t, 0, 2), shift);
+        logxor(Reg(reg1, 2, 2), Reg(t, 0, 2));
+    } else if (reg1.size() == 4 && (mask & 0xFFFF0000U) == 0) {
+        // Mask has the form 0x0000NNNN so we only need to worry
+        // about the bottom two bytes in the "reg2" register.
+        move(t, reg1);
+        lsr(t, shift);
+        logxor(Reg(t, 0, 2), Reg(reg2, 0, 2));
+        logand(Reg(t, 0, 2), mask);
+        logxor(reg2, Reg(t, 0, 2));
+        move(Reg(t, 2, 2), 0);
+        lsl(t, shift);
+        logxor(reg1, t);
+    } else {
+        // Perform the full bit swap and move.
+        move(t, reg1);
+        lsr(t, shift);
+        logxor(t, reg2);
+        logand(t, mask);
+        logxor(reg2, t);
+        lsl(t, shift);
+        logxor(reg1, t);
+    }
+
+    // Release the temporary register.
+    if (temp.size() == 0)
+        releaseReg(t);
+}
+
+/**
  * \brief Sets up the Z register to perform S-box table lookup operations.
  *
  * \param num Number of the S-box table if there is more than one.
@@ -2475,6 +2580,17 @@ Reg Code::allocateRegInternal(unsigned size, bool high, bool optional)
         --size;
     }
     return result;
+}
+
+Reg Code::allocateRegPreferHigh(unsigned size)
+{
+    Reg temp = allocateRegInternal(size, true, true);
+    if (temp.size() < (int)size) {
+        // Could not get all high registers, so make do with normal registers.
+        releaseReg(temp);
+        temp = allocateReg(size);
+    }
+    return temp;
 }
 
 unsigned char Code::immtemp(unsigned char value)

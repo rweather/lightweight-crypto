@@ -56,7 +56,7 @@ bool test_drysponge128_g(Code &code);
 bool test_gascon256_core_round(Code &code);
 bool test_drysponge256_g(Code &code);
 
-// GIFT-128 block cipher.
+// GIFT-128 block cipher (bit-sliced).
 Sbox get_gift128_round_constants();
 void gen_gift128b_setup_key(Code &code);
 void gen_gift128b_encrypt(Code &code);
@@ -84,6 +84,34 @@ bool test_gift128t_encrypt(Code &code);
 bool test_gift128t_decrypt(Code &code);
 bool test_gift128n_encrypt_alt(Code &code);
 bool test_gift128n_decrypt_alt(Code &code);
+
+// GIFT-128 block cipher (fix-sliced).
+Sbox get_gift128_fs_round_constants();
+void gen_gift128b_fs_setup_key(Code &code, int num_keys);
+void gen_gift128b_fs_setup_key_alt(Code &code, int num_keys);
+void gen_gift128n_fs_setup_key(Code &code, int num_keys);
+void gen_gift128b_fs_encrypt(Code &code, int num_keys);
+void gen_gift128b_fs_encrypt_alt(Code &code, int num_keys);
+void gen_gift128b_fs_encrypt_preloaded(Code &code, int num_keys);
+void gen_gift128n_fs_encrypt(Code &code, int num_keys);
+void gen_gift128n_fs_encrypt_alt(Code &code, int num_keys);
+void gen_gift128t_fs_encrypt(Code &code, int num_keys);
+void gen_gift128b_fs_decrypt(Code &code, int num_keys);
+void gen_gift128b_fs_decrypt_alt(Code &code, int num_keys);
+void gen_gift128n_fs_decrypt(Code &code, int num_keys);
+void gen_gift128n_fs_decrypt_alt(Code &code, int num_keys);
+void gen_gift128t_fs_decrypt(Code &code, int num_keys);
+bool test_gift128b_fs_setup_key(Code &code, int num_keys);
+bool test_gift128n_fs_setup_key(Code &code, int num_keys);
+bool test_gift128b_fs_encrypt(Code &code, int num_keys);
+bool test_gift128b_fs_encrypt_preloaded(Code &code, int num_keys);
+bool test_gift128n_fs_encrypt(Code &code, int num_keys);
+bool test_gift128n_fs_encrypt_alt(Code &code, int num_keys);
+bool test_gift128t_fs_encrypt(Code &code, int num_keys);
+bool test_gift128b_fs_decrypt(Code &code, int num_keys);
+bool test_gift128n_fs_decrypt(Code &code, int num_keys);
+bool test_gift128n_fs_decrypt_alt(Code &code, int num_keys);
+bool test_gift128t_fs_decrypt(Code &code, int num_keys);
 
 // GIFT-64 block cipher.
 void gen_gift64n_setup_key(Code &code);

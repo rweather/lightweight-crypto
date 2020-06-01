@@ -12,6 +12,7 @@ OBJS = \
 	algorithm_cham.o \
 	algorithm_gascon.o \
 	algorithm_gift128.o \
+	algorithm_gift128_fixsliced.o \
 	algorithm_gift64.o \
 	algorithm_gimli24.o \
 	algorithm_keccak.o \
@@ -45,6 +46,7 @@ algorithm_ascon.o: code.h gen.h
 algorithm_cham.o: code.h gen.h
 algorithm_gascon.o: code.h gen.h
 algorithm_gift128.o: code.h gen.h
+algorithm_gift128_fixsliced.o: code.h gen.h
 algorithm_gift64.o: code.h gen.h
 algorithm_gimli24.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h

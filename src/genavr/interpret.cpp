@@ -279,9 +279,8 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
         // Set up the S-box.
         s.sbox = code.sbox_get(insn.value());
 
-        // Destroy the Z register.  Normally this will point to the
-        // S-box in program memory but we don't do it that way here.
-        s.setPair(30, 0xBEEF);
+        // Destroy the Z register, but make sure the low byte is still zero.
+        s.setPair(30, 0xBE00);
 
         // Push a fake RAMPZ value on the stack to check for stacking
         // errors later when we do the cleanup.
@@ -290,6 +289,7 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
     case Insn::LPM_SWITCH:
         // Switch to a different S-box.
         s.sbox = code.sbox_get(insn.value());
+        s.setPair(30, 0xBE00);
         break;
     case Insn::LPM_CLEAN:
         // Pop the RAMPZ value, which we expect to be 0xBA.

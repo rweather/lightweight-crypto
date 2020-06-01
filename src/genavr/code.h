@@ -222,7 +222,7 @@ class Reg
 public:
     Reg() {}
     Reg(const Reg &other) : m_regs(other.m_regs) {}
-    Reg(const Reg &other, unsigned char offset, unsigned char count = 0);
+    Reg(const Reg &other, unsigned char offset, unsigned char count = 0xFF);
     ~Reg() {}
 
     Reg &operator=(const Reg &other)
@@ -548,6 +548,8 @@ public:
     void stlocal_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Y, offset + 1); }
     void stz_long(const Reg &reg, unsigned offset) { ld_st_long(reg, Insn::ST_Z, offset); }
     void swap(const Reg &reg1, const Reg &reg2);
+    void swapmove(const Reg &reg, unsigned long long mask, unsigned shift, const Reg &temp = Reg());
+    void swapmove(const Reg &reg1, const Reg &reg2, unsigned long long mask, unsigned shift, const Reg &temp = Reg());
 
     // S-box management.
     void sbox_setup(unsigned char num, const Sbox &sbox);
@@ -656,6 +658,7 @@ private:
     unsigned char allocateSpare(bool high);
     unsigned char allocateSparePair(bool high);
     Reg allocateRegInternal(unsigned size, bool high, bool optional);
+    Reg allocateRegPreferHigh(unsigned size);
     unsigned char immtemp(unsigned char value);
     unsigned char tempreg();
     bool have_tempreg();
