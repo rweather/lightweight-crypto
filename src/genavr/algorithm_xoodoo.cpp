@@ -39,7 +39,7 @@ void gen_xoodoo_permutation(Code &code)
 {
     // Set up the function prologue with 0 bytes of local variable storage.
     // Z points to the permutation state on input and output.
-    code.prologue_permutation_with_count("xoodoo_permute", 0);
+    code.prologue_permutation("xoodoo_permute", 0);
     code.setFlag(Code::TempY);
 
     // We need a 16-bit high register for the round constant.
