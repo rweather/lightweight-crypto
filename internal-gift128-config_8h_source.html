@@ -119,23 +119,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="internal-gift128-config_8h.html#abb5ea8560d1d59cbcbb62507ab28af41">   59</a></span>&#160;<span class="preprocessor">#define GIFT128_VARIANT_TINY    2</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#if !defined(GIFT128_VARIANT)</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#if defined(__AVR__)</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT GIFT128_VARIANT_TINY</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT_ASM 1</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="internal-gift128-config_8h.html#a3ccfbfeba9cce6eaa3928c3b7d0b7817">   75</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT GIFT128_VARIANT_FULL</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#if !defined(GIFT128_VARIANT_ASM)</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="internal-gift128-config_8h.html#aeb8261c5ecd74f18d642aaba1fcdba84">   79</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT_ASM 0</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#if defined(__AVR__) &amp;&amp; !defined(GIFT128_VARIANT_ASM)</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT_ASM 1</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#if !defined(GIFT128_VARIANT)</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="internal-gift128-config_8h.html#a3ccfbfeba9cce6eaa3928c3b7d0b7817">   74</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT GIFT128_VARIANT_FULL</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#if !defined(GIFT128_VARIANT_ASM)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="internal-gift128-config_8h.html#aeb8261c5ecd74f18d642aaba1fcdba84">   77</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GIFT128_VARIANT_ASM 0</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 14 2020 04:11:55 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 1 2020 19:53:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
