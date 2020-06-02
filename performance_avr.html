@@ -165,6 +165,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.83</td><td>2.20</td><td>2.16</td><td>1.06 </td></tr>
 <tr>
+<td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.85</td><td>0.85</td><td>1.80</td><td>1.77</td><td>1.04 </td></tr>
+<tr>
 <td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.98</td><td>0.99</td><td>1.11</td><td>1.11</td><td>1.03 </td></tr>
 <tr>
 <td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.81</td><td>1.81</td><td>1.78</td><td>1.00 </td></tr>
@@ -172,6 +174,8 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>KNOT-AEAD-128-256</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.79</td><td>0.80</td><td>1.62</td><td>1.61</td><td>0.96 </td></tr>
 <tr>
 <td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.75</td><td>0.76</td><td>1.81</td><td>1.78</td><td>0.94 </td></tr>
+<tr>
+<td><b><em>Oribatida-256-64</em></b></td><td>128</td><td>128</td><td>128</td><td>0.68</td><td>0.69</td><td>1.61</td><td>1.60</td><td>0.85 </td></tr>
 <tr>
 <td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75 </td></tr>
 <tr>
@@ -209,8 +213,6 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>Grain-128AEAD</em></b> +++</td><td>128</td><td>96</td><td>64</td><td>0.21</td><td>0.22</td><td>0.42</td><td>0.43</td><td>0.26 </td></tr>
 <tr>
-<td><b><em>Oribatida-256-64</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.18</td><td>0.18</td><td>0.43</td><td>0.43</td><td>0.23 </td></tr>
-<tr>
 <td>PAEF-ForkSkinny-64-192 +++</td><td>128</td><td>48</td><td>64</td><td>0.19</td><td>0.12</td><td>0.83</td><td>0.51</td><td>0.20 </td></tr>
 <tr>
 <td>KNOT-AEAD-256-512 +++</td><td>256</td><td>256</td><td>256</td><td>0.15</td><td>0.16</td><td>0.23</td><td>0.23</td><td>0.18 </td></tr>
@@ -222,8 +224,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td>PAEF-ForkSkinny-128-256 +++</td><td>128</td><td>112</td><td>128</td><td>0.13</td><td>0.10</td><td>0.54</td><td>0.41</td><td>0.15 </td></tr>
 <tr>
 <td>PAEF-ForkSkinny-128-192 +++</td><td>128</td><td>48</td><td>128</td><td>0.13</td><td>0.10</td><td>0.54</td><td>0.41</td><td>0.15 </td></tr>
-<tr>
-<td>Oribatida-192-96 +++</td><td>128</td><td>64</td><td>96</td><td>0.11</td><td>0.12</td><td>0.24</td><td>0.24</td><td>0.14 </td></tr>
 <tr>
 <td><b><em>Subterranean</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.11</td><td>0.12</td><td>0.12</td><td>0.12</td><td>0.12 </td></tr>
 <tr>
@@ -318,6 +318,8 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>9</td><td>KNOT </td></tr>
 <tr>
+<td>8</td><td>Oribatida </td></tr>
+<tr>
 <td>7</td><td>Pyjamask </td></tr>
 <tr>
 <td>5</td><td>Saturnin </td></tr>
@@ -326,7 +328,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>3</td><td>ISAP </td></tr>
 <tr>
-<td>2</td><td>Grain-128AEAD, Oribatida, PHOTON-Beetle, Spook </td></tr>
+<td>2</td><td>Grain-128AEAD, PHOTON-Beetle, Spook </td></tr>
 <tr>
 <td>1</td><td>ForkAE </td></tr>
 <tr>
@@ -360,7 +362,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 1 2020 19:53:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 3 2020 03:51:46 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
