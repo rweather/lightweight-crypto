@@ -164,6 +164,18 @@ Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
 
 Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
                  unsigned char offset2, unsigned char offset3,
+                 unsigned char offset4, unsigned char offset5) const
+{
+    unsigned char pattern[6] = {
+        offset0, offset1, offset2, offset3, offset4, offset5
+    };
+    if (size() != 6)
+        throw new std::invalid_argument("not a 48-bit register");
+    return shuffle(pattern);
+}
+
+Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
+                 unsigned char offset2, unsigned char offset3,
                  unsigned char offset4, unsigned char offset5,
                  unsigned char offset6, unsigned char offset7) const
 {

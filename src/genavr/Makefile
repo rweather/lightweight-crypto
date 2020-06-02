@@ -17,6 +17,7 @@ OBJS = \
 	algorithm_gimli24.o \
 	algorithm_keccak.o \
 	algorithm_pyjamask.o \
+	algorithm_simp.o \
 	algorithm_skinny128.o \
         algorithm_sliscp_light.o \
 	algorithm_sparkle.o \
@@ -51,6 +52,7 @@ algorithm_gift64.o: code.h gen.h
 algorithm_gimli24.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
 algorithm_pyjamask.o: code.h gen.h
+algorithm_simp.o: code.h gen.h
 algorithm_skinny128.o: code.h gen.h
 algorithm_sliscp_light.o: code.h gen.h
 algorithm_sparkle.o: code.h gen.h
@@ -74,6 +76,7 @@ generate: $(TARGET)
 	./$(TARGET) GIMLI-24 >../combined/internal-gimli24-avr.S
 	./$(TARGET) Keccak >../combined/internal-keccak-avr.S
 	./$(TARGET) Pyjamask >../combined/internal-pyjamask-avr.S
+	./$(TARGET) SimP >../combined/internal-simp-avr.S
 	./$(TARGET) SKINNY-128 >../combined/internal-skinny128-avr.S
 	./$(TARGET) sLiSCP-light-256-SPIX >../combined/internal-sliscp-256-spix-avr.S
 	./$(TARGET) sLiSCP-light-256-SpoC >../combined/internal-sliscp-256-spoc-avr.S

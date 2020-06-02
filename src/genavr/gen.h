@@ -155,6 +155,12 @@ bool test_pyjamask_96_setup_key(Code &code);
 bool test_pyjamask_96_encrypt(Code &code);
 bool test_pyjamask_96_decrypt(Code &code);
 
+// SimP permutation.
+void gen_simp_256_permutation(Code &code);
+void gen_simp_192_permutation(Code &code);
+bool test_simp_256_permutation(Code &code);
+bool test_simp_192_permutation(Code &code);
+
 // SKINNY-128 block cipher.
 #define SKINNY128_SBOX_COUNT 5
 Sbox get_skinny128_sbox(int num);

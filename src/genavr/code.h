@@ -286,6 +286,28 @@ public:
                 unsigned char offset2, unsigned char offset3) const;
 
     /**
+     * \brief Shuffles the bytes in a 48-bit register.
+     *
+     * \param offset0 Offset of the byte in this register that becomes
+     * byte 0 in the shuffled result.
+     * \param offset1 Offset of the byte in this register that becomes
+     * byte 1 in the shuffled result.
+     * \param offset2 Offset of the byte in this register that becomes
+     * byte 2 in the shuffled result.
+     * \param offset3 Offset of the byte in this register that becomes
+     * byte 3 in the shuffled result.
+     * \param offset4 Offset of the byte in this register that becomes
+     * byte 4 in the shuffled result.
+     * \param offset5 Offset of the byte in this register that becomes
+     * byte 5 in the shuffled result.
+     *
+     * \return The shuffled version of this register.
+     */
+    Reg shuffle(unsigned char offset0, unsigned char offset1,
+                unsigned char offset2, unsigned char offset3,
+                unsigned char offset4, unsigned char offset5) const;
+
+    /**
      * \brief Shuffles the bytes in a 64-bit register.
      *
      * \param offset0 Offset of the byte in this register that becomes

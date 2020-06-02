@@ -22,6 +22,8 @@
 
 #include "internal-simp.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Number of rounds for the inner block cipher within SimP-256.
  */
@@ -166,3 +168,5 @@ void simp_192_permute(unsigned char state[SIMP_192_STATE_SIZE], unsigned steps)
     be_store_word48(state + 12, x2);
     be_store_word48(state + 18, x3);
 }
+
+#endif /* !__AVR__ */

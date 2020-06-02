@@ -137,6 +137,7 @@ ORIBATIDA_FILES = \
     oribatida.h \
     internal-simp.c \
     internal-simp.h \
+    internal-simp-avr.S \
     $(COMMON_FILES)
 PHOTON_BEETLE_FILES = \
     photon-beetle.c \

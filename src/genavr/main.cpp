@@ -1174,6 +1174,40 @@ static bool pyjamask(enum Mode mode)
     return ok;
 }
 
+static bool simp256(enum Mode mode)
+{
+    Code code;
+    gen_simp_256_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_simp_256_permutation(code)) {
+            std::cout << "SimP-256 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "SimP-256 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool simp192(enum Mode mode)
+{
+    Code code;
+    gen_simp_192_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_simp_192_permutation(code)) {
+            std::cout << "SimP-192 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "SimP-192 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static void skinny128_sboxes(enum Mode mode)
 {
     if (mode == Generate) {
@@ -1568,6 +1602,9 @@ int main(int argc, char *argv[])
             gen2 = keccakp_400;
         } else if (!strcmp(argv[1], "Pyjamask")) {
             gen1 = pyjamask;
+        } else if (!strcmp(argv[1], "SimP")) {
+            gen1 = simp256;
+            gen2 = simp192;
         } else if (!strcmp(argv[1], "SKINNY-128")) {
             gen1 = skinny128;
         } else if (!strcmp(argv[1], "sLiSCP-light-256-SPIX")) {
@@ -1649,6 +1686,10 @@ int main(int argc, char *argv[])
         if (!keccakp_400(Test))
             exit_val = 1;
         if (!pyjamask(Test))
+            exit_val = 1;
+        if (!simp256(Test))
+            exit_val = 1;
+        if (!simp192(Test))
             exit_val = 1;
         if (!skinny128(Test))
             exit_val = 1;
