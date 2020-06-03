@@ -52,6 +52,23 @@ static void hyena_double_delta(unsigned char D[8])
 }
 
 /**
+ * \brief Triples a delta value in the F(2^64) field.
+ *
+ * \param D The delta value to be tripled.
+ *
+ * D' = D ^ (D << 1) if the top-most bit is 0, or D' = D ^ (D << 1) ^ 0x1B
+ * otherwise.
+ */
+static void hyena_triple_delta(unsigned char D[8])
+{
+    unsigned index;
+    unsigned char mask = (unsigned char)(((signed char)(D[0])) >> 7);
+    for (index = 0; index < 7; ++index)
+        D[index] ^= (D[index] << 1) | (D[index + 1] >> 7);
+    D[7] ^= (D[7] << 1) ^ (mask & 0x1B);
+}
+
+/**
  * \brief Process the associated data for HYENA.
  *
  * \param ks Key schedule for the GIFT-128 cipher.
@@ -66,27 +83,26 @@ static void hyena_process_ad
      unsigned long long adlen)
 {
     unsigned char feedback[16];
-    hyena_double_delta(D);
     while (adlen > 16) {
+        hyena_double_delta(D);
         memcpy(feedback, ad, 16);
         lw_xor_block(feedback + 8, Y + 8, 8);
         lw_xor_block(feedback + 8, D, 8);
         lw_xor_block(Y, feedback, 16);
         gift128n_encrypt(ks, Y, Y);
-        hyena_double_delta(D);
         ad += 16;
         adlen -= 16;
     }
     if (adlen == 16) {
-        hyena_double_delta(D);
+        hyena_triple_delta(D);
         memcpy(feedback, ad, 16);
         lw_xor_block(feedback + 8, Y + 8, 8);
         lw_xor_block(feedback + 8, D, 8);
         lw_xor_block(Y, feedback, 16);
     } else {
         unsigned temp = (unsigned)adlen;
-        hyena_double_delta(D);
-        hyena_double_delta(D);
+        hyena_triple_delta(D);
+        hyena_triple_delta(D);
         memcpy(feedback, ad, temp);
         feedback[temp] = 0x01;
         memset(feedback + temp + 1, 0, 15 - temp);
@@ -148,8 +164,7 @@ int hyena_aead_encrypt
         }
         gift128n_encrypt(&ks, Y, Y);
         if (mlen == 16) {
-            hyena_double_delta(D);
-            hyena_double_delta(D);
+            hyena_triple_delta(D);
             memcpy(feedback, m, 16);
             lw_xor_block(feedback + 8, Y + 8, 8);
             lw_xor_block(feedback + 8, D, 8);
@@ -158,9 +173,8 @@ int hyena_aead_encrypt
             c += 16;
         } else {
             unsigned temp = (unsigned)mlen;
-            hyena_double_delta(D);
-            hyena_double_delta(D);
-            hyena_double_delta(D);
+            hyena_triple_delta(D);
+            hyena_triple_delta(D);
             memcpy(feedback, m, temp);
             feedback[temp] = 0x01;
             memset(feedback + temp + 1, 0, 15 - temp);
@@ -240,8 +254,7 @@ int hyena_aead_decrypt
         }
         gift128n_encrypt(&ks, Y, Y);
         if (clen == 16) {
-            hyena_double_delta(D);
-            hyena_double_delta(D);
+            hyena_triple_delta(D);
             memcpy(feedback + 8, c + 8, 8);
             lw_xor_block_2_src(m, c, Y, 16);
             memcpy(feedback, m, 8);
@@ -250,9 +263,8 @@ int hyena_aead_decrypt
             c += 16;
         } else {
             unsigned temp = (unsigned)clen;
-            hyena_double_delta(D);
-            hyena_double_delta(D);
-            hyena_double_delta(D);
+            hyena_triple_delta(D);
+            hyena_triple_delta(D);
             if (temp > 8) {
                 memcpy(feedback + 8, c + 8, temp - 8);
                 lw_xor_block_2_src(m, c, Y, temp);
