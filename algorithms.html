@@ -337,6 +337,7 @@ HYENA</h1>
 <p>HYENA is an authenticated encryption algorithm that implements a hybrid feedback mode where a mixture of plaintext and ciphertext are mixed into the state each block operation.</p>
 <p>HYENA has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag. It makes a single pass over the associated data and plaintext.</p>
 <p>The block cipher in HYENA is the nibble-based version of GIFT-128. This makes HYENA slightly slower than GIFT-COFB in this implementation because nibble-based GIFT-128 is implemented as a wrapper around the bit-sliced version. Using the bit-sliced version of GIFT-128 with HYENA would make it slightly faster than GIFT-COFB.</p>
+<p>Note: This library implements the v2 version of HYENA from the authors which fixed a known forgery attack against the v1 version.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a>, <a class="el" href="algorithms.html#alg_hyena">SUNDAE-GIFT</a>, <a class="el" href="algorithms.html#alg_estate">ESTATE</a></p>
 <h1><a class="anchor" id="alg_isap"></a>
 ISAP</h1>
@@ -558,7 +559,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 3 2020 03:51:46 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 3 2020 19:33:15 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
