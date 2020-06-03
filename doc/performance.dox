@@ -96,8 +96,8 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>TinyJAMBU-128</i></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80</td></tr>
 <tr><td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.79</td><td>0.80</td><td>0.74</td><td>0.72</td><td>0.76</td></tr>
-<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.63</td><td>0.69</td><td>0.80</td><td>0.83</td><td>0.74</td></tr>
 <tr><td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.54</td><td>0.57</td><td>1.01</td><td>1.03</td><td>0.74</td></tr>
+<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.62</td><td>0.65</td><td>0.81</td><td>0.84</td><td>0.73</td></tr>
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.87</td><td>0.71</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.86</td><td>0.70</td></tr>
 <tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.56</td><td>0.59</td><td>0.83</td><td>0.85</td><td>0.70</td></tr>
@@ -211,10 +211,10 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>Spook-128-512-su</i></b></td><td>256</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.63</td><td>0.65</td><td>0.68</td></tr>
 <tr><td>Spook-128-512-mu</td><td>256</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.63</td><td>0.65</td><td>0.67</td></tr>
 <tr><td>TinyJAMBU-192</td><td>192</td><td>96</td><td>64</td><td>0.46</td><td>0.50</td><td>0.91</td><td>0.92</td><td>0.65</td></tr>
+<tr><td><b><i>HYENA</i></b></td><td>128</td><td>96</td><td>128</td><td>0.55</td><td>0.60</td><td>0.70</td><td>0.72</td><td>0.64</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.51</td><td>0.56</td><td>0.75</td><td>0.76</td><td>0.64</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.47</td><td>0.52</td><td>0.85</td><td>0.87</td><td>0.64</td></tr>
 <tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.74</td><td>0.75</td><td>0.63</td></tr>
-<tr><td><b><i>HYENA</i></b></td><td>128</td><td>96</td><td>128</td><td>0.54</td><td>0.59</td><td>0.68</td><td>0.70</td><td>0.63</td></tr>
 <tr><td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.42</td><td>0.46</td><td>0.84</td><td>0.86</td><td>0.60</td></tr>
 <tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.42</td><td>0.46</td><td>0.82</td><td>0.84</td><td>0.59</td></tr>
 <tr><td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.57</td><td>0.61</td><td>0.57</td><td>0.59</td><td>0.59</td></tr>

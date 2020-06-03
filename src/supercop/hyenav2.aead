@@ -1,5 +1,5 @@
 aead_family=hyena
-aead_name=hyenav1
+aead_name=hyenav2
 aead_meta_name=HYENA
 aead_srcdir=HYENA
 aead_key_size=16
