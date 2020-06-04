@@ -118,6 +118,9 @@ KNOT_FILES = \
     knot.h \
     internal-knot.c \
     internal-knot.h \
+    internal-knot-256-avr.S \
+    internal-knot-384-avr.S \
+    internal-knot-512-avr.S \
     $(COMMON_FILES)
 LOTUS_FILES = \
     lotus-locus.c \

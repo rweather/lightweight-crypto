@@ -22,6 +22,8 @@
 
 #include "internal-knot.h"
 
+#if !defined(__AVR__)
+
 /* Round constants for the KNOT-256, KNOT-384, and KNOT-512 permutations */
 static uint8_t const rc6[52] = {
     0x01, 0x02, 0x04, 0x08, 0x10, 0x21, 0x03, 0x06, 0x0c, 0x18, 0x31, 0x22,
@@ -295,3 +297,5 @@ void knot512_permute_8(knot512_state_t *state, uint8_t rounds)
 {
     knot512_permute(state, rc8, rounds);
 }
+
+#endif /* !__AVR__ */

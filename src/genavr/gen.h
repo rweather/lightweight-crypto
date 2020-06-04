@@ -141,6 +141,15 @@ void gen_keccakp_400_permutation(Code &code);
 bool test_keccakp_200_permutation(Code &code);
 bool test_keccakp_400_permutation(Code &code);
 
+// KNOT permutation.
+Sbox get_knot_round_constants(int rc_bits);
+void gen_knot256_permutation(Code &code, int rc_bits);
+void gen_knot384_permutation(Code &code, int rc_bits);
+void gen_knot512_permutation(Code &code, int rc_bits);
+bool test_knot256_permutation(Code &code, int rc_bits);
+bool test_knot384_permutation(Code &code, int rc_bits);
+bool test_knot512_permutation(Code &code, int rc_bits);
+
 // Pyjamask block cipher.
 void gen_pyjamask_128_setup_key(Code &code);
 void gen_pyjamask_128_encrypt(Code &code);

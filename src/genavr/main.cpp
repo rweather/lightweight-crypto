@@ -1054,6 +1054,110 @@ static bool keccakp_400(enum Mode mode)
     return true;
 }
 
+static bool knot256_6(enum Mode mode)
+{
+    Code code;
+    gen_knot256_permutation(code, 6);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 6, get_knot_round_constants(6));
+        code.write(std::cout);
+    } else {
+        if (!test_knot256_permutation(code, 6)) {
+            std::cout << "KNOT-256-6 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "KNOT-256-6 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool knot256_7(enum Mode mode)
+{
+    Code code;
+    gen_knot256_permutation(code, 7);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 7, get_knot_round_constants(7));
+        code.write(std::cout);
+    } else {/* not used
+        if (!test_knot256_permutation(code, 7)) {
+            std::cout << "KNOT-256-7 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "KNOT-256-7 tests succeeded" << std::endl;
+        }*/
+    }
+    return true;
+}
+
+static bool knot256(enum Mode mode)
+{
+    if (!knot256_6(mode))
+        return false;
+    return knot256_7(mode);
+}
+
+static bool knot384(enum Mode mode)
+{
+    Code code;
+    gen_knot384_permutation(code, 7);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 7, get_knot_round_constants(7));
+        code.write(std::cout);
+    } else {
+        if (!test_knot384_permutation(code, 7)) {
+            std::cout << "KNOT-384-7 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "KNOT-384-7 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool knot512_7(enum Mode mode)
+{
+    Code code;
+    gen_knot512_permutation(code, 7);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 7, get_knot_round_constants(7));
+        code.write(std::cout);
+    } else { /* not used
+        if (!test_knot512_permutation(code, 7)) {
+            std::cout << "KNOT-512-7 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "KNOT-512-7 tests succeeded" << std::endl;
+        } */
+    }
+    return true;
+}
+
+static bool knot512_8(enum Mode mode)
+{
+    Code code;
+    gen_knot512_permutation(code, 8);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 8, get_knot_round_constants(8));
+        code.write(std::cout);
+    } else {
+        if (!test_knot512_permutation(code, 8)) {
+            std::cout << "KNOT-512-8 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "KNOT-512-8 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool knot512(enum Mode mode)
+{
+    if (!knot512_7(mode))
+        return false;
+    return knot512_8(mode);
+}
+
 static bool pyjamask_96_setup_key(enum Mode mode)
 {
     Code code;
@@ -1600,6 +1704,12 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "Keccak")) {
             gen1 = keccakp_200;
             gen2 = keccakp_400;
+        } else if (!strcmp(argv[1], "KNOT-256")) {
+            gen1 = knot256;
+        } else if (!strcmp(argv[1], "KNOT-384")) {
+            gen1 = knot384;
+        } else if (!strcmp(argv[1], "KNOT-512")) {
+            gen1 = knot512;
         } else if (!strcmp(argv[1], "Pyjamask")) {
             gen1 = pyjamask;
         } else if (!strcmp(argv[1], "SimP")) {
@@ -1684,6 +1794,12 @@ int main(int argc, char *argv[])
         if (!keccakp_200(Test))
             exit_val = 1;
         if (!keccakp_400(Test))
+            exit_val = 1;
+        if (!knot256(Test))
+            exit_val = 1;
+        if (!knot384(Test))
+            exit_val = 1;
+        if (!knot512(Test))
             exit_val = 1;
         if (!pyjamask(Test))
             exit_val = 1;
