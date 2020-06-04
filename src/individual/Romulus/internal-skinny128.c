@@ -251,7 +251,7 @@ void skinny_128_384_decrypt
     skinny128_fast_forward_tk(TK2);
     skinny128_fast_forward_tk(TK3);
     for (round = 0; round < SKINNY_128_384_ROUNDS; round += 2) {
-        // Also fast-forward the LFSR's on every byte of TK2 and TK3.
+        /* Also fast-forward the LFSR's on every byte of TK2 and TK3 */
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
         skinny128_LFSR2(TK2[2]);
@@ -658,7 +658,7 @@ void skinny_128_256_decrypt
     TK2[2] = le_load_word32(ks->TK2 + 8);
     TK2[3] = le_load_word32(ks->TK2 + 12);
     for (round = 0; round < SKINNY_128_256_ROUNDS; round += 2) {
-        // Also fast-forward the LFSR's on every byte of TK2.
+        /* Also fast-forward the LFSR's on every byte of TK2 */
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
         skinny128_LFSR2(TK2[2]);

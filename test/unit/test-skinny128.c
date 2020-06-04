@@ -84,7 +84,8 @@ static void tk2_skinny_128_384_encrypt
     (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
 {
-    skinny_128_384_encrypt_tk2(ks, output, input, TK2);
+    skinny_128_384_key_schedule_t ks2 = *ks;
+    skinny_128_384_encrypt_tk2(&ks2, output, input, TK2);
 }
 static block_cipher_t const skinny128_384_tk2 = {
     "SKINNY-128-384-TK2",
