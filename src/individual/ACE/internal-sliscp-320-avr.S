@@ -188,10 +188,10 @@ sliscp_light320_permute:
 	ldd r12,Z+33
 	ldd r11,Z+34
 	ldd r10,Z+35
-	ldd r25,Z+26
-	ldd r24,Z+27
-	ldd r15,Z+28
-	ldd r14,Z+29
+	ldd r25,Z+36
+	ldd r24,Z+37
+	ldd r15,Z+38
+	ldd r14,Z+39
 	push r31
 	push r30
 	ldi r30,lo8(table_0)
