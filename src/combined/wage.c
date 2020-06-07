@@ -55,7 +55,8 @@ static void wage_process_ad
 
     /* Process as many full blocks as possible */
     while (adlen >= WAGE_RATE) {
-        wage_absorb(state, ad, 0x40);
+        wage_absorb(state, ad);
+        state[0] ^= 0x40;
         wage_permute(state);
         ad += WAGE_RATE;
         adlen -= WAGE_RATE;
@@ -66,7 +67,8 @@ static void wage_process_ad
     memcpy(pad, ad, temp);
     pad[temp] = 0x80;
     memset(pad + temp + 1, 0, WAGE_RATE - temp - 1);
-    wage_absorb(state, pad, 0x40);
+    wage_absorb(state, pad);
+    state[0] ^= 0x40;
     wage_permute(state);
 }
 
@@ -95,7 +97,8 @@ int wage_aead_encrypt
     while (mlen >= WAGE_RATE) {
         wage_get_rate(state, block);
         lw_xor_block(block, m, WAGE_RATE);
-        wage_set_rate(state, block, 0x20);
+        wage_set_rate(state, block);
+        state[0] ^= 0x20;
         wage_permute(state);
         memcpy(c, block, WAGE_RATE);
         c += WAGE_RATE;
@@ -106,7 +109,8 @@ int wage_aead_encrypt
     wage_get_rate(state, block);
     lw_xor_block(block, m, temp);
     block[temp] ^= 0x80;
-    wage_set_rate(state, block, 0x20);
+    wage_set_rate(state, block);
+    state[0] ^= 0x20;
     wage_permute(state);
     memcpy(c, block, temp);
 
@@ -145,7 +149,8 @@ int wage_aead_decrypt
     while (clen >= WAGE_RATE) {
         wage_get_rate(state, block);
         lw_xor_block(block, c, WAGE_RATE);
-        wage_set_rate(state, c, 0x20);
+        wage_set_rate(state, c);
+        state[0] ^= 0x20;
         wage_permute(state);
         memcpy(m, block, WAGE_RATE);
         c += WAGE_RATE;
@@ -157,7 +162,8 @@ int wage_aead_decrypt
     lw_xor_block_2_src(block + 8, block, c, temp);
     memcpy(block, c, temp);
     block[temp] ^= 0x80;
-    wage_set_rate(state, block, 0x20);
+    wage_set_rate(state, block);
+    state[0] ^= 0x20;
     wage_permute(state);
     memcpy(m, block + 8, temp);
 

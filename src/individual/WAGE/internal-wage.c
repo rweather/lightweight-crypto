@@ -33,6 +33,8 @@
  */
 #define WAGE_64BIT 1
 
+#if !defined(__AVR__)
+
 /**
  * \brief RC0 and RC1 round constants for WAGE, interleaved with each other.
  */
@@ -287,8 +289,7 @@ void wage_permute(unsigned char s[WAGE_STATE_SIZE])
 /* 7-bit components for the rate: 8, 9, 15, 16, 18, 27, 28, 34, 35, 36 */
 
 void wage_absorb
-    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8],
-     unsigned char domain)
+    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8])
 {
     uint32_t temp;
     temp = be_load_word32(data);
@@ -304,7 +305,6 @@ void wage_absorb
     s[34] ^= (unsigned char)((temp >>  8) & 0x7F);
     s[35] ^= (unsigned char)((temp >>  1) & 0x7F);
     s[36] ^= (unsigned char)((temp <<  6) & 0x7F);
-    s[0]  ^= domain;
 }
 
 void wage_get_rate
@@ -327,8 +327,7 @@ void wage_get_rate
 }
 
 void wage_set_rate
-    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8],
-     unsigned char domain)
+    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8])
 {
     uint32_t temp;
     temp = be_load_word32(data);
@@ -344,8 +343,9 @@ void wage_set_rate
     s[34] = (unsigned char)((temp >>  8) & 0x7F);
     s[35] = (unsigned char)((temp >>  1) & 0x7F);
     s[36] = (unsigned char)(((temp << 6) & 0x40) ^ (s[36] & 0x3F));
-    s[0] ^= domain;
 }
+
+#endif /* !__AVR__ */
 
 /**
  * \brief Converts a 128-bit value into an array of 7-bit components.

@@ -1629,6 +1629,43 @@ static bool tinyjambu(enum Mode mode)
     return true;
 }
 
+static bool wage(enum Mode mode)
+{
+    Code code;
+    gen_wage_permutation(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_wage_round_constants(0));
+        code.sbox_write(std::cout, 1, get_wage_round_constants(1));
+        code.write(std::cout);
+    } else {
+        if (!test_wage_permutation(code)) {
+            std::cout << "WAGE tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "WAGE tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool wage_helpers(enum Mode mode)
+{
+    if (mode == Generate) {
+        Code code;
+        gen_wage_absorb(code);
+        code.write(std::cout);
+
+        Code code2;
+        gen_wage_get_rate(code2);
+        code2.write(std::cout);
+
+        Code code3;
+        gen_wage_set_rate(code3);
+        code3.write(std::cout);
+    }
+    return true;
+}
+
 static bool xoodoo(enum Mode mode)
 {
     Code code;
@@ -1736,6 +1773,9 @@ int main(int argc, char *argv[])
             gen1 = speck64;
         } else if (!strcmp(argv[1], "TinyJAMBU")) {
             gen1 = tinyjambu;
+        } else if (!strcmp(argv[1], "WAGE")) {
+            gen1 = wage;
+            gen2 = wage_helpers;
         } else if (!strcmp(argv[1], "Xoodoo")) {
             gen1 = xoodoo;
         }
@@ -1830,6 +1870,8 @@ int main(int argc, char *argv[])
         if (!spongent176(Test))
             exit_val = 1;
         if (!tinyjambu(Test))
+            exit_val = 1;
+        if (!wage(Test))
             exit_val = 1;
         if (!xoodoo(Test))
             exit_val = 1;

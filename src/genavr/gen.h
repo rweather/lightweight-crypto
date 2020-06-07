@@ -223,6 +223,14 @@ bool test_spongent176_permutation(Code &code);
 void gen_tinyjambu_permutation(Code &code);
 bool test_tinyjambu_permutation(Code &code);
 
+// WAGE permutation.
+Sbox get_wage_round_constants(int num);
+void gen_wage_permutation(Code &code);
+void gen_wage_absorb(Code &code);
+void gen_wage_get_rate(Code &code);
+void gen_wage_set_rate(Code &code);
+bool test_wage_permutation(Code &code);
+
 // Xoodoo permutation.
 void gen_xoodoo_permutation(Code &code);
 bool test_xoodoo_permutation(Code &code);

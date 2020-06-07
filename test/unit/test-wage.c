@@ -85,7 +85,7 @@ void test_wage(void)
 
     printf("    Test Vector 2 ... ");
     fflush(stdout);
-    wage_absorb(state, wage_absorb_data, 0);
+    wage_absorb(state, wage_absorb_data);
     wage_permute(state);
     if (!test_memcmp(state, wage_output_2, sizeof(wage_output_2))) {
         printf("ok\n");

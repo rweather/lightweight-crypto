@@ -240,6 +240,7 @@ WAGE_FILES = \
     wage.h \
     internal-wage.c \
     internal-wage.h \
+    internal-wage-avr.S \
     $(COMMON_FILES)
 XOODYAK_FILES = \
     xoodyak.c \

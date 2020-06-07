@@ -91,6 +91,7 @@ designed for 32-bit.
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.68</td><td>0.69</td><td>1.19</td><td>1.19</td><td>0.80</td></tr>
 <tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74</td></tr>
+<tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71</td></tr>
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b> +++</td><td>256</td><td>128</td><td>256</td><td>0.46</td><td>0.47</td><td>0.68</td><td>0.68</td><td>0.53</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48</td></tr>
@@ -116,7 +117,6 @@ designed for 32-bit.
 <tr><td>PHOTON-Beetle-AEAD-ENC-32 +++</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.21</td><td>0.08</td></tr>
 <tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.07</td><td>0.08</td><td>0.04</td><td>0.04</td><td>0.06</td></tr>
 <tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.06</td><td>0.03</td><td>0.03</td><td>0.04</td></tr>
-<tr><td><b><i>WAGE</i></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.05</td><td>0.05</td><td>0.04</td></tr>
 <tr><td>Pyjamask-96-AEAD-Masked +++</td><td>128</td><td>64</td><td>96</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
 <tr><td>Pyjamask-128-AEAD-Masked +++</td><td>128</td><td>96</td><td>128</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
 </table>
@@ -165,13 +165,13 @@ AEAD algorithm rankings:
 <tr><td>13</td><td>KNOT, SKINNY-AEAD</td></tr>
 <tr><td>10</td><td>DryGASCON, LOTUS, SPIX</td></tr>
 <tr><td>8</td><td>Oribatida</td></tr>
-<tr><td>7</td><td>Pyjamask</td></tr>
+<tr><td>7</td><td>Pyjamask, WAGE</td></tr>
 <tr><td>5</td><td>Saturnin</td></tr>
 <tr><td>4</td><td>ACE, Elephant, ORANGE</td></tr>
 <tr><td>3</td><td>ISAP</td></tr>
 <tr><td>2</td><td>Grain-128AEAD, PHOTON-Beetle, Spook</td></tr>
 <tr><td>1</td><td>ForkAE</td></tr>
-<tr><td>0</td><td>Subterranean, WAGE</td></tr>
+<tr><td>0</td><td>Subterranean</td></tr>
 </table>
 
 Hash algorithm rankings:

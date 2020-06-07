@@ -55,11 +55,9 @@ void wage_permute(unsigned char s[WAGE_STATE_SIZE]);
  *
  * \param s The WAGE state to be permuted.
  * \param data The data to be absorbed.
- * \param domain The domain separator for the absorbed data.
  */
 void wage_absorb
-    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8],
-     unsigned char domain);
+    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8]);
 
 /**
  * \brief Gets the 8 bytes of the rate from the WAGE state.
@@ -75,11 +73,9 @@ void wage_get_rate
  *
  * \param s The WAGE state to set the rate in.
  * \param data Points to the bytes to set into the rate.
- * \param domain The domain separator for the rate data.
  */
 void wage_set_rate
-    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8],
-     unsigned char domain);
+    (unsigned char s[WAGE_STATE_SIZE], const unsigned char data[8]);
 
 /**
  * \brief Absorbs 16 key bytes into the WAGE state.
