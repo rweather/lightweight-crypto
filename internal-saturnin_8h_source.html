@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: internal-sparkle.h Source File</title>
+<title>Lightweight Cryptography Primitives: internal-saturnin.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,10 +85,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">internal-sparkle.h</div>  </div>
+<div class="title">internal-saturnin.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="internal-sparkle_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<a href="internal-saturnin_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (C) 2020 Southern Storm Software, Pty Ltd.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a</span></div>
@@ -110,38 +110,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * DEALINGS IN THE SOFTWARE.</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LW_INTERNAL_SPARKLE_H</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LW_INTERNAL_SPARKLE_H</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LW_INTERNAL_SATURNIN_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LW_INTERNAL_SATURNIN_H</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;internal-util.h&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;internal-util.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="internal-sparkle_8h.html#a4aaa77b483ba02db49d559f01edf4c49">   42</a></span>&#160;<span class="preprocessor">#define SPARKLE_256_STATE_SIZE 8</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#ad66e8b06becaa330536e7bee65177df0">   42</a></span>&#160;<span class="preprocessor">#define SATURNIN_BLOCK_SIZE 32</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="internal-sparkle_8h.html#aa759ba6e42456a0d40e827eac48335a3">   47</a></span>&#160;<span class="preprocessor">#define SPARKLE_384_STATE_SIZE 12</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#ab1e9b2582eeecd95ffefffde140ee139">   47</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_1 0</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="internal-sparkle_8h.html#a2c848a045e79b1c9962ca6189079d753">   52</a></span>&#160;<span class="preprocessor">#define SPARKLE_512_STATE_SIZE 16</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#a0c5eda13d033a1320d79834702fccbe8">   52</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_2 10</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-sparkle_8h.html#a884429517da8779224d67062ba0529fd">sparkle_256</a>(uint32_t s[<a class="code" href="internal-sparkle_8h.html#a4aaa77b483ba02db49d559f01edf4c49">SPARKLE_256_STATE_SIZE</a>], <span class="keywordtype">unsigned</span> steps);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-sparkle_8h.html#a60673aec7703700fce1993a1e40b1153">sparkle_384</a>(uint32_t s[<a class="code" href="internal-sparkle_8h.html#aa759ba6e42456a0d40e827eac48335a3">SPARKLE_384_STATE_SIZE</a>], <span class="keywordtype">unsigned</span> steps);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-sparkle_8h.html#a61563dfabadfb1e76b102b8a49e6c13b">sparkle_512</a>(uint32_t s[<a class="code" href="internal-sparkle_8h.html#a2c848a045e79b1c9962ca6189079d753">SPARKLE_512_STATE_SIZE</a>], <span class="keywordtype">unsigned</span> steps);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="internal-sparkle_8h_html_a884429517da8779224d67062ba0529fd"><div class="ttname"><a href="internal-sparkle_8h.html#a884429517da8779224d67062ba0529fd">sparkle_256</a></div><div class="ttdeci">void sparkle_256(uint32_t s[SPARKLE_256_STATE_SIZE], unsigned steps)</div><div class="ttdoc">Performs the SPARKLE-256 permutation. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.c:67</div></div>
-<div class="ttc" id="internal-sparkle_8h_html_a60673aec7703700fce1993a1e40b1153"><div class="ttname"><a href="internal-sparkle_8h.html#a60673aec7703700fce1993a1e40b1153">sparkle_384</a></div><div class="ttdeci">void sparkle_384(uint32_t s[SPARKLE_384_STATE_SIZE], unsigned steps)</div><div class="ttdoc">Performs the SPARKLE-384 permutation. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.c:148</div></div>
-<div class="ttc" id="internal-sparkle_8h_html_a4aaa77b483ba02db49d559f01edf4c49"><div class="ttname"><a href="internal-sparkle_8h.html#a4aaa77b483ba02db49d559f01edf4c49">SPARKLE_256_STATE_SIZE</a></div><div class="ttdeci">#define SPARKLE_256_STATE_SIZE</div><div class="ttdoc">Size of the state for SPARKLE-256. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.h:42</div></div>
-<div class="ttc" id="internal-sparkle_8h_html_aa759ba6e42456a0d40e827eac48335a3"><div class="ttname"><a href="internal-sparkle_8h.html#aa759ba6e42456a0d40e827eac48335a3">SPARKLE_384_STATE_SIZE</a></div><div class="ttdeci">#define SPARKLE_384_STATE_SIZE</div><div class="ttdoc">Size of the state for SPARKLE-384. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.h:47</div></div>
-<div class="ttc" id="internal-sparkle_8h_html_a2c848a045e79b1c9962ca6189079d753"><div class="ttname"><a href="internal-sparkle_8h.html#a2c848a045e79b1c9962ca6189079d753">SPARKLE_512_STATE_SIZE</a></div><div class="ttdeci">#define SPARKLE_512_STATE_SIZE</div><div class="ttdoc">Size of the state for SPARKLE-512. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.h:52</div></div>
-<div class="ttc" id="internal-sparkle_8h_html_a61563dfabadfb1e76b102b8a49e6c13b"><div class="ttname"><a href="internal-sparkle_8h.html#a61563dfabadfb1e76b102b8a49e6c13b">sparkle_512</a></div><div class="ttdeci">void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)</div><div class="ttdoc">Performs the SPARKLE-512 permutation. </div><div class="ttdef"><b>Definition:</b> internal-sparkle.c:253</div></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#ab807e1c1f3ee7ff358eb6e4b48720897">   57</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_3 20</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#a6ff2cae1234b4364a9ccfecd89523bdb">   62</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_4 30</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#a64a85cdee4180f0c965473d8865315fe">   67</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_5 40</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#ac24736558f642c115eb5408c2277bfef">   72</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_10_6 50</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#ad44504d911c3dc1f39e9bb5a6fb32eb6">   77</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_16_7 60</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="internal-saturnin_8h.html#a81b6c05fb1af7d6a4909777660db9463">   82</a></span>&#160;<span class="preprocessor">#define SATURNIN_DOMAIN_16_8 76</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structsaturnin__key__schedule__t.html">   87</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="structsaturnin__key__schedule__t.html#a95517387d9f7f3c536ab5c795a75a0e8">   90</a></span>&#160;    uint32_t k[16];</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <a class="code" href="structsaturnin__key__schedule__t.html">saturnin_key_schedule_t</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-saturnin_8h.html#a4f58c2a954d91a12a34a3a5b2553998a">saturnin_setup_key</a></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    (<a class="code" href="structsaturnin__key__schedule__t.html">saturnin_key_schedule_t</a> *ks, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *key);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-saturnin_8h.html#a0e519d4883fc8c0b7b19d7d7daa6e7ed">saturnin_encrypt_block</a></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    (<span class="keyword">const</span> <a class="code" href="structsaturnin__key__schedule__t.html">saturnin_key_schedule_t</a> *ks, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *output,</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">unsigned</span> domain);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-saturnin_8h.html#ab3f54df63bdf49384a8c4e97dc4cd120">saturnin_decrypt_block</a></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    (<span class="keyword">const</span> <a class="code" href="structsaturnin__key__schedule__t.html">saturnin_key_schedule_t</a> *ks, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *output,</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;     <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *input, <span class="keywordtype">unsigned</span> domain);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="internal-saturnin_8h_html_a4f58c2a954d91a12a34a3a5b2553998a"><div class="ttname"><a href="internal-saturnin_8h.html#a4f58c2a954d91a12a34a3a5b2553998a">saturnin_setup_key</a></div><div class="ttdeci">void saturnin_setup_key(saturnin_key_schedule_t *ks, const unsigned char *key)</div><div class="ttdoc">Sets up a key schedule for Saturnin. </div><div class="ttdef"><b>Definition:</b> internal-saturnin.c:339</div></div>
+<div class="ttc" id="internal-saturnin_8h_html_ab3f54df63bdf49384a8c4e97dc4cd120"><div class="ttname"><a href="internal-saturnin_8h.html#ab3f54df63bdf49384a8c4e97dc4cd120">saturnin_decrypt_block</a></div><div class="ttdeci">void saturnin_decrypt_block(const saturnin_key_schedule_t *ks, unsigned char *output, const unsigned char *input, unsigned domain)</div><div class="ttdoc">Decrypts a 256-bit block with Saturnin. </div><div class="ttdef"><b>Definition:</b> internal-saturnin.c:417</div></div>
+<div class="ttc" id="internal-saturnin_8h_html_a0e519d4883fc8c0b7b19d7d7daa6e7ed"><div class="ttname"><a href="internal-saturnin_8h.html#a0e519d4883fc8c0b7b19d7d7daa6e7ed">saturnin_encrypt_block</a></div><div class="ttdeci">void saturnin_encrypt_block(const saturnin_key_schedule_t *ks, unsigned char *output, const unsigned char *input, unsigned domain)</div><div class="ttdoc">Encrypts a 256-bit block with Saturnin. </div><div class="ttdef"><b>Definition:</b> internal-saturnin.c:352</div></div>
+<div class="ttc" id="structsaturnin__key__schedule__t_html"><div class="ttname"><a href="structsaturnin__key__schedule__t.html">saturnin_key_schedule_t</a></div><div class="ttdoc">Structure of the key schedule for Saturnin. </div><div class="ttdef"><b>Definition:</b> internal-saturnin.h:87</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

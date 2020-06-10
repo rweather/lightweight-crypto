@@ -2,10 +2,13 @@ var searchData=
 [
   ['saturnin_5faead_5fdecrypt',['saturnin_aead_decrypt',['../saturnin_8h.html#a1f60e3c6c7514b7f589f4c4131dcc343',1,'saturnin.c']]],
   ['saturnin_5faead_5fencrypt',['saturnin_aead_encrypt',['../saturnin_8h.html#a0f674f6f14802b71bc636455fb976095',1,'saturnin.c']]],
+  ['saturnin_5fdecrypt_5fblock',['saturnin_decrypt_block',['../internal-saturnin_8h.html#ab3f54df63bdf49384a8c4e97dc4cd120',1,'internal-saturnin.c']]],
+  ['saturnin_5fencrypt_5fblock',['saturnin_encrypt_block',['../internal-saturnin_8h.html#a0e519d4883fc8c0b7b19d7d7daa6e7ed',1,'internal-saturnin.c']]],
   ['saturnin_5fhash',['saturnin_hash',['../saturnin_8h.html#a3c9d700c936d60a8cd39ef06cde22562',1,'saturnin.c']]],
   ['saturnin_5fhash_5ffinalize',['saturnin_hash_finalize',['../saturnin_8h.html#af8f527e30205f93a8fc7b33added3dfb',1,'saturnin.c']]],
   ['saturnin_5fhash_5finit',['saturnin_hash_init',['../saturnin_8h.html#a20c89de73aa43d66e22b0cac8364cfb8',1,'saturnin.c']]],
   ['saturnin_5fhash_5fupdate',['saturnin_hash_update',['../saturnin_8h.html#a2c38dd5f09a9646e26a4b14befcb8227',1,'saturnin.c']]],
+  ['saturnin_5fsetup_5fkey',['saturnin_setup_key',['../internal-saturnin_8h.html#a4f58c2a954d91a12a34a3a5b2553998a',1,'internal-saturnin.c']]],
   ['saturnin_5fshort_5faead_5fdecrypt',['saturnin_short_aead_decrypt',['../saturnin_8h.html#aa66569612eae465a4a4419801f1a39f4',1,'saturnin.c']]],
   ['saturnin_5fshort_5faead_5fencrypt',['saturnin_short_aead_encrypt',['../saturnin_8h.html#aa9eaf5b4d729a2d65d1387b7fa8d8345',1,'saturnin.c']]],
   ['schwaemm_5f128_5f128_5faead_5fdecrypt',['schwaemm_128_128_aead_decrypt',['../sparkle_8h.html#a2a7d23f1c0d75f849b7f1d875ace7160',1,'sparkle.c']]],
