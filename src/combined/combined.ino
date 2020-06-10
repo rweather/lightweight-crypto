@@ -479,7 +479,8 @@ void setup()
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&grain128_aead_cipher);
-    perfCipher(&hyena_cipher);
+    perfCipher(&hyena_v1_cipher);
+    perfCipher(&hyena_v2_cipher);
     perfCipher(&knot_aead_128_256_cipher);
     perfCipher(&knot_aead_128_384_cipher);
     perfCipher(&knot_aead_192_384_cipher);

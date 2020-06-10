@@ -405,8 +405,10 @@ nibble-based GIFT-128 is implemented as a wrapper around the bit-sliced
 version.  Using the bit-sliced version of GIFT-128 with HYENA would make it
 slightly faster than GIFT-COFB.
 
-Note: This library implements the v2 version of HYENA from the authors
-which fixed a known forgery attack against the v1 version.
+Note: This library implements both the v1 and v2 versions of HYENA from
+the authors.  The v1 version has a known forgery attack, but is provided
+because it is part of the second round algorithm set.  The v2 version should
+be used in practice.
 
 <b>Similar Algorithms:</b> \ref alg_gift_cofb "GIFT-COFB",
 \ref alg_hyena "SUNDAE-GIFT", \ref alg_estate "ESTATE"

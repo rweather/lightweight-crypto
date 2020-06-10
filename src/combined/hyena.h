@@ -33,6 +33,12 @@
  * GIFT-128 block cipher.  The algorithm has a 128-bit key, a 96-bit nonce,
  * and a 128-bit authentication tag.
  *
+ * This library implements both the v1 and v2 versions of HYENA from the
+ * authors.  The v1 version was submitted to the second round of the
+ * NIST Lightweight Cryptography Competition but was later found to have a
+ * forgery attack.  The authors fixed this with v2 but it was too late to
+ * submit the update for the second round.
+ *
  * References: https://www.isical.ac.in/~lightweight/hyena/
  */
 
@@ -56,12 +62,17 @@ extern "C" {
 #define HYENA_NONCE_SIZE 12
 
 /**
- * \brief Meta-information block for the HYENA cipher.
+ * \brief Meta-information block for the HYENA-v1 cipher.
  */
-extern aead_cipher_t const hyena_cipher;
+extern aead_cipher_t const hyena_v1_cipher;
 
 /**
- * \brief Encrypts and authenticates a packet with HYENA.
+ * \brief Meta-information block for the HYENA-v2 cipher.
+ */
+extern aead_cipher_t const hyena_v2_cipher;
+
+/**
+ * \brief Encrypts and authenticates a packet with HYENA-v1.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -81,7 +92,7 @@ extern aead_cipher_t const hyena_cipher;
  *
  * \sa hyena_aead_decrypt()
  */
-int hyena_aead_encrypt
+int hyena_v1_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen,
@@ -90,7 +101,7 @@ int hyena_aead_encrypt
      const unsigned char *k);
 
 /**
- * \brief Decrypts and authenticates a packet with HYENA.
+ * \brief Decrypts and authenticates a packet with HYENA-v1.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -111,7 +122,66 @@ int hyena_aead_encrypt
  *
  * \sa hyena_aead_encrypt()
  */
-int hyena_aead_decrypt
+int hyena_v1_aead_decrypt
+    (unsigned char *m, unsigned long long *mlen,
+     unsigned char *nsec,
+     const unsigned char *c, unsigned long long clen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Encrypts and authenticates a packet with HYENA-v2.
+ *
+ * \param c Buffer to receive the output.
+ * \param clen On exit, set to the length of the output which includes
+ * the ciphertext and the 16 byte authentication tag.
+ * \param m Buffer that contains the plaintext message to encrypt.
+ * \param mlen Length of the plaintext message in bytes.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param npub Points to the public nonce for the packet which must
+ * be 12 bytes in length.
+ * \param k Points to the 16 bytes of the key to use to encrypt the packet.
+ *
+ * \return 0 on success, or a negative value if there was an error in
+ * the parameters.
+ *
+ * \sa hyena_aead_decrypt()
+ */
+int hyena_v2_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Decrypts and authenticates a packet with HYENA-v2.
+ *
+ * \param m Buffer to receive the plaintext message on output.
+ * \param mlen Receives the length of the plaintext message on output.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param c Buffer that contains the ciphertext and authentication
+ * tag to decrypt.
+ * \param clen Length of the input data in bytes, which includes the
+ * ciphertext and the 16 byte authentication tag.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param npub Points to the public nonce for the packet which must
+ * be 12 bytes in length.
+ * \param k Points to the 16 bytes of the key to use to decrypt the packet.
+ *
+ * \return 0 on success, -1 if the authentication tag was incorrect,
+ * or some other negative number if there was an error in the parameters.
+ *
+ * \sa hyena_aead_encrypt()
+ */
+int hyena_v2_aead_decrypt
     (unsigned char *m, unsigned long long *mlen,
      unsigned char *nsec,
      const unsigned char *c, unsigned long long clen,
