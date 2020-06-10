@@ -50,8 +50,8 @@ designed for 32-bit.
 <tr><td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>3.63</td><td>3.31</td><td>5.29</td><td>5.05</td><td>3.91</td></tr>
 <tr><td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>3.03</td><td>2.75</td><td>3.45</td><td>3.33</td><td>3.04</td></tr>
 <tr><td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>2.79</td><td>2.57</td><td>4.10</td><td>3.91</td><td>3.02</td></tr>
+<tr><td>SATURNIN-Short +++</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>3.16</td><td>2.84</td><td>2.99</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>2.61</td><td>2.41</td><td>3.88</td><td>3.70</td><td>2.83</td></tr>
-<tr><td>SATURNIN-Short +++</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>2.76</td><td>2.65</td><td>2.71</td></tr>
 <tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>2.30</td><td>2.19</td><td>3.70</td><td>3.55</td><td>2.59</td></tr>
 <tr><td><b><i>ASCON-128</i></b></td><td>128</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.50</td><td>2.36</td></tr>
 <tr><td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>2.05</td><td>1.95</td><td>3.65</td><td>3.52</td><td>2.36</td></tr>
@@ -93,7 +93,7 @@ designed for 32-bit.
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71</td></tr>
-<tr><td><b><i>SATURNIN-CTR-Cascade</i></b> +++</td><td>256</td><td>128</td><td>256</td><td>0.46</td><td>0.47</td><td>0.68</td><td>0.68</td><td>0.53</td></tr>
+<tr><td><b><i>SATURNIN-CTR-Cascade</i></b> +++</td><td>256</td><td>128</td><td>256</td><td>0.54</td><td>0.54</td><td>0.77</td><td>0.77</td><td>0.60</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.38</td><td>0.39</td><td>0.82</td><td>0.83</td><td>0.47</td></tr>
 <tr><td><b><i>ACE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.42</td><td>0.60</td><td>0.61</td><td>0.46</td></tr>
@@ -131,7 +131,7 @@ designed for 32-bit.
 <tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.92</td><td>0.83</td><td>1.83</td><td>1.19</td></tr>
 <tr><td><b><i>DryGASCON128-HASH</i></b></td><td>256</td><td>0.53</td><td>0.51</td><td>1.62</td><td>0.88</td></tr>
 <tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71</td></tr>
-<tr><td><b><i>SATURNIN-Hash</i></b> +++</td><td>256</td><td>0.38</td><td>0.31</td><td>0.77</td><td>0.49</td></tr>
+<tr><td><b><i>SATURNIN-Hash</i></b> +++</td><td>256</td><td>0.47</td><td>0.39</td><td>0.95</td><td>0.60</td></tr>
 <tr><td>DryGASCON256-HASH</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47</td></tr>
 <tr><td><b><i>ACE-HASH</i></b></td><td>256</td><td>0.28</td><td>0.23</td><td>0.38</td><td>0.30</td></tr>
 <tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.28</td><td>0.23</td><td>0.38</td><td>0.30</td></tr>
@@ -166,7 +166,7 @@ AEAD algorithm rankings:
 <tr><td>10</td><td>DryGASCON, LOTUS, SPIX</td></tr>
 <tr><td>8</td><td>Oribatida</td></tr>
 <tr><td>7</td><td>Pyjamask, WAGE</td></tr>
-<tr><td>5</td><td>Saturnin</td></tr>
+<tr><td>6</td><td>Saturnin</td></tr>
 <tr><td>4</td><td>ACE, Elephant, ORANGE</td></tr>
 <tr><td>3</td><td>ISAP</td></tr>
 <tr><td>2</td><td>Grain-128AEAD, PHOTON-Beetle, Spook</td></tr>
@@ -183,7 +183,7 @@ Hash algorithm rankings:
 <tr><td>11</td><td>Xoodyak</td></tr>
 <tr><td>8</td><td>DryGASCON</td></tr>
 <tr><td>7</td><td>ASCON</td></tr>
-<tr><td>4</td><td>Saturnin</td></tr>
+<tr><td>6</td><td>Saturnin</td></tr>
 <tr><td>3</td><td>ACE</td></tr>
 <tr><td>2</td><td>KNOT, SKINNY-AEAD</td></tr>
 <tr><td>1</td><td>ORANGE, PHOTON-Beetle</td></tr>

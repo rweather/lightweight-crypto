@@ -37,6 +37,7 @@ void test_knot(void);
 void test_photon256(void);
 void test_pyjamask(void);
 void test_shadow(void);
+void test_saturnin(void);
 void test_simp(void);
 void test_skinny128(void);
 void test_sliscp_light(void);
@@ -65,6 +66,7 @@ int main(int argc, char *argv[])
     test_photon256();
     test_pyjamask();
     test_shadow();
+    test_saturnin();
     test_simp();
     test_skinny128();
     test_sliscp_light();

@@ -62,6 +62,7 @@ OBJS = \
 	internal-photon256.o \
 	internal-pyjamask.o \
 	internal-pyjamask-m.o \
+	internal-saturnin.o \
 	internal-simp.o \
 	internal-sliscp-light.o \
 	internal-skinny128.o \
@@ -114,7 +115,7 @@ pyjamask-128-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-ut
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 pyjamask-96-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
 romulus.o: romulus.h internal-skinny128.h aead-common.h internal-util.h
-saturnin.o: saturnin.h aead-common.h internal-util.h
+saturnin.o: saturnin.h aead-common.h internal-saturnin.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
 skinny-hash.o: skinny-hash.h internal-skinny128.h aead-common.h internal-util.h
 sparkle.o: sparkle.h internal-sparkle.h aead-common.h internal-util.h
@@ -141,6 +142,7 @@ internal-knot.o: internal-knot.h internal-util.h
 internal-masking.o: internal-masking.h
 internal-photon256.o: internal-photon256.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
+internal-saturnin.o: internal-saturnin.h internal-util.h
 internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-skinnyutil.h internal-util.h

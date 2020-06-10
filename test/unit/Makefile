@@ -26,6 +26,7 @@ OBJS1 = \
     test-knot.o \
     test-photon256.o \
     test-pyjamask.o \
+    test-saturnin.o \
     test-simp.o \
     test-skinny128.o \
     test-sliscp-light.o \
@@ -66,6 +67,7 @@ test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
 test-photon256.o: $(LIBSRC_DIR)/internal-photon256.h $(TEST_CIPHER_INC)
 test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
+test-saturnin.o: $(LIBSRC_DIR)/internal-saturnin.h $(TEST_CIPHER_INC)
 test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)
 test-sliscp-light.o: $(LIBSRC_DIR)/internal-sliscp-light.h $(TEST_CIPHER_INC)

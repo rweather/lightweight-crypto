@@ -173,6 +173,8 @@ ROMULUS_FILES = \
 SATURNIN_FILES = \
     saturnin.c \
     saturnin.h \
+    internal-saturnin.c \
+    internal-saturnin.h \
     $(COMMON_FILES)
 SKINNY_AEAD_FILES = \
     skinny-aead.c \

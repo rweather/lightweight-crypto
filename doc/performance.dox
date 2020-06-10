@@ -79,13 +79,13 @@ Where a NIST submission contains multiple algorithms in a family,
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.62</td><td>1.69</td><td>1.66</td></tr>
 <tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61</td></tr>
 <tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>1.16</td><td>1.14</td><td>2.31</td><td>2.24</td><td>1.58</td></tr>
 <tr><td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46</td></tr>
 <tr><td><b><i>Schwaemm256-128</i></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.12</td><td>1.08</td><td>1.10</td><td>1.09</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>1.02</td><td>1.01</td><td>1.09</td><td>1.09</td><td>1.05</td></tr>
 <tr><td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.90</td><td>0.92</td><td>1.04</td><td>1.07</td><td>0.99</td></tr>
-<tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>0.99</td><td>0.94</td><td>0.96</td></tr>
 <tr><td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.11</td><td>1.09</td><td>0.93</td></tr>
 <tr><td>Spook-128-384-mu</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.10</td><td>1.09</td><td>0.93</td></tr>
 <tr><td><b><i>GIMLI-24</i></b></td><td>256</td><td>128</td><td>128</td><td>0.84</td><td>0.85</td><td>0.97</td><td>0.98</td><td>0.91</td></tr>
@@ -112,9 +112,9 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.28</td><td>0.29</td><td>0.56</td><td>0.57</td><td>0.39</td></tr>
 <tr><td><b><i>KNOT-AEAD-128-256</i></b></td><td>128</td><td>128</td><td>128</td><td>0.29</td><td>0.31</td><td>0.47</td><td>0.49</td><td>0.38</td></tr>
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.26</td><td>0.26</td><td>0.56</td><td>0.56</td><td>0.37</td></tr>
+<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.34</td><td>0.36</td><td>0.37</td><td>0.38</td><td>0.36</td></tr>
 <tr><td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>0.31</td><td>0.33</td><td>0.30</td><td>0.32</td><td>0.31</td></tr>
 <tr><td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.24</td><td>0.42</td><td>0.44</td><td>0.31</td></tr>
-<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.23</td></tr>
 <tr><td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.32</td><td>0.23</td></tr>
 <tr><td>SKINNY-AEAD-M5</td><td>128</td><td>96</td><td>128</td><td>0.17</td><td>0.19</td><td>0.29</td><td>0.31</td><td>0.23</td></tr>
 <tr><td><b><i>ACE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.22</td></tr>
@@ -169,8 +169,8 @@ The hash algorithms are compared against BLAKE2s instead of ChaChaPoly:
 <tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51</td></tr>
 <tr><td><b><i>GIMLI-24-HASH</i></b></td><td>256</td><td>0.45</td><td>0.35</td><td>0.61</td><td>0.46</td></tr>
 <tr><td><b><i>Esch256</i></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.65</td><td>0.46</td></tr>
+<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.24</td><td>0.20</td><td>0.49</td><td>0.31</td></tr>
 <tr><td>Esch384 (SPARKLE)</td><td>384</td><td>0.26</td><td>0.21</td><td>0.33</td><td>0.26</td></tr>
-<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.13</td><td>0.11</td><td>0.28</td><td>0.18</td></tr>
 <tr><td><b><i>DryGASCON128-HASH</i></b></td><td>256</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13</td></tr>
 <tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.11</td><td>0.09</td><td>0.16</td><td>0.12</td></tr>
 <tr><td><b><i>ACE-HASH</i></b></td><td>256</td><td>0.10</td><td>0.09</td><td>0.15</td><td>0.11</td></tr>
@@ -194,11 +194,11 @@ where the architectural differences gives some algorithms an added advantage.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.61</td><td>1.61</td><td>1.61</td></tr>
 <tr><td><b><i>COMET-128_CHAM-128/128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.11</td><td>1.88</td><td>1.73</td><td>1.43</td></tr>
 <tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>1.02</td><td>1.02</td><td>2.04</td><td>1.94</td><td>1.39</td></tr>
 <tr><td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.07</td><td>1.06</td><td>1.68</td><td>1.60</td><td>1.32</td></tr>
 <tr><td><b><i>Schwaemm256-128</i></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.11</td><td>1.09</td><td>1.04</td><td>1.04</td><td>1.06</td></tr>
-<tr><td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.03</td><td>1.02</td><td>1.03</td></tr>
 <tr><td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.87</td><td>0.90</td><td>1.02</td><td>1.00</td><td>0.95</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b></td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.83</td><td>0.90</td><td>0.90</td><td>0.86</td></tr>
 <tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.86</td><td>0.80</td><td>0.82</td><td>0.83</td></tr>
@@ -225,6 +225,7 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>SpoC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.40</td><td>0.44</td><td>0.77</td><td>0.78</td><td>0.56</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.38</td><td>0.42</td><td>0.74</td><td>0.76</td><td>0.54</td></tr>
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.33</td><td>0.30</td><td>0.65</td><td>0.59</td><td>0.43</td></tr>
+<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.34</td><td>0.37</td><td>0.38</td><td>0.39</td><td>0.37</td></tr>
 <tr><td><b><i>DryGASCON128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.23</td><td>0.25</td><td>0.40</td><td>0.42</td><td>0.31</td></tr>
 <tr><td>SpoC-64</td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.25</td><td>0.41</td><td>0.43</td><td>0.31</td></tr>
 <tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.20</td><td>0.22</td><td>0.40</td><td>0.42</td><td>0.29</td></tr>
@@ -232,7 +233,6 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.27</td><td>0.30</td><td>0.24</td><td>0.26</td><td>0.26</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.28</td><td>0.32</td><td>0.39</td><td>0.41</td><td>0.25</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.19</td><td>0.34</td><td>0.35</td><td>0.25</td></tr>
-<tr><td><b><i>SATURNIN-CTR-Cascade</i></b></td><td>256</td><td>128</td><td>256</td><td>0.21</td><td>0.24</td><td>0.25</td><td>0.26</td><td>0.24</td></tr>
 <tr><td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.17</td><td>0.19</td><td>0.28</td><td>0.30</td><td>0.22</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.18</td><td>0.21</td><td>0.21</td><td>0.23</td><td>0.21</td></tr>
 <tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.27</td><td>0.21</td></tr>
@@ -280,8 +280,8 @@ Hash algorithms:
 <tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.35</td><td>0.33</td><td>0.73</td><td>0.47</td></tr>
 <tr><td><b><i>Esch256</i></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.64</td><td>0.45</td></tr>
 <tr><td><b><i>GIMLI-24-HASH</i></b></td><td>256</td><td>0.35</td><td>0.29</td><td>0.50</td><td>0.38</td></tr>
+<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.23</td><td>0.19</td><td>0.48</td><td>0.30</td></tr>
 <tr><td>Esch384 (SPARKLE)</td><td>384</td><td>0.24</td><td>0.20</td><td>0.30</td><td>0.25</td></tr>
-<tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.15</td><td>0.12</td><td>0.31</td><td>0.19</td></tr>
 <tr><td><b><i>DryGASCON128-HASH</i></b></td><td>256</td><td>0.10</td><td>0.10</td><td>0.34</td><td>0.18</td></tr>
 <tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.14</td><td>0.12</td><td>0.20</td><td>0.15</td></tr>
 <tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.07</td><td>0.13</td><td>0.10</td></tr>
@@ -322,8 +322,8 @@ AEAD algorithm rankings:
 <tr><td>6</td><td>ESTATE, HYENA, SpoC, SUNDAE-GIFT</td></tr>
 <tr><td>5</td><td>ASCON</td></tr>
 <tr><td>4</td><td>Grain128-AEAD, KNOT</td></tr>
-<tr><td>3</td><td>LOTUS, SPIX</td></tr>
-<tr><td>2</td><td>DryGASCON, Oribatida, Saturnin</td></tr>
+<tr><td>3</td><td>LOTUS, Saturnin, SPIX</td></tr>
+<tr><td>2</td><td>DryGASCON, Oribatida</td></tr>
 <tr><td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean</td></tr>
 <tr><td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE</td></tr>
 </table>
@@ -333,7 +333,8 @@ Hash algorithm rankings:
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
 <tr><td>4</td><td>Gimli, SPARKLE, Xoodyak</td></tr>
-<tr><td>1</td><td>ASCON, DryGASCON, Saturnin</td></tr>
+<tr><td>3</td><td>Saturnin</td></tr>
+<tr><td>1</td><td>ASCON, DryGASCON</td></tr>
 <tr><td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean</td></tr>
 </table>
 
