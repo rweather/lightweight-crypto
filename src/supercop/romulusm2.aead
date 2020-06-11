@@ -1,5 +1,5 @@
 aead_family=romulus
-aead_name=romulusm2v1
+aead_name=romulusm2
 aead_meta_name=Romulus-M2
 aead_srcdir=Romulus
 aead_key_size=16
