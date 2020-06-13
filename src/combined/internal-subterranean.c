@@ -170,8 +170,6 @@ void subterranean_round(subterranean_state_t *state)
     state->x[8] = BDN(x7, 21,  0);
 }
 
-#endif /* !__AVR__ */
-
 void subterranean_absorb_1(subterranean_state_t *state, unsigned char data)
 {
     uint32_t x = data;
@@ -348,6 +346,8 @@ uint32_t subterranean_extract(subterranean_state_t *state)
     /* Word 8 has a single bit - XOR it directly into the result and return */
     return y ^ state->x[8];
 }
+
+#endif /* !__AVR__ */
 
 void subterranean_blank(subterranean_state_t *state)
 {

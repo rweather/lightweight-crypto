@@ -170,29 +170,9 @@ void subterranean_round(subterranean_state_t *state)
     state->x[8] = BDN(x7, 21,  0);
 }
 
-#endif /* !__AVR__ */
-
-void subterranean_blank(subterranean_state_t *state)
-{
-    unsigned round;
-    for (round = 0; round < 8; ++round) {
-        subterranean_round(state);
-        state->x[0] ^= 0x02; /* padding for an empty block is in state bit 1 */
-    }
-}
-
-void subterranean_duplex_0(subterranean_state_t *state)
-{
-    subterranean_round(state);
-    state->x[0] ^= 0x02; /* padding for an empty block is in state bit 1 */
-}
-
-void subterranean_duplex_1(subterranean_state_t *state, unsigned char data)
+void subterranean_absorb_1(subterranean_state_t *state, unsigned char data)
 {
     uint32_t x = data;
-
-    /* Perform a single Subterranean round before absorbing the bits */
-    subterranean_round(state);
 
     /* Rearrange the bits and absorb them into the state */
     state->x[0] ^= (x << 1) & 0x00000002U;
@@ -204,12 +184,9 @@ void subterranean_duplex_1(subterranean_state_t *state, unsigned char data)
     state->x[7] ^= ((x << 21) & 0x02000000U) ^ ((x << 3) & 0x00000400U);
 }
 
-void subterranean_duplex_word(subterranean_state_t *state, uint32_t x)
+void subterranean_absorb_word(subterranean_state_t *state, uint32_t x)
 {
     uint32_t y;
-
-    /* Perform a single Subterranean round before absorbing the bits */
-    subterranean_round(state);
 
     /* To absorb the word into the state, we first rearrange the source
      * bits to be in the right target bit positions.  Then we mask and
@@ -260,39 +237,6 @@ void subterranean_duplex_word(subterranean_state_t *state, uint32_t x)
     state->x[5] ^= (y & 0x21010020U) ^ (x & 0x40000200U);
     state->x[6] ^= (y & 0x00280000U) ^ (x & 0x80000020U);
     state->x[7] ^= (y & 0x02000400U) ^ (x & 0x00020002U);
-}
-
-void subterranean_duplex_n
-    (subterranean_state_t *state, const unsigned char *data, unsigned len)
-{
-    switch (len) {
-    case 0:
-        subterranean_duplex_0(state);
-        break;
-    case 1:
-        subterranean_duplex_1(state, data[0]);
-        break;
-    case 2:
-        /* Load 16 bits and add the padding bit to the 17th bit */
-        subterranean_duplex_word
-            (state, ((uint32_t)(data[0]) |
-                   (((uint32_t)(data[1])) << 8) |
-                    0x10000U));
-        break;
-    case 3:
-        /* Load 24 bits and add the padding bit to the 25th bit */
-        subterranean_duplex_word
-            (state, ((uint32_t)(data[0]) |
-                   (((uint32_t)(data[1])) << 8) |
-                   (((uint32_t)(data[2])) << 16) |
-                    0x01000000U));
-        break;
-    default:
-        /* Load 32 bits and add the padding bit to the 33rd bit */
-        subterranean_duplex_word(state, le_load_word32(data));
-        state->x[8] ^= 0x00000001U;
-        break;
-    }
 }
 
 uint32_t subterranean_extract(subterranean_state_t *state)
@@ -403,12 +347,57 @@ uint32_t subterranean_extract(subterranean_state_t *state)
     return y ^ state->x[8];
 }
 
+#endif /* !__AVR__ */
+
+void subterranean_blank(subterranean_state_t *state)
+{
+    unsigned round;
+    for (round = 0; round < 8; ++round) {
+        subterranean_round(state);
+        state->x[0] ^= 0x02; /* padding for an empty block is in state bit 1 */
+    }
+}
+
+void subterranean_duplex_n
+    (subterranean_state_t *state, const unsigned char *data, unsigned len)
+{
+    subterranean_round(state);
+    switch (len) {
+    case 0:
+        state->x[0] ^= 0x02; /* padding for an empty block */
+        break;
+    case 1:
+        subterranean_absorb_1(state, data[0]);
+        break;
+    case 2:
+        /* Load 16 bits and add the padding bit to the 17th bit */
+        subterranean_absorb_word
+            (state, ((uint32_t)(data[0]) |
+                   (((uint32_t)(data[1])) << 8) |
+                    0x10000U));
+        break;
+    case 3:
+        /* Load 24 bits and add the padding bit to the 25th bit */
+        subterranean_absorb_word
+            (state, ((uint32_t)(data[0]) |
+                   (((uint32_t)(data[1])) << 8) |
+                   (((uint32_t)(data[2])) << 16) |
+                    0x01000000U));
+        break;
+    default:
+        /* Load 32 bits and add the padding bit to the 33rd bit */
+        subterranean_absorb_word(state, le_load_word32(data));
+        state->x[8] ^= 0x00000001U;
+        break;
+    }
+}
+
 void subterranean_absorb
     (subterranean_state_t *state, const unsigned char *data,
      unsigned long long len)
 {
     while (len >= 4) {
-        subterranean_duplex_4(state, data);
+        subterranean_duplex_4(state, le_load_word32(data));
         data += 4;
         len -= 4;
     }

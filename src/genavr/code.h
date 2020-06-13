@@ -598,6 +598,10 @@ public:
     void prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds);
     void load_output_ptr();
 
+    // Extra arguments and return values.
+    Reg arg(unsigned size);
+    Reg return_value(unsigned size);
+
     // Execute generated code in the interpreter.
     void exec_setup_key(void *schedule, unsigned schedule_len,
                         const void *key, unsigned key_len);
@@ -681,6 +685,7 @@ private:
     unsigned char allocateSparePair(bool high);
     Reg allocateRegInternal(unsigned size, bool high, bool optional);
     Reg allocateRegPreferHigh(unsigned size);
+    Reg allocateExplicitReg(unsigned char first_reg, unsigned size);
     unsigned char immtemp(unsigned char value);
     unsigned char tempreg();
     bool have_tempreg();

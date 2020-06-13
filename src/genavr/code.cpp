@@ -2293,6 +2293,53 @@ void Code::load_output_ptr()
 }
 
 /**
+ * \brief Gets a register that contains optional arguments.
+ *
+ * \param size Size of the optional arguments in bytes.
+ *
+ * \return Register containing the optional arguments.
+ */
+Reg Code::arg(unsigned size)
+{
+    int rounded_size = (size + 1) & ~1;
+    int first_reg = 26;
+    switch (m_prologueType) {
+    case EncryptBlock:
+    case EncryptBlockKey2:
+        first_reg -= 6;
+        break;
+    case KeySetup:
+    case KeySetupReversed:
+        first_reg -= 4;
+        break;
+    case Permutation:
+        first_reg -= 2;
+        if (m_allocated & (1 << 22))
+            first_reg -= 2; // Permutation also has a "count" parameter.
+        break;
+    case TinyJAMBU:
+        first_reg -= 8;
+        break;
+    }
+    first_reg -= rounded_size;
+    return allocateExplicitReg(first_reg, size);
+}
+
+/**
+ * \brief Gets a reference to the function's return value register.
+ *
+ * \param size Size of the function's return value.
+ *
+ * \return Register that refers to the function's return value.
+ */
+Reg Code::return_value(unsigned size)
+{
+    int rounded_size = (size + 1) & ~1;
+    int first_reg = 26 - rounded_size;
+    return allocateExplicitReg(first_reg, size);
+}
+
+/**
  * \brief Doubles a value in a GF field.
  *
  * \param reg The register value to be doubled where the low byte is
@@ -2601,6 +2648,21 @@ Reg Code::allocateRegPreferHigh(unsigned size)
         // Could not get all high registers, so make do with normal registers.
         releaseReg(temp);
         temp = allocateReg(size);
+    }
+    return temp;
+}
+
+Reg Code::allocateExplicitReg(unsigned char first_reg, unsigned size)
+{
+    Reg temp;
+    while (size > 0) {
+        if (m_allocated & (1 << first_reg))
+            throw std::overflow_error("arg/return register already in use");
+        m_allocated |= (1 << first_reg);
+        m_usedRegs |= (1 << first_reg);
+        temp.m_regs.push_back(first_reg);
+        ++first_reg;
+        --size;
     }
     return temp;
 }

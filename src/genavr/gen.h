@@ -221,6 +221,8 @@ bool test_spongent176_permutation(Code &code);
 
 // Subterranean permutation.
 void gen_subterranean_permutation(Code &code);
+void gen_subterranean_absorb(Code &code, int count);
+void gen_subterranean_extract(Code &code);
 bool test_subterranean_permutation(Code &code);
 
 // TinyJAMBU permutation.

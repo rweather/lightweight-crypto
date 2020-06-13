@@ -75,8 +75,7 @@ int subterranean_aead_encrypt
     while (mlen >= 4) {
         x1 = le_load_word32(m);
         x2 = subterranean_extract(&state) ^ x1;
-        subterranean_duplex_word(&state, x1);
-        state.x[8] ^= 1; /* padding for 32-bit blocks */
+        subterranean_duplex_4(&state, x1);
         le_store_word32(c, x2);
         c += 4;
         m += 4;
@@ -146,8 +145,7 @@ int subterranean_aead_decrypt
     while (clen >= 4) {
         x = le_load_word32(c);
         x ^= subterranean_extract(&state);
-        subterranean_duplex_word(&state, x);
-        state.x[8] ^= 1; /* padding for 32-bit blocks */
+        subterranean_duplex_4(&state, x);
         le_store_word32(m, x);
         c += 4;
         m += 4;

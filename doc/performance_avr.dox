@@ -67,6 +67,7 @@ designed for 32-bit.
 <tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>1.58</td><td>1.57</td><td>3.17</td><td>3.13</td><td>1.90</td></tr>
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>1.58</td><td>1.57</td><td>3.16</td><td>3.12</td><td>1.90</td></tr>
 <tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>1.58</td><td>1.57</td><td>3.14</td><td>3.10</td><td>1.90</td></tr>
+<tr><td><b><i>Subterranean</i></b></td><td>128</td><td>128</td><td>128</td><td>1.83</td><td>1.73</td><td>1.89</td><td>1.85</td><td>1.81</td></tr>
 <tr><td><b><i>SpoC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.46</td><td>1.44</td><td>3.47</td><td>3.37</td><td>1.81</td></tr>
 <tr><td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>1.42</td><td>1.40</td><td>3.54</td><td>3.43</td><td>1.78</td></tr>
 <tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>1.64</td><td>1.58</td><td>1.99</td><td>1.95</td><td>1.72</td></tr>
@@ -93,7 +94,6 @@ designed for 32-bit.
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71</td></tr>
-<tr><td><b><i>Subterranean</i></b></td><td>128</td><td>128</td><td>128</td><td>0.54</td><td>0.55</td><td>0.89</td><td>0.88</td><td>0.63</td></tr>
 <tr><td><b><i>SATURNIN-CTR-Cascade</i></b> +++</td><td>256</td><td>128</td><td>256</td><td>0.54</td><td>0.54</td><td>0.77</td><td>0.77</td><td>0.60</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.38</td><td>0.39</td><td>0.82</td><td>0.83</td><td>0.47</td></tr>
@@ -133,9 +133,9 @@ designed for 32-bit.
 <tr><td><b><i>ASCON-HASH</i></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71</td></tr>
 <tr><td><b><i>SATURNIN-Hash</i></b> +++</td><td>256</td><td>0.47</td><td>0.39</td><td>0.95</td><td>0.60</td></tr>
 <tr><td>DryGASCON256-HASH</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47</td></tr>
+<tr><td><b><i>Subterranean-Hash</i></b></td><td>256</td><td>0.27</td><td>0.26</td><td>0.70</td><td>0.41</td></tr>
 <tr><td><b><i>ACE-HASH</i></b></td><td>256</td><td>0.28</td><td>0.23</td><td>0.38</td><td>0.30</td></tr>
 <tr><td>KNOT-HASH-256-384</td><td>256</td><td>0.28</td><td>0.23</td><td>0.38</td><td>0.30</td></tr>
-<tr><td><b><i>Subterranean-Hash</i></b></td><td>256</td><td>0.23</td><td>0.20</td><td>0.43</td><td>0.29</td></tr>
 <tr><td><b><i>KNOT-HASH-256-256</i></b></td><td>256</td><td>0.14</td><td>0.14</td><td>0.38</td><td>0.22</td></tr>
 <tr><td><b><i>SKINNY-tk3-HASH</i></b></td><td>256</td><td>0.22</td><td>0.18</td><td>0.31</td><td>0.21</td></tr>
 <tr><td>SKINNY-tk2-HASH</td><td>256</td><td>0.13</td><td>0.13</td><td>0.36</td><td>0.21</td></tr>
@@ -159,14 +159,14 @@ AEAD algorithm rankings:
 <tr><td>21</td><td>TinyJAMBU</td></tr>
 <tr><td>20</td><td>Gimli</td></tr>
 <tr><td>19</td><td>ESTATE, SUNDAE-GIFT</td></tr>
-<tr><td>18</td><td>SpoC</td></tr>
+<tr><td>18</td><td>SpoC, Subterranean</td></tr>
 <tr><td>17</td><td>Xoodyak</td></tr>
 <tr><td>14</td><td>Romulus</td></tr>
 <tr><td>13</td><td>KNOT, SKINNY-AEAD</td></tr>
 <tr><td>10</td><td>DryGASCON, LOTUS, SPIX</td></tr>
 <tr><td>8</td><td>Oribatida</td></tr>
 <tr><td>7</td><td>Pyjamask, WAGE</td></tr>
-<tr><td>6</td><td>Saturnin, Subterranean</td></tr>
+<tr><td>6</td><td>Saturnin</td></tr>
 <tr><td>4</td><td>ACE, Elephant, ORANGE</td></tr>
 <tr><td>3</td><td>ISAP</td></tr>
 <tr><td>2</td><td>Grain-128AEAD, PHOTON-Beetle, Spook</td></tr>
@@ -183,8 +183,9 @@ Hash algorithm rankings:
 <tr><td>8</td><td>DryGASCON</td></tr>
 <tr><td>7</td><td>ASCON</td></tr>
 <tr><td>6</td><td>Saturnin</td></tr>
+<tr><td>4</td><td>Subterranean</td></tr>
 <tr><td>3</td><td>ACE</td></tr>
-<tr><td>2</td><td>KNOT, SKINNY-AEAD, Subterranean</td></tr>
+<tr><td>2</td><td>KNOT, SKINNY-AEAD</td></tr>
 <tr><td>1</td><td>ORANGE, PHOTON-Beetle</td></tr>
 </table>
 

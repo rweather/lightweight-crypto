@@ -23,6 +23,18 @@
 #include "gen.h"
 #include <cstring>
 
+// Bits where data is injected or extracted.
+static unsigned short const duplex_bits[33] = {
+    1, 176, 136, 35, 249, 134, 197, 234, 64, 213, 223, 184,
+    2, 95, 15, 70, 241, 11, 137, 211, 128, 169, 189, 111, 4,
+    190, 30, 140, 225, 22, 17, 165, 256
+};
+static unsigned short const duplex_bits_2[32] = {
+    256, 81, 121, 222, 8, 123, 60, 23, 193, 44, 34, 73, 255,
+    162, 242, 187, 16, 246, 120, 46, 129, 88, 68, 146, 253,
+    67, 227, 117, 32, 235, 240, 92
+};
+
 void gen_subterranean_permutation(Code &code)
 {
     // Set up the function prologue with 32 bytes of local variable storage.
@@ -184,6 +196,94 @@ void gen_subterranean_permutation(Code &code)
         code.bit_put(t1, j);
     }
     code.stz(t1, 23);
+}
+
+void gen_subterranean_absorb(Code &code, int count)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // Z points to the permutation state on input and output.
+    Reg arg;
+    if (count == 1) {
+        code.prologue_permutation("subterranean_absorb_1", 0);
+        arg = code.arg(2);
+        code.move(Reg(arg, 1, 1), 1); // 9th bit must be set to 1 for padding.
+    } else {
+        code.prologue_permutation("subterranean_absorb_word", 0);
+        arg = code.arg(4);
+    }
+    code.setFlag(Code::NoLocals);
+
+    // Invert the bit permutation so that we know which source
+    // bit corresponds to each destination bit.
+    short dest_bit[257];
+    for (int i = 0; i < 257; ++i)
+        dest_bit[i] = -1;
+    for (int i = 0; i < 32; ++i) {
+        if (count == 1 && i >= 9)
+            break;
+        dest_bit[duplex_bits[i]] = i;
+    }
+
+    // Iterate over all state bits and pick across the source bits.
+    Reg temp = code.allocateReg(1);
+    int cached_i = -1;
+    int dirty_i = -1;
+    for (int i = 0; i < 257; ++i) {
+        int j = dest_bit[i];
+        if (j < 0)
+            continue;
+        if (cached_i != (i / 8)) {
+            cached_i = i / 8;
+            if (dirty_i != -1)
+                code.ldz_xor_in(temp, dirty_i);
+            code.move(temp, 0);
+            dirty_i = cached_i;
+        }
+        code.bit_get(arg, j);
+        code.bit_put(temp, i % 8);
+    }
+    code.ldz_xor_in(temp, dirty_i);
+}
+
+void gen_subterranean_extract(Code &code)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // Z points to the permutation state on input and output.
+    code.prologue_permutation("subterranean_extract", 0);
+    Reg word1 = code.return_value(4);
+    Reg word2 = code.allocateReg(4);
+    code.setFlag(Code::NoLocals);
+
+    // Invert the bit permutation so that we know which extracted
+    // bit corresponds to each state bit.
+    short dest_bit[257];
+    for (int i = 0; i < 257; ++i)
+        dest_bit[i] = -1;
+    for (int i = 0; i < 32; ++i) {
+        dest_bit[duplex_bits[i]] = i;
+        dest_bit[duplex_bits_2[i]] = 32 + i;
+    }
+
+    // Iterate over all state bits and pick across the bits we need.
+    Reg temp = code.allocateReg(1);
+    int cached_i = -1;
+    for (int i = 0; i < 257; ++i) {
+        int j = dest_bit[i];
+        if (j < 0)
+            continue;
+        if (cached_i != (i / 8)) {
+            cached_i = i / 8;
+            code.ldz(temp, cached_i);
+        }
+        code.bit_get(temp, i % 8);
+        if (j < 32)
+            code.bit_put(word1, j);
+        else
+            code.bit_put(word2, j - 32);
+    }
+
+    // XOR the two 32-bit halves together to generate the result.
+    code.logxor(word1, word2);
 }
 
 bool test_subterranean_permutation(Code &code)

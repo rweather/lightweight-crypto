@@ -1618,6 +1618,18 @@ static bool subterranean(enum Mode mode)
     gen_subterranean_permutation(code);
     if (mode == Generate) {
         code.write(std::cout);
+
+        Code code2;
+        gen_subterranean_absorb(code2, 1);
+        code2.write(std::cout);
+
+        Code code3;
+        gen_subterranean_absorb(code3, 4);
+        code3.write(std::cout);
+
+        Code code4;
+        gen_subterranean_extract(code4);
+        code4.write(std::cout);
     } else {
         if (!test_subterranean_permutation(code)) {
             std::cout << "Subterranean tests FAILED" << std::endl;
