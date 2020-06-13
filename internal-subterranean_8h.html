@@ -107,6 +107,15 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a5cacebcea9782fa7ec6c0b04e1fbd3e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a5cacebcea9782fa7ec6c0b04e1fbd3e7">subterranean_duplex_0</a>(state)</td></tr>
+<tr class="memdesc:a5cacebcea9782fa7ec6c0b04e1fbd3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs 0 bytes.  <a href="#a5cacebcea9782fa7ec6c0b04e1fbd3e7">More...</a><br/></td></tr>
+<tr class="separator:a5cacebcea9782fa7ec6c0b04e1fbd3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76020d8473a9d5b33dd7d7d654cf4dc0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a76020d8473a9d5b33dd7d7d654cf4dc0">subterranean_duplex_1</a>(state, data)</td></tr>
+<tr class="memdesc:a76020d8473a9d5b33dd7d7d654cf4dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs one byte.  <a href="#a76020d8473a9d5b33dd7d7d654cf4dc0">More...</a><br/></td></tr>
+<tr class="separator:a76020d8473a9d5b33dd7d7d654cf4dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc7e52f4a4dcc6a15a0fd855acfb549"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a8cc7e52f4a4dcc6a15a0fd855acfb549">subterranean_duplex_word</a>(state, x)</td></tr>
+<tr class="memdesc:a8cc7e52f4a4dcc6a15a0fd855acfb549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs a 32-bit word into the Subterranean state after performing the round function.  <a href="#a8cc7e52f4a4dcc6a15a0fd855acfb549">More...</a><br/></td></tr>
+<tr class="separator:a8cc7e52f4a4dcc6a15a0fd855acfb549"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13d94cdfd8c5dc713e53cfa66817235e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a13d94cdfd8c5dc713e53cfa66817235e">subterranean_duplex_4</a>(state, data)</td></tr>
 <tr class="memdesc:a13d94cdfd8c5dc713e53cfa66817235e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs four bytes.  <a href="#a13d94cdfd8c5dc713e53cfa66817235e">More...</a><br/></td></tr>
 <tr class="separator:a13d94cdfd8c5dc713e53cfa66817235e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,15 +128,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a6aaed9909a28a19ee85712b4d673a077"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a6aaed9909a28a19ee85712b4d673a077">subterranean_blank</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state)</td></tr>
 <tr class="memdesc:a6aaed9909a28a19ee85712b4d673a077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs 8 Subterranean rounds with no absorption or squeezing of data; i.e. data input and output is "blanked".  <a href="#a6aaed9909a28a19ee85712b4d673a077">More...</a><br/></td></tr>
 <tr class="separator:a6aaed9909a28a19ee85712b4d673a077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace0db1a7569b607a620b255f92053f56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#ace0db1a7569b607a620b255f92053f56">subterranean_duplex_0</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state)</td></tr>
-<tr class="memdesc:ace0db1a7569b607a620b255f92053f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs 0 bytes.  <a href="#ace0db1a7569b607a620b255f92053f56">More...</a><br/></td></tr>
-<tr class="separator:ace0db1a7569b607a620b255f92053f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedca65e85fc3a4c35092475ee820d37a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#aedca65e85fc3a4c35092475ee820d37a">subterranean_duplex_1</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state, unsigned char data)</td></tr>
-<tr class="memdesc:aedca65e85fc3a4c35092475ee820d37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs one byte.  <a href="#aedca65e85fc3a4c35092475ee820d37a">More...</a><br/></td></tr>
-<tr class="separator:aedca65e85fc3a4c35092475ee820d37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61e9f6f16d98a91ab57755b7136d3ce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a61e9f6f16d98a91ab57755b7136d3ce5">subterranean_duplex_word</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state, uint32_t x)</td></tr>
-<tr class="memdesc:a61e9f6f16d98a91ab57755b7136d3ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs a 32-bit word into the Subterranean state.  <a href="#a61e9f6f16d98a91ab57755b7136d3ce5">More...</a><br/></td></tr>
-<tr class="separator:a61e9f6f16d98a91ab57755b7136d3ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa62aab4c5319e288ee5f891d6926c2f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#aa62aab4c5319e288ee5f891d6926c2f6">subterranean_absorb_1</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state, unsigned char data)</td></tr>
+<tr class="memdesc:aa62aab4c5319e288ee5f891d6926c2f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs a single byte into the Subterranean state.  <a href="#aa62aab4c5319e288ee5f891d6926c2f6">More...</a><br/></td></tr>
+<tr class="separator:aa62aab4c5319e288ee5f891d6926c2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1576f79780a0e2a5d6f624552370ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a6a1576f79780a0e2a5d6f624552370ee">subterranean_absorb_word</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state, uint32_t x)</td></tr>
+<tr class="memdesc:a6a1576f79780a0e2a5d6f624552370ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs a 32-bit word into the Subterranean state.  <a href="#a6a1576f79780a0e2a5d6f624552370ee">More...</a><br/></td></tr>
+<tr class="separator:a6a1576f79780a0e2a5d6f624552370ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eba768615f2fd4bc5fa94032bb98471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-subterranean_8h.html#a3eba768615f2fd4bc5fa94032bb98471">subterranean_duplex_n</a> (<a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *state, const unsigned char *data, unsigned len)</td></tr>
 <tr class="memdesc:a3eba768615f2fd4bc5fa94032bb98471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single Subterranean round and absorbs between zero and four bytes.  <a href="#a3eba768615f2fd4bc5fa94032bb98471">More...</a><br/></td></tr>
 <tr class="separator:a3eba768615f2fd4bc5fa94032bb98471"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +150,76 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal implementation of the Subterranean block operation. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a5cacebcea9782fa7ec6c0b04e1fbd3e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define subterranean_duplex_0</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { <a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">        subterranean_round</a>((state)); \</div>
+<div class="line">        (state)-&gt;x[0] ^= 2; <span class="comment">/* padding for an empty block */</span> \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="internal-subterranean_8h_html_aea3997bd8855cedbe7e86d3c949148d4"><div class="ttname"><a href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">subterranean_round</a></div><div class="ttdeci">void subterranean_round(subterranean_state_t *state)</div><div class="ttdoc">Performs a single Subterranean round. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:28</div></div>
+</div><!-- fragment -->
+<p>Performs a single Subterranean round and absorbs 0 bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a76020d8473a9d5b33dd7d7d654cf4dc0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define subterranean_duplex_1</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { <a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">        subterranean_round</a>((state)); <a class="code" href="internal-subterranean_8h.html#aa62aab4c5319e288ee5f891d6926c2f6">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#aa62aab4c5319e288ee5f891d6926c2f6">        subterranean_absorb_1</a>((state), (data)); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="internal-subterranean_8h_html_aa62aab4c5319e288ee5f891d6926c2f6"><div class="ttname"><a href="internal-subterranean_8h.html#aa62aab4c5319e288ee5f891d6926c2f6">subterranean_absorb_1</a></div><div class="ttdeci">void subterranean_absorb_1(subterranean_state_t *state, unsigned char data)</div><div class="ttdoc">Absorbs a single byte into the Subterranean state. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:173</div></div>
+<div class="ttc" id="internal-subterranean_8h_html_aea3997bd8855cedbe7e86d3c949148d4"><div class="ttname"><a href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">subterranean_round</a></div><div class="ttdeci">void subterranean_round(subterranean_state_t *state)</div><div class="ttdoc">Performs a single Subterranean round. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:28</div></div>
+</div><!-- fragment -->
+<p>Performs a single Subterranean round and absorbs one byte. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
+    <tr><td class="paramname">data</td><td>The single byte to be absorbed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a13d94cdfd8c5dc713e53cfa66817235e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -167,17 +243,58 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { <a class="code" href="internal-subterranean_8h.html#a61e9f6f16d98a91ab57755b7136d3ce5">\</a></div>
-<div class="line"><a class="code" href="internal-subterranean_8h.html#a61e9f6f16d98a91ab57755b7136d3ce5">        subterranean_duplex_word</a>((state), le_load_word32((data))); \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { <a class="code" href="internal-subterranean_8h.html#a8cc7e52f4a4dcc6a15a0fd855acfb549">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#a8cc7e52f4a4dcc6a15a0fd855acfb549">        subterranean_duplex_word</a>((state), (data)); \</div>
 <div class="line">        (state)-&gt;x[8] ^= 1; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-subterranean_8h_html_a61e9f6f16d98a91ab57755b7136d3ce5"><div class="ttname"><a href="internal-subterranean_8h.html#a61e9f6f16d98a91ab57755b7136d3ce5">subterranean_duplex_word</a></div><div class="ttdeci">void subterranean_duplex_word(subterranean_state_t *state, uint32_t x)</div><div class="ttdoc">Absorbs a 32-bit word into the Subterranean state. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:203</div></div>
+<div class="ttc" id="internal-subterranean_8h_html_a8cc7e52f4a4dcc6a15a0fd855acfb549"><div class="ttname"><a href="internal-subterranean_8h.html#a8cc7e52f4a4dcc6a15a0fd855acfb549">subterranean_duplex_word</a></div><div class="ttdeci">#define subterranean_duplex_word(state, x)</div><div class="ttdoc">Absorbs a 32-bit word into the Subterranean state after performing the round function. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.h:110</div></div>
 </div><!-- fragment -->
 <p>Performs a single Subterranean round and absorbs four bytes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
-    <tr><td class="paramname">data</td><td>Points to the four data bytes to be absorbed. </td></tr>
+    <tr><td class="paramname">data</td><td>32-bit word containing the four data bytes to be absorbed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8cc7e52f4a4dcc6a15a0fd855acfb549"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define subterranean_duplex_word</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { <a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">        subterranean_round</a>((state)); <a class="code" href="internal-subterranean_8h.html#a6a1576f79780a0e2a5d6f624552370ee">\</a></div>
+<div class="line"><a class="code" href="internal-subterranean_8h.html#a6a1576f79780a0e2a5d6f624552370ee">        subterranean_absorb_word</a>((state), (x)); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="internal-subterranean_8h_html_a6a1576f79780a0e2a5d6f624552370ee"><div class="ttname"><a href="internal-subterranean_8h.html#a6a1576f79780a0e2a5d6f624552370ee">subterranean_absorb_word</a></div><div class="ttdeci">void subterranean_absorb_word(subterranean_state_t *state, uint32_t x)</div><div class="ttdoc">Absorbs a 32-bit word into the Subterranean state. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:187</div></div>
+<div class="ttc" id="internal-subterranean_8h_html_aea3997bd8855cedbe7e86d3c949148d4"><div class="ttname"><a href="internal-subterranean_8h.html#aea3997bd8855cedbe7e86d3c949148d4">subterranean_round</a></div><div class="ttdeci">void subterranean_round(subterranean_state_t *state)</div><div class="ttdoc">Performs a single Subterranean round. </div><div class="ttdef"><b>Definition:</b> internal-subterranean.c:28</div></div>
+</div><!-- fragment -->
+<p>Absorbs a 32-bit word into the Subterranean state after performing the round function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
+    <tr><td class="paramname">x</td><td>The word to absorb into the state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -227,60 +344,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6aaed9909a28a19ee85712b4d673a077"></a>
+<a class="anchor" id="aa62aab4c5319e288ee5f891d6926c2f6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void subterranean_blank </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
-          <td class="paramname"><em>state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Performs 8 Subterranean rounds with no absorption or squeezing of data; i.e. data input and output is "blanked". </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ace0db1a7569b607a620b255f92053f56"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void subterranean_duplex_0 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
-          <td class="paramname"><em>state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Performs a single Subterranean round and absorbs 0 bytes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="aedca65e85fc3a4c35092475ee820d37a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void subterranean_duplex_1 </td>
+          <td class="memname">void subterranean_absorb_1 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
@@ -299,11 +368,70 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Performs a single Subterranean round and absorbs one byte. </p>
+<p>Absorbs a single byte into the Subterranean state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
     <tr><td class="paramname">data</td><td>The single byte to be absorbed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a1576f79780a0e2a5d6f624552370ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void subterranean_absorb_word </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Absorbs a 32-bit word into the Subterranean state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
+    <tr><td class="paramname">x</td><td>The word to absorb into the state. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6aaed9909a28a19ee85712b4d673a077"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void subterranean_blank </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs 8 Subterranean rounds with no absorption or squeezing of data; i.e. data input and output is "blanked". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -346,41 +474,6 @@ Functions</h2></td></tr>
     <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
     <tr><td class="paramname">data</td><td>Points to the data bytes to be absorbed. </td></tr>
     <tr><td class="paramname">len</td><td>Length of the data to be absorbed. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a61e9f6f16d98a91ab57755b7136d3ce5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void subterranean_duplex_word </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsubterranean__state__t.html">subterranean_state_t</a> *&#160;</td>
-          <td class="paramname"><em>state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>x</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Absorbs a 32-bit word into the Subterranean state. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">state</td><td>Subterranean state to be transformed. </td></tr>
-    <tr><td class="paramname">x</td><td>The word to absorb into the state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -481,7 +574,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2020 03:45:20 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 13 2020 17:57:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
