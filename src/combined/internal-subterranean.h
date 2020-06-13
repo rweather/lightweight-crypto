@@ -66,7 +66,19 @@ void subterranean_blank(subterranean_state_t *state);
  *
  * \param state Subterranean state to be transformed.
  */
-void subterranean_duplex_0(subterranean_state_t *state);
+#define subterranean_duplex_0(state) \
+    do { \
+        subterranean_round((state)); \
+        (state)->x[0] ^= 2; /* padding for an empty block */ \
+    } while (0)
+
+/**
+ * \brief Absorbs a single byte into the Subterranean state.
+ *
+ * \param state Subterranean state to be transformed.
+ * \param data The single byte to be absorbed.
+ */
+void subterranean_absorb_1(subterranean_state_t *state, unsigned char data);
 
 /**
  * \brief Performs a single Subterranean round and absorbs one byte.
@@ -74,7 +86,11 @@ void subterranean_duplex_0(subterranean_state_t *state);
  * \param state Subterranean state to be transformed.
  * \param data The single byte to be absorbed.
  */
-void subterranean_duplex_1(subterranean_state_t *state, unsigned char data);
+#define subterranean_duplex_1(state, data) \
+    do { \
+        subterranean_round((state)); \
+        subterranean_absorb_1((state), (data)); \
+    } while (0)
 
 /**
  * \brief Absorbs a 32-bit word into the Subterranean state.
@@ -82,17 +98,30 @@ void subterranean_duplex_1(subterranean_state_t *state, unsigned char data);
  * \param state Subterranean state to be transformed.
  * \param x The word to absorb into the state.
  */
-void subterranean_duplex_word(subterranean_state_t *state, uint32_t x);
+void subterranean_absorb_word(subterranean_state_t *state, uint32_t x);
+
+/**
+ * \brief Absorbs a 32-bit word into the Subterranean state after performing
+ * the round function.
+ *
+ * \param state Subterranean state to be transformed.
+ * \param x The word to absorb into the state.
+ */
+#define subterranean_duplex_word(state, x) \
+    do { \
+        subterranean_round((state)); \
+        subterranean_absorb_word((state), (x)); \
+    } while (0)
 
 /**
  * \brief Performs a single Subterranean round and absorbs four bytes.
  *
  * \param state Subterranean state to be transformed.
- * \param data Points to the four data bytes to be absorbed.
+ * \param data 32-bit word containing the four data bytes to be absorbed.
  */
 #define subterranean_duplex_4(state, data) \
     do { \
-        subterranean_duplex_word((state), le_load_word32((data))); \
+        subterranean_duplex_word((state), (data)); \
         (state)->x[8] ^= 1; \
     } while (0)
 
