@@ -1158,6 +1158,23 @@ static bool knot512(enum Mode mode)
     return knot512_8(mode);
 }
 
+static bool photon256(enum Mode mode)
+{
+    Code code;
+    gen_photon256_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_photon256_permutation(code)) {
+            std::cout << "PHOTON-256 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "PHOTON-256 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool pyjamask_96_setup_key(enum Mode mode)
 {
     Code code;
@@ -1776,6 +1793,8 @@ int main(int argc, char *argv[])
             gen1 = knot384;
         } else if (!strcmp(argv[1], "KNOT-512")) {
             gen1 = knot512;
+        } else if (!strcmp(argv[1], "PHOTON-256")) {
+            gen1 = photon256;
         } else if (!strcmp(argv[1], "Pyjamask")) {
             gen1 = pyjamask;
         } else if (!strcmp(argv[1], "SimP")) {
@@ -1871,6 +1890,8 @@ int main(int argc, char *argv[])
         if (!knot384(Test))
             exit_val = 1;
         if (!knot512(Test))
+            exit_val = 1;
+        if (!photon256(Test))
             exit_val = 1;
         if (!pyjamask(Test))
             exit_val = 1;

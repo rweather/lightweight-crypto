@@ -134,6 +134,7 @@ ORANGE_FILES = \
     orange.h \
     internal-photon256.c \
     internal-photon256.h \
+    internal-photon256-avr.S \
     $(COMMON_FILES)
 ORIBATIDA_FILES = \
     oribatida.c \
@@ -147,6 +148,7 @@ PHOTON_BEETLE_FILES = \
     photon-beetle.h \
     internal-photon256.c \
     internal-photon256.h \
+    internal-photon256-avr.S \
     $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \

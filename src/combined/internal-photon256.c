@@ -23,6 +23,8 @@
 #include "internal-photon256.h"
 #include "internal-util.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Number of rounds in the PHOTON-256 permutation in bit-sliced form.
  */
@@ -477,3 +479,5 @@ void photon256_permute(unsigned char state[PHOTON256_STATE_SIZE])
     /* Convert back from bit-sliced form to regular form */
     photon256_from_sliced(state, S.bytes);
 }
+
+#endif /* !__AVR__ */

@@ -17,6 +17,7 @@ OBJS = \
 	algorithm_gimli24.o \
 	algorithm_keccak.o \
 	algorithm_knot.o \
+	algorithm_photon256.o \
 	algorithm_pyjamask.o \
 	algorithm_simp.o \
 	algorithm_skinny128.o \
@@ -55,6 +56,7 @@ algorithm_gift64.o: code.h gen.h
 algorithm_gimli24.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
 algorithm_knot.o: code.h gen.h
+algorithm_photon256.o: code.h gen.h
 algorithm_pyjamask.o: code.h gen.h
 algorithm_simp.o: code.h gen.h
 algorithm_skinny128.o: code.h gen.h
@@ -84,6 +86,7 @@ generate: $(TARGET)
 	./$(TARGET) KNOT-256 >../combined/internal-knot-256-avr.S
 	./$(TARGET) KNOT-384 >../combined/internal-knot-384-avr.S
 	./$(TARGET) KNOT-512 >../combined/internal-knot-512-avr.S
+	./$(TARGET) PHOTON-256 >../combined/internal-photon256-avr.S
 	./$(TARGET) Pyjamask >../combined/internal-pyjamask-avr.S
 	./$(TARGET) SimP >../combined/internal-simp-avr.S
 	./$(TARGET) SKINNY-128 >../combined/internal-skinny128-avr.S

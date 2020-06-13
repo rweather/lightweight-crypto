@@ -150,6 +150,10 @@ bool test_knot256_permutation(Code &code, int rc_bits);
 bool test_knot384_permutation(Code &code, int rc_bits);
 bool test_knot512_permutation(Code &code, int rc_bits);
 
+// PHOTON-256 permutation.
+void gen_photon256_permutation(Code &code);
+bool test_photon256_permutation(Code &code);
+
 // Pyjamask block cipher.
 void gen_pyjamask_128_setup_key(Code &code);
 void gen_pyjamask_128_encrypt(Code &code);
