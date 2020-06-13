@@ -219,6 +219,10 @@ void gen_spongent176_permutation(Code &code);
 bool test_spongent160_permutation(Code &code);
 bool test_spongent176_permutation(Code &code);
 
+// Subterranean permutation.
+void gen_subterranean_permutation(Code &code);
+bool test_subterranean_permutation(Code &code);
+
 // TinyJAMBU permutation.
 void gen_tinyjambu_permutation(Code &code);
 bool test_tinyjambu_permutation(Code &code);

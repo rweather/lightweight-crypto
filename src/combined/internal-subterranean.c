@@ -23,6 +23,8 @@
 #include "internal-subterranean.h"
 #include <string.h>
 
+#if !defined(__AVR__)
+
 void subterranean_round(subterranean_state_t *state)
 {
     uint32_t x0, x1, x2, x3, x4, x5, x6, x7, x8;
@@ -167,6 +169,8 @@ void subterranean_round(subterranean_state_t *state)
                   BUP(x6, 29, 30) ^ BUP(x7,  9, 31);
     state->x[8] = BDN(x7, 21,  0);
 }
+
+#endif /* !__AVR__ */
 
 void subterranean_blank(subterranean_state_t *state)
 {

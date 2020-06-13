@@ -1612,6 +1612,23 @@ static bool spongent176(enum Mode mode)
     return true;
 }
 
+static bool subterranean(enum Mode mode)
+{
+    Code code;
+    gen_subterranean_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_subterranean_permutation(code)) {
+            std::cout << "Subterranean tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Subterranean tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool tinyjambu(enum Mode mode)
 {
     Code code;
@@ -1771,6 +1788,8 @@ int main(int argc, char *argv[])
             gen2 = spongent176;
         } else if (!strcmp(argv[1], "SPECK-64")) {
             gen1 = speck64;
+        } else if (!strcmp(argv[1], "Subterranean")) {
+            gen1 = subterranean;
         } else if (!strcmp(argv[1], "TinyJAMBU")) {
             gen1 = tinyjambu;
         } else if (!strcmp(argv[1], "WAGE")) {
@@ -1868,6 +1887,8 @@ int main(int argc, char *argv[])
         if (!spongent160(Test))
             exit_val = 1;
         if (!spongent176(Test))
+            exit_val = 1;
+        if (!subterranean(Test))
             exit_val = 1;
         if (!tinyjambu(Test))
             exit_val = 1;

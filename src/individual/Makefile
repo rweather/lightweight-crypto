@@ -219,6 +219,7 @@ SUBTERRANEAN_FILES = \
     subterranean.h \
     internal-subterranean.c \
     internal-subterranean.h \
+    internal-subterranean-avr.S \
     $(COMMON_FILES)
 SUNDAE_GIFT_FILES = \
     sundae-gift.c \
