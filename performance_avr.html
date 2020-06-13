@@ -117,6 +117,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>Romulus-N3</td><td>128</td><td>96</td><td>128</td><td>1.78</td><td>1.72</td><td>4.11</td><td>3.92</td><td>2.17 </td></tr>
 <tr>
+<td><b><em>ORANGE-Zest</em></b></td><td>128</td><td>128</td><td>128</td><td>2.00</td><td>1.92</td><td>2.71</td><td>2.66</td><td>2.16 </td></tr>
+<tr>
 <td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>1.72</td><td>1.67</td><td>4.13</td><td>3.98</td><td>2.13 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M6</td><td>128</td><td>96</td><td>64</td><td>1.81</td><td>1.58</td><td>4.14</td><td>3.76</td><td>2.10 </td></tr>
@@ -146,6 +148,8 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>1.64</td><td>1.58</td><td>1.99</td><td>1.95</td><td>1.72 </td></tr>
 <tr>
 <td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>1.40</td><td>1.38</td><td>1.76</td><td>1.75</td><td>1.50 </td></tr>
+<tr>
+<td><b><em>PHOTON-Beetle-AEAD-ENC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.16</td><td>1.15</td><td>2.82</td><td>2.76</td><td>1.45 </td></tr>
 <tr>
 <td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>1.16</td><td>1.15</td><td>2.69</td><td>2.63</td><td>1.44 </td></tr>
 <tr>
@@ -199,7 +203,7 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.42</td><td>0.60</td><td>0.61</td><td>0.46 </td></tr>
 <tr>
-<td><b><em>ORANGE-Zest</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.40</td><td>0.53</td><td>0.53</td><td>0.44 </td></tr>
+<td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.33</td><td>0.34</td><td>1.15</td><td>1.15</td><td>0.44 </td></tr>
 <tr>
 <td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.34</td><td>0.35</td><td>0.65</td><td>0.65</td><td>0.41 </td></tr>
 <tr>
@@ -210,8 +214,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>Spook-128-512-su</em></b> +++</td><td>256</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.30</td><td>0.31</td><td>0.29 </td></tr>
 <tr>
 <td>Spook-128-512-mu +++</td><td>256</td><td>128</td><td>128</td><td>0.28</td><td>0.29</td><td>0.30</td><td>0.31</td><td>0.29 </td></tr>
-<tr>
-<td><b><em>PHOTON-Beetle-AEAD-ENC-128</em></b> +++</td><td>128</td><td>128</td><td>128</td><td>0.22</td><td>0.23</td><td>0.53</td><td>0.54</td><td>0.28 </td></tr>
 <tr>
 <td>Spook-128-384-su +++</td><td>128</td><td>128</td><td>128</td><td>0.22</td><td>0.23</td><td>0.36</td><td>0.38</td><td>0.26 </td></tr>
 <tr>
@@ -230,8 +232,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td>PAEF-ForkSkinny-128-192 +++</td><td>128</td><td>48</td><td>128</td><td>0.13</td><td>0.10</td><td>0.54</td><td>0.41</td><td>0.15 </td></tr>
 <tr>
 <td><b><em>PAEF-ForkSkinny-128-288</em></b> +++</td><td>128</td><td>104</td><td>128</td><td>0.10</td><td>0.07</td><td>0.41</td><td>0.28</td><td>0.11 </td></tr>
-<tr>
-<td>PHOTON-Beetle-AEAD-ENC-32 +++</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.21</td><td>0.08 </td></tr>
 <tr>
 <td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.07</td><td>0.08</td><td>0.04</td><td>0.04</td><td>0.06 </td></tr>
 <tr>
@@ -257,9 +257,13 @@ Performance of hash algorithms on AVR</h1>
 <tr>
 <td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.53</td><td>0.51</td><td>1.62</td><td>0.88 </td></tr>
 <tr>
+<td><b><em>ORANGISH</em></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.92</td><td>0.71 </td></tr>
+<tr>
 <td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71 </td></tr>
 <tr>
 <td><b><em>SATURNIN-Hash</em></b> +++</td><td>256</td><td>0.47</td><td>0.39</td><td>0.95</td><td>0.60 </td></tr>
+<tr>
+<td><b><em>PHOTON-Beetle-HASH</em></b></td><td>256</td><td>0.17</td><td>0.18</td><td>1.38</td><td>0.58 </td></tr>
 <tr>
 <td>DryGASCON256-HASH</td><td>512</td><td>0.39</td><td>0.34</td><td>0.67</td><td>0.47 </td></tr>
 <tr>
@@ -275,11 +279,7 @@ Performance of hash algorithms on AVR</h1>
 <tr>
 <td>SKINNY-tk2-HASH</td><td>256</td><td>0.13</td><td>0.13</td><td>0.36</td><td>0.21 </td></tr>
 <tr>
-<td><b><em>ORANGISH</em></b> +++</td><td>256</td><td>0.12</td><td>0.10</td><td>0.17</td><td>0.13 </td></tr>
-<tr>
 <td>KNOT-HASH-384-384</td><td>384</td><td>0.08</td><td>0.08</td><td>0.22</td><td>0.13 </td></tr>
-<tr>
-<td><b><em>PHOTON-Beetle-HASH</em></b> +++</td><td>256</td><td>0.03</td><td>0.03</td><td>0.26</td><td>0.11 </td></tr>
 <tr>
 <td>KNOT-HASH-512-512</td><td>512</td><td>0.06</td><td>0.05</td><td>0.11</td><td>0.07 </td></tr>
 </table>
@@ -300,7 +300,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>23</td><td>ASCON </td></tr>
 <tr>
-<td>21</td><td>TinyJAMBU </td></tr>
+<td>21</td><td>TinyJAMBU, ORANGE </td></tr>
 <tr>
 <td>20</td><td>Gimli </td></tr>
 <tr>
@@ -310,7 +310,7 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>17</td><td>Xoodyak </td></tr>
 <tr>
-<td>14</td><td>Romulus </td></tr>
+<td>14</td><td>Romulus, PHOTON-Beetle </td></tr>
 <tr>
 <td>13</td><td>KNOT, SKINNY-AEAD </td></tr>
 <tr>
@@ -322,11 +322,11 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>6</td><td>Saturnin </td></tr>
 <tr>
-<td>4</td><td>ACE, Elephant, ORANGE </td></tr>
+<td>4</td><td>ACE, Elephant </td></tr>
 <tr>
 <td>3</td><td>ISAP </td></tr>
 <tr>
-<td>2</td><td>Grain-128AEAD, PHOTON-Beetle, Spook </td></tr>
+<td>2</td><td>Grain-128AEAD, Spook </td></tr>
 <tr>
 <td>1</td><td>ForkAE </td></tr>
 </table>
@@ -343,22 +343,22 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>8</td><td>DryGASCON </td></tr>
 <tr>
-<td>7</td><td>ASCON </td></tr>
+<td>7</td><td>ASCON, ORANGE </td></tr>
 <tr>
 <td>6</td><td>Saturnin </td></tr>
+<tr>
+<td>5</td><td>PHOTON-Beetle </td></tr>
 <tr>
 <td>4</td><td>Subterranean </td></tr>
 <tr>
 <td>3</td><td>ACE </td></tr>
 <tr>
 <td>2</td><td>KNOT, SKINNY-AEAD </td></tr>
-<tr>
-<td>1</td><td>ORANGE, PHOTON-Beetle </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 13 2020 17:57:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 14 2020 09:21:17 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
