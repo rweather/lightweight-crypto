@@ -223,6 +223,16 @@ void gen_spongent176_permutation(Code &code);
 bool test_spongent160_permutation(Code &code);
 bool test_spongent176_permutation(Code &code);
 
+// Spook: Clyde-128 block cipher and Shadow permutation.
+void gen_clyde128_encrypt(Code &code);
+void gen_clyde128_decrypt(Code &code);
+void gen_shadow512_permutation(Code &code);
+void gen_shadow384_permutation(Code &code);
+bool test_clyde128_encrypt(Code &code);
+bool test_clyde128_decrypt(Code &code);
+bool test_shadow512_permutation(Code &code);
+bool test_shadow384_permutation(Code &code);
+
 // Subterranean permutation.
 void gen_subterranean_permutation(Code &code);
 void gen_subterranean_absorb(Code &code, int count);

@@ -1629,6 +1629,88 @@ static bool spongent176(enum Mode mode)
     return true;
 }
 
+static bool spook_clyde128_encrypt(enum Mode mode)
+{
+    Code code;
+    gen_clyde128_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_clyde128_encrypt(code)) {
+            std::cout << "Spook/Clyde-128 encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spook/Clyde-128 encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool spook_clyde128_decrypt(enum Mode mode)
+{
+    Code code;
+    gen_clyde128_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_clyde128_decrypt(code)) {
+            std::cout << "Spook/Clyde-128 decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spook/Clyde-128 decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool spook_shadow512(enum Mode mode)
+{
+    Code code;
+    gen_shadow512_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_shadow512_permutation(code)) {
+            std::cout << "Spook/Shadow-512 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spook/Shadow-512 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool spook_shadow384(enum Mode mode)
+{
+    Code code;
+    gen_shadow384_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_shadow384_permutation(code)) {
+            std::cout << "Spook/Shadow-384 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Spook/Shadow-384 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool spook(enum Mode mode)
+{
+    bool ok = true;
+    if (!spook_clyde128_encrypt(mode))
+        ok = false;
+    if (!spook_clyde128_decrypt(mode))
+        ok = false;
+    if (!spook_shadow512(mode))
+        ok = false;
+    if (!spook_shadow384(mode))
+        ok = false;
+    return ok;
+}
+
 static bool subterranean(enum Mode mode)
 {
     Code code;
@@ -1819,6 +1901,8 @@ int main(int argc, char *argv[])
             gen2 = spongent176;
         } else if (!strcmp(argv[1], "SPECK-64")) {
             gen1 = speck64;
+        } else if (!strcmp(argv[1], "Spook")) {
+            gen1 = spook;
         } else if (!strcmp(argv[1], "Subterranean")) {
             gen1 = subterranean;
         } else if (!strcmp(argv[1], "TinyJAMBU")) {
@@ -1920,6 +2004,8 @@ int main(int argc, char *argv[])
         if (!spongent160(Test))
             exit_val = 1;
         if (!spongent176(Test))
+            exit_val = 1;
+        if (!spook(Test))
             exit_val = 1;
         if (!subterranean(Test))
             exit_val = 1;

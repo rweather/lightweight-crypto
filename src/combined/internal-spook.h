@@ -93,31 +93,31 @@ typedef union
  * \brief Encrypts a block with the Clyde-128 block cipher.
  *
  * \param key Points to the key to encrypt with.
- * \param tweak Points to the tweak to encrypt with.
  * \param output Output buffer for the ciphertext.
  * \param input Input buffer for the plaintext.
+ * \param tweak Points to the tweak to encrypt with.
  *
  * \sa clyde128_decrypt()
  */
 void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
                       uint32_t output[CLYDE128_BLOCK_SIZE / 4],
-                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4]);
+                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4]);
 
 /**
  * \brief Decrypts a block with the Clyde-128 block cipher.
  *
  * \param key Points to the key to decrypt with.
- * \param tweak Points to the tweak to decrypt with.
  * \param output Output buffer for the plaintext.
  * \param input Input buffer for the ciphertext.
+ * \param tweak Points to the tweak to decrypt with.
  *
  * \sa clyde128_encrypt()
  */
 void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
                       uint32_t output[CLYDE128_BLOCK_SIZE / 4],
-                      const unsigned char input[CLYDE128_BLOCK_SIZE]);
+                      const unsigned char input[CLYDE128_BLOCK_SIZE],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4]);
 
 /**
  * \brief Performs the Shadow-512 permutation on a state.

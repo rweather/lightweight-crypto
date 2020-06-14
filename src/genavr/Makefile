@@ -25,6 +25,7 @@ OBJS = \
 	algorithm_sparkle.o \
 	algorithm_speck64.o \
 	algorithm_spongent.o \
+	algorithm_spook.o \
 	algorithm_subterranean.o \
 	algorithm_tinyjambu.o \
 	algorithm_wage.o \
@@ -64,6 +65,7 @@ algorithm_sliscp_light.o: code.h gen.h
 algorithm_sparkle.o: code.h gen.h
 algorithm_speck64.o: code.h gen.h
 algorithm_spongent.o: code.h gen.h
+algorithm_spook.o: code.h gen.h
 algorithm_subterranean.o: code.h gen.h
 algorithm_tinyjambu.o: code.h gen.h
 algorithm_wage.o: code.h gen.h
@@ -97,6 +99,7 @@ generate: $(TARGET)
 	./$(TARGET) SPARKLE >../combined/internal-sparkle-avr.S
 	./$(TARGET) SPECK-64 >../combined/internal-speck64-avr.S
 	./$(TARGET) Spongent-pi >../combined/internal-spongent-avr.S
+	./$(TARGET) Spook >../combined/internal-spook-avr.S
 	./$(TARGET) Subterranean >../combined/internal-subterranean-avr.S
 	./$(TARGET) TinyJAMBU >../combined/internal-tinyjambu-avr.S
 	./$(TARGET) WAGE >../combined/internal-wage-avr.S

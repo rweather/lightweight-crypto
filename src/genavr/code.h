@@ -609,6 +609,11 @@ public:
                             void *output, unsigned output_len,
                             const void *input, unsigned input_len,
                             unsigned tweak = 0);
+    void exec_encrypt_block_with_tweak_ptr
+            (const void *key, unsigned key_len,
+             void *output, unsigned output_len,
+             const void *input, unsigned input_len,
+             const  void *tweak, unsigned tweak_len);
     void exec_decrypt_block(const void *key, unsigned key_len,
                             void *output, unsigned output_len,
                             const void *input, unsigned input_len,

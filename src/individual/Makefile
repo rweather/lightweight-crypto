@@ -215,6 +215,7 @@ SPOOK_FILES = \
     spook.h \
     internal-spook.c \
     internal-spook.h \
+    internal-spook-avr.S \
     $(COMMON_FILES)
 SUBTERRANEAN_FILES = \
     subterranean.c \

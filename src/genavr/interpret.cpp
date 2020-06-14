@@ -516,6 +516,50 @@ void Code::exec_encrypt_block(const void *key, unsigned key_len,
 }
 
 /**
+ * \brief Executes the code in this object as a block encrypt function.
+ *
+ * \param key Points to the buffer for the key (or key schedule).
+ * \param key_len Length of the key buffer.
+ * \param output Points to the buffer for the output block.
+ * \param output_len Length of the output block buffer.
+ * \param input Points to the buffer for the input block.
+ * \param input_len Length of the input block buffer.
+ * \param tweak Points to the tweak value.
+ * \param tweak_len Length of the tweak value.
+ */
+void Code::exec_encrypt_block_with_tweak_ptr
+            (const void *key, unsigned key_len,
+             void *output, unsigned output_len,
+             const void *input, unsigned input_len,
+             const  void *tweak, unsigned tweak_len)
+{
+    AVRState s;
+    unsigned key_address = s.alloc_buffer(key, key_len);
+    unsigned output_address = s.alloc_buffer(output_len);
+    unsigned input_address = s.alloc_buffer(input, input_len);
+    unsigned tweak_address = s.alloc_buffer(tweak, tweak_len);
+    s.setPair(26, input_address);   // X = input
+    s.setPair(30, key_address);     // Z = key
+    s.push16(0xFFFF);               // return address
+    s.push16(output_address);       // output address in a local variable
+    unsigned fp = s.pair(32) - m_localsSize - 1;
+    s.setPair(28, fp);              // Y = frame pointer
+    s.setPair(32, fp);
+    s.setPair(18, tweak_address);
+    while (s.pc != (int)m_insns.size()) {
+        if (s.pc < 0 || s.pc > (int)m_insns.size())
+            throw std::invalid_argument("program counter out of range");
+        Insn insn = m_insns[(s.pc)++];
+        exec_insn(s, *this, insn);
+    }
+    if (s.r[1] != 0x00 && !hasFlag(TempR1))
+        throw std::invalid_argument("r1 is non-zero at the end of the code");
+    if (s.pair(32) != fp)
+        throw std::invalid_argument("stack size is incorrect on code exit");
+    memcpy(output, &(s.memory[output_address]), output_len);
+}
+
+/**
  * \brief Executes the code in this object as a permutation function.
  *
  * \param state Points to the buffer containing the state on input and output.

@@ -22,6 +22,8 @@
 
 #include "internal-spook.h"
 
+#if !defined(__AVR__)
+
 /**
  * \brief Number of steps in the Clyde-128 block cipher.
  *
@@ -43,9 +45,9 @@ static uint8_t const rc[CLYDE128_STEPS][8] = {
 };
 
 void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
                       uint32_t output[CLYDE128_BLOCK_SIZE / 4],
-                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4])
+                      const uint32_t input[CLYDE128_BLOCK_SIZE / 4],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4])
 {
     uint32_t k0, k1, k2, k3;
     uint32_t t0, t1, t2, t3;
@@ -154,9 +156,9 @@ void clyde128_encrypt(const unsigned char key[CLYDE128_KEY_SIZE],
 }
 
 void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
-                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4],
                       uint32_t output[CLYDE128_BLOCK_SIZE / 4],
-                      const unsigned char input[CLYDE128_BLOCK_SIZE])
+                      const unsigned char input[CLYDE128_BLOCK_SIZE],
+                      const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4])
 {
     uint32_t k0, k1, k2, k3;
     uint32_t t0, t1, t2, t3;
@@ -555,3 +557,5 @@ void shadow384(shadow384_state_t *state)
     le_store_word32(state->B + 44, s23);
 #endif
 }
+
+#endif /* !__AVR__ */

@@ -38,7 +38,7 @@ static void clyde128_test_encrypt
     uint32_t x[4];
     memcpy(k, ks + 16, sizeof(k));
     memcpy(x, input, sizeof(x));
-    clyde128_encrypt(ks, k, x, x);
+    clyde128_encrypt(ks, x, x, k);
     memcpy(output, x, sizeof(x));
 }
 
@@ -49,7 +49,7 @@ static void clyde128_test_decrypt
     uint32_t k[4];
     uint32_t x[4];
     memcpy(k, ks + 16, sizeof(k));
-    clyde128_decrypt(ks, k, x, input);
+    clyde128_decrypt(ks, x, input, k);
     memcpy(output, x, sizeof(x));
 }
 
