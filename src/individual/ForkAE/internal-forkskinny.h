@@ -23,6 +23,8 @@
 #ifndef LW_INTERNAL_FORKSKINNY_H
 #define LW_INTERNAL_FORKSKINNY_H
 
+#include "internal-util.h"
+
 /**
  * \file internal-forkskinny.h
  * \brief ForkSkinny block cipher family.
@@ -37,6 +39,158 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/**
+ * \brief State information for ForkSkinny-128-256.
+ */
+typedef struct
+{
+    uint32_t TK1[4];        /**< First part of the tweakey */
+    uint32_t TK2[4];        /**< Second part of the tweakey */
+    uint32_t S[4];          /**< Current block state */
+
+} forkskinny_128_256_state_t;
+
+/**
+ * \brief State information for ForkSkinny-128-384.
+ */
+typedef struct
+{
+    uint32_t TK1[4];        /**< First part of the tweakey */
+    uint32_t TK2[4];        /**< Second part of the tweakey */
+    uint32_t TK3[4];        /**< Third part of the tweakey */
+    uint32_t S[4];          /**< Current block state */
+
+} forkskinny_128_384_state_t;
+
+/**
+ * \brief State information for ForkSkinny-64-192.
+ */
+typedef struct
+{
+    uint16_t TK1[4];    /**< First part of the tweakey */
+    uint16_t TK2[4];    /**< Second part of the tweakey */
+    uint16_t TK3[4];    /**< Third part of the tweakey */
+    uint16_t S[4];      /**< Current block state */
+
+} forkskinny_64_192_state_t;
+
+/**
+ * \brief Applies several rounds of ForkSkinny-128-256.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply.
+ * \param last Last round to apply plus 1.
+ */
+void forkskinny_128_256_rounds
+    (forkskinny_128_256_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Applies several rounds of ForkSkinny-128-256 in reverse.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply plus 1.
+ * \param last Last round to apply.
+ */
+void forkskinny_128_256_inv_rounds
+    (forkskinny_128_256_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Forwards the tweakey for ForkSkinny-128-256.
+ *
+ * \param state Points to the ForkSkinny-128-256 state.
+ * \param rounds Number of rounds to forward by.
+ */
+void forkskinny_128_256_forward_tk
+    (forkskinny_128_256_state_t *state, unsigned rounds);
+
+/**
+ * \brief Reverses the tweakey for ForkSkinny-128-256.
+ *
+ * \param state Points to the ForkSkinny-128-256 state.
+ * \param rounds Number of rounds to reverse by.
+ */
+void forkskinny_128_256_reverse_tk
+    (forkskinny_128_256_state_t *state, unsigned rounds);
+
+/**
+ * \brief Applies several rounds of ForkSkinny-128-384.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply.
+ * \param last Last round to apply plus 1.
+ */
+void forkskinny_128_384_rounds
+    (forkskinny_128_384_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Applies several rounds of ForkSkinny-128-384 in reverse.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply plus 1.
+ * \param last Last round to apply.
+ */
+void forkskinny_128_384_inv_rounds
+    (forkskinny_128_384_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Forwards the tweakey for ForkSkinny-128-384.
+ *
+ * \param state Points to the ForkSkinny-128-384 state.
+ * \param rounds Number of rounds to forward by.
+ */
+void forkskinny_128_384_forward_tk
+    (forkskinny_128_384_state_t *state, unsigned rounds);
+
+/**
+ * \brief Reverses the tweakey for ForkSkinny-128-384.
+ *
+ * \param state Points to the ForkSkinny-128-384 state.
+ * \param rounds Number of rounds to reverse by.
+ */
+void forkskinny_128_384_reverse_tk
+    (forkskinny_128_384_state_t *state, unsigned rounds);
+
+/**
+ * \brief Applies several rounds of ForkSkinny-64-192.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply.
+ * \param last Last round to apply plus 1.
+ *
+ * Note: The cells of each row are ordered in big-endian nibble order
+ * so it is simplest to manage the rows in big-endian byte order.
+ */
+void forkskinny_64_192_rounds
+    (forkskinny_64_192_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Applies several rounds of ForkSkinny-64-192 in reverse.
+ *
+ * \param state State to apply the rounds to.
+ * \param first First round to apply plus 1.
+ * \param last Last round to apply.
+ */
+void forkskinny_64_192_inv_rounds
+    (forkskinny_64_192_state_t *state, unsigned first, unsigned last);
+
+/**
+ * \brief Forwards the tweakey for ForkSkinny-64-192.
+ *
+ * \param state Points to the ForkSkinny-64-192 state.
+ * \param rounds Number of rounds to forward by.
+ */
+void forkskinny_64_192_forward_tk
+    (forkskinny_64_192_state_t *state, unsigned rounds);
+
+/**
+ * \brief Reverses the tweakey for ForkSkinny-64-192.
+ *
+ * \param state Points to the ForkSkinny-64-192 state.
+ * \param rounds Number of rounds to reverse by.
+ */
+void forkskinny_64_192_reverse_tk
+    (forkskinny_64_192_state_t *state, unsigned rounds);
 
 /**
  * \brief Encrypts a block of plaintext with ForkSkinny-128-256.
