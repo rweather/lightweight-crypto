@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">internal-forkskinny.h File Reference</div>  </div>
@@ -93,11 +94,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>ForkSkinny block cipher family.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;internal-util.h&quot;</code><br/>
+</div>
 <p><a href="internal-forkskinny_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">State information for ForkSkinny-128-256.  <a href="structforkskinny__128__256__state__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">State information for ForkSkinny-128-384.  <a href="structforkskinny__128__384__state__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">State information for ForkSkinny-64-192.  <a href="structforkskinny__64__192__state__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a7cbd4c9e6978ca1f42dc0ba69f1eda83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a7cbd4c9e6978ca1f42dc0ba69f1eda83">forkskinny_128_256_rounds</a> (<a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a7cbd4c9e6978ca1f42dc0ba69f1eda83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-128-256.  <a href="#a7cbd4c9e6978ca1f42dc0ba69f1eda83">More...</a><br/></td></tr>
+<tr class="separator:a7cbd4c9e6978ca1f42dc0ba69f1eda83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f75a4c69f4a137cae311b0e5c82226b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a1f75a4c69f4a137cae311b0e5c82226b">forkskinny_128_256_inv_rounds</a> (<a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a1f75a4c69f4a137cae311b0e5c82226b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-128-256 in reverse.  <a href="#a1f75a4c69f4a137cae311b0e5c82226b">More...</a><br/></td></tr>
+<tr class="separator:a1f75a4c69f4a137cae311b0e5c82226b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680cfa201800d50388d85d0f286da8e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a680cfa201800d50388d85d0f286da8e8">forkskinny_128_256_forward_tk</a> (<a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:a680cfa201800d50388d85d0f286da8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards the tweakey for ForkSkinny-128-256.  <a href="#a680cfa201800d50388d85d0f286da8e8">More...</a><br/></td></tr>
+<tr class="separator:a680cfa201800d50388d85d0f286da8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8f427e9f4493ded585b0dd955a34088"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#aa8f427e9f4493ded585b0dd955a34088">forkskinny_128_256_reverse_tk</a> (<a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:aa8f427e9f4493ded585b0dd955a34088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the tweakey for ForkSkinny-128-256.  <a href="#aa8f427e9f4493ded585b0dd955a34088">More...</a><br/></td></tr>
+<tr class="separator:aa8f427e9f4493ded585b0dd955a34088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30d235ce6f0634607a199241c39ca3ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a30d235ce6f0634607a199241c39ca3ac">forkskinny_128_384_rounds</a> (<a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a30d235ce6f0634607a199241c39ca3ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-128-384.  <a href="#a30d235ce6f0634607a199241c39ca3ac">More...</a><br/></td></tr>
+<tr class="separator:a30d235ce6f0634607a199241c39ca3ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae1a2ef532900595f6e421a0bc177c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a7ae1a2ef532900595f6e421a0bc177c9">forkskinny_128_384_inv_rounds</a> (<a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a7ae1a2ef532900595f6e421a0bc177c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-128-384 in reverse.  <a href="#a7ae1a2ef532900595f6e421a0bc177c9">More...</a><br/></td></tr>
+<tr class="separator:a7ae1a2ef532900595f6e421a0bc177c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdac671fd4e3288b3297fc65f1d893d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a8fdac671fd4e3288b3297fc65f1d893d">forkskinny_128_384_forward_tk</a> (<a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:a8fdac671fd4e3288b3297fc65f1d893d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards the tweakey for ForkSkinny-128-384.  <a href="#a8fdac671fd4e3288b3297fc65f1d893d">More...</a><br/></td></tr>
+<tr class="separator:a8fdac671fd4e3288b3297fc65f1d893d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a218873f5eaf731c3efa3fa34a593de28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a218873f5eaf731c3efa3fa34a593de28">forkskinny_128_384_reverse_tk</a> (<a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:a218873f5eaf731c3efa3fa34a593de28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the tweakey for ForkSkinny-128-384.  <a href="#a218873f5eaf731c3efa3fa34a593de28">More...</a><br/></td></tr>
+<tr class="separator:a218873f5eaf731c3efa3fa34a593de28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d33f2154608c1a5e3a6b997ad44ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a49d33f2154608c1a5e3a6b997ad44ca4">forkskinny_64_192_rounds</a> (<a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a49d33f2154608c1a5e3a6b997ad44ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-64-192.  <a href="#a49d33f2154608c1a5e3a6b997ad44ca4">More...</a><br/></td></tr>
+<tr class="separator:a49d33f2154608c1a5e3a6b997ad44ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a635d7727855b89e1f6981b1a58ba3f0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a635d7727855b89e1f6981b1a58ba3f0f">forkskinny_64_192_inv_rounds</a> (<a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *state, unsigned first, unsigned last)</td></tr>
+<tr class="memdesc:a635d7727855b89e1f6981b1a58ba3f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies several rounds of ForkSkinny-64-192 in reverse.  <a href="#a635d7727855b89e1f6981b1a58ba3f0f">More...</a><br/></td></tr>
+<tr class="separator:a635d7727855b89e1f6981b1a58ba3f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a675dd462c50856e55b5cf924eb89a02a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a675dd462c50856e55b5cf924eb89a02a">forkskinny_64_192_forward_tk</a> (<a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:a675dd462c50856e55b5cf924eb89a02a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forwards the tweakey for ForkSkinny-64-192.  <a href="#a675dd462c50856e55b5cf924eb89a02a">More...</a><br/></td></tr>
+<tr class="separator:a675dd462c50856e55b5cf924eb89a02a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a805c7a11ee690dc62b2bc2f6627b68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#a1a805c7a11ee690dc62b2bc2f6627b68">forkskinny_64_192_reverse_tk</a> (<a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *state, unsigned rounds)</td></tr>
+<tr class="memdesc:a1a805c7a11ee690dc62b2bc2f6627b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the tweakey for ForkSkinny-64-192.  <a href="#a1a805c7a11ee690dc62b2bc2f6627b68">More...</a><br/></td></tr>
+<tr class="separator:a1a805c7a11ee690dc62b2bc2f6627b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82ef4d6e101cba992ffd1da2166bb01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-forkskinny_8h.html#aa82ef4d6e101cba992ffd1da2166bb01">forkskinny_128_256_encrypt</a> (const unsigned char key[32], unsigned char *output_left, unsigned char *output_right, const unsigned char *input)</td></tr>
 <tr class="memdesc:aa82ef4d6e101cba992ffd1da2166bb01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a block of plaintext with ForkSkinny-128-256.  <a href="#aa82ef4d6e101cba992ffd1da2166bb01">More...</a><br/></td></tr>
 <tr class="separator:aa82ef4d6e101cba992ffd1da2166bb01"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,6 +272,160 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a680cfa201800d50388d85d0f286da8e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_256_forward_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forwards the tweakey for ForkSkinny-128-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-128-256 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to forward by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1f75a4c69f4a137cae311b0e5c82226b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_256_inv_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-128-256 in reverse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply plus 1. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa8f427e9f4493ded585b0dd955a34088"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_256_reverse_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses the tweakey for ForkSkinny-128-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-128-256 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to reverse by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7cbd4c9e6978ca1f42dc0ba69f1eda83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_256_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__256__state__t.html">forkskinny_128_256_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-128-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply plus 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="af93bdd1dffb6f674ca06b9655cfa49c4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -319,6 +523,160 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>ForkSkinny-128-288 also uses this function with a padded tweakey. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8fdac671fd4e3288b3297fc65f1d893d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_384_forward_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forwards the tweakey for ForkSkinny-128-384. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-128-384 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to forward by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ae1a2ef532900595f6e421a0bc177c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_384_inv_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-128-384 in reverse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply plus 1. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a218873f5eaf731c3efa3fa34a593de28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_384_reverse_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses the tweakey for ForkSkinny-128-384. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-128-384 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to reverse by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a30d235ce6f0634607a199241c39ca3ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_128_384_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__128__384__state__t.html">forkskinny_128_384_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-128-384. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply plus 1. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -425,10 +783,165 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a675dd462c50856e55b5cf924eb89a02a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_64_192_forward_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forwards the tweakey for ForkSkinny-64-192. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-64-192 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to forward by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a635d7727855b89e1f6981b1a58ba3f0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_64_192_inv_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-64-192 in reverse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply plus 1. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a805c7a11ee690dc62b2bc2f6627b68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_64_192_reverse_tk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses the tweakey for ForkSkinny-64-192. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the ForkSkinny-64-192 state. </td></tr>
+    <tr><td class="paramname">rounds</td><td>Number of rounds to reverse by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a49d33f2154608c1a5e3a6b997ad44ca4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkskinny_64_192_rounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structforkskinny__64__192__state__t.html">forkskinny_64_192_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applies several rounds of ForkSkinny-64-192. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>State to apply the rounds to. </td></tr>
+    <tr><td class="paramname">first</td><td>First round to apply. </td></tr>
+    <tr><td class="paramname">last</td><td>Last round to apply plus 1.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note: The cells of each row are ordered in big-endian nibble order so it is simplest to manage the rows in big-endian byte order. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 14 2020 19:35:47 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 28 2020 09:44:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
