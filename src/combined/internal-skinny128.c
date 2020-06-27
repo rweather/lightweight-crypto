@@ -90,7 +90,7 @@ void skinny_128_384_init
      * schedule during encryption operations */
     schedule = ks->k;
     rc = 0;
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round, schedule += 2) {
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 2, schedule += 4) {
         /* XOR the round constants with the current schedule words.
          * The round constants for the 3rd and 4th rows are
          * fixed and will be applied during encryption. */
@@ -99,11 +99,25 @@ void skinny_128_384_init
         schedule[0] = TK2[0] ^ TK3[0] ^ (rc & 0x0F);
         schedule[1] = TK2[1] ^ TK3[1] ^ (rc >> 4);
 
-        /* Permute TK2 and TK3 for the next round */
-        skinny128_permute_tk(TK2);
-        skinny128_permute_tk(TK3);
+        /* Permute the bottom half of TK2 and TK3 for the next round */
+        skinny128_permute_tk_half(TK2[2], TK2[3]);
+        skinny128_permute_tk_half(TK3[2], TK3[3]);
+        skinny128_LFSR2(TK2[2]);
+        skinny128_LFSR2(TK2[3]);
+        skinny128_LFSR3(TK3[2]);
+        skinny128_LFSR3(TK3[3]);
 
-        /* Apply the LFSR's to TK2 and TK3 */
+        /* XOR the round constants with the current schedule words.
+         * The round constants for the 3rd and 4th rows are
+         * fixed and will be applied during encryption. */
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        schedule[2] = TK2[2] ^ TK3[2] ^ (rc & 0x0F);
+        schedule[3] = TK2[3] ^ TK3[3] ^ (rc >> 4);
+
+        /* Permute the top half of TK2 and TK3 for the next round */
+        skinny128_permute_tk_half(TK2[0], TK2[1]);
+        skinny128_permute_tk_half(TK3[0], TK3[1]);
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
         skinny128_LFSR3(TK3[0]);
@@ -111,6 +125,98 @@ void skinny_128_384_init
     }
 #endif
 }
+
+/**
+ * \brief Performs an unrolled round for Skinny-128-384 when only TK1 is
+ * computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ * \param offset Offset between 0 and 3 of the current unrolled round.
+ */
+#define skinny_128_384_round(s0, s1, s2, s3, half, offset) \
+    do { \
+        /* Apply the S-box to all bytes in the state */ \
+        skinny128_sbox(s0); \
+        skinny128_sbox(s1); \
+        skinny128_sbox(s2); \
+        skinny128_sbox(s3); \
+        \
+        /* XOR the round constant and the subkey for this round */ \
+        s0 ^= schedule[offset * 2]     ^ TK1[half * 2]; \
+        s1 ^= schedule[offset * 2 + 1] ^ TK1[half * 2 + 1]; \
+        s2 ^= 0x02; \
+        \
+        /* Shift the cells in the rows right, which moves the cell \
+         * values up closer to the MSB.  That is, we do a left rotate \
+         * on the word to rotate the cells in the word right */ \
+        s1 = leftRotate8(s1); \
+        s2 = leftRotate16(s2); \
+        s3 = leftRotate24(s3); \
+        \
+        /* Mix the columns, but don't rotate the words yet */ \
+        s1 ^= s2; \
+        s2 ^= s0; \
+        s3 ^= s2; \
+        \
+        /* Permute TK1 in-place for the next round */ \
+        skinny128_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+    } while (0)
+
+/**
+ * \brief Performs an unrolled round for Skinny-128-384 when the entire
+ * tweakey schedule is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ */
+#define skinny_128_384_round_tk_full(s0, s1, s2, s3, half) \
+    do { \
+        /* Apply the S-box to all bytes in the state */ \
+        skinny128_sbox(s0); \
+        skinny128_sbox(s1); \
+        skinny128_sbox(s2); \
+        skinny128_sbox(s3); \
+        \
+        /* XOR the round constant and the subkey for this round */ \
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01; \
+        rc &= 0x3F; \
+        s0 ^= TK1[half * 2] ^ TK2[half * 2] ^ TK3[half * 2] ^ (rc & 0x0F); \
+        s1 ^= TK1[half * 2 + 1] ^ TK2[half * 2 + 1] ^ TK3[half * 2 + 1] ^ \
+              (rc >> 4); \
+        s2 ^= 0x02; \
+        \
+        /* Shift the cells in the rows right, which moves the cell \
+         * values up closer to the MSB.  That is, we do a left rotate \
+         * on the word to rotate the cells in the word right */ \
+        s1 = leftRotate8(s1); \
+        s2 = leftRotate16(s2); \
+        s3 = leftRotate24(s3); \
+        \
+        /* Mix the columns, but don't rotate the words yet */ \
+        s1 ^= s2; \
+        s2 ^= s0; \
+        s3 ^= s2; \
+        \
+        /* Permute TK1, TK2, and TK3 in-place for the next round */ \
+        skinny128_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        skinny128_permute_tk_half \
+            (TK2[(1 - half) * 2], TK2[(1 - half) * 2 + 1]); \
+        skinny128_permute_tk_half \
+            (TK3[(1 - half) * 2], TK3[(1 - half) * 2 + 1]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2 + 1]); \
+        skinny128_LFSR3(TK3[(1 - half) * 2]); \
+        skinny128_LFSR3(TK3[(1 - half) * 2 + 1]); \
+    } while (0)
 
 void skinny_128_384_encrypt
     (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
@@ -125,7 +231,6 @@ void skinny_128_384_encrypt
 #else
     const uint32_t *schedule = ks->k;
 #endif
-    uint32_t temp;
     unsigned round;
 
     /* Unpack the input block into the state array */
@@ -150,53 +255,19 @@ void skinny_128_384_encrypt
     TK3[3] = le_load_word32(ks->TK3 + 12);
 #endif
 
-    /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
-        /* Apply the S-box to all bytes in the state */
-        skinny128_sbox(s0);
-        skinny128_sbox(s1);
-        skinny128_sbox(s2);
-        skinny128_sbox(s3);
-
-        /* Apply the subkey for this round */
+    /* Perform all encryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 4) {
 #if SKINNY_128_SMALL_SCHEDULE
-        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
-        rc &= 0x3F;
-        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+        skinny_128_384_round_tk_full(s0, s1, s2, s3, 0);
+        skinny_128_384_round_tk_full(s3, s0, s1, s2, 1);
+        skinny_128_384_round_tk_full(s2, s3, s0, s1, 0);
+        skinny_128_384_round_tk_full(s1, s2, s3, s0, 1);
 #else
-        s0 ^= schedule[0] ^ TK1[0];
-        s1 ^= schedule[1] ^ TK1[1];
-#endif
-        s2 ^= 0x02;
-
-        /* Shift the cells in the rows right, which moves the cell
-         * values up closer to the MSB.  That is, we do a left rotate
-         * on the word to rotate the cells in the word right */
-        s1 = leftRotate8(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate24(s3);
-
-        /* Mix the columns */
-        s1 ^= s2;
-        s2 ^= s0;
-        temp = s3 ^ s2;
-        s3 = s2;
-        s2 = s1;
-        s1 = s0;
-        s0 = temp;
-
-        /* Permute TK1 for the next round */
-        skinny128_permute_tk(TK1);
-#if SKINNY_128_SMALL_SCHEDULE
-        skinny128_permute_tk(TK2);
-        skinny128_permute_tk(TK3);
-        skinny128_LFSR2(TK2[0]);
-        skinny128_LFSR2(TK2[1]);
-        skinny128_LFSR3(TK3[0]);
-        skinny128_LFSR3(TK3[1]);
-#else
-        schedule += 2;
+        skinny_128_384_round(s0, s1, s2, s3, 0, 0);
+        skinny_128_384_round(s3, s0, s1, s2, 1, 1);
+        skinny_128_384_round(s2, s3, s0, s1, 0, 2);
+        skinny_128_384_round(s1, s2, s3, s0, 1, 3);
+        schedule += 8;
 #endif
     }
 
@@ -206,6 +277,93 @@ void skinny_128_384_encrypt
     le_store_word32(output + 8,  s2);
     le_store_word32(output + 12, s3);
 }
+
+/**
+ * \brief Performs an unrolled inverse round for Skinny-128-384 when
+ * only TK1 is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ * \param offset Offset between 0 and 3 of the current unrolled round.
+ */
+#define skinny_128_384_inv_round(s0, s1, s2, s3, half, offset) \
+    do { \
+        /* Inverse permutation on TK1 for this round */ \
+        skinny128_inv_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        \
+        /* Inverse mix of the columns, without word rotation */ \
+        s0 ^= s3; \
+        s3 ^= s1; \
+        s2 ^= s3; \
+        \
+        /* Inverse shift of the rows */ \
+        s2 = leftRotate24(s2); \
+        s3 = leftRotate16(s3); \
+        s0 = leftRotate8(s0); \
+        \
+        /* Apply the subkey for this round */ \
+        s1 ^= schedule[offset * 2]     ^ TK1[half * 2]; \
+        s2 ^= schedule[offset * 2 + 1] ^ TK1[half * 2 + 1]; \
+        s3 ^= 0x02; \
+        \
+        /* Apply the inverse of the S-box to all bytes in the state */ \
+        skinny128_inv_sbox(s0); \
+        skinny128_inv_sbox(s1); \
+        skinny128_inv_sbox(s2); \
+        skinny128_inv_sbox(s3); \
+    } while (0)
+
+/**
+ * \brief Performs an unrolled inverse round for Skinny-128-384 when the
+ * entire tweakey schedule is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ */
+#define skinny_128_384_inv_round_tk_full(s0, s1, s2, s3, half) \
+    do { \
+        /* Inverse permutation on the tweakey for this round */ \
+        skinny128_inv_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        skinny128_inv_permute_tk_half \
+            (TK2[(1 - half) * 2], TK2[(1 - half) * 2 + 1]); \
+        skinny128_inv_permute_tk_half \
+            (TK3[(1 - half) * 2], TK3[(1 - half) * 2 + 1]); \
+        skinny128_LFSR3(TK2[(1 - half) * 2]); \
+        skinny128_LFSR3(TK2[(1 - half) * 2 + 1]); \
+        skinny128_LFSR2(TK3[(1 - half) * 2]); \
+        skinny128_LFSR2(TK3[(1 - half) * 2 + 1]); \
+        \
+        /* Inverse mix of the columns, without word rotation */ \
+        s0 ^= s3; \
+        s3 ^= s1; \
+        s2 ^= s3; \
+        \
+        /* Inverse shift of the rows */ \
+        s2 = leftRotate24(s2); \
+        s3 = leftRotate16(s3); \
+        s0 = leftRotate8(s0); \
+        \
+        /* Apply the subkey for this round */ \
+        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20); \
+        s1 ^= TK1[half * 2] ^ TK2[half * 2] ^ TK3[half * 2] ^ (rc & 0x0F); \
+        s2 ^= TK1[half * 2 + 1] ^ TK2[half * 2 + 1] ^ TK3[half * 2 + 1] ^ \
+              (rc >> 4); \
+        s3 ^= 0x02; \
+        \
+        /* Apply the inverse of the S-box to all bytes in the state */ \
+        skinny128_inv_sbox(s0); \
+        skinny128_inv_sbox(s1); \
+        skinny128_inv_sbox(s2); \
+        skinny128_inv_sbox(s3); \
+    } while (0)
 
 void skinny_128_384_decrypt
     (const skinny_128_384_key_schedule_t *ks, unsigned char *output,
@@ -218,9 +376,8 @@ void skinny_128_384_decrypt
     uint32_t TK3[4];
     uint8_t rc = 0x15;
 #else
-    const uint32_t *schedule = &(ks->k[SKINNY_128_384_ROUNDS * 2 - 2]);
+    const uint32_t *schedule = &(ks->k[SKINNY_128_384_ROUNDS * 2 - 8]);
 #endif
-    uint32_t temp;
     unsigned round;
 
     /* Unpack the input block into the state array */
@@ -263,50 +420,20 @@ void skinny_128_384_decrypt
     }
 #endif
 
-    /* Perform all decryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
-        /* Inverse permutation on TK1 for this round */
-        skinny128_inv_permute_tk(TK1);
+    /* Perform all decryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 4) {
 #if SKINNY_128_SMALL_SCHEDULE
-        skinny128_inv_permute_tk(TK2);
-        skinny128_inv_permute_tk(TK3);
-        skinny128_LFSR3(TK2[2]);
-        skinny128_LFSR3(TK2[3]);
-        skinny128_LFSR2(TK3[2]);
-        skinny128_LFSR2(TK3[3]);
-#endif
-
-        /* Inverse mix of the columns */
-        temp = s3;
-        s3 = s0;
-        s0 = s1;
-        s1 = s2;
-        s3 ^= temp;
-        s2 = temp ^ s0;
-        s1 ^= s2;
-
-        /* Inverse shift of the rows */
-        s1 = leftRotate24(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate8(s3);
-
-        /* Apply the subkey for this round */
-#if SKINNY_128_SMALL_SCHEDULE
-        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20);
-        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
+        skinny_128_384_inv_round_tk_full(s0, s1, s2, s3, 1);
+        skinny_128_384_inv_round_tk_full(s1, s2, s3, s0, 0);
+        skinny_128_384_inv_round_tk_full(s2, s3, s0, s1, 1);
+        skinny_128_384_inv_round_tk_full(s3, s0, s1, s2, 0);
 #else
-        s0 ^= schedule[0] ^ TK1[0];
-        s1 ^= schedule[1] ^ TK1[1];
-        schedule -= 2;
+        skinny_128_384_inv_round(s0, s1, s2, s3, 1, 3);
+        skinny_128_384_inv_round(s1, s2, s3, s0, 0, 2);
+        skinny_128_384_inv_round(s2, s3, s0, s1, 1, 1);
+        skinny_128_384_inv_round(s3, s0, s1, s2, 0, 0);
+        schedule -= 8;
 #endif
-        s2 ^= 0x02;
-
-        /* Apply the inverse of the S-box to all bytes in the state */
-        skinny128_inv_sbox(s0);
-        skinny128_inv_sbox(s1);
-        skinny128_inv_sbox(s2);
-        skinny128_inv_sbox(s3);
     }
 
     /* Pack the result into the output buffer */
@@ -315,6 +442,57 @@ void skinny_128_384_decrypt
     le_store_word32(output + 8,  s2);
     le_store_word32(output + 12, s3);
 }
+
+/**
+ * \def skinny_128_384_round_tk2(s0, s1, s2, s3, half)
+ * \brief Performs an unrolled round for skinny_128_384_encrypt_tk2().
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ * \param offset Offset between 0 and 3 of the current unrolled round.
+ */
+#if SKINNY_128_SMALL_SCHEDULE
+#define skinny_128_384_round_tk2(s0, s1, s2, s3, half, offset) \
+    skinny_128_384_round_tk_full(s0, s1, s2, s3, half)
+#else /* !SKINNY_128_SMALL_SCHEDULE */
+#define skinny_128_384_round_tk2(s0, s1, s2, s3, half, offset) \
+    do { \
+        /* Apply the S-box to all bytes in the state */ \
+        skinny128_sbox(s0); \
+        skinny128_sbox(s1); \
+        skinny128_sbox(s2); \
+        skinny128_sbox(s3); \
+        \
+        /* XOR the round constant and the subkey for this round */ \
+        s0 ^= schedule[offset * 2] ^ TK1[half * 2] ^ TK2[half * 2]; \
+        s1 ^= schedule[offset * 2 + 1] ^ TK1[half * 2 + 1] ^ \
+              TK2[half * 2 + 1]; \
+        s2 ^= 0x02; \
+        \
+        /* Shift the cells in the rows right, which moves the cell \
+         * values up closer to the MSB.  That is, we do a left rotate \
+         * on the word to rotate the cells in the word right */ \
+        s1 = leftRotate8(s1); \
+        s2 = leftRotate16(s2); \
+        s3 = leftRotate24(s3); \
+        \
+        /* Mix the columns, but don't rotate the words yet */ \
+        s1 ^= s2; \
+        s2 ^= s0; \
+        s3 ^= s2; \
+        \
+        /* Permute TK1 and TK2 in-place for the next round */ \
+        skinny128_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        skinny128_permute_tk_half \
+            (TK2[(1 - half) * 2], TK2[(1 - half) * 2 + 1]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2 + 1]); \
+    } while (0)
+#endif /* !SKINNY_128_SMALL_SCHEDULE */
 
 void skinny_128_384_encrypt_tk2
     (skinny_128_384_key_schedule_t *ks, unsigned char *output,
@@ -329,7 +507,6 @@ void skinny_128_384_encrypt_tk2
 #else
     const uint32_t *schedule = ks->k;
 #endif
-    uint32_t temp;
     unsigned round;
 
     /* Unpack the input block into the state array */
@@ -354,53 +531,14 @@ void skinny_128_384_encrypt_tk2
     TK3[3] = le_load_word32(ks->TK3 + 12);
 #endif
 
-    /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
-        /* Apply the S-box to all bytes in the state */
-        skinny128_sbox(s0);
-        skinny128_sbox(s1);
-        skinny128_sbox(s2);
-        skinny128_sbox(s3);
-
-        /* Apply the subkey for this round */
-#if SKINNY_128_SMALL_SCHEDULE
-        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
-        rc &= 0x3F;
-        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
-#else
-        s0 ^= schedule[0] ^ TK1[0] ^ TK2[0];
-        s1 ^= schedule[1] ^ TK1[1] ^ TK2[1];
-#endif
-        s2 ^= 0x02;
-
-        /* Shift the cells in the rows right, which moves the cell
-         * values up closer to the MSB.  That is, we do a left rotate
-         * on the word to rotate the cells in the word right */
-        s1 = leftRotate8(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate24(s3);
-
-        /* Mix the columns */
-        s1 ^= s2;
-        s2 ^= s0;
-        temp = s3 ^ s2;
-        s3 = s2;
-        s2 = s1;
-        s1 = s0;
-        s0 = temp;
-
-        /* Permute TK1 and TK2 for the next round */
-        skinny128_permute_tk(TK1);
-        skinny128_permute_tk(TK2);
-        skinny128_LFSR2(TK2[0]);
-        skinny128_LFSR2(TK2[1]);
-#if SKINNY_128_SMALL_SCHEDULE
-        skinny128_permute_tk(TK3);
-        skinny128_LFSR3(TK3[0]);
-        skinny128_LFSR3(TK3[1]);
-#else
-        schedule += 2;
+    /* Perform all encryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 4) {
+        skinny_128_384_round_tk2(s0, s1, s2, s3, 0, 0);
+        skinny_128_384_round_tk2(s3, s0, s1, s2, 1, 1);
+        skinny_128_384_round_tk2(s2, s3, s0, s1, 0, 2);
+        skinny_128_384_round_tk2(s1, s2, s3, s0, 1, 3);
+#if !SKINNY_128_SMALL_SCHEDULE
+        schedule += 8;
 #endif
     }
 
@@ -419,7 +557,6 @@ void skinny_128_384_encrypt_tk_full
     uint32_t TK1[4];
     uint32_t TK2[4];
     uint32_t TK3[4];
-    uint32_t temp;
     unsigned round;
     uint8_t rc = 0;
 
@@ -443,45 +580,12 @@ void skinny_128_384_encrypt_tk_full
     TK3[2] = le_load_word32(key + 40);
     TK3[3] = le_load_word32(key + 44);
 
-    /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_384_ROUNDS; ++round) {
-        /* Apply the S-box to all bytes in the state */
-        skinny128_sbox(s0);
-        skinny128_sbox(s1);
-        skinny128_sbox(s2);
-        skinny128_sbox(s3);
-
-        /* XOR the round constant and the subkey for this round */
-        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
-        rc &= 0x3F;
-        s0 ^= TK1[0] ^ TK2[0] ^ TK3[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ TK3[1] ^ (rc >> 4);
-        s2 ^= 0x02;
-
-        /* Shift the cells in the rows right, which moves the cell
-         * values up closer to the MSB.  That is, we do a left rotate
-         * on the word to rotate the cells in the word right */
-        s1 = leftRotate8(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate24(s3);
-
-        /* Mix the columns */
-        s1 ^= s2;
-        s2 ^= s0;
-        temp = s3 ^ s2;
-        s3 = s2;
-        s2 = s1;
-        s1 = s0;
-        s0 = temp;
-
-        /* Permute TK1, TK2, and TK3 for the next round */
-        skinny128_permute_tk(TK1);
-        skinny128_permute_tk(TK2);
-        skinny128_permute_tk(TK3);
-        skinny128_LFSR2(TK2[0]);
-        skinny128_LFSR2(TK2[1]);
-        skinny128_LFSR3(TK3[0]);
-        skinny128_LFSR3(TK3[1]);
+    /* Perform all encryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_384_ROUNDS; round += 4) {
+        skinny_128_384_round_tk_full(s0, s1, s2, s3, 0);
+        skinny_128_384_round_tk_full(s3, s0, s1, s2, 1);
+        skinny_128_384_round_tk_full(s2, s3, s0, s1, 0);
+        skinny_128_384_round_tk_full(s1, s2, s3, s0, 1);
     }
 
     /* Pack the result into the output buffer */
@@ -518,7 +622,7 @@ void skinny_128_256_init
      * schedule during encryption operations */
     schedule = ks->k;
     rc = 0;
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round, schedule += 2) {
+    for (round = 0; round < SKINNY_128_256_ROUNDS; round += 2, schedule += 4) {
         /* XOR the round constants with the current schedule words.
          * The round constants for the 3rd and 4th rows are
          * fixed and will be applied during encryption. */
@@ -527,15 +631,86 @@ void skinny_128_256_init
         schedule[0] = TK2[0] ^ (rc & 0x0F);
         schedule[1] = TK2[1] ^ (rc >> 4);
 
-        /* Permute TK2 for the next round */
-        skinny128_permute_tk(TK2);
+        /* Permute the bottom half of TK2 for the next round */
+        skinny128_permute_tk_half(TK2[2], TK2[3]);
+        skinny128_LFSR2(TK2[2]);
+        skinny128_LFSR2(TK2[3]);
 
-        /* Apply the LFSR to TK2 */
+        /* XOR the round constants with the current schedule words.
+         * The round constants for the 3rd and 4th rows are
+         * fixed and will be applied during encryption. */
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
+        rc &= 0x3F;
+        schedule[2] = TK2[2] ^ (rc & 0x0F);
+        schedule[3] = TK2[3] ^ (rc >> 4);
+
+        /* Permute the top half of TK2 for the next round */
+        skinny128_permute_tk_half(TK2[0], TK2[1]);
         skinny128_LFSR2(TK2[0]);
         skinny128_LFSR2(TK2[1]);
     }
 #endif
 }
+
+/**
+ * \brief Performs an unrolled round for Skinny-128-256 when only TK1 is
+ * computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ * \param offset Offset between 0 and 3 of the current unrolled round.
+ */
+#define skinny_128_256_round(s0, s1, s2, s3, half, offset) \
+    skinny_128_384_round(s0, s1, s2, s3, half, offset)
+
+/**
+ * \brief Performs an unrolled round for Skinny-128-256 when the entire
+ * tweakey schedule is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ */
+#define skinny_128_256_round_tk_full(s0, s1, s2, s3, half) \
+    do { \
+        /* Apply the S-box to all bytes in the state */ \
+        skinny128_sbox(s0); \
+        skinny128_sbox(s1); \
+        skinny128_sbox(s2); \
+        skinny128_sbox(s3); \
+        \
+        /* XOR the round constant and the subkey for this round */ \
+        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01; \
+        rc &= 0x3F; \
+        s0 ^= TK1[half * 2] ^ TK2[half * 2] ^ (rc & 0x0F); \
+        s1 ^= TK1[half * 2 + 1] ^ TK2[half * 2 + 1] ^ (rc >> 4); \
+        s2 ^= 0x02; \
+        \
+        /* Shift the cells in the rows right, which moves the cell \
+         * values up closer to the MSB.  That is, we do a left rotate \
+         * on the word to rotate the cells in the word right */ \
+        s1 = leftRotate8(s1); \
+        s2 = leftRotate16(s2); \
+        s3 = leftRotate24(s3); \
+        \
+        /* Mix the columns, but don't rotate the words yet */ \
+        s1 ^= s2; \
+        s2 ^= s0; \
+        s3 ^= s2; \
+        \
+        /* Permute TK1, TK2, and TK3 in-place for the next round */ \
+        skinny128_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        skinny128_permute_tk_half \
+            (TK2[(1 - half) * 2], TK2[(1 - half) * 2 + 1]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2]); \
+        skinny128_LFSR2(TK2[(1 - half) * 2 + 1]); \
+    } while (0)
 
 void skinny_128_256_encrypt
     (const skinny_128_256_key_schedule_t *ks, unsigned char *output,
@@ -549,7 +724,6 @@ void skinny_128_256_encrypt
 #else
     const uint32_t *schedule = ks->k;
 #endif
-    uint32_t temp;
     unsigned round;
 
     /* Unpack the input block into the state array */
@@ -570,50 +744,19 @@ void skinny_128_256_encrypt
     TK2[3] = le_load_word32(ks->TK2 + 12);
 #endif
 
-    /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
-        /* Apply the S-box to all bytes in the state */
-        skinny128_sbox(s0);
-        skinny128_sbox(s1);
-        skinny128_sbox(s2);
-        skinny128_sbox(s3);
-
-        /* XOR the round constant and the subkey for this round */
+    /* Perform all encryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_256_ROUNDS; round += 4) {
 #if SKINNY_128_SMALL_SCHEDULE
-        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
-        rc &= 0x3F;
-        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
+        skinny_128_256_round_tk_full(s0, s1, s2, s3, 0);
+        skinny_128_256_round_tk_full(s3, s0, s1, s2, 1);
+        skinny_128_256_round_tk_full(s2, s3, s0, s1, 0);
+        skinny_128_256_round_tk_full(s1, s2, s3, s0, 1);
 #else
-        s0 ^= schedule[0] ^ TK1[0];
-        s1 ^= schedule[1] ^ TK1[1];
-#endif
-        s2 ^= 0x02;
-
-        /* Shift the cells in the rows right, which moves the cell
-         * values up closer to the MSB.  That is, we do a left rotate
-         * on the word to rotate the cells in the word right */
-        s1 = leftRotate8(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate24(s3);
-
-        /* Mix the columns */
-        s1 ^= s2;
-        s2 ^= s0;
-        temp = s3 ^ s2;
-        s3 = s2;
-        s2 = s1;
-        s1 = s0;
-        s0 = temp;
-
-        /* Permute TK1 and TK2 for the next round */
-        skinny128_permute_tk(TK1);
-#if SKINNY_128_SMALL_SCHEDULE
-        skinny128_permute_tk(TK2);
-        skinny128_LFSR2(TK2[0]);
-        skinny128_LFSR2(TK2[1]);
-#else
-        schedule += 2;
+        skinny_128_256_round(s0, s1, s2, s3, 0, 0);
+        skinny_128_256_round(s3, s0, s1, s2, 1, 1);
+        skinny_128_256_round(s2, s3, s0, s1, 0, 2);
+        skinny_128_256_round(s1, s2, s3, s0, 1, 3);
+        schedule += 8;
 #endif
     }
 
@@ -623,6 +766,63 @@ void skinny_128_256_encrypt
     le_store_word32(output + 8,  s2);
     le_store_word32(output + 12, s3);
 }
+
+/**
+ * \brief Performs an unrolled inverse round for Skinny-128-256 when
+ * only TK1 is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ * \param offset Offset between 0 and 3 of the current unrolled round.
+ */
+#define skinny_128_256_inv_round(s0, s1, s2, s3, half, offset) \
+    skinny_128_384_inv_round(s0, s1, s2, s3, half, offset)
+
+/**
+ * \brief Performs an unrolled inverse round for Skinny-128-256 when the
+ * entire tweakey schedule is computed on the fly.
+ *
+ * \param s0 First word of the state.
+ * \param s1 Second word of the state.
+ * \param s2 Third word of the state.
+ * \param s3 Fourth word of the state.
+ * \param half 0 for the bottom half and 1 for the top half of the TK values.
+ */
+#define skinny_128_256_inv_round_tk_full(s0, s1, s2, s3, half) \
+    do { \
+        /* Inverse permutation on the tweakey for this round */ \
+        skinny128_inv_permute_tk_half \
+            (TK1[(1 - half) * 2], TK1[(1 - half) * 2 + 1]); \
+        skinny128_inv_permute_tk_half \
+            (TK2[(1 - half) * 2], TK2[(1 - half) * 2 + 1]); \
+        skinny128_LFSR3(TK2[(1 - half) * 2]); \
+        skinny128_LFSR3(TK2[(1 - half) * 2 + 1]); \
+        \
+        /* Inverse mix of the columns, without word rotation */ \
+        s0 ^= s3; \
+        s3 ^= s1; \
+        s2 ^= s3; \
+        \
+        /* Inverse shift of the rows */ \
+        s2 = leftRotate24(s2); \
+        s3 = leftRotate16(s3); \
+        s0 = leftRotate8(s0); \
+        \
+        /* Apply the subkey for this round */ \
+        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20); \
+        s1 ^= TK1[half * 2] ^ TK2[half * 2] ^ (rc & 0x0F); \
+        s2 ^= TK1[half * 2 + 1] ^ TK2[half * 2 + 1] ^ (rc >> 4); \
+        s3 ^= 0x02; \
+        \
+        /* Apply the inverse of the S-box to all bytes in the state */ \
+        skinny128_inv_sbox(s0); \
+        skinny128_inv_sbox(s1); \
+        skinny128_inv_sbox(s2); \
+        skinny128_inv_sbox(s3); \
+    } while (0)
 
 void skinny_128_256_decrypt
     (const skinny_128_256_key_schedule_t *ks, unsigned char *output,
@@ -634,9 +834,8 @@ void skinny_128_256_decrypt
     uint32_t TK2[4];
     uint8_t rc = 0x09;
 #else
-    const uint32_t *schedule = &(ks->k[SKINNY_128_256_ROUNDS * 2 - 2]);
+    const uint32_t *schedule = &(ks->k[SKINNY_128_256_ROUNDS * 2 - 8]);
 #endif
-    uint32_t temp;
     unsigned round;
 
     /* Unpack the input block into the state array */
@@ -666,47 +865,20 @@ void skinny_128_256_decrypt
     }
 #endif
 
-    /* Perform all decryption rounds */
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
-        /* Inverse permutation on TK1 for this round */
-        skinny128_inv_permute_tk(TK1);
+    /* Perform all decryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_256_ROUNDS; round += 4) {
 #if SKINNY_128_SMALL_SCHEDULE
-        skinny128_inv_permute_tk(TK2);
-        skinny128_LFSR3(TK2[2]);
-        skinny128_LFSR3(TK2[3]);
-#endif
-
-        /* Inverse mix of the columns */
-        temp = s3;
-        s3 = s0;
-        s0 = s1;
-        s1 = s2;
-        s3 ^= temp;
-        s2 = temp ^ s0;
-        s1 ^= s2;
-
-        /* Inverse shift of the rows */
-        s1 = leftRotate24(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate8(s3);
-
-        /* Apply the subkey for this round */
-#if SKINNY_128_SMALL_SCHEDULE
-        rc = (rc >> 1) ^ (((rc << 5) ^ rc ^ 0x20) & 0x20);
-        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
+        skinny_128_256_inv_round_tk_full(s0, s1, s2, s3, 1);
+        skinny_128_256_inv_round_tk_full(s1, s2, s3, s0, 0);
+        skinny_128_256_inv_round_tk_full(s2, s3, s0, s1, 1);
+        skinny_128_256_inv_round_tk_full(s3, s0, s1, s2, 0);
 #else
-        s0 ^= schedule[0] ^ TK1[0];
-        s1 ^= schedule[1] ^ TK1[1];
-        schedule -= 2;
+        skinny_128_256_inv_round(s0, s1, s2, s3, 1, 3);
+        skinny_128_256_inv_round(s1, s2, s3, s0, 0, 2);
+        skinny_128_256_inv_round(s2, s3, s0, s1, 1, 1);
+        skinny_128_256_inv_round(s3, s0, s1, s2, 0, 0);
+        schedule -= 8;
 #endif
-        s2 ^= 0x02;
-
-        /* Apply the inverse of the S-box to all bytes in the state */
-        skinny128_inv_sbox(s0);
-        skinny128_inv_sbox(s1);
-        skinny128_inv_sbox(s2);
-        skinny128_inv_sbox(s3);
     }
 
     /* Pack the result into the output buffer */
@@ -723,7 +895,6 @@ void skinny_128_256_encrypt_tk_full
     uint32_t s0, s1, s2, s3;
     uint32_t TK1[4];
     uint32_t TK2[4];
-    uint32_t temp;
     unsigned round;
     uint8_t rc = 0;
 
@@ -743,42 +914,12 @@ void skinny_128_256_encrypt_tk_full
     TK2[2] = le_load_word32(key + 24);
     TK2[3] = le_load_word32(key + 28);
 
-    /* Perform all encryption rounds */
-    for (round = 0; round < SKINNY_128_256_ROUNDS; ++round) {
-        /* Apply the S-box to all bytes in the state */
-        skinny128_sbox(s0);
-        skinny128_sbox(s1);
-        skinny128_sbox(s2);
-        skinny128_sbox(s3);
-
-        /* XOR the round constant and the subkey for this round */
-        rc = (rc << 1) ^ ((rc >> 5) & 0x01) ^ ((rc >> 4) & 0x01) ^ 0x01;
-        rc &= 0x3F;
-        s0 ^= TK1[0] ^ TK2[0] ^ (rc & 0x0F);
-        s1 ^= TK1[1] ^ TK2[1] ^ (rc >> 4);
-        s2 ^= 0x02;
-
-        /* Shift the cells in the rows right, which moves the cell
-         * values up closer to the MSB.  That is, we do a left rotate
-         * on the word to rotate the cells in the word right */
-        s1 = leftRotate8(s1);
-        s2 = leftRotate16(s2);
-        s3 = leftRotate24(s3);
-
-        /* Mix the columns */
-        s1 ^= s2;
-        s2 ^= s0;
-        temp = s3 ^ s2;
-        s3 = s2;
-        s2 = s1;
-        s1 = s0;
-        s0 = temp;
-
-        /* Permute TK1 and TK2 for the next round */
-        skinny128_permute_tk(TK1);
-        skinny128_permute_tk(TK2);
-        skinny128_LFSR2(TK2[0]);
-        skinny128_LFSR2(TK2[1]);
+    /* Perform all encryption rounds four at a time */
+    for (round = 0; round < SKINNY_128_256_ROUNDS; round += 4) {
+        skinny_128_256_round_tk_full(s0, s1, s2, s3, 0);
+        skinny_128_256_round_tk_full(s3, s0, s1, s2, 1);
+        skinny_128_256_round_tk_full(s2, s3, s0, s1, 0);
+        skinny_128_256_round_tk_full(s1, s2, s3, s0, 1);
     }
 
     /* Pack the result into the output buffer */

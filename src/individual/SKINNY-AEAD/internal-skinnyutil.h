@@ -74,6 +74,21 @@ extern "C" {
                 ( row3        & 0x00FF0000U); \
     } while (0)
 
+#define skinny128_permute_tk_half(tk2, tk3) \
+    do { \
+        /* Permute the bottom half of the tweakey state in place, no swap */ \
+        uint32_t row2 = tk2; \
+        uint32_t row3 = tk3; \
+        row3 = (row3 << 16) | (row3 >> 16); \
+        tk2 = ((row2 >>  8) & 0x000000FFU) | \
+              ((row2 << 16) & 0x00FF0000U) | \
+              ( row3        & 0xFF00FF00U); \
+        tk3 = ((row2 >> 16) & 0x000000FFU) | \
+               (row2        & 0xFF000000U) | \
+              ((row3 <<  8) & 0x0000FF00U) | \
+              ( row3        & 0x00FF0000U); \
+    } while (0)
+
 #define skinny128_inv_permute_tk(tk) \
     do { \
         /* PT' = [8, 9, 10, 11, 12, 13, 14, 15, 2, 0, 4, 7, 6, 3, 5, 1] */ \
@@ -89,6 +104,21 @@ extern "C" {
                 ((row0 << 16) & 0xFF000000U) | \
                 ((row1 >> 16) & 0x000000FFU) | \
                 ((row1 <<  8) & 0x00FF0000U); \
+    } while (0)
+
+#define skinny128_inv_permute_tk_half(tk0, tk1) \
+    do { \
+        /* Permute the top half of the tweakey state in place, no swap */ \
+        uint32_t row0 = tk0; \
+        uint32_t row1 = tk1; \
+        tk0 = ((row0 >> 16) & 0x000000FFU) | \
+              ((row0 <<  8) & 0x0000FF00U) | \
+              ((row1 << 16) & 0x00FF0000U) | \
+              ( row1        & 0xFF000000U); \
+        tk1 = ((row0 >> 16) & 0x0000FF00U) | \
+              ((row0 << 16) & 0xFF000000U) | \
+              ((row1 >> 16) & 0x000000FFU) | \
+              ((row1 <<  8) & 0x00FF0000U); \
     } while (0)
 
 /*
