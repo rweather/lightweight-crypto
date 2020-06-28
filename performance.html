@@ -105,7 +105,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>1.62</td><td>1.69</td><td>1.66 </td></tr>
 <tr>
-<td><b><em>COMET-128_CHAM-128/128</em></b></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61 </td></tr>
+<td><b><em>COMET-128_CHAM-128/128</em></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61 </td></tr>
 <tr>
 <td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>1.16</td><td>1.14</td><td>2.31</td><td>2.24</td><td>1.58 </td></tr>
 <tr>
@@ -149,7 +149,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.49</td><td>0.52</td><td>0.94</td><td>0.96</td><td>0.68 </td></tr>
 <tr>
-<td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66 </td></tr>
+<td><b><em>ESTATE_TweGIFT-128</em></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66 </td></tr>
 <tr>
 <td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.55</td><td>0.57</td><td>0.66</td><td>0.67</td><td>0.61 </td></tr>
 <tr>
@@ -254,6 +254,7 @@ Performance on ARM Cortex M3</h1>
 <td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0034</td><td>0.0038</td><td>0.0015</td><td>0.0016</td><td>0.0021 </td></tr>
 </table>
 <p>Note 1. SATURNIN-Short is limited to no more than 15 bytes of payload, so there are no performance figures for 128-byte packets, and the 16-byte columns report the results for 15 bytes of payload instead.</p>
+<p>Note 2. COMET-128_CHAM-128/128 and ESTATE_TweGIFT-128 are not the primary members from the algorithm authors. Instead, the authors recommend AES-based versions of COMET and ESTATE, which are not implemented in this libary.</p>
 <p>The hash algorithms are compared against BLAKE2s instead of ChaChaPoly:</p>
 <table class="doxtable">
 <tr>
@@ -542,7 +543,7 @@ Overall group rankings</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 28 2020 09:44:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 28 2020 14:58:19 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
