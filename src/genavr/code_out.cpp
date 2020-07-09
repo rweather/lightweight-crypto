@@ -305,6 +305,13 @@ static void Insn_write_lpm_switch(std::ostream &ostream, const Insn &insn)
     ostream << "#endif" << std::endl;
 }
 
+static void Insn_write_lpm_adjust(std::ostream &ostream, const Insn &insn)
+{
+    ostream << "\tadd r31,";
+    Insn_write_reg(ostream, insn.reg1());
+    ostream << std::endl;
+}
+
 static void Insn_write_lpm_clean(std::ostream &ostream)
 {
     // Pop the previous state of the RAMPZ register.
@@ -353,6 +360,7 @@ void Insn::write(std::ostream &ostream, const Code &code, int offset) const
     case LPM_SBOX:  Insn_write_lpm(ostream, *this, true); break;
     case LPM_SETUP: Insn_write_lpm_setup(ostream, *this); break;
     case LPM_SWITCH:Insn_write_lpm_switch(ostream, *this); break;
+    case LPM_ADJUST:Insn_write_lpm_adjust(ostream, *this); break;
     case LPM_CLEAN: Insn_write_lpm_clean(ostream); break;
     case LSL:       Insn_write_onereg(ostream, "lsl", *this); break;
     case LSR:       Insn_write_onereg(ostream, "lsr", *this); break;

@@ -1295,6 +1295,70 @@ static bool pyjamask(enum Mode mode)
     return ok;
 }
 
+static bool saturnin_setup_key(enum Mode mode)
+{
+    Code code;
+    gen_saturnin_setup_key(code);
+    if (mode == Generate) {
+        code.sbox_write(std::cout, 0, get_saturnin_round_constants());
+        code.write(std::cout);
+    } else {
+        if (!test_saturnin_setup_key(code)) {
+            std::cout << "Saturnin key setup tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Saturnin key setup tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool saturnin_encrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_saturnin_encrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_saturnin_encrypt(code)) {
+            std::cout << "Saturnin encrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Saturnin encrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool saturnin_decrypt_block(enum Mode mode)
+{
+    Code code;
+    gen_saturnin_decrypt(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_saturnin_decrypt(code)) {
+            std::cout << "Saturnin decrypt tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "Saturnin decrypt tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool saturnin(enum Mode mode)
+{
+    bool ok = true;
+    if (!saturnin_setup_key(mode))
+        ok = false;
+    if (!saturnin_encrypt_block(mode))
+        ok = false;
+    if (!saturnin_decrypt_block(mode))
+        ok = false;
+    return ok;
+}
+
 static bool simp256(enum Mode mode)
 {
     Code code;
@@ -1879,6 +1943,8 @@ int main(int argc, char *argv[])
             gen1 = photon256;
         } else if (!strcmp(argv[1], "Pyjamask")) {
             gen1 = pyjamask;
+        } else if (!strcmp(argv[1], "Saturnin")) {
+            gen1 = saturnin;
         } else if (!strcmp(argv[1], "SimP")) {
             gen1 = simp256;
             gen2 = simp192;
@@ -1978,6 +2044,8 @@ int main(int argc, char *argv[])
         if (!photon256(Test))
             exit_val = 1;
         if (!pyjamask(Test))
+            exit_val = 1;
+        if (!saturnin(Test))
             exit_val = 1;
         if (!simp256(Test))
             exit_val = 1;

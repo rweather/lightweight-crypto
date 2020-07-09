@@ -41,6 +41,7 @@ struct AVRState
     unsigned used;
     int pc;
     Sbox sbox;
+    int sbox_offset;
 
     AVRState()
     {
@@ -53,6 +54,7 @@ struct AVRState
         used = 0x01F2; // First address to allocate via alloc_buffer().
         pc = 0;
         setPair(32, MEM_SIZE); // Initial stack pointer.
+        sbox_offset = 0;
     }
 
     unsigned pair(int reg) const
@@ -273,11 +275,12 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
         break;
     case Insn::LPM_SBOX:
         // Load a value from an S-box table in program memory.
-        s.r[insn.reg1()] = s.sbox.lookup(s.r[insn.reg2()]);
+        s.r[insn.reg1()] = s.sbox.lookup(s.r[insn.reg2()] + s.sbox_offset);
         break;
     case Insn::LPM_SETUP:
         // Set up the S-box.
         s.sbox = code.sbox_get(insn.value());
+        s.sbox_offset = 0;
 
         // Destroy the Z register, but make sure the low byte is still zero.
         s.setPair(30, 0xBE00);
@@ -289,7 +292,12 @@ static void exec_insn(AVRState &s, const Code &code, const Insn &insn)
     case Insn::LPM_SWITCH:
         // Switch to a different S-box.
         s.sbox = code.sbox_get(insn.value());
+        s.sbox_offset = 0;
         s.setPair(30, 0xBE00);
+        break;
+    case Insn::LPM_ADJUST:
+        // Adjust the high byte of the S-box pointer for large S-boxes.
+        s.sbox_offset = s.r[insn.reg1()] * 256;
         break;
     case Insn::LPM_CLEAN:
         // Pop the RAMPZ value, which we expect to be 0xBA.

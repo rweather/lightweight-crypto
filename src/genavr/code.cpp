@@ -214,8 +214,6 @@ Reg Reg::z_ptr()
 
 Sbox::Sbox(const unsigned char *data, unsigned size)
 {
-    if (size > 256)
-        throw std::invalid_argument("invalid S-box size");
     m_data.assign(data, data + size);
 }
 
@@ -2011,6 +2009,19 @@ void Code::sbox_switch(unsigned char num, const Sbox &sbox)
     m_insns.push_back(Insn::reg2(Insn::LPM_SWITCH, temp.reg(0), num));
     releaseReg(temp);
     m_sboxes[num] = sbox;
+}
+
+/**
+ * \brief Adjusts the high byte of the S-box pointer in the Z register.
+ *
+ * \param reg Register that contains the high byte adjustment.
+ *
+ * This function is intended for working with S-boxes that are greater
+ * than 256 bytes in size.
+ */
+void Code::sbox_adjust(const Reg &reg)
+{
+    onereg(Insn::LPM_ADJUST, reg.reg(0));
 }
 
 /**

@@ -177,6 +177,7 @@ SATURNIN_FILES = \
     saturnin.h \
     internal-saturnin.c \
     internal-saturnin.h \
+    internal-saturnin-avr.S \
     $(COMMON_FILES)
 SKINNY_AEAD_FILES = \
     skinny-aead.c \

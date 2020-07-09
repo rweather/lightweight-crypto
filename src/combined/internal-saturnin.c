@@ -22,6 +22,8 @@
 
 #include "internal-saturnin.h"
 
+#if !defined(__AVR__)
+
 /* Round constants for various combinations of rounds and domain_sep */
 static uint32_t const saturnin_rc[] = {
     /* RC_10_1 */
@@ -477,3 +479,5 @@ void saturnin_decrypt_block
     saturnin_store_word32(output + 12, x6);
     saturnin_store_word32(output + 14, x7);
 }
+
+#endif /* !__AVR__ */

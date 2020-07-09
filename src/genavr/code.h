@@ -68,6 +68,7 @@ public:
         LPM_SBOX,   /**< Load from a table in program memory with an index */
         LPM_SETUP,  /**< Set up to perform sbox lookups using "lpm" */
         LPM_SWITCH, /**< Switch to a different sbox */
+        LPM_ADJUST, /**< Adjust the high byte of the S-box pointer */
         LPM_CLEAN,  /**< Clean up after sbox lookups using "lpm" */
         LSL,        /**< Logical shift left */
         LSR,        /**< Logical shift right */
@@ -576,6 +577,7 @@ public:
     // S-box management.
     void sbox_setup(unsigned char num, const Sbox &sbox);
     void sbox_switch(unsigned char num, const Sbox &sbox);
+    void sbox_adjust(const Reg &reg);
     void sbox_cleanup(void);
     void sbox_lookup(const Reg &reg1, const Reg &reg2);
     void sbox_write(std::ostream &ostream, unsigned char num, const Sbox &sbox);

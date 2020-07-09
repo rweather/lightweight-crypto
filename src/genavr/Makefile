@@ -19,6 +19,7 @@ OBJS = \
 	algorithm_knot.o \
 	algorithm_photon256.o \
 	algorithm_pyjamask.o \
+	algorithm_saturnin.o \
 	algorithm_simp.o \
 	algorithm_skinny128.o \
         algorithm_sliscp_light.o \
@@ -59,6 +60,7 @@ algorithm_keccak.o: code.h gen.h
 algorithm_knot.o: code.h gen.h
 algorithm_photon256.o: code.h gen.h
 algorithm_pyjamask.o: code.h gen.h
+algorithm_saturnin.o: code.h gen.h
 algorithm_simp.o: code.h gen.h
 algorithm_skinny128.o: code.h gen.h
 algorithm_sliscp_light.o: code.h gen.h
@@ -90,6 +92,7 @@ generate: $(TARGET)
 	./$(TARGET) KNOT-512 >../combined/internal-knot-512-avr.S
 	./$(TARGET) PHOTON-256 >../combined/internal-photon256-avr.S
 	./$(TARGET) Pyjamask >../combined/internal-pyjamask-avr.S
+	./$(TARGET) Saturnin >../combined/internal-saturnin-avr.S
 	./$(TARGET) SimP >../combined/internal-simp-avr.S
 	./$(TARGET) SKINNY-128 >../combined/internal-skinny128-avr.S
 	./$(TARGET) sLiSCP-light-256-SPIX >../combined/internal-sliscp-256-spix-avr.S

@@ -168,6 +168,15 @@ bool test_pyjamask_96_setup_key(Code &code);
 bool test_pyjamask_96_encrypt(Code &code);
 bool test_pyjamask_96_decrypt(Code &code);
 
+// Saturnin block cipher.
+Sbox get_saturnin_round_constants();
+void gen_saturnin_setup_key(Code &code);
+void gen_saturnin_encrypt(Code &code);
+void gen_saturnin_decrypt(Code &code);
+bool test_saturnin_setup_key(Code &code);
+bool test_saturnin_encrypt(Code &code);
+bool test_saturnin_decrypt(Code &code);
+
 // SimP permutation.
 void gen_simp_256_permutation(Code &code);
 void gen_simp_192_permutation(Code &code);
