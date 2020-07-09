@@ -91,6 +91,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>5.69</td><td>4.67</td><td>13.18</td><td>11.28</td><td>6.40 </td></tr>
 <tr>
+<td>SATURNIN-Short</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>6.36</td><td>6.16</td><td>6.26 </td></tr>
+<tr>
 <td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>5.15</td><td>4.32</td><td>12.07</td><td>10.55</td><td>5.88 </td></tr>
 <tr>
 <td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>4.38</td><td>3.87</td><td>8.37</td><td>7.70</td><td>4.94 </td></tr>
@@ -102,8 +104,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>3.03</td><td>2.75</td><td>3.45</td><td>3.33</td><td>3.04 </td></tr>
 <tr>
 <td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>2.79</td><td>2.57</td><td>4.10</td><td>3.91</td><td>3.02 </td></tr>
-<tr>
-<td>SATURNIN-Short +++</td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>3.16</td><td>2.84</td><td>2.99 </td></tr>
 <tr>
 <td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>2.61</td><td>2.41</td><td>3.88</td><td>3.70</td><td>2.83 </td></tr>
 <tr>
@@ -177,6 +177,8 @@ Performance of AEAD algorithms on AVR</h1>
 <tr>
 <td><b><em>SKINNY-AEAD-M1</em></b></td><td>128</td><td>128</td><td>128</td><td>1.14</td><td>0.97</td><td>2.64</td><td>2.37</td><td>1.31 </td></tr>
 <tr>
+<td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>1.06</td><td>1.06</td><td>1.53</td><td>1.51</td><td>1.19 </td></tr>
+<tr>
 <td><b><em>DryGASCON128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.89</td><td>0.89</td><td>1.93</td><td>1.90</td><td>1.09 </td></tr>
 <tr>
 <td><b><em>LOTUS-AEAD</em></b></td><td>128</td><td>128</td><td>64</td><td>0.83</td><td>0.84</td><td>2.21</td><td>2.17</td><td>1.06 </td></tr>
@@ -202,8 +204,6 @@ Performance of AEAD algorithms on AVR</h1>
 <td><b><em>WAGE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72 </td></tr>
 <tr>
 <td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71 </td></tr>
-<tr>
-<td><b><em>SATURNIN-CTR-Cascade</em></b> +++</td><td>256</td><td>128</td><td>256</td><td>0.54</td><td>0.54</td><td>0.77</td><td>0.77</td><td>0.60 </td></tr>
 <tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48 </td></tr>
 <tr>
@@ -249,6 +249,8 @@ Performance of hash algorithms on AVR</h1>
 <tr>
 <td>Esch384 (SPARKLE)</td><td>384</td><td>1.20</td><td>0.96</td><td>1.48</td><td>1.21 </td></tr>
 <tr>
+<td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.94</td><td>0.77</td><td>1.86</td><td>1.19 </td></tr>
+<tr>
 <td><b><em>Xoodyak</em></b></td><td>256</td><td>0.92</td><td>0.83</td><td>1.83</td><td>1.19 </td></tr>
 <tr>
 <td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.53</td><td>0.51</td><td>1.62</td><td>0.88 </td></tr>
@@ -256,8 +258,6 @@ Performance of hash algorithms on AVR</h1>
 <td><b><em>ORANGISH</em></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.92</td><td>0.71 </td></tr>
 <tr>
 <td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.66</td><td>0.55</td><td>0.91</td><td>0.71 </td></tr>
-<tr>
-<td><b><em>SATURNIN-Hash</em></b> +++</td><td>256</td><td>0.47</td><td>0.39</td><td>0.95</td><td>0.60 </td></tr>
 <tr>
 <td><b><em>PHOTON-Beetle-HASH</em></b></td><td>256</td><td>0.17</td><td>0.18</td><td>1.38</td><td>0.58 </td></tr>
 <tr>
@@ -310,13 +310,13 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>13</td><td>KNOT, SKINNY-AEAD </td></tr>
 <tr>
+<td>11</td><td>Saturnin </td></tr>
+<tr>
 <td>10</td><td>DryGASCON, LOTUS, SPIX </td></tr>
 <tr>
 <td>8</td><td>Oribatida </td></tr>
 <tr>
 <td>7</td><td>Pyjamask, WAGE </td></tr>
-<tr>
-<td>6</td><td>Saturnin </td></tr>
 <tr>
 <td>4</td><td>ACE, Elephant </td></tr>
 <tr>
@@ -335,13 +335,11 @@ Overall group rankings for AVR</h1>
 <tr>
 <td>13</td><td>Gimli </td></tr>
 <tr>
-<td>11</td><td>Xoodyak </td></tr>
+<td>11</td><td>Saturnin, Xoodyak </td></tr>
 <tr>
 <td>8</td><td>DryGASCON </td></tr>
 <tr>
 <td>7</td><td>ASCON, ORANGE </td></tr>
-<tr>
-<td>6</td><td>Saturnin </td></tr>
 <tr>
 <td>5</td><td>PHOTON-Beetle </td></tr>
 <tr>
@@ -354,7 +352,7 @@ Overall group rankings for AVR</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 28 2020 14:58:19 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 10 2020 05:05:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
