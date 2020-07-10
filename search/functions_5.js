@@ -31,7 +31,9 @@ var searchData=
   ['grain128_5faead_5fencrypt',['grain128_aead_encrypt',['../grain128_8h.html#ab7ae0b5a3bc56b377b57f549c89cbea2',1,'grain128.c']]],
   ['grain128_5fauthenticate',['grain128_authenticate',['../internal-grain128_8h.html#aff9aa77629794aea8a81ecf38267173a',1,'internal-grain128.c']]],
   ['grain128_5fcompute_5ftag',['grain128_compute_tag',['../internal-grain128_8h.html#a88947e94b7050dc5ec8719ff0971a4bc',1,'internal-grain128.c']]],
+  ['grain128_5fcore',['grain128_core',['../internal-grain128_8h.html#a543569e98a702cbcac8df915b481c810',1,'internal-grain128.c']]],
   ['grain128_5fdecrypt',['grain128_decrypt',['../internal-grain128_8h.html#a73cf4ed4bc18154d07d71c8ffb8e1e1d',1,'internal-grain128.c']]],
   ['grain128_5fencrypt',['grain128_encrypt',['../internal-grain128_8h.html#a5eea18f1ba3dea68807b402432d2c431',1,'internal-grain128.c']]],
+  ['grain128_5fpreoutput',['grain128_preoutput',['../internal-grain128_8h.html#a049382592272d9a27bf3c1f3c68007c2',1,'internal-grain128.h']]],
   ['grain128_5fsetup',['grain128_setup',['../internal-grain128_8h.html#ab8badf7d15868acb24c26bd3f78cd125',1,'internal-grain128.c']]]
 ];

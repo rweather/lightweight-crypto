@@ -106,6 +106,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a543569e98a702cbcac8df915b481c810"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-grain128_8h.html#a543569e98a702cbcac8df915b481c810">grain128_core</a> (<a class="el" href="structgrain128__state__t.html">grain128_state_t</a> *state, uint32_t x, uint32_t x2)</td></tr>
+<tr class="memdesc:a543569e98a702cbcac8df915b481c810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs 32 rounds of Grain-128 in parallel.  <a href="#a543569e98a702cbcac8df915b481c810">More...</a><br/></td></tr>
+<tr class="separator:a543569e98a702cbcac8df915b481c810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a049382592272d9a27bf3c1f3c68007c2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-grain128_8h.html#a049382592272d9a27bf3c1f3c68007c2">grain128_preoutput</a> (const <a class="el" href="structgrain128__state__t.html">grain128_state_t</a> *state)</td></tr>
+<tr class="memdesc:a049382592272d9a27bf3c1f3c68007c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates 32 bits of pre-output data.  <a href="#a049382592272d9a27bf3c1f3c68007c2">More...</a><br/></td></tr>
+<tr class="separator:a049382592272d9a27bf3c1f3c68007c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8badf7d15868acb24c26bd3f78cd125"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-grain128_8h.html#ab8badf7d15868acb24c26bd3f78cd125">grain128_setup</a> (<a class="el" href="structgrain128__state__t.html">grain128_state_t</a> *state, const unsigned char *key, const unsigned char *nonce)</td></tr>
 <tr class="memdesc:ab8badf7d15868acb24c26bd3f78cd125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the initial Grain-128 state with the key and nonce.  <a href="#ab8badf7d15868acb24c26bd3f78cd125">More...</a><br/></td></tr>
 <tr class="separator:ab8badf7d15868acb24c26bd3f78cd125"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,6 +195,48 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The final authentication tag is written to the first 8 bytes of state-&gt;ks. </p>
+
+</div>
+</div>
+<a class="anchor" id="a543569e98a702cbcac8df915b481c810"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void grain128_core </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structgrain128__state__t.html">grain128_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs 32 rounds of Grain-128 in parallel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Grain-128 state. </td></tr>
+    <tr><td class="paramname">x</td><td>32 bits of input to be incorporated into the LFSR state, or zero. </td></tr>
+    <tr><td class="paramname">x2</td><td>Another 32 bits to be incorporated into the NFSR state, or zero. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -290,6 +338,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a049382592272d9a27bf3c1f3c68007c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t grain128_preoutput </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structgrain128__state__t.html">grain128_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates 32 bits of pre-output data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Grain-128 state.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The generated 32 bits of pre-output data. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ab8badf7d15868acb24c26bd3f78cd125"></a>
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +408,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 10 2020 05:05:22 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 11 2020 08:20:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
