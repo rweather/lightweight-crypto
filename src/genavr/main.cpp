@@ -1020,6 +1020,83 @@ static bool gimli24(enum Mode mode)
     return true;
 }
 
+static bool grain128_core(enum Mode mode)
+{
+    Code code;
+    gen_grain128_core(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_grain128_core(code)) {
+            std::cout << "Grain-128 core tests FAILED" << std::endl;
+            return false;
+        } else {
+                std::cout << "Grain-128 core tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool grain128_preoutput(enum Mode mode)
+{
+    Code code;
+    gen_grain128_preoutput(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_grain128_preoutput(code)) {
+            std::cout << "Grain-128 preoutput tests FAILED" << std::endl;
+            return false;
+        } else {
+                std::cout << "Grain-128 preoutput tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool grain128_swap_word32(enum Mode mode)
+{
+    Code code;
+    gen_grain128_swap_word32(code);
+    if (mode == Generate)
+        code.write(std::cout);
+    return true;
+}
+
+static bool grain128_compute_tag(enum Mode mode)
+{
+    Code code;
+    gen_grain128_compute_tag(code);
+    if (mode == Generate)
+        code.write(std::cout);
+    return true;
+}
+
+static bool grain128_interleave(enum Mode mode)
+{
+    Code code;
+    gen_grain128_interleave(code);
+    if (mode == Generate)
+        code.write(std::cout);
+    return true;
+}
+
+static bool grain128(enum Mode mode)
+{
+    bool ok = true;
+    if (!grain128_core(mode))
+        ok = false;
+    if (!grain128_preoutput(mode))
+        ok = false;
+    if (!grain128_swap_word32(mode))
+        ok = false;
+    if (!grain128_compute_tag(mode))
+        ok = false;
+    if (!grain128_interleave(mode))
+        ok = false;
+    return ok;
+}
+
 static bool keccakp_200(enum Mode mode)
 {
     Code code;
@@ -1930,6 +2007,8 @@ int main(int argc, char *argv[])
             gen1 = gift64_alt;
         } else if (!strcmp(argv[1], "GIMLI-24")) {
             gen1 = gimli24;
+        } else if (!strcmp(argv[1], "Grain-128")) {
+            gen1 = grain128;
         } else if (!strcmp(argv[1], "Keccak")) {
             gen1 = keccakp_200;
             gen2 = keccakp_400;
@@ -2030,6 +2109,8 @@ int main(int argc, char *argv[])
         if (!gift64_alt(Test))
             exit_val = 1;
         if (!gimli24(Test))
+            exit_val = 1;
+        if (!grain128(Test))
             exit_val = 1;
         if (!keccakp_200(Test))
             exit_val = 1;

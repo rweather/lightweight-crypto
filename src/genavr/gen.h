@@ -135,6 +135,15 @@ bool test_gift64_decrypt_alt(Code &code);
 void gen_gimli24_permutation(Code &code);
 bool test_gimli24_permutation(Code &code);
 
+// Grain-128 stream cipher.
+void gen_grain128_core(Code &code);
+void gen_grain128_preoutput(Code &code);
+void gen_grain128_swap_word32(Code &code);
+void gen_grain128_compute_tag(Code &code);
+void gen_grain128_interleave(Code &code);
+bool test_grain128_core(Code &code);
+bool test_grain128_preoutput(Code &code);
+
 // Keccak permutation.
 void gen_keccakp_200_permutation(Code &code);
 void gen_keccakp_400_permutation(Code &code);

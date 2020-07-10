@@ -90,6 +90,7 @@ GRAIN128_FILES = \
     grain128.h \
     internal-grain128.c \
     internal-grain128.h \
+    internal-grain128-avr.S \
     $(COMMON_FILES)
 HYENA_FILES = \
     hyena.c \

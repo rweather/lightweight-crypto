@@ -26,14 +26,9 @@
 #define GWORD(a, b, start_bit) \
         (((a) << ((start_bit) % 32)) ^ ((b) >> (32 - ((start_bit) % 32))))
 
-/**
- * \brief Performs 32 rounds of Grain-128 in parallel.
- *
- * \param state Grain-128 state.
- * \param x 32 bits of input to be incorporated into the LFSR state, or zero.
- * \param x2 Another 32 bits to be incorporated into the NFSR state, or zero.
- */
-static void grain128_core
+#if !defined(__AVR__)
+
+void grain128_core
     (grain128_state_t *state, uint32_t x, uint32_t x2)
 {
     uint32_t s0, s1, s2, s3;
@@ -67,7 +62,7 @@ static void grain128_core
     /* Perform the NFSR feedback algorithm from the specification:
      *
      *      b'[i] = b[i + 1]
-     *      b'[127] = s'[127] ^ b[0] ^ b[26] ^ b[56] ^ b[91] ^ b[96]
+     *      b'[127] = s[0] ^ b[0] ^ b[26] ^ b[56] ^ b[91] ^ b[96]
      *              ^ (b[3] & b[67]) ^ (b[11] & b[13]) ^ (b[17] & b[18])
      *              ^ (b[27] & b[59]) ^ (b[40] & b[48]) ^ (b[61] & b[65])
      *              ^ (b[68] & b[84]) ^ (b[22] & b[24] & b[25])
@@ -106,14 +101,19 @@ static void grain128_core
     state->nfsr[3] = x2;
 }
 
-/**
- * \brief Generates 32 bits of pre-output data.
- *
- * \param state Grain-128 state.
- *
- * \return The generated 32 bits of pre-output data.
- */
-static uint32_t grain128_preoutput(const grain128_state_t *state)
+#define grain128_preoutput grain128_preoutput_inner
+#define grain128_preoutput_setup(state) grain128_preoutput((state))
+
+#else /* __AVR__ */
+
+/* For some reason, the AVR assembly preoutput doesn't work for key setup
+ * but does work everywhere else.  Investigate and fix this later. */
+uint32_t grain128_preoutput(const grain128_state_t *state);
+#define grain128_preoutput_setup(state) grain128_preoutput_inner((state))
+
+#endif /* __AVR__ */
+
+uint32_t grain128_preoutput_inner(const grain128_state_t *state)
 {
     uint32_t s0, s1, s2, s3;
     uint32_t b0, b1, b2, b3;
@@ -170,12 +170,37 @@ static uint32_t grain128_preoutput(const grain128_state_t *state)
         (_y) = (((_y) & (mask)) << (shift)) | (((_y) >> (shift)) & (mask)); \
     } while (0)
 
+#if defined(__AVR__)
+#define GRAIN128_ASM_HELPERS 1
+#endif
+
+#if defined(GRAIN128_ASM_HELPERS)
+
+/**
+ * \brief Loads a 32-bit word and swaps it from big-endian bit order
+ * into little-endian bit order.
+ *
+ * \param data Points to the word to be loaded.
+ * \return Little-endian version of the 32-bit word at \a data.
+ */
+uint32_t grain128_swap_word32(const unsigned char *data);
+
+/**
+ * \brief Interleaves the bits in a 16-byte keystream block to separate
+ * out the even and odd bits.
+ *
+ * \param ks Points to the keystream block.
+ */
+void grain128_interleave(unsigned char *ks);
+
+#endif
+
 void grain128_setup
     (grain128_state_t *state, const unsigned char *key,
      const unsigned char *nonce)
 {
     uint32_t k[4];
-    unsigned round;
+    uint8_t round;
 
     /* Internally, the Grain-128 stream cipher uses big endian bit
      * order, but the Grain-128AEAD specification for NIST uses little
@@ -187,26 +212,33 @@ void grain128_setup
      * P = [7 6 5 4 3 2 1 0 15 14 13 12 11 10 9 8
      *      23 22 21 20 19 18 17 16 31 30 29 28 27 26 25 24]
      */
+    #if defined(GRAIN128_ASM_HELPERS)
     #define SWAP_BITS(out, in) \
         do { \
-            uint32_t tmp = (in); \
+            (out) = grain128_swap_word32((in)); \
+        } while (0)
+    #else
+    #define SWAP_BITS(out, in) \
+        do { \
+            uint32_t tmp = be_load_word32((in)); \
             bit_permute_step_simple(tmp, 0x55555555, 1); \
             bit_permute_step_simple(tmp, 0x33333333, 2); \
             bit_permute_step_simple(tmp, 0x0f0f0f0f, 4); \
             (out) = tmp; \
         } while (0)
+    #endif
 
     /* Initialize the LFSR state with the nonce and padding */
-    SWAP_BITS(state->lfsr[0], be_load_word32(nonce));
-    SWAP_BITS(state->lfsr[1], be_load_word32(nonce + 4));
-    SWAP_BITS(state->lfsr[2], be_load_word32(nonce + 8));
+    SWAP_BITS(state->lfsr[0], nonce);
+    SWAP_BITS(state->lfsr[1], nonce + 4);
+    SWAP_BITS(state->lfsr[2], nonce + 8);
     state->lfsr[3] = 0xFFFFFFFEU; /* pad with all-1s and a terminating 0 */
 
     /* Initialize the NFSR state with the key */
-    SWAP_BITS(k[0], be_load_word32(key));
-    SWAP_BITS(k[1], be_load_word32(key + 4));
-    SWAP_BITS(k[2], be_load_word32(key + 8));
-    SWAP_BITS(k[3], be_load_word32(key + 12));
+    SWAP_BITS(k[0], key);
+    SWAP_BITS(k[1], key + 4);
+    SWAP_BITS(k[2], key + 8);
+    SWAP_BITS(k[3], key + 12);
     state->nfsr[0] = k[0];
     state->nfsr[1] = k[1];
     state->nfsr[2] = k[2];
@@ -215,7 +247,7 @@ void grain128_setup
     /* Perform 256 rounds of Grain-128 to mix up the initial state.
      * The rounds can be performed 32 at a time: 32 * 8 = 256 */
     for (round = 0; round < 8; ++round) {
-        uint32_t y = grain128_preoutput(state);
+        uint32_t y = grain128_preoutput_setup(state);
         grain128_core(state, y, y);
     }
 
@@ -241,6 +273,7 @@ void grain128_setup
  */
 static void grain128_next_keystream(grain128_state_t *state)
 {
+#if !defined(GRAIN128_ASM_HELPERS)
     unsigned posn;
     for (posn = 0; posn < sizeof(state->ks); posn += 4) {
         /* Get the next word of pre-output and run the Grain-128 core */
@@ -264,6 +297,16 @@ static void grain128_next_keystream(grain128_state_t *state)
         bit_permute_step_simple(x, 0x00ff00ff, 8);
         be_store_word32(state->ks + posn, x);
     }
+#else
+    /* Generate the data and then perform the interleaving */
+    unsigned posn;
+    for (posn = 0; posn < sizeof(state->ks); posn += 4) {
+        uint32_t x = grain128_preoutput(state);
+        le_store_word32(state->ks + posn, x);
+        grain128_core(state, 0, 0);
+    }
+    grain128_interleave(state->ks);
+#endif
 }
 
 void grain128_authenticate
@@ -394,6 +437,8 @@ void grain128_decrypt
     state->posn = posn;
 }
 
+#if !defined(__AVR__)
+
 void grain128_compute_tag(grain128_state_t *state)
 {
     uint64_t x;
@@ -409,3 +454,5 @@ void grain128_compute_tag(grain128_state_t *state)
     bit_permute_step_simple(x, 0x0f0f0f0f0f0f0f0fULL, 4);
     be_store_word64(state->ks, x);
 }
+
+#endif /* !__AVR__ */

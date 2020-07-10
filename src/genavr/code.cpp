@@ -188,6 +188,16 @@ Reg Reg::shuffle(unsigned char offset0, unsigned char offset1,
     return shuffle(pattern);
 }
 
+Reg Reg::append(const Reg &other)
+{
+    Reg temp;
+    for (int index = 0; index < size(); ++index)
+        temp.m_regs.push_back(m_regs[index]);
+    for (int index = 0; index < other.size(); ++index)
+        temp.m_regs.push_back(other.m_regs[index]);
+    return temp;
+}
+
 Reg Reg::x_ptr()
 {
     Reg ptr;
@@ -2408,6 +2418,24 @@ void Code::print(const char *str)
         immreg(Insn::PRINTCH, 16, (unsigned char)(*str));
         ++str;
     }
+}
+
+void Code::print_reg_name(const char *tag, const Reg &reg)
+{
+    if (!hasFlag(Print))
+        return;
+    print(tag);
+    print(": ");
+    for (int index = 0; index < reg.size(); ++index) {
+        int r = reg.reg(index);
+        immreg(Insn::PRINTCH, 16, 'r');
+        if (r >= 10)
+            immreg(Insn::PRINTCH, 16, '0' + (r / 10));
+        immreg(Insn::PRINTCH, 16, '0' + (r % 10));
+        if (index < (reg.size() - 1))
+            immreg(Insn::PRINTCH, 16, ':');
+    }
+    println();
 }
 
 void Code::println(void)

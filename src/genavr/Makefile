@@ -15,6 +15,7 @@ OBJS = \
 	algorithm_gift128_fixsliced.o \
 	algorithm_gift64.o \
 	algorithm_gimli24.o \
+	algorithm_grain128.o \
 	algorithm_keccak.o \
 	algorithm_knot.o \
 	algorithm_photon256.o \
@@ -56,6 +57,7 @@ algorithm_gift128.o: code.h gen.h
 algorithm_gift128_fixsliced.o: code.h gen.h
 algorithm_gift64.o: code.h gen.h
 algorithm_gimli24.o: code.h gen.h
+algorithm_grain128.o: code.h gen.h
 algorithm_keccak.o: code.h gen.h
 algorithm_knot.o: code.h gen.h
 algorithm_photon256.o: code.h gen.h
@@ -86,6 +88,7 @@ generate: $(TARGET)
 	./$(TARGET) GIFT-128n-fs-80 >../combined/internal-gift128n-full-avr.S
 	./$(TARGET) GIFT-64 >../combined/internal-gift64-avr.S
 	./$(TARGET) GIMLI-24 >../combined/internal-gimli24-avr.S
+	./$(TARGET) Grain-128 >../combined/internal-grain128-avr.S
 	./$(TARGET) Keccak >../combined/internal-keccak-avr.S
 	./$(TARGET) KNOT-256 >../combined/internal-knot-256-avr.S
 	./$(TARGET) KNOT-384 >../combined/internal-knot-384-avr.S

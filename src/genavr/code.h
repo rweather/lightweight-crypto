@@ -336,6 +336,15 @@ public:
                 unsigned char offset6, unsigned char offset7) const;
 
     /**
+     * \brief Appends another register to this one to create a combined set.
+     *
+     * \param other The other register to append.
+     *
+     * \return The concatenation of this register and \a other.
+     */
+    Reg append(const Reg &other);
+
+    /**
      * \brief Gets a reference to the X pointer.
      *
      * \return A reference to r26 and r27.
@@ -623,7 +632,8 @@ public:
         { exec_encrypt_block(key, key_len, output, output_len,
                              input, input_len, tweak); }
     void exec_permutation
-        (void *state, unsigned state_len, unsigned char count = 0);
+        (void *state, unsigned state_len, unsigned count = 0,
+         unsigned arg2 = 0, unsigned arg3 = 0, unsigned arg4 = 0);
     void exec_tinyjambu
         (void *state, unsigned state_len, const void *key,
          unsigned key_len, unsigned rounds);
@@ -634,6 +644,7 @@ public:
     // Diagnostics for desktop testing.
     void print(const Reg &reg);
     void print(const char *str);
+    void print_reg_name(const char *tag, const Reg &reg);
     void println(void);
 
     // Low-level functions for creating single instructions.  It is better

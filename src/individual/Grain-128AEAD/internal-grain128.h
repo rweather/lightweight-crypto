@@ -52,6 +52,25 @@ typedef struct
 } grain128_state_t;
 
 /**
+ * \brief Performs 32 rounds of Grain-128 in parallel.
+ *
+ * \param state Grain-128 state.
+ * \param x 32 bits of input to be incorporated into the LFSR state, or zero.
+ * \param x2 Another 32 bits to be incorporated into the NFSR state, or zero.
+ */
+void grain128_core
+    (grain128_state_t *state, uint32_t x, uint32_t x2);
+
+/**
+ * \brief Generates 32 bits of pre-output data.
+ *
+ * \param state Grain-128 state.
+ *
+ * \return The generated 32 bits of pre-output data.
+ */
+uint32_t grain128_preoutput(const grain128_state_t *state);
+
+/**
  * \brief Sets up the initial Grain-128 state with the key and nonce.
  *
  * \param state Grain-128 state to be initialized.
