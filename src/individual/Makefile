@@ -66,6 +66,7 @@ FORKAE_FILES = \
     internal-forkae-saef.h \
     internal-forkskinny.c \
     internal-forkskinny.h \
+    internal-forkskinny-avr.S \
     internal-skinnyutil.h \
     $(COMMON_FILES)
 GIFT_COFB_FILES = \

@@ -40,6 +40,8 @@ static unsigned char const RC[87] = {
     0x4a, 0x14, 0x29, 0x52, 0x24, 0x48, 0x10
 };
 
+#if !defined(__AVR__)
+
 void forkskinny_128_256_rounds
     (forkskinny_128_256_state_t *state, unsigned first, unsigned last)
 {
@@ -585,3 +587,5 @@ void forkskinny_64_192_reverse_tk
         --rounds;
     }
 }
+
+#endif /* !__AVR__ */

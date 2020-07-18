@@ -584,8 +584,8 @@ public:
     void swapmove(const Reg &reg1, const Reg &reg2, unsigned long long mask, unsigned shift, const Reg &temp = Reg());
 
     // S-box management.
-    void sbox_setup(unsigned char num, const Sbox &sbox);
-    void sbox_switch(unsigned char num, const Sbox &sbox);
+    void sbox_setup(unsigned char num, const Sbox &sbox, const Reg &temp = Reg());
+    void sbox_switch(unsigned char num, const Sbox &sbox, const Reg &temp = Reg());
     void sbox_adjust(const Reg &reg);
     void sbox_cleanup(void);
     void sbox_lookup(const Reg &reg1, const Reg &reg2);

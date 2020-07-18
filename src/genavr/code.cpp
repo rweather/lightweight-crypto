@@ -1985,6 +1985,7 @@ void Code::swapmove
  *
  * \param num Number of the S-box table if there is more than one.
  * \param sbox Data for the S-box table, for use by the interpreter.
+ * \param temp Caller-provided temporary high register.
  *
  * This function will modify the Z and RAMPZ registers to point at the
  * S-box table.  The previous verison of RAMPZ is pushed on the stack.
@@ -1993,11 +1994,15 @@ void Code::swapmove
  *
  * \sa sbox_cleanup(), sbox_lookup()
  */
-void Code::sbox_setup(unsigned char num, const Sbox &sbox)
+void Code::sbox_setup(unsigned char num, const Sbox &sbox, const Reg &temp)
 {
-    Reg temp = allocateHighReg(1);
-    m_insns.push_back(Insn::reg2(Insn::LPM_SETUP, temp.reg(0), num));
-    releaseReg(temp);
+    if (temp.size() == 0 || temp.reg(0) < 16) {
+        Reg t = allocateHighReg(1);
+        m_insns.push_back(Insn::reg2(Insn::LPM_SETUP, t.reg(0), num));
+        releaseReg(t);
+    } else {
+        m_insns.push_back(Insn::reg2(Insn::LPM_SETUP, temp.reg(0), num));
+    }
     m_sboxes[num] = sbox;
 }
 
@@ -2006,6 +2011,7 @@ void Code::sbox_setup(unsigned char num, const Sbox &sbox)
  *
  * \param num Number of the S-box table if there is more than one.
  * \param sbox Data for the S-box table, for use by the interpreter.
+ * \param temp Caller-provided temporary high register.
  *
  * This function switches directly to the new Z and RAMPZ values without
  * saving RAMPZ on the stack.  It is assumed that RAMPZ was already saved
@@ -2013,11 +2019,15 @@ void Code::sbox_setup(unsigned char num, const Sbox &sbox)
  *
  * \sa sbox_setup()
  */
-void Code::sbox_switch(unsigned char num, const Sbox &sbox)
+void Code::sbox_switch(unsigned char num, const Sbox &sbox, const Reg &temp)
 {
-    Reg temp = allocateHighReg(1);
-    m_insns.push_back(Insn::reg2(Insn::LPM_SWITCH, temp.reg(0), num));
-    releaseReg(temp);
+    if (temp.size() == 0 || temp.reg(0) < 16) {
+        Reg t = allocateHighReg(1);
+        m_insns.push_back(Insn::reg2(Insn::LPM_SWITCH, t.reg(0), num));
+        releaseReg(t);
+    } else {
+        m_insns.push_back(Insn::reg2(Insn::LPM_SWITCH, temp.reg(0), num));
+    }
     m_sboxes[num] = sbox;
 }
 

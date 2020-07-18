@@ -94,6 +94,250 @@ static bool cham64(enum Mode mode)
     return true;
 }
 
+static void forkskinny_sboxes(enum Mode mode)
+{
+    if (mode == Generate) {
+        Code code;
+        for (int index = 0; index < FORKSKINNY_SBOX_COUNT; ++index)
+            code.sbox_write(std::cout, index, get_forkskinny_sbox(index));
+    }
+}
+
+static bool forkskinny128_256_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_256_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_256_rounds(code)) {
+            std::cout << "ForkSkinny-128-256-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-256-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_256_inv_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_256_inv_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_256_inv_rounds(code)) {
+            std::cout << "ForkSkinny-128-256-inv-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-256-inv-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_256_forward_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_256_forward_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_256_forward_tk(code)) {
+            std::cout << "ForkSkinny-128-256-forward-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-256-forward-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_256_reverse_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_256_reverse_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_256_reverse_tk(code)) {
+            std::cout << "ForkSkinny-128-256-reverse-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-256-reverse-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_384_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_384_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_384_rounds(code)) {
+            std::cout << "ForkSkinny-128-384-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-384-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_384_inv_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_384_inv_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_384_inv_rounds(code)) {
+            std::cout << "ForkSkinny-128-384-inv-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-384-inv-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_384_forward_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_384_forward_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_384_forward_tk(code)) {
+            std::cout << "ForkSkinny-128-384-forward-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-384-forward-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny128_384_reverse_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny128_384_reverse_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny128_384_reverse_tk(code)) {
+            std::cout << "ForkSkinny-128-384-reverse-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-128-384-reverse-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny64_192_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny64_192_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny64_192_rounds(code)) {
+            std::cout << "ForkSkinny-64-192-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-64-192-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny64_192_inv_rounds(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny64_192_inv_rounds(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny64_192_inv_rounds(code)) {
+            std::cout << "ForkSkinny-64-192-inv-rounds tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-64-192-inv-rounds tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny64_192_forward_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny64_192_forward_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny64_192_forward_tk(code)) {
+            std::cout << "ForkSkinny-64-192-forward-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-64-192-forward-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny64_192_reverse_tk(enum Mode mode)
+{
+    Code code;
+    gen_forkskinny64_192_reverse_tk(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_forkskinny64_192_reverse_tk(code)) {
+            std::cout << "ForkSkinny-64-192-reverse-tk tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "ForkSkinny-64-192-reverse-tk tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool forkskinny(enum Mode mode)
+{
+    bool ok = true;
+    forkskinny_sboxes(mode);
+    if (!forkskinny128_256_rounds(mode))
+        ok = false;
+    if (!forkskinny128_256_inv_rounds(mode))
+        ok = false;
+    if (!forkskinny128_256_forward_tk(mode))
+        ok = false;
+    if (!forkskinny128_256_reverse_tk(mode))
+        ok = false;
+    if (!forkskinny128_384_rounds(mode))
+        ok = false;
+    if (!forkskinny128_384_inv_rounds(mode))
+        ok = false;
+    if (!forkskinny128_384_forward_tk(mode))
+        ok = false;
+    if (!forkskinny128_384_reverse_tk(mode))
+        ok = false;
+    if (!forkskinny64_192_rounds(mode))
+        ok = false;
+    if (!forkskinny64_192_inv_rounds(mode))
+        ok = false;
+    if (!forkskinny64_192_forward_tk(mode))
+        ok = false;
+    if (!forkskinny64_192_reverse_tk(mode))
+        ok = false;
+    return ok;
+}
+
 static bool gascon128_core(enum Mode mode)
 {
     Code code;
@@ -1974,6 +2218,8 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "CHAM")) {
             gen1 = cham128;
             gen2 = cham64;
+        } else if (!strcmp(argv[1], "ForkSkinny")) {
+            gen1 = forkskinny;
         } else if (!strcmp(argv[1], "GASCON")) {
             gen1 = gascon128;
             gen2 = gascon256;
@@ -2075,6 +2321,8 @@ int main(int argc, char *argv[])
         if (!cham128(Test))
             exit_val = 1;
         if (!cham64(Test))
+            exit_val = 1;
+        if (!forkskinny(Test))
             exit_val = 1;
         if (!gascon128(Test))
             exit_val = 1;

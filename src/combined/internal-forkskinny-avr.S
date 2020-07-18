@@ -1,0 +1,8880 @@
+#if defined(__AVR__)
+#include <avr/io.h>
+/* Automatically generated - do not edit */
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_0, @object
+	.size	table_0, 256
+table_0:
+	.byte	101
+	.byte	76
+	.byte	106
+	.byte	66
+	.byte	75
+	.byte	99
+	.byte	67
+	.byte	107
+	.byte	85
+	.byte	117
+	.byte	90
+	.byte	122
+	.byte	83
+	.byte	115
+	.byte	91
+	.byte	123
+	.byte	53
+	.byte	140
+	.byte	58
+	.byte	129
+	.byte	137
+	.byte	51
+	.byte	128
+	.byte	59
+	.byte	149
+	.byte	37
+	.byte	152
+	.byte	42
+	.byte	144
+	.byte	35
+	.byte	153
+	.byte	43
+	.byte	229
+	.byte	204
+	.byte	232
+	.byte	193
+	.byte	201
+	.byte	224
+	.byte	192
+	.byte	233
+	.byte	213
+	.byte	245
+	.byte	216
+	.byte	248
+	.byte	208
+	.byte	240
+	.byte	217
+	.byte	249
+	.byte	165
+	.byte	28
+	.byte	168
+	.byte	18
+	.byte	27
+	.byte	160
+	.byte	19
+	.byte	169
+	.byte	5
+	.byte	181
+	.byte	10
+	.byte	184
+	.byte	3
+	.byte	176
+	.byte	11
+	.byte	185
+	.byte	50
+	.byte	136
+	.byte	60
+	.byte	133
+	.byte	141
+	.byte	52
+	.byte	132
+	.byte	61
+	.byte	145
+	.byte	34
+	.byte	156
+	.byte	44
+	.byte	148
+	.byte	36
+	.byte	157
+	.byte	45
+	.byte	98
+	.byte	74
+	.byte	108
+	.byte	69
+	.byte	77
+	.byte	100
+	.byte	68
+	.byte	109
+	.byte	82
+	.byte	114
+	.byte	92
+	.byte	124
+	.byte	84
+	.byte	116
+	.byte	93
+	.byte	125
+	.byte	161
+	.byte	26
+	.byte	172
+	.byte	21
+	.byte	29
+	.byte	164
+	.byte	20
+	.byte	173
+	.byte	2
+	.byte	177
+	.byte	12
+	.byte	188
+	.byte	4
+	.byte	180
+	.byte	13
+	.byte	189
+	.byte	225
+	.byte	200
+	.byte	236
+	.byte	197
+	.byte	205
+	.byte	228
+	.byte	196
+	.byte	237
+	.byte	209
+	.byte	241
+	.byte	220
+	.byte	252
+	.byte	212
+	.byte	244
+	.byte	221
+	.byte	253
+	.byte	54
+	.byte	142
+	.byte	56
+	.byte	130
+	.byte	139
+	.byte	48
+	.byte	131
+	.byte	57
+	.byte	150
+	.byte	38
+	.byte	154
+	.byte	40
+	.byte	147
+	.byte	32
+	.byte	155
+	.byte	41
+	.byte	102
+	.byte	78
+	.byte	104
+	.byte	65
+	.byte	73
+	.byte	96
+	.byte	64
+	.byte	105
+	.byte	86
+	.byte	118
+	.byte	88
+	.byte	120
+	.byte	80
+	.byte	112
+	.byte	89
+	.byte	121
+	.byte	166
+	.byte	30
+	.byte	170
+	.byte	17
+	.byte	25
+	.byte	163
+	.byte	16
+	.byte	171
+	.byte	6
+	.byte	182
+	.byte	8
+	.byte	186
+	.byte	0
+	.byte	179
+	.byte	9
+	.byte	187
+	.byte	230
+	.byte	206
+	.byte	234
+	.byte	194
+	.byte	203
+	.byte	227
+	.byte	195
+	.byte	235
+	.byte	214
+	.byte	246
+	.byte	218
+	.byte	250
+	.byte	211
+	.byte	243
+	.byte	219
+	.byte	251
+	.byte	49
+	.byte	138
+	.byte	62
+	.byte	134
+	.byte	143
+	.byte	55
+	.byte	135
+	.byte	63
+	.byte	146
+	.byte	33
+	.byte	158
+	.byte	46
+	.byte	151
+	.byte	39
+	.byte	159
+	.byte	47
+	.byte	97
+	.byte	72
+	.byte	110
+	.byte	70
+	.byte	79
+	.byte	103
+	.byte	71
+	.byte	111
+	.byte	81
+	.byte	113
+	.byte	94
+	.byte	126
+	.byte	87
+	.byte	119
+	.byte	95
+	.byte	127
+	.byte	162
+	.byte	24
+	.byte	174
+	.byte	22
+	.byte	31
+	.byte	167
+	.byte	23
+	.byte	175
+	.byte	1
+	.byte	178
+	.byte	14
+	.byte	190
+	.byte	7
+	.byte	183
+	.byte	15
+	.byte	191
+	.byte	226
+	.byte	202
+	.byte	238
+	.byte	198
+	.byte	207
+	.byte	231
+	.byte	199
+	.byte	239
+	.byte	210
+	.byte	242
+	.byte	222
+	.byte	254
+	.byte	215
+	.byte	247
+	.byte	223
+	.byte	255
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_1, @object
+	.size	table_1, 256
+table_1:
+	.byte	172
+	.byte	232
+	.byte	104
+	.byte	60
+	.byte	108
+	.byte	56
+	.byte	168
+	.byte	236
+	.byte	170
+	.byte	174
+	.byte	58
+	.byte	62
+	.byte	106
+	.byte	110
+	.byte	234
+	.byte	238
+	.byte	166
+	.byte	163
+	.byte	51
+	.byte	54
+	.byte	102
+	.byte	99
+	.byte	227
+	.byte	230
+	.byte	225
+	.byte	164
+	.byte	97
+	.byte	52
+	.byte	49
+	.byte	100
+	.byte	161
+	.byte	228
+	.byte	141
+	.byte	201
+	.byte	73
+	.byte	29
+	.byte	77
+	.byte	25
+	.byte	137
+	.byte	205
+	.byte	139
+	.byte	143
+	.byte	27
+	.byte	31
+	.byte	75
+	.byte	79
+	.byte	203
+	.byte	207
+	.byte	133
+	.byte	192
+	.byte	64
+	.byte	21
+	.byte	69
+	.byte	16
+	.byte	128
+	.byte	197
+	.byte	130
+	.byte	135
+	.byte	18
+	.byte	23
+	.byte	66
+	.byte	71
+	.byte	194
+	.byte	199
+	.byte	150
+	.byte	147
+	.byte	3
+	.byte	6
+	.byte	86
+	.byte	83
+	.byte	211
+	.byte	214
+	.byte	209
+	.byte	148
+	.byte	81
+	.byte	4
+	.byte	1
+	.byte	84
+	.byte	145
+	.byte	212
+	.byte	156
+	.byte	216
+	.byte	88
+	.byte	12
+	.byte	92
+	.byte	8
+	.byte	152
+	.byte	220
+	.byte	154
+	.byte	158
+	.byte	10
+	.byte	14
+	.byte	90
+	.byte	94
+	.byte	218
+	.byte	222
+	.byte	149
+	.byte	208
+	.byte	80
+	.byte	5
+	.byte	85
+	.byte	0
+	.byte	144
+	.byte	213
+	.byte	146
+	.byte	151
+	.byte	2
+	.byte	7
+	.byte	82
+	.byte	87
+	.byte	210
+	.byte	215
+	.byte	157
+	.byte	217
+	.byte	89
+	.byte	13
+	.byte	93
+	.byte	9
+	.byte	153
+	.byte	221
+	.byte	155
+	.byte	159
+	.byte	11
+	.byte	15
+	.byte	91
+	.byte	95
+	.byte	219
+	.byte	223
+	.byte	22
+	.byte	19
+	.byte	131
+	.byte	134
+	.byte	70
+	.byte	67
+	.byte	195
+	.byte	198
+	.byte	65
+	.byte	20
+	.byte	193
+	.byte	132
+	.byte	17
+	.byte	68
+	.byte	129
+	.byte	196
+	.byte	28
+	.byte	72
+	.byte	200
+	.byte	140
+	.byte	76
+	.byte	24
+	.byte	136
+	.byte	204
+	.byte	26
+	.byte	30
+	.byte	138
+	.byte	142
+	.byte	74
+	.byte	78
+	.byte	202
+	.byte	206
+	.byte	53
+	.byte	96
+	.byte	224
+	.byte	165
+	.byte	101
+	.byte	48
+	.byte	160
+	.byte	229
+	.byte	50
+	.byte	55
+	.byte	162
+	.byte	167
+	.byte	98
+	.byte	103
+	.byte	226
+	.byte	231
+	.byte	61
+	.byte	105
+	.byte	233
+	.byte	173
+	.byte	109
+	.byte	57
+	.byte	169
+	.byte	237
+	.byte	59
+	.byte	63
+	.byte	171
+	.byte	175
+	.byte	107
+	.byte	111
+	.byte	235
+	.byte	239
+	.byte	38
+	.byte	35
+	.byte	179
+	.byte	182
+	.byte	118
+	.byte	115
+	.byte	243
+	.byte	246
+	.byte	113
+	.byte	36
+	.byte	241
+	.byte	180
+	.byte	33
+	.byte	116
+	.byte	177
+	.byte	244
+	.byte	44
+	.byte	120
+	.byte	248
+	.byte	188
+	.byte	124
+	.byte	40
+	.byte	184
+	.byte	252
+	.byte	42
+	.byte	46
+	.byte	186
+	.byte	190
+	.byte	122
+	.byte	126
+	.byte	250
+	.byte	254
+	.byte	37
+	.byte	112
+	.byte	240
+	.byte	181
+	.byte	117
+	.byte	32
+	.byte	176
+	.byte	245
+	.byte	34
+	.byte	39
+	.byte	178
+	.byte	183
+	.byte	114
+	.byte	119
+	.byte	242
+	.byte	247
+	.byte	45
+	.byte	121
+	.byte	249
+	.byte	189
+	.byte	125
+	.byte	41
+	.byte	185
+	.byte	253
+	.byte	43
+	.byte	47
+	.byte	187
+	.byte	191
+	.byte	123
+	.byte	127
+	.byte	251
+	.byte	255
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_2, @object
+	.size	table_2, 256
+table_2:
+	.byte	0
+	.byte	2
+	.byte	4
+	.byte	6
+	.byte	8
+	.byte	10
+	.byte	12
+	.byte	14
+	.byte	16
+	.byte	18
+	.byte	20
+	.byte	22
+	.byte	24
+	.byte	26
+	.byte	28
+	.byte	30
+	.byte	32
+	.byte	34
+	.byte	36
+	.byte	38
+	.byte	40
+	.byte	42
+	.byte	44
+	.byte	46
+	.byte	48
+	.byte	50
+	.byte	52
+	.byte	54
+	.byte	56
+	.byte	58
+	.byte	60
+	.byte	62
+	.byte	65
+	.byte	67
+	.byte	69
+	.byte	71
+	.byte	73
+	.byte	75
+	.byte	77
+	.byte	79
+	.byte	81
+	.byte	83
+	.byte	85
+	.byte	87
+	.byte	89
+	.byte	91
+	.byte	93
+	.byte	95
+	.byte	97
+	.byte	99
+	.byte	101
+	.byte	103
+	.byte	105
+	.byte	107
+	.byte	109
+	.byte	111
+	.byte	113
+	.byte	115
+	.byte	117
+	.byte	119
+	.byte	121
+	.byte	123
+	.byte	125
+	.byte	127
+	.byte	128
+	.byte	130
+	.byte	132
+	.byte	134
+	.byte	136
+	.byte	138
+	.byte	140
+	.byte	142
+	.byte	144
+	.byte	146
+	.byte	148
+	.byte	150
+	.byte	152
+	.byte	154
+	.byte	156
+	.byte	158
+	.byte	160
+	.byte	162
+	.byte	164
+	.byte	166
+	.byte	168
+	.byte	170
+	.byte	172
+	.byte	174
+	.byte	176
+	.byte	178
+	.byte	180
+	.byte	182
+	.byte	184
+	.byte	186
+	.byte	188
+	.byte	190
+	.byte	193
+	.byte	195
+	.byte	197
+	.byte	199
+	.byte	201
+	.byte	203
+	.byte	205
+	.byte	207
+	.byte	209
+	.byte	211
+	.byte	213
+	.byte	215
+	.byte	217
+	.byte	219
+	.byte	221
+	.byte	223
+	.byte	225
+	.byte	227
+	.byte	229
+	.byte	231
+	.byte	233
+	.byte	235
+	.byte	237
+	.byte	239
+	.byte	241
+	.byte	243
+	.byte	245
+	.byte	247
+	.byte	249
+	.byte	251
+	.byte	253
+	.byte	255
+	.byte	1
+	.byte	3
+	.byte	5
+	.byte	7
+	.byte	9
+	.byte	11
+	.byte	13
+	.byte	15
+	.byte	17
+	.byte	19
+	.byte	21
+	.byte	23
+	.byte	25
+	.byte	27
+	.byte	29
+	.byte	31
+	.byte	33
+	.byte	35
+	.byte	37
+	.byte	39
+	.byte	41
+	.byte	43
+	.byte	45
+	.byte	47
+	.byte	49
+	.byte	51
+	.byte	53
+	.byte	55
+	.byte	57
+	.byte	59
+	.byte	61
+	.byte	63
+	.byte	64
+	.byte	66
+	.byte	68
+	.byte	70
+	.byte	72
+	.byte	74
+	.byte	76
+	.byte	78
+	.byte	80
+	.byte	82
+	.byte	84
+	.byte	86
+	.byte	88
+	.byte	90
+	.byte	92
+	.byte	94
+	.byte	96
+	.byte	98
+	.byte	100
+	.byte	102
+	.byte	104
+	.byte	106
+	.byte	108
+	.byte	110
+	.byte	112
+	.byte	114
+	.byte	116
+	.byte	118
+	.byte	120
+	.byte	122
+	.byte	124
+	.byte	126
+	.byte	129
+	.byte	131
+	.byte	133
+	.byte	135
+	.byte	137
+	.byte	139
+	.byte	141
+	.byte	143
+	.byte	145
+	.byte	147
+	.byte	149
+	.byte	151
+	.byte	153
+	.byte	155
+	.byte	157
+	.byte	159
+	.byte	161
+	.byte	163
+	.byte	165
+	.byte	167
+	.byte	169
+	.byte	171
+	.byte	173
+	.byte	175
+	.byte	177
+	.byte	179
+	.byte	181
+	.byte	183
+	.byte	185
+	.byte	187
+	.byte	189
+	.byte	191
+	.byte	192
+	.byte	194
+	.byte	196
+	.byte	198
+	.byte	200
+	.byte	202
+	.byte	204
+	.byte	206
+	.byte	208
+	.byte	210
+	.byte	212
+	.byte	214
+	.byte	216
+	.byte	218
+	.byte	220
+	.byte	222
+	.byte	224
+	.byte	226
+	.byte	228
+	.byte	230
+	.byte	232
+	.byte	234
+	.byte	236
+	.byte	238
+	.byte	240
+	.byte	242
+	.byte	244
+	.byte	246
+	.byte	248
+	.byte	250
+	.byte	252
+	.byte	254
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_3, @object
+	.size	table_3, 256
+table_3:
+	.byte	0
+	.byte	128
+	.byte	1
+	.byte	129
+	.byte	2
+	.byte	130
+	.byte	3
+	.byte	131
+	.byte	4
+	.byte	132
+	.byte	5
+	.byte	133
+	.byte	6
+	.byte	134
+	.byte	7
+	.byte	135
+	.byte	8
+	.byte	136
+	.byte	9
+	.byte	137
+	.byte	10
+	.byte	138
+	.byte	11
+	.byte	139
+	.byte	12
+	.byte	140
+	.byte	13
+	.byte	141
+	.byte	14
+	.byte	142
+	.byte	15
+	.byte	143
+	.byte	16
+	.byte	144
+	.byte	17
+	.byte	145
+	.byte	18
+	.byte	146
+	.byte	19
+	.byte	147
+	.byte	20
+	.byte	148
+	.byte	21
+	.byte	149
+	.byte	22
+	.byte	150
+	.byte	23
+	.byte	151
+	.byte	24
+	.byte	152
+	.byte	25
+	.byte	153
+	.byte	26
+	.byte	154
+	.byte	27
+	.byte	155
+	.byte	28
+	.byte	156
+	.byte	29
+	.byte	157
+	.byte	30
+	.byte	158
+	.byte	31
+	.byte	159
+	.byte	160
+	.byte	32
+	.byte	161
+	.byte	33
+	.byte	162
+	.byte	34
+	.byte	163
+	.byte	35
+	.byte	164
+	.byte	36
+	.byte	165
+	.byte	37
+	.byte	166
+	.byte	38
+	.byte	167
+	.byte	39
+	.byte	168
+	.byte	40
+	.byte	169
+	.byte	41
+	.byte	170
+	.byte	42
+	.byte	171
+	.byte	43
+	.byte	172
+	.byte	44
+	.byte	173
+	.byte	45
+	.byte	174
+	.byte	46
+	.byte	175
+	.byte	47
+	.byte	176
+	.byte	48
+	.byte	177
+	.byte	49
+	.byte	178
+	.byte	50
+	.byte	179
+	.byte	51
+	.byte	180
+	.byte	52
+	.byte	181
+	.byte	53
+	.byte	182
+	.byte	54
+	.byte	183
+	.byte	55
+	.byte	184
+	.byte	56
+	.byte	185
+	.byte	57
+	.byte	186
+	.byte	58
+	.byte	187
+	.byte	59
+	.byte	188
+	.byte	60
+	.byte	189
+	.byte	61
+	.byte	190
+	.byte	62
+	.byte	191
+	.byte	63
+	.byte	64
+	.byte	192
+	.byte	65
+	.byte	193
+	.byte	66
+	.byte	194
+	.byte	67
+	.byte	195
+	.byte	68
+	.byte	196
+	.byte	69
+	.byte	197
+	.byte	70
+	.byte	198
+	.byte	71
+	.byte	199
+	.byte	72
+	.byte	200
+	.byte	73
+	.byte	201
+	.byte	74
+	.byte	202
+	.byte	75
+	.byte	203
+	.byte	76
+	.byte	204
+	.byte	77
+	.byte	205
+	.byte	78
+	.byte	206
+	.byte	79
+	.byte	207
+	.byte	80
+	.byte	208
+	.byte	81
+	.byte	209
+	.byte	82
+	.byte	210
+	.byte	83
+	.byte	211
+	.byte	84
+	.byte	212
+	.byte	85
+	.byte	213
+	.byte	86
+	.byte	214
+	.byte	87
+	.byte	215
+	.byte	88
+	.byte	216
+	.byte	89
+	.byte	217
+	.byte	90
+	.byte	218
+	.byte	91
+	.byte	219
+	.byte	92
+	.byte	220
+	.byte	93
+	.byte	221
+	.byte	94
+	.byte	222
+	.byte	95
+	.byte	223
+	.byte	224
+	.byte	96
+	.byte	225
+	.byte	97
+	.byte	226
+	.byte	98
+	.byte	227
+	.byte	99
+	.byte	228
+	.byte	100
+	.byte	229
+	.byte	101
+	.byte	230
+	.byte	102
+	.byte	231
+	.byte	103
+	.byte	232
+	.byte	104
+	.byte	233
+	.byte	105
+	.byte	234
+	.byte	106
+	.byte	235
+	.byte	107
+	.byte	236
+	.byte	108
+	.byte	237
+	.byte	109
+	.byte	238
+	.byte	110
+	.byte	239
+	.byte	111
+	.byte	240
+	.byte	112
+	.byte	241
+	.byte	113
+	.byte	242
+	.byte	114
+	.byte	243
+	.byte	115
+	.byte	244
+	.byte	116
+	.byte	245
+	.byte	117
+	.byte	246
+	.byte	118
+	.byte	247
+	.byte	119
+	.byte	248
+	.byte	120
+	.byte	249
+	.byte	121
+	.byte	250
+	.byte	122
+	.byte	251
+	.byte	123
+	.byte	252
+	.byte	124
+	.byte	253
+	.byte	125
+	.byte	254
+	.byte	126
+	.byte	255
+	.byte	127
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_4, @object
+	.size	table_4, 174
+table_4:
+	.byte	1
+	.byte	0
+	.byte	3
+	.byte	0
+	.byte	7
+	.byte	0
+	.byte	15
+	.byte	0
+	.byte	15
+	.byte	1
+	.byte	15
+	.byte	3
+	.byte	14
+	.byte	7
+	.byte	13
+	.byte	7
+	.byte	11
+	.byte	7
+	.byte	7
+	.byte	7
+	.byte	15
+	.byte	6
+	.byte	15
+	.byte	5
+	.byte	14
+	.byte	3
+	.byte	12
+	.byte	7
+	.byte	9
+	.byte	7
+	.byte	3
+	.byte	7
+	.byte	7
+	.byte	6
+	.byte	15
+	.byte	4
+	.byte	14
+	.byte	1
+	.byte	13
+	.byte	3
+	.byte	10
+	.byte	7
+	.byte	5
+	.byte	7
+	.byte	11
+	.byte	6
+	.byte	7
+	.byte	5
+	.byte	14
+	.byte	2
+	.byte	12
+	.byte	5
+	.byte	8
+	.byte	3
+	.byte	0
+	.byte	7
+	.byte	1
+	.byte	6
+	.byte	3
+	.byte	4
+	.byte	6
+	.byte	0
+	.byte	13
+	.byte	0
+	.byte	11
+	.byte	1
+	.byte	7
+	.byte	3
+	.byte	14
+	.byte	6
+	.byte	13
+	.byte	5
+	.byte	10
+	.byte	3
+	.byte	4
+	.byte	7
+	.byte	9
+	.byte	6
+	.byte	3
+	.byte	5
+	.byte	6
+	.byte	2
+	.byte	12
+	.byte	4
+	.byte	8
+	.byte	1
+	.byte	1
+	.byte	3
+	.byte	2
+	.byte	6
+	.byte	5
+	.byte	4
+	.byte	10
+	.byte	0
+	.byte	5
+	.byte	1
+	.byte	11
+	.byte	2
+	.byte	6
+	.byte	5
+	.byte	12
+	.byte	2
+	.byte	8
+	.byte	5
+	.byte	0
+	.byte	3
+	.byte	0
+	.byte	6
+	.byte	1
+	.byte	4
+	.byte	2
+	.byte	0
+	.byte	5
+	.byte	0
+	.byte	11
+	.byte	0
+	.byte	7
+	.byte	1
+	.byte	15
+	.byte	2
+	.byte	14
+	.byte	5
+	.byte	12
+	.byte	3
+	.byte	8
+	.byte	7
+	.byte	1
+	.byte	7
+	.byte	3
+	.byte	6
+	.byte	7
+	.byte	4
+	.byte	14
+	.byte	0
+	.byte	13
+	.byte	1
+	.byte	11
+	.byte	3
+	.byte	6
+	.byte	7
+	.byte	13
+	.byte	6
+	.byte	11
+	.byte	5
+	.byte	6
+	.byte	3
+	.byte	12
+	.byte	6
+	.byte	9
+	.byte	5
+	.byte	2
+	.byte	3
+	.byte	4
+	.byte	6
+	.byte	9
+	.byte	4
+	.byte	2
+	.byte	1
+	.byte	5
+	.byte	2
+	.byte	10
+	.byte	4
+	.byte	4
+	.byte	1
+	.byte	9
+	.byte	2
+	.byte	2
+	.byte	5
+	.byte	4
+	.byte	2
+	.byte	8
+	.byte	4
+	.byte	0
+	.byte	1
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_5, @object
+	.size	table_5, 256
+table_5:
+	.byte	204
+	.byte	198
+	.byte	201
+	.byte	192
+	.byte	193
+	.byte	202
+	.byte	194
+	.byte	203
+	.byte	195
+	.byte	200
+	.byte	197
+	.byte	205
+	.byte	196
+	.byte	206
+	.byte	199
+	.byte	207
+	.byte	108
+	.byte	102
+	.byte	105
+	.byte	96
+	.byte	97
+	.byte	106
+	.byte	98
+	.byte	107
+	.byte	99
+	.byte	104
+	.byte	101
+	.byte	109
+	.byte	100
+	.byte	110
+	.byte	103
+	.byte	111
+	.byte	156
+	.byte	150
+	.byte	153
+	.byte	144
+	.byte	145
+	.byte	154
+	.byte	146
+	.byte	155
+	.byte	147
+	.byte	152
+	.byte	149
+	.byte	157
+	.byte	148
+	.byte	158
+	.byte	151
+	.byte	159
+	.byte	12
+	.byte	6
+	.byte	9
+	.byte	0
+	.byte	1
+	.byte	10
+	.byte	2
+	.byte	11
+	.byte	3
+	.byte	8
+	.byte	5
+	.byte	13
+	.byte	4
+	.byte	14
+	.byte	7
+	.byte	15
+	.byte	28
+	.byte	22
+	.byte	25
+	.byte	16
+	.byte	17
+	.byte	26
+	.byte	18
+	.byte	27
+	.byte	19
+	.byte	24
+	.byte	21
+	.byte	29
+	.byte	20
+	.byte	30
+	.byte	23
+	.byte	31
+	.byte	172
+	.byte	166
+	.byte	169
+	.byte	160
+	.byte	161
+	.byte	170
+	.byte	162
+	.byte	171
+	.byte	163
+	.byte	168
+	.byte	165
+	.byte	173
+	.byte	164
+	.byte	174
+	.byte	167
+	.byte	175
+	.byte	44
+	.byte	38
+	.byte	41
+	.byte	32
+	.byte	33
+	.byte	42
+	.byte	34
+	.byte	43
+	.byte	35
+	.byte	40
+	.byte	37
+	.byte	45
+	.byte	36
+	.byte	46
+	.byte	39
+	.byte	47
+	.byte	188
+	.byte	182
+	.byte	185
+	.byte	176
+	.byte	177
+	.byte	186
+	.byte	178
+	.byte	187
+	.byte	179
+	.byte	184
+	.byte	181
+	.byte	189
+	.byte	180
+	.byte	190
+	.byte	183
+	.byte	191
+	.byte	60
+	.byte	54
+	.byte	57
+	.byte	48
+	.byte	49
+	.byte	58
+	.byte	50
+	.byte	59
+	.byte	51
+	.byte	56
+	.byte	53
+	.byte	61
+	.byte	52
+	.byte	62
+	.byte	55
+	.byte	63
+	.byte	140
+	.byte	134
+	.byte	137
+	.byte	128
+	.byte	129
+	.byte	138
+	.byte	130
+	.byte	139
+	.byte	131
+	.byte	136
+	.byte	133
+	.byte	141
+	.byte	132
+	.byte	142
+	.byte	135
+	.byte	143
+	.byte	92
+	.byte	86
+	.byte	89
+	.byte	80
+	.byte	81
+	.byte	90
+	.byte	82
+	.byte	91
+	.byte	83
+	.byte	88
+	.byte	85
+	.byte	93
+	.byte	84
+	.byte	94
+	.byte	87
+	.byte	95
+	.byte	220
+	.byte	214
+	.byte	217
+	.byte	208
+	.byte	209
+	.byte	218
+	.byte	210
+	.byte	219
+	.byte	211
+	.byte	216
+	.byte	213
+	.byte	221
+	.byte	212
+	.byte	222
+	.byte	215
+	.byte	223
+	.byte	76
+	.byte	70
+	.byte	73
+	.byte	64
+	.byte	65
+	.byte	74
+	.byte	66
+	.byte	75
+	.byte	67
+	.byte	72
+	.byte	69
+	.byte	77
+	.byte	68
+	.byte	78
+	.byte	71
+	.byte	79
+	.byte	236
+	.byte	230
+	.byte	233
+	.byte	224
+	.byte	225
+	.byte	234
+	.byte	226
+	.byte	235
+	.byte	227
+	.byte	232
+	.byte	229
+	.byte	237
+	.byte	228
+	.byte	238
+	.byte	231
+	.byte	239
+	.byte	124
+	.byte	118
+	.byte	121
+	.byte	112
+	.byte	113
+	.byte	122
+	.byte	114
+	.byte	123
+	.byte	115
+	.byte	120
+	.byte	117
+	.byte	125
+	.byte	116
+	.byte	126
+	.byte	119
+	.byte	127
+	.byte	252
+	.byte	246
+	.byte	249
+	.byte	240
+	.byte	241
+	.byte	250
+	.byte	242
+	.byte	251
+	.byte	243
+	.byte	248
+	.byte	245
+	.byte	253
+	.byte	244
+	.byte	254
+	.byte	247
+	.byte	255
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_6, @object
+	.size	table_6, 256
+table_6:
+	.byte	51
+	.byte	52
+	.byte	54
+	.byte	56
+	.byte	60
+	.byte	58
+	.byte	49
+	.byte	62
+	.byte	57
+	.byte	50
+	.byte	53
+	.byte	55
+	.byte	48
+	.byte	59
+	.byte	61
+	.byte	63
+	.byte	67
+	.byte	68
+	.byte	70
+	.byte	72
+	.byte	76
+	.byte	74
+	.byte	65
+	.byte	78
+	.byte	73
+	.byte	66
+	.byte	69
+	.byte	71
+	.byte	64
+	.byte	75
+	.byte	77
+	.byte	79
+	.byte	99
+	.byte	100
+	.byte	102
+	.byte	104
+	.byte	108
+	.byte	106
+	.byte	97
+	.byte	110
+	.byte	105
+	.byte	98
+	.byte	101
+	.byte	103
+	.byte	96
+	.byte	107
+	.byte	109
+	.byte	111
+	.byte	131
+	.byte	132
+	.byte	134
+	.byte	136
+	.byte	140
+	.byte	138
+	.byte	129
+	.byte	142
+	.byte	137
+	.byte	130
+	.byte	133
+	.byte	135
+	.byte	128
+	.byte	139
+	.byte	141
+	.byte	143
+	.byte	195
+	.byte	196
+	.byte	198
+	.byte	200
+	.byte	204
+	.byte	202
+	.byte	193
+	.byte	206
+	.byte	201
+	.byte	194
+	.byte	197
+	.byte	199
+	.byte	192
+	.byte	203
+	.byte	205
+	.byte	207
+	.byte	163
+	.byte	164
+	.byte	166
+	.byte	168
+	.byte	172
+	.byte	170
+	.byte	161
+	.byte	174
+	.byte	169
+	.byte	162
+	.byte	165
+	.byte	167
+	.byte	160
+	.byte	171
+	.byte	173
+	.byte	175
+	.byte	19
+	.byte	20
+	.byte	22
+	.byte	24
+	.byte	28
+	.byte	26
+	.byte	17
+	.byte	30
+	.byte	25
+	.byte	18
+	.byte	21
+	.byte	23
+	.byte	16
+	.byte	27
+	.byte	29
+	.byte	31
+	.byte	227
+	.byte	228
+	.byte	230
+	.byte	232
+	.byte	236
+	.byte	234
+	.byte	225
+	.byte	238
+	.byte	233
+	.byte	226
+	.byte	229
+	.byte	231
+	.byte	224
+	.byte	235
+	.byte	237
+	.byte	239
+	.byte	147
+	.byte	148
+	.byte	150
+	.byte	152
+	.byte	156
+	.byte	154
+	.byte	145
+	.byte	158
+	.byte	153
+	.byte	146
+	.byte	149
+	.byte	151
+	.byte	144
+	.byte	155
+	.byte	157
+	.byte	159
+	.byte	35
+	.byte	36
+	.byte	38
+	.byte	40
+	.byte	44
+	.byte	42
+	.byte	33
+	.byte	46
+	.byte	41
+	.byte	34
+	.byte	37
+	.byte	39
+	.byte	32
+	.byte	43
+	.byte	45
+	.byte	47
+	.byte	83
+	.byte	84
+	.byte	86
+	.byte	88
+	.byte	92
+	.byte	90
+	.byte	81
+	.byte	94
+	.byte	89
+	.byte	82
+	.byte	85
+	.byte	87
+	.byte	80
+	.byte	91
+	.byte	93
+	.byte	95
+	.byte	115
+	.byte	116
+	.byte	118
+	.byte	120
+	.byte	124
+	.byte	122
+	.byte	113
+	.byte	126
+	.byte	121
+	.byte	114
+	.byte	117
+	.byte	119
+	.byte	112
+	.byte	123
+	.byte	125
+	.byte	127
+	.byte	3
+	.byte	4
+	.byte	6
+	.byte	8
+	.byte	12
+	.byte	10
+	.byte	1
+	.byte	14
+	.byte	9
+	.byte	2
+	.byte	5
+	.byte	7
+	.byte	0
+	.byte	11
+	.byte	13
+	.byte	15
+	.byte	179
+	.byte	180
+	.byte	182
+	.byte	184
+	.byte	188
+	.byte	186
+	.byte	177
+	.byte	190
+	.byte	185
+	.byte	178
+	.byte	181
+	.byte	183
+	.byte	176
+	.byte	187
+	.byte	189
+	.byte	191
+	.byte	211
+	.byte	212
+	.byte	214
+	.byte	216
+	.byte	220
+	.byte	218
+	.byte	209
+	.byte	222
+	.byte	217
+	.byte	210
+	.byte	213
+	.byte	215
+	.byte	208
+	.byte	219
+	.byte	221
+	.byte	223
+	.byte	243
+	.byte	244
+	.byte	246
+	.byte	248
+	.byte	252
+	.byte	250
+	.byte	241
+	.byte	254
+	.byte	249
+	.byte	242
+	.byte	245
+	.byte	247
+	.byte	240
+	.byte	251
+	.byte	253
+	.byte	255
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_7, @object
+	.size	table_7, 256
+table_7:
+	.byte	0
+	.byte	2
+	.byte	4
+	.byte	6
+	.byte	9
+	.byte	11
+	.byte	13
+	.byte	15
+	.byte	1
+	.byte	3
+	.byte	5
+	.byte	7
+	.byte	8
+	.byte	10
+	.byte	12
+	.byte	14
+	.byte	32
+	.byte	34
+	.byte	36
+	.byte	38
+	.byte	41
+	.byte	43
+	.byte	45
+	.byte	47
+	.byte	33
+	.byte	35
+	.byte	37
+	.byte	39
+	.byte	40
+	.byte	42
+	.byte	44
+	.byte	46
+	.byte	64
+	.byte	66
+	.byte	68
+	.byte	70
+	.byte	73
+	.byte	75
+	.byte	77
+	.byte	79
+	.byte	65
+	.byte	67
+	.byte	69
+	.byte	71
+	.byte	72
+	.byte	74
+	.byte	76
+	.byte	78
+	.byte	96
+	.byte	98
+	.byte	100
+	.byte	102
+	.byte	105
+	.byte	107
+	.byte	109
+	.byte	111
+	.byte	97
+	.byte	99
+	.byte	101
+	.byte	103
+	.byte	104
+	.byte	106
+	.byte	108
+	.byte	110
+	.byte	144
+	.byte	146
+	.byte	148
+	.byte	150
+	.byte	153
+	.byte	155
+	.byte	157
+	.byte	159
+	.byte	145
+	.byte	147
+	.byte	149
+	.byte	151
+	.byte	152
+	.byte	154
+	.byte	156
+	.byte	158
+	.byte	176
+	.byte	178
+	.byte	180
+	.byte	182
+	.byte	185
+	.byte	187
+	.byte	189
+	.byte	191
+	.byte	177
+	.byte	179
+	.byte	181
+	.byte	183
+	.byte	184
+	.byte	186
+	.byte	188
+	.byte	190
+	.byte	208
+	.byte	210
+	.byte	212
+	.byte	214
+	.byte	217
+	.byte	219
+	.byte	221
+	.byte	223
+	.byte	209
+	.byte	211
+	.byte	213
+	.byte	215
+	.byte	216
+	.byte	218
+	.byte	220
+	.byte	222
+	.byte	240
+	.byte	242
+	.byte	244
+	.byte	246
+	.byte	249
+	.byte	251
+	.byte	253
+	.byte	255
+	.byte	241
+	.byte	243
+	.byte	245
+	.byte	247
+	.byte	248
+	.byte	250
+	.byte	252
+	.byte	254
+	.byte	16
+	.byte	18
+	.byte	20
+	.byte	22
+	.byte	25
+	.byte	27
+	.byte	29
+	.byte	31
+	.byte	17
+	.byte	19
+	.byte	21
+	.byte	23
+	.byte	24
+	.byte	26
+	.byte	28
+	.byte	30
+	.byte	48
+	.byte	50
+	.byte	52
+	.byte	54
+	.byte	57
+	.byte	59
+	.byte	61
+	.byte	63
+	.byte	49
+	.byte	51
+	.byte	53
+	.byte	55
+	.byte	56
+	.byte	58
+	.byte	60
+	.byte	62
+	.byte	80
+	.byte	82
+	.byte	84
+	.byte	86
+	.byte	89
+	.byte	91
+	.byte	93
+	.byte	95
+	.byte	81
+	.byte	83
+	.byte	85
+	.byte	87
+	.byte	88
+	.byte	90
+	.byte	92
+	.byte	94
+	.byte	112
+	.byte	114
+	.byte	116
+	.byte	118
+	.byte	121
+	.byte	123
+	.byte	125
+	.byte	127
+	.byte	113
+	.byte	115
+	.byte	117
+	.byte	119
+	.byte	120
+	.byte	122
+	.byte	124
+	.byte	126
+	.byte	128
+	.byte	130
+	.byte	132
+	.byte	134
+	.byte	137
+	.byte	139
+	.byte	141
+	.byte	143
+	.byte	129
+	.byte	131
+	.byte	133
+	.byte	135
+	.byte	136
+	.byte	138
+	.byte	140
+	.byte	142
+	.byte	160
+	.byte	162
+	.byte	164
+	.byte	166
+	.byte	169
+	.byte	171
+	.byte	173
+	.byte	175
+	.byte	161
+	.byte	163
+	.byte	165
+	.byte	167
+	.byte	168
+	.byte	170
+	.byte	172
+	.byte	174
+	.byte	192
+	.byte	194
+	.byte	196
+	.byte	198
+	.byte	201
+	.byte	203
+	.byte	205
+	.byte	207
+	.byte	193
+	.byte	195
+	.byte	197
+	.byte	199
+	.byte	200
+	.byte	202
+	.byte	204
+	.byte	206
+	.byte	224
+	.byte	226
+	.byte	228
+	.byte	230
+	.byte	233
+	.byte	235
+	.byte	237
+	.byte	239
+	.byte	225
+	.byte	227
+	.byte	229
+	.byte	231
+	.byte	232
+	.byte	234
+	.byte	236
+	.byte	238
+
+	.section	.progmem.data,"a",@progbits
+	.p2align	8
+	.type	table_8, @object
+	.size	table_8, 256
+table_8:
+	.byte	0
+	.byte	8
+	.byte	1
+	.byte	9
+	.byte	2
+	.byte	10
+	.byte	3
+	.byte	11
+	.byte	12
+	.byte	4
+	.byte	13
+	.byte	5
+	.byte	14
+	.byte	6
+	.byte	15
+	.byte	7
+	.byte	128
+	.byte	136
+	.byte	129
+	.byte	137
+	.byte	130
+	.byte	138
+	.byte	131
+	.byte	139
+	.byte	140
+	.byte	132
+	.byte	141
+	.byte	133
+	.byte	142
+	.byte	134
+	.byte	143
+	.byte	135
+	.byte	16
+	.byte	24
+	.byte	17
+	.byte	25
+	.byte	18
+	.byte	26
+	.byte	19
+	.byte	27
+	.byte	28
+	.byte	20
+	.byte	29
+	.byte	21
+	.byte	30
+	.byte	22
+	.byte	31
+	.byte	23
+	.byte	144
+	.byte	152
+	.byte	145
+	.byte	153
+	.byte	146
+	.byte	154
+	.byte	147
+	.byte	155
+	.byte	156
+	.byte	148
+	.byte	157
+	.byte	149
+	.byte	158
+	.byte	150
+	.byte	159
+	.byte	151
+	.byte	32
+	.byte	40
+	.byte	33
+	.byte	41
+	.byte	34
+	.byte	42
+	.byte	35
+	.byte	43
+	.byte	44
+	.byte	36
+	.byte	45
+	.byte	37
+	.byte	46
+	.byte	38
+	.byte	47
+	.byte	39
+	.byte	160
+	.byte	168
+	.byte	161
+	.byte	169
+	.byte	162
+	.byte	170
+	.byte	163
+	.byte	171
+	.byte	172
+	.byte	164
+	.byte	173
+	.byte	165
+	.byte	174
+	.byte	166
+	.byte	175
+	.byte	167
+	.byte	48
+	.byte	56
+	.byte	49
+	.byte	57
+	.byte	50
+	.byte	58
+	.byte	51
+	.byte	59
+	.byte	60
+	.byte	52
+	.byte	61
+	.byte	53
+	.byte	62
+	.byte	54
+	.byte	63
+	.byte	55
+	.byte	176
+	.byte	184
+	.byte	177
+	.byte	185
+	.byte	178
+	.byte	186
+	.byte	179
+	.byte	187
+	.byte	188
+	.byte	180
+	.byte	189
+	.byte	181
+	.byte	190
+	.byte	182
+	.byte	191
+	.byte	183
+	.byte	192
+	.byte	200
+	.byte	193
+	.byte	201
+	.byte	194
+	.byte	202
+	.byte	195
+	.byte	203
+	.byte	204
+	.byte	196
+	.byte	205
+	.byte	197
+	.byte	206
+	.byte	198
+	.byte	207
+	.byte	199
+	.byte	64
+	.byte	72
+	.byte	65
+	.byte	73
+	.byte	66
+	.byte	74
+	.byte	67
+	.byte	75
+	.byte	76
+	.byte	68
+	.byte	77
+	.byte	69
+	.byte	78
+	.byte	70
+	.byte	79
+	.byte	71
+	.byte	208
+	.byte	216
+	.byte	209
+	.byte	217
+	.byte	210
+	.byte	218
+	.byte	211
+	.byte	219
+	.byte	220
+	.byte	212
+	.byte	221
+	.byte	213
+	.byte	222
+	.byte	214
+	.byte	223
+	.byte	215
+	.byte	80
+	.byte	88
+	.byte	81
+	.byte	89
+	.byte	82
+	.byte	90
+	.byte	83
+	.byte	91
+	.byte	92
+	.byte	84
+	.byte	93
+	.byte	85
+	.byte	94
+	.byte	86
+	.byte	95
+	.byte	87
+	.byte	224
+	.byte	232
+	.byte	225
+	.byte	233
+	.byte	226
+	.byte	234
+	.byte	227
+	.byte	235
+	.byte	236
+	.byte	228
+	.byte	237
+	.byte	229
+	.byte	238
+	.byte	230
+	.byte	239
+	.byte	231
+	.byte	96
+	.byte	104
+	.byte	97
+	.byte	105
+	.byte	98
+	.byte	106
+	.byte	99
+	.byte	107
+	.byte	108
+	.byte	100
+	.byte	109
+	.byte	101
+	.byte	110
+	.byte	102
+	.byte	111
+	.byte	103
+	.byte	240
+	.byte	248
+	.byte	241
+	.byte	249
+	.byte	242
+	.byte	250
+	.byte	243
+	.byte	251
+	.byte	252
+	.byte	244
+	.byte	253
+	.byte	245
+	.byte	254
+	.byte	246
+	.byte	255
+	.byte	247
+	.byte	112
+	.byte	120
+	.byte	113
+	.byte	121
+	.byte	114
+	.byte	122
+	.byte	115
+	.byte	123
+	.byte	124
+	.byte	116
+	.byte	125
+	.byte	117
+	.byte	126
+	.byte	118
+	.byte	127
+	.byte	119
+
+	.text
+.global forkskinny_128_256_rounds
+	.type forkskinny_128_256_rounds, @function
+forkskinny_128_256_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,33
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 51
+	ldd r2,Z+32
+	ldd r3,Z+33
+	ldd r4,Z+34
+	ldd r5,Z+35
+	ldd r6,Z+36
+	ldd r7,Z+37
+	ldd r8,Z+38
+	ldd r9,Z+39
+	ldd r10,Z+40
+	ldd r11,Z+41
+	ldd r12,Z+42
+	ldd r13,Z+43
+	ldd r14,Z+44
+	ldd r15,Z+45
+	ldd r24,Z+46
+	ldd r25,Z+47
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r26,Z+2
+	ldd r27,Z+3
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r26
+	std Y+4,r27
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r26,Z+6
+	ldd r27,Z+7
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r26
+	std Y+8,r27
+	ldd r18,Z+8
+	ldd r19,Z+9
+	ldd r26,Z+10
+	ldd r27,Z+11
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r26
+	std Y+12,r27
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r26,Z+14
+	ldd r27,Z+15
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r26
+	std Y+16,r27
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r26,Z+18
+	ldd r27,Z+19
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r26
+	std Y+20,r27
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r26,Z+22
+	ldd r27,Z+23
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r26
+	std Y+24,r27
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r26,Z+26
+	ldd r27,Z+27
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r26
+	std Y+28,r27
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r26,Z+30
+	ldd r27,Z+31
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r26
+	std Y+32,r27
+	lsl r20
+	std Y+33,r20
+	push r31
+	push r30
+	ldi r30,lo8(table_0)
+	ldi r31,hi8(table_0)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_0)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+86:
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r2,r18
+	inc r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r6,r18
+	ldi r18,2
+	eor r10,r18
+	eor r4,r18
+	mov r0,r9
+	mov r9,r8
+	mov r8,r7
+	mov r7,r6
+	mov r6,r0
+	mov r0,r12
+	mov r12,r10
+	mov r10,r0
+	mov r0,r13
+	mov r13,r11
+	mov r11,r0
+	mov r0,r14
+	mov r14,r15
+	mov r15,r24
+	mov r24,r25
+	mov r25,r0
+	eor r6,r10
+	eor r7,r11
+	eor r8,r12
+	eor r9,r13
+	eor r10,r2
+	eor r11,r3
+	eor r12,r4
+	eor r13,r5
+	movw r18,r14
+	movw r26,r24
+	eor r18,r10
+	eor r19,r11
+	eor r26,r12
+	eor r27,r13
+	movw r14,r10
+	movw r24,r12
+	movw r10,r6
+	movw r12,r8
+	movw r6,r2
+	movw r8,r4
+	movw r2,r18
+	movw r4,r26
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	ldd r20,Y+13
+	ldd r21,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	ldd r0,Y+1
+	std Y+9,r0
+	ldd r0,Y+2
+	std Y+10,r0
+	ldd r0,Y+3
+	std Y+11,r0
+	ldd r0,Y+4
+	std Y+12,r0
+	ldd r0,Y+5
+	std Y+13,r0
+	ldd r0,Y+6
+	std Y+14,r0
+	ldd r0,Y+7
+	std Y+15,r0
+	ldd r0,Y+8
+	std Y+16,r0
+	std Y+1,r19
+	std Y+2,r17
+	std Y+3,r18
+	std Y+4,r21
+	std Y+5,r26
+	std Y+6,r16
+	std Y+7,r20
+	std Y+8,r27
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_2)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	ldd r20,Y+29
+	ldd r21,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+17
+	std Y+25,r0
+	ldd r0,Y+18
+	std Y+26,r0
+	ldd r0,Y+19
+	std Y+27,r0
+	ldd r0,Y+20
+	std Y+28,r0
+	ldd r0,Y+21
+	std Y+29,r0
+	ldd r0,Y+22
+	std Y+30,r0
+	ldd r0,Y+23
+	std Y+31,r0
+	ldd r0,Y+24
+	std Y+32,r0
+	std Y+17,r19
+	std Y+18,r17
+	std Y+19,r18
+	std Y+20,r21
+	std Y+21,r26
+	std Y+22,r16
+	std Y+23,r20
+	std Y+24,r27
+	ldi r30,lo8(table_0)
+	ldi r31,hi8(table_0)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_0)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	inc r22
+	ldd r18,Y+33
+	cp r22,r18
+	breq 5259f
+	rjmp 86b
+5259:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+32,r2
+	std Z+33,r3
+	std Z+34,r4
+	std Z+35,r5
+	std Z+36,r6
+	std Z+37,r7
+	std Z+38,r8
+	std Z+39,r9
+	std Z+40,r10
+	std Z+41,r11
+	std Z+42,r12
+	std Z+43,r13
+	std Z+44,r14
+	std Z+45,r15
+	std Z+46,r24
+	std Z+47,r25
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r26
+	std Z+3,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r26
+	std Z+7,r27
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	std Z+8,r18
+	std Z+9,r19
+	std Z+10,r26
+	std Z+11,r27
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r26
+	std Z+15,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r26
+	std Z+19,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r26
+	std Z+23,r27
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r26
+	std Z+27,r27
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r26,Y+31
+	ldd r27,Y+32
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r26
+	std Z+31,r27
+	adiw r28,33
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	eor r1,r1
+	ret
+	.size forkskinny_128_256_rounds, .-forkskinny_128_256_rounds
+
+	.text
+.global forkskinny_128_256_inv_rounds
+	.type forkskinny_128_256_inv_rounds, @function
+forkskinny_128_256_inv_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,33
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 51
+	ldd r2,Z+32
+	ldd r3,Z+33
+	ldd r4,Z+34
+	ldd r5,Z+35
+	ldd r6,Z+36
+	ldd r7,Z+37
+	ldd r8,Z+38
+	ldd r9,Z+39
+	ldd r10,Z+40
+	ldd r11,Z+41
+	ldd r12,Z+42
+	ldd r13,Z+43
+	ldd r14,Z+44
+	ldd r15,Z+45
+	ldd r24,Z+46
+	ldd r25,Z+47
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r26,Z+2
+	ldd r27,Z+3
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r26
+	std Y+4,r27
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r26,Z+6
+	ldd r27,Z+7
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r26
+	std Y+8,r27
+	ldd r18,Z+8
+	ldd r19,Z+9
+	ldd r26,Z+10
+	ldd r27,Z+11
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r26
+	std Y+12,r27
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r26,Z+14
+	ldd r27,Z+15
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r26
+	std Y+16,r27
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r26,Z+18
+	ldd r27,Z+19
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r26
+	std Y+20,r27
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r26,Z+22
+	ldd r27,Z+23
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r26
+	std Y+24,r27
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r26,Z+26
+	ldd r27,Z+27
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r26
+	std Y+28,r27
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r26,Z+30
+	ldd r27,Z+31
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r26
+	std Y+32,r27
+	lsl r20
+	std Y+33,r20
+	push r31
+	push r30
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+86:
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	ldd r20,Y+5
+	ldd r21,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	ldd r0,Y+9
+	std Y+1,r0
+	ldd r0,Y+10
+	std Y+2,r0
+	ldd r0,Y+11
+	std Y+3,r0
+	ldd r0,Y+12
+	std Y+4,r0
+	ldd r0,Y+13
+	std Y+5,r0
+	ldd r0,Y+14
+	std Y+6,r0
+	ldd r0,Y+15
+	std Y+7,r0
+	ldd r0,Y+16
+	std Y+8,r0
+	std Y+9,r26
+	std Y+10,r18
+	std Y+11,r20
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r27
+	std Y+15,r21
+	std Y+16,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	ldd r20,Y+21
+	ldd r21,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+25
+	std Y+17,r0
+	ldd r0,Y+26
+	std Y+18,r0
+	ldd r0,Y+27
+	std Y+19,r0
+	ldd r0,Y+28
+	std Y+20,r0
+	ldd r0,Y+29
+	std Y+21,r0
+	ldd r0,Y+30
+	std Y+22,r0
+	ldd r0,Y+31
+	std Y+23,r0
+	ldd r0,Y+32
+	std Y+24,r0
+	std Y+25,r26
+	std Y+26,r18
+	std Y+27,r20
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r27
+	std Y+31,r21
+	std Y+32,r19
+	movw r18,r2
+	movw r26,r4
+	movw r2,r6
+	movw r4,r8
+	movw r6,r10
+	movw r8,r12
+	movw r10,r14
+	movw r12,r24
+	movw r14,r18
+	movw r24,r26
+	eor r14,r10
+	eor r15,r11
+	eor r24,r12
+	eor r25,r13
+	eor r10,r2
+	eor r11,r3
+	eor r12,r4
+	eor r13,r5
+	eor r6,r10
+	eor r7,r11
+	eor r8,r12
+	eor r9,r13
+	mov r0,r6
+	mov r6,r7
+	mov r7,r8
+	mov r8,r9
+	mov r9,r0
+	mov r0,r10
+	mov r10,r12
+	mov r12,r0
+	mov r0,r11
+	mov r11,r13
+	mov r13,r0
+	mov r0,r25
+	mov r25,r24
+	mov r24,r15
+	mov r15,r14
+	mov r14,r0
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r6,r18
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r2,r18
+	ldi r18,2
+	eor r10,r18
+	eor r4,r18
+	ldi r30,lo8(table_1)
+	ldi r31,hi8(table_1)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_1)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+33
+	cp r22,r18
+	breq 5259f
+	rjmp 86b
+5259:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+32,r2
+	std Z+33,r3
+	std Z+34,r4
+	std Z+35,r5
+	std Z+36,r6
+	std Z+37,r7
+	std Z+38,r8
+	std Z+39,r9
+	std Z+40,r10
+	std Z+41,r11
+	std Z+42,r12
+	std Z+43,r13
+	std Z+44,r14
+	std Z+45,r15
+	std Z+46,r24
+	std Z+47,r25
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r26
+	std Z+3,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r26
+	std Z+7,r27
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	std Z+8,r18
+	std Z+9,r19
+	std Z+10,r26
+	std Z+11,r27
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r26
+	std Z+15,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r26
+	std Z+19,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r26
+	std Z+23,r27
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r26
+	std Z+27,r27
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r26,Y+31
+	ldd r27,Y+32
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r26
+	std Z+31,r27
+	adiw r28,33
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	eor r1,r1
+	ret
+	.size forkskinny_128_256_inv_rounds, .-forkskinny_128_256_inv_rounds
+
+	.text
+.global forkskinny_128_256_forward_tk
+	.type forkskinny_128_256_forward_tk, @function
+forkskinny_128_256_forward_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,16
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 34
+	ld r4,Z
+	ldd r5,Z+1
+	ldd r6,Z+2
+	ldd r7,Z+3
+	ldd r8,Z+4
+	ldd r9,Z+5
+	ldd r10,Z+6
+	ldd r11,Z+7
+	ldd r12,Z+8
+	ldd r13,Z+9
+	ldd r14,Z+10
+	ldd r15,Z+11
+	ldd r24,Z+12
+	ldd r25,Z+13
+	ldd r16,Z+14
+	ldd r17,Z+15
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r20,Z+18
+	ldd r21,Z+19
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r20,Z+22
+	ldd r21,Z+23
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r20,Z+26
+	ldd r21,Z+27
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r20,Z+30
+	ldd r21,Z+31
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
+	push r31
+	push r30
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_2)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+51:
+	movw r18,r12
+	movw r20,r14
+	movw r26,r24
+	movw r2,r16
+	movw r12,r4
+	movw r14,r6
+	movw r24,r8
+	movw r16,r10
+	mov r4,r19
+	mov r5,r3
+	mov r6,r18
+	mov r7,r27
+	mov r8,r20
+	mov r9,r2
+	mov r10,r26
+	mov r11,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r2,Y+15
+	ldd r3,Y+16
+	ldd r23,Y+1
+	std Y+9,r23
+	ldd r23,Y+2
+	std Y+10,r23
+	ldd r23,Y+3
+	std Y+11,r23
+	ldd r23,Y+4
+	std Y+12,r23
+	ldd r23,Y+5
+	std Y+13,r23
+	ldd r23,Y+6
+	std Y+14,r23
+	ldd r23,Y+7
+	std Y+15,r23
+	ldd r23,Y+8
+	std Y+16,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	std Y+1,r19
+	std Y+2,r3
+	std Y+3,r18
+	std Y+4,r27
+	std Y+5,r20
+	std Y+6,r2
+	std Y+7,r26
+	std Y+8,r21
+	dec r22
+	breq 5109f
+	rjmp 51b
+5109:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r4
+	std Z+1,r5
+	std Z+2,r6
+	std Z+3,r7
+	std Z+4,r8
+	std Z+5,r9
+	std Z+6,r10
+	std Z+7,r11
+	std Z+8,r12
+	std Z+9,r13
+	std Z+10,r14
+	std Z+11,r15
+	std Z+12,r24
+	std Z+13,r25
+	std Z+14,r16
+	std Z+15,r17
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r20
+	std Z+19,r21
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r20,Y+7
+	ldd r21,Y+8
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r20
+	std Z+23,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r20
+	std Z+27,r21
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r20,Y+15
+	ldd r21,Y+16
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r20
+	std Z+31,r21
+	adiw r28,16
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_128_256_forward_tk, .-forkskinny_128_256_forward_tk
+
+	.text
+.global forkskinny_128_256_reverse_tk
+	.type forkskinny_128_256_reverse_tk, @function
+forkskinny_128_256_reverse_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,16
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 34
+	ld r2,Z
+	ldd r3,Z+1
+	ldd r4,Z+2
+	ldd r5,Z+3
+	ldd r6,Z+4
+	ldd r7,Z+5
+	ldd r8,Z+6
+	ldd r9,Z+7
+	ldd r10,Z+8
+	ldd r11,Z+9
+	ldd r12,Z+10
+	ldd r13,Z+11
+	ldd r14,Z+12
+	ldd r15,Z+13
+	ldd r16,Z+14
+	ldd r17,Z+15
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r20,Z+18
+	ldd r21,Z+19
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r20,Z+22
+	ldd r21,Z+23
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r20,Z+26
+	ldd r21,Z+27
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r20,Z+30
+	ldd r21,Z+31
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
+	push r31
+	push r30
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_3)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+51:
+	movw r18,r2
+	movw r20,r4
+	movw r26,r6
+	movw r24,r8
+	movw r2,r10
+	movw r4,r12
+	movw r6,r14
+	movw r8,r16
+	mov r10,r20
+	mov r11,r18
+	mov r12,r26
+	mov r13,r25
+	mov r14,r24
+	mov r15,r21
+	mov r16,r27
+	mov r17,r19
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
+	ldd r23,Y+9
+	std Y+1,r23
+	ldd r23,Y+10
+	std Y+2,r23
+	ldd r23,Y+11
+	std Y+3,r23
+	ldd r23,Y+12
+	std Y+4,r23
+	ldd r23,Y+13
+	std Y+5,r23
+	ldd r23,Y+14
+	std Y+6,r23
+	ldd r23,Y+15
+	std Y+7,r23
+	ldd r23,Y+16
+	std Y+8,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	std Y+9,r20
+	std Y+10,r18
+	std Y+11,r26
+	std Y+12,r25
+	std Y+13,r24
+	std Y+14,r21
+	std Y+15,r27
+	std Y+16,r19
+	dec r22
+	breq 5109f
+	rjmp 51b
+5109:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r2
+	std Z+1,r3
+	std Z+2,r4
+	std Z+3,r5
+	std Z+4,r6
+	std Z+5,r7
+	std Z+6,r8
+	std Z+7,r9
+	std Z+8,r10
+	std Z+9,r11
+	std Z+10,r12
+	std Z+11,r13
+	std Z+12,r14
+	std Z+13,r15
+	std Z+14,r16
+	std Z+15,r17
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r20
+	std Z+19,r21
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r20,Y+7
+	ldd r21,Y+8
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r20
+	std Z+23,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r20
+	std Z+27,r21
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r20,Y+15
+	ldd r21,Y+16
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r20
+	std Z+31,r21
+	adiw r28,16
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_128_256_reverse_tk, .-forkskinny_128_256_reverse_tk
+
+	.text
+.global forkskinny_128_384_rounds
+	.type forkskinny_128_384_rounds, @function
+forkskinny_128_384_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,49
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 67
+	ldd r2,Z+48
+	ldd r3,Z+49
+	ldd r4,Z+50
+	ldd r5,Z+51
+	ldd r6,Z+52
+	ldd r7,Z+53
+	ldd r8,Z+54
+	ldd r9,Z+55
+	ldd r10,Z+56
+	ldd r11,Z+57
+	ldd r12,Z+58
+	ldd r13,Z+59
+	ldd r14,Z+60
+	ldd r15,Z+61
+	ldd r24,Z+62
+	ldd r25,Z+63
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r26,Z+2
+	ldd r27,Z+3
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r26
+	std Y+4,r27
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r26,Z+6
+	ldd r27,Z+7
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r26
+	std Y+8,r27
+	ldd r18,Z+8
+	ldd r19,Z+9
+	ldd r26,Z+10
+	ldd r27,Z+11
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r26
+	std Y+12,r27
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r26,Z+14
+	ldd r27,Z+15
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r26
+	std Y+16,r27
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r26,Z+18
+	ldd r27,Z+19
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r26
+	std Y+20,r27
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r26,Z+22
+	ldd r27,Z+23
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r26
+	std Y+24,r27
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r26,Z+26
+	ldd r27,Z+27
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r26
+	std Y+28,r27
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r26,Z+30
+	ldd r27,Z+31
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r26
+	std Y+32,r27
+	ldd r18,Z+32
+	ldd r19,Z+33
+	ldd r26,Z+34
+	ldd r27,Z+35
+	std Y+33,r18
+	std Y+34,r19
+	std Y+35,r26
+	std Y+36,r27
+	ldd r18,Z+36
+	ldd r19,Z+37
+	ldd r26,Z+38
+	ldd r27,Z+39
+	std Y+37,r18
+	std Y+38,r19
+	std Y+39,r26
+	std Y+40,r27
+	ldd r18,Z+40
+	ldd r19,Z+41
+	ldd r26,Z+42
+	ldd r27,Z+43
+	std Y+41,r18
+	std Y+42,r19
+	std Y+43,r26
+	std Y+44,r27
+	ldd r18,Z+44
+	ldd r19,Z+45
+	ldd r26,Z+46
+	ldd r27,Z+47
+	std Y+45,r18
+	std Y+46,r19
+	std Y+47,r26
+	std Y+48,r27
+	lsl r20
+	std Y+49,r20
+	push r31
+	push r30
+	ldi r30,lo8(table_0)
+	ldi r31,hi8(table_0)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_0)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+118:
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+33
+	ldd r19,Y+34
+	ldd r26,Y+35
+	ldd r27,Y+36
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+37
+	ldd r19,Y+38
+	ldd r26,Y+39
+	ldd r27,Y+40
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r2,r18
+	inc r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r6,r18
+	ldi r18,2
+	eor r10,r18
+	eor r4,r18
+	mov r0,r9
+	mov r9,r8
+	mov r8,r7
+	mov r7,r6
+	mov r6,r0
+	mov r0,r12
+	mov r12,r10
+	mov r10,r0
+	mov r0,r13
+	mov r13,r11
+	mov r11,r0
+	mov r0,r14
+	mov r14,r15
+	mov r15,r24
+	mov r24,r25
+	mov r25,r0
+	eor r6,r10
+	eor r7,r11
+	eor r8,r12
+	eor r9,r13
+	eor r10,r2
+	eor r11,r3
+	eor r12,r4
+	eor r13,r5
+	movw r18,r14
+	movw r26,r24
+	eor r18,r10
+	eor r19,r11
+	eor r26,r12
+	eor r27,r13
+	movw r14,r10
+	movw r24,r12
+	movw r10,r6
+	movw r12,r8
+	movw r6,r2
+	movw r8,r4
+	movw r2,r18
+	movw r4,r26
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	ldd r20,Y+13
+	ldd r21,Y+14
+	ldd r16,Y+15
+	ldd r17,Y+16
+	ldd r0,Y+1
+	std Y+9,r0
+	ldd r0,Y+2
+	std Y+10,r0
+	ldd r0,Y+3
+	std Y+11,r0
+	ldd r0,Y+4
+	std Y+12,r0
+	ldd r0,Y+5
+	std Y+13,r0
+	ldd r0,Y+6
+	std Y+14,r0
+	ldd r0,Y+7
+	std Y+15,r0
+	ldd r0,Y+8
+	std Y+16,r0
+	std Y+1,r19
+	std Y+2,r17
+	std Y+3,r18
+	std Y+4,r21
+	std Y+5,r26
+	std Y+6,r16
+	std Y+7,r20
+	std Y+8,r27
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_2)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	ldd r20,Y+29
+	ldd r21,Y+30
+	ldd r16,Y+31
+	ldd r17,Y+32
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+17
+	std Y+25,r0
+	ldd r0,Y+18
+	std Y+26,r0
+	ldd r0,Y+19
+	std Y+27,r0
+	ldd r0,Y+20
+	std Y+28,r0
+	ldd r0,Y+21
+	std Y+29,r0
+	ldd r0,Y+22
+	std Y+30,r0
+	ldd r0,Y+23
+	std Y+31,r0
+	ldd r0,Y+24
+	std Y+32,r0
+	std Y+17,r19
+	std Y+18,r17
+	std Y+19,r18
+	std Y+20,r21
+	std Y+21,r26
+	std Y+22,r16
+	std Y+23,r20
+	std Y+24,r27
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+41
+	ldd r19,Y+42
+	ldd r26,Y+43
+	ldd r27,Y+44
+	ldd r20,Y+45
+	ldd r21,Y+46
+	ldd r16,Y+47
+	ldd r17,Y+48
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+33
+	std Y+41,r0
+	ldd r0,Y+34
+	std Y+42,r0
+	ldd r0,Y+35
+	std Y+43,r0
+	ldd r0,Y+36
+	std Y+44,r0
+	ldd r0,Y+37
+	std Y+45,r0
+	ldd r0,Y+38
+	std Y+46,r0
+	ldd r0,Y+39
+	std Y+47,r0
+	ldd r0,Y+40
+	std Y+48,r0
+	std Y+33,r19
+	std Y+34,r17
+	std Y+35,r18
+	std Y+36,r21
+	std Y+37,r26
+	std Y+38,r16
+	std Y+39,r20
+	std Y+40,r27
+	ldi r30,lo8(table_0)
+	ldi r31,hi8(table_0)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_0)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	inc r22
+	ldd r18,Y+49
+	cp r22,r18
+	breq 5348f
+	rjmp 118b
+5348:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+48,r2
+	std Z+49,r3
+	std Z+50,r4
+	std Z+51,r5
+	std Z+52,r6
+	std Z+53,r7
+	std Z+54,r8
+	std Z+55,r9
+	std Z+56,r10
+	std Z+57,r11
+	std Z+58,r12
+	std Z+59,r13
+	std Z+60,r14
+	std Z+61,r15
+	std Z+62,r24
+	std Z+63,r25
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r26
+	std Z+3,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r26
+	std Z+7,r27
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	std Z+8,r18
+	std Z+9,r19
+	std Z+10,r26
+	std Z+11,r27
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r26
+	std Z+15,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r26
+	std Z+19,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r26
+	std Z+23,r27
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r26
+	std Z+27,r27
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r26,Y+31
+	ldd r27,Y+32
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r26
+	std Z+31,r27
+	ldd r18,Y+33
+	ldd r19,Y+34
+	ldd r26,Y+35
+	ldd r27,Y+36
+	std Z+32,r18
+	std Z+33,r19
+	std Z+34,r26
+	std Z+35,r27
+	ldd r18,Y+37
+	ldd r19,Y+38
+	ldd r26,Y+39
+	ldd r27,Y+40
+	std Z+36,r18
+	std Z+37,r19
+	std Z+38,r26
+	std Z+39,r27
+	ldd r18,Y+41
+	ldd r19,Y+42
+	ldd r26,Y+43
+	ldd r27,Y+44
+	std Z+40,r18
+	std Z+41,r19
+	std Z+42,r26
+	std Z+43,r27
+	ldd r18,Y+45
+	ldd r19,Y+46
+	ldd r26,Y+47
+	ldd r27,Y+48
+	std Z+44,r18
+	std Z+45,r19
+	std Z+46,r26
+	std Z+47,r27
+	adiw r28,49
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	eor r1,r1
+	ret
+	.size forkskinny_128_384_rounds, .-forkskinny_128_384_rounds
+
+	.text
+.global forkskinny_128_384_inv_rounds
+	.type forkskinny_128_384_inv_rounds, @function
+forkskinny_128_384_inv_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,49
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 67
+	ldd r2,Z+48
+	ldd r3,Z+49
+	ldd r4,Z+50
+	ldd r5,Z+51
+	ldd r6,Z+52
+	ldd r7,Z+53
+	ldd r8,Z+54
+	ldd r9,Z+55
+	ldd r10,Z+56
+	ldd r11,Z+57
+	ldd r12,Z+58
+	ldd r13,Z+59
+	ldd r14,Z+60
+	ldd r15,Z+61
+	ldd r24,Z+62
+	ldd r25,Z+63
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r26,Z+2
+	ldd r27,Z+3
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r26
+	std Y+4,r27
+	ldd r18,Z+4
+	ldd r19,Z+5
+	ldd r26,Z+6
+	ldd r27,Z+7
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r26
+	std Y+8,r27
+	ldd r18,Z+8
+	ldd r19,Z+9
+	ldd r26,Z+10
+	ldd r27,Z+11
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r26
+	std Y+12,r27
+	ldd r18,Z+12
+	ldd r19,Z+13
+	ldd r26,Z+14
+	ldd r27,Z+15
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r26
+	std Y+16,r27
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r26,Z+18
+	ldd r27,Z+19
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r26
+	std Y+20,r27
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r26,Z+22
+	ldd r27,Z+23
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r26
+	std Y+24,r27
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r26,Z+26
+	ldd r27,Z+27
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r26
+	std Y+28,r27
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r26,Z+30
+	ldd r27,Z+31
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r26
+	std Y+32,r27
+	ldd r18,Z+32
+	ldd r19,Z+33
+	ldd r26,Z+34
+	ldd r27,Z+35
+	std Y+33,r18
+	std Y+34,r19
+	std Y+35,r26
+	std Y+36,r27
+	ldd r18,Z+36
+	ldd r19,Z+37
+	ldd r26,Z+38
+	ldd r27,Z+39
+	std Y+37,r18
+	std Y+38,r19
+	std Y+39,r26
+	std Y+40,r27
+	ldd r18,Z+40
+	ldd r19,Z+41
+	ldd r26,Z+42
+	ldd r27,Z+43
+	std Y+41,r18
+	std Y+42,r19
+	std Y+43,r26
+	std Y+44,r27
+	ldd r18,Z+44
+	ldd r19,Z+45
+	ldd r26,Z+46
+	ldd r27,Z+47
+	std Y+45,r18
+	std Y+46,r19
+	std Y+47,r26
+	std Y+48,r27
+	lsl r20
+	std Y+49,r20
+	push r31
+	push r30
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+118:
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	ldd r20,Y+5
+	ldd r21,Y+6
+	ldd r16,Y+7
+	ldd r17,Y+8
+	ldd r0,Y+9
+	std Y+1,r0
+	ldd r0,Y+10
+	std Y+2,r0
+	ldd r0,Y+11
+	std Y+3,r0
+	ldd r0,Y+12
+	std Y+4,r0
+	ldd r0,Y+13
+	std Y+5,r0
+	ldd r0,Y+14
+	std Y+6,r0
+	ldd r0,Y+15
+	std Y+7,r0
+	ldd r0,Y+16
+	std Y+8,r0
+	std Y+9,r26
+	std Y+10,r18
+	std Y+11,r20
+	std Y+12,r17
+	std Y+13,r16
+	std Y+14,r27
+	std Y+15,r21
+	std Y+16,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	ldd r20,Y+21
+	ldd r21,Y+22
+	ldd r16,Y+23
+	ldd r17,Y+24
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+25
+	std Y+17,r0
+	ldd r0,Y+26
+	std Y+18,r0
+	ldd r0,Y+27
+	std Y+19,r0
+	ldd r0,Y+28
+	std Y+20,r0
+	ldd r0,Y+29
+	std Y+21,r0
+	ldd r0,Y+30
+	std Y+22,r0
+	ldd r0,Y+31
+	std Y+23,r0
+	ldd r0,Y+32
+	std Y+24,r0
+	std Y+25,r26
+	std Y+26,r18
+	std Y+27,r20
+	std Y+28,r17
+	std Y+29,r16
+	std Y+30,r27
+	std Y+31,r21
+	std Y+32,r19
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_2)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+33
+	ldd r19,Y+34
+	ldd r26,Y+35
+	ldd r27,Y+36
+	ldd r20,Y+37
+	ldd r21,Y+38
+	ldd r16,Y+39
+	ldd r17,Y+40
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r16
+#if defined(RAMPZ)
+	elpm r16,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r16,Z
+#elif defined(__AVR_TINY__)
+	ld r16,Z
+#else
+	lpm
+	mov r16,r0
+#endif
+	mov r30,r17
+#if defined(RAMPZ)
+	elpm r17,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r17,Z
+#elif defined(__AVR_TINY__)
+	ld r17,Z
+#else
+	lpm
+	mov r17,r0
+#endif
+	ldd r0,Y+41
+	std Y+33,r0
+	ldd r0,Y+42
+	std Y+34,r0
+	ldd r0,Y+43
+	std Y+35,r0
+	ldd r0,Y+44
+	std Y+36,r0
+	ldd r0,Y+45
+	std Y+37,r0
+	ldd r0,Y+46
+	std Y+38,r0
+	ldd r0,Y+47
+	std Y+39,r0
+	ldd r0,Y+48
+	std Y+40,r0
+	std Y+41,r26
+	std Y+42,r18
+	std Y+43,r20
+	std Y+44,r17
+	std Y+45,r16
+	std Y+46,r27
+	std Y+47,r21
+	std Y+48,r19
+	movw r18,r2
+	movw r26,r4
+	movw r2,r6
+	movw r4,r8
+	movw r6,r10
+	movw r8,r12
+	movw r10,r14
+	movw r12,r24
+	movw r14,r18
+	movw r24,r26
+	eor r14,r10
+	eor r15,r11
+	eor r24,r12
+	eor r25,r13
+	eor r10,r2
+	eor r11,r3
+	eor r12,r4
+	eor r13,r5
+	eor r6,r10
+	eor r7,r11
+	eor r8,r12
+	eor r9,r13
+	mov r0,r6
+	mov r6,r7
+	mov r7,r8
+	mov r8,r9
+	mov r9,r0
+	mov r0,r10
+	mov r10,r12
+	mov r12,r0
+	mov r0,r11
+	mov r11,r13
+	mov r13,r0
+	mov r0,r25
+	mov r25,r24
+	mov r24,r15
+	mov r15,r14
+	mov r14,r0
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldd r18,Y+33
+	ldd r19,Y+34
+	ldd r26,Y+35
+	ldd r27,Y+36
+	eor r2,r18
+	eor r3,r19
+	eor r4,r26
+	eor r5,r27
+	ldd r18,Y+37
+	ldd r19,Y+38
+	ldd r26,Y+39
+	ldd r27,Y+40
+	eor r6,r18
+	eor r7,r19
+	eor r8,r26
+	eor r9,r27
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r6,r18
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	eor r2,r18
+	ldi r18,2
+	eor r10,r18
+	eor r4,r18
+	ldi r30,lo8(table_1)
+	ldi r31,hi8(table_1)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_1)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r30,r14
+#if defined(RAMPZ)
+	elpm r14,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r14,Z
+#elif defined(__AVR_TINY__)
+	ld r14,Z
+#else
+	lpm
+	mov r14,r0
+#endif
+	mov r30,r15
+#if defined(RAMPZ)
+	elpm r15,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r15,Z
+#elif defined(__AVR_TINY__)
+	ld r15,Z
+#else
+	lpm
+	mov r15,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+49
+	cp r22,r18
+	breq 5348f
+	rjmp 118b
+5348:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+48,r2
+	std Z+49,r3
+	std Z+50,r4
+	std Z+51,r5
+	std Z+52,r6
+	std Z+53,r7
+	std Z+54,r8
+	std Z+55,r9
+	std Z+56,r10
+	std Z+57,r11
+	std Z+58,r12
+	std Z+59,r13
+	std Z+60,r14
+	std Z+61,r15
+	std Z+62,r24
+	std Z+63,r25
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r26,Y+3
+	ldd r27,Y+4
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r26
+	std Z+3,r27
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r26,Y+7
+	ldd r27,Y+8
+	std Z+4,r18
+	std Z+5,r19
+	std Z+6,r26
+	std Z+7,r27
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r26,Y+11
+	ldd r27,Y+12
+	std Z+8,r18
+	std Z+9,r19
+	std Z+10,r26
+	std Z+11,r27
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r26,Y+15
+	ldd r27,Y+16
+	std Z+12,r18
+	std Z+13,r19
+	std Z+14,r26
+	std Z+15,r27
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r26,Y+19
+	ldd r27,Y+20
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r26
+	std Z+19,r27
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r26,Y+23
+	ldd r27,Y+24
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r26
+	std Z+23,r27
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r26,Y+27
+	ldd r27,Y+28
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r26
+	std Z+27,r27
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r26,Y+31
+	ldd r27,Y+32
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r26
+	std Z+31,r27
+	ldd r18,Y+33
+	ldd r19,Y+34
+	ldd r26,Y+35
+	ldd r27,Y+36
+	std Z+32,r18
+	std Z+33,r19
+	std Z+34,r26
+	std Z+35,r27
+	ldd r18,Y+37
+	ldd r19,Y+38
+	ldd r26,Y+39
+	ldd r27,Y+40
+	std Z+36,r18
+	std Z+37,r19
+	std Z+38,r26
+	std Z+39,r27
+	ldd r18,Y+41
+	ldd r19,Y+42
+	ldd r26,Y+43
+	ldd r27,Y+44
+	std Z+40,r18
+	std Z+41,r19
+	std Z+42,r26
+	std Z+43,r27
+	ldd r18,Y+45
+	ldd r19,Y+46
+	ldd r26,Y+47
+	ldd r27,Y+48
+	std Z+44,r18
+	std Z+45,r19
+	std Z+46,r26
+	std Z+47,r27
+	adiw r28,49
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	eor r1,r1
+	ret
+	.size forkskinny_128_384_inv_rounds, .-forkskinny_128_384_inv_rounds
+
+	.text
+.global forkskinny_128_384_forward_tk
+	.type forkskinny_128_384_forward_tk, @function
+forkskinny_128_384_forward_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,32
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 50
+	ld r4,Z
+	ldd r5,Z+1
+	ldd r6,Z+2
+	ldd r7,Z+3
+	ldd r8,Z+4
+	ldd r9,Z+5
+	ldd r10,Z+6
+	ldd r11,Z+7
+	ldd r12,Z+8
+	ldd r13,Z+9
+	ldd r14,Z+10
+	ldd r15,Z+11
+	ldd r24,Z+12
+	ldd r25,Z+13
+	ldd r16,Z+14
+	ldd r17,Z+15
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r20,Z+18
+	ldd r21,Z+19
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r20,Z+22
+	ldd r21,Z+23
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r20,Z+26
+	ldd r21,Z+27
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r20,Z+30
+	ldd r21,Z+31
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
+	ldd r18,Z+32
+	ldd r19,Z+33
+	ldd r20,Z+34
+	ldd r21,Z+35
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r20
+	std Y+20,r21
+	ldd r18,Z+36
+	ldd r19,Z+37
+	ldd r20,Z+38
+	ldd r21,Z+39
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r20
+	std Y+24,r21
+	ldd r18,Z+40
+	ldd r19,Z+41
+	ldd r20,Z+42
+	ldd r21,Z+43
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r20
+	std Y+28,r21
+	ldd r18,Z+44
+	ldd r19,Z+45
+	ldd r20,Z+46
+	ldd r21,Z+47
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r20
+	std Y+32,r21
+	push r31
+	push r30
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_2)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+83:
+	movw r18,r12
+	movw r20,r14
+	movw r26,r24
+	movw r2,r16
+	movw r12,r4
+	movw r14,r6
+	movw r24,r8
+	movw r16,r10
+	mov r4,r19
+	mov r5,r3
+	mov r6,r18
+	mov r7,r27
+	mov r8,r20
+	mov r9,r2
+	mov r10,r26
+	mov r11,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	ldd r26,Y+13
+	ldd r27,Y+14
+	ldd r2,Y+15
+	ldd r3,Y+16
+	ldd r23,Y+1
+	std Y+9,r23
+	ldd r23,Y+2
+	std Y+10,r23
+	ldd r23,Y+3
+	std Y+11,r23
+	ldd r23,Y+4
+	std Y+12,r23
+	ldd r23,Y+5
+	std Y+13,r23
+	ldd r23,Y+6
+	std Y+14,r23
+	ldd r23,Y+7
+	std Y+15,r23
+	ldd r23,Y+8
+	std Y+16,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	std Y+1,r19
+	std Y+2,r3
+	std Y+3,r18
+	std Y+4,r27
+	std Y+5,r20
+	std Y+6,r2
+	std Y+7,r26
+	std Y+8,r21
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r20,Y+27
+	ldd r21,Y+28
+	ldd r26,Y+29
+	ldd r27,Y+30
+	ldd r2,Y+31
+	ldd r3,Y+32
+	ldd r23,Y+17
+	std Y+25,r23
+	ldd r23,Y+18
+	std Y+26,r23
+	ldd r23,Y+19
+	std Y+27,r23
+	ldd r23,Y+20
+	std Y+28,r23
+	ldd r23,Y+21
+	std Y+29,r23
+	ldd r23,Y+22
+	std Y+30,r23
+	ldd r23,Y+23
+	std Y+31,r23
+	ldd r23,Y+24
+	std Y+32,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	std Y+17,r19
+	std Y+18,r3
+	std Y+19,r18
+	std Y+20,r27
+	std Y+21,r20
+	std Y+22,r2
+	std Y+23,r26
+	std Y+24,r21
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_2)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	dec r22
+	breq 5183f
+	rjmp 83b
+5183:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r4
+	std Z+1,r5
+	std Z+2,r6
+	std Z+3,r7
+	std Z+4,r8
+	std Z+5,r9
+	std Z+6,r10
+	std Z+7,r11
+	std Z+8,r12
+	std Z+9,r13
+	std Z+10,r14
+	std Z+11,r15
+	std Z+12,r24
+	std Z+13,r25
+	std Z+14,r16
+	std Z+15,r17
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r20
+	std Z+19,r21
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r20,Y+7
+	ldd r21,Y+8
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r20
+	std Z+23,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r20
+	std Z+27,r21
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r20,Y+15
+	ldd r21,Y+16
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r20
+	std Z+31,r21
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r20,Y+19
+	ldd r21,Y+20
+	std Z+32,r18
+	std Z+33,r19
+	std Z+34,r20
+	std Z+35,r21
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r20,Y+23
+	ldd r21,Y+24
+	std Z+36,r18
+	std Z+37,r19
+	std Z+38,r20
+	std Z+39,r21
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r20,Y+27
+	ldd r21,Y+28
+	std Z+40,r18
+	std Z+41,r19
+	std Z+42,r20
+	std Z+43,r21
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r20,Y+31
+	ldd r21,Y+32
+	std Z+44,r18
+	std Z+45,r19
+	std Z+46,r20
+	std Z+47,r21
+	adiw r28,32
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_128_384_forward_tk, .-forkskinny_128_384_forward_tk
+
+	.text
+.global forkskinny_128_384_reverse_tk
+	.type forkskinny_128_384_reverse_tk, @function
+forkskinny_128_384_reverse_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,32
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 50
+	ld r2,Z
+	ldd r3,Z+1
+	ldd r4,Z+2
+	ldd r5,Z+3
+	ldd r6,Z+4
+	ldd r7,Z+5
+	ldd r8,Z+6
+	ldd r9,Z+7
+	ldd r10,Z+8
+	ldd r11,Z+9
+	ldd r12,Z+10
+	ldd r13,Z+11
+	ldd r14,Z+12
+	ldd r15,Z+13
+	ldd r16,Z+14
+	ldd r17,Z+15
+	ldd r18,Z+16
+	ldd r19,Z+17
+	ldd r20,Z+18
+	ldd r21,Z+19
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r20
+	std Y+4,r21
+	ldd r18,Z+20
+	ldd r19,Z+21
+	ldd r20,Z+22
+	ldd r21,Z+23
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r20
+	std Y+8,r21
+	ldd r18,Z+24
+	ldd r19,Z+25
+	ldd r20,Z+26
+	ldd r21,Z+27
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r20
+	std Y+12,r21
+	ldd r18,Z+28
+	ldd r19,Z+29
+	ldd r20,Z+30
+	ldd r21,Z+31
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r20
+	std Y+16,r21
+	ldd r18,Z+32
+	ldd r19,Z+33
+	ldd r20,Z+34
+	ldd r21,Z+35
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r20
+	std Y+20,r21
+	ldd r18,Z+36
+	ldd r19,Z+37
+	ldd r20,Z+38
+	ldd r21,Z+39
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r20
+	std Y+24,r21
+	ldd r18,Z+40
+	ldd r19,Z+41
+	ldd r20,Z+42
+	ldd r21,Z+43
+	std Y+25,r18
+	std Y+26,r19
+	std Y+27,r20
+	std Y+28,r21
+	ldd r18,Z+44
+	ldd r19,Z+45
+	ldd r20,Z+46
+	ldd r21,Z+47
+	std Y+29,r18
+	std Y+30,r19
+	std Y+31,r20
+	std Y+32,r21
+	push r31
+	push r30
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_3)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+83:
+	movw r18,r2
+	movw r20,r4
+	movw r26,r6
+	movw r24,r8
+	movw r2,r10
+	movw r4,r12
+	movw r6,r14
+	movw r8,r16
+	mov r10,r20
+	mov r11,r18
+	mov r12,r26
+	mov r13,r25
+	mov r14,r24
+	mov r15,r21
+	mov r16,r27
+	mov r17,r19
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	ldd r26,Y+5
+	ldd r27,Y+6
+	ldd r24,Y+7
+	ldd r25,Y+8
+	ldd r23,Y+9
+	std Y+1,r23
+	ldd r23,Y+10
+	std Y+2,r23
+	ldd r23,Y+11
+	std Y+3,r23
+	ldd r23,Y+12
+	std Y+4,r23
+	ldd r23,Y+13
+	std Y+5,r23
+	ldd r23,Y+14
+	std Y+6,r23
+	ldd r23,Y+15
+	std Y+7,r23
+	ldd r23,Y+16
+	std Y+8,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	std Y+9,r20
+	std Y+10,r18
+	std Y+11,r26
+	std Y+12,r25
+	std Y+13,r24
+	std Y+14,r21
+	std Y+15,r27
+	std Y+16,r19
+	ldi r30,lo8(table_2)
+	ldi r31,hi8(table_2)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_2)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r20,Y+19
+	ldd r21,Y+20
+	ldd r26,Y+21
+	ldd r27,Y+22
+	ldd r24,Y+23
+	ldd r25,Y+24
+	ldd r23,Y+25
+	std Y+17,r23
+	ldd r23,Y+26
+	std Y+18,r23
+	ldd r23,Y+27
+	std Y+19,r23
+	ldd r23,Y+28
+	std Y+20,r23
+	ldd r23,Y+29
+	std Y+21,r23
+	ldd r23,Y+30
+	std Y+22,r23
+	ldd r23,Y+31
+	std Y+23,r23
+	ldd r23,Y+32
+	std Y+24,r23
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r20
+#if defined(RAMPZ)
+	elpm r20,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r20,Z
+#elif defined(__AVR_TINY__)
+	ld r20,Z
+#else
+	lpm
+	mov r20,r0
+#endif
+	mov r30,r21
+#if defined(RAMPZ)
+	elpm r21,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r21,Z
+#elif defined(__AVR_TINY__)
+	ld r21,Z
+#else
+	lpm
+	mov r21,r0
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r24
+#if defined(RAMPZ)
+	elpm r24,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r24,Z
+#elif defined(__AVR_TINY__)
+	ld r24,Z
+#else
+	lpm
+	mov r24,r0
+#endif
+	mov r30,r25
+#if defined(RAMPZ)
+	elpm r25,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r25,Z
+#elif defined(__AVR_TINY__)
+	ld r25,Z
+#else
+	lpm
+	mov r25,r0
+#endif
+	std Y+25,r20
+	std Y+26,r18
+	std Y+27,r26
+	std Y+28,r25
+	std Y+29,r24
+	std Y+30,r21
+	std Y+31,r27
+	std Y+32,r19
+	ldi r30,lo8(table_3)
+	ldi r31,hi8(table_3)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_3)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	dec r22
+	breq 5183f
+	rjmp 83b
+5183:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r2
+	std Z+1,r3
+	std Z+2,r4
+	std Z+3,r5
+	std Z+4,r6
+	std Z+5,r7
+	std Z+6,r8
+	std Z+7,r9
+	std Z+8,r10
+	std Z+9,r11
+	std Z+10,r12
+	std Z+11,r13
+	std Z+12,r14
+	std Z+13,r15
+	std Z+14,r16
+	std Z+15,r17
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r20,Y+3
+	ldd r21,Y+4
+	std Z+16,r18
+	std Z+17,r19
+	std Z+18,r20
+	std Z+19,r21
+	ldd r18,Y+5
+	ldd r19,Y+6
+	ldd r20,Y+7
+	ldd r21,Y+8
+	std Z+20,r18
+	std Z+21,r19
+	std Z+22,r20
+	std Z+23,r21
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r20,Y+11
+	ldd r21,Y+12
+	std Z+24,r18
+	std Z+25,r19
+	std Z+26,r20
+	std Z+27,r21
+	ldd r18,Y+13
+	ldd r19,Y+14
+	ldd r20,Y+15
+	ldd r21,Y+16
+	std Z+28,r18
+	std Z+29,r19
+	std Z+30,r20
+	std Z+31,r21
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r20,Y+19
+	ldd r21,Y+20
+	std Z+32,r18
+	std Z+33,r19
+	std Z+34,r20
+	std Z+35,r21
+	ldd r18,Y+21
+	ldd r19,Y+22
+	ldd r20,Y+23
+	ldd r21,Y+24
+	std Z+36,r18
+	std Z+37,r19
+	std Z+38,r20
+	std Z+39,r21
+	ldd r18,Y+25
+	ldd r19,Y+26
+	ldd r20,Y+27
+	ldd r21,Y+28
+	std Z+40,r18
+	std Z+41,r19
+	std Z+42,r20
+	std Z+43,r21
+	ldd r18,Y+29
+	ldd r19,Y+30
+	ldd r20,Y+31
+	ldd r21,Y+32
+	std Z+44,r18
+	std Z+45,r19
+	std Z+46,r20
+	std Z+47,r21
+	adiw r28,32
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_128_384_reverse_tk, .-forkskinny_128_384_reverse_tk
+
+	.text
+.global forkskinny_64_192_rounds
+	.type forkskinny_64_192_rounds, @function
+forkskinny_64_192_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,24
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 38
+	ldd r26,Z+24
+	ldd r27,Z+25
+	ldd r2,Z+26
+	ldd r3,Z+27
+	ldd r4,Z+28
+	ldd r5,Z+29
+	ldd r6,Z+30
+	ldd r7,Z+31
+	ld r18,Z
+	ldd r19,Z+1
+	std Y+1,r18
+	std Y+2,r19
+	ldd r18,Z+2
+	ldd r19,Z+3
+	std Y+3,r18
+	std Y+4,r19
+	ldd r18,Z+4
+	ldd r19,Z+5
+	std Y+5,r18
+	std Y+6,r19
+	ldd r18,Z+6
+	ldd r19,Z+7
+	std Y+7,r18
+	std Y+8,r19
+	ldd r18,Z+8
+	ldd r19,Z+9
+	std Y+9,r18
+	std Y+10,r19
+	ldd r18,Z+10
+	ldd r19,Z+11
+	std Y+11,r18
+	std Y+12,r19
+	ldd r18,Z+12
+	ldd r19,Z+13
+	std Y+13,r18
+	std Y+14,r19
+	ldd r18,Z+14
+	ldd r19,Z+15
+	std Y+15,r18
+	std Y+16,r19
+	ldd r18,Z+16
+	ldd r19,Z+17
+	std Y+17,r18
+	std Y+18,r19
+	ldd r18,Z+18
+	ldd r19,Z+19
+	std Y+19,r18
+	std Y+20,r19
+	ldd r18,Z+20
+	ldd r19,Z+21
+	std Y+21,r18
+	std Y+22,r19
+	ldd r18,Z+22
+	ldd r19,Z+23
+	std Y+23,r18
+	std Y+24,r19
+	push r31
+	push r30
+	ldi r30,lo8(table_5)
+	ldi r31,hi8(table_5)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_5)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+	lsl r20
+61:
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldd r18,Y+1
+	ldd r19,Y+2
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+3
+	ldd r19,Y+4
+	eor r2,r18
+	eor r3,r19
+	ldd r18,Y+9
+	ldd r19,Y+10
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+11
+	ldd r19,Y+12
+	eor r2,r18
+	eor r3,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+19
+	ldd r19,Y+20
+	eor r2,r18
+	eor r3,r19
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	swap r18
+	eor r27,r18
+	inc r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	swap r18
+	eor r3,r18
+	ldi r18,32
+	eor r5,r18
+	eor r26,r18
+	mov r0,r1
+	lsr r3
+	ror r2
+	ror r0
+	lsr r3
+	ror r2
+	ror r0
+	lsr r3
+	ror r2
+	ror r0
+	lsr r3
+	ror r2
+	ror r0
+	or r3,r0
+	mov r0,r4
+	mov r4,r5
+	mov r5,r0
+	mov r0,r6
+	mov r6,r7
+	mov r7,r0
+	mov r0,r1
+	lsr r7
+	ror r6
+	ror r0
+	lsr r7
+	ror r6
+	ror r0
+	lsr r7
+	ror r6
+	ror r0
+	lsr r7
+	ror r6
+	ror r0
+	or r7,r0
+	eor r2,r4
+	eor r3,r5
+	eor r4,r26
+	eor r5,r27
+	movw r18,r6
+	eor r18,r4
+	eor r19,r5
+	movw r6,r4
+	movw r4,r2
+	movw r2,r26
+	movw r26,r18
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
+	ldd r10,Y+5
+	ldd r11,Y+6
+	ldd r12,Y+7
+	ldd r13,Y+8
+	std Y+5,r18
+	std Y+6,r19
+	std Y+7,r8
+	std Y+8,r9
+	mov r19,r11
+	swap r19
+	andi r19,240
+	mov r21,r12
+	andi r21,15
+	or r19,r21
+	mov r18,r11
+	andi r18,240
+	mov r21,r13
+	andi r21,15
+	or r18,r21
+	mov r9,r10
+	ldi r25,240
+	and r9,r25
+	swap r12
+	ldi r24,15
+	and r12,r24
+	or r9,r12
+	mov r8,r13
+	and r8,r25
+	and r10,r24
+	or r8,r10
+	std Y+1,r18
+	std Y+2,r19
+	std Y+3,r8
+	std Y+4,r9
+	ldi r30,lo8(table_7)
+	ldi r31,hi8(table_7)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_7)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
+	ldd r10,Y+13
+	ldd r11,Y+14
+	ldd r12,Y+15
+	ldd r13,Y+16
+	std Y+13,r18
+	std Y+14,r19
+	std Y+15,r8
+	std Y+16,r9
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r19,r11
+	swap r19
+	andi r19,240
+	mov r21,r12
+	andi r21,15
+	or r19,r21
+	mov r18,r11
+	andi r18,240
+	mov r21,r13
+	andi r21,15
+	or r18,r21
+	mov r9,r10
+	and r9,r25
+	swap r12
+	and r12,r24
+	or r9,r12
+	mov r8,r13
+	and r8,r25
+	and r10,r24
+	or r8,r10
+	std Y+9,r18
+	std Y+10,r19
+	std Y+11,r8
+	std Y+12,r9
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_8)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r8,Y+19
+	ldd r9,Y+20
+	ldd r10,Y+21
+	ldd r11,Y+22
+	ldd r12,Y+23
+	ldd r13,Y+24
+	std Y+21,r18
+	std Y+22,r19
+	std Y+23,r8
+	std Y+24,r9
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	mov r19,r11
+	swap r19
+	andi r19,240
+	mov r21,r12
+	andi r21,15
+	or r19,r21
+	mov r18,r11
+	andi r18,240
+	mov r21,r13
+	andi r21,15
+	or r18,r21
+	mov r9,r10
+	and r9,r25
+	swap r12
+	and r12,r24
+	or r9,r12
+	mov r8,r13
+	and r8,r25
+	and r10,r24
+	or r8,r10
+	std Y+17,r18
+	std Y+18,r19
+	std Y+19,r8
+	std Y+20,r9
+	ldi r30,lo8(table_5)
+	ldi r31,hi8(table_5)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_5)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	inc r22
+	cp r22,r20
+	breq 5273f
+	rjmp 61b
+5273:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+24,r26
+	std Z+25,r27
+	std Z+26,r2
+	std Z+27,r3
+	std Z+28,r4
+	std Z+29,r5
+	std Z+30,r6
+	std Z+31,r7
+	ldd r18,Y+1
+	ldd r19,Y+2
+	st Z,r18
+	std Z+1,r19
+	ldd r18,Y+3
+	ldd r19,Y+4
+	std Z+2,r18
+	std Z+3,r19
+	ldd r18,Y+5
+	ldd r19,Y+6
+	std Z+4,r18
+	std Z+5,r19
+	ldd r18,Y+7
+	ldd r19,Y+8
+	std Z+6,r18
+	std Z+7,r19
+	ldd r18,Y+9
+	ldd r19,Y+10
+	std Z+8,r18
+	std Z+9,r19
+	ldd r18,Y+11
+	ldd r19,Y+12
+	std Z+10,r18
+	std Z+11,r19
+	ldd r18,Y+13
+	ldd r19,Y+14
+	std Z+12,r18
+	std Z+13,r19
+	ldd r18,Y+15
+	ldd r19,Y+16
+	std Z+14,r18
+	std Z+15,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	std Z+16,r18
+	std Z+17,r19
+	ldd r18,Y+19
+	ldd r19,Y+20
+	std Z+18,r18
+	std Z+19,r19
+	ldd r18,Y+21
+	ldd r19,Y+22
+	std Z+20,r18
+	std Z+21,r19
+	ldd r18,Y+23
+	ldd r19,Y+24
+	std Z+22,r18
+	std Z+23,r19
+	adiw r28,24
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_64_192_rounds, .-forkskinny_64_192_rounds
+
+	.text
+.global forkskinny_64_192_inv_rounds
+	.type forkskinny_64_192_inv_rounds, @function
+forkskinny_64_192_inv_rounds:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	movw r30,r24
+	in r28,0x3d
+	in r29,0x3e
+	sbiw r28,24
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+.L__stack_usage = 38
+	ldd r26,Z+24
+	ldd r27,Z+25
+	ldd r2,Z+26
+	ldd r3,Z+27
+	ldd r4,Z+28
+	ldd r5,Z+29
+	ldd r6,Z+30
+	ldd r7,Z+31
+	ld r18,Z
+	ldd r19,Z+1
+	std Y+1,r18
+	std Y+2,r19
+	ldd r18,Z+2
+	ldd r19,Z+3
+	std Y+3,r18
+	std Y+4,r19
+	ldd r18,Z+4
+	ldd r19,Z+5
+	std Y+5,r18
+	std Y+6,r19
+	ldd r18,Z+6
+	ldd r19,Z+7
+	std Y+7,r18
+	std Y+8,r19
+	ldd r18,Z+8
+	ldd r19,Z+9
+	std Y+9,r18
+	std Y+10,r19
+	ldd r18,Z+10
+	ldd r19,Z+11
+	std Y+11,r18
+	std Y+12,r19
+	ldd r18,Z+12
+	ldd r19,Z+13
+	std Y+13,r18
+	std Y+14,r19
+	ldd r18,Z+14
+	ldd r19,Z+15
+	std Y+15,r18
+	std Y+16,r19
+	ldd r18,Z+16
+	ldd r19,Z+17
+	std Y+17,r18
+	std Y+18,r19
+	ldd r18,Z+18
+	ldd r19,Z+19
+	std Y+19,r18
+	std Y+20,r19
+	ldd r18,Z+20
+	ldd r19,Z+21
+	std Y+21,r18
+	std Y+22,r19
+	ldd r18,Z+22
+	ldd r19,Z+23
+	std Y+23,r18
+	std Y+24,r19
+	push r31
+	push r30
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_8)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	lsl r22
+	lsl r20
+61:
+	ldd r18,Y+1
+	ldd r19,Y+2
+	ldd r8,Y+3
+	ldd r9,Y+4
+	ldd r10,Y+5
+	ldd r11,Y+6
+	ldd r12,Y+7
+	ldd r13,Y+8
+	std Y+1,r10
+	std Y+2,r11
+	std Y+3,r12
+	std Y+4,r13
+	mov r11,r18
+	ldi r25,240
+	and r11,r25
+	mov r21,r19
+	swap r21
+	andi r21,15
+	or r11,r21
+	mov r10,r9
+	and r10,r25
+	mov r21,r8
+	andi r21,15
+	or r10,r21
+	mov r13,r8
+	and r13,r25
+	andi r18,15
+	or r13,r18
+	mov r12,r9
+	swap r12
+	and r12,r25
+	andi r19,15
+	or r12,r19
+	std Y+5,r10
+	std Y+6,r11
+	std Y+7,r12
+	std Y+8,r13
+	ldd r18,Y+9
+	ldd r19,Y+10
+	ldd r8,Y+11
+	ldd r9,Y+12
+	ldd r10,Y+13
+	ldd r11,Y+14
+	ldd r12,Y+15
+	ldd r13,Y+16
+	std Y+9,r10
+	std Y+10,r11
+	std Y+11,r12
+	std Y+12,r13
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r11,r18
+	and r11,r25
+	mov r21,r19
+	swap r21
+	andi r21,15
+	or r11,r21
+	mov r10,r9
+	and r10,r25
+	mov r21,r8
+	andi r21,15
+	or r10,r21
+	mov r13,r8
+	and r13,r25
+	andi r18,15
+	or r13,r18
+	mov r12,r9
+	swap r12
+	and r12,r25
+	andi r19,15
+	or r12,r19
+	std Y+13,r10
+	std Y+14,r11
+	std Y+15,r12
+	std Y+16,r13
+	ldi r30,lo8(table_7)
+	ldi r31,hi8(table_7)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_7)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	ldd r18,Y+17
+	ldd r19,Y+18
+	ldd r8,Y+19
+	ldd r9,Y+20
+	ldd r10,Y+21
+	ldd r11,Y+22
+	ldd r12,Y+23
+	ldd r13,Y+24
+	std Y+17,r10
+	std Y+18,r11
+	std Y+19,r12
+	std Y+20,r13
+	mov r30,r18
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	mov r30,r19
+#if defined(RAMPZ)
+	elpm r19,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r19,Z
+#elif defined(__AVR_TINY__)
+	ld r19,Z
+#else
+	lpm
+	mov r19,r0
+#endif
+	mov r30,r8
+#if defined(RAMPZ)
+	elpm r8,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r8,Z
+#elif defined(__AVR_TINY__)
+	ld r8,Z
+#else
+	lpm
+	mov r8,r0
+#endif
+	mov r30,r9
+#if defined(RAMPZ)
+	elpm r9,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r9,Z
+#elif defined(__AVR_TINY__)
+	ld r9,Z
+#else
+	lpm
+	mov r9,r0
+#endif
+	mov r11,r18
+	and r11,r25
+	mov r21,r19
+	swap r21
+	andi r21,15
+	or r11,r21
+	mov r10,r9
+	and r10,r25
+	mov r21,r8
+	andi r21,15
+	or r10,r21
+	mov r13,r8
+	and r13,r25
+	andi r18,15
+	or r13,r18
+	mov r12,r9
+	swap r12
+	and r12,r25
+	andi r19,15
+	or r12,r19
+	std Y+21,r10
+	std Y+22,r11
+	std Y+23,r12
+	std Y+24,r13
+	movw r18,r26
+	movw r26,r2
+	movw r2,r4
+	movw r4,r6
+	movw r6,r18
+	eor r6,r4
+	eor r7,r5
+	eor r4,r26
+	eor r5,r27
+	eor r2,r4
+	eor r3,r5
+	lsl r2
+	rol r3
+	adc r2,r1
+	lsl r2
+	rol r3
+	adc r2,r1
+	lsl r2
+	rol r3
+	adc r2,r1
+	lsl r2
+	rol r3
+	adc r2,r1
+	mov r0,r5
+	mov r5,r4
+	mov r4,r0
+	mov r0,r7
+	mov r7,r6
+	mov r6,r0
+	lsl r6
+	rol r7
+	adc r6,r1
+	lsl r6
+	rol r7
+	adc r6,r1
+	lsl r6
+	rol r7
+	adc r6,r1
+	lsl r6
+	rol r7
+	adc r6,r1
+	ldd r18,Y+1
+	ldd r19,Y+2
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+3
+	ldd r19,Y+4
+	eor r2,r18
+	eor r3,r19
+	ldd r18,Y+9
+	ldd r19,Y+10
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+11
+	ldd r19,Y+12
+	eor r2,r18
+	eor r3,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	eor r26,r18
+	eor r27,r19
+	ldd r18,Y+19
+	ldd r19,Y+20
+	eor r2,r18
+	eor r3,r19
+	ldi r30,lo8(table_4)
+	ldi r31,hi8(table_4)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_4)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	swap r18
+	eor r3,r18
+	dec r22
+	mov r30,r22
+#if defined(RAMPZ)
+	elpm r18,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r18,Z
+#elif defined(__AVR_TINY__)
+	ld r18,Z
+#else
+	lpm
+	mov r18,r0
+#endif
+	swap r18
+	eor r27,r18
+	ldi r18,32
+	eor r5,r18
+	eor r26,r18
+	ldi r30,lo8(table_6)
+	ldi r31,hi8(table_6)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_6)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	mov r30,r26
+#if defined(RAMPZ)
+	elpm r26,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r26,Z
+#elif defined(__AVR_TINY__)
+	ld r26,Z
+#else
+	lpm
+	mov r26,r0
+#endif
+	mov r30,r27
+#if defined(RAMPZ)
+	elpm r27,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r27,Z
+#elif defined(__AVR_TINY__)
+	ld r27,Z
+#else
+	lpm
+	mov r27,r0
+#endif
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	mov r30,r6
+#if defined(RAMPZ)
+	elpm r6,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r6,Z
+#elif defined(__AVR_TINY__)
+	ld r6,Z
+#else
+	lpm
+	mov r6,r0
+#endif
+	mov r30,r7
+#if defined(RAMPZ)
+	elpm r7,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r7,Z
+#elif defined(__AVR_TINY__)
+	ld r7,Z
+#else
+	lpm
+	mov r7,r0
+#endif
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r18,hh8(table_8)
+	out _SFR_IO_ADDR(RAMPZ),r18
+#endif
+	cp r22,r20
+	breq 5268f
+	rjmp 61b
+5268:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	std Z+24,r26
+	std Z+25,r27
+	std Z+26,r2
+	std Z+27,r3
+	std Z+28,r4
+	std Z+29,r5
+	std Z+30,r6
+	std Z+31,r7
+	ldd r18,Y+1
+	ldd r19,Y+2
+	st Z,r18
+	std Z+1,r19
+	ldd r18,Y+3
+	ldd r19,Y+4
+	std Z+2,r18
+	std Z+3,r19
+	ldd r18,Y+5
+	ldd r19,Y+6
+	std Z+4,r18
+	std Z+5,r19
+	ldd r18,Y+7
+	ldd r19,Y+8
+	std Z+6,r18
+	std Z+7,r19
+	ldd r18,Y+9
+	ldd r19,Y+10
+	std Z+8,r18
+	std Z+9,r19
+	ldd r18,Y+11
+	ldd r19,Y+12
+	std Z+10,r18
+	std Z+11,r19
+	ldd r18,Y+13
+	ldd r19,Y+14
+	std Z+12,r18
+	std Z+13,r19
+	ldd r18,Y+15
+	ldd r19,Y+16
+	std Z+14,r18
+	std Z+15,r19
+	ldd r18,Y+17
+	ldd r19,Y+18
+	std Z+16,r18
+	std Z+17,r19
+	ldd r18,Y+19
+	ldd r19,Y+20
+	std Z+18,r18
+	std Z+19,r19
+	ldd r18,Y+21
+	ldd r19,Y+22
+	std Z+20,r18
+	std Z+21,r19
+	ldd r18,Y+23
+	ldd r19,Y+24
+	std Z+22,r18
+	std Z+23,r19
+	adiw r28,24
+	in r0,0x3f
+	cli
+	out 0x3e,r29
+	out 0x3f,r0
+	out 0x3d,r28
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_64_192_inv_rounds, .-forkskinny_64_192_inv_rounds
+
+	.text
+.global forkskinny_64_192_forward_tk
+	.type forkskinny_64_192_forward_tk, @function
+forkskinny_64_192_forward_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+.L__stack_usage = 18
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r20,Z+2
+	ldd r21,Z+3
+	ldd r26,Z+4
+	ldd r27,Z+5
+	ldd r28,Z+6
+	ldd r29,Z+7
+	ldd r2,Z+8
+	ldd r3,Z+9
+	ldd r4,Z+10
+	ldd r5,Z+11
+	ldd r6,Z+12
+	ldd r7,Z+13
+	ldd r8,Z+14
+	ldd r9,Z+15
+	ldd r10,Z+16
+	ldd r11,Z+17
+	ldd r12,Z+18
+	ldd r13,Z+19
+	ldd r14,Z+20
+	ldd r15,Z+21
+	ldd r24,Z+22
+	ldd r25,Z+23
+	push r31
+	push r30
+	ldi r30,lo8(table_7)
+	ldi r31,hi8(table_7)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_7)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+27:
+	push r19
+	push r18
+	push r21
+	push r20
+	mov r19,r27
+	swap r19
+	andi r19,240
+	mov r23,r28
+	andi r23,15
+	or r19,r23
+	mov r18,r27
+	andi r18,240
+	mov r23,r29
+	andi r23,15
+	or r18,r23
+	mov r21,r26
+	andi r21,240
+	swap r28
+	andi r28,15
+	or r21,r28
+	mov r20,r29
+	andi r20,240
+	andi r26,15
+	or r20,r26
+	pop r28
+	pop r29
+	pop r26
+	pop r27
+	push r3
+	push r2
+	push r5
+	push r4
+	mov r3,r7
+	swap r3
+	ldi r17,240
+	and r3,r17
+	mov r23,r8
+	andi r23,15
+	or r3,r23
+	mov r2,r7
+	and r2,r17
+	mov r23,r9
+	andi r23,15
+	or r2,r23
+	mov r5,r6
+	and r5,r17
+	swap r8
+	ldi r16,15
+	and r8,r16
+	or r5,r8
+	mov r4,r9
+	and r4,r17
+	and r6,r16
+	or r4,r6
+	pop r8
+	pop r9
+	pop r6
+	pop r7
+	push r11
+	push r10
+	push r13
+	push r12
+	mov r11,r15
+	swap r11
+	and r11,r17
+	mov r23,r24
+	andi r23,15
+	or r11,r23
+	mov r10,r15
+	and r10,r17
+	mov r23,r25
+	andi r23,15
+	or r10,r23
+	mov r13,r14
+	and r13,r17
+	swap r24
+	andi r24,15
+	or r13,r24
+	mov r12,r25
+	and r12,r17
+	and r14,r16
+	or r12,r14
+	pop r24
+	pop r25
+	pop r14
+	pop r15
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_8)
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	ldi r30,lo8(table_7)
+	ldi r31,hi8(table_7)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_7)
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+	dec r22
+	breq 5125f
+	rjmp 27b
+5125:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r20
+	std Z+3,r21
+	std Z+4,r26
+	std Z+5,r27
+	std Z+6,r28
+	std Z+7,r29
+	std Z+8,r2
+	std Z+9,r3
+	std Z+10,r4
+	std Z+11,r5
+	std Z+12,r6
+	std Z+13,r7
+	std Z+14,r8
+	std Z+15,r9
+	std Z+16,r10
+	std Z+17,r11
+	std Z+18,r12
+	std Z+19,r13
+	std Z+20,r14
+	std Z+21,r15
+	std Z+22,r24
+	std Z+23,r25
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_64_192_forward_tk, .-forkskinny_64_192_forward_tk
+
+	.text
+.global forkskinny_64_192_reverse_tk
+	.type forkskinny_64_192_reverse_tk, @function
+forkskinny_64_192_reverse_tk:
+	push r28
+	push r29
+	push r2
+	push r3
+	push r4
+	push r5
+	push r6
+	push r7
+	push r8
+	push r9
+	push r10
+	push r11
+	push r12
+	push r13
+	push r14
+	push r15
+	push r16
+	push r17
+	movw r30,r24
+.L__stack_usage = 18
+	ld r18,Z
+	ldd r19,Z+1
+	ldd r20,Z+2
+	ldd r21,Z+3
+	ldd r26,Z+4
+	ldd r27,Z+5
+	ldd r28,Z+6
+	ldd r29,Z+7
+	ldd r2,Z+8
+	ldd r3,Z+9
+	ldd r4,Z+10
+	ldd r5,Z+11
+	ldd r6,Z+12
+	ldd r7,Z+13
+	ldd r8,Z+14
+	ldd r9,Z+15
+	ldd r10,Z+16
+	ldd r11,Z+17
+	ldd r12,Z+18
+	ldd r13,Z+19
+	ldd r14,Z+20
+	ldd r15,Z+21
+	ldd r24,Z+22
+	ldd r25,Z+23
+	push r31
+	push r30
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_8)
+	in r0,_SFR_IO_ADDR(RAMPZ)
+	push r0
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+27:
+	mov r30,r2
+#if defined(RAMPZ)
+	elpm r2,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r2,Z
+#elif defined(__AVR_TINY__)
+	ld r2,Z
+#else
+	lpm
+	mov r2,r0
+#endif
+	mov r30,r3
+#if defined(RAMPZ)
+	elpm r3,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r3,Z
+#elif defined(__AVR_TINY__)
+	ld r3,Z
+#else
+	lpm
+	mov r3,r0
+#endif
+	mov r30,r4
+#if defined(RAMPZ)
+	elpm r4,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r4,Z
+#elif defined(__AVR_TINY__)
+	ld r4,Z
+#else
+	lpm
+	mov r4,r0
+#endif
+	mov r30,r5
+#if defined(RAMPZ)
+	elpm r5,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r5,Z
+#elif defined(__AVR_TINY__)
+	ld r5,Z
+#else
+	lpm
+	mov r5,r0
+#endif
+	ldi r30,lo8(table_7)
+	ldi r31,hi8(table_7)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_7)
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+	mov r30,r10
+#if defined(RAMPZ)
+	elpm r10,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r10,Z
+#elif defined(__AVR_TINY__)
+	ld r10,Z
+#else
+	lpm
+	mov r10,r0
+#endif
+	mov r30,r11
+#if defined(RAMPZ)
+	elpm r11,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r11,Z
+#elif defined(__AVR_TINY__)
+	ld r11,Z
+#else
+	lpm
+	mov r11,r0
+#endif
+	mov r30,r12
+#if defined(RAMPZ)
+	elpm r12,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r12,Z
+#elif defined(__AVR_TINY__)
+	ld r12,Z
+#else
+	lpm
+	mov r12,r0
+#endif
+	mov r30,r13
+#if defined(RAMPZ)
+	elpm r13,Z
+#elif defined(__AVR_HAVE_LPMX__)
+	lpm r13,Z
+#elif defined(__AVR_TINY__)
+	ld r13,Z
+#else
+	lpm
+	mov r13,r0
+#endif
+	ldi r30,lo8(table_8)
+	ldi r31,hi8(table_8)
+#if defined(RAMPZ)
+	ldi r23,hh8(table_8)
+	out _SFR_IO_ADDR(RAMPZ),r23
+#endif
+	push r27
+	push r26
+	push r29
+	push r28
+	mov r27,r18
+	andi r27,240
+	mov r23,r19
+	swap r23
+	andi r23,15
+	or r27,r23
+	mov r26,r21
+	andi r26,240
+	mov r23,r20
+	andi r23,15
+	or r26,r23
+	mov r29,r20
+	andi r29,240
+	andi r18,15
+	or r29,r18
+	mov r28,r21
+	swap r28
+	andi r28,240
+	andi r19,15
+	or r28,r19
+	pop r20
+	pop r21
+	pop r18
+	pop r19
+	push r7
+	push r6
+	push r9
+	push r8
+	mov r7,r2
+	ldi r17,240
+	and r7,r17
+	mov r23,r3
+	swap r23
+	andi r23,15
+	or r7,r23
+	mov r6,r5
+	and r6,r17
+	mov r23,r4
+	andi r23,15
+	or r6,r23
+	mov r9,r4
+	and r9,r17
+	ldi r16,15
+	and r2,r16
+	or r9,r2
+	mov r8,r5
+	swap r8
+	and r8,r17
+	and r3,r16
+	or r8,r3
+	pop r4
+	pop r5
+	pop r2
+	pop r3
+	push r15
+	push r14
+	push r25
+	push r24
+	mov r15,r10
+	and r15,r17
+	mov r23,r11
+	swap r23
+	andi r23,15
+	or r15,r23
+	mov r14,r13
+	and r14,r17
+	mov r23,r12
+	andi r23,15
+	or r14,r23
+	mov r25,r12
+	andi r25,240
+	and r10,r16
+	or r25,r10
+	mov r24,r13
+	swap r24
+	andi r24,240
+	and r11,r16
+	or r24,r11
+	pop r12
+	pop r13
+	pop r10
+	pop r11
+	dec r22
+	breq 5125f
+	rjmp 27b
+5125:
+#if defined(RAMPZ)
+	pop r0
+	out _SFR_IO_ADDR(RAMPZ),r0
+#endif
+	pop r30
+	pop r31
+	st Z,r18
+	std Z+1,r19
+	std Z+2,r20
+	std Z+3,r21
+	std Z+4,r26
+	std Z+5,r27
+	std Z+6,r28
+	std Z+7,r29
+	std Z+8,r2
+	std Z+9,r3
+	std Z+10,r4
+	std Z+11,r5
+	std Z+12,r6
+	std Z+13,r7
+	std Z+14,r8
+	std Z+15,r9
+	std Z+16,r10
+	std Z+17,r11
+	std Z+18,r12
+	std Z+19,r13
+	std Z+20,r14
+	std Z+21,r15
+	std Z+22,r24
+	std Z+23,r25
+	pop r17
+	pop r16
+	pop r15
+	pop r14
+	pop r13
+	pop r12
+	pop r11
+	pop r10
+	pop r9
+	pop r8
+	pop r7
+	pop r6
+	pop r5
+	pop r4
+	pop r3
+	pop r2
+	pop r29
+	pop r28
+	ret
+	.size forkskinny_64_192_reverse_tk, .-forkskinny_64_192_reverse_tk
+
+#endif

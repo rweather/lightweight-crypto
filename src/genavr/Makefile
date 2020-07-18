@@ -11,6 +11,7 @@ OBJS = \
 	algorithm_ascon.o \
 	algorithm_cham.o \
 	algorithm_gascon.o \
+	algorithm_forkskinny.o \
 	algorithm_gift128.o \
 	algorithm_gift128_fixsliced.o \
 	algorithm_gift64.o \
@@ -52,6 +53,7 @@ code.o: code.h
 code_out.o: code.h
 algorithm_ascon.o: code.h gen.h
 algorithm_cham.o: code.h gen.h
+algorithm_forkskinny.o: code.h gen.h
 algorithm_gascon.o: code.h gen.h
 algorithm_gift128.o: code.h gen.h
 algorithm_gift128_fixsliced.o: code.h gen.h
@@ -79,6 +81,7 @@ interpret.o: code.h
 generate: $(TARGET)
 	./$(TARGET) ASCON >../combined/internal-ascon-avr.S
 	./$(TARGET) CHAM >../combined/internal-cham-avr.S
+	./$(TARGET) ForkSkinny >../combined/internal-forkskinny-avr.S
 	./$(TARGET) GASCON >../combined/internal-drysponge-avr.S
 	./$(TARGET) GIFT-128b-fs-4 >../combined/internal-gift128b-tiny-avr.S
 	./$(TARGET) GIFT-128b-fs-20 >../combined/internal-gift128b-small-avr.S

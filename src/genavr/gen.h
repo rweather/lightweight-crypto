@@ -46,6 +46,34 @@ void gen_cham64_encrypt(Code &code);
 bool test_cham128_encrypt(Code &code);
 bool test_cham64_encrypt(Code &code);
 
+// ForkSkinny block cipher.
+#define FORKSKINNY_SBOX_COUNT 9
+Sbox get_forkskinny_sbox(int num);
+void gen_forkskinny128_256_rounds(Code &code);
+void gen_forkskinny128_256_inv_rounds(Code &code);
+void gen_forkskinny128_256_forward_tk(Code &code);
+void gen_forkskinny128_256_reverse_tk(Code &code);
+void gen_forkskinny128_384_rounds(Code &code);
+void gen_forkskinny128_384_inv_rounds(Code &code);
+void gen_forkskinny128_384_forward_tk(Code &code);
+void gen_forkskinny128_384_reverse_tk(Code &code);
+void gen_forkskinny64_192_rounds(Code &code);
+void gen_forkskinny64_192_inv_rounds(Code &code);
+void gen_forkskinny64_192_forward_tk(Code &code);
+void gen_forkskinny64_192_reverse_tk(Code &code);
+bool test_forkskinny128_256_rounds(Code &code);
+bool test_forkskinny128_256_inv_rounds(Code &code);
+bool test_forkskinny128_256_forward_tk(Code &code);
+bool test_forkskinny128_256_reverse_tk(Code &code);
+bool test_forkskinny128_384_rounds(Code &code);
+bool test_forkskinny128_384_inv_rounds(Code &code);
+bool test_forkskinny128_384_forward_tk(Code &code);
+bool test_forkskinny128_384_reverse_tk(Code &code);
+bool test_forkskinny64_192_rounds(Code &code);
+bool test_forkskinny64_192_inv_rounds(Code &code);
+bool test_forkskinny64_192_forward_tk(Code &code);
+bool test_forkskinny64_192_reverse_tk(Code &code);
+
 // GASCON permutation and DrySPONGE helper functions.
 void gen_gascon128_core_round(Code &code);
 void gen_drysponge128_g(Code &code);
