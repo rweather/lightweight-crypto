@@ -30,9 +30,9 @@ contains implementations of many of the second round submissions to the
 <a href="https://csrc.nist.gov/projects/lightweight-cryptography/round-2-candidates">NIST lightweight cryptography competition</a>.
 
 The implementations here are focused on efficient implementation for 32-bit
-embedded architectures, particularly ARM.  The reference code from the NIST
-web site by contrast is focused on correctness and amenity to academic
-cryptanalysis.
+and 8-bit embedded architectures, particularly ARM and AVR.  The reference
+code from the NIST web site by contrast is focused on correctness and amenity
+to academic cryptanalysis.
 
 \section mainpage_source_dirs Source directories
 
@@ -82,15 +82,13 @@ All of the algorithms have been implemented in a manner that should
 execute in constant time with constant cache behaviour.  If you find a
 side channel leakage in the code, then please let me know.
 
-The \ref performance "performance page" contains comparisons of all
-implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.
+The \ref performance "32-bit performance page" contains comparisons of all
+implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.  The
+32-bit implementations are in plain C.
 
-All of the algorithms have been implemented to have good performance in
-plain C on 32-bit embedded microprocessors.
-
-Work is underway to port the algorithms to the 8-bit AVR platform.
-Some preliminary performance figures for AVR can be found
-\ref performance_avr "here".
+The \ref performance_avr "AVR performance page" contains comparisons of all
+implemented algorithms on 8-bit AVR platforms, with the assistance of
+assembly code speedups of the core block operations.
 
 Eventually the plan is to integrate the competition finalists into my
 <a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino
