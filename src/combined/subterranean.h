@@ -38,6 +38,8 @@
  *
  * The Subterranean permutation is intended for hardware implementation.
  * It is not structured for efficient software implementation.
+ *
+ * References: https://cs.ru.nl/~joan/subterranean.html
  */
 
 #ifdef __cplusplus

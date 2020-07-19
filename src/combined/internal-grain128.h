@@ -28,6 +28,8 @@
 /**
  * \file internal-grain128.h
  * \brief Internal implementation of the Grain-128 stream cipher.
+ *
+ * References: https://grain-128aead.github.io/
  */
 
 #ifdef __cplusplus

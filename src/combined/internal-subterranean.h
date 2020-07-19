@@ -28,6 +28,8 @@
 /**
  * \file internal-subterranean.h
  * \brief Internal implementation of the Subterranean block operation.
+ *
+ * References: https://cs.ru.nl/~joan/subterranean.html
  */
 
 #ifdef __cplusplus

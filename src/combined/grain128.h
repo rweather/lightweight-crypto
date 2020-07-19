@@ -33,6 +33,8 @@
  * combination of a 128-bit linear feedback shift register (LFSR) and a
  * 128-bit non-linear feedback shift register (NFSR).  It is a member of
  * the Grain family of stream ciphers.
+ *
+ * References: https://grain-128aead.github.io/
  */
 
 #ifdef __cplusplus
