@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </div>
 <div class="textblock"><p>This <a href="https://github.com/rweather/lightweight-crypto">repository</a> contains implementations of many of the second round submissions to the <a href="https://csrc.nist.gov/projects/lightweight-cryptography/round-2-candidates">NIST lightweight cryptography competition</a>.</p>
-<p>The implementations here are focused on efficient implementation for 32-bit embedded architectures, particularly ARM. The reference code from the NIST web site by contrast is focused on correctness and amenity to academic cryptanalysis.</p>
+<p>The implementations here are focused on efficient implementation for 32-bit and 8-bit embedded architectures, particularly ARM and AVR. The reference code from the NIST web site by contrast is focused on correctness and amenity to academic cryptanalysis.</p>
 <h1><a class="anchor" id="mainpage_source_dirs"></a>
 Source directories</h1>
 <p>The primary source for all algorithms is in the "src/combined" directory, which makes it easier to share common building blocks between algorithms and to test all of the algorithms as a set.</p>
@@ -102,9 +102,8 @@ Arduino support</h1>
 Algorithms and performance</h1>
 <p><a class="el" href="algorithms.html">This page</a> contains a list of all implemented algorithms, their properties, and any interesting features that I noticed as I was implementing them.</p>
 <p>All of the algorithms have been implemented in a manner that should execute in constant time with constant cache behaviour. If you find a side channel leakage in the code, then please let me know.</p>
-<p>The <a class="el" href="performance.html">performance page</a> contains comparisons of all implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices.</p>
-<p>All of the algorithms have been implemented to have good performance in plain C on 32-bit embedded microprocessors.</p>
-<p>Work is underway to port the algorithms to the 8-bit AVR platform. Some preliminary performance figures for AVR can be found <a class="el" href="performance_avr.html">here</a>.</p>
+<p>The <a class="el" href="performance.html">32-bit performance page</a> contains comparisons of all implemented algorithms on ARM Cortex M3 and ESP32 Arduino devices. The 32-bit implementations are in plain C.</p>
+<p>The <a class="el" href="performance_avr.html">AVR performance page</a> contains comparisons of all implemented algorithms on 8-bit AVR platforms, with the assistance of assembly code speedups of the core block operations.</p>
 <p>Eventually the plan is to integrate the competition finalists into my <a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino Cryptography Library</a>. But it is too soon to pick a candidate for inclusion just yet.</p>
 <h1><a class="anchor" id="mainpage_contact"></a>
 Contact</h1>
@@ -112,7 +111,7 @@ Contact</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2020 09:01:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 19 2020 10:10:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
