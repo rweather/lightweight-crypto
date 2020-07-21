@@ -1,0 +1,537 @@
+/*
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+\file masking.dox
+\page masking Utilities for masked ciphers
+\tableofcontents
+
+This page describes the utilities in the library that support the
+implementation of masked ciphers in plain C.
+
+\section masking_references References
+
+R. Cramer, I. Damgård, and Y. Ishai.  <i>Share Conversion, Pseudorandom
+Secret-Sharing and Applications to Secure Computation</i>.  In J. Kilian,
+editor, Theory of Cryptography Conference – TCC 2005, volume 3378 of
+Lecture Notes in Computer Science, pages 342–362. Springer, 2005,
+<a href="https://iacr.org/archive/tcc2005/3378_342/3378_342.pdf">PDF</a>.
+
+Matthieu Rivain and Emmanuel Prouff.  <i>Provably secure higher-order
+masking of AES</i>.  In Stefan Mangard and François-Xavier Standaert,
+editors, CHES, volume 6225 of Lecture Notes in Computer Science,
+pages 413–427.Springer, 2010,
+<a href="https://eprint.iacr.org/2010/441.pdf">PDF</a>.
+
+\section masking_power_analysis Why do we need masking?
+
+Applications in embedded devices may encrypt or decrypt many times with
+the same key, either because the key is fixed into the device, or the same
+key is used on every packet in a session.
+
+Each time the key is used, the power consumption of the device will fluctuate
+slightly based on the 0 and 1 bits from the key and the plaintext data.
+Over time it is possible to build up a statistical profile of a particular
+key's power consumption compared with other keys.
+
+In the simplest form, encrypting with a 1 bit from the key uses a different
+amount of power than encrypting with a 0 bit.  If the power consumption can
+be measured accurately enough, it may be possible to simply read the bits
+from the power consumption trace.  This is called Simple Power Analysis (SPA).
+
+SPA has historically been used to break RSA encryption on embedded
+devices.  A zero bit involves a square operation, and a 1 bit involves
+square-and-multiply.  The difference in power consumption means that
+the 0 and 1 bits of the RSA key can be literally read straight off an
+oscilloscope's screen.
+
+A more powerful technique is Differential Power Analysis (DPA) which can
+pull useful information out of otherwise noisy data given enough statistical
+samples.  The power consumption will bias one way or the other based on
+the key in a manner that DPA can detect.
+
+More information on power analysis: https://en.wikipedia.org/wiki/Power_analysis
+
+\section masking_what What is masking?
+
+Masking is a technique to mitigate against power analysis side channels.
+For a traditional block cipher, the key and the plaintext input are split
+up into multiple random "shares", the cipher is applied to each of the shares,
+and then the results are combined to produce the expected result.
+
+Consider a classical block cipher operation E(K, P) which encrypts a plaintext
+P under a key K.  We can split this into three shares as follows:
+
+\li Generate random values K2, K3, P2, and P3.
+\li Mask K by replacing it with "K ⊕ K2 ⊕ K3" (where ⊕ is the XOR operation).
+\li Mask P by replacing it with "P ⊕ P2 ⊕ P3".
+\li Compute E(K ⊕ K2 ⊕ K3, P ⊕ P2 ⊕ P3), E(K2, P2), and E(K3, P3) in parallel.
+\li XOR the results together to produce the final ciphertext.
+
+Because the values K2, K3, P2, and P3 are different every time the block
+operation is invoked, it is difficult for SPA and DPA to collect usable
+statistical data and the attack is mitigated.  There may still be other
+ways to recover the key, such as directly hacking into the device and
+stealing it, but power analysis is made more difficult.
+
+The complexity of masking comes in the fourth step above: computing the
+three block operations in parallel.  If the block cipher involves only
+XOR, rotate, and shift operations, then it truly can be computed in
+parallel with no interaction between the shares until the results are
+combined at the end.
+
+However, all secure ciphers will also include AND and OR operations to
+mix the data more thoroughly.  As we'll see below, this introduces some
+complexity into the calculations.  The utilities in this library handle
+the complexity to make it easier to write plain C code that uses masking.
+
+\section masking_example Example: Bit-sliced GIFT-128
+
+We begin with an example of converting parts of the bit-sliced version of
+GIFT-128 into masked form.
+
+At the start of a GIFT-128 encryption operation, the 128-bit plaintext input
+and the 128-bit key are loaded into 32-bit registers from the big-endian
+input buffers:
+
+\code
+uint32_t s0 = be_load_word32(input);
+uint32_t s1 = be_load_word32(input + 4);
+uint32_t s2 = be_load_word32(input + 8);
+uint32_t s3 = be_load_word32(input + 12);
+
+uint32_t k0 = be_load_word32(key);
+uint32_t k1 = be_load_word32(key + 4);
+uint32_t k2 = be_load_word32(key + 8);
+uint32_t k3 = be_load_word32(key + 12);
+\endcode
+
+Using the masking utilities, this becomes:
+
+\code
+mask_uint32_t s0, s1, s2, s3;
+mask_uint32_t k0, k1, k2, k3;
+
+mask_input(s0, be_load_word32(input));
+mask_input(s1, be_load_word32(input + 4));
+mask_input(s2, be_load_word32(input + 8));
+mask_input(s3, be_load_word32(input + 12));
+
+mask_input(k0, be_load_word32(key));
+mask_input(k1, be_load_word32(key + 4));
+mask_input(k2, be_load_word32(key + 8));
+mask_input(k3, be_load_word32(key + 12));
+\endcode
+
+The mask_uint32_t type contains the shares for a masked 32-bit word.
+The default implementation of this type has 4 shares:
+
+\code
+typedef struct
+{
+    uint32_t a;
+    uint32_t b;
+    uint32_t c;
+    uint32_t d;
+
+} mask_uint32_t;
+\endcode
+
+The mask_input() macro generates random material and masks the value:
+
+\code
+s0.b = aead_masking_generate_32();
+s0.c = aead_masking_generate_32();
+s0.d = aead_masking_generate_32();
+s0.a = be_load_word32(input) ^ s0.b ^ s0.c ^ s0.d;
+\endcode
+
+The aead_masking_generate_32() function is internal to the library and
+generates a random 32-bit value each time it is called.  Recent 32-bit
+ARM and other microcontrollers come with an instruction or peripheral
+register that provides a random 32-bit value, so obtaining random data
+is not hard.
+
+Note: You need to call aead_masking_init() before any use of the
+masking utilities to initialize the random number source.  But that
+can be placed into your application's startup code or your AEAD mode's
+setup phase.
+
+The masking is repeated for the other plaintext and key words.
+Later, we compute the bit-sliced GIFT-128 S-box as follows:
+
+\code
+s1 ^= s0 & s2;
+s0 ^= s1 & s3;
+s2 ^= s0 | s1;
+s3 ^= s2;
+s1 ^= s3;
+s3 ^= 0xFFFFFFFFU;
+s2 ^= s0 & s1;
+t = s0;
+s0 = s3;
+s3 = t;
+\endcode
+
+Using the masking utilities, this becomes:
+
+\code
+mask_and(s1, s0, s2);
+mask_and(s0, s1, s3);
+mask_or(s2, s0, s1);
+mask_xor(s3, s2);
+mask_xor(s1, s3);
+mask_not(s3);
+mask_and(s2, s0, s1);
+mask_uint32_t t = s0;
+s0 = s3;
+s3 = t;
+\endcode
+
+As can be seen, the structure of the masked version of the S-box is very
+similar to the original, which aids in debugging the implementation
+during development.
+
+Finally, once encryption is complete, we need to store the ciphertext
+to the output buffer in big-endian order:
+
+\code
+be_store_word32(output,      mask_output(s0));
+be_store_word32(output + 4,  mask_output(s1));
+be_store_word32(output + 8,  mask_output(s2));
+be_store_word32(output + 12, mask_output(s3));
+\endcode
+
+After macro expansion, this is equivalent to:
+
+\code
+be_store_word32(output,      s0.a ^ s0.b ^ s0.c ^ s0.d);
+be_store_word32(output + 4,  s1.a ^ s1.b ^ s1.c ^ s1.d);
+be_store_word32(output + 8,  s2.a ^ s2.b ^ s2.c ^ s2.d);
+be_store_word32(output + 12, s3.a ^ s3.b ^ s3.c ^ s3.d);
+\endcode
+
+\section masking_types Types
+
+The library provides explicit types for 2, 3, 4, 5, and 6 share versions of
+16-bit, 32-bit, and 64-bit words:
+
+\code
+mask_x2_uint16_t
+mask_x3_uint16_t
+mask_x4_uint16_t
+mask_x5_uint16_t
+mask_x6_uint16_t
+
+mask_x2_uint32_t
+mask_x3_uint32_t
+mask_x4_uint32_t
+mask_x5_uint32_t
+mask_x6_uint32_t
+
+mask_x2_uint64_t
+mask_x3_uint64_t
+mask_x4_uint64_t
+mask_x5_uint64_t
+mask_x6_uint64_t
+\endcode
+
+The library also contains the following generic types:
+
+\code
+mask_uint16_t
+mask_uint32_t
+mask_uint64_t
+\endcode
+
+The generic types are defined to one of the previous types based on the
+value of AEAD_MASKING_SHARES.  For example, if the number of shares is 3,
+then the generic types are mapped as follows:
+
+\code
+mask_uint16_t   =>   mask_x3_uint16_t
+mask_uint32_t   =>   mask_x3_uint32_t
+mask_uint64_t   =>   mask_x3_uint64_t
+\endcode
+
+Your code can use the explicit versions if you need an exact number of
+shares, or you can use the generic types to use the default number of
+shares that is specified by AEAD_MASKING_SHARES, usually 4.  Using the
+generic types is recommended because then it is easy to recompile
+your code to use a different sharing ratio.
+
+\section masking_operations Operations
+
+The following generic macros are defined to assist with working with
+masked words.  The equivalent plain C operation is shown on the right:
+
+\code
+mask_input(w, x)                    w = mask(x)
+mask_output(w)                      return unmask(w)
+mask_xor_const(w, c)                w ^= c
+mask_xor(w1, w2)                    w1 ^= w2
+mask_not(w)                         w = ~w
+mask_and(w1, w2, w3)                w1 ^= (w2 & w3)
+mask_or(w1, w2, w3)                 w1 ^= (w2 | w3)
+mask_shl(w1, w2, bits)              w1 = (w2 << bits)
+mask_shr(w1, w2, bits)              w1 = (w2 >> bits)
+mask_rol(w1, w2, bits)              w1 = (w2 <<< bits)
+mask_ror(w1, w2, bits)              w1 = (w2 >>> bits)
+\endcode
+
+These operations will work on 16-bit, 32-bit, and 64-bit masked words,
+adapting automatically to the underlying masked word type.
+
+There are also versions of these macros for each explcit sharing ratio
+between 2 and 6.  For example, if you wanted to force the use of the
+3-share versions, you would use the following macros instead of the
+generic ones:
+
+\code
+mask_x3_input(w, x)                 w = mask(x)
+mask_x3_output(w)                   return unmask(w)
+mask_x3_xor_const(w, c)             w ^= c
+mask_x3_xor(w1, w2)                 w1 ^= w2
+mask_x3_not(w)                      w = ~w
+mask_x3_and(w1, w2, w3)             w1 ^= (w2 & w3)
+mask_x3_or(w1, w2, w3)              w1 ^= (w2 | w3)
+mask_x3_shl(w1, w2, bits)           w1 = (w2 << bits)
+mask_x3_shr(w1, w2, bits)           w1 = (w2 >> bits)
+mask_x3_rol(w1, w2, bits)           w1 = (w2 <<< bits)
+mask_x3_ror(w1, w2, bits)           w1 = (w2 >>> bits)
+\endcode
+
+\section masking_work How do the operations work?
+
+This section provides details on how each of the operations are defined,
+and how that leads to an effective masked implementation.  For simplicity,
+we will use the 3-share versions unless otherwise stated.
+
+\subsection masking_io Input and output
+
+The input to a cipher must be masked and converted into shares before any
+other operations can be performed:
+
+\code
+uint32_t x = ...;
+mask_x3_uint32_t w;
+mask_x3_input(w, x);
+\endcode
+
+Behind the scenes, mask_x3_input() expands to:
+
+\code
+w.b = aead_masking_generate_32();
+w.c = aead_masking_generate_32();
+w.a = x ^ w.b ^ w.c;
+\endcode
+
+As can be seen, masking involves generating random values for the
+second and subsequent shares and then XOR'ing it with the input to create
+the first share.  After masking, the original value is no longer operative;
+w.a, w.b, and w.c are all randomized.  For the 4-share and higher
+variants, more random words are generated and XOR'ed with x.
+
+To recover the results at the end of the cipher, the shares are recombined
+using mask_x3_output():
+
+\code
+uint32_t y = mask_x3_output(w);
+\endcode
+
+This expands to:
+
+\code
+uint32_t y = w.a ^ w.b ^ w.c;
+\endcode
+
+\subsection masking_xor XOR
+
+XOR operations are very simple.  The mask_x3_xor() macro applies XOR to
+each of the shares individually:
+
+\code
+mask_x3_xor(w1, w2) :
+    w1.a ^= w2.a
+    w1.b ^= w2.b
+    w1.c ^= w2.c
+\endcode
+
+Things are slightly different when XOR'ing round constants into a masked word:
+
+\code
+mask_x3_xor_const(w, c) :
+    w.a ^= c
+\endcode
+
+Here, only the first share in the masked word is updated.  The rest of the
+shares are left as-is.  To show why we only update the first share,
+let's see what happens with the 2-share version if we were to XOR the
+constant with all shares instead of just the first:
+
+\code
+mask_x2_input(w, x) :
+    w.b = rand
+    w.a = x ^ w.b
+
+mask_x2_xor_const(w, c) :
+    w.a ^= c
+    w.b ^= c
+
+y = mask_x2_output(w) :
+    y = w.a ^ w.b
+      = (x ^ rand ^ c) ^ (rand ^ c)
+      = x
+\endcode
+
+We expected "x ^ c" at the end, not x.  The constant cancelled itself out
+when the final state was unmasked.  If we only XOR the round constant into
+the first share, we get:
+
+\code
+mask_x2_input(w, x) :
+    w.b = rand
+    w.a = x ^ w.b
+
+mask_x2_xor_const(w, c) :
+    w.a ^= c
+
+y = mask_x2_output(w) :
+    y = w.a ^ w.b
+      = (x ^ rand ^ c) ^ rand
+      = x ^ c
+\endcode
+
+This gives us the result we wanted.
+
+\subsection masking_not NOT
+
+NOT operations are a special case of XOR'ing with the all-1's round constant.
+The following are equivalent for 32-bit masked words:
+
+\code
+mask_x3_not(w);
+mask_x3_xor_const(w, 0xFFFFFFFF);
+\endcode
+
+The mask_x3_not() function is more convenient because it works on 16-bit,
+32-bit, and 64-bit words without the programmer having to supply an all-1's
+constant of the right size.
+
+Let's expand mask_x3_not() and see what it is doing:
+
+\code
+mask_x3_input(w, x) :
+    w.b = rand1
+    w.c = rand2
+    w.a = x ^ w.b ^ w.c
+
+mask_x3_not(w) :
+    w.a = ~w.a
+
+y = mask_x3_output(w) :
+    y = w.a ^ w.b ^ w.c
+      = ~(x ^ rand1 ^ rand2) ^ rand1 ^ rand2
+      = (~x) ^ rand1 ^ rand2 ^ rand1 ^ rand2
+      = ~x
+\endcode
+
+\subsection masking_and AND
+
+The AND operation is the most complex of the masked operations.
+Here is the 4-share version:
+
+\code
+mask_x4_and(w1, w2, w3) :
+    w1.a ^= (w2.a & w3.a)
+    mix(w1.a, w2.a, w3.a, w1.b, w2.b, w3.b)
+    mix(w1.a, w2.a, w3.a, w1.c, w2.c, w3.c)
+    mix(w1.a, w2.a, w3.a, w1.d, w2.d, w3.d)
+    w1.b ^= (w2.b & w3.b)
+    mix(w1.b, w2.b, w3.b, w1.c, w2.c, w3.c)
+    mix(w1.b, w2.b, w3.b, w1.d, w2.d, w3.d)
+    w1.c ^= (w2.c & w3.c)
+    mix(w1.c, w2.c, w3.c, w1.d, w2.d, w3.d)
+    w1.d ^= (w2.d & w3.d)
+
+mix(a1, a2, a3, b1, b2, b3) :
+    temp = aead_masking_generate_32()
+    a1 ^= temp
+    b1 ^= temp ^ (b3 & a2) ^ (b2 & a3)
+\endcode
+
+Essentially this is performing a diagonal matrix operation where
+each share is mixed with all of the shares below it and to the right.
+At each step, a new random number is generated and mixed into the state.
+
+For a masked word with N shares, each AND operation requires (N² - N) / 2
+random number generator calls and mix operations.  This has a significant
+impact on performance compared with the non-masked version of AND.
+The higher the number of shares, or the higher the number of AND operations,
+the slower the masked cipher will become.
+
+\subsection masking_or OR
+
+The OR operation is implemented in terms of AND using DeMorgan's Law:
+(A | B) = ~(~(A) & ~(B)).  The 4-share version of OR is:
+
+\code
+mask_x4_or(w1, w2, w3) :
+    w1.a ^= (w2.a | w3.a)
+    mix(w1.a, ~w2.a, ~w3.a, w1.b, w2.b, w3.b)
+    mix(w1.a, ~w2.a, ~w3.a, w1.c, w2.c, w3.c)
+    mix(w1.a, ~w2.a, ~w3.a, w1.d, w2.d, w3.d)
+    w1.b ^= (w2.b & w3.b)
+    mix(w1.b, w2.b, w3.b, w1.c, w2.c, w3.c)
+    mix(w1.b, w2.b, w3.b, w1.d, w2.d, w3.d)
+    w1.c ^= (w2.c & w3.c)
+    mix(w1.c, w2.c, w3.c, w1.d, w2.d, w3.d)
+    w1.d ^= (w2.d & w3.d)
+\endcode
+
+As mentioned previously, the NOT operation only affects the first share,
+so only some of the terms need to be inverted to convert OR into AND.
+
+\subsection masking_rotates Shift and rotate
+
+The mask_x3_shl(), mask_x3_shr(), mask_x3_rol(), and mask_x3_ror() functions
+perform a left shift, right shift, left rotate, and right rotate respectively.
+Like mask_x3_xor(), they operate on each share individually.
+
+\code
+mask_x3_shl(w1, w2, bits) :
+    w1.a = (w2.a << bits)
+    w1.b = (w2.b << bits)
+    w1.c = (w2.c << bits)
+\endcode
+
+The first two arguments can be the same masked word for in-place shift
+and rotate operations:
+
+\code
+mask_x3_shl(w, w, bits) :
+    w.a <<= bits
+    w.b <<= bits
+    w.c <<= bits
+\endcode
+
+*/

@@ -34,6 +34,7 @@ void test_gimli24(void);
 void test_grain128(void);
 void test_keccak(void);
 void test_knot(void);
+void test_masking(void);
 void test_photon256(void);
 void test_pyjamask(void);
 void test_shadow(void);
@@ -63,6 +64,7 @@ int main(int argc, char *argv[])
     test_grain128();
     test_keccak();
     test_knot();
+    test_masking();
     test_photon256();
     test_pyjamask();
     test_shadow();
