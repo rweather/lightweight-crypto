@@ -154,16 +154,20 @@ PHOTON_BEETLE_FILES = \
     $(COMMON_FILES)
 PYJAMASK_FILES = \
     pyjamask-128.c \
-    pyjamask-128-masked.c \
     pyjamask-96.c \
-    pyjamask-96-masked.c \
     pyjamask.h \
-    internal-masking.c \
-    internal-masking.h \
     internal-pyjamask.c \
     internal-pyjamask.h \
-    internal-pyjamask-m.c \
     internal-pyjamask-avr.S \
+    internal-ocb.h \
+    $(COMMON_FILES)
+PYJAMASK_MASKED_FILES = \
+    pyjamask-128-masked.c \
+    pyjamask-96-masked.c \
+    pyjamask-masked.h \
+    internal-masking.c \
+    internal-masking.h \
+    internal-pyjamask-m.c \
     internal-ocb.h \
     $(COMMON_FILES)
 ROMULUS_FILES = \
@@ -278,6 +282,7 @@ ALL_ALGORITHMS = \
     oribatida \
     photon_beetle \
     pyjamask \
+    pyjamask_masked \
     romulus \
     saturnin \
     skinny_aead \
@@ -348,6 +353,9 @@ photon_beetle:
 
 pyjamask:
 	cp $(foreach file,$(PYJAMASK_FILES),$(SRCDIR)/$(file)) Pyjamask
+
+pyjamask_masked:
+	cp $(foreach file,$(PYJAMASK_MASKED_FILES),$(SRCDIR)/$(file)) Pyjamask_masked
 
 romulus:
 	cp $(foreach file,$(ROMULUS_FILES),$(SRCDIR)/$(file)) Romulus

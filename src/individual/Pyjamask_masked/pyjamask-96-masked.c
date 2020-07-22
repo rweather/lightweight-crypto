@@ -20,25 +20,25 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "pyjamask.h"
-#include "internal-pyjamask.h"
+#include "pyjamask-masked.h"
+#include "internal-pyjamask-m.h"
 
-aead_cipher_t const pyjamask_masked_128_cipher = {
-    "Pyjamask-128-AEAD-Masked",
-    PYJAMASK_128_KEY_SIZE,
-    PYJAMASK_128_NONCE_SIZE,
-    PYJAMASK_128_TAG_SIZE,
+aead_cipher_t const pyjamask_masked_96_cipher = {
+    "Pyjamask-96-AEAD-Masked",
+    PYJAMASK_96_MASKED_KEY_SIZE,
+    PYJAMASK_96_MASKED_NONCE_SIZE,
+    PYJAMASK_96_MASKED_TAG_SIZE,
     AEAD_FLAG_NONE,
-    pyjamask_masked_128_aead_encrypt,
-    pyjamask_masked_128_aead_decrypt
+    pyjamask_masked_96_aead_encrypt,
+    pyjamask_masked_96_aead_decrypt
 };
 
-#define OCB_ALG_NAME pyjamask_masked_128
-#define OCB_BLOCK_SIZE 16
-#define OCB_NONCE_SIZE PYJAMASK_128_NONCE_SIZE
-#define OCB_TAG_SIZE PYJAMASK_128_TAG_SIZE
-#define OCB_KEY_SCHEDULE pyjamask_masked_128_key_schedule_t
-#define OCB_SETUP_KEY pyjamask_masked_128_setup_key
-#define OCB_ENCRYPT_BLOCK pyjamask_masked_128_encrypt
-#define OCB_DECRYPT_BLOCK pyjamask_masked_128_decrypt
+#define OCB_ALG_NAME pyjamask_masked_96
+#define OCB_BLOCK_SIZE 12
+#define OCB_NONCE_SIZE PYJAMASK_96_MASKED_NONCE_SIZE
+#define OCB_TAG_SIZE PYJAMASK_96_MASKED_TAG_SIZE
+#define OCB_KEY_SCHEDULE pyjamask_masked_96_key_schedule_t
+#define OCB_SETUP_KEY pyjamask_masked_96_setup_key
+#define OCB_ENCRYPT_BLOCK pyjamask_masked_96_encrypt
+#define OCB_DECRYPT_BLOCK pyjamask_masked_96_decrypt
 #include "internal-ocb.h"

@@ -39,6 +39,7 @@
 #include "oribatida.h"
 #include "photon-beetle.h"
 #include "pyjamask.h"
+#include "pyjamask-masked.h"
 #include "romulus.h"
 #include "saturnin.h"
 #include "sparkle.h"

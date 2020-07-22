@@ -20,47 +20,25 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LW_INTERNAL_MASKING_H
-#define LW_INTERNAL_MASKING_H
+#include "pyjamask-masked.h"
+#include "internal-pyjamask-m.h"
 
-#include <stdint.h>
+aead_cipher_t const pyjamask_masked_128_cipher = {
+    "Pyjamask-128-AEAD-Masked",
+    PYJAMASK_128_MASKED_KEY_SIZE,
+    PYJAMASK_128_MASKED_NONCE_SIZE,
+    PYJAMASK_128_MASKED_TAG_SIZE,
+    AEAD_FLAG_NONE,
+    pyjamask_masked_128_aead_encrypt,
+    pyjamask_masked_128_aead_decrypt
+};
 
-/**
- * \file internal-masking.h
- * \brief Generation of random masking material.
- */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * \brief Initializes the system random number generator for the
- * generation of masking material.
- */
-void aead_masking_init(void);
-
-/**
- * \brief Generates random data into a buffer for masking purposes.
- *
- * \param data The buffer to fill with random data.
- * \param size Number of bytes of random data to generate.
- *
- * This function is intended to generate masking material that needs to
- * be generated quickly but which will not be used in the derivation of
- * public keys or public nonce material.
- */
-void aead_masking_generate(void *data, unsigned size);
-
-/**
- * \brief Generate a single random 32-bit word for masking purposes.
- *
- * \return The random word.
- */
-uint32_t aead_masking_generate_32(void);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif
+#define OCB_ALG_NAME pyjamask_masked_128
+#define OCB_BLOCK_SIZE 16
+#define OCB_NONCE_SIZE PYJAMASK_128_MASKED_NONCE_SIZE
+#define OCB_TAG_SIZE PYJAMASK_128_MASKED_TAG_SIZE
+#define OCB_KEY_SCHEDULE pyjamask_masked_128_key_schedule_t
+#define OCB_SETUP_KEY pyjamask_masked_128_setup_key
+#define OCB_ENCRYPT_BLOCK pyjamask_masked_128_encrypt
+#define OCB_DECRYPT_BLOCK pyjamask_masked_128_decrypt
+#include "internal-ocb.h"

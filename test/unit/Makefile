@@ -68,7 +68,7 @@ test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
 test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
 test-masking.o: $(LIBSRC_DIR)/internal-masking.h $(TEST_CIPHER_INC) test-masking-common.c
 test-photon256.o: $(LIBSRC_DIR)/internal-photon256.h $(TEST_CIPHER_INC)
-test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(TEST_CIPHER_INC)
+test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(LIBSRC_DIR)/internal-pyjamask-m.h $(TEST_CIPHER_INC)
 test-saturnin.o: $(LIBSRC_DIR)/internal-saturnin.h $(TEST_CIPHER_INC)
 test-simp.o: $(LIBSRC_DIR)/internal-simp.h $(TEST_CIPHER_INC)
 test-skinny128.o: $(LIBSRC_DIR)/internal-skinny128.h $(LIBSRC_DIR)/internal-skinnyutil.h $(TEST_CIPHER_INC)

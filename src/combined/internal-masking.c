@@ -98,51 +98,6 @@ void aead_masking_init(void)
     aead_system_random_init();
 }
 
-void aead_masking_generate(void *data, unsigned size)
-{
-#if defined(aead_system_random_is_64bit)
-    uint64_t rand;
-    if ((((uintptr_t)data) & ~((uintptr_t)7)) == 0) {
-        /* Buffer is 64-bit aligned, so fill the buffer faster */
-        while (size >= sizeof(uint64_t)) {
-            aead_system_random(*((uint64_t *)data));
-            data += sizeof(uint64_t);
-            size -= sizeof(uint64_t);
-        }
-    }
-    while (size >= sizeof(uint64_t)) {
-        aead_system_random(rand);
-        memcpy(data, &rand, sizeof(uint64_t));
-        data += sizeof(uint64_t);
-        size -= sizeof(uint64_t);
-    }
-    if (size > 0) {
-        aead_system_random(rand);
-        memcpy(data, &rand, size);
-    }
-#else
-    uint32_t rand;
-    if ((((uintptr_t)data) & ~((uintptr_t)3)) == 0) {
-        /* Buffer is 32-bit aligned, so fill the buffer faster */
-        while (size >= sizeof(uint32_t)) {
-            aead_system_random(*((uint32_t *)data));
-            data += sizeof(uint32_t);
-            size -= sizeof(uint32_t);
-        }
-    }
-    while (size >= sizeof(uint32_t)) {
-        aead_system_random(rand);
-        memcpy(data, &rand, sizeof(uint32_t));
-        data += sizeof(uint32_t);
-        size -= sizeof(uint32_t);
-    }
-    if (size > 0) {
-        aead_system_random(rand);
-        memcpy(data, &rand, size);
-    }
-#endif
-}
-
 uint32_t aead_masking_generate_32(void)
 {
 #if defined(aead_system_random_is_64bit)

@@ -21,6 +21,7 @@
  */
 
 #include "internal-pyjamask.h"
+#include "internal-pyjamask-m.h"
 #include "test-cipher.h"
 #include <string.h>
 

@@ -20,14 +20,14 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LWCRYPTO_PYJAMASK_H
-#define LWCRYPTO_PYJAMASK_H
+#ifndef LWCRYPTO_PYJAMASK_MASKED_H
+#define LWCRYPTO_PYJAMASK_MASKED_H
 
 #include "aead-common.h"
 
 /**
- * \file pyjamask.h
- * \brief Pyjamask authenticated encryption algorithm.
+ * \file pyjamask-masked.h
+ * \brief Pyjamask authenticated encryption algorithm (masked version).
  *
  * Pyjamask AEAD is a family of authenticated encryption algorithms that are
  * built around the Pyjamask-128 and Pyjamask-96 block ciphers in OCB mode.
@@ -43,47 +43,47 @@ extern "C" {
 #endif
 
 /**
- * \brief Size of the key for Pyjamask-128-AEAD.
+ * \brief Size of the key for Pyjamask-128-AEAD-Masked.
  */
-#define PYJAMASK_128_KEY_SIZE 16
+#define PYJAMASK_128_MASKED_KEY_SIZE 16
 
 /**
- * \brief Size of the authentication tag for Pyjamask-128-AEAD.
+ * \brief Size of the authentication tag for Pyjamask-128-AEAD-Masked.
  */
-#define PYJAMASK_128_TAG_SIZE 16
+#define PYJAMASK_128_MASKED_TAG_SIZE 16
 
 /**
- * \brief Size of the nonce for Pyjamask-128-AEAD.
+ * \brief Size of the nonce for Pyjamask-128-AEAD-Masked.
  */
-#define PYJAMASK_128_NONCE_SIZE 12
+#define PYJAMASK_128_MASKED_NONCE_SIZE 12
 
 /**
- * \brief Size of the key for Pyjamask-96-AEAD.
+ * \brief Size of the key for Pyjamask-96-AEAD-Masked-Masked.
  */
-#define PYJAMASK_96_KEY_SIZE 16
+#define PYJAMASK_96_MASKED_KEY_SIZE 16
 
 /**
- * \brief Size of the authentication tag for Pyjamask-96-AEAD.
+ * \brief Size of the authentication tag for Pyjamask-96-AEAD-Masked.
  */
-#define PYJAMASK_96_TAG_SIZE 12
+#define PYJAMASK_96_MASKED_TAG_SIZE 12
 
 /**
- * \brief Size of the nonce for Pyjamask-96-AEAD.
+ * \brief Size of the nonce for Pyjamask-96-AEAD-Masked.
  */
-#define PYJAMASK_96_NONCE_SIZE 8
+#define PYJAMASK_96_MASKED_NONCE_SIZE 8
 
 /**
- * \brief Meta-information block for the Pyjamask-128-AEAD cipher.
+ * \brief Meta-information block for Pyjamask-128-AEAD-Masked cipher.
  */
-extern aead_cipher_t const pyjamask_128_cipher;
+extern aead_cipher_t const pyjamask_masked_128_cipher;
 
 /**
- * \brief Meta-information block for the Pyjamask-96-AEAD cipher.
+ * \brief Meta-information block for Pyjamask-96-AEAD-Masked cipher.
  */
-extern aead_cipher_t const pyjamask_96_cipher;
+extern aead_cipher_t const pyjamask_masked_96_cipher;
 
 /**
- * \brief Encrypts and authenticates a packet with Pyjamask-128-AEAD.
+ * \brief Encrypts and authenticates a packet with Pyjamask-128-AEAD-Masked.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -101,9 +101,9 @@ extern aead_cipher_t const pyjamask_96_cipher;
  * \return 0 on success, or a negative value if there was an error in
  * the parameters.
  *
- * \sa pyjamask_128_aead_decrypt()
+ * \sa pyjamask_masked_128_aead_decrypt()
  */
-int pyjamask_128_aead_encrypt
+int pyjamask_masked_128_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen,
@@ -112,7 +112,7 @@ int pyjamask_128_aead_encrypt
      const unsigned char *k);
 
 /**
- * \brief Decrypts and authenticates a packet with Pyjamask-128-AEAD.
+ * \brief Decrypts and authenticates a packet with Pyjamask-128-AEAD-Masked.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -131,9 +131,9 @@ int pyjamask_128_aead_encrypt
  * \return 0 on success, -1 if the authentication tag was incorrect,
  * or some other negative number if there was an error in the parameters.
  *
- * \sa pyjamask_128_aead_encrypt()
+ * \sa pyjamask_masked_128_aead_encrypt()
  */
-int pyjamask_128_aead_decrypt
+int pyjamask_masked_128_aead_decrypt
     (unsigned char *m, unsigned long long *mlen,
      unsigned char *nsec,
      const unsigned char *c, unsigned long long clen,
@@ -142,7 +142,7 @@ int pyjamask_128_aead_decrypt
      const unsigned char *k);
 
 /**
- * \brief Encrypts and authenticates a packet with Pyjamask-96-AEAD.
+ * \brief Encrypts and authenticates a packet with Pyjamask-96-AEAD-Masked.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -160,9 +160,9 @@ int pyjamask_128_aead_decrypt
  * \return 0 on success, or a negative value if there was an error in
  * the parameters.
  *
- * \sa pyjamask_96_aead_decrypt()
+ * \sa pyjamask_masked_96_aead_decrypt()
  */
-int pyjamask_96_aead_encrypt
+int pyjamask_masked_96_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen,
@@ -171,7 +171,7 @@ int pyjamask_96_aead_encrypt
      const unsigned char *k);
 
 /**
- * \brief Decrypts and authenticates a packet with Pyjamask-96-AEAD.
+ * \brief Decrypts and authenticates a packet with Pyjamask-96-AEAD-Masked.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -190,9 +190,9 @@ int pyjamask_96_aead_encrypt
  * \return 0 on success, -1 if the authentication tag was incorrect,
  * or some other negative number if there was an error in the parameters.
  *
- * \sa pyjamask_96_aead_encrypt()
+ * \sa pyjamask_masked_96_aead_encrypt()
  */
-int pyjamask_96_aead_decrypt
+int pyjamask_masked_96_aead_decrypt
     (unsigned char *m, unsigned long long *mlen,
      unsigned char *nsec,
      const unsigned char *c, unsigned long long clen,

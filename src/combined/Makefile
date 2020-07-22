@@ -111,9 +111,9 @@ orange.o: orange.h aead-common.h internal-photon256.h internal-util.h
 oribatida.o: oribatida.h aead-common.h internal-simp.h internal-util.h
 photon-beetle.o: photon-beetle.h internal-photon256.h internal-util.h
 pyjamask-128.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
-pyjamask-128-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
+pyjamask-128-masked.o: pyjamask-masked.h internal-ocb.h internal-pyjamask-m.h internal-util.h internal-masking.h
 pyjamask-96.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
-pyjamask-96-masked.o: pyjamask.h internal-ocb.h internal-pyjamask.h internal-util.h
+pyjamask-96-masked.o: pyjamask-masked.h internal-ocb.h internal-pyjamask-m.h internal-util.h internal-masking.h
 romulus.o: romulus.h internal-skinny128.h aead-common.h internal-util.h
 saturnin.o: saturnin.h aead-common.h internal-saturnin.h internal-util.h
 skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
@@ -141,7 +141,8 @@ internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
 internal-masking.o: internal-masking.h
 internal-photon256.o: internal-photon256.h internal-util.h
-internal-pyjamask.o: internal-pyjamask.h internal-util.h internal-masking.h
+internal-pyjamask.o: internal-pyjamask.h internal-util.h
+internal-pyjamask-m.o: internal-pyjamask-m.h internal-util.h internal-masking.h
 internal-saturnin.o: internal-saturnin.h internal-util.h
 internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h

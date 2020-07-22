@@ -38,8 +38,9 @@
                 : "=a"(temp), "=q"(ok) :: "cc" \
             ); \
         } while (!ok); \
-        (var) = (uint32_t)temp; \
+        (var) = temp; \
     } while (0)
+#define aead_system_random_is_64bit 1
 #endif
 #if defined (__arm__) && defined (__SAM3X8E__) && defined(ARDUINO)
 /* Arduino Due */
@@ -97,32 +98,29 @@ void aead_masking_init(void)
     aead_system_random_init();
 }
 
-void aead_masking_generate(void *data, unsigned size)
-{
-    uint32_t rand;
-    if ((((uintptr_t)data) & ~((uintptr_t)3)) == 0) {
-        /* Buffer is 32-bit aligned, so fill the buffer faster */
-        while (size >= sizeof(uint32_t)) {
-            aead_system_random(*((uint32_t *)data));
-            data += sizeof(uint32_t);
-            size -= sizeof(uint32_t);
-        }
-    }
-    while (size >= sizeof(uint32_t)) {
-        aead_system_random(rand);
-        memcpy(data, &rand, sizeof(uint32_t));
-        data += sizeof(uint32_t);
-        size -= sizeof(uint32_t);
-    }
-    if (size > 0) {
-        aead_system_random(rand);
-        memcpy(data, &rand, size);
-    }
-}
-
 uint32_t aead_masking_generate_32(void)
 {
+#if defined(aead_system_random_is_64bit)
+    uint64_t x;
+    aead_system_random(x);
+    return (uint32_t)x;
+#else
     uint32_t x;
     aead_system_random(x);
     return x;
+#endif
+}
+
+uint64_t aead_masking_generate_64(void)
+{
+#if defined(aead_system_random_is_64bit)
+    uint64_t x;
+    aead_system_random(x);
+    return x;
+#else
+    uint32_t x, y;
+    aead_system_random(x);
+    aead_system_random(y);
+    return x | (((uint64_t)y) << 32);
+#endif
 }
