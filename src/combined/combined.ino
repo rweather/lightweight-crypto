@@ -47,6 +47,7 @@ of flash memory.
 #include "oribatida.h"
 #include "photon-beetle.h"
 #include "pyjamask.h"
+#include "pyjamask-masked.h"
 #include "romulus.h"
 #include "saturnin.h"
 #include "skinny-aead.h"
@@ -55,6 +56,7 @@ of flash memory.
 #include "spix.h"
 #include "spoc.h"
 #include "spook.h"
+#include "spook-masked.h"
 #include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
@@ -517,6 +519,10 @@ void setup()
     perfCipher(&spook_128_384_su_cipher);
     perfCipher(&spook_128_512_mu_cipher);
     perfCipher(&spook_128_384_mu_cipher);
+    perfCipher(&spook_128_512_su_masked_cipher);
+    perfCipher(&spook_128_384_su_masked_cipher);
+    perfCipher(&spook_128_512_mu_masked_cipher);
+    perfCipher(&spook_128_384_mu_masked_cipher);
     perfCipher(&subterranean_cipher);
     perfCipher(&sundae_gift_0_cipher);
     perfCipher(&sundae_gift_64_cipher);

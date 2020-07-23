@@ -50,6 +50,14 @@ extern "C" {
 #define CLYDE128_TWEAK_SIZE 16
 
 /**
+ * \brief Number of steps in the Clyde-128 block cipher.
+ *
+ * This is also the number of steps in the Shadow-512 and Shadow-384
+ * permutations.
+ */
+#define CLYDE128_STEPS 6
+
+/**
  * \brief Size of the state for Shadow-512.
  */
 #define SHADOW512_STATE_SIZE 64
@@ -118,6 +126,36 @@ void clyde128_decrypt(const unsigned char key[CLYDE128_KEY_SIZE],
                       uint32_t output[CLYDE128_BLOCK_SIZE / 4],
                       const unsigned char input[CLYDE128_BLOCK_SIZE],
                       const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4]);
+
+/**
+ * \brief Encrypts a block with the Clyde-128 block cipher in masked mode.
+ *
+ * \param key Points to the key to encrypt with.
+ * \param output Output buffer for the ciphertext.
+ * \param input Input buffer for the plaintext.
+ * \param tweak Points to the tweak to encrypt with.
+ *
+ * \sa clyde128_decrypt()
+ */
+void clyde128_encrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
+                             uint32_t output[CLYDE128_BLOCK_SIZE / 4],
+                             const uint32_t input[CLYDE128_BLOCK_SIZE / 4],
+                             const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4]);
+
+/**
+ * \brief Decrypts a block with the Clyde-128 block cipher in masked mode.
+ *
+ * \param key Points to the key to decrypt with.
+ * \param output Output buffer for the plaintext.
+ * \param input Input buffer for the ciphertext.
+ * \param tweak Points to the tweak to decrypt with.
+ *
+ * \sa clyde128_encrypt()
+ */
+void clyde128_decrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
+                             uint32_t output[CLYDE128_BLOCK_SIZE / 4],
+                             const unsigned char input[CLYDE128_BLOCK_SIZE],
+                             const uint32_t tweak[CLYDE128_TWEAK_SIZE / 4]);
 
 /**
  * \brief Performs the Shadow-512 permutation on a state.

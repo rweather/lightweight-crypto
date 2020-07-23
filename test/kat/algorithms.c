@@ -48,6 +48,7 @@
 #include "spix.h"
 #include "spoc.h"
 #include "spook.h"
+#include "spook-masked.h"
 #include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
@@ -126,6 +127,10 @@ static const aead_cipher_t *const ciphers[] = {
     &spook_128_384_su_cipher,
     &spook_128_512_mu_cipher,
     &spook_128_384_mu_cipher,
+    &spook_128_512_su_masked_cipher,
+    &spook_128_384_su_masked_cipher,
+    &spook_128_512_mu_masked_cipher,
+    &spook_128_384_mu_masked_cipher,
     &subterranean_cipher,
     &sundae_gift_0_cipher,
     &sundae_gift_64_cipher,

@@ -543,7 +543,7 @@ in 4 byte blocks.
 
 \section alg_pyjamask Pyjamask
 
-<b>Definition:</b> \ref pyjamask.h
+<b>Definition:</b> \ref pyjamask.h, \ref pyjamask-masked.h
 
 Pyjamask AEAD is a family of authenticated encryption algorithms that are
 built around the Pyjamask-128 and Pyjamask-96 block ciphers in OCB mode.
@@ -735,14 +735,14 @@ on 32-bit embedded platforms.
 
 \section alg_spook Spook
 
-<b>Definition:</b> \ref spook.h
+<b>Definition:</b> \ref spook.h, \ref spook-masked.h
 
 Spook is a family of authenticated encryption algorithms that are
 built around a tweakable block cipher and a permutation.
 
 If the tweakable block cipher is implemented as a masked block cipher,
 then Spook provides protection against power analysis side channels.
-This library does not currently implement masking (still in progress).
+This library implements both the masked and unmasked versions of Spook.
 
 There are four members in the Spook family:
 

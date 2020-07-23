@@ -120,6 +120,10 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) Spook-128-384-su Spook-128-384-su.txt
 	@$(RUN_KAT) Spook-128-512-mu Spook-128-512-mu.txt
 	@$(RUN_KAT) Spook-128-384-mu Spook-128-384-mu.txt
+	@$(RUN_KAT) Spook-128-512-su-masked Spook-128-512-su.txt
+	@$(RUN_KAT) Spook-128-384-su-masked Spook-128-384-su.txt
+	@$(RUN_KAT) Spook-128-512-mu-masked Spook-128-512-mu.txt
+	@$(RUN_KAT) Spook-128-384-mu-masked Spook-128-384-mu.txt
 	@$(RUN_KAT) Subterranean Subterranean.txt
 	@$(RUN_KAT) Subterranean-Hash Subterranean-Hash.txt
 	@$(RUN_KAT) SUNDAE-GIFT-0 SUNDAE-GIFT-0.txt

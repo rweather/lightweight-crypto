@@ -25,14 +25,6 @@
 #if !defined(__AVR__)
 
 /**
- * \brief Number of steps in the Clyde-128 block cipher.
- *
- * This is also the number of steps in the Shadow-512 and Shadow-384
- * permutations.
- */
-#define CLYDE128_STEPS 6
-
-/**
  * \brief Round constants for the steps of Clyde-128.
  */
 static uint8_t const rc[CLYDE128_STEPS][8] = {

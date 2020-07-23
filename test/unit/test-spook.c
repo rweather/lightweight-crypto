@@ -53,6 +53,29 @@ static void clyde128_test_decrypt
     memcpy(output, x, sizeof(x));
 }
 
+static void clyde128_masked_test_encrypt
+    (const unsigned char *ks, unsigned char *output,
+     const unsigned char *input)
+{
+    uint32_t k[4];
+    uint32_t x[4];
+    memcpy(k, ks + 16, sizeof(k));
+    memcpy(x, input, sizeof(x));
+    clyde128_encrypt_masked(ks, x, x, k);
+    memcpy(output, x, sizeof(x));
+}
+
+static void clyde128_masked_test_decrypt
+    (const unsigned char *ks, unsigned char *output,
+     const unsigned char *input)
+{
+    uint32_t k[4];
+    uint32_t x[4];
+    memcpy(k, ks + 16, sizeof(k));
+    clyde128_decrypt_masked(ks, x, input, k);
+    memcpy(output, x, sizeof(x));
+}
+
 /* Information block for the Clyde-128 block cipher */
 static block_cipher_t const clyde128 = {
     "Clyde-128",
@@ -60,6 +83,15 @@ static block_cipher_t const clyde128 = {
     (block_cipher_init_t)clyde128_test_init,
     (block_cipher_encrypt_t)clyde128_test_encrypt,
     (block_cipher_decrypt_t)clyde128_test_decrypt
+};
+
+/* Information block for the masked Clyde-128 block cipher */
+static block_cipher_t const clyde128_masked = {
+    "Clyde-128-Masked",
+    32,
+    (block_cipher_init_t)clyde128_test_init,
+    (block_cipher_encrypt_t)clyde128_masked_test_encrypt,
+    (block_cipher_decrypt_t)clyde128_masked_test_decrypt
 };
 
 /* Test vector for Clyde-128 generated with the reference implementation */
@@ -81,6 +113,10 @@ void test_clyde128(void)
     test_block_cipher_start(&clyde128);
     test_block_cipher_128(&clyde128, &clyde128_1);
     test_block_cipher_end(&clyde128);
+
+    test_block_cipher_start(&clyde128_masked);
+    test_block_cipher_128(&clyde128_masked, &clyde128_1);
+    test_block_cipher_end(&clyde128_masked);
 }
 
 /* Test vectors for Shadow-512/384 generated with reference implementation */

@@ -224,6 +224,16 @@ SPOOK_FILES = \
     internal-spook.h \
     internal-spook-avr.S \
     $(COMMON_FILES)
+SPOOK_MASKED_FILES = \
+    spook-masked.c \
+    spook-masked.h \
+    internal-masking.c \
+    internal-masking.h \
+    internal-spook.c \
+    internal-spook.h \
+    internal-spook-m.c \
+    internal-spook-avr.S \
+    $(COMMON_FILES)
 SUBTERRANEAN_FILES = \
     subterranean.c \
     subterranean.h \
@@ -290,6 +300,7 @@ ALL_ALGORITHMS = \
     spix \
     spoc \
     spook \
+    spook_masked \
     subterranean \
     sundae_gift \
     tinyjambu \
@@ -377,6 +388,9 @@ spoc:
 
 spook:
 	cp $(foreach file,$(SPOOK_FILES),$(SRCDIR)/$(file)) Spook
+
+spook_masked:
+	cp $(foreach file,$(SPOOK_MASKED_FILES),$(SRCDIR)/$(file)) Spook_masked
 
 subterranean:
 	cp $(foreach file,$(SUBTERRANEAN_FILES),$(SRCDIR)/$(file)) Subterranean
