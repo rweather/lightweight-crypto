@@ -1,0 +1,12 @@
+aead_family=pyjamask
+aead_name=pyjamask96aeadv1
+aead_meta_name=Pyjamask-96-AEAD-Masked
+aead_srcdir=Pyjamask_masked
+aead_key_size=16
+aead_nonce_size=8
+aead_tag_size=12
+aead_encrypt=pyjamask_masked_96_aead_encrypt
+aead_decrypt=pyjamask_masked_96_aead_decrypt
+aead_header=pyjamask-masked.h
+aead_exclude="pyjamask-128-masked.c"
+aead_variant=masked

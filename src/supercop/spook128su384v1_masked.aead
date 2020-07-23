@@ -1,0 +1,11 @@
+aead_family=spook
+aead_name=spook128su384v1
+aead_meta_name=Spook-128-384-su-masked
+aead_srcdir=Spook_masked
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=spook_128_384_su_masked_aead_encrypt
+aead_decrypt=spook_128_384_su_masked_aead_decrypt
+aead_header=spook-masked.h
+aead_variant=masked

@@ -49,11 +49,15 @@ if test "$CIPHERS" = "1" ; then
         unset aead_exclude
         unset aead_header
         unset aead_kat_options
+        unset aead_variant
         . ./$info_file
         echo $info_file
 
         # Create the directory structure for the algorithm.
         AEAD_OUT_DIR="$OUT_DIR/$aead_family/Implementations/crypto_aead/$aead_name/$TAG"
+        if test -n "$aead_variant" ; then
+            AEAD_OUT_DIR="${AEAD_OUT_DIR}_${aead_variant}"
+        fi
         mkdir -p "$AEAD_OUT_DIR"
 
         # Copy the source files that make up the algorithm.
@@ -77,9 +81,11 @@ if test "$CIPHERS" = "1" ; then
           sed -e '1,$s/HEADER/'"$aead_header"'/g' >"$AEAD_OUT_DIR/encrypt.c"
 
         # Generate KAT's for the algorithm.
-        key_bits=`expr "${aead_key_size}" '*' 8`
-        nonce_bits=`expr "${aead_nonce_size}" '*' 8`
-        "$KAT_GEN" $aead_kat_options "$aead_meta_name" "$AEAD_OUT_DIR/../LWC_AEAD_KAT_${key_bits}_${nonce_bits}.txt"
+        if test -z "$aead_variant" ; then
+            key_bits=`expr "${aead_key_size}" '*' 8`
+            nonce_bits=`expr "${aead_nonce_size}" '*' 8`
+            "$KAT_GEN" $aead_kat_options "$aead_meta_name" "$AEAD_OUT_DIR/../LWC_AEAD_KAT_${key_bits}_${nonce_bits}.txt"
+        fi
     done
 fi
 
@@ -96,11 +102,15 @@ if test "$HASHES" = "1" ; then
         unset hash_function
         unset hash_header
         unset hash_kat_options
+        unset hash_variant
         . ./$info_file
         echo $info_file
 
         # Create the directory structure for the algorithm.
         HASH_OUT_DIR="$OUT_DIR/$hash_family/Implementations/crypto_hash/$hash_name/$TAG"
+        if test -n "$hash_variant" ; then
+            AEAD_OUT_DIR="${HASH_OUT_DIR}_${hash_variant}"
+        fi
         mkdir -p "$HASH_OUT_DIR"
 
         # Copy the source files that make up the algorithm.
@@ -119,8 +129,10 @@ if test "$HASHES" = "1" ; then
           sed -e '1,$s/HEADER/'"$hash_header"'/g' >"$HASH_OUT_DIR/hash.c"
 
         # Generate KAT's for the algorithm.
-        hash_bits=`expr "${hash_size}" '*' 8`
-        "$KAT_GEN" $hash_kat_options "$hash_meta_name" "$HASH_OUT_DIR/../LWC_HASH_KAT_${hash_bits}.txt"
+        if test -z "$hash_variant" ; then
+            hash_bits=`expr "${hash_size}" '*' 8`
+            "$KAT_GEN" $hash_kat_options "$hash_meta_name" "$HASH_OUT_DIR/../LWC_HASH_KAT_${hash_bits}.txt"
+        fi
     done
 fi
 
