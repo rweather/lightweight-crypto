@@ -202,9 +202,7 @@ mask_xor(s3, s2);
 mask_xor(s1, s3);
 mask_not(s3);
 mask_and(s2, s0, s1);
-mask_uint32_t t = s0;
-s0 = s3;
-s3 = t;
+mask_swap(s0, s3);
 \endcode
 
 As can be seen, the structure of the masked version of the S-box is very
@@ -483,6 +481,10 @@ Essentially this is performing a diagonal matrix operation where
 each share is mixed with all of the shares below it and to the right.
 At each step, a new random number is generated and mixed into the state.
 
+Note: The mask_and() and mask_or() functions require a local variable
+called "temp" in the current scope that is of type uint16_t, uint32_t, or
+uint64_t depending upon the type of masked word you are operating on.
+
 For a masked word with N shares, each AND operation requires (N² - N) / 2
 random number generator calls and mix operations.  This has a significant
 impact on performance compared with the non-masked version of AND.
@@ -533,5 +535,10 @@ mask_x3_shl(w, w, bits) :
     w.b <<= bits
     w.c <<= bits
 \endcode
+
+\subsection masking_swap Swap
+
+The mask_swap() function swaps two masked words and the mask_swap_and_move()
+function performs a swap on some of the bits in two masked words.
 
 */

@@ -221,9 +221,7 @@ void pyjamask_masked_128_encrypt
         mask_xor(s2, s1);
         mask_xor(s1, s0);
         mask_not(s3);
-        mask_xor(s2, s3);
-        mask_xor(s3, s2);
-        mask_xor(s2, s3);
+        mask_swap(s2, s3);
 
         /* Mix the rows of the state */
         pyjamask_matrix_multiply_masked(&s0, 0xa3861085U);
@@ -276,9 +274,7 @@ void pyjamask_masked_128_decrypt
         pyjamask_matrix_multiply_masked(&s3, 0x3354b117U);
 
         /* Apply the inverse of the 128-bit Pyjamask sbox */
-        mask_xor(s2, s3);
-        mask_xor(s3, s2);
-        mask_xor(s2, s3);
+        mask_swap(s2, s3);
         mask_not(s3);
         mask_xor(s1, s0);
         mask_xor(s2, s1);

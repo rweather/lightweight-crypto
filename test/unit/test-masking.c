@@ -40,6 +40,8 @@
 #define mask_test_shr(a, b, c) mask_x2_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_x2_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_x2_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_x2_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_x2_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -56,6 +58,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* Test the 3-share version of masked words */
 #define MASK_NAME(a, b) a##_x3_##b
@@ -73,6 +77,8 @@
 #define mask_test_shr(a, b, c) mask_x3_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_x3_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_x3_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_x3_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_x3_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -89,6 +95,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* Test the 4-share version of masked words */
 #define MASK_NAME(a, b) a##_x4_##b
@@ -106,6 +114,8 @@
 #define mask_test_shr(a, b, c) mask_x4_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_x4_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_x4_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_x4_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_x4_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -122,6 +132,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* Test the 5-share version of masked words */
 #define MASK_NAME(a, b) a##_x5_##b
@@ -139,6 +151,8 @@
 #define mask_test_shr(a, b, c) mask_x5_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_x5_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_x5_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_x5_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_x5_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -155,6 +169,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* Test the 6-share version of masked words */
 #define MASK_NAME(a, b) a##_x6_##b
@@ -172,6 +188,8 @@
 #define mask_test_shr(a, b, c) mask_x6_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_x6_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_x6_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_x6_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_x6_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -188,6 +206,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* Test the generic-share version of masked words */
 #define MASK_NAME(a, b) a##_generic_##b
@@ -205,6 +225,8 @@
 #define mask_test_shr(a, b, c) mask_shr((a), (b), (c))
 #define mask_test_rol(a, b, c) mask_rol((a), (b), (c))
 #define mask_test_ror(a, b, c) mask_ror((a), (b), (c))
+#define mask_test_swap(a, b) mask_swap((a), (b))
+#define mask_test_swap_move(a, b, c, d) mask_swap_move((a), (b), (c), (d))
 #include "test-masking-common.c"
 #undef MASK_NAME
 #undef mask_test_uint16_t
@@ -221,6 +243,8 @@
 #undef mask_test_shr
 #undef mask_test_rol
 #undef mask_test_ror
+#undef mask_test_swap
+#undef mask_test_swap_move
 
 /* ------------------ high-level test harness ------------------ */
 
@@ -277,6 +301,12 @@ void test_masking(void)
     test_masking_run("uint16-x2-ror", test_uint16_x2_ror);
     test_masking_run("uint32-x2-ror", test_uint32_x2_ror);
     test_masking_run("uint64-x2-ror", test_uint64_x2_ror);
+    test_masking_run("uint16-x2-swap", test_uint16_x2_swap);
+    test_masking_run("uint32-x2-swap", test_uint32_x2_swap);
+    test_masking_run("uint64-x2-swap", test_uint64_x2_swap);
+    test_masking_run("uint16-x2-swap-move", test_uint16_x2_swap_move);
+    test_masking_run("uint32-x2-swap-move", test_uint32_x2_swap_move);
+    test_masking_run("uint64-x2-swap-move", test_uint64_x2_swap_move);
 
     test_masking_run("uint16-x3-load", test_uint16_x3_load);
     test_masking_run("uint32-x3-load", test_uint32_x3_load);
@@ -308,6 +338,12 @@ void test_masking(void)
     test_masking_run("uint16-x3-ror", test_uint16_x3_ror);
     test_masking_run("uint32-x3-ror", test_uint32_x3_ror);
     test_masking_run("uint64-x3-ror", test_uint64_x3_ror);
+    test_masking_run("uint16-x3-swap", test_uint16_x3_swap);
+    test_masking_run("uint32-x3-swap", test_uint32_x3_swap);
+    test_masking_run("uint64-x3-swap", test_uint64_x3_swap);
+    test_masking_run("uint16-x3-swap-move", test_uint16_x3_swap_move);
+    test_masking_run("uint32-x3-swap-move", test_uint32_x3_swap_move);
+    test_masking_run("uint64-x3-swap-move", test_uint64_x3_swap_move);
 
     test_masking_run("uint16-x4-load", test_uint16_x4_load);
     test_masking_run("uint32-x4-load", test_uint32_x4_load);
@@ -339,6 +375,12 @@ void test_masking(void)
     test_masking_run("uint16-x4-ror", test_uint16_x4_ror);
     test_masking_run("uint32-x4-ror", test_uint32_x4_ror);
     test_masking_run("uint64-x4-ror", test_uint64_x4_ror);
+    test_masking_run("uint16-x4-swap", test_uint16_x4_swap);
+    test_masking_run("uint32-x4-swap", test_uint32_x4_swap);
+    test_masking_run("uint64-x4-swap", test_uint64_x4_swap);
+    test_masking_run("uint16-x4-swap-move", test_uint16_x4_swap_move);
+    test_masking_run("uint32-x4-swap-move", test_uint32_x4_swap_move);
+    test_masking_run("uint64-x4-swap-move", test_uint64_x4_swap_move);
 
     test_masking_run("uint16-x5-load", test_uint16_x5_load);
     test_masking_run("uint32-x5-load", test_uint32_x5_load);
@@ -370,6 +412,12 @@ void test_masking(void)
     test_masking_run("uint16-x5-ror", test_uint16_x5_ror);
     test_masking_run("uint32-x5-ror", test_uint32_x5_ror);
     test_masking_run("uint64-x5-ror", test_uint64_x5_ror);
+    test_masking_run("uint16-x5-swap", test_uint16_x5_swap);
+    test_masking_run("uint32-x5-swap", test_uint32_x5_swap);
+    test_masking_run("uint64-x5-swap", test_uint64_x5_swap);
+    test_masking_run("uint16-x5-swap-move", test_uint16_x5_swap_move);
+    test_masking_run("uint32-x5-swap-move", test_uint32_x5_swap_move);
+    test_masking_run("uint64-x5-swap-move", test_uint64_x5_swap_move);
 
     test_masking_run("uint16-x6-load", test_uint16_x6_load);
     test_masking_run("uint32-x6-load", test_uint32_x6_load);
@@ -401,6 +449,12 @@ void test_masking(void)
     test_masking_run("uint16-x6-ror", test_uint16_x6_ror);
     test_masking_run("uint32-x6-ror", test_uint32_x6_ror);
     test_masking_run("uint64-x6-ror", test_uint64_x6_ror);
+    test_masking_run("uint16-x6-swap", test_uint16_x6_swap);
+    test_masking_run("uint32-x6-swap", test_uint32_x6_swap);
+    test_masking_run("uint64-x6-swap", test_uint64_x6_swap);
+    test_masking_run("uint16-x6-swap-move", test_uint16_x6_swap_move);
+    test_masking_run("uint32-x6-swap-move", test_uint32_x6_swap_move);
+    test_masking_run("uint64-x6-swap-move", test_uint64_x6_swap_move);
 
     test_masking_run("uint16-generic-load", test_uint16_generic_load);
     test_masking_run("uint32-generic-load", test_uint32_generic_load);
@@ -432,6 +486,12 @@ void test_masking(void)
     test_masking_run("uint16-generic-ror", test_uint16_generic_ror);
     test_masking_run("uint32-generic-ror", test_uint32_generic_ror);
     test_masking_run("uint64-generic-ror", test_uint64_generic_ror);
+    test_masking_run("uint16-generic-swap", test_uint16_generic_swap);
+    test_masking_run("uint32-generic-swap", test_uint32_generic_swap);
+    test_masking_run("uint64-generic-swap", test_uint64_generic_swap);
+    test_masking_run("uint16-generic-swap-move", test_uint16_generic_swap_move);
+    test_masking_run("uint32-generic-swap-move", test_uint32_generic_swap_move);
+    test_masking_run("uint64-generic-swap-move", test_uint64_generic_swap_move);
 
     printf("\n");
 }

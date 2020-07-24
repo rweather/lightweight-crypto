@@ -168,6 +168,34 @@ static int MASK_NAME(test_uint16, ror)(void)
     return mask_test_output(w2) == (uint16_t)((x >> 1) | (x << 15));
 }
 
+/* Test swapping two masked 16-bit words */
+static int MASK_NAME(test_uint16, swap)(void)
+{
+    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t y = (uint16_t)aead_masking_generate_32();
+    mask_test_uint16_t w1;
+    mask_test_uint16_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap(w1, w2);
+    return mask_test_output(w1) == y && mask_test_output(w2) == x;
+}
+
+/* Test a swap and move on two masked 16-bit words */
+static int MASK_NAME(test_uint16, swap_move)(void)
+{
+    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t temp;
+    mask_test_uint16_t w1;
+    mask_test_uint16_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap_move(w1, w2, 0x5555, 1);
+    mask_swap_move_internal(x, y, 0x5555, 1);
+    return mask_test_output(w1) == x && mask_test_output(w2) == y;
+}
+
 /* ---------- tests for masked 32-bit words ---------- */
 
 /* Test loading and unloading a masked 32-bit word */
@@ -311,6 +339,34 @@ static int MASK_NAME(test_uint32, ror)(void)
     return mask_test_output(w2) == ((x >> 1) | (x << 31));
 }
 
+/* Test swapping two masked 32-bit words */
+static int MASK_NAME(test_uint32, swap)(void)
+{
+    uint32_t x = aead_masking_generate_32();
+    uint32_t y = aead_masking_generate_32();
+    mask_test_uint32_t w1;
+    mask_test_uint32_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap(w1, w2);
+    return mask_test_output(w1) == y && mask_test_output(w2) == x;
+}
+
+/* Test a swap and move on two masked 32-bit words */
+static int MASK_NAME(test_uint32, swap_move)(void)
+{
+    uint32_t x = aead_masking_generate_32();
+    uint32_t y = aead_masking_generate_32();
+    uint32_t temp;
+    mask_test_uint32_t w1;
+    mask_test_uint32_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap_move(w1, w2, 0x55555555, 1);
+    mask_swap_move_internal(x, y, 0x55555555, 1);
+    return mask_test_output(w1) == x && mask_test_output(w2) == y;
+}
+
 /* ---------- tests for masked 64-bit words ---------- */
 
 /* Test loading and unloading a masked 64-bit word */
@@ -452,6 +508,34 @@ static int MASK_NAME(test_uint64, ror)(void)
     mask_test_input(w2, x);
     mask_test_ror(w2, w2, 1);
     return mask_test_output(w2) == ((x >> 1) | (x << 63));
+}
+
+/* Test swapping two masked 64-bit words */
+static int MASK_NAME(test_uint64, swap)(void)
+{
+    uint64_t x = aead_masking_generate_64();
+    uint64_t y = aead_masking_generate_64();
+    mask_test_uint64_t w1;
+    mask_test_uint64_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap(w1, w2);
+    return mask_test_output(w1) == y && mask_test_output(w2) == x;
+}
+
+/* Test a swap and move on two masked 64-bit words */
+static int MASK_NAME(test_uint64, swap_move)(void)
+{
+    uint64_t x = aead_masking_generate_64();
+    uint64_t y = aead_masking_generate_64();
+    uint64_t temp;
+    mask_test_uint64_t w1;
+    mask_test_uint64_t w2;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_swap_move(w1, w2, 0x5555555555555555ULL, 1);
+    mask_swap_move_internal(x, y, 0x5555555555555555ULL, 1);
+    return mask_test_output(w1) == x && mask_test_output(w2) == y;
 }
 
 #endif
