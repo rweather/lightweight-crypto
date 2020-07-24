@@ -406,7 +406,7 @@ PHOTON-Beetle</h1>
 <p><b>Recommendation:</b> The specification recommends PHOTON-Beetle-AEAD-ENC-128.</p>
 <h1><a class="anchor" id="alg_pyjamask"></a>
 Pyjamask</h1>
-<p><b>Definition:</b> <a class="el" href="pyjamask_8h.html">pyjamask.h</a></p>
+<p><b>Definition:</b> <a class="el" href="pyjamask_8h.html">pyjamask.h</a>, <a class="el" href="pyjamask-masked_8h.html">pyjamask-masked.h</a></p>
 <p>Pyjamask AEAD is a family of authenticated encryption algorithms that are built around the Pyjamask-128 and Pyjamask-96 block ciphers in OCB mode. Pyjamask-128-AEAD has a 128-bit key, a 96-bit nonce, and a 128-bit authentication tag. Pyjamask-96-AEAD has a 128-bit key, a 64-bit nonce, and a 96-bit authentication tag.</p>
 <p>Pyjamask is claimed to be resistant against power analysis side channels when implemented as a masked block cipher. This library implements both the masked and unmasked versions of Pyjamask.</p>
 <p>The implementation of the block cipher in this library is very slow at the moment (patches welcome to address this).</p>
@@ -493,9 +493,9 @@ SpoC</h1>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_ace">ACE</a>, <a class="el" href="algorithms.html#alg_spix">SPIX</a></p>
 <h1><a class="anchor" id="alg_spook"></a>
 Spook</h1>
-<p><b>Definition:</b> <a class="el" href="spook_8h.html">spook.h</a></p>
+<p><b>Definition:</b> <a class="el" href="spook_8h.html">spook.h</a>, <a class="el" href="spook-masked_8h.html">spook-masked.h</a></p>
 <p>Spook is a family of authenticated encryption algorithms that are built around a tweakable block cipher and a permutation.</p>
-<p>If the tweakable block cipher is implemented as a masked block cipher, then Spook provides protection against power analysis side channels. This library does not currently implement masking (still in progress).</p>
+<p>If the tweakable block cipher is implemented as a masked block cipher, then Spook provides protection against power analysis side channels. This library implements both the masked and unmasked versions of Spook.</p>
 <p>There are four members in the Spook family:</p>
 <ul>
 <li>Spook-128-512-su with a 128-bit key, a 128-bit nonce, and a 128-bit tag. Internally the algorithm uses a 512-bit permutation. This is the primary member of the family. </li>
@@ -559,7 +559,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2020 10:10:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 25 2020 06:53:29 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

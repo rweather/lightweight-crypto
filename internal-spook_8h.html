@@ -122,6 +122,9 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#acbb1c150002f9cc426ff96c8d767ae8c">CLYDE128_TWEAK_SIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:acbb1c150002f9cc426ff96c8d767ae8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the tweak for the Clyde-128 block cipher. <br/></td></tr>
 <tr class="separator:acbb1c150002f9cc426ff96c8d767ae8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c5c080b1db7c80f0cdc226c9a3f8d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#a95c5c080b1db7c80f0cdc226c9a3f8d4">CLYDE128_STEPS</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memdesc:a95c5c080b1db7c80f0cdc226c9a3f8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of steps in the Clyde-128 block cipher.  <a href="#a95c5c080b1db7c80f0cdc226c9a3f8d4">More...</a><br/></td></tr>
+<tr class="separator:a95c5c080b1db7c80f0cdc226c9a3f8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a438acbb5b243e50be80bc72353b74b87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a438acbb5b243e50be80bc72353b74b87"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#a438acbb5b243e50be80bc72353b74b87">SHADOW512_STATE_SIZE</a>&#160;&#160;&#160;64</td></tr>
 <tr class="memdesc:a438acbb5b243e50be80bc72353b74b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the state for Shadow-512. <br/></td></tr>
@@ -147,6 +150,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a09faff95cea090fb3c226f12fd06fdc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#a09faff95cea090fb3c226f12fd06fdc3">clyde128_decrypt</a> (const unsigned char key[<a class="el" href="internal-spook_8h.html#ae00dce6258b0ae7135f721b5ab8cfaf6">CLYDE128_KEY_SIZE</a>], uint32_t output[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>/4], const unsigned char input[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>], const uint32_t tweak[<a class="el" href="internal-spook_8h.html#acbb1c150002f9cc426ff96c8d767ae8c">CLYDE128_TWEAK_SIZE</a>/4])</td></tr>
 <tr class="memdesc:a09faff95cea090fb3c226f12fd06fdc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a block with the Clyde-128 block cipher.  <a href="#a09faff95cea090fb3c226f12fd06fdc3">More...</a><br/></td></tr>
 <tr class="separator:a09faff95cea090fb3c226f12fd06fdc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a6aceccce7704e649ba45f9fdc8d49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#ac1a6aceccce7704e649ba45f9fdc8d49">clyde128_encrypt_masked</a> (const unsigned char key[<a class="el" href="internal-spook_8h.html#ae00dce6258b0ae7135f721b5ab8cfaf6">CLYDE128_KEY_SIZE</a>], uint32_t output[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>/4], const uint32_t input[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>/4], const uint32_t tweak[<a class="el" href="internal-spook_8h.html#acbb1c150002f9cc426ff96c8d767ae8c">CLYDE128_TWEAK_SIZE</a>/4])</td></tr>
+<tr class="memdesc:ac1a6aceccce7704e649ba45f9fdc8d49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts a block with the Clyde-128 block cipher in masked mode.  <a href="#ac1a6aceccce7704e649ba45f9fdc8d49">More...</a><br/></td></tr>
+<tr class="separator:ac1a6aceccce7704e649ba45f9fdc8d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6888f452e96e518d9a8b69c22a6d899c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#a6888f452e96e518d9a8b69c22a6d899c">clyde128_decrypt_masked</a> (const unsigned char key[<a class="el" href="internal-spook_8h.html#ae00dce6258b0ae7135f721b5ab8cfaf6">CLYDE128_KEY_SIZE</a>], uint32_t output[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>/4], const unsigned char input[<a class="el" href="internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd">CLYDE128_BLOCK_SIZE</a>], const uint32_t tweak[<a class="el" href="internal-spook_8h.html#acbb1c150002f9cc426ff96c8d767ae8c">CLYDE128_TWEAK_SIZE</a>/4])</td></tr>
+<tr class="memdesc:a6888f452e96e518d9a8b69c22a6d899c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts a block with the Clyde-128 block cipher in masked mode.  <a href="#a6888f452e96e518d9a8b69c22a6d899c">More...</a><br/></td></tr>
+<tr class="separator:a6888f452e96e518d9a8b69c22a6d899c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a023ce97f656614b550d8f64e50d6405c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-spook_8h.html#a023ce97f656614b550d8f64e50d6405c">shadow512</a> (<a class="el" href="unionshadow512__state__t.html">shadow512_state_t</a> *state)</td></tr>
 <tr class="memdesc:a023ce97f656614b550d8f64e50d6405c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the Shadow-512 permutation on a state.  <a href="#a023ce97f656614b550d8f64e50d6405c">More...</a><br/></td></tr>
 <tr class="separator:a023ce97f656614b550d8f64e50d6405c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,7 +165,23 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal implementation details of the Spook AEAD mode. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a95c5c080b1db7c80f0cdc226c9a3f8d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLYDE128_STEPS&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of steps in the Clyde-128 block cipher. </p>
+<p>This is also the number of steps in the Shadow-512 and Shadow-384 permutations. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a09faff95cea090fb3c226f12fd06fdc3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -207,6 +232,56 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6888f452e96e518d9a8b69c22a6d899c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clyde128_decrypt_masked </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>key</em>[CLYDE128_KEY_SIZE], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>output</em>[CLYDE128_BLOCK_SIZE/4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>input</em>[CLYDE128_BLOCK_SIZE], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>tweak</em>[CLYDE128_TWEAK_SIZE/4]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts a block with the Clyde-128 block cipher in masked mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Points to the key to decrypt with. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer for the plaintext. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer for the ciphertext. </td></tr>
+    <tr><td class="paramname">tweak</td><td>Points to the tweak to decrypt with.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-spook_8h.html#af2f9cfc7a45bee96db20ffedfb6e358f" title="Encrypts a block with the Clyde-128 block cipher. ">clyde128_encrypt()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af2f9cfc7a45bee96db20ffedfb6e358f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -244,6 +319,56 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Encrypts a block with the Clyde-128 block cipher. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Points to the key to encrypt with. </td></tr>
+    <tr><td class="paramname">output</td><td>Output buffer for the ciphertext. </td></tr>
+    <tr><td class="paramname">input</td><td>Input buffer for the plaintext. </td></tr>
+    <tr><td class="paramname">tweak</td><td>Points to the tweak to encrypt with.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="internal-spook_8h.html#a09faff95cea090fb3c226f12fd06fdc3" title="Decrypts a block with the Clyde-128 block cipher. ">clyde128_decrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac1a6aceccce7704e649ba45f9fdc8d49"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clyde128_encrypt_masked </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>key</em>[CLYDE128_KEY_SIZE], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>output</em>[CLYDE128_BLOCK_SIZE/4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>input</em>[CLYDE128_BLOCK_SIZE/4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>tweak</em>[CLYDE128_TWEAK_SIZE/4]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts a block with the Clyde-128 block cipher in masked mode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>Points to the key to encrypt with. </td></tr>
@@ -310,7 +435,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2020 10:10:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 25 2020 06:53:29 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

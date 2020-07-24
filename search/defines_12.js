@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['xoodoo_5fcols',['XOODOO_COLS',['../internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4',1,'internal-xoodoo.h']]],
-  ['xoodoo_5frounds',['XOODOO_ROUNDS',['../internal-xoodoo_8h.html#a51f7946b80b810125499a4c25d61239c',1,'internal-xoodoo.h']]],
-  ['xoodoo_5frows',['XOODOO_ROWS',['../internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1',1,'internal-xoodoo.h']]],
-  ['xoodyak_5fhash_5fsize',['XOODYAK_HASH_SIZE',['../xoodyak_8h.html#a6e47d99e238ca4061b2798d2851a78ee',1,'xoodyak.h']]],
-  ['xoodyak_5fkey_5fsize',['XOODYAK_KEY_SIZE',['../xoodyak_8h.html#a8b3cb76f31b1c11fa19e118f63fdeeea',1,'xoodyak.h']]],
-  ['xoodyak_5fnonce_5fsize',['XOODYAK_NONCE_SIZE',['../xoodyak_8h.html#ab5edaa9779bf4ff26eb4af3a2e3d881c',1,'xoodyak.h']]],
-  ['xoodyak_5ftag_5fsize',['XOODYAK_TAG_SIZE',['../xoodyak_8h.html#a23cbfa471d507a2991d32f458378ac26',1,'xoodyak.h']]]
+  ['wage_5fkey_5fsize',['WAGE_KEY_SIZE',['../wage_8h.html#a97b88244a09a9036219e8ea5b2bffdcc',1,'wage.h']]],
+  ['wage_5fnonce_5fsize',['WAGE_NONCE_SIZE',['../wage_8h.html#a6ab2039463588235489f94ccce4b14c6',1,'wage.h']]],
+  ['wage_5fstate_5fsize',['WAGE_STATE_SIZE',['../internal-wage_8h.html#ab0a81532d7b429f23a4adc5e7a55bb5c',1,'internal-wage.h']]],
+  ['wage_5ftag_5fsize',['WAGE_TAG_SIZE',['../wage_8h.html#a0609c94025e7bbadba579da8bab4eeaa',1,'wage.h']]]
 ];

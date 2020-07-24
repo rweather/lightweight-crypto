@@ -5,6 +5,7 @@ var searchData=
   ['chachapoly_5ftag_5fsize',['CHACHAPOLY_TAG_SIZE',['../internal-chachapoly_8h.html#acc8a93110d1823b77a811f5f906d2fd1',1,'internal-chachapoly.h']]],
   ['clyde128_5fblock_5fsize',['CLYDE128_BLOCK_SIZE',['../internal-spook_8h.html#a8c04f3b1aee049e235aa078d0cc618bd',1,'internal-spook.h']]],
   ['clyde128_5fkey_5fsize',['CLYDE128_KEY_SIZE',['../internal-spook_8h.html#ae00dce6258b0ae7135f721b5ab8cfaf6',1,'internal-spook.h']]],
+  ['clyde128_5fsteps',['CLYDE128_STEPS',['../internal-spook_8h.html#a95c5c080b1db7c80f0cdc226c9a3f8d4',1,'internal-spook.h']]],
   ['clyde128_5ftweak_5fsize',['CLYDE128_TWEAK_SIZE',['../internal-spook_8h.html#acbb1c150002f9cc426ff96c8d767ae8c',1,'internal-spook.h']]],
   ['comet_5f128_5fnonce_5fsize',['COMET_128_NONCE_SIZE',['../comet_8h.html#af3d4a1fbcd26ce908ea02c576582806f',1,'comet.h']]],
   ['comet_5f128_5ftag_5fsize',['COMET_128_TAG_SIZE',['../comet_8h.html#a090744a89dfbeb02b4e41fa52e750fe0',1,'comet.h']]],

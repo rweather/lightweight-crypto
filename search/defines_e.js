@@ -1,8 +1,22 @@
 var searchData=
 [
-  ['romulus1_5fnonce_5fsize',['ROMULUS1_NONCE_SIZE',['../romulus_8h.html#ae9ae52220eb8a555986fc85574ccf6e1',1,'romulus.h']]],
-  ['romulus2_5fnonce_5fsize',['ROMULUS2_NONCE_SIZE',['../romulus_8h.html#a731e01313e83f1d086a88a3857c7196a',1,'romulus.h']]],
-  ['romulus3_5fnonce_5fsize',['ROMULUS3_NONCE_SIZE',['../romulus_8h.html#aec78eea36ddcf6c804ec89a39e4729e2',1,'romulus.h']]],
-  ['romulus_5fkey_5fsize',['ROMULUS_KEY_SIZE',['../romulus_8h.html#a1e059517cead8027116deb8167b2b37d',1,'romulus.h']]],
-  ['romulus_5ftag_5fsize',['ROMULUS_TAG_SIZE',['../romulus_8h.html#a9188c93a0975d91f0cf7052601cf7a1c',1,'romulus.h']]]
+  ['photon256_5fstate_5fsize',['PHOTON256_STATE_SIZE',['../internal-photon256_8h.html#aa3976af78abc8f7b8fa200a8695e95fc',1,'internal-photon256.h']]],
+  ['photon_5fbeetle_5fhash_5fsize',['PHOTON_BEETLE_HASH_SIZE',['../photon-beetle_8h.html#a679ab23be9d979e2b6ece2268fb21076',1,'photon-beetle.h']]],
+  ['photon_5fbeetle_5fkey_5fsize',['PHOTON_BEETLE_KEY_SIZE',['../photon-beetle_8h.html#a897efb962e0a1838f1dfcae9fff9cece',1,'photon-beetle.h']]],
+  ['photon_5fbeetle_5fnonce_5fsize',['PHOTON_BEETLE_NONCE_SIZE',['../photon-beetle_8h.html#a1134fece2c130c13f9fe19eaac4dd042',1,'photon-beetle.h']]],
+  ['photon_5fbeetle_5ftag_5fsize',['PHOTON_BEETLE_TAG_SIZE',['../photon-beetle_8h.html#a658b6174aca088a3bdc0f40285fe0405',1,'photon-beetle.h']]],
+  ['pyjamask_5f128_5fkey_5fsize',['PYJAMASK_128_KEY_SIZE',['../pyjamask_8h.html#a5c39b8f37f54b54edd4ea62ad3c3abdb',1,'pyjamask.h']]],
+  ['pyjamask_5f128_5fmasked_5fkey_5fsize',['PYJAMASK_128_MASKED_KEY_SIZE',['../pyjamask-masked_8h.html#ad76f0ac9f6bd39e3e31f05d261d65c2c',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f128_5fmasked_5fnonce_5fsize',['PYJAMASK_128_MASKED_NONCE_SIZE',['../pyjamask-masked_8h.html#ae7cf4fbfa6910fa5dc713a1db4006b44',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f128_5fmasked_5ftag_5fsize',['PYJAMASK_128_MASKED_TAG_SIZE',['../pyjamask-masked_8h.html#a64ee3810dae6d0f9ce5dcde17d080eb3',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f128_5fnonce_5fsize',['PYJAMASK_128_NONCE_SIZE',['../pyjamask_8h.html#a5babcfc9ead8a8710dd8b6f1e0bcf7fa',1,'pyjamask.h']]],
+  ['pyjamask_5f128_5ftag_5fsize',['PYJAMASK_128_TAG_SIZE',['../pyjamask_8h.html#afdc1cca9cb4cc13fd2df4a94b2fc6399',1,'pyjamask.h']]],
+  ['pyjamask_5f96_5fkey_5fsize',['PYJAMASK_96_KEY_SIZE',['../pyjamask_8h.html#aa60ce3d5e1bf07cf068b7665ed53ade6',1,'pyjamask.h']]],
+  ['pyjamask_5f96_5fmasked_5fkey_5fsize',['PYJAMASK_96_MASKED_KEY_SIZE',['../pyjamask-masked_8h.html#ab150056e3b5a0aaf16558abf9234f033',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f96_5fmasked_5fnonce_5fsize',['PYJAMASK_96_MASKED_NONCE_SIZE',['../pyjamask-masked_8h.html#aac973e1da5c6d7d0f4791411540927ca',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f96_5fmasked_5ftag_5fsize',['PYJAMASK_96_MASKED_TAG_SIZE',['../pyjamask-masked_8h.html#a02051893922dcd51db609c30b5fa0734',1,'pyjamask-masked.h']]],
+  ['pyjamask_5f96_5fnonce_5fsize',['PYJAMASK_96_NONCE_SIZE',['../pyjamask_8h.html#a588f55514af111f7b8645fbeba91fe59',1,'pyjamask.h']]],
+  ['pyjamask_5f96_5ftag_5fsize',['PYJAMASK_96_TAG_SIZE',['../pyjamask_8h.html#a3238ae7090cfbc6a86c680a824241594',1,'pyjamask.h']]],
+  ['pyjamask_5fmasked_5frounds',['PYJAMASK_MASKED_ROUNDS',['../internal-pyjamask-m_8h.html#a6353d28cfc5d6fab7a96521e2dc1504c',1,'internal-pyjamask-m.h']]],
+  ['pyjamask_5frounds',['PYJAMASK_ROUNDS',['../internal-pyjamask_8h.html#aa0c8baebe8dc3aa77119209f53d9245a',1,'internal-pyjamask.h']]]
 ];
