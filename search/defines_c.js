@@ -25,6 +25,7 @@ var searchData=
   ['mask_5fx2_5fswap_5fmove',['mask_x2_swap_move',['../internal-masking_8h.html#ad7f3e9948d6bc97a8e59c744bb376d0a',1,'internal-masking.h']]],
   ['mask_5fx2_5fxor',['mask_x2_xor',['../internal-masking_8h.html#a713ed7b9af63853f6172ac0a000efee4',1,'internal-masking.h']]],
   ['mask_5fx2_5fxor_5fconst',['mask_x2_xor_const',['../internal-masking_8h.html#af06854a35ed3081aa189aecbdefd3740',1,'internal-masking.h']]],
+  ['mask_5fx2_5fzero',['mask_x2_zero',['../internal-masking_8h.html#a181a47053ff3b8a2ed76a26aeb648578',1,'internal-masking.h']]],
   ['mask_5fx3_5fand',['mask_x3_and',['../internal-masking_8h.html#a5d77b390ed885eda348012a41ae1f6cd',1,'internal-masking.h']]],
   ['mask_5fx3_5finput',['mask_x3_input',['../internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705',1,'internal-masking.h']]],
   ['mask_5fx3_5fnot',['mask_x3_not',['../internal-masking_8h.html#af032db8905cb06918aee34ea308d3fc8',1,'internal-masking.h']]],
@@ -38,6 +39,7 @@ var searchData=
   ['mask_5fx3_5fswap_5fmove',['mask_x3_swap_move',['../internal-masking_8h.html#aad6480389a9782dd61a9ef287b565cc0',1,'internal-masking.h']]],
   ['mask_5fx3_5fxor',['mask_x3_xor',['../internal-masking_8h.html#a762612e1ccc1f438ddcfc1e0d62b5306',1,'internal-masking.h']]],
   ['mask_5fx3_5fxor_5fconst',['mask_x3_xor_const',['../internal-masking_8h.html#ae1e904b35edaad16128807ae7583814b',1,'internal-masking.h']]],
+  ['mask_5fx3_5fzero',['mask_x3_zero',['../internal-masking_8h.html#a5681045d1614bcb4ba3e299588af4578',1,'internal-masking.h']]],
   ['mask_5fx4_5fand',['mask_x4_and',['../internal-masking_8h.html#aff217fc78afb4c4e03f967d479309ff8',1,'internal-masking.h']]],
   ['mask_5fx4_5finput',['mask_x4_input',['../internal-masking_8h.html#ad7e5197374df1ee8c07c4b913f21487f',1,'internal-masking.h']]],
   ['mask_5fx4_5fnot',['mask_x4_not',['../internal-masking_8h.html#a7cc5b18c78fc167e4f290d3c6168a286',1,'internal-masking.h']]],
@@ -51,6 +53,7 @@ var searchData=
   ['mask_5fx4_5fswap_5fmove',['mask_x4_swap_move',['../internal-masking_8h.html#a79e5987a1d9b510037299700ebc88e13',1,'internal-masking.h']]],
   ['mask_5fx4_5fxor',['mask_x4_xor',['../internal-masking_8h.html#a5cb550dde80ec72759e22c17e1aedfd1',1,'internal-masking.h']]],
   ['mask_5fx4_5fxor_5fconst',['mask_x4_xor_const',['../internal-masking_8h.html#abf5c3d479220f69e0cee6bb13393a738',1,'internal-masking.h']]],
+  ['mask_5fx4_5fzero',['mask_x4_zero',['../internal-masking_8h.html#a6d27e6ddb1332b50cd3771262d4b57d1',1,'internal-masking.h']]],
   ['mask_5fx5_5fand',['mask_x5_and',['../internal-masking_8h.html#a706f6de436c3b28915d78865fe18b6a6',1,'internal-masking.h']]],
   ['mask_5fx5_5finput',['mask_x5_input',['../internal-masking_8h.html#a48104f250591791e10b146d5981f2e08',1,'internal-masking.h']]],
   ['mask_5fx5_5fnot',['mask_x5_not',['../internal-masking_8h.html#a7d1af350812eb6e917a071cc8570802e',1,'internal-masking.h']]],
@@ -64,6 +67,7 @@ var searchData=
   ['mask_5fx5_5fswap_5fmove',['mask_x5_swap_move',['../internal-masking_8h.html#a426fc4686fa07d5248efe9b32404d7ca',1,'internal-masking.h']]],
   ['mask_5fx5_5fxor',['mask_x5_xor',['../internal-masking_8h.html#a2560b059b1bf9716f245f59be76a934d',1,'internal-masking.h']]],
   ['mask_5fx5_5fxor_5fconst',['mask_x5_xor_const',['../internal-masking_8h.html#a69a43b6299aeeb60688a79c2f9b692d5',1,'internal-masking.h']]],
+  ['mask_5fx5_5fzero',['mask_x5_zero',['../internal-masking_8h.html#affc47c0845eff0e5a6f654e971ba4c8e',1,'internal-masking.h']]],
   ['mask_5fx6_5fand',['mask_x6_and',['../internal-masking_8h.html#aeec04ca07d6fd4c05ced712e7963fe50',1,'internal-masking.h']]],
   ['mask_5fx6_5finput',['mask_x6_input',['../internal-masking_8h.html#a4e4b085631a2c1806fda9ffcac02425e',1,'internal-masking.h']]],
   ['mask_5fx6_5fnot',['mask_x6_not',['../internal-masking_8h.html#acd934f61e212bc137c495d21af065ce3',1,'internal-masking.h']]],
@@ -77,6 +81,8 @@ var searchData=
   ['mask_5fx6_5fswap_5fmove',['mask_x6_swap_move',['../internal-masking_8h.html#a587a8660044c5753299ce8352e16925f',1,'internal-masking.h']]],
   ['mask_5fx6_5fxor',['mask_x6_xor',['../internal-masking_8h.html#ad8875df727a5051c4d1e4fe42eb9abba',1,'internal-masking.h']]],
   ['mask_5fx6_5fxor_5fconst',['mask_x6_xor_const',['../internal-masking_8h.html#a00568b2ae97005dafcd489ee71b68f8a',1,'internal-masking.h']]],
+  ['mask_5fx6_5fzero',['mask_x6_zero',['../internal-masking_8h.html#a4887c6be0081bbe3d01ec2fcfd4a82e4',1,'internal-masking.h']]],
   ['mask_5fxor',['mask_xor',['../internal-masking_8h.html#a1b7a772afddc428180113b50381c501c',1,'internal-masking.h']]],
-  ['mask_5fxor_5fconst',['mask_xor_const',['../internal-masking_8h.html#a9c5f3758568cefa5e63b1410af15e3d7',1,'internal-masking.h']]]
+  ['mask_5fxor_5fconst',['mask_xor_const',['../internal-masking_8h.html#a9c5f3758568cefa5e63b1410af15e3d7',1,'internal-masking.h']]],
+  ['mask_5fzero',['mask_zero',['../internal-masking_8h.html#ada7addf3a60c905ab1c707f315883218',1,'internal-masking.h']]]
 ];

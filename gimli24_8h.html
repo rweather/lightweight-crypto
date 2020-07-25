@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Gimli authenticated encryption algorithm.  
+<p>Masked version of the Gimli authenticated encryption algorithm.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="aead-common_8h_source.html">aead-common.h</a>&quot;</code><br/>
 </div>
@@ -160,7 +160,11 @@ Variables</h2></td></tr>
 <tr class="separator:ac898326a98ccc20334d8281fe4a8c0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Gimli authenticated encryption algorithm. </p>
+<div class="textblock"><p>Masked version of the Gimli authenticated encryption algorithm. </p>
+<p>Gimli authenticated encryption algorithm.</p>
+<p>This algorithm is experimental and is not one of the NIST competition submissions. It uses a masked version of the GIMLI24 permutation to absorb the key and nonce in the first block, and then switches to the regular GIMLI24 permutation for the associated data and plaintext.</p>
+<p>The theory (as yet unproven) is that this construction will provide some protection for the key against power analysis side channels. Please let me know what I've done wrong if this theory is incorrect.</p>
+<p>References: <a href="https://gimli.cr.yp.to/">https://gimli.cr.yp.to/</a></p>
 <p>GIMLI-24-CIPHER has a 256-bit key, a 128-bit nonce, and a 128-bit tag. It is the spiritual successor to the widely used ChaCha20 and has a similar design.</p>
 <p>This library also includes an implementation of the hash algorithm GIMLI-24-HASH in both regular hashing and XOF modes.</p>
 <p>References: <a href="https://gimli.cr.yp.to/">https://gimli.cr.yp.to/</a> </p>
@@ -547,7 +551,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 25 2020 06:53:29 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 26 2020 09:40:04 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

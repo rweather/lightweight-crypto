@@ -6,5 +6,5 @@ var searchData=
   ['block',['block',['../unionsaturnin__hash__state__t.html#a2ca3a9a5e94e9f969f8ec44aeb66eb14',1,'saturnin_hash_state_t::block()'],['../unionesch__256__hash__state__t.html#a513ec76f7a52021972e2ab540d84bcfb',1,'esch_256_hash_state_t::block()'],['../unionesch__384__hash__state__t.html#ab01bca980474ef0e416d67e98cf8e03f',1,'esch_384_hash_state_t::block()']]],
   ['bugs_20in_20the_20reference_20implementations',['Bugs in the reference implementations',['../bugs.html',1,'']]],
   ['bugs_2edox',['bugs.dox',['../bugs_8dox.html',1,'']]],
-  ['bytes',['bytes',['../uniongimli24__state__t.html#aa2ca9f4a04da705fc8b58c4c631d8b80',1,'gimli24_state_t::bytes()'],['../unionchacha20__state__t.html#a35f8d8dcd023fbe9338de08d917edd77',1,'chacha20_state_t::bytes()']]]
+  ['bytes',['bytes',['../uniongimli24__masked__state__t.html#a4b401be81ef52d943256fffb148b4ebd',1,'gimli24_masked_state_t::bytes()'],['../uniongimli24__state__t.html#aa2ca9f4a04da705fc8b58c4c631d8b80',1,'gimli24_state_t::bytes()'],['../unionchacha20__state__t.html#a35f8d8dcd023fbe9338de08d917edd77',1,'chacha20_state_t::bytes()']]]
 ];
