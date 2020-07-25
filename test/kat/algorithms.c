@@ -31,6 +31,7 @@
 #include "gift-cofb.h"
 #include "gift-cofb-masked.h"
 #include "gimli24.h"
+#include "gimli24-masked.h"
 #include "grain128.h"
 #include "hyena.h"
 #include "isap.h"
@@ -82,6 +83,7 @@ static const aead_cipher_t *const ciphers[] = {
     &gift_cofb_cipher,
     &gift_cofb_masked_cipher,
     &gimli24_cipher,
+    &gimli24_masked_cipher,
     &grain128_aead_cipher,
     &hyena_v1_cipher,
     &hyena_v2_cipher,

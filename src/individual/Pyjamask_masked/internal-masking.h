@@ -251,6 +251,17 @@ typedef struct
 #define mask_x2_output(value) ((value).a ^ (value).b)
 
 /**
+ * \brief Sets all shares of a 2-share word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_x2_zero(value) \
+    do { \
+        (value).a = 0; \
+        (value).b = 0; \
+    } while (0)
+
+/**
  * \brief Adds a constant to a 2-share masked word.
  *
  * \param value The masked word.
@@ -474,6 +485,18 @@ typedef struct
 #define mask_x3_output(value) ((value).a ^ (value).b ^ (value).c)
 
 /**
+ * \brief Sets all shares of a 3-share word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_x3_zero(value) \
+    do { \
+        (value).a = 0; \
+        (value).b = 0; \
+        (value).c = 0; \
+    } while (0)
+
+/**
  * \brief Adds a constant to a 3-share masked word.
  *
  * \param value The masked word.
@@ -691,6 +714,19 @@ typedef struct
  * \return The unmasked version of \a value.
  */
 #define mask_x4_output(value) ((value).a ^ (value).b ^ (value).c ^ (value).d)
+
+/**
+ * \brief Sets all shares of a 4-share word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_x4_zero(value) \
+    do { \
+        (value).a = 0; \
+        (value).b = 0; \
+        (value).c = 0; \
+        (value).d = 0; \
+    } while (0)
 
 /**
  * \brief Adds a constant to a 4-share masked word.
@@ -938,6 +974,20 @@ typedef struct
  */
 #define mask_x5_output(value) \
     ((value).a ^ (value).b ^ (value).c ^ (value).d ^ (value).e)
+
+/**
+ * \brief Sets all shares of a 5-share word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_x5_zero(value) \
+    do { \
+        (value).a = 0; \
+        (value).b = 0; \
+        (value).c = 0; \
+        (value).d = 0; \
+        (value).e = 0; \
+    } while (0)
 
 /**
  * \brief Adds a constant to a 5-share masked word.
@@ -1217,6 +1267,21 @@ typedef struct
  */
 #define mask_x6_output(value) \
     ((value).a ^ (value).b ^ (value).c ^ (value).d ^ (value).e ^ (value).f)
+
+/**
+ * \brief Sets all shares of a 6-share word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_x6_zero(value) \
+    do { \
+        (value).a = 0; \
+        (value).b = 0; \
+        (value).c = 0; \
+        (value).d = 0; \
+        (value).e = 0; \
+        (value).f = 0; \
+    } while (0)
 
 /**
  * \brief Adds a constant to a 6-share masked word.
@@ -1503,6 +1568,7 @@ typedef mask_x2_uint32_t mask_uint32_t;
 typedef mask_x2_uint64_t mask_uint64_t;
 #define mask_input(value, input) mask_x2_input((value), (input))
 #define mask_output(value) mask_x2_output((value))
+#define mask_zero(value) mask_x2_zero((value))
 #define mask_xor_const(value, cvalue) mask_x2_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x2_xor((value1), (value2))
 #define mask_not(value) mask_x2_not((value))
@@ -1520,6 +1586,7 @@ typedef mask_x3_uint32_t mask_uint32_t;
 typedef mask_x3_uint64_t mask_uint64_t;
 #define mask_input(value, input) mask_x3_input((value), (input))
 #define mask_output(value) mask_x3_output((value))
+#define mask_zero(value) mask_x3_zero((value))
 #define mask_xor_const(value, cvalue) mask_x3_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x3_xor((value1), (value2))
 #define mask_not(value) mask_x3_not((value))
@@ -1563,6 +1630,13 @@ typedef mask_x4_uint64_t mask_uint64_t;
  * \return The unmasked version of \a value.
  */
 #define mask_output(value) mask_x4_output((value))
+
+/**
+ * \brief Sets all shares of a generic masked word to zero.
+ *
+ * \param value The masked word to set to zero.
+ */
+#define mask_zero(value) mask_x4_zero((value))
 
 /**
  * \brief Adds a constant to a generic masked word.
@@ -1686,6 +1760,7 @@ typedef mask_x5_uint32_t mask_uint32_t;
 typedef mask_x5_uint64_t mask_uint64_t;
 #define mask_input(value, input) mask_x5_input((value), (input))
 #define mask_output(value) mask_x5_output((value))
+#define mask_zero(value) mask_x5_zero((value))
 #define mask_xor_const(value, cvalue) mask_x5_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x5_xor((value1), (value2))
 #define mask_not(value) mask_x5_not((value))
@@ -1703,6 +1778,7 @@ typedef mask_x6_uint32_t mask_uint32_t;
 typedef mask_x6_uint64_t mask_uint64_t;
 #define mask_input(value, input) mask_x6_input((value), (input))
 #define mask_output(value) mask_x6_output((value))
+#define mask_zero(value) mask_x6_zero((value))
 #define mask_xor_const(value, cvalue) mask_x6_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x6_xor((value1), (value2))
 #define mask_not(value) mask_x6_not((value))

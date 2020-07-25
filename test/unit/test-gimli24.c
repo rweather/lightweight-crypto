@@ -22,6 +22,7 @@
 
 #include "gimli24.h"
 #include "internal-gimli24.h"
+#include "internal-gimli24-m.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -61,9 +62,33 @@ static void test_gimli24_permutation(void)
     }
 }
 
+static void test_gimli24_masked(void)
+{
+    mask_uint32_t state[12];
+    uint32_t unmasked[12];
+    int index;
+
+    printf("    Masked Permutation ... ");
+    fflush(stdout);
+
+    for (index = 0; index < 12; ++index)
+        mask_input(state[index], le_load_word32(gimli24_input + index * 4));
+
+    gimli24_permute_masked(state);
+    gimli24_unmask(unmasked, state);
+
+    if (memcmp(unmasked, gimli24_output, sizeof(gimli24_output)) != 0) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+}
+
 void test_gimli24(void)
 {
     test_aead_cipher_start(&gimli24_cipher);
     test_gimli24_permutation();
+    test_gimli24_masked();
     test_aead_cipher_end(&gimli24_cipher);
 }

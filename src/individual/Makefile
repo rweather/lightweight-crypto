@@ -95,6 +95,17 @@ GIMLI_FILES = \
     internal-gimli24.h \
     internal-gimli24-avr.S \
     $(COMMON_FILES)
+GIMLI_MASKED_FILES = \
+    gimli24-masked.c \
+    gimli24-masked.h \
+    internal-gimli24.c \
+    internal-gimli24.h \
+    internal-gimli24-m.c \
+    internal-gimli24-m.h \
+    internal-gimli24-avr.S \
+    internal-masking.c \
+    internal-masking.h \
+    $(COMMON_FILES)
 GRAIN128_FILES = \
     grain128.c \
     grain128.h \
@@ -293,6 +304,7 @@ ALL_ALGORITHMS = \
     gift_cofb \
     gift_cofb_masked \
     gimli \
+    gimli_masked \
     grain128 \
     hyena \
     isap \
@@ -350,6 +362,9 @@ gift_cofb_masked:
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli
+
+gimli_masked:
+	cp $(foreach file,$(GIMLI_MASKED_FILES),$(SRCDIR)/$(file)) Gimli_masked
 
 grain128:
 	cp $(foreach file,$(GRAIN128_FILES),$(SRCDIR)/$(file)) Grain-128AEAD
