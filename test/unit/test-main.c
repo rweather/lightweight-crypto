@@ -29,6 +29,7 @@ void test_clyde128(void);
 void test_drygascon(void);
 void test_forkskinny(void);
 void test_gift128(void);
+void test_gift128_masked(void);
 void test_gift64(void);
 void test_gimli24(void);
 void test_grain128(void);
@@ -59,6 +60,7 @@ int main(int argc, char *argv[])
     test_drygascon();
     test_forkskinny();
     test_gift128();
+    test_gift128_masked();
     test_gift64();
     test_gimli24();
     test_grain128();

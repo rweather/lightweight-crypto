@@ -29,6 +29,7 @@
 #include "estate.h"
 #include "forkae.h"
 #include "gift-cofb.h"
+#include "gift-cofb-masked.h"
 #include "gimli24.h"
 #include "grain128.h"
 #include "hyena.h"
@@ -79,6 +80,7 @@ static const aead_cipher_t *const ciphers[] = {
     &forkae_saef_128_192_cipher,
     &forkae_saef_128_256_cipher,
     &gift_cofb_cipher,
+    &gift_cofb_masked_cipher,
     &gimli24_cipher,
     &grain128_aead_cipher,
     &hyena_v1_cipher,

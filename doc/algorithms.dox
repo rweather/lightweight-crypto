@@ -348,7 +348,7 @@ separate packets for larger amounts of data.
 
 \section alg_gift_cofb GIFT-COFB
 
-<b>Definition:</b> \ref gift-cofb.h
+<b>Definition:</b> \ref gift-cofb.h, \ref gift-cofb-masked.h
 
 GIFT-COFB is an authenticated encryption algorithm that combines
 the COFB (COmbined FeedBack) block cipher mode with the bit-sliced
@@ -358,12 +358,15 @@ a 128-bit nonce, and a 128-bit authentication tag.
 The GIFT-128 block cipher was designed with hardware FPGA/ASIC implementations
 in mind, but with the <a href="https://eprint.iacr.org/2020/412.pdf">fixsliced</a>
 representation it is possible to acheive good software performance as well.
-This library implements fixslicing for 32-bit platforms.
+This library implements fixslicing by default.
 
 GIFT-COFB is a single-pass encryption algorithm, compared to the two-pass
 algorithm used by SUNDAE-GIFT.  Out of all the GIFT-128 based submissions
 to NIST, GIFT-COFB has the best software performance, although HYENA is
 fairly close.
+
+This library also implements a masked version of GIFT-COFB to provide
+protection against power analysis side channels.
 
 <b>Similar Algorithms:</b> \ref alg_sundae_gift "SUNDAE-GIFT",
 \ref alg_hyena "HYENA", \ref alg_estate "ESTATE"

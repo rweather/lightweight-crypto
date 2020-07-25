@@ -79,6 +79,15 @@ GIFT_COFB_FILES = \
     internal-gift128b-small-avr.S \
     internal-gift128b-tiny-avr.S \
     $(COMMON_FILES)
+GIFT_COFB_MASKED_FILES = \
+    gift-cofb-masked.c \
+    gift-cofb-masked.h \
+    internal-gift128-config.h \
+    internal-gift128-m.c \
+    internal-gift128-m.h \
+    internal-masking.c \
+    internal-masking.h \
+    $(COMMON_FILES)
 GIMLI_FILES = \
     gimli24.c \
     gimli24.h \
@@ -282,6 +291,7 @@ ALL_ALGORITHMS = \
     estate \
     forkae \
     gift_cofb \
+    gift_cofb_masked \
     gimli \
     grain128 \
     hyena \
@@ -334,6 +344,9 @@ forkae:
 
 gift_cofb:
 	cp $(foreach file,$(GIFT_COFB_FILES),$(SRCDIR)/$(file)) GIFT-COFB
+
+gift_cofb_masked:
+	cp $(foreach file,$(GIFT_COFB_MASKED_FILES),$(SRCDIR)/$(file)) GIFT-COFB_masked
 
 gimli:
 	cp $(foreach file,$(GIMLI_FILES),$(SRCDIR)/$(file)) Gimli

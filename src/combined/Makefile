@@ -19,6 +19,7 @@ OBJS = \
         estate.o \
         forkae.o \
         gift-cofb.o \
+        gift-cofb-masked.o \
 	gimli24.o \
 	grain128.o \
 	hyena.o \
@@ -54,6 +55,7 @@ OBJS = \
 	internal-drysponge.o \
 	internal-forkskinny.o \
 	internal-gift128.o \
+	internal-gift128-m.o \
 	internal-gift64.o \
 	internal-gimli24.o \
 	internal-grain128.o \
@@ -102,6 +104,7 @@ elephant.o: elephant.h aead-common.h internal-keccak.h internal-spongent.h inter
 estate.o: estate.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 forkae.o: forkae.h aead-common.h internal-forkskinny.h internal-forkae-paef.h internal-forkae-saef.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
+gift-cofb-masked.o: gift-cofb.h aead-common.h internal-gift128-m.h internal-gift128-config.h internal-util.h internal-masking.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
 grain128.o: grain128.h internal-grain128.h aead-common.h internal-util.h
 hyena.o: hyena.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
@@ -137,6 +140,7 @@ internal-cham.o: internal-cham.h internal-util.h
 internal-drysponge.o: internal-drysponge.h internal-util.h
 internal-forkskinny.o: internal-forkskinny.h internal-skinnyutil.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-gift128-config.h internal-util.h
+internal-gift128-m.o: internal-gift128-m.h internal-gift128-config.h internal-masking.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h
 internal-gimli24.o: internal-gimli24.h internal-util.h
 internal-grain128.o: internal-grain128.h internal-util.h

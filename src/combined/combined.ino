@@ -37,6 +37,7 @@ of flash memory.
 #include "estate.h"
 #include "forkae.h"
 #include "gift-cofb.h"
+#include "gift-cofb-masked.h"
 #include "gimli24.h"
 #include "grain128.h"
 #include "hyena.h"
@@ -479,6 +480,7 @@ void setup()
     perfCipher(&forkae_saef_128_192_cipher);
     perfCipher(&forkae_saef_128_256_cipher);
     perfCipher(&gift_cofb_cipher);
+    perfCipher(&gift_cofb_masked_cipher);
     perfCipher(&gimli24_cipher);
     perfCipher(&grain128_aead_cipher);
     perfCipher(&hyena_v1_cipher);

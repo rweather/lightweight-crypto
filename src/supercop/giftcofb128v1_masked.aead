@@ -1,0 +1,11 @@
+aead_family=gift-cofb
+aead_name=giftcofb128v1
+aead_meta_name=GIFT-COFB-Masked
+aead_srcdir=GIFT-COFB_masked
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=gift_cofb_masked_aead_encrypt
+aead_decrypt=gift_cofb_masked_aead_decrypt
+aead_header=gift-cofb-masked.h
+aead_variant=masked

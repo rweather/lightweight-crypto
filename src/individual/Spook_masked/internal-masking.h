@@ -407,6 +407,47 @@ typedef struct
     } while (0)
 
 /**
+ * \brief Performs a swap on two 2-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_x2_swap(value1, value2) \
+    do { \
+        (value1).a ^= (value2).a; \
+        (value2).a ^= (value1).a; \
+        (value1).a ^= (value2).a; \
+        (value1).b ^= (value2).b; \
+        (value2).b ^= (value1).b; \
+        (value1).b ^= (value2).b; \
+    } while (0)
+
+/** @@cond mask_swap_move */
+
+#define mask_swap_move_internal(a, b, mask, shift) \
+    do { \
+        temp = ((b) ^ ((a) >> (shift))) & (mask); \
+        (b) ^= temp; \
+        (a) ^= temp << (shift); \
+    } while (0)
+
+/** @endcond */
+
+/**
+ * \brief Performs a swap and move on two 2-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_x2_swap_move(value1, value2, mask, shift) \
+    do { \
+        mask_swap_move_internal((value1).a, (value2).a, (mask), (shift)); \
+        mask_swap_move_internal((value1).b, (value2).b, (mask), (shift)); \
+    } while (0)
+
+/**
  * \brief Masks an input value to produce a 3-share masked word.
  *
  * \param value The masked word on output.
@@ -587,6 +628,40 @@ typedef struct
                      ((value2).b << (sizeof((value1).b) * 8 - (bits))); \
         (value1).c = ((value2).c >> (bits)) | \
                      ((value2).c << (sizeof((value1).c) * 8 - (bits))); \
+    } while (0)
+
+/**
+ * \brief Performs a swap on two 3-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_x3_swap(value1, value2) \
+    do { \
+        (value1).a ^= (value2).a; \
+        (value2).a ^= (value1).a; \
+        (value1).a ^= (value2).a; \
+        (value1).b ^= (value2).b; \
+        (value2).b ^= (value1).b; \
+        (value1).b ^= (value2).b; \
+        (value1).c ^= (value2).c; \
+        (value2).c ^= (value1).c; \
+        (value1).c ^= (value2).c; \
+    } while (0)
+
+/**
+ * \brief Performs a swap and move on two 3-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_x3_swap_move(value1, value2, mask, shift) \
+    do { \
+        mask_swap_move_internal((value1).a, (value2).a, (mask), (shift)); \
+        mask_swap_move_internal((value1).b, (value2).b, (mask), (shift)); \
+        mask_swap_move_internal((value1).c, (value2).c, (mask), (shift)); \
     } while (0)
 
 /**
@@ -793,6 +868,44 @@ typedef struct
                      ((value2).c << (sizeof((value1).c) * 8 - (bits))); \
         (value1).d = ((value2).d >> (bits)) | \
                      ((value2).d << (sizeof((value1).d) * 8 - (bits))); \
+    } while (0)
+
+/**
+ * \brief Performs a swap on two 4-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_x4_swap(value1, value2) \
+    do { \
+        (value1).a ^= (value2).a; \
+        (value2).a ^= (value1).a; \
+        (value1).a ^= (value2).a; \
+        (value1).b ^= (value2).b; \
+        (value2).b ^= (value1).b; \
+        (value1).b ^= (value2).b; \
+        (value1).c ^= (value2).c; \
+        (value2).c ^= (value1).c; \
+        (value1).c ^= (value2).c; \
+        (value1).d ^= (value2).d; \
+        (value2).d ^= (value1).d; \
+        (value1).d ^= (value2).d; \
+    } while (0)
+
+/**
+ * \brief Performs a swap and move on two 4-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_x4_swap_move(value1, value2, mask, shift) \
+    do { \
+        mask_swap_move_internal((value1).a, (value2).a, (mask), (shift)); \
+        mask_swap_move_internal((value1).b, (value2).b, (mask), (shift)); \
+        mask_swap_move_internal((value1).c, (value2).c, (mask), (shift)); \
+        mask_swap_move_internal((value1).d, (value2).d, (mask), (shift)); \
     } while (0)
 
 /**
@@ -1027,6 +1140,48 @@ typedef struct
                      ((value2).d << (sizeof((value1).d) * 8 - (bits))); \
         (value1).e = ((value2).e >> (bits)) | \
                      ((value2).e << (sizeof((value1).d) * 8 - (bits))); \
+    } while (0)
+
+/**
+ * \brief Performs a swap on two 5-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_x5_swap(value1, value2) \
+    do { \
+        (value1).a ^= (value2).a; \
+        (value2).a ^= (value1).a; \
+        (value1).a ^= (value2).a; \
+        (value1).b ^= (value2).b; \
+        (value2).b ^= (value1).b; \
+        (value1).b ^= (value2).b; \
+        (value1).c ^= (value2).c; \
+        (value2).c ^= (value1).c; \
+        (value1).c ^= (value2).c; \
+        (value1).d ^= (value2).d; \
+        (value2).d ^= (value1).d; \
+        (value1).d ^= (value2).d; \
+        (value1).e ^= (value2).e; \
+        (value2).e ^= (value1).e; \
+        (value1).e ^= (value2).e; \
+    } while (0)
+
+/**
+ * \brief Performs a swap and move on two 5-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_x5_swap_move(value1, value2, mask, shift) \
+    do { \
+        mask_swap_move_internal((value1).a, (value2).a, (mask), (shift)); \
+        mask_swap_move_internal((value1).b, (value2).b, (mask), (shift)); \
+        mask_swap_move_internal((value1).c, (value2).c, (mask), (shift)); \
+        mask_swap_move_internal((value1).d, (value2).d, (mask), (shift)); \
+        mask_swap_move_internal((value1).e, (value2).e, (mask), (shift)); \
     } while (0)
 
 /**
@@ -1295,6 +1450,52 @@ typedef struct
                      ((value2).f << (sizeof((value1).f) * 8 - (bits))); \
     } while (0)
 
+/**
+ * \brief Performs a swap on two 6-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_x6_swap(value1, value2) \
+    do { \
+        (value1).a ^= (value2).a; \
+        (value2).a ^= (value1).a; \
+        (value1).a ^= (value2).a; \
+        (value1).b ^= (value2).b; \
+        (value2).b ^= (value1).b; \
+        (value1).b ^= (value2).b; \
+        (value1).c ^= (value2).c; \
+        (value2).c ^= (value1).c; \
+        (value1).c ^= (value2).c; \
+        (value1).d ^= (value2).d; \
+        (value2).d ^= (value1).d; \
+        (value1).d ^= (value2).d; \
+        (value1).e ^= (value2).e; \
+        (value2).e ^= (value1).e; \
+        (value1).e ^= (value2).e; \
+        (value1).f ^= (value2).f; \
+        (value2).f ^= (value1).f; \
+        (value1).f ^= (value2).f; \
+    } while (0)
+
+/**
+ * \brief Performs a swap and move on two 6-share masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_x6_swap_move(value1, value2, mask, shift) \
+    do { \
+        mask_swap_move_internal((value1).a, (value2).a, (mask), (shift)); \
+        mask_swap_move_internal((value1).b, (value2).b, (mask), (shift)); \
+        mask_swap_move_internal((value1).c, (value2).c, (mask), (shift)); \
+        mask_swap_move_internal((value1).d, (value2).d, (mask), (shift)); \
+        mask_swap_move_internal((value1).e, (value2).e, (mask), (shift)); \
+        mask_swap_move_internal((value1).f, (value2).f, (mask), (shift)); \
+    } while (0)
+
 /* Define aliases for operating on shares in a generic fashion */
 #if AEAD_MASKING_SHARES == 2
 typedef mask_x2_uint16_t mask_uint16_t;
@@ -1311,6 +1512,8 @@ typedef mask_x2_uint64_t mask_uint64_t;
 #define mask_shr(value1, value2, bits) mask_x2_shr((value1), (value2), (bits))
 #define mask_rol(value1, value2, bits) mask_x2_rol((value1), (value2), (bits))
 #define mask_ror(value1, value2, bits) mask_x2_ror((value1), (value2), (bits))
+#define mask_swap(value1, value2) mask_x2_swap((value1), (value2))
+#define mask_swap_move(value1, value2, mask, shift) mask_x2_swap_move((value1), (value2), (mask), (shift))
 #elif AEAD_MASKING_SHARES == 3
 typedef mask_x3_uint16_t mask_uint16_t;
 typedef mask_x3_uint32_t mask_uint32_t;
@@ -1326,6 +1529,8 @@ typedef mask_x3_uint64_t mask_uint64_t;
 #define mask_shr(value1, value2, bits) mask_x3_shr((value1), (value2), (bits))
 #define mask_rol(value1, value2, bits) mask_x3_rol((value1), (value2), (bits))
 #define mask_ror(value1, value2, bits) mask_x3_ror((value1), (value2), (bits))
+#define mask_swap(value1, value2) mask_x3_swap((value1), (value2))
+#define mask_swap_move(value1, value2, mask, shift) mask_x3_swap_move((value1), (value2), (mask), (shift))
 #elif AEAD_MASKING_SHARES == 4
 
 /**
@@ -1457,6 +1662,24 @@ typedef mask_x4_uint64_t mask_uint64_t;
  */
 #define mask_ror(value1, value2, bits) mask_x4_ror((value1), (value2), (bits))
 
+/**
+ * \brief Performs a swap on two generic masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ */
+#define mask_swap(value1, value2) mask_x4_swap((value1), (value2))
+
+/**
+ * \brief Performs a swap and move on two generic masked words.
+ *
+ * \param value1 The first masked word.
+ * \param value2 The second masked word.
+ * \param mask The mask to extract the bits to move.
+ * \param shift The number of bits to move by.
+ */
+#define mask_swap_move(value1, value2, mask, shift) mask_x4_swap_move((value1), (value2), (mask), (shift))
+
 #elif AEAD_MASKING_SHARES == 5
 typedef mask_x5_uint16_t mask_uint16_t;
 typedef mask_x5_uint32_t mask_uint32_t;
@@ -1472,6 +1695,8 @@ typedef mask_x5_uint64_t mask_uint64_t;
 #define mask_shr(value1, value2, bits) mask_x5_shr((value1), (value2), (bits))
 #define mask_rol(value1, value2, bits) mask_x5_rol((value1), (value2), (bits))
 #define mask_ror(value1, value2, bits) mask_x5_ror((value1), (value2), (bits))
+#define mask_swap(value1, value2) mask_x5_swap((value1), (value2))
+#define mask_swap_move(value1, value2, mask, shift) mask_x5_swap_move((value1), (value2), (mask), (shift))
 #elif AEAD_MASKING_SHARES == 6
 typedef mask_x6_uint16_t mask_uint16_t;
 typedef mask_x6_uint32_t mask_uint32_t;
@@ -1487,6 +1712,8 @@ typedef mask_x6_uint64_t mask_uint64_t;
 #define mask_shr(value1, value2, bits) mask_x6_shr((value1), (value2), (bits))
 #define mask_rol(value1, value2, bits) mask_x6_rol((value1), (value2), (bits))
 #define mask_ror(value1, value2, bits) mask_x6_ror((value1), (value2), (bits))
+#define mask_swap(value1, value2) mask_x6_swap((value1), (value2))
+#define mask_swap_move(value1, value2, mask, shift) mask_x6_swap_move((value1), (value2), (mask), (shift))
 #else
 #error "AEAD_MASKING_SHARES value is not supported"
 #endif
