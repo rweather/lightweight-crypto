@@ -162,6 +162,7 @@ int ascon128_masked_aead_encrypt
     *clen = mlen + ASCON128_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON128_MASKED_IV);
     mask_input(masked_state[1], be_load_word64(k));
     mask_input(masked_state[2], be_load_word64(k + 8));
@@ -212,6 +213,7 @@ int ascon128_masked_aead_decrypt
     *mlen = clen - ASCON128_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON128_MASKED_IV);
     mask_input(masked_state[1], be_load_word64(k));
     mask_input(masked_state[2], be_load_word64(k + 8));
@@ -261,6 +263,7 @@ int ascon128a_masked_aead_encrypt
     *clen = mlen + ASCON128_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON128a_MASKED_IV);
     mask_input(masked_state[1], be_load_word64(k));
     mask_input(masked_state[2], be_load_word64(k + 8));
@@ -311,6 +314,7 @@ int ascon128a_masked_aead_decrypt
     *mlen = clen - ASCON128_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON128a_MASKED_IV);
     mask_input(masked_state[1], be_load_word64(k));
     mask_input(masked_state[2], be_load_word64(k + 8));
@@ -360,6 +364,7 @@ int ascon80pq_masked_aead_encrypt
     *clen = mlen + ASCON80PQ_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
     mask_input(masked_state[1], be_load_word64(k + 4));
     mask_input(masked_state[2], be_load_word64(k + 12));
@@ -412,6 +417,7 @@ int ascon80pq_masked_aead_decrypt
     *mlen = clen - ASCON80PQ_MASKED_TAG_SIZE;
 
     /* Initialize the ASCON state in masked form */
+    aead_masking_init();
     mask_input(masked_state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
     mask_input(masked_state[1], be_load_word64(k + 4));
     mask_input(masked_state[2], be_load_word64(k + 12));
