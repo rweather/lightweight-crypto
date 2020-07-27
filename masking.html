@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level2"><a href="#masking_xor">XOR</a></li>
 <li class="level2"><a href="#masking_not">NOT</a></li>
 <li class="level2"><a href="#masking_and">AND</a></li>
+<li class="level2"><a href="#masking_and_not">AND-NOT</a></li>
 <li class="level2"><a href="#masking_or">OR</a></li>
 <li class="level2"><a href="#masking_rotates">Shift and rotate</a></li>
 <li class="level2"><a href="#masking_swap">Swap</a></li>
@@ -348,7 +349,35 @@ AND</h2>
 </div><!-- fragment --><p>Essentially this is performing a diagonal matrix operation where each share is mixed with all of the shares below it and to the right. At each step, a new random number is generated and mixed into the state.</p>
 <p>Note: The <a class="el" href="internal-masking_8h.html#acc2be96e3a183c111f271fc8e8788570" title="AND&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_and()</a> and <a class="el" href="internal-masking_8h.html#a34418c16b2ac0adbd3a257edc7ae1357" title="OR&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_or()</a> functions require a local variable called "temp" in the current scope that is of type uint16_t, uint32_t, or uint64_t depending upon the type of masked word you are operating on.</p>
 <p>For a masked word with N shares, each AND operation requires (N² - N) / 2 random number generator calls and mix operations. This has a significant impact on performance compared with the non-masked version of AND. The higher the number of shares, or the higher the number of AND operations, the slower the masked cipher will become.</p>
-<h2><a class="anchor" id="masking_or"></a>
+<h2><a class="anchor" id="masking_and_not"></a>
+AND-NOT</h2>
+<p>A common variant of AND is to invert the first argument. For example, here is step chi of Xoodoo:</p>
+<div class="fragment"><div class="line">x00 ^= (~x10) &amp; x20;</div>
+<div class="line">x10 ^= (~x20) &amp; x00;</div>
+<div class="line">x20 ^= (~x00) &amp; x10;</div>
+<div class="line">x01 ^= (~x11) &amp; x21;</div>
+<div class="line">x11 ^= (~x21) &amp; x01;</div>
+<div class="line">x21 ^= (~x01) &amp; x11;</div>
+<div class="line">x02 ^= (~x12) &amp; x22;</div>
+<div class="line">x12 ^= (~x22) &amp; x02;</div>
+<div class="line">x22 ^= (~x02) &amp; x12;</div>
+<div class="line">x03 ^= (~x13) &amp; x23;</div>
+<div class="line">x13 ^= (~x23) &amp; x03;</div>
+<div class="line">x23 ^= (~x03) &amp; x13;</div>
+</div><!-- fragment --><p>While it is possible to create temporaries to hold the NOT-inverted intermediate values, it is easier and more memory-efficient to use <a class="el" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e" title="AND&#39;s two generic masked words and XOR&#39;s the result with another word, where the first input word is ...">mask_and_not()</a>:</p>
+<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x00, x10, x20);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x10, x20, x00);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x20, x00, x10);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x01, x11, x21);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x11, x21, x01);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x21, x01, x11);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x02, x12, x22);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x12, x22, x02);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x22, x02, x12);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x03, x13, x23);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x13, x23, x03);</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(x23, x03, x13);</div>
+</div><!-- fragment --><h2><a class="anchor" id="masking_or"></a>
 OR</h2>
 <p>The OR operation is implemented in terms of AND using DeMorgan's Law: (A | B) = ~(~(A) &amp; ~(B)). The 4-share version of OR is:</p>
 <div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#a5bbca4508e5efe03ff2ab5504df42be1">mask_x4_or</a>(w1, w2, w3) :</div>
@@ -381,7 +410,7 @@ Swap</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 26 2020 09:40:05 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 27 2020 10:07:48 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

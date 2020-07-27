@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['internal_2dascon_2dm_2eh',['internal-ascon-m.h',['../internal-ascon-m_8h.html',1,'']]],
   ['internal_2dascon_2eh',['internal-ascon.h',['../internal-ascon_8h.html',1,'']]],
   ['internal_2dblake2s_2eh',['internal-blake2s.h',['../internal-blake2s_8h.html',1,'']]],
   ['internal_2dchachapoly_2eh',['internal-chachapoly.h',['../internal-chachapoly_8h.html',1,'']]],
