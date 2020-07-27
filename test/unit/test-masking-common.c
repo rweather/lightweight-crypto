@@ -89,6 +89,25 @@ static int MASK_NAME(test_uint16, and)(void)
            mask_test_output(w3) == z;
 }
 
+/* Test AND'ing two masked 16-bit words where one of them is NOT'ed */
+static int MASK_NAME(test_uint16, and_not)(void)
+{
+    uint16_t temp;
+    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t z = (uint16_t)aead_masking_generate_32();
+    mask_test_uint16_t w1;
+    mask_test_uint16_t w2;
+    mask_test_uint16_t w3;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_input(w3, z);
+    mask_test_and_not(w1, w2, w3);
+    return mask_test_output(w1) == (x ^ ((~y) & z)) &&
+           mask_test_output(w2) == y &&
+           mask_test_output(w3) == z;
+}
+
 /* Test OR'ing two masked 16-bit words */
 static int MASK_NAME(test_uint16, or)(void)
 {
@@ -260,6 +279,25 @@ static int MASK_NAME(test_uint32, and)(void)
            mask_test_output(w3) == z;
 }
 
+/* Test AND'ing two masked 32-bit words where one of them is NOT'ed */
+static int MASK_NAME(test_uint32, and_not)(void)
+{
+    uint32_t temp;
+    uint32_t x = aead_masking_generate_32();
+    uint32_t y = aead_masking_generate_32();
+    uint32_t z = aead_masking_generate_32();
+    mask_test_uint32_t w1;
+    mask_test_uint32_t w2;
+    mask_test_uint32_t w3;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_input(w3, z);
+    mask_test_and_not(w1, w2, w3);
+    return mask_test_output(w1) == (x ^ ((~y) & z)) &&
+           mask_test_output(w2) == y &&
+           mask_test_output(w3) == z;
+}
+
 /* Test OR'ing two masked 32-bit words */
 static int MASK_NAME(test_uint32, or)(void)
 {
@@ -427,6 +465,25 @@ static int MASK_NAME(test_uint64, and)(void)
     mask_test_input(w3, z);
     mask_test_and(w1, w2, w3);
     return mask_test_output(w1) == (x ^ (y & z)) &&
+           mask_test_output(w2) == y &&
+           mask_test_output(w3) == z;
+}
+
+/* Test AND'ing two masked 64-bit words where one of them is NOT'ed */
+static int MASK_NAME(test_uint64, and_not)(void)
+{
+    uint64_t temp;
+    uint64_t x = aead_masking_generate_64();
+    uint64_t y = aead_masking_generate_64();
+    uint64_t z = aead_masking_generate_64();
+    mask_test_uint64_t w1;
+    mask_test_uint64_t w2;
+    mask_test_uint64_t w3;
+    mask_test_input(w1, x);
+    mask_test_input(w2, y);
+    mask_test_input(w3, z);
+    mask_test_and_not(w1, w2, w3);
+    return mask_test_output(w1) == (x ^ ((~y) & z)) &&
            mask_test_output(w2) == y &&
            mask_test_output(w3) == z;
 }

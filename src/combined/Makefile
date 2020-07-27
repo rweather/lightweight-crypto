@@ -11,6 +11,7 @@ OBJS = \
 	aead-common.o \
         ace.o \
         ascon128.o \
+        ascon128-masked.o \
         ascon-hash.o \
         ascon-xof.o \
         comet.o \
@@ -50,6 +51,7 @@ OBJS = \
         wage.o \
         xoodyak.o \
 	internal-ascon.o \
+	internal-ascon-m.o \
 	internal-blake2s.o \
 	internal-chachapoly.o \
 	internal-cham.o \
@@ -98,6 +100,7 @@ individual:
 aead-common.o: aead-common.h
 ace.o: ace.h aead-common.h internal-util.h internal-sliscp-light.h
 ascon128.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
+ascon128-masked.o: ascon128-masked.h aead-common.h internal-ascon.h internal-ascon-m.h internal-masking.h internal-util.h
 ascon-hash.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 ascon-xof.o: ascon128.h aead-common.h internal-ascon.h internal-util.h
 comet.o: comet.h aead-common.h internal-cham.h internal-speck64.h internal-util.h
@@ -137,6 +140,7 @@ tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
+internal-ascon-m.o: internal-ascon-m.h internal-masking.h internal-util.h
 internal-blake2s.o: internal-blake2s.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h

@@ -31,6 +31,7 @@ of flash memory.
 #include "aead-common.h"
 #include "ace.h"
 #include "ascon128.h"
+#include "ascon128-masked.h"
 #include "comet.h"
 #include "drygascon.h"
 #include "elephant.h"
@@ -467,6 +468,9 @@ void setup()
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);
+    perfCipher(&ascon128_masked_cipher);
+    perfCipher(&ascon128a_masked_cipher);
+    perfCipher(&ascon80pq_masked_cipher);
     perfCipher(&comet_128_cham_cipher);
     perfCipher(&comet_64_cham_cipher);
     perfCipher(&comet_64_speck_cipher);

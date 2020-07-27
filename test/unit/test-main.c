@@ -22,6 +22,7 @@
 
 #include "test-cipher.h"
 
+void test_ascon(void);
 void test_blake2s(void);
 void test_chachapoly(void);
 void test_cham(void);
@@ -53,6 +54,7 @@ void test_xoodoo(void);
 
 int main(int argc, char *argv[])
 {
+    test_ascon();
     test_blake2s();
     test_chachapoly();
     test_cham();

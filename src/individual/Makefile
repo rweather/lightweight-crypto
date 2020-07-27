@@ -22,6 +22,17 @@ ASCON_FILES = \
     internal-ascon.h \
     internal-ascon-avr.S \
     $(COMMON_FILES)
+ASCON_MASKED_FILES = \
+    ascon128-masked.c \
+    ascon128-masked.h \
+    internal-ascon.c \
+    internal-ascon.h \
+    internal-ascon-m.c \
+    internal-ascon-m.h \
+    internal-ascon-avr.S \
+    internal-masking.c \
+    internal-masking.h \
+    $(COMMON_FILES)
 COMET_FILES = \
     comet.c \
     comet.h \
@@ -296,6 +307,7 @@ XOODYAK_FILES = \
 ALL_ALGORITHMS = \
     ace \
     ascon \
+    ascon_masked \
     comet \
     drygascon \
     elephant \
@@ -338,6 +350,9 @@ ace:
 
 ascon:
 	cp $(foreach file,$(ASCON_FILES),$(SRCDIR)/$(file)) ASCON
+
+ascon_masked:
+	cp $(foreach file,$(ASCON_MASKED_FILES),$(SRCDIR)/$(file)) ASCON_masked
 
 comet:
 	cp $(foreach file,$(COMET_FILES),$(SRCDIR)/$(file)) COMET

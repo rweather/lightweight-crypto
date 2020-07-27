@@ -13,6 +13,7 @@ TARGET1 = unit-tests
 OBJS1 = \
     test-cipher.o \
     test-main.o \
+    test-ascon.o \
     test-blake2s.o \
     test-chachapoly.o \
     test-cham.o \
@@ -55,6 +56,7 @@ check: $(TARGET1)
 
 TEST_CIPHER_INC = test-cipher.h $(LIBSRC_DIR)/aead-common.h
 
+test-ascon.o: $(LIBSRC_DIR)/ascon128.h $(LIBSRC_DIR)/internal-ascon.h $(LIBSRC_DIR)/internal-ascon-m.h $(LIBSRC_DIR)/internal-masking.h $(TEST_CIPHER_INC)
 test-blake2s.o: $(LIBSRC_DIR)/internal-blake2s.h $(TEST_CIPHER_INC)
 test-chachapoly.o: $(LIBSRC_DIR)/internal-chachapoly.h $(TEST_CIPHER_INC)
 test-cham.o: $(LIBSRC_DIR)/internal-cham.h $(TEST_CIPHER_INC)

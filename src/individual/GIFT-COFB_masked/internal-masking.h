@@ -340,6 +340,29 @@ typedef struct
     } while (0)
 
 /**
+ * \brief AND's two 2-share masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_x2_and_not(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((~(value2).a) & (value3).a); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).b, (value2).b, (value3).b); \
+        (value1).b ^= ((value2).b & (value3).b); \
+    } while (0)
+
+/**
  * \brief OR's two 2-share masked words and XOR's the result with another word.
  *
  * \param value1 The destination masked word.
@@ -557,6 +580,34 @@ typedef struct
         mask_mix_and((value1).a, (value2).a, (value3).a, \
                      (value1).b, (value2).b, (value3).b); \
         mask_mix_and((value1).a, (value2).a, (value3).a, \
+                     (value1).c, (value2).c, (value3).c); \
+        (value1).b ^= ((value2).b & (value3).b); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).c, (value2).c, (value3).c); \
+        (value1).c ^= ((value2).c & (value3).c); \
+    } while (0)
+
+/**
+ * \brief AND's two 3-share masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_x3_and_not(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((~(value2).a) & (value3).a); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).b, (value2).b, (value3).b); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
                      (value1).c, (value2).c, (value3).c); \
         (value1).b ^= ((value2).b & (value3).b); \
         mask_mix_and((value1).b, (value2).b, (value3).b, \
@@ -792,6 +843,41 @@ typedef struct
         mask_mix_and((value1).a, (value2).a, (value3).a, \
                      (value1).c, (value2).c, (value3).c); \
         mask_mix_and((value1).a, (value2).a, (value3).a, \
+                     (value1).d, (value2).d, (value3).d); \
+        (value1).b ^= ((value2).b & (value3).b); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).d, (value2).d, (value3).d); \
+        (value1).c ^= ((value2).c & (value3).c); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).d, (value2).d, (value3).d); \
+        (value1).d ^= ((value2).d & (value3).d); \
+    } while (0)
+
+/**
+ * \brief AND's two 4-share masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_x4_and_not(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((~(value2).a) & (value3).a); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).b, (value2).b, (value3).b); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
                      (value1).d, (value2).d, (value3).d); \
         (value1).b ^= ((value2).b & (value3).b); \
         mask_mix_and((value1).b, (value2).b, (value3).b, \
@@ -1056,6 +1142,50 @@ typedef struct
         mask_mix_and((value1).a, (value2).a, (value3).a, \
                      (value1).d, (value2).d, (value3).d); \
         mask_mix_and((value1).a, (value2).a, (value3).a, \
+                     (value1).e, (value2).e, (value3).e); \
+        (value1).b ^= ((value2).b & (value3).b); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).e, (value2).e, (value3).e); \
+        (value1).c ^= ((value2).c & (value3).c); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).e, (value2).e, (value3).e); \
+        (value1).d ^= ((value2).d & (value3).d); \
+        mask_mix_and((value1).d, (value2).d, (value3).d, \
+                     (value1).e, (value2).e, (value3).e); \
+        (value1).e ^= ((value2).e & (value3).e); \
+    } while (0)
+
+/**
+ * \brief AND's two 5-share masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_x5_and_not(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((~(value2).a) & (value3).a); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).b, (value2).b, (value3).b); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
                      (value1).e, (value2).e, (value3).e); \
         (value1).b ^= ((value2).b & (value3).b); \
         mask_mix_and((value1).b, (value2).b, (value3).b, \
@@ -1382,6 +1512,61 @@ typedef struct
     } while (0)
 
 /**
+ * \brief AND's two 6-share masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_x6_and_not(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((~(value2).a) & (value3).a); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).b, (value2).b, (value3).b); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).e, (value2).e, (value3).e); \
+        mask_mix_and((value1).a, ~(value2).a, (value3).a, \
+                     (value1).f, (value2).f, (value3).f); \
+        (value1).b ^= ((value2).b & (value3).b); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).c, (value2).c, (value3).c); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).e, (value2).e, (value3).e); \
+        mask_mix_and((value1).b, (value2).b, (value3).b, \
+                     (value1).f, (value2).f, (value3).f); \
+        (value1).c ^= ((value2).c & (value3).c); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).d, (value2).d, (value3).d); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).e, (value2).e, (value3).e); \
+        mask_mix_and((value1).c, (value2).c, (value3).c, \
+                     (value1).f, (value2).f, (value3).f); \
+        (value1).d ^= ((value2).d & (value3).d); \
+        mask_mix_and((value1).d, (value2).d, (value3).d, \
+                     (value1).e, (value2).e, (value3).e); \
+        mask_mix_and((value1).d, (value2).d, (value3).d, \
+                     (value1).f, (value2).f, (value3).f); \
+        (value1).e ^= ((value2).e & (value3).e); \
+        mask_mix_and((value1).e, (value2).e, (value3).e, \
+                     (value1).f, (value2).f, (value3).f); \
+        (value1).f ^= ((value2).f & (value3).f); \
+    } while (0)
+
+/**
  * \brief OR's two 6-share masked words and XOR's the result with another word.
  *
  * \param value1 The destination masked word.
@@ -1573,6 +1758,7 @@ typedef mask_x2_uint64_t mask_uint64_t;
 #define mask_xor(value1, value2) mask_x2_xor((value1), (value2))
 #define mask_not(value) mask_x2_not((value))
 #define mask_and(value1, value2, value3) mask_x2_and((value1), (value2), (value3))
+#define mask_and_not(value1, value2, value3) mask_x2_and_not((value1), (value2), (value3))
 #define mask_or(value1, value2, value3) mask_x2_or((value1), (value2), (value3))
 #define mask_shl(value1, value2, bits) mask_x2_shl((value1), (value2), (bits))
 #define mask_shr(value1, value2, bits) mask_x2_shr((value1), (value2), (bits))
@@ -1591,6 +1777,7 @@ typedef mask_x3_uint64_t mask_uint64_t;
 #define mask_xor(value1, value2) mask_x3_xor((value1), (value2))
 #define mask_not(value) mask_x3_not((value))
 #define mask_and(value1, value2, value3) mask_x3_and((value1), (value2), (value3))
+#define mask_and_not(value1, value2, value3) mask_x3_and_not((value1), (value2), (value3))
 #define mask_or(value1, value2, value3) mask_x3_or((value1), (value2), (value3))
 #define mask_shl(value1, value2, bits) mask_x3_shl((value1), (value2), (bits))
 #define mask_shr(value1, value2, bits) mask_x3_shr((value1), (value2), (bits))
@@ -1685,6 +1872,23 @@ typedef mask_x4_uint64_t mask_uint64_t;
 #define mask_and(value1, value2, value3) mask_x4_and((value1), (value2), (value3))
 
 /**
+ * \brief AND's two generic masked words and XOR's the result with
+ * another word, where the first input word is inverted.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first masked word argument to be inverted.
+ * \param value3 The second masked word argument.
+ *
+ * This function performs "value1 ^= ((~value2) & value3)".
+ *
+ * \note This macro assumes that there is a local variable called "temp"
+ * in the current scope that is the same size as the masked word's shares.
+ * For example, if the values are instances of mask_x2_uint32_t, then
+ * "temp" must be of type uint32_t.
+ */
+#define mask_and_not(value1, value2, value3) mask_x4_and_not((value1), (value2), (value3))
+
+/**
  * \brief OR's two generic masked words and XOR's the result with another word.
  *
  * \param value1 The destination masked word.
@@ -1765,6 +1969,7 @@ typedef mask_x5_uint64_t mask_uint64_t;
 #define mask_xor(value1, value2) mask_x5_xor((value1), (value2))
 #define mask_not(value) mask_x5_not((value))
 #define mask_and(value1, value2, value3) mask_x5_and((value1), (value2), (value3))
+#define mask_and_not(value1, value2, value3) mask_x5_and_not((value1), (value2), (value3))
 #define mask_or(value1, value2, value3) mask_x5_or((value1), (value2), (value3))
 #define mask_shl(value1, value2, bits) mask_x5_shl((value1), (value2), (bits))
 #define mask_shr(value1, value2, bits) mask_x5_shr((value1), (value2), (bits))
@@ -1783,6 +1988,7 @@ typedef mask_x6_uint64_t mask_uint64_t;
 #define mask_xor(value1, value2) mask_x6_xor((value1), (value2))
 #define mask_not(value) mask_x6_not((value))
 #define mask_and(value1, value2, value3) mask_x6_and((value1), (value2), (value3))
+#define mask_and_not(value1, value2, value3) mask_x6_and_not((value1), (value2), (value3))
 #define mask_or(value1, value2, value3) mask_x6_or((value1), (value2), (value3))
 #define mask_shl(value1, value2, bits) mask_x6_shl((value1), (value2), (bits))
 #define mask_shr(value1, value2, bits) mask_x6_shr((value1), (value2), (bits))

@@ -23,6 +23,7 @@
 #include "algorithms.h"
 #include "ace.h"
 #include "ascon128.h"
+#include "ascon128-masked.h"
 #include "comet.h"
 #include "drygascon.h"
 #include "elephant.h"
@@ -65,6 +66,9 @@ static const aead_cipher_t *const ciphers[] = {
     &ascon128_cipher,
     &ascon128a_cipher,
     &ascon80pq_cipher,
+    &ascon128_masked_cipher,
+    &ascon128a_masked_cipher,
+    &ascon80pq_masked_cipher,
     &comet_128_cham_cipher,
     &comet_64_cham_cipher,
     &comet_64_speck_cipher,

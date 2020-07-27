@@ -491,6 +491,45 @@ impact on performance compared with the non-masked version of AND.
 The higher the number of shares, or the higher the number of AND operations,
 the slower the masked cipher will become.
 
+\subsection masking_and_not AND-NOT
+
+A common variant of AND is to invert the first argument.  For example,
+here is step chi of Xoodoo:
+
+\code
+x00 ^= (~x10) & x20;
+x10 ^= (~x20) & x00;
+x20 ^= (~x00) & x10;
+x01 ^= (~x11) & x21;
+x11 ^= (~x21) & x01;
+x21 ^= (~x01) & x11;
+x02 ^= (~x12) & x22;
+x12 ^= (~x22) & x02;
+x22 ^= (~x02) & x12;
+x03 ^= (~x13) & x23;
+x13 ^= (~x23) & x03;
+x23 ^= (~x03) & x13;
+\endcode
+
+While it is possible to create temporaries to hold the NOT-inverted
+intermediate values, it is easier and more memory-efficient to use
+mask_and_not():
+
+\code
+mask_and_not(x00, x10, x20);
+mask_and_not(x10, x20, x00);
+mask_and_not(x20, x00, x10);
+mask_and_not(x01, x11, x21);
+mask_and_not(x11, x21, x01);
+mask_and_not(x21, x01, x11);
+mask_and_not(x02, x12, x22);
+mask_and_not(x12, x22, x02);
+mask_and_not(x22, x02, x12);
+mask_and_not(x03, x13, x23);
+mask_and_not(x13, x23, x03);
+mask_and_not(x23, x03, x13);
+\endcode
+
 \subsection masking_or OR
 
 The OR operation is implemented in terms of AND using DeMorgan's Law:
