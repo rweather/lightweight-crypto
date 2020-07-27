@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: Related Pages</title>
+<title>Lightweight Cryptography Primitives: Performance of Masked Algorithms</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -58,7 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,22 +72,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Related Pages</div>  </div>
+<div class="title">Performance of Masked Algorithms </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="algorithms.html" target="_self">Algorithms</a></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="bugs.html" target="_self">Bugs in the reference implementations</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="masking.html" target="_self">Utilities for masked ciphers</a></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="performance.html" target="_self">Performance</a></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a class="el" href="performance_avr.html" target="_self">Performance on AVR</a></td><td class="desc"></td></tr>
-<tr id="row_5_"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a class="el" href="performance_masking.html" target="_self">Performance of Masked Algorithms</a></td><td class="desc"></td></tr>
+<div class="textblock"><h1><a class="anchor" id="perf_masking_intro"></a>
+Introduction</h1>
+<p>This page lists performance figures for masked implementations of the algorithms. All figures were calculated on an Arudino Due, which is an ARM Cortex M3 running at 84MHz.</p>
+<p>The average performance of the baseline unmasked algorithm is compared with its masked counterpart to produce the figures below. The figures show the amount of overhead. For example, if an algorithm has an overhead of 6.91 for four shares, then that means that the 4-share masked version is on average 6.91 times <b><em>slower</em></b> than the baseline unmasked version.</p>
+<p>Ideally, a masked algorithm with N shares would have an overhead of roughly N, but this won't normally be the case. Calls to the system random number generator may be slow: the Arduino Due produces a new random number every 84 clock cycles which can introduce delays. As the number of shares increases, the delays due to random number generation become more significant.</p>
+<p>Some algorithms can do better than N. Spook for example only masks the initialization and finalization steps, with the rest using the regular unmasked code. So sometimes Spook does better than N. But as N increases, the random number generation overhead becomes more significant.</p>
+<p>"Degree of Masking" in the table below indicates how much of the algorithm runtime is masked. A value of "Init/Final" indicates that initialization and finalization is masked but everything else uses the baseline unmasked code. A value of "Init" indicates that only initialization is masked. A value of "Full" indicates that every block operation is fully masked.</p>
+<h1><a class="anchor" id="perf_masking_cortex_m3"></a>
+Performance on ARM Cortex M3</h1>
+<p>Where a NIST submission contains multiple algorithms in a family, <b><em>bold italics</em></b> indicates the primary algorithm in the family. Lower numbers are better.</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Degree of Masking</td><td>2 shares</td><td>3 shares</td><td>4 shares</td><td>5 shares</td><td>6 shares </td></tr>
+<tr>
+<td><b><em>ASCON-128</em></b></td><td>Init/Final</td><td align="right">2.15</td><td align="right">4.18</td><td align="right">6.91</td><td align="right">11.23</td><td align="right">16.07 </td></tr>
+<tr>
+<td>ASCON-128a</td><td>Init/Final</td><td align="right">2.42</td><td align="right">5.01</td><td align="right">8.32</td><td align="right">13.67</td><td align="right">19.69 </td></tr>
+<tr>
+<td>ASCON-80pq</td><td>Init/Final</td><td align="right">2.16</td><td align="right">4.11</td><td align="right">6.93</td><td align="right">11.29</td><td align="right">16.15 </td></tr>
+<tr>
+<td><b><em>GIFT-COFB</em></b></td><td>Full</td><td align="right">8.82</td><td align="right">23.34</td><td align="right">43.09</td><td align="right">68.96</td><td align="right">99.62 </td></tr>
+<tr>
+<td><b><em>GIMLI-24</em></b></td><td>Init</td><td align="right">2.68</td><td align="right">6.29</td><td align="right">12.03</td><td align="right">19.62</td><td align="right">29.99 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14 </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14 </td></tr>
+<tr>
+<td>Spook-128-384-mu</td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.39</td><td align="right">5.61</td><td align="right">8.22</td><td align="right">11.72 </td></tr>
+<tr>
+<td>Spook-128-512-mu</td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.33</td><td align="right">5.48</td><td align="right">8.31</td><td align="right">11.46 </td></tr>
+<tr>
+<td>Spook-128-384-su</td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.39</td><td align="right">5.62</td><td align="right">8.25</td><td align="right">11.77 </td></tr>
+<tr>
+<td><b><em>Spook-128-512-su</em></b></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.48</td><td align="right">8.33</td><td align="right">11.51 </td></tr>
 </table>
-</div><!-- directory -->
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Mon Jul 27 2020 17:09:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">

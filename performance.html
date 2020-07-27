@@ -93,6 +93,7 @@ Introduction</h1>
 <p>The number of ChaChaPoly Units for each algorithm will vary for each microprocessor that is tested and for different choices of optimisation options. The figures below should be used as a rough guide to the relative performance of the algorithms, not an absolute measurement.</p>
 <p>For hash algorithms we use BLAKE2s as the basic unit. BLAKE2s is based on ChaCha20 so it is the most logical hashing counterpart to ChaChaPoly.</p>
 <p>This page details the performance results for 32-bit platforms. A separate page that details preliminary results for the 8-bit AVR platform can be found <a class="el" href="performance_avr.html">here</a>.</p>
+<p>The <a class="el" href="performance_masking.html">masking performance page</a> contains comparisons of masked versions of the algorithms with their baseline versions.</p>
 <h1><a class="anchor" id="perf_cortex_m3"></a>
 Performance on ARM Cortex M3</h1>
 <p>All tests were run on an Arduino Due which is an ARM Cortex M3 running at 84MHz. The code was optimised for size rather than speed, which is the default optimisation option for the Arduino IDE. I found that "-Os" size optimisation often did better on the Due than "-O2" or "-O3" with the compiler that I had. Your own results may vary.</p>
@@ -543,7 +544,7 @@ Overall group rankings</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 27 2020 10:07:48 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 27 2020 17:09:14 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
