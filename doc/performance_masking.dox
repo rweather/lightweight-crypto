@@ -1,0 +1,79 @@
+/*
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+\file performance_masking.dox
+\page performance_masking Performance of Masked Algorithms
+
+\section perf_masking_intro Introduction
+
+This page lists performance figures for masked implementations of
+the algorithms.  All figures were calculated on an Arudino Due,
+which is an ARM Cortex M3 running at 84MHz.
+
+The average performance of the baseline unmasked algorithm is compared
+with its masked counterpart to produce the figures below.  The figures
+show the amount of overhead.  For example, if an algorithm has an
+overhead of 6.91 for four shares, then that means that the 4-share
+masked version is on average 6.91 times <b><i>slower</i></b> than
+the baseline unmasked version.
+
+Ideally, a masked algorithm with N shares would have an overhead of
+roughly N, but this won't normally be the case.  Calls to the system
+random number generator may be slow: the Arduino Due produces a new
+random number every 84 clock cycles which can introduce delays.
+As the number of shares increases, the delays due to random number
+generation become more significant.
+
+Some algorithms can do better than N.  Spook for example only masks the
+initialization and finalization steps, with the rest using the regular
+unmasked code.  So sometimes Spook does better than N.  But as N increases,
+the random number generation overhead becomes more significant.
+
+"Degree of Masking" in the table below indicates how much of the algorithm
+runtime is masked.  A value of "Init/Final" indicates that initialization
+and finalization is masked but everything else uses the baseline unmasked
+code.  A value of "Init" indicates that only initialization is masked.
+A value of "Full" indicates that every block operation is fully masked.
+
+\section perf_masking_cortex_m3 Performance on ARM Cortex M3
+
+Where a NIST submission contains multiple algorithms in a family,
+<b><i>bold italics</i></b> indicates the primary algorithm in the family.
+Lower numbers are better.
+
+<table>
+<tr><td>Algorithm</td><td>Degree of Masking</td><td>2 shares</td><td>3 shares</td><td>4 shares</td><td>5 shares</td><td>6 shares</td></tr>
+<tr><td><b><i>ASCON-128</i></b></td><td>Init/Final</td><td align="right">2.15</td><td align="right">4.18</td><td align="right">6.91</td><td align="right">11.23</td><td align="right">16.07</td></tr>
+<tr><td>ASCON-128a</td><td>Init/Final</td><td align="right">2.42</td><td align="right">5.01</td><td align="right">8.32</td><td align="right">13.67</td><td align="right">19.69</td></tr>
+<tr><td>ASCON-80pq</td><td>Init/Final</td><td align="right">2.16</td><td align="right">4.11</td><td align="right">6.93</td><td align="right">11.29</td><td align="right">16.15</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b></td><td>Full</td><td align="right">8.82</td><td align="right">23.34</td><td align="right">43.09</td><td align="right">68.96</td><td align="right">99.62</td></tr>
+<tr><td><b><i>GIMLI-24</i></b><td>Init</td></td><td align="right">2.68</td><td align="right">6.29</td><td align="right">12.03</td><td align="right">19.62</td><td align="right">29.99</td></tr>
+<tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14</td></tr>
+<tr><td>Spook-128-384-mu</td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.39</td><td align="right">5.61</td><td align="right">8.22</td><td align="right">11.72</td></tr>
+<tr><td>Spook-128-512-mu</td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.33</td><td align="right">5.48</td><td align="right">8.31</td><td align="right">11.46</td></tr>
+<tr><td>Spook-128-384-su</td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.39</td><td align="right">5.62</td><td align="right">8.25</td><td align="right">11.77</td></tr>
+<tr><td><b><i>Spook-128-512-su</i></b></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.48</td><td align="right">8.33</td><td align="right">11.51</td></tr>
+</table>
+
+*/

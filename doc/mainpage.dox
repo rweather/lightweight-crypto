@@ -90,6 +90,9 @@ The \ref performance_avr "AVR performance page" contains comparisons of all
 implemented algorithms on 8-bit AVR platforms, with the assistance of
 assembly code speedups of the core block operations.
 
+The \ref performance_masking "masking performance page" contains comparisons
+of masked versions of the algorithms with their baseline versions.
+
 Eventually the plan is to integrate the competition finalists into my
 <a href="http://rweather.github.io/arduinolibs/crypto.html">Arduino
 Cryptography Library</a>.  But it is too soon to pick a candidate for

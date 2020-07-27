@@ -58,6 +58,9 @@ This page details the performance results for 32-bit platforms.  A separate
 page that details preliminary results for the 8-bit AVR platform can be
 found \ref performance_avr "here".
 
+The \ref performance_masking "masking performance page" contains comparisons
+of masked versions of the algorithms with their baseline versions.
+
 \section perf_cortex_m3 Performance on ARM Cortex M3
 
 All tests were run on an Arduino Due which is an ARM Cortex M3 running

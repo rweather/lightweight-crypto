@@ -40,6 +40,7 @@ of flash memory.
 #include "gift-cofb.h"
 #include "gift-cofb-masked.h"
 #include "gimli24.h"
+#include "gimli24-masked.h"
 #include "grain128.h"
 #include "hyena.h"
 #include "isap.h"
@@ -66,6 +67,7 @@ of flash memory.
 #include "xoodyak.h"
 #include "internal-blake2s.h"
 #include "internal-chachapoly.h"
+#include "internal-masking.h"
 
 #if defined(ESP8266)
 extern "C" void system_soft_wdt_feed(void);
@@ -87,6 +89,7 @@ extern "C" void system_soft_wdt_feed(void);
 static int PERF_LOOPS = DEFAULT_PERF_LOOPS;
 static int PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16;
 static int PERF_HASH_LOOPS = DEFAULT_PERF_HASH_LOOPS;
+static bool PERF_MASKING = false;
 
 #define MAX_DATA_SIZE 128
 #define MAX_TAG_SIZE 32
@@ -275,6 +278,11 @@ void perfCipher(const aead_cipher_t *cipher)
         Serial.print("   average ... ");
         print_x(((double)ref_avg) / time_avg);
         Serial.print("x");
+        if (PERF_MASKING) {
+            Serial.print(" = 1 / ");
+            print_x(((double)time_avg) / ref_avg);
+            Serial.print("x");
+        }
         Serial.println();
     }
 
@@ -446,6 +454,24 @@ void perfHash(const aead_hash_algorithm_t *hash_alg)
     Serial.println();
 }
 
+void perfMasked(const aead_cipher_t *ref_cipher,
+                const aead_cipher_t *masked_cipher)
+{
+    encrypt_128_ref = 0;
+    decrypt_128_ref = 0;
+    encrypt_16_ref = 0;
+    decrypt_16_ref = 0;
+    perfCipher(ref_cipher);
+    encrypt_128_ref = encrypt_128_time;
+    decrypt_128_ref = decrypt_128_time;
+    encrypt_16_ref = encrypt_16_time;
+    decrypt_16_ref = decrypt_16_time;
+    Serial.print("[");
+    Serial.print(AEAD_MASKING_SHARES);
+    Serial.print("] ");
+    perfCipher(masked_cipher);
+}
+
 void setup()
 {
     Serial.begin(9600);
@@ -486,6 +512,7 @@ void setup()
     perfCipher(&gift_cofb_cipher);
     perfCipher(&gift_cofb_masked_cipher);
     perfCipher(&gimli24_cipher);
+    perfCipher(&gimli24_masked_cipher);
     perfCipher(&grain128_aead_cipher);
     perfCipher(&hyena_v1_cipher);
     perfCipher(&hyena_v2_cipher);
@@ -578,6 +605,22 @@ void setup()
     perfCipher(&photon_beetle_32_cipher);
     perfCipher(&pyjamask_masked_128_cipher);
     perfCipher(&pyjamask_masked_96_cipher);
+
+    // Comparison of masked and unmasked versions of ciphers.
+    PERF_LOOPS = DEFAULT_PERF_LOOPS / 10;
+    PERF_LOOPS_16 = DEFAULT_PERF_LOOPS_16 / 10;
+    PERF_MASKING = true;
+    perfMasked(&ascon128_cipher, &ascon128_masked_cipher);
+    perfMasked(&ascon128a_cipher, &ascon128a_masked_cipher);
+    perfMasked(&ascon80pq_cipher, &ascon80pq_masked_cipher);
+    perfMasked(&gift_cofb_cipher, &gift_cofb_masked_cipher);
+    perfMasked(&gimli24_cipher, &gimli24_masked_cipher);
+    perfMasked(&pyjamask_128_cipher, &pyjamask_masked_128_cipher);
+    perfMasked(&pyjamask_96_cipher, &pyjamask_masked_96_cipher);
+    perfMasked(&spook_128_512_su_cipher, &spook_128_512_su_masked_cipher);
+    perfMasked(&spook_128_384_su_cipher, &spook_128_384_su_masked_cipher);
+    perfMasked(&spook_128_512_mu_cipher, &spook_128_512_mu_masked_cipher);
+    perfMasked(&spook_128_384_mu_cipher, &spook_128_384_mu_masked_cipher);
 }
 
 void loop()
