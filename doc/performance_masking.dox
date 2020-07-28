@@ -70,10 +70,10 @@ Lower numbers are better.
 <tr><td><b><i>GIMLI-24</i></b><sup>1</sup><td>Init</td></td><td align="right">2.68</td><td align="right">6.29</td><td align="right">12.03</td><td align="right">19.62</td><td align="right">29.99</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b><sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14</td></tr>
 <tr><td>Pyjamask-96-AEAD<sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14</td></tr>
-<tr><td>Spook-128-384-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.39</td><td align="right">5.61</td><td align="right">8.22</td><td align="right">11.72</td></tr>
-<tr><td>Spook-128-512-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.33</td><td align="right">5.48</td><td align="right">8.31</td><td align="right">11.46</td></tr>
-<tr><td>Spook-128-384-su<sup> </sup></td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.39</td><td align="right">5.62</td><td align="right">8.25</td><td align="right">11.77</td></tr>
-<tr><td><b><i>Spook-128-512-su</i></b><sup> </sup></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.48</td><td align="right">8.33</td><td align="right">11.51</td></tr>
+<tr><td>Spook-128-384-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47</td></tr>
+<tr><td>Spook-128-512-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.41</td><td align="right">8.15</td><td align="right">11.22</td></tr>
+<tr><td>Spook-128-384-su<sup> </sup></td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.34</td><td align="right">5.53</td><td align="right">8.09</td><td align="right">11.52</td></tr>
+<tr><td><b><i>Spook-128-512-su</i></b><sup> </sup></td><td>Init/Final</td><td align="right">1.74</td><td align="right">3.36</td><td align="right">5.43</td><td align="right">8.17</td><td align="right">11.26</td></tr>
 </table>
 
 Note 1: These masked implementations are experimental and unique to this

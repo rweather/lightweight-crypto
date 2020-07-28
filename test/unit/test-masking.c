@@ -33,6 +33,7 @@
 #define mask_test_output(a) mask_x2_output((a))
 #define mask_test_xor_const(a, b) mask_x2_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_x2_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_x2_xor3((a), (b), (c))
 #define mask_test_not(a) mask_x2_not((a))
 #define mask_test_and(a, b, c) mask_x2_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_x2_and_not((a), (b), (c))
@@ -52,6 +53,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -72,6 +74,7 @@
 #define mask_test_output(a) mask_x3_output((a))
 #define mask_test_xor_const(a, b) mask_x3_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_x3_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_x3_xor3((a), (b), (c))
 #define mask_test_not(a) mask_x3_not((a))
 #define mask_test_and(a, b, c) mask_x3_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_x3_and_not((a), (b), (c))
@@ -91,6 +94,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -111,6 +115,7 @@
 #define mask_test_output(a) mask_x4_output((a))
 #define mask_test_xor_const(a, b) mask_x4_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_x4_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_x4_xor3((a), (b), (c))
 #define mask_test_not(a) mask_x4_not((a))
 #define mask_test_and(a, b, c) mask_x4_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_x4_and_not((a), (b), (c))
@@ -130,6 +135,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -150,6 +156,7 @@
 #define mask_test_output(a) mask_x5_output((a))
 #define mask_test_xor_const(a, b) mask_x5_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_x5_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_x5_xor3((a), (b), (c))
 #define mask_test_not(a) mask_x5_not((a))
 #define mask_test_and(a, b, c) mask_x5_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_x5_and_not((a), (b), (c))
@@ -169,6 +176,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -189,6 +197,7 @@
 #define mask_test_output(a) mask_x6_output((a))
 #define mask_test_xor_const(a, b) mask_x6_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_x6_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_x6_xor3((a), (b), (c))
 #define mask_test_not(a) mask_x6_not((a))
 #define mask_test_and(a, b, c) mask_x6_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_x6_and_not((a), (b), (c))
@@ -208,6 +217,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -228,6 +238,7 @@
 #define mask_test_output(a) mask_output((a))
 #define mask_test_xor_const(a, b) mask_xor_const((a), (b))
 #define mask_test_xor(a, b) mask_xor((a), (b))
+#define mask_test_xor3(a, b, c) mask_xor3((a), (b), (c))
 #define mask_test_not(a) mask_not((a))
 #define mask_test_and(a, b, c) mask_and((a), (b), (c))
 #define mask_test_and_not(a, b, c) mask_and_not((a), (b), (c))
@@ -247,6 +258,7 @@
 #undef mask_test_output
 #undef mask_test_xor_const
 #undef mask_test_xor
+#undef mask_test_xor3
 #undef mask_test_not
 #undef mask_test_and
 #undef mask_test_and_not
@@ -292,6 +304,9 @@ void test_masking(void)
     test_masking_run("uint16-x2-xor", test_uint16_x2_xor);
     test_masking_run("uint32-x2-xor", test_uint32_x2_xor);
     test_masking_run("uint64-x2-xor", test_uint64_x2_xor);
+    test_masking_run("uint16-x2-xor3", test_uint16_x2_xor3);
+    test_masking_run("uint32-x2-xor3", test_uint32_x2_xor3);
+    test_masking_run("uint64-x2-xor3", test_uint64_x2_xor3);
     test_masking_run("uint16-x2-not", test_uint16_x2_not);
     test_masking_run("uint32-x2-not", test_uint32_x2_not);
     test_masking_run("uint64-x2-not", test_uint64_x2_not);
@@ -332,6 +347,9 @@ void test_masking(void)
     test_masking_run("uint16-x3-xor", test_uint16_x3_xor);
     test_masking_run("uint32-x3-xor", test_uint32_x3_xor);
     test_masking_run("uint64-x3-xor", test_uint64_x3_xor);
+    test_masking_run("uint16-x3-xor3", test_uint16_x3_xor3);
+    test_masking_run("uint32-x3-xor3", test_uint32_x3_xor3);
+    test_masking_run("uint64-x3-xor3", test_uint64_x3_xor3);
     test_masking_run("uint16-x3-not", test_uint16_x3_not);
     test_masking_run("uint32-x3-not", test_uint32_x3_not);
     test_masking_run("uint64-x3-not", test_uint64_x3_not);
@@ -372,6 +390,9 @@ void test_masking(void)
     test_masking_run("uint16-x4-xor", test_uint16_x4_xor);
     test_masking_run("uint32-x4-xor", test_uint32_x4_xor);
     test_masking_run("uint64-x4-xor", test_uint64_x4_xor);
+    test_masking_run("uint16-x4-xor3", test_uint16_x4_xor3);
+    test_masking_run("uint32-x4-xor3", test_uint32_x4_xor3);
+    test_masking_run("uint64-x4-xor3", test_uint64_x4_xor3);
     test_masking_run("uint16-x4-not", test_uint16_x4_not);
     test_masking_run("uint32-x4-not", test_uint32_x4_not);
     test_masking_run("uint64-x4-not", test_uint64_x4_not);
@@ -412,6 +433,9 @@ void test_masking(void)
     test_masking_run("uint16-x5-xor", test_uint16_x5_xor);
     test_masking_run("uint32-x5-xor", test_uint32_x5_xor);
     test_masking_run("uint64-x5-xor", test_uint64_x5_xor);
+    test_masking_run("uint16-x5-xor3", test_uint16_x5_xor3);
+    test_masking_run("uint32-x5-xor3", test_uint32_x5_xor3);
+    test_masking_run("uint64-x5-xor3", test_uint64_x5_xor3);
     test_masking_run("uint16-x5-not", test_uint16_x5_not);
     test_masking_run("uint32-x5-not", test_uint32_x5_not);
     test_masking_run("uint64-x5-not", test_uint64_x5_not);
@@ -452,6 +476,9 @@ void test_masking(void)
     test_masking_run("uint16-x6-xor", test_uint16_x6_xor);
     test_masking_run("uint32-x6-xor", test_uint32_x6_xor);
     test_masking_run("uint64-x6-xor", test_uint64_x6_xor);
+    test_masking_run("uint16-x6-xor3", test_uint16_x6_xor3);
+    test_masking_run("uint32-x6-xor3", test_uint32_x6_xor3);
+    test_masking_run("uint64-x6-xor3", test_uint64_x6_xor3);
     test_masking_run("uint16-x6-not", test_uint16_x6_not);
     test_masking_run("uint32-x6-not", test_uint32_x6_not);
     test_masking_run("uint64-x6-not", test_uint64_x6_not);
@@ -492,6 +519,9 @@ void test_masking(void)
     test_masking_run("uint16-generic-xor", test_uint16_generic_xor);
     test_masking_run("uint32-generic-xor", test_uint32_generic_xor);
     test_masking_run("uint64-generic-xor", test_uint64_generic_xor);
+    test_masking_run("uint16-generic-xor3", test_uint16_generic_xor3);
+    test_masking_run("uint32-generic-xor3", test_uint32_generic_xor3);
+    test_masking_run("uint64-generic-xor3", test_uint64_generic_xor3);
     test_masking_run("uint16-generic-not", test_uint16_generic_not);
     test_masking_run("uint32-generic-not", test_uint32_generic_not);
     test_masking_run("uint64-generic-not", test_uint64_generic_not);

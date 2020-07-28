@@ -51,34 +51,6 @@ static uint8_t const rc[CLYDE128_STEPS][8] = {
         s1 = c; \
     } while (0)
 
-#define clyde128_lbox_masked(x, y) \
-    do { \
-        mask_ror(c, x, 12); \
-        mask_xor(c, x); \
-        mask_ror(d, y, 12); \
-        mask_xor(d, y); \
-        mask_ror(t, c, 3); \
-        mask_xor(c, t); \
-        mask_ror(t, d, 3); \
-        mask_xor(d, t); \
-        mask_rol(x, x, 15); \
-        mask_xor(x, c); \
-        mask_rol(y, y, 15); \
-        mask_xor(y, d); \
-        mask_rol(c, x, 1); \
-        mask_xor(c, x); \
-        mask_rol(d, y, 1); \
-        mask_xor(d, y); \
-        mask_rol(t, d, 6); \
-        mask_xor(x, t); \
-        mask_rol(t, c, 7); \
-        mask_xor(y, t); \
-        mask_ror(c, c, 15); \
-        mask_xor(x, c); \
-        mask_ror(d, d, 15); \
-        mask_xor(y, d); \
-    } while (0)
-
 #define clyde128_inv_sbox_masked(s0, s1, s2, s3) \
     do { \
         d = s2; \
@@ -94,35 +66,121 @@ static uint8_t const rc[CLYDE128_STEPS][8] = {
         s3 = d; \
     } while (0)
 
+#define clyde128_lbox_limb(x, y, c, d) \
+    do { \
+        c = x ^ rightRotate12(x); \
+        d = y ^ rightRotate12(y); \
+        c ^= rightRotate3(c); \
+        d ^= rightRotate3(d); \
+        x = c ^ leftRotate15(x); \
+        y = d ^ leftRotate15(y); \
+        c = x ^ leftRotate1(x); \
+        d = y ^ leftRotate1(y); \
+        x ^= leftRotate6(d); \
+        y ^= leftRotate7(c); \
+        x ^= rightRotate15(c); \
+        y ^= rightRotate15(d); \
+    } while (0)
+
+#define clyde128_inv_lbox_limb(x, y, a, b) \
+    do { \
+        a = x ^ leftRotate7(x); \
+        b = y ^ leftRotate7(y); \
+        x ^= leftRotate1(a); \
+        y ^= leftRotate1(b); \
+        x ^= leftRotate12(a); \
+        y ^= leftRotate12(b); \
+        a = x ^ leftRotate1(x); \
+        b = y ^ leftRotate1(y); \
+        x ^= leftRotate6(b); \
+        y ^= leftRotate7(a); \
+        a ^= leftRotate15(x); \
+        b ^= leftRotate15(y); \
+        x = rightRotate16(a); \
+        y = rightRotate16(b); \
+    } while (0)
+
+/* We can reduce the number of register spills in the lbox by
+ * processing the shares one at a time rather than interleaving.
+ * This gives roughly a 5% improvement on runtime performance. */
+#if AEAD_MASKING_SHARES == 2
+#define clyde128_lbox_masked(x, y) \
+    do { \
+        clyde128_lbox_limb((x).a, (y).a, c.a, d.a); \
+        clyde128_lbox_limb((x).b, (y).b, c.b, d.b); \
+    } while (0)
 #define clyde128_inv_lbox_masked(x, y) \
     do { \
-        mask_rol(a, x, 7); \
-        mask_xor(a, x); \
-        mask_rol(b, y, 7); \
-        mask_xor(b, y); \
-        mask_rol(d, a, 1); \
-        mask_xor(x, d); \
-        mask_rol(d, b, 1); \
-        mask_xor(y, d); \
-        mask_rol(a, a, 12); \
-        mask_xor(x, a); \
-        mask_rol(b, b, 12); \
-        mask_xor(y, b); \
-        mask_rol(a, x, 1); \
-        mask_xor(a, x); \
-        mask_rol(b, y, 1); \
-        mask_xor(b, y); \
-        mask_rol(d, b, 6); \
-        mask_xor(x, d); \
-        mask_rol(d, a, 7); \
-        mask_xor(y, d); \
-        mask_rol(x, x, 15); \
-        mask_xor(a, x); \
-        mask_rol(y, y, 15); \
-        mask_xor(b, y); \
-        mask_ror(x, a, 16); \
-        mask_ror(y, b, 16); \
+        clyde128_inv_lbox_limb((x).a, (y).a, a.a, b.a); \
+        clyde128_inv_lbox_limb((x).b, (y).b, a.b, b.b); \
     } while (0)
+#elif AEAD_MASKING_SHARES == 3
+#define clyde128_lbox_masked(x, y) \
+    do { \
+        clyde128_lbox_limb((x).a, (y).a, c.a, d.a); \
+        clyde128_lbox_limb((x).b, (y).b, c.b, d.b); \
+        clyde128_lbox_limb((x).c, (y).c, c.c, d.c); \
+    } while (0)
+#define clyde128_inv_lbox_masked(x, y) \
+    do { \
+        clyde128_inv_lbox_limb((x).a, (y).a, a.a, b.a); \
+        clyde128_inv_lbox_limb((x).b, (y).b, a.b, b.b); \
+        clyde128_inv_lbox_limb((x).c, (y).c, a.c, b.c); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 4
+#define clyde128_lbox_masked(x, y) \
+    do { \
+        clyde128_lbox_limb((x).a, (y).a, c.a, d.a); \
+        clyde128_lbox_limb((x).b, (y).b, c.b, d.b); \
+        clyde128_lbox_limb((x).c, (y).c, c.c, d.c); \
+        clyde128_lbox_limb((x).d, (y).d, c.d, d.d); \
+    } while (0)
+#define clyde128_inv_lbox_masked(x, y) \
+    do { \
+        clyde128_inv_lbox_limb((x).a, (y).a, a.a, b.a); \
+        clyde128_inv_lbox_limb((x).b, (y).b, a.b, b.b); \
+        clyde128_inv_lbox_limb((x).c, (y).c, a.c, b.c); \
+        clyde128_inv_lbox_limb((x).d, (y).d, a.d, b.d); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 5
+#define clyde128_lbox_masked(x, y) \
+    do { \
+        clyde128_lbox_limb((x).a, (y).a, c.a, d.a); \
+        clyde128_lbox_limb((x).b, (y).b, c.b, d.b); \
+        clyde128_lbox_limb((x).c, (y).c, c.c, d.c); \
+        clyde128_lbox_limb((x).d, (y).d, c.d, d.d); \
+        clyde128_lbox_limb((x).e, (y).e, c.e, d.e); \
+    } while (0)
+#define clyde128_inv_lbox_masked(x, y) \
+    do { \
+        clyde128_inv_lbox_limb((x).a, (y).a, a.a, b.a); \
+        clyde128_inv_lbox_limb((x).b, (y).b, a.b, b.b); \
+        clyde128_inv_lbox_limb((x).c, (y).c, a.c, b.c); \
+        clyde128_inv_lbox_limb((x).d, (y).d, a.d, b.d); \
+        clyde128_inv_lbox_limb((x).e, (y).e, a.e, b.e); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 6
+#define clyde128_lbox_masked(x, y) \
+    do { \
+        clyde128_lbox_limb((x).a, (y).a, c.a, d.a); \
+        clyde128_lbox_limb((x).b, (y).b, c.b, d.b); \
+        clyde128_lbox_limb((x).c, (y).c, c.c, d.c); \
+        clyde128_lbox_limb((x).d, (y).d, c.d, d.d); \
+        clyde128_lbox_limb((x).e, (y).e, c.e, d.e); \
+        clyde128_lbox_limb((x).f, (y).f, c.f, d.f); \
+    } while (0)
+#define clyde128_inv_lbox_masked(x, y) \
+    do { \
+        clyde128_inv_lbox_limb((x).a, (y).a, a.a, b.a); \
+        clyde128_inv_lbox_limb((x).b, (y).b, a.b, b.b); \
+        clyde128_inv_lbox_limb((x).c, (y).c, a.c, b.c); \
+        clyde128_inv_lbox_limb((x).d, (y).d, a.d, b.d); \
+        clyde128_inv_lbox_limb((x).e, (y).e, a.e, b.e); \
+        clyde128_inv_lbox_limb((x).f, (y).f, a.f, b.f); \
+    } while (0)
+#else
+#error "Unknown number of shares"
+#endif
 
 /** @endcond */
 
@@ -134,7 +192,7 @@ void clyde128_encrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
     mask_uint32_t k0, k1, k2, k3;
     mask_uint32_t t0, t1, t2, t3;
     mask_uint32_t s0, s1, s2, s3;
-    mask_uint32_t c, d, t;
+    mask_uint32_t c, d;
     uint32_t temp;
     int step;
 
@@ -167,14 +225,10 @@ void clyde128_encrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
 #endif
 
     /* Add the initial tweakey to the state */
-    mask_xor(s0, k0);
-    mask_xor(s0, t0);
-    mask_xor(s1, k1);
-    mask_xor(s1, t1);
-    mask_xor(s2, k2);
-    mask_xor(s2, t2);
-    mask_xor(s3, k3);
-    mask_xor(s3, t3);
+    mask_xor3(s0, k0, t0);
+    mask_xor3(s1, k1, t1);
+    mask_xor3(s2, k2, t2);
+    mask_xor3(s3, k3, t3);
 
     /* Perform all rounds in pairs */
     for (step = 0; step < CLYDE128_STEPS; ++step) {
@@ -203,14 +257,10 @@ void clyde128_encrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
         t3 = t1;
         t0 = c;
         t1 = d;
-        mask_xor(s0, k0);
-        mask_xor(s0, t0);
-        mask_xor(s1, k1);
-        mask_xor(s1, t1);
-        mask_xor(s2, k2);
-        mask_xor(s2, t2);
-        mask_xor(s3, k3);
-        mask_xor(s3, t3);
+        mask_xor3(s0, k0, t0);
+        mask_xor3(s1, k1, t1);
+        mask_xor3(s2, k2, t2);
+        mask_xor3(s3, k3, t3);
     }
 
     /* Pack the state into the output buffer */
@@ -263,14 +313,10 @@ void clyde128_decrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
     /* Perform all rounds in pairs */
     for (step = CLYDE128_STEPS - 1; step >= 0; --step) {
         /* Add the tweakey to the state and update the tweakey */
-        mask_xor(s0, k0);
-        mask_xor(s0, t0);
-        mask_xor(s1, k1);
-        mask_xor(s1, t1);
-        mask_xor(s2, k2);
-        mask_xor(s2, t2);
-        mask_xor(s3, k3);
-        mask_xor(s3, t3);
+        mask_xor3(s0, k0, t0);
+        mask_xor3(s1, k1, t1);
+        mask_xor3(s2, k2, t2);
+        mask_xor3(s3, k3, t3);
         a = t2;
         b = t3;
         mask_xor(a, t0);
@@ -298,14 +344,10 @@ void clyde128_decrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
     }
 
     /* Add the tweakey to the state one last time */
-    mask_xor(s0, k0);
-    mask_xor(s0, t0);
-    mask_xor(s1, k1);
-    mask_xor(s1, t1);
-    mask_xor(s2, k2);
-    mask_xor(s2, t2);
-    mask_xor(s3, k3);
-    mask_xor(s3, t3);
+    mask_xor3(s0, k0, t0);
+    mask_xor3(s1, k1, t1);
+    mask_xor3(s2, k2, t2);
+    mask_xor3(s3, k3, t3);
 
     /* Pack the state into the output buffer */
 #if defined(LW_UTIL_LITTLE_ENDIAN)

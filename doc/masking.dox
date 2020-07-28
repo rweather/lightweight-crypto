@@ -421,6 +421,19 @@ y = mask_x2_output(w) :
 
 This gives us the result we wanted.
 
+Finally, mask_xor3() can be used to XOR three masked words together:
+
+\code
+mask_x3_xor3(w1, w2, w3) :
+    w1.a ^= (w2.a ^ w3.a)
+    w1.b ^= (w2.b ^ w3.b)
+    w1.c ^= (w2.c ^ w3.c)
+\endcode
+
+The 3-word version of XOR can be more efficient than two separate calls
+to mask_xor() because the intermediate values for each share can be kept
+in registers longer.
+
 \subsection masking_not NOT
 
 NOT operations are a special case of XOR'ing with the all-1's round constant.

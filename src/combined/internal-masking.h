@@ -290,6 +290,21 @@ typedef struct
     } while (0)
 
 /**
+ * \brief XOR's three 2-share masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_x2_xor3(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((value2).a ^ (value3).a); \
+        (value1).b ^= ((value2).b ^ (value3).b); \
+    } while (0)
+
+/**
  * \brief NOT's a 2-share masked word.
  *
  * \param value The masked word to NOT.
@@ -546,6 +561,22 @@ typedef struct
         (value1).a ^= (value2).a; \
         (value1).b ^= (value2).b; \
         (value1).c ^= (value2).c; \
+    } while (0)
+
+/**
+ * \brief XOR's three 3-share masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_x3_xor3(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((value2).a ^ (value3).a); \
+        (value1).b ^= ((value2).b ^ (value3).b); \
+        (value1).c ^= ((value2).c ^ (value3).c); \
     } while (0)
 
 /**
@@ -807,6 +838,23 @@ typedef struct
         (value1).b ^= (value2).b; \
         (value1).c ^= (value2).c; \
         (value1).d ^= (value2).d; \
+    } while (0)
+
+/**
+ * \brief XOR's three 4-share masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_x4_xor3(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((value2).a ^ (value3).a); \
+        (value1).b ^= ((value2).b ^ (value3).b); \
+        (value1).c ^= ((value2).c ^ (value3).c); \
+        (value1).d ^= ((value2).d ^ (value3).d); \
     } while (0)
 
 /**
@@ -1104,6 +1152,24 @@ typedef struct
         (value1).c ^= (value2).c; \
         (value1).d ^= (value2).d; \
         (value1).e ^= (value2).e; \
+    } while (0)
+
+/**
+ * \brief XOR's three 5-share masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_x5_xor3(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((value2).a ^ (value3).a); \
+        (value1).b ^= ((value2).b ^ (value3).b); \
+        (value1).c ^= ((value2).c ^ (value3).c); \
+        (value1).d ^= ((value2).d ^ (value3).d); \
+        (value1).e ^= ((value2).e ^ (value3).e); \
     } while (0)
 
 /**
@@ -1446,6 +1512,25 @@ typedef struct
     } while (0)
 
 /**
+ * \brief XOR's three 6-share masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_x6_xor3(value1, value2, value3) \
+    do { \
+        (value1).a ^= ((value2).a ^ (value3).a); \
+        (value1).b ^= ((value2).b ^ (value3).b); \
+        (value1).c ^= ((value2).c ^ (value3).c); \
+        (value1).d ^= ((value2).d ^ (value3).d); \
+        (value1).e ^= ((value2).e ^ (value3).e); \
+        (value1).f ^= ((value2).f ^ (value3).f); \
+    } while (0)
+
+/**
  * \brief NOT's a 6-share masked word.
  *
  * \param value The masked word to NOT.
@@ -1756,6 +1841,7 @@ typedef mask_x2_uint64_t mask_uint64_t;
 #define mask_zero(value) mask_x2_zero((value))
 #define mask_xor_const(value, cvalue) mask_x2_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x2_xor((value1), (value2))
+#define mask_xor3(value1, value2, value3) mask_x2_xor3((value1), (value2), (value3))
 #define mask_not(value) mask_x2_not((value))
 #define mask_and(value1, value2, value3) mask_x2_and((value1), (value2), (value3))
 #define mask_and_not(value1, value2, value3) mask_x2_and_not((value1), (value2), (value3))
@@ -1775,6 +1861,7 @@ typedef mask_x3_uint64_t mask_uint64_t;
 #define mask_zero(value) mask_x3_zero((value))
 #define mask_xor_const(value, cvalue) mask_x3_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x3_xor((value1), (value2))
+#define mask_xor3(value1, value2, value3) mask_x3_xor3((value1), (value2), (value3))
 #define mask_not(value) mask_x3_not((value))
 #define mask_and(value1, value2, value3) mask_x3_and((value1), (value2), (value3))
 #define mask_and_not(value1, value2, value3) mask_x3_and_not((value1), (value2), (value3))
@@ -1845,6 +1932,17 @@ typedef mask_x4_uint64_t mask_uint64_t;
  * This function performs "value1 ^= value2".
  */
 #define mask_xor(value1, value2) mask_x4_xor((value1), (value2))
+
+/**
+ * \brief XOR's three generic masked words.
+ *
+ * \param value1 The destination masked word.
+ * \param value2 The first source masked word.
+ * \param value3 The second source masked word.
+ *
+ * This function performs "value1 ^= (value2 ^ value3)".
+ */
+#define mask_xor3(value1, value2, value3) mask_x4_xor3((value1), (value2), (value3))
 
 /**
  * \brief NOT's a generic masked word.
@@ -1967,6 +2065,7 @@ typedef mask_x5_uint64_t mask_uint64_t;
 #define mask_zero(value) mask_x5_zero((value))
 #define mask_xor_const(value, cvalue) mask_x5_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x5_xor((value1), (value2))
+#define mask_xor3(value1, value2, value3) mask_x5_xor3((value1), (value2), (value3))
 #define mask_not(value) mask_x5_not((value))
 #define mask_and(value1, value2, value3) mask_x5_and((value1), (value2), (value3))
 #define mask_and_not(value1, value2, value3) mask_x5_and_not((value1), (value2), (value3))
@@ -1986,6 +2085,7 @@ typedef mask_x6_uint64_t mask_uint64_t;
 #define mask_zero(value) mask_x6_zero((value))
 #define mask_xor_const(value, cvalue) mask_x6_xor_const((value), (cvalue))
 #define mask_xor(value1, value2) mask_x6_xor((value1), (value2))
+#define mask_xor3(value1, value2, value3) mask_x6_xor3((value1), (value2), (value3))
 #define mask_not(value) mask_x6_not((value))
 #define mask_and(value1, value2, value3) mask_x6_and((value1), (value2), (value3))
 #define mask_and_not(value1, value2, value3) mask_x6_and_not((value1), (value2), (value3))
