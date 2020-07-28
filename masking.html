@@ -307,6 +307,12 @@ XOR</h2>
 <div class="line">      = (x ^ rand ^ c) ^ rand</div>
 <div class="line">      = x ^ c</div>
 </div><!-- fragment --><p>This gives us the result we wanted.</p>
+<p>Finally, <a class="el" href="internal-masking_8h.html#a79ffd997c16417059d5fc063d8e7570f" title="XOR&#39;s three generic masked words. ">mask_xor3()</a> can be used to XOR three masked words together:</p>
+<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#a6c97a6a8180cd5ff124fd00a5e8bb233">mask_x3_xor3</a>(w1, w2, w3) :</div>
+<div class="line">    w1.a ^= (w2.a ^ w3.a)</div>
+<div class="line">    w1.b ^= (w2.b ^ w3.b)</div>
+<div class="line">    w1.c ^= (w2.c ^ w3.c)</div>
+</div><!-- fragment --><p>The 3-word version of XOR can be more efficient than two separate calls to <a class="el" href="internal-masking_8h.html#a1b7a772afddc428180113b50381c501c" title="XOR&#39;s two generic masked words. ">mask_xor()</a> because the intermediate values for each share can be kept in registers longer.</p>
 <h2><a class="anchor" id="masking_not"></a>
 NOT</h2>
 <p>NOT operations are a special case of XOR'ing with the all-1's round constant. The following are equivalent for 32-bit masked words:</p>
@@ -410,7 +416,7 @@ Swap</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 28 2020 07:25:56 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 29 2020 08:58:39 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
