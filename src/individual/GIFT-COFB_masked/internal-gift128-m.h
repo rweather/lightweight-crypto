@@ -42,10 +42,12 @@ extern "C" {
 
 /**
  * \var GIFT128_MASKED_ROUND_KEYS
- * \brief Number of round keys for the masked GIFT-128 key schedule.
+ * \brief Number of round keys for the GIFT-128 key schedule.
  */
 #if GIFT128_VARIANT == GIFT128_VARIANT_TINY
 #define GIFT128_MASKED_ROUND_KEYS 4
+#elif GIFT128_VARIANT == GIFT128_VARIANT_SMALL
+#define GIFT128_MASKED_ROUND_KEYS 20
 #else
 #define GIFT128_MASKED_ROUND_KEYS 80
 #endif
