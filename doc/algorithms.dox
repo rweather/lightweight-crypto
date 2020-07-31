@@ -198,6 +198,7 @@ version)
 \li \ref alg_isap "ISAP" (based on the authors' specification)
 \li \ref alg_pyjamask "Pyjamask" (based on the authors' specification)
 \li \ref alg_spook "Spook" (based on the authors' specification)
+\li \ref alg_tinyjambu "TinyJAMBU"
 
 These implementations have not yet been subjected to rigorous analysis,
 so the level of protection may not be as great as hoped.

@@ -63,6 +63,7 @@ of flash memory.
 #include "subterranean.h"
 #include "sundae-gift.h"
 #include "tinyjambu.h"
+#include "tinyjambu-masked.h"
 #include "wage.h"
 #include "xoodyak.h"
 #include "internal-blake2s.h"
@@ -564,6 +565,9 @@ void setup()
     perfCipher(&tiny_jambu_128_cipher);
     perfCipher(&tiny_jambu_192_cipher);
     perfCipher(&tiny_jambu_256_cipher);
+    perfCipher(&tiny_jambu_128_masked_cipher);
+    perfCipher(&tiny_jambu_192_masked_cipher);
+    perfCipher(&tiny_jambu_256_masked_cipher);
     perfCipher(&wage_cipher);
     perfCipher(&xoodyak_cipher);
 
@@ -621,6 +625,9 @@ void setup()
     perfMasked(&spook_128_384_su_cipher, &spook_128_384_su_masked_cipher);
     perfMasked(&spook_128_512_mu_cipher, &spook_128_512_mu_masked_cipher);
     perfMasked(&spook_128_384_mu_cipher, &spook_128_384_mu_masked_cipher);
+    perfMasked(&tiny_jambu_128_cipher, &tiny_jambu_128_masked_cipher);
+    perfMasked(&tiny_jambu_192_cipher, &tiny_jambu_192_masked_cipher);
+    perfMasked(&tiny_jambu_256_cipher, &tiny_jambu_256_masked_cipher);
 }
 
 void loop()

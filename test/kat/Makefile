@@ -138,6 +138,9 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) TinyJAMBU-128 TinyJAMBU-128.txt
 	@$(RUN_KAT) TinyJAMBU-192 TinyJAMBU-192.txt
 	@$(RUN_KAT) TinyJAMBU-256 TinyJAMBU-256.txt
+	@$(RUN_KAT) TinyJAMBU-128-Masked TinyJAMBU-128.txt
+	@$(RUN_KAT) TinyJAMBU-192-Masked TinyJAMBU-192.txt
+	@$(RUN_KAT) TinyJAMBU-256-Masked TinyJAMBU-256.txt
 	@$(RUN_KAT) WAGE WAGE.txt
 	@$(RUN_KAT) Xoodyak Xoodyak.txt
 	@$(RUN_KAT) Xoodyak-Hash Xoodyak-Hash.txt

@@ -74,6 +74,9 @@ Lower numbers are better.
 <tr><td>Spook-128-512-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.41</td><td align="right">8.15</td><td align="right">11.22</td></tr>
 <tr><td>Spook-128-384-su<sup> </sup></td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.34</td><td align="right">5.53</td><td align="right">8.09</td><td align="right">11.52</td></tr>
 <tr><td><b><i>Spook-128-512-su</i></b><sup> </sup></td><td>Init/Final</td><td align="right">1.74</td><td align="right">3.36</td><td align="right">5.43</td><td align="right">8.17</td><td align="right">11.26</td></tr>
+<tr><td><b><i>TinyJAMBU-128</i></b><sup> </sup></td><td>Full</td><td align="right">3.16</td><td align="right">8.04</td><td align="right">14.59</td><td align="right">25.65</td><td align="right">43.13</td></tr>
+<tr><td>TinyJAMBU-192<sup> </sup></td><td>Full</td><td align="right">3.24</td><td align="right">8.25</td><td align="right">14.94</td><td align="right">26.24</td><td align="right">44.27</td></tr>
+<tr><td>TinyJAMBU-256<sup> </sup></td><td>Full</td><td align="right">3.25</td><td align="right">8.31</td><td align="right">15.08</td><td align="right">26.49</td><td align="right">44.86</td></tr>
 </table>
 
 Note 1: These masked implementations are experimental and unique to this

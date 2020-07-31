@@ -21,6 +21,7 @@
  */
 
 #include "internal-tinyjambu.h"
+#include "internal-tinyjambu-m.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -46,6 +47,8 @@ static uint32_t const tinyjambu_output_2[] = {
 void test_tinyjambu(void)
 {
     uint32_t state[TINY_JAMBU_STATE_SIZE];
+    mask_uint32_t masked_state[TINY_JAMBU_MASKED_STATE_SIZE];
+    mask_uint32_t masked_key[8];
 
     printf("TinyJAMBU:\n");
 
@@ -66,6 +69,60 @@ void test_tinyjambu(void)
     fflush(stdout);
     memcpy(state, tinyjambu_input, sizeof(tinyjambu_input));
     tiny_jambu_permutation(state, tinyjambu_key_2, 8, TINYJAMBU_ROUNDS(1280));
+    if (!test_memcmp((const unsigned char *)state,
+                     (const unsigned char *)tinyjambu_output_2,
+                     sizeof(tinyjambu_output_2))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    Masked Test Vector 1 ... ");
+    fflush(stdout);
+    mask_input(masked_state[0], tinyjambu_input[0]);
+    mask_input(masked_state[1], tinyjambu_input[1]);
+    mask_input(masked_state[2], tinyjambu_input[2]);
+    mask_input(masked_state[3], tinyjambu_input[3]);
+    mask_input(masked_key[0], tinyjambu_key_1[0]);
+    mask_input(masked_key[1], tinyjambu_key_1[1]);
+    mask_input(masked_key[2], tinyjambu_key_1[2]);
+    mask_input(masked_key[3], tinyjambu_key_1[3]);
+    tiny_jambu_permutation_masked
+        (masked_state, masked_key, 4, TINYJAMBU_MASKED_ROUNDS(1024));
+    state[0] = mask_output(masked_state[0]);
+    state[1] = mask_output(masked_state[1]);
+    state[2] = mask_output(masked_state[2]);
+    state[3] = mask_output(masked_state[3]);
+    if (!test_memcmp((const unsigned char *)state,
+                     (const unsigned char *)tinyjambu_output_1,
+                     sizeof(tinyjambu_output_1))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    Masked Test Vector 2 ... ");
+    fflush(stdout);
+    mask_input(masked_state[0], tinyjambu_input[0]);
+    mask_input(masked_state[1], tinyjambu_input[1]);
+    mask_input(masked_state[2], tinyjambu_input[2]);
+    mask_input(masked_state[3], tinyjambu_input[3]);
+    mask_input(masked_key[0], tinyjambu_key_2[0]);
+    mask_input(masked_key[1], tinyjambu_key_2[1]);
+    mask_input(masked_key[2], tinyjambu_key_2[2]);
+    mask_input(masked_key[3], tinyjambu_key_2[3]);
+    mask_input(masked_key[4], tinyjambu_key_2[4]);
+    mask_input(masked_key[5], tinyjambu_key_2[5]);
+    mask_input(masked_key[6], tinyjambu_key_2[6]);
+    mask_input(masked_key[7], tinyjambu_key_2[7]);
+    tiny_jambu_permutation_masked
+        (masked_state, masked_key, 8, TINYJAMBU_MASKED_ROUNDS(1280));
+    state[0] = mask_output(masked_state[0]);
+    state[1] = mask_output(masked_state[1]);
+    state[2] = mask_output(masked_state[2]);
+    state[3] = mask_output(masked_state[3]);
     if (!test_memcmp((const unsigned char *)state,
                      (const unsigned char *)tinyjambu_output_2,
                      sizeof(tinyjambu_output_2))) {

@@ -289,6 +289,14 @@ TINYJAMBU_FILES = \
     internal-tinyjambu.h \
     internal-tinyjambu-avr.S \
     $(COMMON_FILES)
+TINYJAMBU_MASKED_FILES = \
+    tinyjambu-masked.c \
+    tinyjambu-masked.h \
+    internal-tinyjambu-m.c \
+    internal-tinyjambu-m.h \
+    internal-masking.c \
+    internal-masking.h \
+    $(COMMON_FILES)
 WAGE_FILES = \
     wage.c \
     wage.h \
@@ -338,6 +346,7 @@ ALL_ALGORITHMS = \
     subterranean \
     sundae_gift \
     tinyjambu \
+    tinyjambu_masked \
     wage \
     xoodyak
 
@@ -443,6 +452,9 @@ sundae_gift:
 
 tinyjambu:
 	cp $(foreach file,$(TINYJAMBU_FILES),$(SRCDIR)/$(file)) TinyJAMBU
+
+tinyjambu_masked:
+	cp $(foreach file,$(TINYJAMBU_MASKED_FILES),$(SRCDIR)/$(file)) TinyJAMBU_masked
 
 wage:
 	cp $(foreach file,$(WAGE_FILES),$(SRCDIR)/$(file)) WAGE
