@@ -50,6 +50,14 @@ extern "C" {
 void gimli24_permute_masked(mask_uint32_t state[12]);
 
 /**
+ * \brief Converts an unmasked GIMLI-24 state into a masked state.
+ *
+ * \param output The output masked state in host byte order.
+ * \param input The input unmasked state, in little-endian byte order.
+ */
+void gimli24_mask(mask_uint32_t output[12], const uint32_t input[12]);
+
+/**
  * \brief Converts a masked GIMLI-24 state into an unmasked state.
  *
  * \param output The output unmasked state, in little-endian byte order.

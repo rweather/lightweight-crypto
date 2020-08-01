@@ -109,6 +109,19 @@ void gimli24_permute_masked(mask_uint32_t state[12])
     }
 }
 
+void gimli24_mask(mask_uint32_t output[12], const uint32_t input[12])
+{
+    int index;
+    for (index = 0; index < 12; ++index) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        mask_input(output[index], input[index]);
+#else
+        mask_input(output[index],
+                   le_load_word32((const unsigned char *)(&(input[index]))));
+#endif
+    }
+}
+
 void gimli24_unmask(uint32_t output[12], const mask_uint32_t input[12])
 {
     int index;

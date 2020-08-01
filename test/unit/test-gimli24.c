@@ -66,14 +66,12 @@ static void test_gimli24_masked(void)
 {
     mask_uint32_t state[12];
     uint32_t unmasked[12];
-    int index;
 
     printf("    Masked Permutation ... ");
     fflush(stdout);
 
-    for (index = 0; index < 12; ++index)
-        mask_input(state[index], le_load_word32(gimli24_input + index * 4));
-
+    memcpy(unmasked, gimli24_input, sizeof(gimli24_input));
+    gimli24_mask(state, unmasked);
     gimli24_permute_masked(state);
     gimli24_unmask(unmasked, state);
 
