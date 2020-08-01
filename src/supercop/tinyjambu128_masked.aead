@@ -1,0 +1,11 @@
+aead_family=tinyjambu
+aead_name=tinyjambu128
+aead_meta_name=TinyJAMBU-128-Masked
+aead_srcdir=TinyJAMBU_masked
+aead_key_size=16
+aead_nonce_size=12
+aead_tag_size=8
+aead_encrypt=tiny_jambu_128_masked_aead_encrypt
+aead_decrypt=tiny_jambu_128_masked_aead_decrypt
+aead_header=tinyjambu-masked.h
+aead_variant=masked
