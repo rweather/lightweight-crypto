@@ -21,6 +21,7 @@
  */
 
 #include "internal-xoodoo.h"
+#include "internal-xoodoo-m.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -52,7 +53,27 @@ static void test_xoodoo_permutation(void)
 
     memcpy(state.B, xoodoo_input, sizeof(xoodoo_input));
     xoodoo_permute(&state);
-    if (memcmp(state.B, xoodoo_output, sizeof(xoodoo_output)) != 0) {
+    if (test_memcmp(state.B, xoodoo_output, sizeof(xoodoo_output)) != 0) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+}
+
+static void test_xoodoo_masked_permutation(void)
+{
+    mask_uint32_t masked[12];
+    uint32_t unmasked[12];
+
+    printf("    Masked Permutation ... ");
+    fflush(stdout);
+
+    memcpy(unmasked, xoodoo_input, sizeof(xoodoo_input));
+    xoodoo_mask(masked, unmasked);
+    xoodoo_permute_masked(masked);
+    xoodoo_unmask(unmasked, masked);
+    if (test_memcmp(unmasked, xoodoo_output, sizeof(xoodoo_output)) != 0) {
         printf("failed\n");
         test_exit_result = 1;
     } else {
@@ -64,5 +85,6 @@ void test_xoodoo(void)
 {
     printf("Xoodoo:\n");
     test_xoodoo_permutation();
+    test_xoodoo_masked_permutation();
     printf("\n");
 }

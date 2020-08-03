@@ -143,6 +143,7 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) TinyJAMBU-256-Masked TinyJAMBU-256.txt
 	@$(RUN_KAT) WAGE WAGE.txt
 	@$(RUN_KAT) Xoodyak Xoodyak.txt
+	@$(RUN_KAT) Xoodyak-Masked Xoodyak.txt
 	@$(RUN_KAT) Xoodyak-Hash Xoodyak-Hash.txt
 
 kat.o: algorithms.h $(wildcard $(LIBSRC_DIR)/*.h)

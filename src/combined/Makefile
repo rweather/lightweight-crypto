@@ -51,6 +51,7 @@ OBJS = \
         tinyjambu-masked.o \
         wage.o \
         xoodyak.o \
+        xoodyak-masked.o \
 	internal-ascon.o \
 	internal-ascon-m.o \
 	internal-blake2s.o \
@@ -83,7 +84,8 @@ OBJS = \
         internal-tinyjambu.o \
         internal-tinyjambu-m.o \
         internal-wage.o \
-        internal-xoodoo.o
+        internal-xoodoo.o \
+        internal-xoodoo-m.o
 
 all: $(LIBRARY)
 
@@ -142,6 +144,7 @@ tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h
 tinyjambu-masked.o: tinyjambu-masked.h internal-tinyjambu-m.h aead-common.h internal-masking.h internal-util.h
 wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
+xoodyak-masked.o: xoodyak.h internal-xoodoo.h internal-xoodoo-m.h internal-masking.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
 internal-ascon-m.o: internal-ascon-m.h internal-masking.h internal-util.h
 internal-blake2s.o: internal-blake2s.h internal-util.h
@@ -175,3 +178,4 @@ internal-tinyjambu.o: internal-tinyjambu.h internal-util.h
 internal-tinyjambu-m.o: internal-tinyjambu-m.h internal-masking.h internal-util.h
 internal-wage.o: internal-wage.h internal-util.h
 internal-xoodoo.o: internal-xoodoo.h internal-util.h
+internal-xoodoo-m.o: internal-xoodoo-m.h internal-masking.h internal-util.h

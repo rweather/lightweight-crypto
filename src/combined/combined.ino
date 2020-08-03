@@ -66,6 +66,7 @@ of flash memory.
 #include "tinyjambu-masked.h"
 #include "wage.h"
 #include "xoodyak.h"
+#include "xoodyak-masked.h"
 #include "internal-blake2s.h"
 #include "internal-chachapoly.h"
 #include "internal-masking.h"
@@ -570,6 +571,7 @@ void setup()
     perfCipher(&tiny_jambu_256_masked_cipher);
     perfCipher(&wage_cipher);
     perfCipher(&xoodyak_cipher);
+    perfCipher(&xoodyak_masked_cipher);
 
     // Run performance tests on the NIST hash algorithms.
     perfHash(&ace_hash_algorithm);
@@ -628,6 +630,7 @@ void setup()
     perfMasked(&tiny_jambu_128_cipher, &tiny_jambu_128_masked_cipher);
     perfMasked(&tiny_jambu_192_cipher, &tiny_jambu_192_masked_cipher);
     perfMasked(&tiny_jambu_256_cipher, &tiny_jambu_256_masked_cipher);
+    perfMasked(&xoodyak_cipher, &xoodyak_masked_cipher);
 }
 
 void loop()

@@ -58,6 +58,7 @@
 #include "tinyjambu-masked.h"
 #include "wage.h"
 #include "xoodyak.h"
+#include "xoodyak-masked.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -153,6 +154,7 @@ static const aead_cipher_t *const ciphers[] = {
     &tiny_jambu_256_masked_cipher,
     &wage_cipher,
     &xoodyak_cipher,
+    &xoodyak_masked_cipher,
     0
 };
 

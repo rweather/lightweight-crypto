@@ -311,6 +311,17 @@ XOODYAK_FILES = \
     internal-xoodoo.h \
     internal-xoodoo-avr.S \
     $(COMMON_FILES)
+XOODYAK_MASKED_FILES = \
+    xoodyak-masked.c \
+    xoodyak-masked.h \
+    internal-xoodoo.c \
+    internal-xoodoo.h \
+    internal-xoodoo-m.c \
+    internal-xoodoo-m.h \
+    internal-xoodoo-avr.S \
+    internal-masking.c \
+    internal-masking.h \
+    $(COMMON_FILES)
 
 ALL_ALGORITHMS = \
     ace \
@@ -348,7 +359,8 @@ ALL_ALGORITHMS = \
     tinyjambu \
     tinyjambu_masked \
     wage \
-    xoodyak
+    xoodyak \
+    xoodyak_masked
 
 .PHONY: all $(ALL_ALGORITHMS)
 
@@ -461,3 +473,6 @@ wage:
 
 xoodyak:
 	cp $(foreach file,$(XOODYAK_FILES),$(SRCDIR)/$(file)) Xoodyak
+
+xoodyak_masked:
+	cp $(foreach file,$(XOODYAK_MASKED_FILES),$(SRCDIR)/$(file)) Xoodyak_masked

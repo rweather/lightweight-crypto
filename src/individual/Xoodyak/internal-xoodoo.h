@@ -56,8 +56,11 @@ extern "C" {
  */
 typedef union
 {
-    /** Words of the state */
+    /** Words of the state organized into rows and columns */
     uint32_t S[XOODOO_ROWS][XOODOO_COLS];
+
+    /** Words of the state as a single linear array */
+    uint32_t W[XOODOO_ROWS * XOODOO_COLS];
 
     /** Bytes of the state */
     uint8_t B[XOODOO_ROWS * XOODOO_COLS * sizeof(uint32_t)];

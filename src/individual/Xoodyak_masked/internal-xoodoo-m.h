@@ -20,16 +20,14 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LW_INTERNAL_XOODOO_H
-#define LW_INTERNAL_XOODOO_H
+#ifndef LW_INTERNAL_XOODOO_M_H
+#define LW_INTERNAL_XOODOO_M_H
 
-#include "internal-util.h"
+#include "internal-masking.h"
 
 /**
- * \file internal-xoodoo.h
- * \brief Internal implementation of the Xoodoo permutation.
- *
- * References: https://keccak.team/xoodyak.html
+ * \file internal-xoodoo-m.h
+ * \brief Masked implementation of the Xoodoo permutation.
  */
 
 #ifdef __cplusplus
@@ -37,44 +35,29 @@ extern "C" {
 #endif
 
 /**
- * \brief Number of rows in the Xoodoo state.
- */
-#define XOODOO_ROWS 3
-
-/**
- * \brief Number of columns in the Xoodoo state.
- */
-#define XOODOO_COLS 4
-
-/**
- * \brief Number of rounds for the Xoodoo permutation.
- */
-#define XOODOO_ROUNDS 12
-
-/**
- * \brief State information for the Xoodoo permutation.
- */
-typedef union
-{
-    /** Words of the state organized into rows and columns */
-    uint32_t S[XOODOO_ROWS][XOODOO_COLS];
-
-    /** Words of the state as a single linear array */
-    uint32_t W[XOODOO_ROWS * XOODOO_COLS];
-
-    /** Bytes of the state */
-    uint8_t B[XOODOO_ROWS * XOODOO_COLS * sizeof(uint32_t)];
-
-} xoodoo_state_t;
-
-/**
- * \brief Permutes the Xoodoo state.
+ * \brief Permutes the masked Xoodoo state.
  *
- * \param state The Xoodoo state.
+ * \param state The masked Xoodoo state.
  *
- * The state will be in little-endian before and after the operation.
+ * The state will be in host byte order before and after the operation.
  */
-void xoodoo_permute(xoodoo_state_t *state);
+void xoodoo_permute_masked(mask_uint32_t state[12]);
+
+/**
+ * \brief Converts an unmasked Xoodoo state into a masked state.
+ *
+ * \param output The output masked state in host byte order.
+ * \param input The input unmasked state, in little-endian byte order.
+ */
+void xoodoo_mask(mask_uint32_t output[12], const uint32_t input[12]);
+
+/**
+ * \brief Converts a masked Xoodoo state into an unmasked state.
+ *
+ * \param output The output unmasked state, in little-endian byte order.
+ * \param input The input masked state in host byte order.
+ */
+void xoodoo_unmask(uint32_t output[12], const mask_uint32_t input[12]);
 
 #ifdef __cplusplus
 }
