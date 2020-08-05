@@ -84,7 +84,7 @@ void pyjamask_masked_128_setup_key
     uint8_t round;
 
     /* Make sure that the system random number generator is initialized */
-    aead_masking_init();
+    aead_random_init();
 
     /* Load the words of the key and mask them */
     mask_input(k0, be_load_word32(key));
@@ -142,7 +142,7 @@ void pyjamask_masked_96_setup_key
     uint8_t round;
 
     /* Make sure that the system random number generator is initialized */
-    aead_masking_init();
+    aead_random_init();
 
     /* Load the words of the key */
     mask_input(k0, be_load_word32(key));

@@ -471,7 +471,7 @@ static void gift128b_compute_round_keys_masked
     uint32_t temp;
 
     /* Set the regular key with k0 and k3 pre-swapped for the round function */
-    aead_masking_init();
+    aead_random_init();
     mask_input(ks->k[0], k3);
     mask_input(ks->k[1], k1);
     mask_input(ks->k[2], k2);
@@ -885,7 +885,7 @@ void gift128b_init_masked
     (gift128b_masked_key_schedule_t *ks, const unsigned char *key)
 {
     /* Mirror the fixslicing word order of 3, 1, 2, 0 */
-    aead_masking_init();
+    aead_random_init();
     mask_input(ks->k[0], be_load_word32(key + 12));
     mask_input(ks->k[1], be_load_word32(key + 4));
     mask_input(ks->k[2], be_load_word32(key + 8));
@@ -897,7 +897,7 @@ void gift128n_init_masked
 {
     /* Use the little-endian key byte order from the HYENA submission
      * and mirror the fixslicing word order of 3, 1, 2, 0 */
-    aead_masking_init();
+    aead_random_init();
     mask_input(ks->k[0], le_load_word32(key));
     mask_input(ks->k[1], le_load_word32(key + 8));
     mask_input(ks->k[2], le_load_word32(key + 4));

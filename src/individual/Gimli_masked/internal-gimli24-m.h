@@ -45,7 +45,7 @@ extern "C" {
  *
  * The input and output \a state are in host byte order.
  *
- * \note It is assumed that aead_masking_init() has already been called.
+ * \note It is assumed that aead_random_init() has already been called.
  */
 void gimli24_permute_masked(mask_uint32_t state[12]);
 

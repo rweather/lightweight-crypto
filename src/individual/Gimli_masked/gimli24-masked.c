@@ -144,7 +144,7 @@ static void gimli24_masked_init
      const unsigned char *npub)
 {
     mask_uint32_t first_state[12];
-    aead_masking_init();
+    aead_random_init();
     mask_input(first_state[0], le_load_word32(npub));
     mask_input(first_state[1], le_load_word32(npub + 4));
     mask_input(first_state[2], le_load_word32(npub + 8));

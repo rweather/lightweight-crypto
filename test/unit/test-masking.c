@@ -293,7 +293,7 @@ static void test_masking_run(const char *name, int (*func)(void))
 void test_masking(void)
 {
     printf("Masking Utilities:\n");
-    aead_masking_init();
+    aead_random_init();
 
     test_masking_run("uint16-x2-load", test_uint16_x2_load);
     test_masking_run("uint32-x2-load", test_uint32_x2_load);

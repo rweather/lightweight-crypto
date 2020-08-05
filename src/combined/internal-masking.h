@@ -23,7 +23,7 @@
 #ifndef LW_INTERNAL_MASKING_H
 #define LW_INTERNAL_MASKING_H
 
-#include <stdint.h>
+#include "aead-random.h"
 
 /**
  * \file internal-masking.h
@@ -254,9 +254,9 @@ typedef struct
 #define mask_x2_input(value, input) \
     do { \
         if (sizeof((value).b) <= 4) \
-            (value).b = aead_masking_generate_32(); \
+            (value).b = aead_random_generate_32(); \
         else \
-            (value).b = aead_masking_generate_64(); \
+            (value).b = aead_random_generate_64(); \
         (value).a = (input) ^ (value).b; \
     } while (0)
 
@@ -340,9 +340,9 @@ typedef struct
 #define mask_mix_and(x2, x1, x0, y2, y1, y0) \
     do { \
         if (sizeof(temp) <= 4) \
-            temp = aead_masking_generate_32(); \
+            temp = aead_random_generate_32(); \
         else \
-            temp = aead_masking_generate_64(); \
+            temp = aead_random_generate_64(); \
         (x2) ^= temp; \
         temp ^= ((y0) & (x1)); \
         (y2) = ((y2) ^ temp) ^ ((y1) & (x0)); \
@@ -523,11 +523,11 @@ typedef struct
 #define mask_x3_input(value, input) \
     do { \
         if (sizeof((value).b) <= 4) { \
-            (value).b = aead_masking_generate_32(); \
-            (value).c = aead_masking_generate_32(); \
+            (value).b = aead_random_generate_32(); \
+            (value).c = aead_random_generate_32(); \
         } else { \
-            (value).b = aead_masking_generate_64(); \
-            (value).c = aead_masking_generate_64(); \
+            (value).b = aead_random_generate_64(); \
+            (value).c = aead_random_generate_64(); \
         } \
         (value).a = (input) ^ (value).b ^ (value).c; \
     } while (0)
@@ -796,13 +796,13 @@ typedef struct
 #define mask_x4_input(value, input) \
     do { \
         if (sizeof((value).b) <= 4) { \
-            (value).b = aead_masking_generate_32(); \
-            (value).c = aead_masking_generate_32(); \
-            (value).d = aead_masking_generate_32(); \
+            (value).b = aead_random_generate_32(); \
+            (value).c = aead_random_generate_32(); \
+            (value).d = aead_random_generate_32(); \
         } else { \
-            (value).b = aead_masking_generate_64(); \
-            (value).c = aead_masking_generate_64(); \
-            (value).d = aead_masking_generate_64(); \
+            (value).b = aead_random_generate_64(); \
+            (value).c = aead_random_generate_64(); \
+            (value).d = aead_random_generate_64(); \
         } \
         (value).a = (input) ^ (value).b ^ (value).c ^ (value).d; \
     } while (0)
@@ -1105,15 +1105,15 @@ typedef struct
 #define mask_x5_input(value, input) \
     do { \
         if (sizeof((value).b) <= 4) { \
-            (value).b = aead_masking_generate_32(); \
-            (value).c = aead_masking_generate_32(); \
-            (value).d = aead_masking_generate_32(); \
-            (value).e = aead_masking_generate_32(); \
+            (value).b = aead_random_generate_32(); \
+            (value).c = aead_random_generate_32(); \
+            (value).d = aead_random_generate_32(); \
+            (value).e = aead_random_generate_32(); \
         } else { \
-            (value).b = aead_masking_generate_64(); \
-            (value).c = aead_masking_generate_64(); \
-            (value).d = aead_masking_generate_64(); \
-            (value).e = aead_masking_generate_64(); \
+            (value).b = aead_random_generate_64(); \
+            (value).c = aead_random_generate_64(); \
+            (value).d = aead_random_generate_64(); \
+            (value).e = aead_random_generate_64(); \
         } \
         (value).a = (input) ^ (value).b ^ (value).c ^ (value).d ^ (value).e; \
     } while (0)
@@ -1457,17 +1457,17 @@ typedef struct
 #define mask_x6_input(value, input) \
     do { \
         if (sizeof((value).b) <= 4) { \
-            (value).b = aead_masking_generate_32(); \
-            (value).c = aead_masking_generate_32(); \
-            (value).d = aead_masking_generate_32(); \
-            (value).e = aead_masking_generate_32(); \
-            (value).f = aead_masking_generate_32(); \
+            (value).b = aead_random_generate_32(); \
+            (value).c = aead_random_generate_32(); \
+            (value).d = aead_random_generate_32(); \
+            (value).e = aead_random_generate_32(); \
+            (value).f = aead_random_generate_32(); \
         } else { \
-            (value).b = aead_masking_generate_64(); \
-            (value).c = aead_masking_generate_64(); \
-            (value).d = aead_masking_generate_64(); \
-            (value).e = aead_masking_generate_64(); \
-            (value).f = aead_masking_generate_64(); \
+            (value).b = aead_random_generate_64(); \
+            (value).c = aead_random_generate_64(); \
+            (value).d = aead_random_generate_64(); \
+            (value).e = aead_random_generate_64(); \
+            (value).f = aead_random_generate_64(); \
         } \
         (value).a = (input) ^ (value).b ^ (value).c ^ \
                   (value).d ^ (value).e ^ (value).f; \
@@ -2117,26 +2117,6 @@ typedef mask_x6_uint64_t mask_uint64_t;
 #else
 #error "AEAD_MASKING_SHARES value is not supported"
 #endif
-
-/**
- * \brief Initializes the system random number generator for the
- * generation of masking material.
- */
-void aead_masking_init(void);
-
-/**
- * \brief Generate a single random 32-bit word for masking purposes.
- *
- * \return The random word.
- */
-uint32_t aead_masking_generate_32(void);
-
-/**
- * \brief Generate a single random 64-bit word for masking purposes.
- *
- * \return The random word.
- */
-uint64_t aead_masking_generate_64(void);
 
 #ifdef __cplusplus
 }

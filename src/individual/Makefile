@@ -5,6 +5,13 @@ COMMON_FILES = \
 	aead-common.h \
 	aead-common.c \
 	internal-util.h
+COMMON_MASKING_FILES = \
+	aead-common.h \
+	aead-common.c \
+	aead-random.h \
+	aead-random.c \
+	internal-masking.h \
+	internal-util.h
 
 ACE_FILES = \
     ace.c \
@@ -30,9 +37,7 @@ ASCON_MASKED_FILES = \
     internal-ascon-m.c \
     internal-ascon-m.h \
     internal-ascon-avr.S \
-    internal-masking.c \
-    internal-masking.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 COMET_FILES = \
     comet.c \
     comet.h \
@@ -96,9 +101,7 @@ GIFT_COFB_MASKED_FILES = \
     internal-gift128-config.h \
     internal-gift128-m.c \
     internal-gift128-m.h \
-    internal-masking.c \
-    internal-masking.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 GIMLI_FILES = \
     gimli24.c \
     gimli24.h \
@@ -114,9 +117,7 @@ GIMLI_MASKED_FILES = \
     internal-gimli24-m.c \
     internal-gimli24-m.h \
     internal-gimli24-avr.S \
-    internal-masking.c \
-    internal-masking.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 GRAIN128_FILES = \
     grain128.c \
     grain128.h \
@@ -196,11 +197,9 @@ PYJAMASK_MASKED_FILES = \
     pyjamask-128-masked.c \
     pyjamask-96-masked.c \
     pyjamask-masked.h \
-    internal-masking.c \
-    internal-masking.h \
     internal-pyjamask-m.c \
     internal-ocb.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 ROMULUS_FILES = \
     romulus.c \
     romulus.h \
@@ -258,13 +257,11 @@ SPOOK_FILES = \
 SPOOK_MASKED_FILES = \
     spook-masked.c \
     spook-masked.h \
-    internal-masking.c \
-    internal-masking.h \
     internal-spook.c \
     internal-spook.h \
     internal-spook-m.c \
     internal-spook-avr.S \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 SUBTERRANEAN_FILES = \
     subterranean.c \
     subterranean.h \
@@ -294,9 +291,7 @@ TINYJAMBU_MASKED_FILES = \
     tinyjambu-masked.h \
     internal-tinyjambu-m.c \
     internal-tinyjambu-m.h \
-    internal-masking.c \
-    internal-masking.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 WAGE_FILES = \
     wage.c \
     wage.h \
@@ -319,9 +314,7 @@ XOODYAK_MASKED_FILES = \
     internal-xoodoo-m.c \
     internal-xoodoo-m.h \
     internal-xoodoo-avr.S \
-    internal-masking.c \
-    internal-masking.h \
-    $(COMMON_FILES)
+    $(COMMON_MASKING_FILES)
 
 ALL_ALGORITHMS = \
     ace \

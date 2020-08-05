@@ -1,26 +1,11 @@
 /*
- * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
+ * This file has been placed into the public domain by Rhys Weatherley.
+ * It can be reused and modified as necessary.  It may even be completely
+ * thrown away and replaced with a different system-specific implementation
+ * that provides the same API.
  */
 
-#include "internal-masking.h"
+#include "aead-random.h"
 #include <string.h>
 
 /* Determine if we have a CPU random number generator that can generate
@@ -93,12 +78,12 @@ static uint64_t seed = 0x6A09E667F3BCC908ULL; /* First init word from SHA-512 */
     } while (0)
 #endif
 
-void aead_masking_init(void)
+void aead_random_init(void)
 {
     aead_system_random_init();
 }
 
-uint32_t aead_masking_generate_32(void)
+uint32_t aead_random_generate_32(void)
 {
 #if defined(aead_system_random_is_64bit)
     uint64_t x;
@@ -111,7 +96,7 @@ uint32_t aead_masking_generate_32(void)
 #endif
 }
 
-uint64_t aead_masking_generate_64(void)
+uint64_t aead_random_generate_64(void)
 {
 #if defined(aead_system_random_is_64bit)
     uint64_t x;
@@ -122,5 +107,36 @@ uint64_t aead_masking_generate_64(void)
     aead_system_random(x);
     aead_system_random(y);
     return x | (((uint64_t)y) << 32);
+#endif
+}
+
+void aead_random_generate(void *buffer, unsigned size)
+{
+#if defined(aead_system_random_is_64bit)
+    unsigned char *buf = (unsigned char *)buffer;
+    uint64_t x;
+    while (size >= sizeof(uint64_t)) {
+        aead_system_random(x);
+        memcpy(buf, &x, sizeof(x));
+        buf += sizeof(uint64_t);
+        size -= sizeof(uint64_t);
+    }
+    if (size > 0) {
+        aead_system_random(x);
+        memcpy(buf, &x, size);
+    }
+#else
+    unsigned char *buf = (unsigned char *)buffer;
+    uint32_t x;
+    while (size >= sizeof(uint32_t)) {
+        aead_system_random(x);
+        memcpy(buf, &x, sizeof(x));
+        buf += sizeof(uint32_t);
+        size -= sizeof(uint32_t);
+    }
+    if (size > 0) {
+        aead_system_random(x);
+        memcpy(buf, &x, size);
+    }
 #endif
 }

@@ -62,6 +62,7 @@ static void xoodyak_init_masked
     int index;
 
     /* Mask the key and initialize the state */
+    aead_random_init();
     mask_input(mstate[0], le_load_word32(k));
     mask_input(mstate[1], le_load_word32(k + 4));
     mask_input(mstate[2], le_load_word32(k + 8));
@@ -227,6 +228,7 @@ static void xoodyak_init_masked
     int index;
 
     /* Mask the key and initialize the state */
+    aead_random_init();
     mask_input(state[0], le_load_word32(k));
     mask_input(state[1], le_load_word32(k + 4));
     mask_input(state[2], le_load_word32(k + 8));

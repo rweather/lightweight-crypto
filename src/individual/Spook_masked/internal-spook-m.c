@@ -197,7 +197,7 @@ void clyde128_encrypt_masked(const unsigned char key[CLYDE128_KEY_SIZE],
     int step;
 
     /* Make sure that the system random number generator is initialized */
-    aead_masking_init();
+    aead_random_init();
 
     /* Unpack the key, tweak, and state */
     mask_input(k0, le_load_word32(key));

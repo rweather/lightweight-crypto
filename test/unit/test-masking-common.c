@@ -30,7 +30,7 @@
 /* Test loading and unloading a masked 16-bit word */
 static int MASK_NAME(test_uint16, load)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w;
     mask_test_input(w, x);
     return mask_test_output(w) == x;
@@ -39,8 +39,8 @@ static int MASK_NAME(test_uint16, load)(void)
 /* Test adding a constant to a masked 16-bit word */
 static int MASK_NAME(test_uint16, xor_const)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w;
     mask_test_input(w, x);
     mask_test_xor_const(w, y);
@@ -50,8 +50,8 @@ static int MASK_NAME(test_uint16, xor_const)(void)
 /* Test XOR'ing two masked 16-bit words */
 static int MASK_NAME(test_uint16, xor)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w1, x);
@@ -63,9 +63,9 @@ static int MASK_NAME(test_uint16, xor)(void)
 /* Test XOR'ing three masked 16-bit words */
 static int MASK_NAME(test_uint16, xor3)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
-    uint16_t z = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
+    uint16_t z = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_uint16_t w3;
@@ -81,7 +81,7 @@ static int MASK_NAME(test_uint16, xor3)(void)
 /* Test NOT'ing a masked 16-bit word */
 static int MASK_NAME(test_uint16, not)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w;
     mask_test_input(w, x);
     mask_test_not(w);
@@ -92,9 +92,9 @@ static int MASK_NAME(test_uint16, not)(void)
 static int MASK_NAME(test_uint16, and)(void)
 {
     uint16_t temp;
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
-    uint16_t z = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
+    uint16_t z = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_uint16_t w3;
@@ -111,9 +111,9 @@ static int MASK_NAME(test_uint16, and)(void)
 static int MASK_NAME(test_uint16, and_not)(void)
 {
     uint16_t temp;
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
-    uint16_t z = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
+    uint16_t z = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_uint16_t w3;
@@ -130,9 +130,9 @@ static int MASK_NAME(test_uint16, and_not)(void)
 static int MASK_NAME(test_uint16, or)(void)
 {
     uint16_t temp;
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
-    uint16_t z = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
+    uint16_t z = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_uint16_t w3;
@@ -148,7 +148,7 @@ static int MASK_NAME(test_uint16, or)(void)
 /* Test left shifting a masked 16-bit word */
 static int MASK_NAME(test_uint16, shl)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w2, x);
@@ -163,7 +163,7 @@ static int MASK_NAME(test_uint16, shl)(void)
 /* Test right shifting a masked 16-bit word */
 static int MASK_NAME(test_uint16, shr)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w2, x);
@@ -178,7 +178,7 @@ static int MASK_NAME(test_uint16, shr)(void)
 /* Test left rotating a masked 16-bit word */
 static int MASK_NAME(test_uint16, rol)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w2, x);
@@ -193,7 +193,7 @@ static int MASK_NAME(test_uint16, rol)(void)
 /* Test right rotating a masked 16-bit word */
 static int MASK_NAME(test_uint16, ror)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w2, x);
@@ -208,8 +208,8 @@ static int MASK_NAME(test_uint16, ror)(void)
 /* Test swapping two masked 16-bit words */
 static int MASK_NAME(test_uint16, swap)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
     mask_test_input(w1, x);
@@ -221,8 +221,8 @@ static int MASK_NAME(test_uint16, swap)(void)
 /* Test a swap and move on two masked 16-bit words */
 static int MASK_NAME(test_uint16, swap_move)(void)
 {
-    uint16_t x = (uint16_t)aead_masking_generate_32();
-    uint16_t y = (uint16_t)aead_masking_generate_32();
+    uint16_t x = (uint16_t)aead_random_generate_32();
+    uint16_t y = (uint16_t)aead_random_generate_32();
     uint16_t temp;
     mask_test_uint16_t w1;
     mask_test_uint16_t w2;
@@ -238,7 +238,7 @@ static int MASK_NAME(test_uint16, swap_move)(void)
 /* Test loading and unloading a masked 32-bit word */
 static int MASK_NAME(test_uint32, load)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w;
     mask_test_input(w, x);
     return mask_test_output(w) == x;
@@ -247,8 +247,8 @@ static int MASK_NAME(test_uint32, load)(void)
 /* Test adding a constant to a masked 32-bit word */
 static int MASK_NAME(test_uint32, xor_const)(void)
 {
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
     mask_test_uint32_t w;
     mask_test_input(w, x);
     mask_test_xor_const(w, y);
@@ -258,8 +258,8 @@ static int MASK_NAME(test_uint32, xor_const)(void)
 /* Test XOR'ing two masked 32-bit words */
 static int MASK_NAME(test_uint32, xor)(void)
 {
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w1, x);
@@ -271,9 +271,9 @@ static int MASK_NAME(test_uint32, xor)(void)
 /* Test XOR'ing three masked 32-bit words */
 static int MASK_NAME(test_uint32, xor3)(void)
 {
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
-    uint32_t z = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
+    uint32_t z = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_uint32_t w3;
@@ -289,7 +289,7 @@ static int MASK_NAME(test_uint32, xor3)(void)
 /* Test NOT'ing a masked 32-bit word */
 static int MASK_NAME(test_uint32, not)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w;
     mask_test_input(w, x);
     mask_test_not(w);
@@ -300,9 +300,9 @@ static int MASK_NAME(test_uint32, not)(void)
 static int MASK_NAME(test_uint32, and)(void)
 {
     uint32_t temp;
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
-    uint32_t z = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
+    uint32_t z = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_uint32_t w3;
@@ -319,9 +319,9 @@ static int MASK_NAME(test_uint32, and)(void)
 static int MASK_NAME(test_uint32, and_not)(void)
 {
     uint32_t temp;
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
-    uint32_t z = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
+    uint32_t z = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_uint32_t w3;
@@ -338,9 +338,9 @@ static int MASK_NAME(test_uint32, and_not)(void)
 static int MASK_NAME(test_uint32, or)(void)
 {
     uint32_t temp;
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
-    uint32_t z = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
+    uint32_t z = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_uint32_t w3;
@@ -356,7 +356,7 @@ static int MASK_NAME(test_uint32, or)(void)
 /* Test left shifting a masked 32-bit word */
 static int MASK_NAME(test_uint32, shl)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w2, x);
@@ -371,7 +371,7 @@ static int MASK_NAME(test_uint32, shl)(void)
 /* Test right shifting a masked 32-bit word */
 static int MASK_NAME(test_uint32, shr)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w2, x);
@@ -386,7 +386,7 @@ static int MASK_NAME(test_uint32, shr)(void)
 /* Test left rotating a masked 32-bit word */
 static int MASK_NAME(test_uint32, rol)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w2, x);
@@ -401,7 +401,7 @@ static int MASK_NAME(test_uint32, rol)(void)
 /* Test right rotating a masked 32-bit word */
 static int MASK_NAME(test_uint32, ror)(void)
 {
-    uint32_t x = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w2, x);
@@ -416,8 +416,8 @@ static int MASK_NAME(test_uint32, ror)(void)
 /* Test swapping two masked 32-bit words */
 static int MASK_NAME(test_uint32, swap)(void)
 {
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
     mask_test_input(w1, x);
@@ -429,8 +429,8 @@ static int MASK_NAME(test_uint32, swap)(void)
 /* Test a swap and move on two masked 32-bit words */
 static int MASK_NAME(test_uint32, swap_move)(void)
 {
-    uint32_t x = aead_masking_generate_32();
-    uint32_t y = aead_masking_generate_32();
+    uint32_t x = aead_random_generate_32();
+    uint32_t y = aead_random_generate_32();
     uint32_t temp;
     mask_test_uint32_t w1;
     mask_test_uint32_t w2;
@@ -446,7 +446,7 @@ static int MASK_NAME(test_uint32, swap_move)(void)
 /* Test loading and unloading a masked 64-bit word */
 static int MASK_NAME(test_uint64, load)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w;
     mask_test_input(w, x);
     return mask_test_output(w) == x;
@@ -455,8 +455,8 @@ static int MASK_NAME(test_uint64, load)(void)
 /* Test adding a constant to a masked 64-bit word */
 static int MASK_NAME(test_uint64, xor_const)(void)
 {
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
     mask_test_uint64_t w;
     mask_test_input(w, x);
     mask_test_xor_const(w, y);
@@ -466,8 +466,8 @@ static int MASK_NAME(test_uint64, xor_const)(void)
 /* Test XOR'ing two masked 64-bit words */
 static int MASK_NAME(test_uint64, xor)(void)
 {
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w1, x);
@@ -479,9 +479,9 @@ static int MASK_NAME(test_uint64, xor)(void)
 /* Test XOR'ing three masked 64-bit words */
 static int MASK_NAME(test_uint64, xor3)(void)
 {
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
-    uint64_t z = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
+    uint64_t z = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_uint64_t w3;
@@ -497,7 +497,7 @@ static int MASK_NAME(test_uint64, xor3)(void)
 /* Test NOT'ing a masked 64-bit word */
 static int MASK_NAME(test_uint64, not)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w;
     mask_test_input(w, x);
     mask_test_not(w);
@@ -508,9 +508,9 @@ static int MASK_NAME(test_uint64, not)(void)
 static int MASK_NAME(test_uint64, and)(void)
 {
     uint64_t temp;
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
-    uint64_t z = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
+    uint64_t z = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_uint64_t w3;
@@ -527,9 +527,9 @@ static int MASK_NAME(test_uint64, and)(void)
 static int MASK_NAME(test_uint64, and_not)(void)
 {
     uint64_t temp;
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
-    uint64_t z = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
+    uint64_t z = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_uint64_t w3;
@@ -546,9 +546,9 @@ static int MASK_NAME(test_uint64, and_not)(void)
 static int MASK_NAME(test_uint64, or)(void)
 {
     uint64_t temp;
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
-    uint64_t z = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
+    uint64_t z = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_uint64_t w3;
@@ -564,7 +564,7 @@ static int MASK_NAME(test_uint64, or)(void)
 /* Test left shifting a masked 64-bit word */
 static int MASK_NAME(test_uint64, shl)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w2, x);
@@ -579,7 +579,7 @@ static int MASK_NAME(test_uint64, shl)(void)
 /* Test right shifting a masked 64-bit word */
 static int MASK_NAME(test_uint64, shr)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w2, x);
@@ -594,7 +594,7 @@ static int MASK_NAME(test_uint64, shr)(void)
 /* Test left rotating a masked 64-bit word */
 static int MASK_NAME(test_uint64, rol)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w2, x);
@@ -609,7 +609,7 @@ static int MASK_NAME(test_uint64, rol)(void)
 /* Test right rotating a masked 64-bit word */
 static int MASK_NAME(test_uint64, ror)(void)
 {
-    uint64_t x = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w2, x);
@@ -624,8 +624,8 @@ static int MASK_NAME(test_uint64, ror)(void)
 /* Test swapping two masked 64-bit words */
 static int MASK_NAME(test_uint64, swap)(void)
 {
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
     mask_test_input(w1, x);
@@ -637,8 +637,8 @@ static int MASK_NAME(test_uint64, swap)(void)
 /* Test a swap and move on two masked 64-bit words */
 static int MASK_NAME(test_uint64, swap_move)(void)
 {
-    uint64_t x = aead_masking_generate_64();
-    uint64_t y = aead_masking_generate_64();
+    uint64_t x = aead_random_generate_64();
+    uint64_t y = aead_random_generate_64();
     uint64_t temp;
     mask_test_uint64_t w1;
     mask_test_uint64_t w2;
