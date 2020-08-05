@@ -48,6 +48,24 @@ extern "C" {
 #endif
 
 /**
+ * \def AEAD_MASKING_KEY_ONLY
+ * \brief Degree of masking to apply to AEAD modes.
+ *
+ * Permutation-based AEAD modes typically absorb the key and nonce in the
+ * first block and then no longer have any use for the key.  If the goal
+ * of the masking is to protect the key, then masking may not be required
+ * for the remaining block operations once the key has been randomized
+ * by combining it with the nonce.
+ *
+ * Define this macro to 1 to only mask block operations that involve
+ * the key.  Define this macro to 0 to mask all block operations regardless.
+ * The default is 0 because it is safer, albeit slower.
+ */
+#if !defined(AEAD_MASKING_KEY_ONLY)
+#define AEAD_MASKING_KEY_ONLY 0
+#endif
+
+/**
  * \brief Masked 16-bit word with two shares.
  */
 typedef struct

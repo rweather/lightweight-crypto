@@ -199,7 +199,7 @@ version)
 \li \ref alg_pyjamask "Pyjamask"
 \li \ref alg_spook "Spook"
 \li \ref alg_tinyjambu "TinyJAMBU"
-\li \ref alg_xoodyak "Xoodyak" (experimental)
+\li \ref alg_xoodyak "Xoodyak"
 
 These implementations have not yet been subjected to rigorous analysis,
 so the level of protection may not be as great as hoped.  The experimental
@@ -918,6 +918,8 @@ key for one packet is used to derive the key to use on the next packet.
 This provides some resistance against side channel attacks by making
 the session key a moving target.  This library does not currently
 implement re-keying.
+
+This library also provides a masked implementation of Xoodyak.
 
 <b>Recommendation:</b> There is only one encryption algorithm and
 one hash algorithm in the Xoodyak family, so they the recommended ones.

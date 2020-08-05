@@ -28,15 +28,6 @@
 /**
  * \file xoodyak-masked.h
  * \brief Masked version of the Xoodyak authenticated encryption algorithm.
- *
- * This algorithm is experimental and is not one of the NIST competition
- * submissions.  It uses a masked version of the Xoodoo permutation to
- * absorb the key and nonce in the first block, and then switches to the
- * regular Xoodoo permutation for the associated data and plaintext.
- *
- * The theory (as yet unproven) is that this construction will provide
- * some protection for the key against power analysis side channels.
- * Please let me know what I've done wrong if this theory is incorrect.
  */
 
 #ifdef __cplusplus

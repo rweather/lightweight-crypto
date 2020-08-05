@@ -1,0 +1,11 @@
+aead_family=xoodyak
+aead_name=xoodyakv1
+aead_meta_name=Xoodyak-Masked
+aead_srcdir=Xoodyak_masked
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=xoodyak_masked_aead_encrypt
+aead_decrypt=xoodyak_masked_aead_decrypt
+aead_header=xoodyak-masked.h
+aead_variant=masked
