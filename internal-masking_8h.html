@@ -87,8 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">internal-masking.h File Reference</div>  </div>
 </div><!--header-->
@@ -96,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Utilities that help to implement masked ciphers.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="aead-random_8h_source.html">aead-random.h</a>&quot;</code><br/>
 </div>
 <p><a href="internal-masking_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -153,6 +152,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a09a4e2e440bf0b96bd23eda6d75e8b0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#a09a4e2e440bf0b96bd23eda6d75e8b0c">AEAD_MASKING_SHARES</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memdesc:a09a4e2e440bf0b96bd23eda6d75e8b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the default number of shares for the masked word operations.  <a href="#a09a4e2e440bf0b96bd23eda6d75e8b0c">More...</a><br/></td></tr>
 <tr class="separator:a09a4e2e440bf0b96bd23eda6d75e8b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ba1b0581bac9067512122a55abb8b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#a68ba1b0581bac9067512122a55abb8b8">AEAD_MASKING_KEY_ONLY</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a68ba1b0581bac9067512122a55abb8b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Degree of masking to apply to AEAD modes.  <a href="#a68ba1b0581bac9067512122a55abb8b8">More...</a><br/></td></tr>
+<tr class="separator:a68ba1b0581bac9067512122a55abb8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67cc243391d4b2c6e061cc42da7767bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#a67cc243391d4b2c6e061cc42da7767bf">mask_x2_input</a>(value, input)</td></tr>
 <tr class="memdesc:a67cc243391d4b2c6e061cc42da7767bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Masks an input value to produce a 2-share masked word.  <a href="#a67cc243391d4b2c6e061cc42da7767bf">More...</a><br/></td></tr>
 <tr class="separator:a67cc243391d4b2c6e061cc42da7767bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -458,24 +460,27 @@ typedef <a class="el" href="structmask__x4__uint32__t.html">mask_x4_uint32_t</a>
 typedef <a class="el" href="structmask__x4__uint64__t.html">mask_x4_uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a></td></tr>
 <tr class="memdesc:aa6621cc6545bdfa66d6602b0e28fe811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic masked 64-bit word. <br/></td></tr>
 <tr class="separator:aa6621cc6545bdfa66d6602b0e28fe811"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a920e5e0a102d6265a336d65c69fb048b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a920e5e0a102d6265a336d65c69fb048b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#a920e5e0a102d6265a336d65c69fb048b">aead_masking_init</a> (void)</td></tr>
-<tr class="memdesc:a920e5e0a102d6265a336d65c69fb048b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the system random number generator for the generation of masking material. <br/></td></tr>
-<tr class="separator:a920e5e0a102d6265a336d65c69fb048b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2b935ecb9076a4da59fddb6976920d8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a> (void)</td></tr>
-<tr class="memdesc:ac2b935ecb9076a4da59fddb6976920d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a single random 32-bit word for masking purposes.  <a href="#ac2b935ecb9076a4da59fddb6976920d8">More...</a><br/></td></tr>
-<tr class="separator:ac2b935ecb9076a4da59fddb6976920d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb021b17154ee1fa62f49beecd364abc"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a> (void)</td></tr>
-<tr class="memdesc:afb021b17154ee1fa62f49beecd364abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a single random 64-bit word for masking purposes.  <a href="#afb021b17154ee1fa62f49beecd364abc">More...</a><br/></td></tr>
-<tr class="separator:afb021b17154ee1fa62f49beecd364abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilities that help to implement masked ciphers. </p>
 <p>See <a class="el" href="masking.html">masking.dox</a> for more information on the definitions in this file. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a68ba1b0581bac9067512122a55abb8b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AEAD_MASKING_KEY_ONLY&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Degree of masking to apply to AEAD modes. </p>
+<p>Permutation-based AEAD modes typically absorb the key and nonce in the first block and then no longer have any use for the key. If the goal of the masking is to protect the key, then masking may not be required for the remaining block operations once the key has been randomized by combining it with the nonce.</p>
+<p>Define this macro to 1 to only mask block operations that involve the key. Define this macro to 0 to mask all block operations regardless. The default is 0 because it is safer, albeit slower. </p>
+
+</div>
+</div>
 <a class="anchor" id="a09a4e2e440bf0b96bd23eda6d75e8b0c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1129,13 +1134,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">        if (<span class="keyword">sizeof</span>((value).b) &lt;= 4) \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
 <div class="line">        else \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
 <div class="line">        (value).a = (input) ^ (value).b; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_ac2b935ecb9076a4da59fddb6976920d8"><div class="ttname"><a href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a></div><div class="ttdeci">uint32_t aead_masking_generate_32(void)</div><div class="ttdoc">Generate a single random 32-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:101</div></div>
-<div class="ttc" id="internal-masking_8h_html_afb021b17154ee1fa62f49beecd364abc"><div class="ttname"><a href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a></div><div class="ttdeci">uint64_t aead_masking_generate_64(void)</div><div class="ttdoc">Generate a single random 64-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:114</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
 </div><!-- fragment -->
 <p>Masks an input value to produce a 2-share masked word. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1521,7 +1526,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).a, (value2).a, (mask), (shift)); <a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">\</a></div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).b, (value2).b, (mask), (shift)); \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:476</div></div>
+<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:494</div></div>
 </div><!-- fragment -->
 <p>Performs a swap and move on two 2-share masked words. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1825,16 +1830,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">        if (<span class="keyword">sizeof</span>((value).b) &lt;= 4) { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
 <div class="line">        } <span class="keywordflow">else</span> { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
 <div class="line">        } \</div>
 <div class="line">        (value).a = (input) ^ (value).b ^ (value).c; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_ac2b935ecb9076a4da59fddb6976920d8"><div class="ttname"><a href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a></div><div class="ttdeci">uint32_t aead_masking_generate_32(void)</div><div class="ttdoc">Generate a single random 32-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:101</div></div>
-<div class="ttc" id="internal-masking_8h_html_afb021b17154ee1fa62f49beecd364abc"><div class="ttname"><a href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a></div><div class="ttdeci">uint64_t aead_masking_generate_64(void)</div><div class="ttdoc">Generate a single random 64-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:114</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
 </div><!-- fragment -->
 <p>Masks an input value to produce a 3-share masked word. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -2235,7 +2240,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).b, (value2).b, (mask), (shift)); <a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">\</a></div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).c, (value2).c, (mask), (shift)); \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:476</div></div>
+<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:494</div></div>
 </div><!-- fragment -->
 <p>Performs a swap and move on two 3-share masked words. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -2556,18 +2561,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">        if (<span class="keyword">sizeof</span>((value).b) &lt;= 4) { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
 <div class="line">        } <span class="keywordflow">else</span> { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
 <div class="line">        } \</div>
 <div class="line">        (value).a = (input) ^ (value).b ^ (value).c ^ (value).d; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_ac2b935ecb9076a4da59fddb6976920d8"><div class="ttname"><a href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a></div><div class="ttdeci">uint32_t aead_masking_generate_32(void)</div><div class="ttdoc">Generate a single random 32-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:101</div></div>
-<div class="ttc" id="internal-masking_8h_html_afb021b17154ee1fa62f49beecd364abc"><div class="ttname"><a href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a></div><div class="ttdeci">uint64_t aead_masking_generate_64(void)</div><div class="ttdoc">Generate a single random 64-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:114</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
 </div><!-- fragment -->
 <p>Masks an input value to produce a 4-share masked word. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -2985,7 +2990,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).c, (value2).c, (mask), (shift)); <a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">\</a></div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).d, (value2).d, (mask), (shift)); \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:476</div></div>
+<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:494</div></div>
 </div><!-- fragment -->
 <p>Performs a swap and move on two 4-share masked words. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3327,20 +3332,20 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">        if (<span class="keyword">sizeof</span>((value).b) &lt;= 4) { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).e = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).e = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
 <div class="line">        } <span class="keywordflow">else</span> { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).e = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).e = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
 <div class="line">        } \</div>
 <div class="line">        (value).a = (input) ^ (value).b ^ (value).c ^ (value).d ^ (value).e; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_ac2b935ecb9076a4da59fddb6976920d8"><div class="ttname"><a href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a></div><div class="ttdeci">uint32_t aead_masking_generate_32(void)</div><div class="ttdoc">Generate a single random 32-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:101</div></div>
-<div class="ttc" id="internal-masking_8h_html_afb021b17154ee1fa62f49beecd364abc"><div class="ttname"><a href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a></div><div class="ttdeci">uint64_t aead_masking_generate_64(void)</div><div class="ttdoc">Generate a single random 64-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:114</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
 </div><!-- fragment -->
 <p>Masks an input value to produce a 5-share masked word. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3777,7 +3782,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).d, (value2).d, (mask), (shift)); <a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">\</a></div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).e, (value2).e, (mask), (shift)); \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:476</div></div>
+<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:494</div></div>
 </div><!-- fragment -->
 <p>Performs a swap and move on two 5-share masked words. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -4068,23 +4073,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
 <div class="line">        if (<span class="keyword">sizeof</span>((value).b) &lt;= 4) { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).e = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
-<div class="line">            (value).f = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).e = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
+<div class="line">            (value).f = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(); \</div>
 <div class="line">        } <span class="keywordflow">else</span> { \</div>
-<div class="line">            (value).b = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).c = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).d = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).e = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
-<div class="line">            (value).f = <a class="code" href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a>(); \</div>
+<div class="line">            (value).b = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).c = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).d = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).e = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
+<div class="line">            (value).f = <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(); \</div>
 <div class="line">        } \</div>
 <div class="line">        (value).a = (input) ^ (value).b ^ (value).c ^ \</div>
 <div class="line">                  (value).d ^ (value).e ^ (value).f; \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_ac2b935ecb9076a4da59fddb6976920d8"><div class="ttname"><a href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a></div><div class="ttdeci">uint32_t aead_masking_generate_32(void)</div><div class="ttdoc">Generate a single random 32-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:101</div></div>
-<div class="ttc" id="internal-masking_8h_html_afb021b17154ee1fa62f49beecd364abc"><div class="ttname"><a href="internal-masking_8h.html#afb021b17154ee1fa62f49beecd364abc">aead_masking_generate_64</a></div><div class="ttdeci">uint64_t aead_masking_generate_64(void)</div><div class="ttdoc">Generate a single random 64-bit word for masking purposes. </div><div class="ttdef"><b>Definition:</b> internal-masking.c:114</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
 </div><!-- fragment -->
 <p>Masks an input value to produce a 6-share masked word. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -4504,7 +4509,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).e, (value2).e, (mask), (shift)); <a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">\</a></div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">        mask_swap_move_internal</a>((value1).f, (value2).f, (mask), (shift)); \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:476</div></div>
+<div class="ttc" id="internal-masking_8h_html_a587f29e68002be9c9f33ce2ae2ed7120"><div class="ttname"><a href="internal-masking_8h.html#a587f29e68002be9c9f33ce2ae2ed7120">mask_swap_move_internal</a></div><div class="ttdeci">#define mask_swap_move_internal(a, b, mask, shift)</div><div class="ttdef"><b>Definition:</b> internal-masking.h:494</div></div>
 </div><!-- fragment -->
 <p>Performs a swap and move on two 6-share masked words. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -4824,49 +4829,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac2b935ecb9076a4da59fddb6976920d8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t aead_masking_generate_32 </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generate a single random 32-bit word for masking purposes. </p>
-<dl class="section return"><dt>Returns</dt><dd>The random word. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="afb021b17154ee1fa62f49beecd364abc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint64_t aead_masking_generate_64 </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generate a single random 64-bit word for masking purposes. </p>
-<dl class="section return"><dt>Returns</dt><dd>The random word. </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

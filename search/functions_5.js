@@ -37,6 +37,7 @@ var searchData=
   ['gimli24_5fhash_5ffinalize',['gimli24_hash_finalize',['../gimli24_8h.html#acf8cbf313c338b480f31fd9c9f768470',1,'gimli24.c']]],
   ['gimli24_5fhash_5finit',['gimli24_hash_init',['../gimli24_8h.html#a7cd03f46508df5975d41a5f1b1e9be92',1,'gimli24.c']]],
   ['gimli24_5fhash_5fsqueeze',['gimli24_hash_squeeze',['../gimli24_8h.html#a14adb4f12fec4723c4789f0807681ea7',1,'gimli24.c']]],
+  ['gimli24_5fmask',['gimli24_mask',['../internal-gimli24-m_8h.html#a00336f520292b84579189f11fd5e2ddd',1,'internal-gimli24-m.c']]],
   ['gimli24_5fpermute',['gimli24_permute',['../internal-gimli24_8h.html#addf68dcd26c84960768af4a6e7a976fc',1,'internal-gimli24.c']]],
   ['gimli24_5fpermute_5fmasked',['gimli24_permute_masked',['../internal-gimli24-m_8h.html#a79b14fe5b4b9a77ca6899822222b5500',1,'internal-gimli24-m.c']]],
   ['gimli24_5funmask',['gimli24_unmask',['../internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b',1,'internal-gimli24-m.c']]],

@@ -84,7 +84,7 @@ Introduction</h1>
 <p>The average performance of the baseline unmasked algorithm is compared with its masked counterpart to produce the figures below. The figures show the amount of overhead. For example, if an algorithm has an overhead of 6.91 for four shares, then that means that the 4-share masked version is on average 6.91 times <b><em>slower</em></b> than the baseline unmasked version.</p>
 <p>Ideally, a masked algorithm with N shares would have an overhead of roughly N, but this won't normally be the case. Calls to the system random number generator may be slow: the Arduino Due produces a new random number every 84 clock cycles which can introduce delays. As the number of shares increases, the delays due to random number generation become more significant.</p>
 <p>Some algorithms can do better than N. Spook for example only masks the initialization and finalization steps, with the rest using the regular unmasked code. So sometimes Spook does better than N. But as N increases, the random number generation overhead becomes more significant.</p>
-<p>"Degree of Masking" in the table below indicates how much of the algorithm runtime is masked. A value of "Init/Final" indicates that initialization and finalization is masked but everything else uses the baseline unmasked code. A value of "Init" indicates that only initialization is masked. A value of "Full" indicates that every block operation is fully masked.</p>
+<p>"Degree of Masking" in the table below indicates how much of the algorithm runtime is masked. A value of "Init/Final" indicates that initialization and finalization tasks that involve the key are masked but everything else uses the baseline unmasked code. A value of "Init" indicates that only initialization is masked. A value of "Full" indicates that every block operation is fully masked.</p>
 <h1><a class="anchor" id="perf_masking_cortex_m3"></a>
 Performance on ARM Cortex M3</h1>
 <p>Where a NIST submission contains multiple algorithms in a family, <b><em>bold italics</em></b> indicates the primary algorithm in the family. Lower numbers are better.</p>
@@ -119,12 +119,16 @@ Performance on ARM Cortex M3</h1>
 <td>TinyJAMBU-192<sup> </sup></td><td>Full</td><td align="right">3.24</td><td align="right">8.25</td><td align="right">14.94</td><td align="right">26.24</td><td align="right">44.27 </td></tr>
 <tr>
 <td>TinyJAMBU-256<sup> </sup></td><td>Full</td><td align="right">3.25</td><td align="right">8.31</td><td align="right">15.08</td><td align="right">26.49</td><td align="right">44.86 </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b><sup> </sup></td><td>Init</td><td align="right">1.94</td><td align="right">3.76</td><td align="right">6.39</td><td align="right">10.31</td><td align="right">14.51 </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b><sup> </sup></td><td>Full</td><td align="right">5.89</td><td align="right">15.86</td><td align="right">28.53</td><td align="right">47.70</td><td align="right">69.57 </td></tr>
 </table>
 <p>Note 1: These masked implementations are experimental and unique to this library. They have not been approved by the algorithm authors. The approach taken may not be secure and more research is required. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

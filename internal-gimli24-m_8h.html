@@ -102,6 +102,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a79b14fe5b4b9a77ca6899822222b5500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gimli24-m_8h.html#a79b14fe5b4b9a77ca6899822222b5500">gimli24_permute_masked</a> (<a class="el" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a> state[12])</td></tr>
 <tr class="memdesc:a79b14fe5b4b9a77ca6899822222b5500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the masked GIMLI-24 state.  <a href="#a79b14fe5b4b9a77ca6899822222b5500">More...</a><br/></td></tr>
 <tr class="separator:a79b14fe5b4b9a77ca6899822222b5500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00336f520292b84579189f11fd5e2ddd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gimli24-m_8h.html#a00336f520292b84579189f11fd5e2ddd">gimli24_mask</a> (<a class="el" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a> output[12], const uint32_t input[12])</td></tr>
+<tr class="memdesc:a00336f520292b84579189f11fd5e2ddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an unmasked GIMLI-24 state into a masked state.  <a href="#a00336f520292b84579189f11fd5e2ddd">More...</a><br/></td></tr>
+<tr class="separator:a00336f520292b84579189f11fd5e2ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb98ea10ce16339da77131489993f07b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b">gimli24_unmask</a> (uint32_t output[12], const <a class="el" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a> input[12])</td></tr>
 <tr class="memdesc:afb98ea10ce16339da77131489993f07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a masked GIMLI-24 state into an unmasked state.  <a href="#afb98ea10ce16339da77131489993f07b">More...</a><br/></td></tr>
 <tr class="separator:afb98ea10ce16339da77131489993f07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,6 +114,41 @@ Functions</h2></td></tr>
 <p>Note: This implementation is experimental.</p>
 <p>References: <a href="https://gimli.cr.yp.to/">https://gimli.cr.yp.to/</a> </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a00336f520292b84579189f11fd5e2ddd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gimli24_mask </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a>&#160;</td>
+          <td class="paramname"><em>output</em>[12], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>input</em>[12]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts an unmasked GIMLI-24 state into a masked state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td>The output masked state in host byte order. </td></tr>
+    <tr><td class="paramname">input</td><td>The input unmasked state, in little-endian byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a79b14fe5b4b9a77ca6899822222b5500"></a>
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +171,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The input and output <em>state</em> are in host byte order.</p>
-<dl class="section note"><dt>Note</dt><dd>It is assumed that <a class="el" href="internal-masking_8h.html#a920e5e0a102d6265a336d65c69fb048b" title="Initializes the system random number generator for the generation of masking material. ">aead_masking_init()</a> has already been called. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is assumed that <a class="el" href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7" title="Initializes the system random number generator for the generation of masking material. ">aead_random_init()</a> has already been called. </dd></dl>
 
 </div>
 </div>
@@ -175,7 +213,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

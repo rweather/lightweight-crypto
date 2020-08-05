@@ -121,21 +121,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-gimli24-m_8h.html#a79b14fe5b4b9a77ca6899822222b5500">gimli24_permute_masked</a>(<a class="code" href="structmask__x4__uint32__t.html">mask_uint32_t</a> state[12]);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b">gimli24_unmask</a>(uint32_t output[12], <span class="keyword">const</span> <a class="code" href="structmask__x4__uint32__t.html">mask_uint32_t</a> input[12]);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-gimli24-m_8h.html#a00336f520292b84579189f11fd5e2ddd">gimli24_mask</a>(<a class="code" href="structmask__x4__uint32__t.html">mask_uint32_t</a> output[12], <span class="keyword">const</span> uint32_t input[12]);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="internal-gimli24-m_8h_html_afb98ea10ce16339da77131489993f07b"><div class="ttname"><a href="internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b">gimli24_unmask</a></div><div class="ttdeci">void gimli24_unmask(uint32_t output[12], const mask_uint32_t input[12])</div><div class="ttdoc">Converts a masked GIMLI-24 state into an unmasked state. </div><div class="ttdef"><b>Definition:</b> internal-gimli24-m.c:112</div></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b">gimli24_unmask</a>(uint32_t output[12], <span class="keyword">const</span> <a class="code" href="structmask__x4__uint32__t.html">mask_uint32_t</a> input[12]);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="internal-gimli24-m_8h_html_afb98ea10ce16339da77131489993f07b"><div class="ttname"><a href="internal-gimli24-m_8h.html#afb98ea10ce16339da77131489993f07b">gimli24_unmask</a></div><div class="ttdeci">void gimli24_unmask(uint32_t output[12], const mask_uint32_t input[12])</div><div class="ttdoc">Converts a masked GIMLI-24 state into an unmasked state. </div><div class="ttdef"><b>Definition:</b> internal-gimli24-m.c:125</div></div>
 <div class="ttc" id="internal-masking_8h_html"><div class="ttname"><a href="internal-masking_8h.html">internal-masking.h</a></div><div class="ttdoc">Utilities that help to implement masked ciphers. </div></div>
-<div class="ttc" id="structmask__x4__uint32__t_html"><div class="ttname"><a href="structmask__x4__uint32__t.html">mask_x4_uint32_t</a></div><div class="ttdoc">Masked 32-bit word with four shares. </div><div class="ttdef"><b>Definition:</b> internal-masking.h:134</div></div>
+<div class="ttc" id="structmask__x4__uint32__t_html"><div class="ttname"><a href="structmask__x4__uint32__t.html">mask_x4_uint32_t</a></div><div class="ttdoc">Masked 32-bit word with four shares. </div><div class="ttdef"><b>Definition:</b> internal-masking.h:152</div></div>
+<div class="ttc" id="internal-gimli24-m_8h_html_a00336f520292b84579189f11fd5e2ddd"><div class="ttname"><a href="internal-gimli24-m_8h.html#a00336f520292b84579189f11fd5e2ddd">gimli24_mask</a></div><div class="ttdeci">void gimli24_mask(mask_uint32_t output[12], const uint32_t input[12])</div><div class="ttdoc">Converts an unmasked GIMLI-24 state into a masked state. </div><div class="ttdef"><b>Definition:</b> internal-gimli24-m.c:112</div></div>
 <div class="ttc" id="internal-gimli24-m_8h_html_a79b14fe5b4b9a77ca6899822222b5500"><div class="ttname"><a href="internal-gimli24-m_8h.html#a79b14fe5b4b9a77ca6899822222b5500">gimli24_permute_masked</a></div><div class="ttdeci">void gimli24_permute_masked(mask_uint32_t state[12])</div><div class="ttdoc">Permutes the masked GIMLI-24 state. </div><div class="ttdef"><b>Definition:</b> internal-gimli24-m.c:51</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -160,12 +160,12 @@ Example: Bit-sliced GIFT-128</h1>
 <div class="line"></div>
 <div class="line">} <a class="code" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a>;</div>
 </div><!-- fragment --><p>The <a class="el" href="internal-masking_8h.html#ad3a968683c09d553a80dd6cfd67093ec" title="Masks an input value to produce a generic masked word. ">mask_input()</a> macro generates random material and masks the value:</p>
-<div class="fragment"><div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>();</div>
-<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>();</div>
-<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a> = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>();</div>
+<div class="fragment"><div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> = aead_masking_generate_32();</div>
+<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> = aead_masking_generate_32();</div>
+<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a> = aead_masking_generate_32();</div>
 <div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a087e10290b407a4d0f2c2991d98dcd86">a</a> = be_load_word32(input) ^ s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> ^ s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> ^ s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a>;</div>
-</div><!-- fragment --><p>The <a class="el" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8" title="Generate a single random 32-bit word for masking purposes. ">aead_masking_generate_32()</a> function is internal to the library and generates a random 32-bit value each time it is called. Recent 32-bit ARM and other microcontrollers come with an instruction or peripheral register that provides a random 32-bit value, so obtaining random data is not hard.</p>
-<p>Note: You need to call <a class="el" href="internal-masking_8h.html#a920e5e0a102d6265a336d65c69fb048b" title="Initializes the system random number generator for the generation of masking material. ">aead_masking_init()</a> before any use of the masking utilities to initialize the random number source. But that can be placed into your application's startup code or your AEAD mode's setup phase.</p>
+</div><!-- fragment --><p>The aead_masking_generate_32() function is internal to the library and generates a random 32-bit value each time it is called. Recent 32-bit ARM and other microcontrollers come with an instruction or peripheral register that provides a random 32-bit value, so obtaining random data is not hard.</p>
+<p>Note: You need to call aead_masking_init() before any use of the masking utilities to initialize the random number source. But that can be placed into your application's startup code or your AEAD mode's setup phase.</p>
 <p>The masking is repeated for the other plaintext and key words. Later, we compute the bit-sliced GIFT-128 S-box as follows:</p>
 <div class="fragment"><div class="line">s1 ^= s0 &amp; s2;</div>
 <div class="line">s0 ^= s1 &amp; s3;</div>
@@ -263,8 +263,8 @@ Input and output</h2>
 <div class="line"><a class="code" href="structmask__x3__uint32__t.html">mask_x3_uint32_t</a> w;</div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705">mask_x3_input</a>(w, x);</div>
 </div><!-- fragment --><p>Behind the scenes, <a class="el" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705" title="Masks an input value to produce a 3-share masked word. ">mask_x3_input()</a> expands to:</p>
-<div class="fragment"><div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>();</div>
-<div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a> = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>();</div>
+<div class="fragment"><div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> = aead_masking_generate_32();</div>
+<div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a> = aead_masking_generate_32();</div>
 <div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab212db04f12a4e283869544e87d6ef97">a</a> = x ^ w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> ^ w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a>;</div>
 </div><!-- fragment --><p>As can be seen, masking involves generating random values for the second and subsequent shares and then XOR'ing it with the input to create the first share. After masking, the original value is no longer operative; w.a, w.b, and w.c are all randomized. For the 4-share and higher variants, more random words are generated and XOR'ed with x.</p>
 <p>To recover the results at the end of the cipher, the shares are recombined using <a class="el" href="internal-masking_8h.html#aff94f591ebd2fc23384612ace06db980" title="Unmasks a 3-share masked word to produce an output value. ">mask_x3_output()</a>:</p>
@@ -349,7 +349,7 @@ AND</h2>
 <div class="line">    w1.d ^= (w2.d &amp; w3.d)</div>
 <div class="line"></div>
 <div class="line">mix(a1, a2, a3, b1, b2, b3) :</div>
-<div class="line">    temp = <a class="code" href="internal-masking_8h.html#ac2b935ecb9076a4da59fddb6976920d8">aead_masking_generate_32</a>()</div>
+<div class="line">    temp = aead_masking_generate_32()</div>
 <div class="line">    a1 ^= temp</div>
 <div class="line">    b1 ^= temp ^ (b3 &amp; a2) ^ (b2 &amp; a3)</div>
 </div><!-- fragment --><p>Essentially this is performing a diagonal matrix operation where each share is mixed with all of the shares below it and to the right. At each step, a new random number is generated and mixed into the state.</p>
@@ -416,7 +416,7 @@ Swap</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

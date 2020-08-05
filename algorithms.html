@@ -245,16 +245,17 @@ Summary</h1>
 Algorithms with side channel protection</h1>
 <p>The following algorithm implementations in this library attempt to provide some protection against power analysis side channels:</p>
 <ul>
-<li><a class="el" href="algorithms.html#alg_ascon">ASCON</a> (experimental, unique to this library, unproven) </li>
-<li><a class="el" href="algorithms.html#alg_drygascon">DryGASCON</a> (based on the authors' specification) </li>
-<li><a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a> (based on the authors' masked reference version) </li>
-<li><a class="el" href="algorithms.html#alg_gimli">Gimli</a> (experimental, unique to this library, unproven) </li>
-<li><a class="el" href="algorithms.html#alg_isap">ISAP</a> (based on the authors' specification) </li>
-<li><a class="el" href="algorithms.html#alg_pyjamask">Pyjamask</a> (based on the authors' specification) </li>
-<li><a class="el" href="algorithms.html#alg_spook">Spook</a> (based on the authors' specification) </li>
-<li><a class="el" href="algorithms.html#alg_tinyjambu">TinyJAMBU</a></li>
+<li><a class="el" href="algorithms.html#alg_ascon">ASCON</a> (experimental) </li>
+<li><a class="el" href="algorithms.html#alg_drygascon">DryGASCON</a> </li>
+<li><a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a> version) </li>
+<li><a class="el" href="algorithms.html#alg_gimli">Gimli</a> (experimental) </li>
+<li><a class="el" href="algorithms.html#alg_isap">ISAP</a> </li>
+<li><a class="el" href="algorithms.html#alg_pyjamask">Pyjamask</a> </li>
+<li><a class="el" href="algorithms.html#alg_spook">Spook</a> </li>
+<li><a class="el" href="algorithms.html#alg_tinyjambu">TinyJAMBU</a> </li>
+<li><a class="el" href="algorithms.html#alg_xoodyak">Xoodyak</a></li>
 </ul>
-<p>These implementations have not yet been subjected to rigorous analysis, so the level of protection may not be as great as hoped.</p>
+<p>These implementations have not yet been subjected to rigorous analysis, so the level of protection may not be as great as hoped. The experimental algorithms mask initialization and finalization steps that involve the key but use the regular block operation for associated data and plaintext.</p>
 <p>In the case of DryGASCON and ISAP, the protection is built into the algorithm. For the others, the "individual" directory contains "*_masked" variants side by side with the original unprotected versions.</p>
 <h1><a class="anchor" id="alg_ace"></a>
 ACE</h1>
@@ -573,6 +574,7 @@ Xoodyak</h1>
 <p>Xoodyak is an authenticated encryption and hash algorithm pair based around the 384-bit Xoodoo permutation that is similar in structure to Keccak but is more efficient than Keccak on 32-bit embedded devices. The Cyclist mode of operation is used to convert the permutation into a sponge for the higher-level algorithms.</p>
 <p>The Xoodyak encryption mode has a 128-bit key, a 128-bit nonce, and a 128-bit authentication tag. The Xoodyak hashing mode has a 256-bit fixed hash output and can also be used as an extensible output function (XOF).</p>
 <p>The Xoodyak specification describes a re-keying mechanism where the key for one packet is used to derive the key to use on the next packet. This provides some resistance against side channel attacks by making the session key a moving target. This library does not currently implement re-keying.</p>
+<p>This library also provides a masked implementation of Xoodyak.</p>
 <p><b>Recommendation:</b> There is only one encryption algorithm and one hash algorithm in the Xoodyak family, so they the recommended ones.</p>
 <h1><a class="anchor" id="alg_internal"></a>
 Internal block operations</h1>
@@ -582,7 +584,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

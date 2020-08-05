@@ -129,17 +129,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
 <div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="unionxoodoo__state__t.html#a400b14c16c323b7e8477930e6a9bcf4b">   60</a></span>&#160;    uint32_t S[<a class="code" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a>][<a class="code" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a>];</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="unionxoodoo__state__t.html#aa444723758c801e0652c6e662d677785">   63</a></span>&#160;    uint8_t B[<a class="code" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> * <a class="code" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a> * <span class="keyword">sizeof</span>(uint32_t)];</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="unionxoodoo__state__t.html#a591a75b49bef142c3157a474c37fda52">   63</a></span>&#160;    uint32_t W[<a class="code" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> * <a class="code" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a>];</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <a class="code" href="unionxoodoo__state__t.html">xoodoo_state_t</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb">xoodoo_permute</a>(<a class="code" href="unionxoodoo__state__t.html">xoodoo_state_t</a> *state);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="unionxoodoo__state__t.html#aa444723758c801e0652c6e662d677785">   66</a></span>&#160;    uint8_t B[<a class="code" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> * <a class="code" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a> * <span class="keyword">sizeof</span>(uint32_t)];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <a class="code" href="unionxoodoo__state__t.html">xoodoo_state_t</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb">xoodoo_permute</a>(<a class="code" href="unionxoodoo__state__t.html">xoodoo_state_t</a> *state);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="internal-xoodoo_8h_html_a5ad1fc1846133c9198b528cf9b0911f1"><div class="ttname"><a href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a></div><div class="ttdeci">#define XOODOO_ROWS</div><div class="ttdoc">Number of rows in the Xoodoo state. </div><div class="ttdef"><b>Definition:</b> internal-xoodoo.h:42</div></div>
 <div class="ttc" id="internal-xoodoo_8h_html_adeb90681d46a7a124f85184e132001eb"><div class="ttname"><a href="internal-xoodoo_8h.html#adeb90681d46a7a124f85184e132001eb">xoodoo_permute</a></div><div class="ttdeci">void xoodoo_permute(xoodoo_state_t *state)</div><div class="ttdoc">Permutes the Xoodoo state. </div><div class="ttdef"><b>Definition:</b> internal-xoodoo.c:27</div></div>
 <div class="ttc" id="internal-xoodoo_8h_html_af0fab1ded83854e41cdbbe04948980c4"><div class="ttname"><a href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a></div><div class="ttdeci">#define XOODOO_COLS</div><div class="ttdoc">Number of columns in the Xoodoo state. </div><div class="ttdef"><b>Definition:</b> internal-xoodoo.h:47</div></div>
@@ -147,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -97,6 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Data Fields</h2></td></tr>
 <tr class="memitem:a400b14c16c323b7e8477930e6a9bcf4b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionxoodoo__state__t.html#a400b14c16c323b7e8477930e6a9bcf4b">S</a> [<a class="el" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a>][<a class="el" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a>]</td></tr>
 <tr class="separator:a400b14c16c323b7e8477930e6a9bcf4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591a75b49bef142c3157a474c37fda52"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionxoodoo__state__t.html#a591a75b49bef142c3157a474c37fda52">W</a> [<a class="el" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> *<a class="el" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a>]</td></tr>
+<tr class="separator:a591a75b49bef142c3157a474c37fda52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa444723758c801e0652c6e662d677785"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionxoodoo__state__t.html#aa444723758c801e0652c6e662d677785">B</a> [<a class="el" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> *<a class="el" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a> *sizeof(uint32_t)]</td></tr>
 <tr class="separator:aa444723758c801e0652c6e662d677785"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -125,7 +127,20 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Words of the state </p>
+<p>Words of the state organized into rows and columns </p>
+
+</div>
+</div>
+<a class="anchor" id="a591a75b49bef142c3157a474c37fda52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t xoodoo_state_t::W[<a class="el" href="internal-xoodoo_8h.html#a5ad1fc1846133c9198b528cf9b0911f1">XOODOO_ROWS</a> *<a class="el" href="internal-xoodoo_8h.html#af0fab1ded83854e41cdbbe04948980c4">XOODOO_COLS</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Words of the state as a single linear array </p>
 
 </div>
 </div>
@@ -135,7 +150,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 1 2020 05:55:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 6 2020 05:11:57 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
