@@ -29,7 +29,7 @@ aead_cipher_t const drygascon128_cipher = {
     DRYGASCON128_KEY_SIZE,
     DRYGASCON128_NONCE_SIZE,
     DRYGASCON128_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
     drygascon128_aead_encrypt,
     drygascon128_aead_decrypt
 };
@@ -39,7 +39,7 @@ aead_cipher_t const drygascon256_cipher = {
     DRYGASCON256_KEY_SIZE,
     DRYGASCON256_NONCE_SIZE,
     DRYGASCON256_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
     drygascon256_aead_encrypt,
     drygascon256_aead_decrypt
 };
@@ -48,7 +48,7 @@ aead_hash_algorithm_t const drygascon128_hash_algorithm = {
     "DryGASCON128-HASH",
     sizeof(int),
     DRYGASCON128_HASH_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
     drygascon128_hash,
     (aead_hash_init_t)0,
     (aead_hash_update_t)0,
@@ -61,7 +61,7 @@ aead_hash_algorithm_t const drygascon256_hash_algorithm = {
     "DryGASCON256-HASH",
     sizeof(int),
     DRYGASCON256_HASH_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
     drygascon256_hash,
     (aead_hash_init_t)0,
     (aead_hash_update_t)0,

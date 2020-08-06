@@ -30,7 +30,11 @@ aead_cipher_t const xoodyak_masked_cipher = {
     XOODYAK_MASKED_KEY_SIZE,
     XOODYAK_MASKED_NONCE_SIZE,
     XOODYAK_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+#if AEAD_MASKING_KEY_ONLY
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
+#else
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
+#endif
     xoodyak_masked_aead_encrypt,
     xoodyak_masked_aead_decrypt
 };

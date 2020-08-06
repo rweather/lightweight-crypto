@@ -30,7 +30,7 @@ aead_cipher_t const gimli24_masked_cipher = {
     GIMLI24_MASKED_KEY_SIZE,
     GIMLI24_MASKED_NONCE_SIZE,
     GIMLI24_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
     gimli24_masked_aead_encrypt,
     gimli24_masked_aead_decrypt
 };

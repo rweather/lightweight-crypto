@@ -30,7 +30,7 @@ aead_cipher_t const isap_keccak_128a_cipher = {
     ISAP_KEY_SIZE,
     ISAP_NONCE_SIZE,
     ISAP_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_KEY,
     isap_keccak_128a_aead_encrypt,
     isap_keccak_128a_aead_decrypt
 };
@@ -40,7 +40,7 @@ aead_cipher_t const isap_ascon_128a_cipher = {
     ISAP_KEY_SIZE,
     ISAP_NONCE_SIZE,
     ISAP_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_KEY,
     isap_ascon_128a_aead_encrypt,
     isap_ascon_128a_aead_decrypt
 };
@@ -50,7 +50,7 @@ aead_cipher_t const isap_keccak_128_cipher = {
     ISAP_KEY_SIZE,
     ISAP_NONCE_SIZE,
     ISAP_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_KEY,
     isap_keccak_128_aead_encrypt,
     isap_keccak_128_aead_decrypt
 };
@@ -60,7 +60,7 @@ aead_cipher_t const isap_ascon_128_cipher = {
     ISAP_KEY_SIZE,
     ISAP_NONCE_SIZE,
     ISAP_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_KEY,
     isap_ascon_128_aead_encrypt,
     isap_ascon_128_aead_decrypt
 };

@@ -30,7 +30,7 @@ aead_cipher_t const spook_128_512_su_masked_cipher = {
     SPOOK_MASKED_SU_KEY_SIZE,
     SPOOK_MASKED_NONCE_SIZE,
     SPOOK_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
     spook_128_512_su_masked_aead_encrypt,
     spook_128_512_su_masked_aead_decrypt
 };
@@ -40,7 +40,7 @@ aead_cipher_t const spook_128_384_su_masked_cipher = {
     SPOOK_MASKED_SU_KEY_SIZE,
     SPOOK_MASKED_NONCE_SIZE,
     SPOOK_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
     spook_128_384_su_masked_aead_encrypt,
     spook_128_384_su_masked_aead_decrypt
 };
@@ -50,7 +50,7 @@ aead_cipher_t const spook_128_512_mu_masked_cipher = {
     SPOOK_MASKED_MU_KEY_SIZE,
     SPOOK_MASKED_NONCE_SIZE,
     SPOOK_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
     spook_128_512_mu_masked_aead_encrypt,
     spook_128_512_mu_masked_aead_decrypt
 };
@@ -60,7 +60,7 @@ aead_cipher_t const spook_128_384_mu_masked_cipher = {
     SPOOK_MASKED_MU_KEY_SIZE,
     SPOOK_MASKED_NONCE_SIZE,
     SPOOK_MASKED_TAG_SIZE,
-    AEAD_FLAG_LITTLE_ENDIAN,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_KEY,
     spook_128_384_mu_masked_aead_encrypt,
     spook_128_384_mu_masked_aead_decrypt
 };

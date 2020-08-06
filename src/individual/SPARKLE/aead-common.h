@@ -154,7 +154,7 @@ typedef void (*aead_xof_squeeze_t)
 /**
  * \brief No special AEAD features.
  */
-#define AEAD_FLAG_NONE          0x0000
+#define AEAD_FLAG_NONE              0x0000
 
 /**
  * \brief The natural byte order of the AEAD cipher is little-endian.
@@ -166,7 +166,18 @@ typedef void (*aead_xof_squeeze_t)
  * numbers as nonces.  The application needs to know whether the sequence
  * number should be packed into the leading or trailing bytes of the nonce.
  */
-#define AEAD_FLAG_LITTLE_ENDIAN 0x0001
+#define AEAD_FLAG_LITTLE_ENDIAN     0x0001
+
+/**
+ * \brief The AEAD mode provides side-channel protection for the key.
+ */
+#define AEAD_FLAG_SC_PROTECT_KEY    0x0002
+
+/**
+ * \brief The AEAD mode provides side-channel protection for all block
+ * operations.
+ */
+#define AEAD_FLAG_SC_PROTECT_ALL    0x0004
 
 /**
  * \brief Meta-information about an AEAD cipher.

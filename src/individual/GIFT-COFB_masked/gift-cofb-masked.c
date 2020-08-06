@@ -30,7 +30,7 @@ aead_cipher_t const gift_cofb_masked_cipher = {
     GIFT_COFB_MASKED_KEY_SIZE,
     GIFT_COFB_MASKED_NONCE_SIZE,
     GIFT_COFB_MASKED_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_ALL,
     gift_cofb_masked_aead_encrypt,
     gift_cofb_masked_aead_decrypt
 };

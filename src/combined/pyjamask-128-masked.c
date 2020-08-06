@@ -28,7 +28,7 @@ aead_cipher_t const pyjamask_masked_128_cipher = {
     PYJAMASK_128_MASKED_KEY_SIZE,
     PYJAMASK_128_MASKED_NONCE_SIZE,
     PYJAMASK_128_MASKED_TAG_SIZE,
-    AEAD_FLAG_NONE,
+    AEAD_FLAG_SC_PROTECT_ALL,
     pyjamask_masked_128_aead_encrypt,
     pyjamask_masked_128_aead_decrypt
 };
