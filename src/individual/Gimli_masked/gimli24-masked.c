@@ -272,7 +272,6 @@ static void gimli24_masked_encrypt
     (mask_uint32_t state[12], unsigned char *dest,
      const unsigned char *src, unsigned long long len)
 {
-    unsigned char padded[GIMLI24_MASKED_BLOCK_SIZE];
     unsigned temp;
     while (len >= GIMLI24_MASKED_BLOCK_SIZE) {
         mask_xor_const(state[0], le_load_word32(src));
@@ -288,19 +287,34 @@ static void gimli24_masked_encrypt
         src += GIMLI24_MASKED_BLOCK_SIZE;
         len -= GIMLI24_MASKED_BLOCK_SIZE;
     }
-    temp = (unsigned)len;
-    memcpy(padded, src, temp);
-    padded[temp] = 0x01; /* Padding */
-    memset(padded + temp + 1, 0, GIMLI24_MASKED_BLOCK_SIZE - (temp + 1));
-    mask_xor_const(state[0], le_load_word32(padded));
-    mask_xor_const(state[1], le_load_word32(padded + 4));
-    mask_xor_const(state[2], le_load_word32(padded + 8));
-    mask_xor_const(state[3], le_load_word32(padded + 12));
-    le_store_word32(padded,      mask_output(state[0]));
-    le_store_word32(padded + 4,  mask_output(state[1]));
-    le_store_word32(padded + 8,  mask_output(state[2]));
-    le_store_word32(padded + 12, mask_output(state[3]));
-    memcpy(dest, padded, temp);
+    temp = 0;
+    while (len >= 4) {
+        mask_xor_const(state[temp], le_load_word32(src));
+        le_store_word32(dest, mask_output(state[temp]));
+        src += 4;
+        dest += 4;
+        len -= 4;
+        ++temp;
+    }
+    if (len == 0) {
+        mask_xor_const(state[temp], 0x01); /* Padding */
+    } else if (len == 1) {
+        mask_xor_const(state[temp], src[0]);
+        dest[0] = (unsigned char)mask_output(state[temp]);
+        mask_xor_const(state[temp], 0x0100); /* Padding */
+    } else if (len == 2) {
+        mask_xor_const(state[temp], le_load_word16(src));
+        le_store_word16(dest, (uint16_t)(mask_output(state[temp])));
+        mask_xor_const(state[temp], 0x010000); /* Padding */
+    } else {
+        uint32_t mword = le_load_word16(src) | (((uint32_t)(src[2])) << 16);
+        mask_xor_const(state[temp], mword);
+        mword = mask_output(state[temp]) & 0x00FFFFFFU;
+        dest[0] = (unsigned char)mword;
+        dest[1] = (unsigned char)(mword >> 8);
+        dest[2] = (unsigned char)(mword >> 16);
+        mask_xor_const(state[temp], 0x01000000); /* Padding */
+    }
     mask_xor_const(state[11], 0x01000000U); /* Domain separation */
     gimli24_permute_masked(state);
 }
