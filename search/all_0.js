@@ -26,6 +26,8 @@ var searchData=
   ['aead_5fcipher_5ft',['aead_cipher_t',['../structaead__cipher__t.html',1,'']]],
   ['aead_5fflag_5flittle_5fendian',['AEAD_FLAG_LITTLE_ENDIAN',['../aead-common_8h.html#a18db69f1de513ab2385b38ab0770efdd',1,'aead-common.h']]],
   ['aead_5fflag_5fnone',['AEAD_FLAG_NONE',['../aead-common_8h.html#abf75baea17c19ea12c074cf2587b2852',1,'aead-common.h']]],
+  ['aead_5fflag_5fsc_5fprotect_5fall',['AEAD_FLAG_SC_PROTECT_ALL',['../aead-common_8h.html#a963e61346eb7f9bb12eaa65aff086e48',1,'aead-common.h']]],
+  ['aead_5fflag_5fsc_5fprotect_5fkey',['AEAD_FLAG_SC_PROTECT_KEY',['../aead-common_8h.html#a070c1ea1ffe6f82f733571595b8ac04a',1,'aead-common.h']]],
   ['aead_5fhash_5falgorithm_5ft',['aead_hash_algorithm_t',['../structaead__hash__algorithm__t.html',1,'']]],
   ['aead_5fhash_5ffinalize_5ft',['aead_hash_finalize_t',['../aead-common_8h.html#a5a43ca5f6dcd78d7d0a8831a070de0a7',1,'aead-common.h']]],
   ['aead_5fhash_5finit_5ft',['aead_hash_init_t',['../aead-common_8h.html#aba2e9c4d866dd218472107e9d7bba204',1,'aead-common.h']]],

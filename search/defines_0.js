@@ -6,6 +6,8 @@ var searchData=
   ['ace_5ftag_5fsize',['ACE_TAG_SIZE',['../ace_8h.html#a0d986ae6b5b4d4986a867fadaea83103',1,'ace.h']]],
   ['aead_5fflag_5flittle_5fendian',['AEAD_FLAG_LITTLE_ENDIAN',['../aead-common_8h.html#a18db69f1de513ab2385b38ab0770efdd',1,'aead-common.h']]],
   ['aead_5fflag_5fnone',['AEAD_FLAG_NONE',['../aead-common_8h.html#abf75baea17c19ea12c074cf2587b2852',1,'aead-common.h']]],
+  ['aead_5fflag_5fsc_5fprotect_5fall',['AEAD_FLAG_SC_PROTECT_ALL',['../aead-common_8h.html#a963e61346eb7f9bb12eaa65aff086e48',1,'aead-common.h']]],
+  ['aead_5fflag_5fsc_5fprotect_5fkey',['AEAD_FLAG_SC_PROTECT_KEY',['../aead-common_8h.html#a070c1ea1ffe6f82f733571595b8ac04a',1,'aead-common.h']]],
   ['aead_5fmasking_5fkey_5fonly',['AEAD_MASKING_KEY_ONLY',['../internal-masking_8h.html#a68ba1b0581bac9067512122a55abb8b8',1,'internal-masking.h']]],
   ['aead_5fmasking_5fshares',['AEAD_MASKING_SHARES',['../internal-masking_8h.html#a09a4e2e440bf0b96bd23eda6d75e8b0c',1,'internal-masking.h']]],
   ['ascon128_5fkey_5fsize',['ASCON128_KEY_SIZE',['../ascon128_8h.html#a74d1e46abe6ab08aeb2c431344f2107f',1,'ascon128.h']]],

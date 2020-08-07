@@ -126,7 +126,6 @@ var searchData=
   ['gimli24_5fhash_5fstate_5ft',['gimli24_hash_state_t',['../uniongimli24__hash__state__t.html',1,'']]],
   ['gimli24_5fkey_5fsize',['GIMLI24_KEY_SIZE',['../gimli24_8h.html#a3675cd9ad69780d2c9fc8dec14145bef',1,'gimli24.h']]],
   ['gimli24_5fmask',['gimli24_mask',['../internal-gimli24-m_8h.html#a00336f520292b84579189f11fd5e2ddd',1,'internal-gimli24-m.c']]],
-  ['gimli24_5fmasked_5fstate_5ft',['gimli24_masked_state_t',['../uniongimli24__masked__state__t.html',1,'']]],
   ['gimli24_5fnonce_5fsize',['GIMLI24_NONCE_SIZE',['../gimli24_8h.html#a7618c63ac7eb4274c1a38b7850a8d5f4',1,'gimli24.h']]],
   ['gimli24_5fpermute',['gimli24_permute',['../internal-gimli24_8h.html#addf68dcd26c84960768af4a6e7a976fc',1,'internal-gimli24.c']]],
   ['gimli24_5fpermute_5fmasked',['gimli24_permute_masked',['../internal-gimli24-m_8h.html#a79b14fe5b4b9a77ca6899822222b5500',1,'internal-gimli24-m.c']]],

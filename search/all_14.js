@@ -16,5 +16,5 @@ var searchData=
   ['wage_5fset_5frate',['wage_set_rate',['../internal-wage_8h.html#a7b78baf1d156a3a6b400a62e7255cab8',1,'internal-wage.c']]],
   ['wage_5fstate_5fsize',['WAGE_STATE_SIZE',['../internal-wage_8h.html#ab0a81532d7b429f23a4adc5e7a55bb5c',1,'internal-wage.h']]],
   ['wage_5ftag_5fsize',['WAGE_TAG_SIZE',['../wage_8h.html#a0609c94025e7bbadba579da8bab4eeaa',1,'wage.h']]],
-  ['words',['words',['../uniongimli24__masked__state__t.html#a07c285d8d6ff2930b668d8be9bfb8b27',1,'gimli24_masked_state_t::words()'],['../uniongimli24__state__t.html#ab8302a46e53a1f48d8e28526c93b710b',1,'gimli24_state_t::words()'],['../unionchacha20__state__t.html#ac60de42575dd42db67f4c131bb899460',1,'chacha20_state_t::words()']]]
+  ['words',['words',['../uniongimli24__state__t.html#ab8302a46e53a1f48d8e28526c93b710b',1,'gimli24_state_t::words()'],['../unionchacha20__state__t.html#ac60de42575dd42db67f4c131bb899460',1,'chacha20_state_t::words()']]]
 ];
