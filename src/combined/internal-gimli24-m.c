@@ -23,29 +23,188 @@
 #include "internal-gimli24-m.h"
 #include "internal-util.h"
 
+/* Sub-phases of GIMLI24_SP, split into separate shares */
+#define GIMLI24_SP_1_SHARE(s0, s4, s8, share) \
+    do { \
+        x.share = leftRotate24(s0.share); \
+        y.share = leftRotate9(s4.share); \
+        s4.share = y.share ^ x.share; \
+    } while (0)
+#define GIMLI24_SP_2_SHARE(s0, s4, s8, share) \
+    do { \
+        s4.share ^= (t.share << 1); \
+        s0.share = s8.share ^ y.share; \
+    } while (0)
+#define GIMLI24_SP_3_SHARE(s0, s4, s8, share) \
+    do { \
+        s0.share ^= (t.share << 3); \
+    } while (0)
+#define GIMLI24_SP_4_SHARE(s0, s4, s8, share) \
+    do { \
+        s8.share = (s8.share << 1) ^ (t.share << 2) ^ x.share; \
+    } while (0)
+#if AEAD_MASKING_SHARES == 2
+#define GIMLI24_SP_1(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_2(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_3(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_4(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, a); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 3
+#define GIMLI24_SP_1(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_2(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_3(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_4(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, a); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 4
+#define GIMLI24_SP_1(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_2(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_3(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_4(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, a); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 5
+#define GIMLI24_SP_1(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_2(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_3(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_4(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, a); \
+    } while (0)
+#elif AEAD_MASKING_SHARES == 6
+#define GIMLI24_SP_1(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, f); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_1_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_2(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, f); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_2_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_3(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, f); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_3_SHARE(s0, s4, s8, a); \
+    } while (0)
+#define GIMLI24_SP_4(s0, s4, s8) \
+    do { \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, f); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, e); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, d); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, c); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, b); \
+        GIMLI24_SP_4_SHARE(s0, s4, s8, a); \
+    } while (0)
+#else
+#error "Unknown number of shares"
+#endif
+
 /* Apply the SP-box to a specific column in the state array */
 #define GIMLI24_SP_MASKED(s0, s4, s8) \
     do { \
-        mask_rol(x, s0, 24); \
-        mask_rol(y, s4, 9); \
-        s4 = y; \
-        mask_xor(s4, x); \
+        GIMLI24_SP_1(s0, s4, s8); \
         mask_zero(t); \
         mask_or(t, x, s8); \
-        mask_shl(t, t, 1); \
-        mask_xor(s4, t); \
-        s0 = s8; \
-        mask_xor(s0, y); \
+        GIMLI24_SP_2(s0, s4, s8); \
         mask_zero(t); \
         mask_and(t, x, y); \
-        mask_shl(t, t, 3); \
-        mask_xor(s0, t); \
+        GIMLI24_SP_3(s0, s4, s8); \
         mask_zero(t); \
         mask_and(t, y, s8); \
-        mask_shl(t, t, 2); \
-        mask_shl(s8, s8, 1); \
-        mask_xor(s8, t); \
-        mask_xor(s8, x); \
+        GIMLI24_SP_4(s0, s4, s8); \
     } while (0)
 
 void gimli24_permute_masked(mask_uint32_t state[12])
