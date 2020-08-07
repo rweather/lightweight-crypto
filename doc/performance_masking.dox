@@ -68,7 +68,8 @@ Lower numbers are better.
 <tr><td>ASCON-128a<sup>1</sup></td><td>Init/Final</td><td align="right">2.42</td><td align="right">5.01</td><td align="right">8.32</td><td align="right">13.67</td><td align="right">19.69</td></tr>
 <tr><td>ASCON-80pq<sup>1</sup></td><td>Init/Final</td><td align="right">2.16</td><td align="right">4.11</td><td align="right">6.93</td><td align="right">11.29</td><td align="right">16.15</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><sup> </sup></td><td>Full</td><td align="right">6.28</td><td align="right">19.27</td><td align="right">36.84</td><td align="right">62.16</td><td align="right">91.22</td></tr>
-<tr><td><b><i>GIMLI-24</i></b><sup>1</sup><td>Init</td></td><td align="right">2.68</td><td align="right">6.29</td><td align="right">12.03</td><td align="right">19.62</td><td align="right">29.99</td></tr>
+<tr><td><b><i>GIMLI-24</i></b><sup> </sup><td>Init</td></td><td align="right">2.68</td><td align="right">6.29</td><td align="right">12.03</td><td align="right">19.62</td><td align="right">29.99</td></tr>
+<tr><td><b><i>GIMLI-24</i></b><sup> </sup><td>Full</td></td><td align="right">10.50</td><td align="right">31.25</td><td align="right">62.46</td><td align="right">106.08</td><td align="right">162.86</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b><sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14</td></tr>
 <tr><td>Pyjamask-96-AEAD<sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14</td></tr>
 <tr><td>Spook-128-384-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47</td></tr>
