@@ -245,7 +245,7 @@ Summary</h1>
 Algorithms with side channel protection</h1>
 <p>The following algorithm implementations in this library attempt to provide some protection against power analysis side channels:</p>
 <ul>
-<li><a class="el" href="algorithms.html#alg_ascon">ASCON</a> (experimental) </li>
+<li><a class="el" href="algorithms.html#alg_ascon">ASCON</a> </li>
 <li><a class="el" href="algorithms.html#alg_drygascon">DryGASCON</a> </li>
 <li><a class="el" href="algorithms.html#alg_gift_cofb">GIFT-COFB</a> version) </li>
 <li><a class="el" href="algorithms.html#alg_gimli">Gimli</a> </li>
@@ -255,7 +255,7 @@ Algorithms with side channel protection</h1>
 <li><a class="el" href="algorithms.html#alg_tinyjambu">TinyJAMBU</a> </li>
 <li><a class="el" href="algorithms.html#alg_xoodyak">Xoodyak</a></li>
 </ul>
-<p>These implementations have not yet been subjected to rigorous analysis, so the level of protection may not be as great as hoped. The experimental algorithms mask initialization and finalization steps that involve the key but use the regular block operation for associated data and plaintext.</p>
+<p>These implementations have not yet been subjected to rigorous analysis, so the level of protection may not be as great as hoped.</p>
 <p>In the case of DryGASCON and ISAP, the protection is built into the algorithm. For the others, the "individual" directory contains "*_masked" variants side by side with the original unprotected versions.</p>
 <h1><a class="anchor" id="alg_ace"></a>
 ACE</h1>
@@ -273,9 +273,7 @@ ASCON</h1>
 </ul>
 <p>ASCON-128 is the recommended algorithm from the NIST submission. ASCON-128-a is faster but does not mix the input state quite as much as ASCON-128. ASCON-80pq is essentially the same as ASCON-128 but it has a 160-bit key which may give added resistance against quantum computers.</p>
 <p>The library also implements the ASCON-HASH and ASCON-XOF hashing algorithms as companions to the AEAD mode.</p>
-<p>In its standard form, ASCON does not provide any built-in protection against power analysis side channels. This library contains an experimental implementation that has not been approved by the algorithm's authors; it is my own invention.</p>
-<p>The experiment uses a masked version of the ASCON permutation to absorb the key and nonce in the first block, and to generate the authentication tag in the last block. The regular ASCON permutation is used for the associated data and plaintext.</p>
-<p>The theory (as yet unproven) is that this construction will provide some protection for the key against power analysis side channels. Please let me know what I've done wrong if this theory is incorrect.</p>
+<p>This library also provides a masked implementation of ASCON.</p>
 <p><b>Recommendation:</b> Use ASCON-128 for now unless you consider the 128-bit key length to be too short, in which case you should use ASCON-80pq.</p>
 <h1><a class="anchor" id="alg_comet"></a>
 COMET</h1>
@@ -348,7 +346,7 @@ Gimli</h1>
 <p><b>Definition:</b> <a class="el" href="gimli24_8h.html">gimli24.h</a>, <a class="el" href="gimli24-masked_8h_source.html">gimli24-masked.h</a></p>
 <p>GIMLI-24-CIPHER has a 256-bit key, a 128-bit nonce, and a 128-bit tag. It is the spiritual successor to the widely used ChaCha20 and has a similar design.</p>
 <p>The library also includes an implementation of the hash algorithm GIMLI-24-HASH in both regular hashing and XOF modes.</p>
-<p>This library also provides a masked implementation of Xoodyak.</p>
+<p>This library also provides a masked implementation of Gimli.</p>
 <h1><a class="anchor" id="alg_grain_128aead"></a>
 Grain-128AEAD</h1>
 <p><b>Definition:</b> <a class="el" href="grain128_8h.html">grain128.h</a></p>
@@ -582,7 +580,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 8 2020 05:30:53 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 9 2020 07:56:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

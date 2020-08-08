@@ -92,45 +92,53 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Algorithm</td><td>Degree of Masking</td><td>2 shares</td><td>3 shares</td><td>4 shares</td><td>5 shares</td><td>6 shares </td></tr>
 <tr>
-<td><b><em>ASCON-128</em></b><sup>1</sup></td><td>Init/Final</td><td align="right">2.15</td><td align="right">4.18</td><td align="right">6.91</td><td align="right">11.23</td><td align="right">16.07 </td></tr>
+<td><b><em>ASCON-128</em></b></td><td>Init/Final</td><td align="right">2.15</td><td align="right">4.18</td><td align="right">6.91</td><td align="right">11.23</td><td align="right">16.07 </td></tr>
 <tr>
-<td>ASCON-128a<sup>1</sup></td><td>Init/Final</td><td align="right">2.42</td><td align="right">5.01</td><td align="right">8.32</td><td align="right">13.67</td><td align="right">19.69 </td></tr>
+<td><b><em>ASCON-128</em></b></td><td>Full</td><td align="right">3.60</td><td align="right">8.22</td><td align="right">15.21</td><td align="right">24.29</td><td align="right">35.56 </td></tr>
 <tr>
-<td>ASCON-80pq<sup>1</sup></td><td>Init/Final</td><td align="right">2.16</td><td align="right">4.11</td><td align="right">6.93</td><td align="right">11.29</td><td align="right">16.15 </td></tr>
+<td>ASCON-128a</td><td>Init/Final</td><td align="right">2.42</td><td align="right">5.01</td><td align="right">8.32</td><td align="right">13.67</td><td align="right">19.69 </td></tr>
 <tr>
-<td><b><em>GIFT-COFB</em></b><sup> </sup></td><td>Full</td><td align="right">6.28</td><td align="right">19.27</td><td align="right">36.84</td><td align="right">62.16</td><td align="right">91.22 </td></tr>
+<td>ASCON-128a</td><td>Full</td><td align="right">3.69</td><td align="right">8.27</td><td align="right">15.51</td><td align="right">24.36</td><td align="right">36.21 </td></tr>
 <tr>
-<td><b><em>GIMLI-24</em></b><sup> </sup></td><td>Init</td><td align="right">2.69</td><td align="right">6.28</td><td align="right">11.93</td><td align="right">19.80</td><td align="right">29.33 </td></tr>
+<td>ASCON-80pq</td><td>Init/Final</td><td align="right">2.16</td><td align="right">4.11</td><td align="right">6.93</td><td align="right">11.29</td><td align="right">16.15 </td></tr>
 <tr>
-<td><b><em>GIMLI-24</em></b><sup> </sup></td><td>Full</td><td align="right">10.50</td><td align="right">31.41</td><td align="right">60.37</td><td align="right">106.37</td><td align="right">159.46 </td></tr>
+<td>ASCON-80pq</td><td>Full</td><td align="right">3.54</td><td align="right">8.25</td><td align="right">14.96</td><td align="right">24.38</td><td align="right">34.95 </td></tr>
 <tr>
-<td><b><em>Pyjamask-128-AEAD</em></b><sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14 </td></tr>
+<td><b><em>GIFT-COFB</em></b></td><td>Full</td><td align="right">6.28</td><td align="right">19.27</td><td align="right">36.84</td><td align="right">62.16</td><td align="right">91.22 </td></tr>
 <tr>
-<td>Pyjamask-96-AEAD<sup> </sup></td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14 </td></tr>
+<td><b><em>GIMLI-24</em></b></td><td>Init</td><td align="right">2.69</td><td align="right">6.28</td><td align="right">11.93</td><td align="right">19.80</td><td align="right">29.33 </td></tr>
 <tr>
-<td>Spook-128-384-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47 </td></tr>
+<td><b><em>GIMLI-24</em></b></td><td>Full</td><td align="right">10.50</td><td align="right">31.41</td><td align="right">60.37</td><td align="right">106.37</td><td align="right">159.46 </td></tr>
 <tr>
-<td>Spook-128-512-mu<sup> </sup></td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.41</td><td align="right">8.15</td><td align="right">11.22 </td></tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14 </td></tr>
 <tr>
-<td>Spook-128-384-su<sup> </sup></td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.34</td><td align="right">5.53</td><td align="right">8.09</td><td align="right">11.52 </td></tr>
+<td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14 </td></tr>
 <tr>
-<td><b><em>Spook-128-512-su</em></b><sup> </sup></td><td>Init/Final</td><td align="right">1.74</td><td align="right">3.36</td><td align="right">5.43</td><td align="right">8.17</td><td align="right">11.26 </td></tr>
+<td>Spook-128-384-mu</td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47 </td></tr>
 <tr>
-<td><b><em>TinyJAMBU-128</em></b><sup> </sup></td><td>Full</td><td align="right">3.16</td><td align="right">8.04</td><td align="right">14.59</td><td align="right">25.65</td><td align="right">43.13 </td></tr>
+<td>Spook-128-512-mu</td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.41</td><td align="right">8.15</td><td align="right">11.22 </td></tr>
 <tr>
-<td>TinyJAMBU-192<sup> </sup></td><td>Full</td><td align="right">3.24</td><td align="right">8.25</td><td align="right">14.94</td><td align="right">26.24</td><td align="right">44.27 </td></tr>
+<td>Spook-128-384-su</td><td>Init/Final</td><td align="right">1.72</td><td align="right">3.34</td><td align="right">5.53</td><td align="right">8.09</td><td align="right">11.52 </td></tr>
 <tr>
-<td>TinyJAMBU-256<sup> </sup></td><td>Full</td><td align="right">3.25</td><td align="right">8.31</td><td align="right">15.08</td><td align="right">26.49</td><td align="right">44.86 </td></tr>
+<td><b><em>Spook-128-512-su</em></b></td><td>Init/Final</td><td align="right">1.74</td><td align="right">3.36</td><td align="right">5.43</td><td align="right">8.17</td><td align="right">11.26 </td></tr>
 <tr>
-<td><b><em>Xoodyak</em></b><sup> </sup></td><td>Init</td><td align="right">1.94</td><td align="right">3.76</td><td align="right">6.39</td><td align="right">10.31</td><td align="right">14.51 </td></tr>
+<td><b><em>TinyJAMBU-128</em></b></td><td>Full</td><td align="right">3.16</td><td align="right">8.04</td><td align="right">14.59</td><td align="right">25.65</td><td align="right">43.13 </td></tr>
 <tr>
-<td><b><em>Xoodyak</em></b><sup> </sup></td><td>Full</td><td align="right">5.89</td><td align="right">15.86</td><td align="right">28.53</td><td align="right">47.70</td><td align="right">69.57 </td></tr>
+<td>TinyJAMBU-192</td><td>Full</td><td align="right">3.24</td><td align="right">8.25</td><td align="right">14.94</td><td align="right">26.24</td><td align="right">44.27 </td></tr>
+<tr>
+<td>TinyJAMBU-256</td><td>Full</td><td align="right">3.25</td><td align="right">8.31</td><td align="right">15.08</td><td align="right">26.49</td><td align="right">44.86 </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b></td><td>Init</td><td align="right">1.94</td><td align="right">3.76</td><td align="right">6.39</td><td align="right">10.31</td><td align="right">14.51 </td></tr>
+<tr>
+<td><b><em>Xoodyak</em></b></td><td>Full</td><td align="right">5.89</td><td align="right">15.86</td><td align="right">28.53</td><td align="right">47.70</td><td align="right">69.57 </td></tr>
 </table>
-<p>Note 1: These masked implementations are experimental and unique to this library. They have not been approved by the algorithm authors. The approach taken may not be secure and more research is required. </p>
+<p>It was observed that about 30% of the overhead of the 4-share version was due to Arduino Due's TRNG which produces a new 32-bit random word every 84 clock cycles. The code had to stop and wait for the TRNG quite a bit. On a different CPU with a faster TRNG, the results would be better.</p>
+<p>Pyjamask and Spook were designed by the authors with masking in mind as a primary goal. The other algorithms were not designed with masking as a primary goal.</p>
+<p>ISAP and DryGASCON also provide side-channel protection but it is built into the standard design with no masking required. If they were to appear in the above table, all columns would be set to "1.00". </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 8 2020 05:30:53 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 9 2020 07:56:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
