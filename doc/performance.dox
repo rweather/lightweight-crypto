@@ -22,7 +22,7 @@
 
 /**
 \file performance.dox
-\page performance Performance
+\page performance Performance on 32-bit platforms
 \tableofcontents
 
 \section perf_intro Introduction
