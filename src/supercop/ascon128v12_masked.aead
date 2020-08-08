@@ -1,0 +1,11 @@
+aead_family=ascon
+aead_name=ascon128v12
+aead_meta_name=ASCON-128-Masked
+aead_srcdir=ASCON_masked
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=ascon128_masked_aead_encrypt
+aead_decrypt=ascon128_masked_aead_decrypt
+aead_header=ascon128-masked.h
+aead_variant=masked

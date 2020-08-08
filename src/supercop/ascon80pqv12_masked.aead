@@ -1,0 +1,11 @@
+aead_family=ascon
+aead_name=ascon80pqv12
+aead_meta_name=ASCON-80pq-Masked
+aead_srcdir=ASCON_masked
+aead_key_size=20
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=ascon80pq_masked_aead_encrypt
+aead_decrypt=ascon80pq_masked_aead_decrypt
+aead_header=ascon128-masked.h
+aead_variant=masked
