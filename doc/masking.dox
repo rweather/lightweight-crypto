@@ -159,19 +159,19 @@ typedef struct
 The mask_input() macro generates random material and masks the value:
 
 \code
-s0.b = aead_masking_generate_32();
-s0.c = aead_masking_generate_32();
-s0.d = aead_masking_generate_32();
+s0.b = aead_random_generate_32();
+s0.c = aead_random_generate_32();
+s0.d = aead_random_generate_32();
 s0.a = be_load_word32(input) ^ s0.b ^ s0.c ^ s0.d;
 \endcode
 
-The aead_masking_generate_32() function is internal to the library and
+The aead_random_generate_32() function is internal to the library and
 generates a random 32-bit value each time it is called.  Recent 32-bit
 ARM and other microcontrollers come with an instruction or peripheral
 register that provides a random 32-bit value, so obtaining random data
 is not hard.
 
-Note: You need to call aead_masking_init() before any use of the
+Note: You need to call aead_random_init() before any use of the
 masking utilities to initialize the random number source.  But that
 can be placed into your application's startup code or your AEAD mode's
 setup phase.
@@ -272,7 +272,7 @@ mask_uint64_t   =>   mask_x3_uint64_t
 \endcode
 
 Your code can use the explicit versions if you need an exact number of
-shares, or you can use the generic types to use the default number of
+shares, or you can use the generic types for the default number of
 shares that is specified by AEAD_MASKING_SHARES, usually 4.  Using the
 generic types is recommended because then it is easy to recompile
 your code to use a different sharing ratio.
@@ -283,17 +283,21 @@ The following generic macros are defined to assist with working with
 masked words.  The equivalent plain C operation is shown on the right:
 
 \code
-mask_input(w, x)                    w = mask(x)
-mask_output(w)                      return unmask(w)
-mask_xor_const(w, c)                w ^= c
-mask_xor(w1, w2)                    w1 ^= w2
-mask_not(w)                         w = ~w
-mask_and(w1, w2, w3)                w1 ^= (w2 & w3)
-mask_or(w1, w2, w3)                 w1 ^= (w2 | w3)
-mask_shl(w1, w2, bits)              w1 = (w2 << bits)
-mask_shr(w1, w2, bits)              w1 = (w2 >> bits)
-mask_rol(w1, w2, bits)              w1 = (w2 <<< bits)
-mask_ror(w1, w2, bits)              w1 = (w2 >>> bits)
+mask_input(w, x)                        w = mask(x)
+mask_output(w)                          return unmask(w)
+mask_xor_const(w, c)                    w ^= c
+mask_xor(w1, w2)                        w1 ^= w2
+mask_xor3(w1, w2, w3)                   w1 ^= (w2 ^ w3)
+mask_not(w)                             w = ~w
+mask_and(w1, w2, w3)                    w1 ^= (w2 & w3)
+mask_and_not(w1, w2, w3)                w1 ^= ((~w2) & w3)
+mask_or(w1, w2, w3)                     w1 ^= (w2 | w3)
+mask_shl(w1, w2, bits)                  w1 = (w2 << bits)
+mask_shr(w1, w2, bits)                  w1 = (w2 >> bits)
+mask_rol(w1, w2, bits)                  w1 = (w2 <<< bits)
+mask_ror(w1, w2, bits)                  w1 = (w2 >>> bits)
+mask_swap(w1, w2)                       swaps w1 and w2
+mask_swap_move(w1, w2, mask, shift)     swaps bits in w1 and w2
 \endcode
 
 These operations will work on 16-bit, 32-bit, and 64-bit masked words,
@@ -305,17 +309,21 @@ between 2 and 6.  For example, if you wanted to force the use of the
 generic ones:
 
 \code
-mask_x3_input(w, x)                 w = mask(x)
-mask_x3_output(w)                   return unmask(w)
-mask_x3_xor_const(w, c)             w ^= c
-mask_x3_xor(w1, w2)                 w1 ^= w2
-mask_x3_not(w)                      w = ~w
-mask_x3_and(w1, w2, w3)             w1 ^= (w2 & w3)
-mask_x3_or(w1, w2, w3)              w1 ^= (w2 | w3)
-mask_x3_shl(w1, w2, bits)           w1 = (w2 << bits)
-mask_x3_shr(w1, w2, bits)           w1 = (w2 >> bits)
-mask_x3_rol(w1, w2, bits)           w1 = (w2 <<< bits)
-mask_x3_ror(w1, w2, bits)           w1 = (w2 >>> bits)
+mask_x3_input(w, x)                     w = mask(x)
+mask_x3_output(w)                       return unmask(w)
+mask_x3_xor_const(w, c)                 w ^= c
+mask_x3_xor(w1, w2)                     w1 ^= w2
+mask_x3_xor3(w1, w2, w3)                w1 ^= (w2 ^ w3)
+mask_x3_not(w)                          w = ~w
+mask_x3_and(w1, w2, w3)                 w1 ^= (w2 & w3)
+mask_x3_and_not(w1, w2, w3)             w1 ^= ((~w2) & w3)
+mask_x3_or(w1, w2, w3)                  w1 ^= (w2 | w3)
+mask_x3_shl(w1, w2, bits)               w1 = (w2 << bits)
+mask_x3_shr(w1, w2, bits)               w1 = (w2 >> bits)
+mask_x3_rol(w1, w2, bits)               w1 = (w2 <<< bits)
+mask_x3_ror(w1, w2, bits)               w1 = (w2 >>> bits)
+mask_x3_swap(w1, w2)                    swaps w1 and w2
+mask_x3_swap_move(w1, w2, mask, shift)  swaps bits in w1 and w2
 \endcode
 
 \section masking_work How do the operations work?
@@ -338,8 +346,8 @@ mask_x3_input(w, x);
 Behind the scenes, mask_x3_input() expands to:
 
 \code
-w.b = aead_masking_generate_32();
-w.c = aead_masking_generate_32();
+w.b = aead_random_generate_32();
+w.c = aead_random_generate_32();
 w.a = x ^ w.b ^ w.c;
 \endcode
 
@@ -485,7 +493,7 @@ mask_x4_and(w1, w2, w3) :
     w1.d ^= (w2.d & w3.d)
 
 mix(a1, a2, a3, b1, b2, b3) :
-    temp = aead_masking_generate_32()
+    temp = aead_random_generate_32()
     a1 ^= temp
     b1 ^= temp ^ (b3 & a2) ^ (b2 & a3)
 \endcode
@@ -494,9 +502,10 @@ Essentially this is performing a diagonal matrix operation where
 each share is mixed with all of the shares below it and to the right.
 At each step, a new random number is generated and mixed into the state.
 
-Note: The mask_and() and mask_or() functions require a local variable
-called "temp" in the current scope that is of type uint16_t, uint32_t, or
-uint64_t depending upon the type of masked word you are operating on.
+Note: The mask_and(), mask_and_not(), and mask_or() macros require a
+local variable called "temp" in the current scope that is of type uint16_t,
+uint32_t, or uint64_t depending upon the type of masked word you are
+operating on.
 
 For a masked word with N shares, each AND operation requires (N² - N) / 2
 random number generator calls and mix operations.  This has a significant
@@ -590,7 +599,7 @@ mask_x3_shl(w, w, bits) :
 
 \subsection masking_swap Swap
 
-The mask_swap() function swaps two masked words and the mask_swap_and_move()
+The mask_swap() function swaps two masked words and the mask_swap_move()
 function performs a swap on some of the bits in two masked words.
 
 */

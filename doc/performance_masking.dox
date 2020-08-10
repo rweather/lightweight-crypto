@@ -101,4 +101,31 @@ ISAP and DryGASCON also provide side-channel protection but it is built
 into the standard design with no masking required.  If they were to appear
 in the above table, all columns would be set to "1.00".
 
+\section perf_masking_opt Optimisation tricks
+
+This section describes some optimisations for masked ciphers that I
+encountered while writing the above implementations.  These tricks may
+help other implementers of masked algorithms in C and assembly code.
+
+Random number generation overhead can add a lot of overhead to the runtime.
+Some CPU's offer a built-in TRNG but it may take a lot of clock cycles to
+generate each new random word (84 for the Arduino Due).  It helps if the
+RNG calls can be spaced out with more regular instructions between the calls.
+Then less time is spent polling for the next random word.
+
+Operate on individual shares as much as possible: do everything on A,
+then everything on B, etc.  This reduces the register spills that occur
+when switching between shares.  AND steps are where it becomes difficult
+because all shares are needed to do those steps.  Try to group the simpler
+XOR masking steps before and after the AND steps so that the shares
+can be operated on independently in most of the code.
+
+Sometimes it can belp to operate on the shares in reverse order just
+before an AND step.  The 3-share AND code operates on A, then B,
+then C.  If the previous steps were operating on C, then B, then A,
+then A and parts of B are already in registers ready for the start
+of the AND.
+
+Also see my page on \ref masking "masking utilities".
+
 */
