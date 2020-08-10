@@ -21,6 +21,7 @@
  */
 
 #include "internal-sliscp-light.h"
+#include "internal-sliscp-light-m.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -50,6 +51,7 @@ static unsigned char const sliscp320_output[] = {
 void test_sliscp_light(void)
 {
     unsigned char state[40];
+    mask_uint32_t masked_state[10];
 
     printf("sLiSCP-light Permutation:\n");
 
@@ -96,6 +98,45 @@ void test_sliscp_light(void)
     sliscp_light320_swap(state);
     sliscp_light320_permute(state);
     sliscp_light320_swap(state);
+    if (!test_memcmp(state, sliscp320_output, sizeof(sliscp320_output))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    SLiSCP-light-Masked[192] ... ");
+    fflush(stdout);
+    memset(state, 0, sizeof(state));
+    sliscp_light192_mask(masked_state, state);
+    sliscp_light192_permute_masked(masked_state);
+    sliscp_light192_unmask(state, masked_state);
+    if (!test_memcmp(state, sliscp192_output, sizeof(sliscp192_output))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    SLiSCP-light-Masked[256] ... ");
+    fflush(stdout);
+    memset(state, 0, sizeof(state));
+    sliscp_light256_mask(masked_state, state);
+    sliscp_light256_permute_masked(masked_state, 18);
+    sliscp_light256_unmask(state, masked_state);
+    if (!test_memcmp(state, sliscp256_output, sizeof(sliscp256_output))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    SLiSCP-light-Masked[320] ... ");
+    fflush(stdout);
+    memset(state, 0, sizeof(state));
+    sliscp_light320_mask(masked_state, state);
+    sliscp_light320_permute_masked(masked_state);
+    sliscp_light320_unmask(state, masked_state);
     if (!test_memcmp(state, sliscp320_output, sizeof(sliscp320_output))) {
         printf("ok\n");
     } else {

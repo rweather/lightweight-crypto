@@ -50,6 +50,7 @@
 #include "skinny-hash.h"
 #include "spix.h"
 #include "spoc.h"
+#include "spoc-masked.h"
 #include "spook.h"
 #include "spook-masked.h"
 #include "subterranean.h"
@@ -133,6 +134,8 @@ static const aead_cipher_t *const ciphers[] = {
     &spix_cipher,
     &spoc_128_cipher,
     &spoc_64_cipher,
+    &spoc_128_masked_cipher,
+    &spoc_64_masked_cipher,
     &spook_128_512_su_cipher,
     &spook_128_384_su_cipher,
     &spook_128_512_mu_cipher,

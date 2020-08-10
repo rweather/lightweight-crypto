@@ -247,6 +247,12 @@ SPOC_FILES = \
     internal-sliscp-192-avr.S \
     internal-sliscp-256-spoc-avr.S \
     $(COMMON_FILES)
+SPOC_MASKED_FILES = \
+    spoc-masked.c \
+    spoc-masked.h \
+    internal-sliscp-light-m.c \
+    internal-sliscp-light-m.h \
+    $(COMMON_MASKING_FILES)
 SPOOK_FILES = \
     spook.c \
     spook.h \
@@ -345,6 +351,7 @@ ALL_ALGORITHMS = \
     sparkle \
     spix \
     spoc \
+    spoc_masked \
     spook \
     spook_masked \
     subterranean \
@@ -442,6 +449,9 @@ spix:
 
 spoc:
 	cp $(foreach file,$(SPOC_FILES),$(SRCDIR)/$(file)) SpoC
+
+spoc_masked:
+	cp $(foreach file,$(SPOC_MASKED_FILES),$(SRCDIR)/$(file)) SpoC_masked
 
 spook:
 	cp $(foreach file,$(SPOOK_FILES),$(SRCDIR)/$(file)) Spook

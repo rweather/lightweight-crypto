@@ -1,0 +1,11 @@
+aead_family=spoc
+aead_name=spoc128sliscplight256v1
+aead_meta_name=SpoC-128-Masked
+aead_srcdir=SpoC_masked
+aead_key_size=16
+aead_nonce_size=16
+aead_tag_size=16
+aead_encrypt=spoc_128_masked_aead_encrypt
+aead_decrypt=spoc_128_masked_aead_decrypt
+aead_header=spoc-masked.h
+aead_variant=masked

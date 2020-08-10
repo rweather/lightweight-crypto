@@ -58,6 +58,7 @@ of flash memory.
 #include "sparkle.h"
 #include "spix.h"
 #include "spoc.h"
+#include "spoc-masked.h"
 #include "spook.h"
 #include "spook-masked.h"
 #include "subterranean.h"
@@ -550,6 +551,8 @@ void setup()
     perfCipher(&spix_cipher);
     perfCipher(&spoc_128_cipher);
     perfCipher(&spoc_64_cipher);
+    perfCipher(&spoc_128_masked_cipher);
+    perfCipher(&spoc_64_masked_cipher);
     perfCipher(&spook_128_512_su_cipher);
     perfCipher(&spook_128_384_su_cipher);
     perfCipher(&spook_128_512_mu_cipher);
@@ -623,6 +626,8 @@ void setup()
     perfMasked(&gimli24_cipher, &gimli24_masked_cipher);
     perfMasked(&pyjamask_128_cipher, &pyjamask_masked_128_cipher);
     perfMasked(&pyjamask_96_cipher, &pyjamask_masked_96_cipher);
+    perfMasked(&spoc_128_cipher, &spoc_128_masked_cipher);
+    perfMasked(&spoc_64_cipher, &spoc_64_masked_cipher);
     perfMasked(&spook_128_512_su_cipher, &spook_128_512_su_masked_cipher);
     perfMasked(&spook_128_384_su_cipher, &spook_128_384_su_masked_cipher);
     perfMasked(&spook_128_512_mu_cipher, &spook_128_512_mu_masked_cipher);

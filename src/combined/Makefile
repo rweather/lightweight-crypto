@@ -44,6 +44,7 @@ OBJS = \
         sparkle.o \
         spix.o \
         spoc.o \
+        spoc-masked.o \
         spook.o \
         spook-masked.o \
         subterranean.o \
@@ -74,6 +75,7 @@ OBJS = \
 	internal-saturnin.o \
 	internal-simp.o \
 	internal-sliscp-light.o \
+	internal-sliscp-light-m.o \
 	internal-skinny128.o \
         internal-sparkle.o \
         internal-speck64.o \
@@ -137,6 +139,7 @@ skinny-hash.o: skinny-hash.h internal-skinny128.h aead-common.h internal-util.h
 sparkle.o: sparkle.h internal-sparkle.h aead-common.h internal-util.h
 spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h
+spoc-masked.o: spoc-masked.h aead-common.h internal-util.h internal-sliscp-light-m.h internal-masking.h aead-random.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h
 spook-masked.o: spook-masked.h aead-common.h internal-util.h internal-spook.h
 subterranean.o: subterranean.h aead-common.h internal-util.h internal-subterranean.h
@@ -167,6 +170,7 @@ internal-pyjamask-m.o: internal-pyjamask-m.h internal-util.h aead-random.h inter
 internal-saturnin.o: internal-saturnin.h internal-util.h
 internal-simp.o: internal-simp.h internal-util.h
 internal-sliscp-light.o: internal-sliscp-light.h internal-util.h
+internal-sliscp-light-m.o: internal-sliscp-light-m.h internal-masking.h aead-random.h internal-util.h
 internal-skinny128.o: internal-skinny128.h internal-skinnyutil.h internal-util.h
 internal-sparkle.o: internal-sparkle.h internal-util.h
 internal-speck64.o: internal-speck64.h internal-util.h
