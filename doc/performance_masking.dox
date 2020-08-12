@@ -75,6 +75,8 @@ Lower numbers are better.
 <tr><td><b><i>GIMLI-24</i></b><td>Full</td></td><td align="right">10.50</td><td align="right">31.41</td><td align="right">60.37</td><td align="right">106.37</td><td align="right">159.46</td></tr>
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14</td></tr>
+<tr><td><b><i>SPIX</i></b></td><td>Init/Final</td><td align="right">4.55</td><td align="right">12.17</td><td align="right">23.47</td><td align="right">38.60</td><td align="right">59.69</td></tr>
+<tr><td><b><i>SPIX</i></b></td><td>Full</td><td align="right">6.64</td><td align="right">19.44</td><td align="right">38.13</td><td align="right">62.76</td><td align="right">93.72</td></tr>
 <tr><td><b><i>SpoC-128</i></b></td><td>Full</td><td align="right">6.65</td><td align="right">19.39</td><td align="right">38.57</td><td align="right">63.26</td><td align="right">95.21</td></tr>
 <tr><td>SpoC-64</td><td>Full</td><td align="right">4.02</td><td align="right">11.06</td><td align="right">20.38</td><td align="right">35.05</td><td align="right">50.44</td></tr>
 <tr><td>Spook-128-384-mu</td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47</td></tr>
@@ -107,7 +109,7 @@ This section describes some optimisations for masked ciphers that I
 encountered while writing the above implementations.  These tricks may
 help other implementers of masked algorithms in C and assembly code.
 
-Random number generation overhead can add a lot of overhead to the runtime.
+Random number generation can add a lot of overhead to the runtime.
 Some CPU's offer a built-in TRNG but it may take a lot of clock cycles to
 generate each new random word (84 for the Arduino Due).  It helps if the
 RNG calls can be spaced out with more regular instructions between the calls.
@@ -120,7 +122,7 @@ because all shares are needed to do those steps.  Try to group the simpler
 XOR masking steps before and after the AND steps so that the shares
 can be operated on independently in most of the code.
 
-Sometimes it can belp to operate on the shares in reverse order just
+Sometimes it can help to operate on the shares in reverse order just
 before an AND step.  The 3-share AND code operates on A, then B,
 then C.  If the previous steps were operating on C, then B, then A,
 then A and parts of B are already in registers ready for the start

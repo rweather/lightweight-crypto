@@ -239,6 +239,15 @@ SPIX_FILES = \
     internal-sliscp-light.h \
     internal-sliscp-256-spix-avr.S \
     $(COMMON_FILES)
+SPIX_MASKED_FILES = \
+    spix-masked.c \
+    spix-masked.h \
+    internal-sliscp-light.c \
+    internal-sliscp-light.h \
+    internal-sliscp-light-m.c \
+    internal-sliscp-light-m.h \
+    internal-sliscp-256-spix-avr.S \
+    $(COMMON_MASKING_FILES)
 SPOC_FILES = \
     spoc.c \
     spoc.h \
@@ -350,6 +359,7 @@ ALL_ALGORITHMS = \
     skinny_aead \
     sparkle \
     spix \
+    spix_masked \
     spoc \
     spoc_masked \
     spook \
@@ -446,6 +456,9 @@ sparkle:
 
 spix:
 	cp $(foreach file,$(SPIX_FILES),$(SRCDIR)/$(file)) SPIX
+
+spix_masked:
+	cp $(foreach file,$(SPIX_MASKED_FILES),$(SRCDIR)/$(file)) SPIX_masked
 
 spoc:
 	cp $(foreach file,$(SPOC_FILES),$(SRCDIR)/$(file)) SpoC

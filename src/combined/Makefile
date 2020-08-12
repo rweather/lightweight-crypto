@@ -43,6 +43,7 @@ OBJS = \
         skinny-hash.o \
         sparkle.o \
         spix.o \
+        spix-masked.o \
         spoc.o \
         spoc-masked.o \
         spook.o \
@@ -138,6 +139,7 @@ skinny-aead.o: skinny-aead.h internal-skinny128.h aead-common.h internal-util.h
 skinny-hash.o: skinny-hash.h internal-skinny128.h aead-common.h internal-util.h
 sparkle.o: sparkle.h internal-sparkle.h aead-common.h internal-util.h
 spix.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h
+spix-masked.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h internal-sliscp-light-m.h internal-masking.h aead-random.h
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc-masked.o: spoc-masked.h aead-common.h internal-util.h internal-sliscp-light-m.h internal-masking.h aead-random.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h

@@ -119,6 +119,7 @@ check: $(TARGET1) $(TARGET2)
 	@$(RUN_KAT) SKINNY-tk2-HASH SKINNY-tk2-HASH.txt
 	@$(RUN_KAT) SKINNY-tk3-HASH SKINNY-tk3-HASH.txt
 	@$(RUN_KAT) SPIX SPIX.txt
+	@$(RUN_KAT) SPIX-Masked SPIX.txt
 	@$(RUN_KAT) SpoC-128 SpoC-128.txt
 	@$(RUN_KAT) SpoC-128-Masked SpoC-128.txt
 	@$(RUN_KAT) SpoC-64 SpoC-64.txt

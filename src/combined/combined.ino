@@ -57,6 +57,7 @@ of flash memory.
 #include "skinny-hash.h"
 #include "sparkle.h"
 #include "spix.h"
+#include "spix-masked.h"
 #include "spoc.h"
 #include "spoc-masked.h"
 #include "spook.h"
@@ -549,6 +550,7 @@ void setup()
     perfCipher(&skinny_aead_m5_cipher);
     perfCipher(&skinny_aead_m6_cipher);
     perfCipher(&spix_cipher);
+    perfCipher(&spix_masked_cipher);
     perfCipher(&spoc_128_cipher);
     perfCipher(&spoc_64_cipher);
     perfCipher(&spoc_128_masked_cipher);
@@ -626,6 +628,7 @@ void setup()
     perfMasked(&gimli24_cipher, &gimli24_masked_cipher);
     perfMasked(&pyjamask_128_cipher, &pyjamask_masked_128_cipher);
     perfMasked(&pyjamask_96_cipher, &pyjamask_masked_96_cipher);
+    perfMasked(&spix_cipher, &spix_masked_cipher);
     perfMasked(&spoc_128_cipher, &spoc_128_masked_cipher);
     perfMasked(&spoc_64_cipher, &spoc_64_masked_cipher);
     perfMasked(&spook_128_512_su_cipher, &spook_128_512_su_masked_cipher);
