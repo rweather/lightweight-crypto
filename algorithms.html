@@ -251,6 +251,8 @@ Algorithms with side channel protection</h1>
 <li><a class="el" href="algorithms.html#alg_gimli">Gimli</a> </li>
 <li><a class="el" href="algorithms.html#alg_isap">ISAP</a> </li>
 <li><a class="el" href="algorithms.html#alg_pyjamask">Pyjamask</a> </li>
+<li><a class="el" href="algorithms.html#alg_spix">SPIX</a> </li>
+<li><a class="el" href="algorithms.html#alg_spoc">SpoC</a> </li>
 <li><a class="el" href="algorithms.html#alg_spook">Spook</a> </li>
 <li><a class="el" href="algorithms.html#alg_tinyjambu">TinyJAMBU</a> </li>
 <li><a class="el" href="algorithms.html#alg_xoodyak">Xoodyak</a></li>
@@ -499,6 +501,7 @@ SPARKLE</h1>
 SPIX</h1>
 <p><b>Definition:</b> <a class="el" href="spix_8h.html">spix.h</a></p>
 <p>SPIX is an authenticated encryption algorithm with a 128-bit key, a 128-bit nonce, and a 128-bit tag. It uses the MonkeyDuplex construction on top of the 256-bit sLiSCP-light permutation.</p>
+<p>This library also provides a masked implementation of SPIX.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_ace">ACE</a>, <a class="el" href="algorithms.html#alg_spoc">SpoC</a></p>
 <h1><a class="anchor" id="alg_spoc"></a>
 SpoC</h1>
@@ -509,6 +512,7 @@ SpoC</h1>
 <li>Spoc-64 has a 128-bit key, a 128-bit nonce, and a 64-bit tag. It is built around the 192-bit version of the sLiSCP-light permutation.</li>
 </ul>
 <p>Spoc-128 has good performance on small packets (16 bytes or less) on 32-bit embedded platforms.</p>
+<p>This library also provides masked implementations of SpoC-128 and SpoC-64.</p>
 <p><b>Recommendation:</b> The specification recommends SpoC-128.</p>
 <p><b>Similar Algorithms:</b> <a class="el" href="algorithms.html#alg_ace">ACE</a>, <a class="el" href="algorithms.html#alg_spix">SPIX</a></p>
 <h1><a class="anchor" id="alg_spook"></a>
@@ -580,7 +584,7 @@ Internal block operations</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 9 2020 07:56:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2020 18:57:40 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

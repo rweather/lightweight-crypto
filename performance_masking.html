@@ -78,6 +78,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Performance of Masked Algorithms </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul><li class="level1"><a href="#perf_masking_intro">Introduction</a></li>
+<li class="level1"><a href="#perf_masking_cortex_m3">Performance on ARM Cortex M3</a></li>
+<li class="level1"><a href="#perf_masking_rankings">Rankings</a></li>
+<li class="level1"><a href="#perf_masking_opt">Optimisation tricks</a></li>
+</ul>
+</div>
 <div class="textblock"><h1><a class="anchor" id="perf_masking_intro"></a>
 Introduction</h1>
 <p>This page lists performance figures for masked implementations of the algorithms. All figures were calculated on an Arudino Due, which is an ARM Cortex M3 running at 84MHz.</p>
@@ -114,6 +121,14 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14 </td></tr>
 <tr>
+<td><b><em>SPIX</em></b></td><td>Init/Final</td><td align="right">4.55</td><td align="right">12.17</td><td align="right">23.47</td><td align="right">38.60</td><td align="right">59.69 </td></tr>
+<tr>
+<td><b><em>SPIX</em></b></td><td>Full</td><td align="right">6.64</td><td align="right">19.44</td><td align="right">38.13</td><td align="right">62.76</td><td align="right">93.72 </td></tr>
+<tr>
+<td><b><em>SpoC-128</em></b></td><td>Full</td><td align="right">6.65</td><td align="right">19.39</td><td align="right">38.57</td><td align="right">63.26</td><td align="right">95.21 </td></tr>
+<tr>
+<td>SpoC-64</td><td>Full</td><td align="right">4.02</td><td align="right">11.06</td><td align="right">20.38</td><td align="right">35.05</td><td align="right">50.44 </td></tr>
+<tr>
 <td>Spook-128-384-mu</td><td>Init/Final</td><td align="right">1.71</td><td align="right">3.33</td><td align="right">5.50</td><td align="right">8.07</td><td align="right">11.47 </td></tr>
 <tr>
 <td>Spook-128-512-mu</td><td>Init/Final</td><td align="right">1.73</td><td align="right">3.35</td><td align="right">5.41</td><td align="right">8.15</td><td align="right">11.22 </td></tr>
@@ -133,12 +148,93 @@ Performance on ARM Cortex M3</h1>
 <td><b><em>Xoodyak</em></b></td><td>Full</td><td align="right">5.89</td><td align="right">15.86</td><td align="right">28.53</td><td align="right">47.70</td><td align="right">69.57 </td></tr>
 </table>
 <p>It was observed that about 30% of the overhead of the 4-share version was due to Arduino Due's TRNG which produces a new 32-bit random word every 84 clock cycles. The code had to stop and wait for the TRNG quite a bit. On a different CPU with a faster TRNG, the results would be better.</p>
-<p>Pyjamask and Spook were designed by the authors with masking in mind as a primary goal. The other algorithms were not designed with masking as a primary goal.</p>
-<p>ISAP and DryGASCON also provide side-channel protection but it is built into the standard design with no masking required. If they were to appear in the above table, all columns would be set to "1.00". </p>
+<p>Pyjamask and Spook were designed by the authors with masking in mind as a primary goal and they have been masked according to the authors' recommendations. The other algorithms were not designed with masking as a primary goal.</p>
+<p>ISAP and DryGASCON also provide side-channel protection but it is built into the standard design with no masking required. If they were to appear in the above table, all columns would be set to "1.00".</p>
+<h1><a class="anchor" id="perf_masking_rankings"></a>
+Rankings</h1>
+<p>The following table ranks the primary algorithms in increasing order of 4-share overhead:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Degree of Masking</td><td>4 shares </td></tr>
+<tr>
+<td>DryGASCON128</td><td>Full</td><td align="right">1.00 </td></tr>
+<tr>
+<td>ISAP-K-128A</td><td>Init/Final</td><td align="right">1.00 </td></tr>
+<tr>
+<td>Pyjamask-128-AEAD</td><td>Full</td><td align="right">5.31 </td></tr>
+<tr>
+<td>Spook-128-512-su</td><td>Init/Final</td><td align="right">5.43 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Init</td><td align="right">6.39 </td></tr>
+<tr>
+<td>ASCON-128</td><td>Init/Final</td><td align="right">6.91 </td></tr>
+<tr>
+<td>GIMLI-24</td><td>Init</td><td align="right">11.93 </td></tr>
+<tr>
+<td>TinyJAMBU-128</td><td>Full</td><td align="right">14.59 </td></tr>
+<tr>
+<td>ASCON-128</td><td>Full</td><td align="right">15.21 </td></tr>
+<tr>
+<td>SPIX</td><td>Init/Final</td><td align="right">23.47 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Full</td><td align="right">28.53 </td></tr>
+<tr>
+<td>GIFT-COFB</td><td>Full</td><td align="right">36.84 </td></tr>
+<tr>
+<td>SPIX</td><td>Full</td><td align="right">38.13 </td></tr>
+<tr>
+<td>SpoC-128</td><td>Full</td><td align="right">38.57 </td></tr>
+<tr>
+<td>GIMLI-24</td><td>Full</td><td align="right">60.37 </td></tr>
+</table>
+<p>DryGASCON and ISAP have been included for comparison purposes. The baseline versions of those algorithms implement side channel protection without the need for random masking, so their "4 share" value is effectively 1.00.</p>
+<p>Pyjamask and Spook are near the head of the table because they were explicitly designed with masking in mind so the overhead is less than the other algorithms. However, the baseline version of Pyjamask is fairly slow in software. So the above table doesn't give a good idea as to the actual software performance.</p>
+<p>The following table divides the 4-share overhead by the ChaChaPoly ranking from the main <a class="el" href="performance.html#perf_cortex_m3">ARM Cortex M3</a> performance rankings. This gives an indication as to the relative performance of the algorithms in software, with the fastest at the top of the table:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Degree of Masking</td><td>4 shares</td><td>ChaChaPoly</td><td>4 shares / ChaChaPoly </td></tr>
+<tr>
+<td>DryGASCON128</td><td>Full</td><td align="right">1.00</td><td align="right">0.22</td><td align="right">4.55 </td></tr>
+<tr>
+<td>Spook-128-512-su</td><td>Init/Final</td><td align="right">5.43</td><td align="right">0.90</td><td align="right">6.03 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Init</td><td align="right">6.39</td><td align="right">0.86</td><td align="right">7.43 </td></tr>
+<tr>
+<td>GIMLI-24</td><td>Init</td><td align="right">11.93</td><td align="right">0.91</td><td align="right">13.11 </td></tr>
+<tr>
+<td>ASCON-128</td><td>Init/Final</td><td align="right">6.91</td><td align="right">0.49</td><td align="right">14.10 </td></tr>
+<tr>
+<td>TinyJAMBU-128</td><td>Full</td><td align="right">14.59</td><td align="right">0.81</td><td align="right">18.01 </td></tr>
+<tr>
+<td>ASCON-128</td><td>Full</td><td align="right">15.21</td><td align="right">0.49</td><td align="right">31.04 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Full</td><td align="right">28.53</td><td align="right">0.86</td><td align="right">33.17 </td></tr>
+<tr>
+<td>GIFT-COFB</td><td>Full</td><td align="right">36.84</td><td align="right">1.05</td><td align="right">35.09 </td></tr>
+<tr>
+<td>SpoC-128</td><td>Full</td><td align="right">38.57</td><td align="right">0.82</td><td align="right">47.04 </td></tr>
+<tr>
+<td>ISAP-K-128A</td><td>Init/Final</td><td align="right">1.00</td><td align="right">0.02</td><td align="right">50.00 </td></tr>
+<tr>
+<td>SPIX</td><td>Init/Final</td><td align="right">23.47</td><td align="right">0.40</td><td align="right">58.68 </td></tr>
+<tr>
+<td>GIMLI-24</td><td>Full</td><td align="right">60.37</td><td align="right">0.91</td><td align="right">66.34 </td></tr>
+<tr>
+<td>Pyjamask-128-AEAD</td><td>Full</td><td align="right">5.31</td><td align="right">0.07</td><td align="right">75.86 </td></tr>
+<tr>
+<td>SPIX</td><td>Full</td><td align="right">38.13</td><td align="right">0.40</td><td align="right">95.33 </td></tr>
+</table>
+<h1><a class="anchor" id="perf_masking_opt"></a>
+Optimisation tricks</h1>
+<p>This section describes some optimisations for masked ciphers that I encountered while writing the above implementations. These tricks may help other implementers of masked algorithms in C and assembly code.</p>
+<p>Random number generation can add a lot of overhead to the runtime. Some CPU's offer a built-in TRNG but it may take a lot of clock cycles to generate each new random word (84 for the Arduino Due). It helps if the RNG calls can be spaced out with more regular instructions between the calls. Then less time is spent polling for the next random word.</p>
+<p>Operate on individual shares as much as possible: do everything on A, then everything on B, etc. This reduces the register spills that occur when switching between shares. AND steps are where it becomes difficult because all shares are needed to do those steps. Try to group the simpler XOR masking steps before and after the AND steps so that the shares can be operated on independently in most of the code.</p>
+<p>Sometimes it can help to operate on the shares in reverse order just before an AND step. The 3-share AND code operates on A, then B, then C. If the previous steps were operating on C, then B, then A, then A and parts of B are already in registers ready for the start of the AND.</p>
+<p>Also see my page on <a class="el" href="masking.html">masking utilities</a>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 9 2020 07:56:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2020 18:57:40 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

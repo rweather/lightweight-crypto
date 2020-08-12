@@ -160,12 +160,12 @@ Example: Bit-sliced GIFT-128</h1>
 <div class="line"></div>
 <div class="line">} <a class="code" href="internal-masking_8h.html#a1bbbc6662e017843d2376226611b4e88">mask_uint32_t</a>;</div>
 </div><!-- fragment --><p>The <a class="el" href="internal-masking_8h.html#ad3a968683c09d553a80dd6cfd67093ec" title="Masks an input value to produce a generic masked word. ">mask_input()</a> macro generates random material and masks the value:</p>
-<div class="fragment"><div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> = aead_masking_generate_32();</div>
-<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> = aead_masking_generate_32();</div>
-<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a> = aead_masking_generate_32();</div>
+<div class="fragment"><div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>();</div>
+<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>();</div>
+<div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a> = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>();</div>
 <div class="line">s0.<a class="code" href="structmask__x4__uint32__t.html#a087e10290b407a4d0f2c2991d98dcd86">a</a> = be_load_word32(input) ^ s0.<a class="code" href="structmask__x4__uint32__t.html#a4ed6d5dc6b5c0c4c54d38e0c9d152ec4">b</a> ^ s0.<a class="code" href="structmask__x4__uint32__t.html#a2a87ceaa6226fae0fb46d1f039753fe9">c</a> ^ s0.<a class="code" href="structmask__x4__uint32__t.html#abb80b057b7e8fa3e82eecee0edf061b9">d</a>;</div>
-</div><!-- fragment --><p>The aead_masking_generate_32() function is internal to the library and generates a random 32-bit value each time it is called. Recent 32-bit ARM and other microcontrollers come with an instruction or peripheral register that provides a random 32-bit value, so obtaining random data is not hard.</p>
-<p>Note: You need to call aead_masking_init() before any use of the masking utilities to initialize the random number source. But that can be placed into your application's startup code or your AEAD mode's setup phase.</p>
+</div><!-- fragment --><p>The <a class="el" href="aead-random_8h.html#a01593d6cb100e428306930561e747182" title="Generates a single random 32-bit word. ">aead_random_generate_32()</a> function is internal to the library and generates a random 32-bit value each time it is called. Recent 32-bit ARM and other microcontrollers come with an instruction or peripheral register that provides a random 32-bit value, so obtaining random data is not hard.</p>
+<p>Note: You need to call <a class="el" href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7" title="Initializes the system random number generator for the generation of masking material. ">aead_random_init()</a> before any use of the masking utilities to initialize the random number source. But that can be placed into your application's startup code or your AEAD mode's setup phase.</p>
 <p>The masking is repeated for the other plaintext and key words. Later, we compute the bit-sliced GIFT-128 S-box as follows:</p>
 <div class="fragment"><div class="line">s1 ^= s0 &amp; s2;</div>
 <div class="line">s0 ^= s1 &amp; s3;</div>
@@ -225,34 +225,42 @@ Types</h1>
 <div class="fragment"><div class="line"><a class="code" href="structmask__x4__uint16__t.html">mask_uint16_t</a>   =&gt;   <a class="code" href="structmask__x3__uint16__t.html">mask_x3_uint16_t</a></div>
 <div class="line"><a class="code" href="structmask__x4__uint32__t.html">mask_uint32_t</a>   =&gt;   <a class="code" href="structmask__x3__uint32__t.html">mask_x3_uint32_t</a></div>
 <div class="line"><a class="code" href="structmask__x4__uint64__t.html">mask_uint64_t</a>   =&gt;   <a class="code" href="structmask__x3__uint64__t.html">mask_x3_uint64_t</a></div>
-</div><!-- fragment --><p>Your code can use the explicit versions if you need an exact number of shares, or you can use the generic types to use the default number of shares that is specified by AEAD_MASKING_SHARES, usually 4. Using the generic types is recommended because then it is easy to recompile your code to use a different sharing ratio.</p>
+</div><!-- fragment --><p>Your code can use the explicit versions if you need an exact number of shares, or you can use the generic types for the default number of shares that is specified by AEAD_MASKING_SHARES, usually 4. Using the generic types is recommended because then it is easy to recompile your code to use a different sharing ratio.</p>
 <h1><a class="anchor" id="masking_operations"></a>
 Operations</h1>
 <p>The following generic macros are defined to assist with working with masked words. The equivalent plain C operation is shown on the right:</p>
-<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#ad3a968683c09d553a80dd6cfd67093ec">mask_input</a>(w, x)                    w = mask(x)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a5e70933e1476f0f7e318ca8a5caec616">mask_output</a>(w)                      return unmask(w)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a9c5f3758568cefa5e63b1410af15e3d7">mask_xor_const</a>(w, c)                w ^= c</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a1b7a772afddc428180113b50381c501c">mask_xor</a>(w1, w2)                    w1 ^= w2</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a3cabffba44c535617ac7f026c7323ed4">mask_not</a>(w)                         w = ~w</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#acc2be96e3a183c111f271fc8e8788570">mask_and</a>(w1, w2, w3)                w1 ^= (w2 &amp; w3)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a34418c16b2ac0adbd3a257edc7ae1357">mask_or</a>(w1, w2, w3)                 w1 ^= (w2 | w3)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#af04368f9de30227a88d96491611a0d16">mask_shl</a>(w1, w2, bits)              w1 = (w2 &lt;&lt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#acded33014d97f776d81d99512db03117">mask_shr</a>(w1, w2, bits)              w1 = (w2 &gt;&gt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#af8909fa52806835723145fc5432936e6">mask_rol</a>(w1, w2, bits)              w1 = (w2 &lt;&lt;&lt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#ad3c105e4c43ab485c472486664b5df46">mask_ror</a>(w1, w2, bits)              w1 = (w2 &gt;&gt;&gt; bits)</div>
+<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#ad3a968683c09d553a80dd6cfd67093ec">mask_input</a>(w, x)                        w = mask(x)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a5e70933e1476f0f7e318ca8a5caec616">mask_output</a>(w)                          return unmask(w)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a9c5f3758568cefa5e63b1410af15e3d7">mask_xor_const</a>(w, c)                    w ^= c</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a1b7a772afddc428180113b50381c501c">mask_xor</a>(w1, w2)                        w1 ^= w2</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a79ffd997c16417059d5fc063d8e7570f">mask_xor3</a>(w1, w2, w3)                   w1 ^= (w2 ^ w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a3cabffba44c535617ac7f026c7323ed4">mask_not</a>(w)                             w = ~w</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#acc2be96e3a183c111f271fc8e8788570">mask_and</a>(w1, w2, w3)                    w1 ^= (w2 &amp; w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e">mask_and_not</a>(w1, w2, w3)                w1 ^= ((~w2) &amp; w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a34418c16b2ac0adbd3a257edc7ae1357">mask_or</a>(w1, w2, w3)                     w1 ^= (w2 | w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#af04368f9de30227a88d96491611a0d16">mask_shl</a>(w1, w2, bits)                  w1 = (w2 &lt;&lt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#acded33014d97f776d81d99512db03117">mask_shr</a>(w1, w2, bits)                  w1 = (w2 &gt;&gt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#af8909fa52806835723145fc5432936e6">mask_rol</a>(w1, w2, bits)                  w1 = (w2 &lt;&lt;&lt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#ad3c105e4c43ab485c472486664b5df46">mask_ror</a>(w1, w2, bits)                  w1 = (w2 &gt;&gt;&gt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#aa1b68876abb10f46e1e769444ac00f86">mask_swap</a>(w1, w2)                       swaps w1 and w2</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a9e5bcbd8e1770326aba0686bce1e59a5">mask_swap_move</a>(w1, w2, mask, shift)     swaps bits in w1 and w2</div>
 </div><!-- fragment --><p>These operations will work on 16-bit, 32-bit, and 64-bit masked words, adapting automatically to the underlying masked word type.</p>
 <p>There are also versions of these macros for each explcit sharing ratio between 2 and 6. For example, if you wanted to force the use of the 3-share versions, you would use the following macros instead of the generic ones:</p>
-<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705">mask_x3_input</a>(w, x)                 w = mask(x)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#aff94f591ebd2fc23384612ace06db980">mask_x3_output</a>(w)                   return unmask(w)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#ae1e904b35edaad16128807ae7583814b">mask_x3_xor_const</a>(w, c)             w ^= c</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a762612e1ccc1f438ddcfc1e0d62b5306">mask_x3_xor</a>(w1, w2)                 w1 ^= w2</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#af032db8905cb06918aee34ea308d3fc8">mask_x3_not</a>(w)                      w = ~w</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a5d77b390ed885eda348012a41ae1f6cd">mask_x3_and</a>(w1, w2, w3)             w1 ^= (w2 &amp; w3)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a13fa62dc9a0b9286abe17d23655ac40b">mask_x3_or</a>(w1, w2, w3)              w1 ^= (w2 | w3)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a1692714b4cb7003b3c345a2a5f6df67a">mask_x3_shl</a>(w1, w2, bits)           w1 = (w2 &lt;&lt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#ab90fc5363a72998ba62ca3d0cf21d915">mask_x3_shr</a>(w1, w2, bits)           w1 = (w2 &gt;&gt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#ab789bb54ac75c5cc19699c36fa9d30cd">mask_x3_rol</a>(w1, w2, bits)           w1 = (w2 &lt;&lt;&lt; bits)</div>
-<div class="line"><a class="code" href="internal-masking_8h.html#a9846ef20d7e774209ff65f06ea0c680f">mask_x3_ror</a>(w1, w2, bits)           w1 = (w2 &gt;&gt;&gt; bits)</div>
+<div class="fragment"><div class="line"><a class="code" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705">mask_x3_input</a>(w, x)                     w = mask(x)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#aff94f591ebd2fc23384612ace06db980">mask_x3_output</a>(w)                       return unmask(w)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#ae1e904b35edaad16128807ae7583814b">mask_x3_xor_const</a>(w, c)                 w ^= c</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a762612e1ccc1f438ddcfc1e0d62b5306">mask_x3_xor</a>(w1, w2)                     w1 ^= w2</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a6c97a6a8180cd5ff124fd00a5e8bb233">mask_x3_xor3</a>(w1, w2, w3)                w1 ^= (w2 ^ w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#af032db8905cb06918aee34ea308d3fc8">mask_x3_not</a>(w)                          w = ~w</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a5d77b390ed885eda348012a41ae1f6cd">mask_x3_and</a>(w1, w2, w3)                 w1 ^= (w2 &amp; w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a3d85a7a4f25e8530debcb3ce42544659">mask_x3_and_not</a>(w1, w2, w3)             w1 ^= ((~w2) &amp; w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a13fa62dc9a0b9286abe17d23655ac40b">mask_x3_or</a>(w1, w2, w3)                  w1 ^= (w2 | w3)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a1692714b4cb7003b3c345a2a5f6df67a">mask_x3_shl</a>(w1, w2, bits)               w1 = (w2 &lt;&lt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#ab90fc5363a72998ba62ca3d0cf21d915">mask_x3_shr</a>(w1, w2, bits)               w1 = (w2 &gt;&gt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#ab789bb54ac75c5cc19699c36fa9d30cd">mask_x3_rol</a>(w1, w2, bits)               w1 = (w2 &lt;&lt;&lt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#a9846ef20d7e774209ff65f06ea0c680f">mask_x3_ror</a>(w1, w2, bits)               w1 = (w2 &gt;&gt;&gt; bits)</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#ae68f9b9e6bcf3f2d9aab6f58d70c4e6b">mask_x3_swap</a>(w1, w2)                    swaps w1 and w2</div>
+<div class="line"><a class="code" href="internal-masking_8h.html#aad6480389a9782dd61a9ef287b565cc0">mask_x3_swap_move</a>(w1, w2, mask, shift)  swaps bits in w1 and w2</div>
 </div><!-- fragment --><h1><a class="anchor" id="masking_work"></a>
 How do the operations work?</h1>
 <p>This section provides details on how each of the operations are defined, and how that leads to an effective masked implementation. For simplicity, we will use the 3-share versions unless otherwise stated.</p>
@@ -263,8 +271,8 @@ Input and output</h2>
 <div class="line"><a class="code" href="structmask__x3__uint32__t.html">mask_x3_uint32_t</a> w;</div>
 <div class="line"><a class="code" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705">mask_x3_input</a>(w, x);</div>
 </div><!-- fragment --><p>Behind the scenes, <a class="el" href="internal-masking_8h.html#a6ec2f4a338234708cfe62a0aaba7e705" title="Masks an input value to produce a 3-share masked word. ">mask_x3_input()</a> expands to:</p>
-<div class="fragment"><div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> = aead_masking_generate_32();</div>
-<div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a> = aead_masking_generate_32();</div>
+<div class="fragment"><div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>();</div>
+<div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a> = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>();</div>
 <div class="line">w.<a class="code" href="structmask__x3__uint32__t.html#ab212db04f12a4e283869544e87d6ef97">a</a> = x ^ w.<a class="code" href="structmask__x3__uint32__t.html#ab49d132e56c852f3c932127a014c03c4">b</a> ^ w.<a class="code" href="structmask__x3__uint32__t.html#af243b7703eaf1cfd6ff1ff74d2db6dfb">c</a>;</div>
 </div><!-- fragment --><p>As can be seen, masking involves generating random values for the second and subsequent shares and then XOR'ing it with the input to create the first share. After masking, the original value is no longer operative; w.a, w.b, and w.c are all randomized. For the 4-share and higher variants, more random words are generated and XOR'ed with x.</p>
 <p>To recover the results at the end of the cipher, the shares are recombined using <a class="el" href="internal-masking_8h.html#aff94f591ebd2fc23384612ace06db980" title="Unmasks a 3-share masked word to produce an output value. ">mask_x3_output()</a>:</p>
@@ -349,11 +357,11 @@ AND</h2>
 <div class="line">    w1.d ^= (w2.d &amp; w3.d)</div>
 <div class="line"></div>
 <div class="line">mix(a1, a2, a3, b1, b2, b3) :</div>
-<div class="line">    temp = aead_masking_generate_32()</div>
+<div class="line">    temp = <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>()</div>
 <div class="line">    a1 ^= temp</div>
 <div class="line">    b1 ^= temp ^ (b3 &amp; a2) ^ (b2 &amp; a3)</div>
 </div><!-- fragment --><p>Essentially this is performing a diagonal matrix operation where each share is mixed with all of the shares below it and to the right. At each step, a new random number is generated and mixed into the state.</p>
-<p>Note: The <a class="el" href="internal-masking_8h.html#acc2be96e3a183c111f271fc8e8788570" title="AND&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_and()</a> and <a class="el" href="internal-masking_8h.html#a34418c16b2ac0adbd3a257edc7ae1357" title="OR&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_or()</a> functions require a local variable called "temp" in the current scope that is of type uint16_t, uint32_t, or uint64_t depending upon the type of masked word you are operating on.</p>
+<p>Note: The <a class="el" href="internal-masking_8h.html#acc2be96e3a183c111f271fc8e8788570" title="AND&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_and()</a>, <a class="el" href="internal-masking_8h.html#a868a8a20207ceeeb19a648d6da186a2e" title="AND&#39;s two generic masked words and XOR&#39;s the result with another word, where the first input word is ...">mask_and_not()</a>, and <a class="el" href="internal-masking_8h.html#a34418c16b2ac0adbd3a257edc7ae1357" title="OR&#39;s two generic masked words and XOR&#39;s the result with another word. ">mask_or()</a> macros require a local variable called "temp" in the current scope that is of type uint16_t, uint32_t, or uint64_t depending upon the type of masked word you are operating on.</p>
 <p>For a masked word with N shares, each AND operation requires (N² - N) / 2 random number generator calls and mix operations. This has a significant impact on performance compared with the non-masked version of AND. The higher the number of shares, or the higher the number of AND operations, the slower the masked cipher will become.</p>
 <h2><a class="anchor" id="masking_and_not"></a>
 AND-NOT</h2>
@@ -412,11 +420,11 @@ Shift and rotate</h2>
 <div class="line">    w.c &lt;&lt;= bits</div>
 </div><!-- fragment --><h2><a class="anchor" id="masking_swap"></a>
 Swap</h2>
-<p>The <a class="el" href="internal-masking_8h.html#aa1b68876abb10f46e1e769444ac00f86" title="Performs a swap on two generic masked words. ">mask_swap()</a> function swaps two masked words and the mask_swap_and_move() function performs a swap on some of the bits in two masked words. </p>
+<p>The <a class="el" href="internal-masking_8h.html#aa1b68876abb10f46e1e769444ac00f86" title="Performs a swap on two generic masked words. ">mask_swap()</a> function swaps two masked words and the <a class="el" href="internal-masking_8h.html#a9e5bcbd8e1770326aba0686bce1e59a5" title="Performs a swap and move on two generic masked words. ">mask_swap_move()</a> function performs a swap on some of the bits in two masked words. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 9 2020 07:56:25 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 12 2020 18:57:40 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['performance',['Performance',['../performance.html',1,'']]],
+  ['performance_20on_2032_2dbit_20platforms',['Performance on 32-bit platforms',['../performance.html',1,'']]],
   ['performance_2edox',['performance.dox',['../performance_8dox.html',1,'']]],
   ['performance_20on_20avr',['Performance on AVR',['../performance_avr.html',1,'']]],
   ['performance_5favr_2edox',['performance_avr.dox',['../performance__avr_8dox.html',1,'']]],
