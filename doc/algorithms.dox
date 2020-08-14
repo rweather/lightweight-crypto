@@ -196,6 +196,7 @@ some protection against power analysis side channels:
 version)
 \li \ref alg_gimli "Gimli"
 \li \ref alg_isap "ISAP"
+\li \ref alg_knot "KNOT"
 \li \ref alg_pyjamask "Pyjamask"
 \li \ref alg_spix "SPIX"
 \li \ref alg_spoc "SpoC"
@@ -494,6 +495,9 @@ family members are:
 384-bit permutation.
 \li KNOT-HASH-512-512 with a 512-bit hash output, built around a
 512-bit permutation.
+
+This library also provides masked implementations of all KNOT
+encryption algorithms.
 
 <b>Recommendation:</b> The specification recommends KNOT-AEAD-128-256 and
 KNOT-HASH-256-256.

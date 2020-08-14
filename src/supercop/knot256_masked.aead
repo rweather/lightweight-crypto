@@ -1,0 +1,11 @@
+aead_family=knot
+aead_name=knot256
+aead_meta_name=KNOT-AEAD-256-512-Masked
+aead_srcdir=KNOT_masked
+aead_key_size=32
+aead_nonce_size=32
+aead_tag_size=32
+aead_encrypt=knot_masked_256_512_aead_encrypt
+aead_decrypt=knot_masked_256_512_aead_decrypt
+aead_header=knot-masked.h
+aead_variant=masked

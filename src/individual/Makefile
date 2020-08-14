@@ -156,6 +156,17 @@ KNOT_FILES = \
     internal-knot-384-avr.S \
     internal-knot-512-avr.S \
     $(COMMON_FILES)
+KNOT_MASKED_FILES = \
+    knot-masked.c \
+    knot-masked.h \
+    internal-knot.c \
+    internal-knot.h \
+    internal-knot-m.c \
+    internal-knot-m.h \
+    internal-knot-256-avr.S \
+    internal-knot-384-avr.S \
+    internal-knot-512-avr.S \
+    $(COMMON_MASKING_FILES)
 LOTUS_FILES = \
     lotus-locus.c \
     lotus-locus.h \
@@ -348,6 +359,7 @@ ALL_ALGORITHMS = \
     hyena \
     isap \
     knot \
+    knot_masked \
     lotus \
     orange \
     oribatida \
@@ -423,6 +435,9 @@ isap:
 
 knot:
 	cp $(foreach file,$(KNOT_FILES),$(SRCDIR)/$(file)) KNOT
+
+knot_masked:
+	cp $(foreach file,$(KNOT_MASKED_FILES),$(SRCDIR)/$(file)) KNOT_masked
 
 lotus:
 	cp $(foreach file,$(LOTUS_FILES),$(SRCDIR)/$(file)) LOTUS-AEAD

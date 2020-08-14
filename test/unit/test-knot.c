@@ -21,6 +21,7 @@
  */
 
 #include "internal-knot.h"
+#include "internal-knot-m.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -123,11 +124,71 @@ static void test_knot512(void)
     fflush(stdout);
 }
 
+static void test_knot256_masked(void)
+{
+    uint64_t temp[4];
+    knot256_masked_state_t state;
+    printf("    KNOT-256-Masked ... ");
+    memcpy(temp, knot256_in, sizeof(knot256_in));
+    knot256_mask(&state, temp);
+    knot256_masked_permute_6(&state, knot256_rounds);
+    knot256_unmask(temp, &state);
+    if (test_memcmp((const unsigned char *)temp, knot256_out,
+                    sizeof(knot256_out))) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+    fflush(stdout);
+}
+
+static void test_knot384_masked(void)
+{
+    uint32_t temp[16];
+    knot384_masked_state_t state;
+    printf("    KNOT-384-Masked ... ");
+    memcpy(temp, knot384_in, sizeof(knot384_in));
+    knot384_mask(&state, temp);
+    knot384_masked_permute_7(&state, knot384_rounds);
+    knot384_unmask(temp, &state);
+    if (test_memcmp((const unsigned char *)temp,
+                    knot384_out, sizeof(knot384_out))) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+    fflush(stdout);
+}
+
+static void test_knot512_masked(void)
+{
+    uint64_t temp[8];
+    knot512_masked_state_t state;
+    printf("    KNOT-512-Masked ... ");
+    memcpy(temp, knot512_in, sizeof(knot512_in));
+    knot512_mask(&state, temp);
+    knot512_masked_permute_8(&state, knot512_rounds);
+    knot512_unmask(temp, &state);
+    if (test_memcmp((const unsigned char *)temp, knot512_out,
+                    sizeof(knot512_out))) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+    fflush(stdout);
+}
+
 void test_knot(void)
 {
     printf("KNOT Permutation:\n");
     test_knot256();
     test_knot384();
     test_knot512();
+    test_knot256_masked();
+    test_knot384_masked();
+    test_knot512_masked();
     printf("\n");
 }

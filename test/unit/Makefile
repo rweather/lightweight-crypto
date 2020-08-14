@@ -68,7 +68,7 @@ test-gift64.o: $(LIBSRC_DIR)/internal-gift64.h $(TEST_CIPHER_INC)
 test-gimli24.o: $(LIBSRC_DIR)/gimli24.h $(LIBSRC_DIR)/internal-gimli24.h $(LIBSRC_DIR)/internal-gimli24-m.h $(TEST_CIPHER_MASKING_INC)
 test-grain128.o: $(LIBSRC_DIR)/internal-grain128.h $(TEST_CIPHER_INC)
 test-keccak.o: $(LIBSRC_DIR)/internal-keccak.h $(TEST_CIPHER_INC)
-test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(TEST_CIPHER_INC)
+test-knot.o: $(LIBSRC_DIR)/internal-knot.h $(LIBSRC_DIR)/internal-knot-m.h $(TEST_CIPHER_MASKING_INC)
 test-masking.o: $(LIBSRC_DIR)/aead-random.h $(LIBSRC_DIR)/internal-masking.h $(TEST_CIPHER_INC) test-masking-common.c
 test-photon256.o: $(LIBSRC_DIR)/internal-photon256.h $(TEST_CIPHER_INC)
 test-pyjamask.o: $(LIBSRC_DIR)/internal-pyjamask.h $(LIBSRC_DIR)/internal-pyjamask-m.h $(TEST_CIPHER_INC)

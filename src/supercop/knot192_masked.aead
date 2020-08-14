@@ -1,0 +1,11 @@
+aead_family=knot
+aead_name=knot192
+aead_meta_name=KNOT-AEAD-192-384-Masked
+aead_srcdir=KNOT_masked
+aead_key_size=24
+aead_nonce_size=24
+aead_tag_size=24
+aead_encrypt=knot_masked_192_384_aead_encrypt
+aead_decrypt=knot_masked_192_384_aead_decrypt
+aead_header=knot-masked.h
+aead_variant=masked

@@ -29,6 +29,7 @@ OBJS = \
         isap.o \
         knot-aead.o \
         knot-hash.o \
+        knot-masked.o \
         lotus-locus.o \
         orange.o \
         oribatida.o \
@@ -70,6 +71,7 @@ OBJS = \
 	internal-grain128.o \
 	internal-keccak.o \
         internal-knot.o \
+        internal-knot-m.o \
 	internal-photon256.o \
 	internal-pyjamask.o \
 	internal-pyjamask-m.o \
@@ -125,6 +127,7 @@ hyena.o: hyena.h aead-common.h internal-gift128.h internal-gift128-config.h inte
 isap.o: isap.h aead-common.h internal-isap.h internal-ascon.h internal-keccak.h internal-util.h
 knot-aead.o: knot.h aead-common.h internal-knot.h internal-util.h
 knot-hash.o: knot.h aead-common.h internal-knot.h internal-util.h
+knot-masked.o: knot-masked.h aead-common.h aead-random.h internal-knot.h internal-knot-m.h internal-masking.h internal-util.h
 lotus-locus.o: lotus-locus.h aead-common.h internal-gift64.h internal-util.h
 orange.o: orange.h aead-common.h internal-photon256.h internal-util.h
 oribatida.o: oribatida.h aead-common.h internal-simp.h internal-util.h
@@ -166,6 +169,7 @@ internal-gimli24-m.o: internal-gimli24-m.h aead-random.h internal-masking.h inte
 internal-grain128.o: internal-grain128.h internal-util.h
 internal-keccak.o: internal-keccak.h internal-util.h
 internal-knot.o: internal-knot.h internal-util.h
+internal-knot-m.o: internal-knot-m.h internal-util.h internal-masking.h aead-random.h
 internal-photon256.o: internal-photon256.h internal-util.h
 internal-pyjamask.o: internal-pyjamask.h internal-util.h
 internal-pyjamask-m.o: internal-pyjamask-m.h internal-util.h aead-random.h internal-masking.h

@@ -45,6 +45,7 @@ of flash memory.
 #include "hyena.h"
 #include "isap.h"
 #include "knot.h"
+#include "knot-masked.h"
 #include "lotus-locus.h"
 #include "orange.h"
 #include "oribatida.h"
@@ -524,6 +525,10 @@ void setup()
     perfCipher(&knot_aead_128_384_cipher);
     perfCipher(&knot_aead_192_384_cipher);
     perfCipher(&knot_aead_256_512_cipher);
+    perfCipher(&knot_aead_128_256_masked_cipher);
+    perfCipher(&knot_aead_128_384_masked_cipher);
+    perfCipher(&knot_aead_192_384_masked_cipher);
+    perfCipher(&knot_aead_256_512_masked_cipher);
     perfCipher(&lotus_aead_cipher);
     perfCipher(&locus_aead_cipher);
     perfCipher(&orange_zest_cipher);
@@ -626,6 +631,10 @@ void setup()
     perfMasked(&ascon80pq_cipher, &ascon80pq_masked_cipher);
     perfMasked(&gift_cofb_cipher, &gift_cofb_masked_cipher);
     perfMasked(&gimli24_cipher, &gimli24_masked_cipher);
+    perfMasked(&knot_aead_128_256_cipher, &knot_aead_128_256_masked_cipher);
+    perfMasked(&knot_aead_128_384_cipher, &knot_aead_128_384_masked_cipher);
+    perfMasked(&knot_aead_192_384_cipher, &knot_aead_192_384_masked_cipher);
+    perfMasked(&knot_aead_256_512_cipher, &knot_aead_256_512_masked_cipher);
     perfMasked(&pyjamask_128_cipher, &pyjamask_masked_128_cipher);
     perfMasked(&pyjamask_96_cipher, &pyjamask_masked_96_cipher);
     perfMasked(&spix_cipher, &spix_masked_cipher);
