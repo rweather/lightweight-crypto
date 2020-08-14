@@ -35,9 +35,9 @@
  *
  * \li Spoc-128 has a 128-bit key, a 128-bit nonce, and a 128-bit tag.
  * It is built around the 256-bit version of the sLiSCP-light permutation.
- * This is the primary member of the family.
  * \li Spoc-64 has a 128-bit key, a 128-bit nonce, and a 64-bit tag.
  * It is built around the 192-bit version of the sLiSCP-light permutation.
+ * This is the primary member of the family.
  *
  * Spoc-128 has good performance on small packets (16 bytes or less)
  * on 32-bit embedded platforms.
