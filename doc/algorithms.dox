@@ -769,7 +769,7 @@ on 32-bit embedded platforms.
 
 This library also provides masked implementations of SpoC-128 and SpoC-64.
 
-<b>Recommendation:</b> The specification recommends SpoC-128.
+<b>Recommendation:</b> The specification recommends SpoC-64.
 
 <b>Similar Algorithms:</b> \ref alg_ace "ACE", \ref alg_spix "SPIX"
 
