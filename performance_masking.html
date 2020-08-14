@@ -117,6 +117,22 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>GIMLI-24</em></b></td><td>Full</td><td align="right">10.50</td><td align="right">31.41</td><td align="right">60.37</td><td align="right">106.37</td><td align="right">159.46 </td></tr>
 <tr>
+<td><b><em>KNOT-AEAD-128-256</em></b></td><td>Init</td><td align="right">2.01</td><td align="right">4.88</td><td align="right">8.09</td><td align="right">12.74</td><td align="right">19.36 </td></tr>
+<tr>
+<td><b><em>KNOT-AEAD-128-256</em></b></td><td>Full</td><td align="right">6.12</td><td align="right">17.99</td><td align="right">32.06</td><td align="right">52.46</td><td align="right">81.93 </td></tr>
+<tr>
+<td>KNOT-AEAD-128-384</td><td>Init</td><td align="right">2.92</td><td align="right">7.74</td><td align="right">14.01</td><td align="right">23.93</td><td align="right">35.57 </td></tr>
+<tr>
+<td>KNOT-AEAD-128-384</td><td>Full</td><td align="right">4.60</td><td align="right">13.91</td><td align="right">26.86</td><td align="right">43.77</td><td align="right">65.54 </td></tr>
+<tr>
+<td>KNOT-AEAD-192-384</td><td>Init</td><td align="right">2.13</td><td align="right">4.94</td><td align="right">8.62</td><td align="right">14.44</td><td align="right">21.22 </td></tr>
+<tr>
+<td>KNOT-AEAD-192-384</td><td>Full</td><td align="right">4.67</td><td align="right">14.19</td><td align="right">27.46</td><td align="right">44.74</td><td align="right">67.07 </td></tr>
+<tr>
+<td>KNOT-AEAD-256-512</td><td>Init</td><td align="right">2.32</td><td align="right">5.47</td><td align="right">9.77</td><td align="right">14.92</td><td align="right">23.67 </td></tr>
+<tr>
+<td>KNOT-AEAD-256-512</td><td>Full</td><td align="right">4.93</td><td align="right">13.98</td><td align="right">26.97</td><td align="right">43.61</td><td align="right">65.27 </td></tr>
+<tr>
 <td><b><em>Pyjamask-128-AEAD</em></b></td><td>Full</td><td align="right">2.94</td><td align="right">3.05</td><td align="right">5.31</td><td align="right">5.74</td><td align="right">8.14 </td></tr>
 <tr>
 <td>Pyjamask-96-AEAD</td><td>Full</td><td align="right">2.94</td><td align="right">3.06</td><td align="right">5.33</td><td align="right">5.73</td><td align="right">8.14 </td></tr>
@@ -169,6 +185,8 @@ Rankings</h1>
 <tr>
 <td>ASCON-128</td><td>Init/Final</td><td align="right">6.91 </td></tr>
 <tr>
+<td>KNOT-AEAD-128-256</td><td>Init</td><td align="right">8.09 </td></tr>
+<tr>
 <td>GIMLI-24</td><td>Init</td><td align="right">11.93 </td></tr>
 <tr>
 <td>TinyJAMBU-128</td><td>Full</td><td align="right">14.59 </td></tr>
@@ -178,6 +196,8 @@ Rankings</h1>
 <td>SPIX</td><td>Init/Final</td><td align="right">23.47 </td></tr>
 <tr>
 <td>Xoodyak</td><td>Full</td><td align="right">28.53 </td></tr>
+<tr>
+<td>KNOT-AEAD-128-256</td><td>Full</td><td align="right">32.06 </td></tr>
 <tr>
 <td>GIFT-COFB</td><td>Full</td><td align="right">36.84 </td></tr>
 <tr>
@@ -206,6 +226,8 @@ Rankings</h1>
 <tr>
 <td>TinyJAMBU-128</td><td>Full</td><td align="right">14.59</td><td align="right">0.81</td><td align="right">18.01 </td></tr>
 <tr>
+<td>KNOT-AEAD-128-256</td><td>Init</td><td align="right">8.09</td><td align="right">0.38</td><td align="right">21.29 </td></tr>
+<tr>
 <td>ASCON-128</td><td>Full</td><td align="right">15.21</td><td align="right">0.49</td><td align="right">31.04 </td></tr>
 <tr>
 <td>Xoodyak</td><td>Full</td><td align="right">28.53</td><td align="right">0.86</td><td align="right">33.17 </td></tr>
@@ -222,6 +244,8 @@ Rankings</h1>
 <tr>
 <td>Pyjamask-128-AEAD</td><td>Full</td><td align="right">5.31</td><td align="right">0.07</td><td align="right">75.86 </td></tr>
 <tr>
+<td>KNOT-AEAD-128-256</td><td>Full</td><td align="right">32.06</td><td align="right">0.38</td><td align="right">84.37 </td></tr>
+<tr>
 <td>SPIX</td><td>Full</td><td align="right">38.13</td><td align="right">0.40</td><td align="right">95.33 </td></tr>
 </table>
 <h1><a class="anchor" id="perf_masking_opt"></a>
@@ -234,7 +258,7 @@ Optimisation tricks</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 12 2020 18:57:40 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 14 2020 10:18:32 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
