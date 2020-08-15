@@ -79,6 +79,41 @@ static void test_ascon_permutation(void)
     }
 }
 
+#if ASCON_SLICED
+
+static void test_ascon_sliced(void)
+{
+    ascon_state_t state;
+
+    printf("    Sliced Permutation 12 ... ");
+    fflush(stdout);
+    memcpy(state.B, ascon_input, sizeof(ascon_input));
+    ascon_to_sliced(&state);
+    ascon_permute_sliced(&state, 0);
+    ascon_from_sliced(&state);
+    if (memcmp(state.B, ascon_output_12, sizeof(ascon_output_12)) != 0) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+
+    printf("    Sliced Permutation 8 ... ");
+    fflush(stdout);
+    memcpy(state.B, ascon_input, sizeof(ascon_input));
+    ascon_to_sliced(&state);
+    ascon_permute_sliced(&state, 4);
+    ascon_from_sliced(&state);
+    if (memcmp(state.B, ascon_output_8, sizeof(ascon_output_8)) != 0) {
+        printf("failed\n");
+        test_exit_result = 1;
+    } else {
+        printf("ok\n");
+    }
+}
+
+#endif
+
 static void test_ascon_masked(void)
 {
     mask_uint64_t state[5];
@@ -115,6 +150,9 @@ void test_ascon(void)
 {
     test_aead_cipher_start(&ascon128_cipher);
     test_ascon_permutation();
+#if ASCON_SLICED
+    test_ascon_sliced();
+#endif
     test_ascon_masked();
     test_aead_cipher_end(&ascon128_cipher);
 }
