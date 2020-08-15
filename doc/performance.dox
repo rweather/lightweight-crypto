@@ -139,6 +139,7 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td>SAEF-ForkSkinny-128-256</td><td>128</td><td>120</td><td>128</td><td>0.10</td><td>0.09</td><td>0.32</td><td>0.28</td><td>0.15</td></tr>
 <tr><td>SAEF-ForkSkinny-128-192</td><td>128</td><td>56</td><td>128</td><td>0.10</td><td>0.09</td><td>0.32</td><td>0.28</td><td>0.15</td></tr>
 <tr><td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.11</td><td>0.17</td><td>0.18</td><td>0.14</td></tr>
+<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.19</td><td>0.10</td><td>0.11</td><td>0.13</td></tr>
 <tr><td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.10</td><td>0.11</td><td>0.15</td><td>0.16</td><td>0.13</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12</td></tr>
 <tr><td><b><i>ORANGE-Zest</i></b></td><td>128</td><td>128</td><td>128</td><td>0.11</td><td>0.12</td><td>0.11</td><td>0.12</td><td>0.11</td></tr>
@@ -149,13 +150,12 @@ Where a NIST submission contains multiple algorithms in a family,
 <tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.05</td><td>0.05</td><td>0.18</td><td>0.14</td><td>0.08</td></tr>
 <tr><td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.04</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.05</td></tr>
-<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04</td></tr>
+<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.05</td><td>0.05</td><td>0.03</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.03</td><td>0.03</td><td>0.02</td></tr>
 <tr><td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
-<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0034</td><td>0.0038</td><td>0.0015</td><td>0.0016</td><td>0.0021</td></tr>
 </table>
 
@@ -252,6 +252,7 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>Subterranean</i></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.14</td><td>0.10</td><td>0.11</td><td>0.12</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>0.09</td><td>1.10</td><td>0.13</td><td>0.14</td><td>0.11</td></tr>
 <tr><td><b><i>Romulus-N1</i></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.10</td><td>0.12</td><td>0.13</td><td>0.11</td></tr>
+<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.08</td><td>0.09</td><td>0.10</td></tr>
 <tr><td><b><i>ORANGE-Zest</i></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.10</td><td>0.11</td><td>0.10</td></tr>
 <tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10</td></tr>
 <tr><td>PAEF-ForkSkinny-128-256</td><td>128</td><td>112</td><td>128</td><td>0.06</td><td>0.07</td><td>0.21</td><td>0.20</td><td>0.10</td></tr>
@@ -265,13 +266,12 @@ where the architectural differences gives some algorithms an added advantage.
 <tr><td><b><i>PHOTON-Beetle-AEAD-ENC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.06</td><td>0.10</td><td>0.11</td><td>0.08</td></tr>
 <tr><td><b><i>PAEF-ForkSkinny-128-288</i></b></td><td>128</td><td>104</td><td>128</td><td>0.05</td><td>0.05</td><td>0.16</td><td>0.14</td><td>0.08</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.04</td><td>0.04</td><td>0.14</td><td>0.12</td><td>0.07</td></tr>
-<tr><td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06</td></tr>
 <tr><td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.08</td><td>0.06</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.04</td><td>0.04</td><td>0.04</td></tr>
 <tr><td><b><i>ISAP-K-128A</i></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
+<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02</td></tr>
 <tr><td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.02</td><td>0.04</td><td>0.04</td><td>0.02</td></tr>
 <tr><td><b><i>Dumbo</i></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td></tr>
-<tr><td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01</td></tr>
 <tr><td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01</td></tr>
 <tr><td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0040</td><td>0.0047</td><td>0.0018</td><td>0.0020</td><td>0.0025</td></tr>
 </table>

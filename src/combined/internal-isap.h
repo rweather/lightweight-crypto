@@ -31,6 +31,7 @@
  * ISAP_sK              Number of rounds for keying.
  * ISAP_STATE           Type for the permuation state; e.g. ascon_state_t
  * ISAP_PERMUTE(s,r)    Permutes the state "s" with number of rounds "r".
+ * ISAP_PERMUTE_SLICED(s,r) Defined if using the sliced version of ASCON.
  */
 #if defined(ISAP_ALG_NAME)
 
@@ -73,6 +74,26 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_rekey)
     (ISAP_STATE *state, const unsigned char *k, const unsigned char *iv,
      const unsigned char *data, unsigned data_len)
 {
+#if defined(ISAP_PERMUTE_SLICED)
+    unsigned bit, num_bits;
+
+    /* Initialize the state with the key and IV */
+    memcpy(state->B, k, ISAP_KEY_SIZE);
+    memcpy(state->B + ISAP_KEY_SIZE, iv, sizeof(state->B) - ISAP_KEY_SIZE);
+    ascon_to_sliced(state);
+    ISAP_PERMUTE_SLICED(state, ISAP_sK);
+
+    /* Absorb all of the bits of the data buffer one by one */
+    num_bits = data_len * 8 - 1;
+    for (bit = 0; bit < num_bits; ++bit) {
+        state->W[1] ^=
+            (((uint32_t)(data[bit / 8])) << (24 + bit % 8)) & 0x80000000U;
+        ISAP_PERMUTE_SLICED(state, ISAP_sB);
+    }
+    state->W[1] ^=
+        (((uint32_t)(data[bit / 8])) << (24 + bit % 8)) & 0x80000000U;
+    ISAP_PERMUTE_SLICED(state, ISAP_sK);
+#else
     unsigned bit, num_bits;
 
     /* Initialize the state with the key and IV */
@@ -88,6 +109,7 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_rekey)
     }
     state->B[0] ^= (data[bit / 8] << (bit % 8)) & 0x80;
     ISAP_PERMUTE(state, ISAP_sK);
+#endif
 }
 
 /**
@@ -104,6 +126,30 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_encrypt)
     (ISAP_STATE *state, const unsigned char *k, const unsigned char *npub,
      unsigned char *c, const unsigned char *m, unsigned long long mlen)
 {
+#if defined(ISAP_PERMUTE_SLICED)
+    unsigned char block[ISAP_RATE];
+
+    /* Set up the re-keyed encryption key and nonce in the state */
+    ISAP_CONCAT(ISAP_ALG_NAME,_rekey)
+        (state, k, ISAP_CONCAT(ISAP_ALG_NAME,_IV_KE), npub, ISAP_NONCE_SIZE);
+    ascon_set_sliced(state, npub, 3);
+    ascon_set_sliced(state, npub + 8, 4);
+
+    /* Encrypt the plaintext to produce the ciphertext */
+    while (mlen >= ISAP_RATE) {
+        ISAP_PERMUTE_SLICED(state, ISAP_sE);
+        ascon_squeeze_sliced(state, block, 0);
+        lw_xor_block_2_src(c, block, m, ISAP_RATE);
+        c += ISAP_RATE;
+        m += ISAP_RATE;
+        mlen -= ISAP_RATE;
+    }
+    if (mlen > 0) {
+        ISAP_PERMUTE_SLICED(state, ISAP_sE);
+        ascon_squeeze_sliced(state, block, 0);
+        lw_xor_block_2_src(c, block, m, (unsigned)mlen);
+    }
+#else
     /* Set up the re-keyed encryption key and nonce in the state */
     ISAP_CONCAT(ISAP_ALG_NAME,_rekey)
         (state, k, ISAP_CONCAT(ISAP_ALG_NAME,_IV_KE), npub, ISAP_NONCE_SIZE);
@@ -122,6 +168,7 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_encrypt)
         ISAP_PERMUTE(state, ISAP_sE);
         lw_xor_block_2_src(c, state->B, m, (unsigned)mlen);
     }
+#endif
 }
 
 /**
@@ -141,6 +188,58 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_mac)
      const unsigned char *c, unsigned long long clen,
      unsigned char *tag)
 {
+#if defined(ISAP_PERMUTE_SLICED)
+    unsigned char preserve[sizeof(ISAP_STATE) - ISAP_TAG_SIZE];
+    unsigned char padded[ISAP_RATE];
+    unsigned temp;
+
+    /* Absorb the associated data */
+    memcpy(state->B, npub, ISAP_NONCE_SIZE);
+    memcpy(state->B + ISAP_NONCE_SIZE, ISAP_CONCAT(ISAP_ALG_NAME,_IV_A),
+           sizeof(state->B) - ISAP_NONCE_SIZE);
+    ascon_to_sliced(state);
+    ISAP_PERMUTE_SLICED(state, ISAP_sH);
+    while (adlen >= ISAP_RATE) {
+        ascon_absorb_sliced(state, ad, 0);
+        ISAP_PERMUTE_SLICED(state, ISAP_sH);
+        ad += ISAP_RATE;
+        adlen -= ISAP_RATE;
+    }
+    temp = (unsigned)adlen;
+    memcpy(padded, ad, temp);
+    padded[temp] = 0x80; /* padding */
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+    ISAP_PERMUTE_SLICED(state, ISAP_sH);
+    state->W[8] ^= 0x01; /* domain separation */
+
+    /* Absorb the ciphertext */
+    while (clen >= ISAP_RATE) {
+        ascon_absorb_sliced(state, c, 0);
+        ISAP_PERMUTE_SLICED(state, ISAP_sH);
+        c += ISAP_RATE;
+        clen -= ISAP_RATE;
+    }
+    temp = (unsigned)clen;
+    memcpy(padded, c, temp);
+    padded[temp] = 0x80; /* padding */
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+    ISAP_PERMUTE_SLICED(state, ISAP_sH);
+
+    /* Re-key the state and generate the authentication tag */
+    ascon_from_sliced(state);
+    memcpy(tag, state->B, ISAP_TAG_SIZE);
+    memcpy(preserve, state->B + ISAP_TAG_SIZE, sizeof(preserve));
+    ISAP_CONCAT(ISAP_ALG_NAME,_rekey)
+        (state, k, ISAP_CONCAT(ISAP_ALG_NAME,_IV_KA), tag, ISAP_TAG_SIZE);
+    ascon_from_sliced(state);
+    memcpy(state->B + ISAP_TAG_SIZE, preserve, sizeof(preserve));
+    ascon_to_sliced(state);
+    ISAP_PERMUTE_SLICED(state, ISAP_sH);
+    ascon_squeeze_sliced(state, tag, 0);
+    ascon_squeeze_sliced(state, tag + 8, 1);
+#else
     unsigned char preserve[sizeof(ISAP_STATE) - ISAP_TAG_SIZE];
     unsigned temp;
 
@@ -181,6 +280,7 @@ static void ISAP_CONCAT(ISAP_ALG_NAME,_mac)
     memcpy(state->B + ISAP_TAG_SIZE, preserve, sizeof(preserve));
     ISAP_PERMUTE(state, ISAP_sH);
     memcpy(tag, state->B, ISAP_TAG_SIZE);
+#endif
 }
 
 int ISAP_CONCAT(ISAP_ALG_NAME,_aead_encrypt)
@@ -245,5 +345,6 @@ int ISAP_CONCAT(ISAP_ALG_NAME,_aead_decrypt)
 #undef ISAP_sK
 #undef ISAP_STATE
 #undef ISAP_PERMUTE
+#undef ISAP_PERMUTE_SLICED
 #undef ISAP_CONCAT_INNER
 #undef ISAP_CONCAT

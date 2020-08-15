@@ -131,6 +131,25 @@ void ascon_permute_sliced(ascon_state_t *state, uint8_t first_round);
 /** @endcond */
 
 /**
+ * \brief Sets data into the ASCON state in sliced form.
+ *
+ * \param state The ASCON state for the data to be absorbed into.
+ * \param data Points to 8 bytes of data in big-endian byte order to set.
+ * \param offset Offset of the 64-bit word within the state to set at,
+ * between 0 and 4.
+ */
+#define ascon_set_sliced(state, data, offset) \
+    do { \
+        ascon_state_t *s = (state); \
+        uint32_t high = be_load_word32((data)); \
+        uint32_t low  = be_load_word32((data) + 4); \
+        ascon_separate(high); \
+        ascon_separate(low); \
+        s->W[(offset) * 2] = (high << 16) | (low & 0x0000FFFFU); \
+        s->W[(offset) * 2 + 1] = (high & 0xFFFF0000U) | (low >> 16); \
+    } while (0)
+
+/**
  * \brief Absorbs data into the ASCON state in sliced form.
  *
  * \param state The ASCON state for the data to be absorbed into.
