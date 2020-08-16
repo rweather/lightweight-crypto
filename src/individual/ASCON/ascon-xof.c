@@ -25,8 +25,14 @@
 #include <string.h>
 
 #define ASCON_XOF_RATE 8
+
+#if ASCON_SLICED
+#define ascon_xof_permute() \
+    ascon_permute_sliced((ascon_state_t *)(state->s.state), 0)
+#else
 #define ascon_xof_permute() \
     ascon_permute((ascon_state_t *)(state->s.state), 0)
+#endif
 
 aead_hash_algorithm_t const ascon_xof_algorithm = {
     "ASCON-XOF",
@@ -53,6 +59,7 @@ int ascon_xof
 
 void ascon_xof_init(ascon_hash_state_t *state)
 {
+    /* IV for ASCON-HASH after processing it with the permutation */
     static unsigned char const xof_iv[40] = {
         0xb5, 0x7e, 0x27, 0x3b, 0x81, 0x4c, 0xd4, 0x16,
         0x2b, 0x51, 0x04, 0x25, 0x62, 0xae, 0x24, 0x20,
@@ -73,7 +80,13 @@ void ascon_xof_absorb
         /* We were squeezing output - go back to the absorb phase */
         state->s.mode = 0;
         state->s.count = 0;
+#if ASCON_SLICED
+        ascon_to_sliced((ascon_state_t *)(state->s.state));
         ascon_xof_permute();
+        ascon_from_sliced((ascon_state_t *)(state->s.state));
+#else
+        ascon_xof_permute();
+#endif
     }
     ascon_hash_update(state, in, inlen);
 }
@@ -106,18 +119,40 @@ void ascon_xof_squeeze
     }
 
     /* Handle full blocks */
+#if ASCON_SLICED
+    ascon_to_sliced((ascon_state_t *)(state->s.state));
+    while (outlen >= ASCON_XOF_RATE) {
+        ascon_xof_permute();
+        ascon_squeeze_sliced((ascon_state_t *)(state->s.state), out, 0);
+        out += ASCON_XOF_RATE;
+        outlen -= ASCON_XOF_RATE;
+    }
+#else
     while (outlen >= ASCON_XOF_RATE) {
         ascon_xof_permute();
         memcpy(out, state->s.state, ASCON_XOF_RATE);
         out += ASCON_XOF_RATE;
         outlen -= ASCON_XOF_RATE;
     }
+#endif
 
     /* Handle the left-over block */
+#if ASCON_SLICED
+    if (outlen > 0) {
+        temp = (unsigned)outlen;
+        ascon_xof_permute();
+        ascon_from_sliced((ascon_state_t *)(state->s.state));
+        memcpy(out, state->s.state, temp);
+        state->s.count = temp;
+    } else {
+        ascon_from_sliced((ascon_state_t *)(state->s.state));
+    }
+#else
     if (outlen > 0) {
         temp = (unsigned)outlen;
         ascon_xof_permute();
         memcpy(out, state->s.state, temp);
         state->s.count = temp;
     }
+#endif
 }

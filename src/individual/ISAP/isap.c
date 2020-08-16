@@ -85,6 +85,9 @@ aead_cipher_t const isap_ascon_128_cipher = {
 #define ISAP_sK 12
 #define ISAP_STATE ascon_state_t
 #define ISAP_PERMUTE(s,r) ascon_permute((s), 12 - (r))
+#if ASCON_SLICED
+#define ISAP_PERMUTE_SLICED(s,r) ascon_permute_sliced((s), 12 - (r))
+#endif
 #include "internal-isap.h"
 
 /* ISAP-K-128 */
@@ -107,4 +110,7 @@ aead_cipher_t const isap_ascon_128_cipher = {
 #define ISAP_sK 12
 #define ISAP_STATE ascon_state_t
 #define ISAP_PERMUTE(s,r) ascon_permute((s), 12 - (r))
+#if ASCON_SLICED
+#define ISAP_PERMUTE_SLICED(s,r) ascon_permute_sliced((s), 12 - (r))
+#endif
 #include "internal-isap.h"
