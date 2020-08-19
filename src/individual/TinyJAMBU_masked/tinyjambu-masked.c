@@ -282,6 +282,7 @@ static void tiny_jambu_generate_tag_masked
     tiny_jambu_permutation_masked
         (state, key, key_words, TINYJAMBU_MASKED_ROUNDS(384));
     le_store_word32(tag + 4, mask_output(state[2]));
+    aead_random_finish();
 }
 
 int tiny_jambu_128_masked_aead_encrypt
@@ -300,6 +301,7 @@ int tiny_jambu_128_masked_aead_encrypt
     *clen = mlen + TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key */
+    aead_random_init();
     mask_input(key[0], le_load_word32(k));
     mask_input(key[1], le_load_word32(k + 4));
     mask_input(key[2], le_load_word32(k + 8));
@@ -339,6 +341,7 @@ int tiny_jambu_128_masked_aead_decrypt
     *mlen = clen - TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key */
+    aead_random_init();
     mask_input(key[0], le_load_word32(k));
     mask_input(key[1], le_load_word32(k + 4));
     mask_input(key[2], le_load_word32(k + 8));
@@ -375,6 +378,7 @@ int tiny_jambu_192_masked_aead_encrypt
     *clen = mlen + TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key and duplicate it to make the length a multiple of 4 */
+    aead_random_init();
     mask_input(key[0],  le_load_word32(k));
     mask_input(key[1],  le_load_word32(k + 4));
     mask_input(key[2],  le_load_word32(k + 8));
@@ -422,6 +426,7 @@ int tiny_jambu_192_masked_aead_decrypt
     *mlen = clen - TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key and duplicate it to make the length a multiple of 4 */
+    aead_random_init();
     mask_input(key[0],  le_load_word32(k));
     mask_input(key[1],  le_load_word32(k + 4));
     mask_input(key[2],  le_load_word32(k + 8));
@@ -466,6 +471,7 @@ int tiny_jambu_256_masked_aead_encrypt
     *clen = mlen + TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key */
+    aead_random_init();
     mask_input(key[0], le_load_word32(k));
     mask_input(key[1], le_load_word32(k + 4));
     mask_input(key[2], le_load_word32(k + 8));
@@ -509,6 +515,7 @@ int tiny_jambu_256_masked_aead_decrypt
     *mlen = clen - TINY_JAMBU_MASKED_TAG_SIZE;
 
     /* Unpack the key */
+    aead_random_init();
     mask_input(key[0], le_load_word32(k));
     mask_input(key[1], le_load_word32(k + 4));
     mask_input(key[2], le_load_word32(k + 8));

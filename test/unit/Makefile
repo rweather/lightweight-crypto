@@ -85,4 +85,4 @@ test-tinyjambu.o: $(LIBSRC_DIR)/internal-tinyjambu.h $(LIBSRC_DIR)/internal-tiny
 test-wage.o: $(LIBSRC_DIR)/internal-wage.h $(TEST_CIPHER_INC)
 test-xoodoo.o: $(LIBSRC_DIR)/internal-xoodoo.h $(LIBSRC_DIR)/internal-xoodoo-m.h $(TEST_CIPHER_MASKING_INC)
 test-cipher.o: $(TEST_CIPHER_INC)
-test-main.o: $(TEST_CIPHER_INC)
+test-main.o: $(TEST_CIPHER_MASKING_INC)

@@ -365,6 +365,7 @@ int gift_cofb_masked_aead_encrypt
     be_store_word32(c + 4,  mask_output(Y.x[1]));
     be_store_word32(c + 8,  mask_output(Y.x[2]));
     be_store_word32(c + 12, mask_output(Y.x[3]));
+    aead_random_finish();
     return 0;
 }
 
@@ -478,5 +479,6 @@ int gift_cofb_masked_aead_decrypt
     P.x[2] = mask_output(Y.x[2]);
     P.x[3] = mask_output(Y.x[3]);
     gift_cofb_masked_byte_swap(P.x);
+    aead_random_finish();
     return aead_check_tag(mtemp, *mlen, P.y, c, GIFT_COFB_MASKED_TAG_SIZE);
 }

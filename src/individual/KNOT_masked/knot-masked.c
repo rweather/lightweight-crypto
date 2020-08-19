@@ -312,6 +312,7 @@ int knot_masked_128_256_aead_encrypt
     /* Compute the authentication tag */
     knot256_permute_6(&state, 32);
     memcpy(c + mlen, state.B, KNOT_AEAD_MASKED_128_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -352,6 +353,7 @@ int knot_masked_128_256_aead_decrypt
 
     /* Check the authentication tag */
     knot256_permute_6(&state, 32);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, c + clen, KNOT_AEAD_MASKED_128_TAG_SIZE);
 }
@@ -391,6 +393,7 @@ int knot_masked_128_384_aead_encrypt
     /* Compute the authentication tag */
     knot384_permute_7(&state, 32);
     memcpy(c + mlen, state.B, KNOT_AEAD_MASKED_128_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -431,6 +434,7 @@ int knot_masked_128_384_aead_decrypt
 
     /* Check the authentication tag */
     knot384_permute_7(&state, 32);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, c + clen, KNOT_AEAD_MASKED_128_TAG_SIZE);
 }
@@ -470,6 +474,7 @@ int knot_masked_192_384_aead_encrypt
     /* Compute the authentication tag */
     knot384_permute_7(&state, 44);
     memcpy(c + mlen, state.B, KNOT_AEAD_MASKED_192_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -510,6 +515,7 @@ int knot_masked_192_384_aead_decrypt
 
     /* Check the authentication tag */
     knot384_permute_7(&state, 44);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, c + clen, KNOT_AEAD_MASKED_192_TAG_SIZE);
 }
@@ -549,6 +555,7 @@ int knot_masked_256_512_aead_encrypt
     /* Compute the authentication tag */
     knot512_permute_7(&state, 56);
     memcpy(c + mlen, state.B, KNOT_AEAD_MASKED_256_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -589,6 +596,7 @@ int knot_masked_256_512_aead_decrypt
 
     /* Check the authentication tag */
     knot512_permute_7(&state, 56);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, c + clen, KNOT_AEAD_MASKED_256_TAG_SIZE);
 }
@@ -851,6 +859,7 @@ int knot_masked_128_256_aead_encrypt
     c += mlen;
     le_store_word64(c,     mask_output(state.S[0]));
     le_store_word64(c + 8, mask_output(state.S[1]));
+    aead_random_finish();
     return 0;
 }
 
@@ -906,6 +915,7 @@ int knot_masked_128_256_aead_decrypt
     knot256_masked_permute_6(&state, 32);
     le_store_word64(tag,     mask_output(state.S[0]));
     le_store_word64(tag + 8, mask_output(state.S[1]));
+    aead_random_finish();
     return aead_check_tag
         (mtemp, *mlen, tag, c + clen, KNOT_AEAD_MASKED_128_TAG_SIZE);
 }
@@ -971,6 +981,7 @@ int knot_masked_128_384_aead_encrypt
     le_store_word64(c,      mask_output(state.L[0]));
     le_store_word32(c + 8,  mask_output(state.H[0]));
     le_store_word32(c + 12, (uint32_t)mask_output(state.L[1]));
+    aead_random_finish();
     return 0;
 }
 
@@ -1043,6 +1054,7 @@ int knot_masked_128_384_aead_decrypt
     le_store_word64(padded,      mask_output(state.L[0]));
     le_store_word32(padded + 8,  mask_output(state.H[0]));
     le_store_word32(padded + 12, (uint32_t)mask_output(state.L[1]));
+    aead_random_finish();
     return aead_check_tag
         (mtemp, *mlen, padded, c + clen, KNOT_AEAD_MASKED_128_TAG_SIZE);
 }
@@ -1101,6 +1113,7 @@ int knot_masked_192_384_aead_encrypt
     le_store_word32(c + 8,  mask_output(state.H[0]));
     le_store_word64(c + 12, mask_output(state.L[1]));
     le_store_word32(c + 20, mask_output(state.H[1]));
+    aead_random_finish();
     return 0;
 }
 
@@ -1164,6 +1177,7 @@ int knot_masked_192_384_aead_decrypt
     le_store_word32(tag + 8,  mask_output(state.H[0]));
     le_store_word64(tag + 12, mask_output(state.L[1]));
     le_store_word32(tag + 20, mask_output(state.H[1]));
+    aead_random_finish();
     return aead_check_tag
         (mtemp, *mlen, tag, c + clen, KNOT_AEAD_MASKED_192_TAG_SIZE);
 }
@@ -1222,6 +1236,7 @@ int knot_masked_256_512_aead_encrypt
     le_store_word64(c + 8,  mask_output(state.S[1]));
     le_store_word64(c + 16, mask_output(state.S[2]));
     le_store_word64(c + 24, mask_output(state.S[3]));
+    aead_random_finish();
     return 0;
 }
 
@@ -1284,6 +1299,7 @@ int knot_masked_256_512_aead_decrypt
     le_store_word64(tag + 8,  mask_output(state.S[1]));
     le_store_word64(tag + 16, mask_output(state.S[2]));
     le_store_word64(tag + 24, mask_output(state.S[3]));
+    aead_random_finish();
     return aead_check_tag
         (mtemp, *mlen, tag, c + clen, KNOT_AEAD_MASKED_256_TAG_SIZE);
 }

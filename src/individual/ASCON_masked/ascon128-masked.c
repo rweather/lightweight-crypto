@@ -206,6 +206,7 @@ int ascon128_masked_aead_encrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 8));
     be_store_word64(c + mlen, mask_output(masked_state[3]));
     be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -257,6 +258,7 @@ int ascon128_masked_aead_decrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 8));
     be_store_word64(state.B, mask_output(masked_state[3]));
     be_store_word64(state.B + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
@@ -307,6 +309,7 @@ int ascon128a_masked_aead_encrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 8));
     be_store_word64(c + mlen, mask_output(masked_state[3]));
     be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -358,6 +361,7 @@ int ascon128a_masked_aead_decrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 8));
     be_store_word64(state.B, mask_output(masked_state[3]));
     be_store_word64(state.B + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
@@ -410,6 +414,7 @@ int ascon80pq_masked_aead_encrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 12));
     be_store_word64(c + mlen, mask_output(masked_state[3]));
     be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -463,6 +468,7 @@ int ascon80pq_masked_aead_decrypt
     mask_xor_const(masked_state[4], be_load_word64(k + 12));
     be_store_word64(state.B, mask_output(masked_state[3]));
     be_store_word64(state.B + 8, mask_output(masked_state[4]));
+    aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON80PQ_MASKED_TAG_SIZE);
 }
@@ -713,6 +719,7 @@ int ascon128_masked_aead_encrypt
     mask_xor_const(state[4], be_load_word64(k + 8));
     be_store_word64(c + mlen, mask_output(state[3]));
     be_store_word64(c + mlen + 8, mask_output(state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -762,6 +769,7 @@ int ascon128_masked_aead_decrypt
     mask_xor_const(state[4], be_load_word64(k + 8));
     be_store_word64(tag, mask_output(state[3]));
     be_store_word64(tag + 8, mask_output(state[4]));
+    aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
 
@@ -808,6 +816,7 @@ int ascon128a_masked_aead_encrypt
     mask_xor_const(state[4], be_load_word64(k + 8));
     be_store_word64(c + mlen, mask_output(state[3]));
     be_store_word64(c + mlen + 8, mask_output(state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -857,6 +866,7 @@ int ascon128a_masked_aead_decrypt
     mask_xor_const(state[4], be_load_word64(k + 8));
     be_store_word64(tag, mask_output(state[3]));
     be_store_word64(tag + 8, mask_output(state[4]));
+    aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
 
@@ -905,6 +915,7 @@ int ascon80pq_masked_aead_encrypt
     mask_xor_const(state[4], be_load_word64(k + 12));
     be_store_word64(c + mlen, mask_output(state[3]));
     be_store_word64(c + mlen + 8, mask_output(state[4]));
+    aead_random_finish();
     return 0;
 }
 
@@ -956,6 +967,7 @@ int ascon80pq_masked_aead_decrypt
     mask_xor_const(state[4], be_load_word64(k + 12));
     be_store_word64(tag, mask_output(state[3]));
     be_store_word64(tag + 8, mask_output(state[4]));
+    aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON80PQ_MASKED_TAG_SIZE);
 }
 

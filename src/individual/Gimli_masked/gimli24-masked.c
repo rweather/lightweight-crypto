@@ -192,6 +192,7 @@ int gimli24_masked_aead_encrypt
 
     /* Generate the authentication tag at the end of the ciphertext */
     memcpy(c + mlen, state.bytes, GIMLI24_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -221,6 +222,7 @@ int gimli24_masked_aead_decrypt
     gimli24_masked_decrypt(&state, m, c, *mlen);
 
     /* Check the authentication tag at the end of the packet */
+    aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.bytes, c + *mlen, GIMLI24_MASKED_TAG_SIZE);
 }
@@ -443,6 +445,7 @@ int gimli24_masked_aead_encrypt
     le_store_word32(c + 4,  mask_output(state[1]));
     le_store_word32(c + 8,  mask_output(state[2]));
     le_store_word32(c + 12, mask_output(state[3]));
+    aead_random_finish();
     return 0;
 }
 
@@ -477,6 +480,7 @@ int gimli24_masked_aead_decrypt
     le_store_word32(tag + 4,  mask_output(state[1]));
     le_store_word32(tag + 8,  mask_output(state[2]));
     le_store_word32(tag + 12, mask_output(state[3]));
+    aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, GIMLI24_MASKED_TAG_SIZE);
 }
 

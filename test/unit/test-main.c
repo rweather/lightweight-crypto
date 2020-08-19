@@ -21,6 +21,7 @@
  */
 
 #include "test-cipher.h"
+#include "aead-random.h"
 
 void test_ascon(void);
 void test_blake2s(void);
@@ -54,6 +55,7 @@ void test_xoodoo(void);
 
 int main(int argc, char *argv[])
 {
+    aead_random_init();
     test_ascon();
     test_blake2s();
     test_chachapoly();

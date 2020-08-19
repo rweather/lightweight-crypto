@@ -146,7 +146,7 @@ spix-masked.o: spix.h aead-common.h internal-util.h internal-sliscp-light.h inte
 spoc.o: spoc.h aead-common.h internal-util.h internal-sliscp-light.h
 spoc-masked.o: spoc-masked.h aead-common.h internal-util.h internal-sliscp-light-m.h internal-masking.h aead-random.h
 spook.o: spook.h aead-common.h internal-util.h internal-spook.h
-spook-masked.o: spook-masked.h aead-common.h internal-util.h internal-spook.h
+spook-masked.o: spook-masked.h aead-common.h aead-random.h internal-util.h internal-spook.h
 subterranean.o: subterranean.h aead-common.h internal-util.h internal-subterranean.h
 sundae-gift.o: sundae-gift.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 tinyjambu.o: tinyjambu.h internal-tinyjambu.h aead-common.h internal-util.h

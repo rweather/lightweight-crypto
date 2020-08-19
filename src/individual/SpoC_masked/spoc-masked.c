@@ -201,6 +201,7 @@ static void spoc_128_finalize_masked
     be_store_word32(tag + 4,  mask_output(state[3]));
     be_store_word32(tag + 8,  mask_output(state[6]));
     be_store_word32(tag + 12, mask_output(state[7]));
+    aead_random_finish();
 }
 
 /**
@@ -221,6 +222,7 @@ static void spoc_64_finalize_masked
     tag[3] = (unsigned char)(mask_output(state[3]) >> 16);
     be_store_word24(tag + 4, mask_output(state[6]));
     tag[7] = (unsigned char)(mask_output(state[7]) >> 16);
+    aead_random_finish();
 }
 
 int spoc_128_masked_aead_encrypt

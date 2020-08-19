@@ -23,6 +23,7 @@
 #include "spook-masked.h"
 #include "internal-spook.h"
 #include "internal-util.h"
+#include "aead-random.h"
 #include <string.h>
 
 aead_cipher_t const spook_128_512_su_masked_cipher = {
@@ -78,6 +79,7 @@ static void spook_128_512_init_masked
      const unsigned char *k, unsigned klen,
      const unsigned char *npub)
 {
+    aead_random_init();
     memset(state->B, 0, SHADOW512_STATE_SIZE);
     if (klen == SPOOK_MASKED_MU_KEY_SIZE) {
         /* The public tweak is 126 bits in size followed by a 1 bit */
@@ -103,6 +105,7 @@ static void spook_128_384_init_masked
      const unsigned char *k, unsigned klen,
      const unsigned char *npub)
 {
+    aead_random_init();
     memset(state->B, 0, SHADOW384_STATE_SIZE);
     if (klen == SPOOK_MASKED_MU_KEY_SIZE) {
         /* The public tweak is 126 bits in size followed by a 1 bit */
@@ -312,6 +315,7 @@ int spook_128_512_su_masked_aead_encrypt
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_encrypt_masked(k, state.W, state.W, state.W + 4);
     memcpy(c + mlen, state.B, SPOOK_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -346,6 +350,7 @@ int spook_128_512_su_masked_aead_decrypt
     /* Check the authentication tag */
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_decrypt_masked(k, state.W + 4, c + clen, state.W + 4);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_MASKED_TAG_SIZE);
 }
@@ -379,6 +384,7 @@ int spook_128_384_su_masked_aead_encrypt
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_encrypt_masked(k, state.W, state.W, state.W + 4);
     memcpy(c + mlen, state.B, SPOOK_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -413,6 +419,7 @@ int spook_128_384_su_masked_aead_decrypt
     /* Check the authentication tag */
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_decrypt_masked(k, state.W + 4, c + clen, state.W + 4);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_MASKED_TAG_SIZE);
 }
@@ -446,6 +453,7 @@ int spook_128_512_mu_masked_aead_encrypt
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_encrypt_masked(k, state.W, state.W, state.W + 4);
     memcpy(c + mlen, state.B, SPOOK_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -480,6 +488,7 @@ int spook_128_512_mu_masked_aead_decrypt
     /* Check the authentication tag */
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_decrypt_masked(k, state.W + 4, c + clen, state.W + 4);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_MASKED_TAG_SIZE);
 }
@@ -513,6 +522,7 @@ int spook_128_384_mu_masked_aead_encrypt
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_encrypt_masked(k, state.W, state.W, state.W + 4);
     memcpy(c + mlen, state.B, SPOOK_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -547,6 +557,7 @@ int spook_128_384_mu_masked_aead_decrypt
     /* Check the authentication tag */
     state.B[CLYDE128_BLOCK_SIZE * 2 - 1] |= 0x80;
     clyde128_decrypt_masked(k, state.W + 4, c + clen, state.W + 4);
+    aead_random_finish();
     return aead_check_tag
         (m, clen, state.B, state.B + CLYDE128_BLOCK_SIZE, SPOOK_MASKED_TAG_SIZE);
 }

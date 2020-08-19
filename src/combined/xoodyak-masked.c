@@ -162,6 +162,7 @@ int xoodyak_masked_aead_encrypt
     state.B[sizeof(state.B) - 1] ^= 0x40; /* Domain separation */
     xoodoo_permute(&state);
     memcpy(c, state.B, XOODYAK_MASKED_TAG_SIZE);
+    aead_random_finish();
     return 0;
 }
 
@@ -213,6 +214,7 @@ int xoodyak_masked_aead_decrypt
     /* Check the authentication tag */
     state.B[sizeof(state.B) - 1] ^= 0x40; /* Domain separation */
     xoodoo_permute(&state);
+    aead_random_finish();
     return aead_check_tag(mtemp, *mlen, state.B, c, XOODYAK_MASKED_TAG_SIZE);
 }
 
@@ -362,6 +364,7 @@ int xoodyak_masked_aead_encrypt
     le_store_word32(c + 4,  mask_output(state[1]));
     le_store_word32(c + 8,  mask_output(state[2]));
     le_store_word32(c + 12, mask_output(state[3]));
+    aead_random_finish();
     return 0;
 }
 
@@ -452,6 +455,7 @@ int xoodyak_masked_aead_decrypt
     le_store_word32(tag + 4,  mask_output(state[1]));
     le_store_word32(tag + 8,  mask_output(state[2]));
     le_store_word32(tag + 12, mask_output(state[3]));
+    aead_random_finish();
     return aead_check_tag(mtemp, *mlen, tag, c, XOODYAK_MASKED_TAG_SIZE);
 }
 

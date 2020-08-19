@@ -143,6 +143,7 @@ static void spix_finalize_masked
     be_store_word32(tag + 4,  mask_output(masked_state[3]));
     be_store_word32(tag + 8,  mask_output(masked_state[6]));
     be_store_word32(tag + 12, mask_output(masked_state[7]));
+    aead_random_finish();
 }
 
 int spix_masked_aead_encrypt
@@ -318,6 +319,7 @@ static void spix_finalize_masked
     be_store_word32(tag + 4,  mask_output(state[3]));
     be_store_word32(tag + 8,  mask_output(state[6]));
     be_store_word32(tag + 12, mask_output(state[7]));
+    aead_random_finish();
 }
 
 int spix_masked_aead_encrypt

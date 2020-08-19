@@ -26,6 +26,14 @@ extern "C" {
 void aead_random_init(void);
 
 /**
+ * \brief Finishes using the random number source.
+ *
+ * If the random API has internal state, then this function will
+ * destroy the internal state to protect forward secrecy.
+ */
+void aead_random_finish(void);
+
+/**
  * \brief Generates a single random 32-bit word.
  *
  * \return The random word.
@@ -46,6 +54,27 @@ uint64_t aead_random_generate_64(void);
  * \param size The number of bytes to be generated.
  */
 void aead_random_generate(void *buffer, unsigned size);
+
+/**
+ * \brief Reseeds the random number generator from the system TRNG.
+ *
+ * This function does nothing if the random API is using the
+ * system TRNG directly.
+ *
+ * This function is called implicitly by aead_random_init().
+ */
+void aead_random_reseed(void);
+
+/**
+ * \brief Restarts the random number generator with a specific 256-bit seed.
+ *
+ * \param seed The seed material.
+ *
+ * This function does nothing if the random API is using the system
+ * TRNG directly.  This function is useful for creating reproducible
+ * random numbers for test purposes.  It should not be used for real work.
+ */
+void aead_random_set_seed(const unsigned char seed[32]);
 
 #ifdef __cplusplus
 }

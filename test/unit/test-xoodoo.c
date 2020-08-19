@@ -73,7 +73,7 @@ static void test_xoodoo_masked_permutation(void)
     xoodoo_mask(masked, unmasked);
     xoodoo_permute_masked(masked);
     xoodoo_unmask(unmasked, masked);
-    if (test_memcmp(unmasked, xoodoo_output, sizeof(xoodoo_output)) != 0) {
+    if (test_memcmp((const unsigned char *)unmasked, xoodoo_output, sizeof(xoodoo_output)) != 0) {
         printf("failed\n");
         test_exit_result = 1;
     } else {
