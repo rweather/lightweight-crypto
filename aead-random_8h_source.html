@@ -106,25 +106,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7">aead_random_init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;uint32_t <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;uint64_t <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#ae4014b6affbf43fe075f3217557de259">aead_random_generate</a>(<span class="keywordtype">void</span> *buffer, <span class="keywordtype">unsigned</span> size);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#afd82a0f33788413a176333d0afe697b3">aead_random_finish</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;uint32_t <a class="code" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;uint64_t <a class="code" href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:99</div></div>
-<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:86</div></div>
-<div class="ttc" id="aead-random_8h_html_aabaf63ea152ee51859cb046a2740bfc7"><div class="ttname"><a href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7">aead_random_init</a></div><div class="ttdeci">void aead_random_init(void)</div><div class="ttdoc">Initializes the system random number generator for the generation of masking material. </div><div class="ttdef"><b>Definition:</b> aead-random.c:81</div></div>
-<div class="ttc" id="aead-random_8h_html_ae4014b6affbf43fe075f3217557de259"><div class="ttname"><a href="aead-random_8h.html#ae4014b6affbf43fe075f3217557de259">aead_random_generate</a></div><div class="ttdeci">void aead_random_generate(void *buffer, unsigned size)</div><div class="ttdoc">Generates a number of bytes into a buffer. </div><div class="ttdef"><b>Definition:</b> aead-random.c:113</div></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#ae4014b6affbf43fe075f3217557de259">aead_random_generate</a>(<span class="keywordtype">void</span> *buffer, <span class="keywordtype">unsigned</span> size);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#a87b736739cc3d848f4a8634df09a4998">aead_random_reseed</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="aead-random_8h.html#af8a2d3a3e7647f6f4298a26122be6036">aead_random_set_seed</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> seed[32]);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aead-random_8h_html_afd82a0f33788413a176333d0afe697b3"><div class="ttname"><a href="aead-random_8h.html#afd82a0f33788413a176333d0afe697b3">aead_random_finish</a></div><div class="ttdeci">void aead_random_finish(void)</div><div class="ttdoc">Finishes using the random number source. </div><div class="ttdef"><b>Definition:</b> aead-random.c:235</div></div>
+<div class="ttc" id="aead-random_8h_html_af8a2d3a3e7647f6f4298a26122be6036"><div class="ttname"><a href="aead-random_8h.html#af8a2d3a3e7647f6f4298a26122be6036">aead_random_set_seed</a></div><div class="ttdeci">void aead_random_set_seed(const unsigned char seed[32])</div><div class="ttdoc">Restarts the random number generator with a specific 256-bit seed. </div><div class="ttdef"><b>Definition:</b> aead-random.c:385</div></div>
+<div class="ttc" id="aead-random_8h_html_a4d5fe0b937db991d13dcaf1cd4b3aba4"><div class="ttname"><a href="aead-random_8h.html#a4d5fe0b937db991d13dcaf1cd4b3aba4">aead_random_generate_64</a></div><div class="ttdeci">uint64_t aead_random_generate_64(void)</div><div class="ttdoc">Generates a single random 64-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:272</div></div>
+<div class="ttc" id="aead-random_8h_html_a01593d6cb100e428306930561e747182"><div class="ttname"><a href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a></div><div class="ttdeci">uint32_t aead_random_generate_32(void)</div><div class="ttdoc">Generates a single random 32-bit word. </div><div class="ttdef"><b>Definition:</b> aead-random.c:243</div></div>
+<div class="ttc" id="aead-random_8h_html_a87b736739cc3d848f4a8634df09a4998"><div class="ttname"><a href="aead-random_8h.html#a87b736739cc3d848f4a8634df09a4998">aead_random_reseed</a></div><div class="ttdeci">void aead_random_reseed(void)</div><div class="ttdoc">Reseeds the random number generator from the system TRNG. </div><div class="ttdef"><b>Definition:</b> aead-random.c:335</div></div>
+<div class="ttc" id="aead-random_8h_html_aabaf63ea152ee51859cb046a2740bfc7"><div class="ttname"><a href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7">aead_random_init</a></div><div class="ttdeci">void aead_random_init(void)</div><div class="ttdoc">Initializes the system random number generator for the generation of masking material. </div><div class="ttdef"><b>Definition:</b> aead-random.c:227</div></div>
+<div class="ttc" id="aead-random_8h_html_ae4014b6affbf43fe075f3217557de259"><div class="ttname"><a href="aead-random_8h.html#ae4014b6affbf43fe075f3217557de259">aead_random_generate</a></div><div class="ttdeci">void aead_random_generate(void *buffer, unsigned size)</div><div class="ttdoc">Generates a number of bytes into a buffer. </div><div class="ttdef"><b>Definition:</b> aead-random.c:291</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2020 15:29:35 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 19 2020 19:02:41 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

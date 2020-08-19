@@ -103,6 +103,9 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7">aead_random_init</a> (void)</td></tr>
 <tr class="memdesc:aabaf63ea152ee51859cb046a2740bfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the system random number generator for the generation of masking material. <br/></td></tr>
 <tr class="separator:aabaf63ea152ee51859cb046a2740bfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd82a0f33788413a176333d0afe697b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#afd82a0f33788413a176333d0afe697b3">aead_random_finish</a> (void)</td></tr>
+<tr class="memdesc:afd82a0f33788413a176333d0afe697b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finishes using the random number source.  <a href="#afd82a0f33788413a176333d0afe697b3">More...</a><br/></td></tr>
+<tr class="separator:afd82a0f33788413a176333d0afe697b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01593d6cb100e428306930561e747182"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#a01593d6cb100e428306930561e747182">aead_random_generate_32</a> (void)</td></tr>
 <tr class="memdesc:a01593d6cb100e428306930561e747182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a single random 32-bit word.  <a href="#a01593d6cb100e428306930561e747182">More...</a><br/></td></tr>
 <tr class="separator:a01593d6cb100e428306930561e747182"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,10 +115,35 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead
 <tr class="memitem:ae4014b6affbf43fe075f3217557de259"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#ae4014b6affbf43fe075f3217557de259">aead_random_generate</a> (void *buffer, unsigned size)</td></tr>
 <tr class="memdesc:ae4014b6affbf43fe075f3217557de259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a number of bytes into a buffer.  <a href="#ae4014b6affbf43fe075f3217557de259">More...</a><br/></td></tr>
 <tr class="separator:ae4014b6affbf43fe075f3217557de259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b736739cc3d848f4a8634df09a4998"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#a87b736739cc3d848f4a8634df09a4998">aead_random_reseed</a> (void)</td></tr>
+<tr class="memdesc:a87b736739cc3d848f4a8634df09a4998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reseeds the random number generator from the system TRNG.  <a href="#a87b736739cc3d848f4a8634df09a4998">More...</a><br/></td></tr>
+<tr class="separator:a87b736739cc3d848f4a8634df09a4998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a2d3a3e7647f6f4298a26122be6036"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead-random_8h.html#af8a2d3a3e7647f6f4298a26122be6036">aead_random_set_seed</a> (const unsigned char seed[32])</td></tr>
+<tr class="memdesc:af8a2d3a3e7647f6f4298a26122be6036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restarts the random number generator with a specific 256-bit seed.  <a href="#af8a2d3a3e7647f6f4298a26122be6036">More...</a><br/></td></tr>
+<tr class="separator:af8a2d3a3e7647f6f4298a26122be6036"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilities that help with the generation of random masking material. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="afd82a0f33788413a176333d0afe697b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aead_random_finish </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finishes using the random number source. </p>
+<p>If the random API has internal state, then this function will destroy the internal state to protect forward secrecy. </p>
+
+</div>
+</div>
 <a class="anchor" id="ae4014b6affbf43fe075f3217557de259"></a>
 <div class="memitem">
 <div class="memproto">
@@ -189,10 +217,55 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aead
 
 </div>
 </div>
+<a class="anchor" id="a87b736739cc3d848f4a8634df09a4998"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aead_random_reseed </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reseeds the random number generator from the system TRNG. </p>
+<p>This function does nothing if the random API is using the system TRNG directly.</p>
+<p>This function is called implicitly by <a class="el" href="aead-random_8h.html#aabaf63ea152ee51859cb046a2740bfc7" title="Initializes the system random number generator for the generation of masking material. ">aead_random_init()</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af8a2d3a3e7647f6f4298a26122be6036"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aead_random_set_seed </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned char&#160;</td>
+          <td class="paramname"><em>seed</em>[32]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restarts the random number generator with a specific 256-bit seed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>The seed material.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function does nothing if the random API is using the system TRNG directly. This function is useful for creating reproducible random numbers for test purposes. It should not be used for real work. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2020 15:29:35 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 19 2020 19:02:42 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
