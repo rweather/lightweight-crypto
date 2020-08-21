@@ -114,31 +114,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LW_INTERNAL_ASCON_M_H</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="internal-masking_8h.html">internal-masking.h</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#a29146390c1988257c94faa49c2fc98e4">ascon_permute_masked</a>(<a class="code" href="structmask__x4__uint64__t.html">mask_uint64_t</a> state[5], uint8_t first_round);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="internal-ascon_8h.html">internal-ascon.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structascon__masked__state__t.html">   44</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structascon__masked__state__t.html#a3d3742336c06b44c66a4090349bea701">   46</a></span>&#160;    <a class="code" href="structmask__x4__uint64__t.html">mask_uint64_t</a> S[5];     </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#ae3691c3a6924092797eeb5ddcc00f9b2">ascon_mask</a>(<a class="code" href="structmask__x4__uint64__t.html">mask_uint64_t</a> output[5], <span class="keyword">const</span> uint64_t input[5]);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#a83a963f876ea77cef3fe1191c8d4c03b">ascon_unmask</a>(uint64_t output[5], <span class="keyword">const</span> <a class="code" href="structmask__x4__uint64__t.html">mask_uint64_t</a> input[5]);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="internal-ascon-m_8h_html_ae3691c3a6924092797eeb5ddcc00f9b2"><div class="ttname"><a href="internal-ascon-m_8h.html#ae3691c3a6924092797eeb5ddcc00f9b2">ascon_mask</a></div><div class="ttdeci">void ascon_mask(mask_uint64_t output[5], const uint64_t input[5])</div><div class="ttdoc">Converts an unmasked ASCON state into a masked state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:92</div></div>
-<div class="ttc" id="internal-ascon-m_8h_html_a29146390c1988257c94faa49c2fc98e4"><div class="ttname"><a href="internal-ascon-m_8h.html#a29146390c1988257c94faa49c2fc98e4">ascon_permute_masked</a></div><div class="ttdeci">void ascon_permute_masked(mask_uint64_t state[5], uint8_t first_round)</div><div class="ttdoc">Permutes the masked ASCON state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:26</div></div>
-<div class="ttc" id="internal-ascon-m_8h_html_a83a963f876ea77cef3fe1191c8d4c03b"><div class="ttname"><a href="internal-ascon-m_8h.html#a83a963f876ea77cef3fe1191c8d4c03b">ascon_unmask</a></div><div class="ttdeci">void ascon_unmask(uint64_t output[5], const mask_uint64_t input[5])</div><div class="ttdoc">Converts a masked ASCON state into an unmasked state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:109</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#a10f682127017e7b60179cdf21ae12217">ascon_permute_masked</a>(<a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *state, uint8_t first_round);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#ad17ed6fd29e2090fa05692fe9203367b">ascon_mask</a>(<a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *output, <span class="keyword">const</span> <a class="code" href="unionascon__state__t.html">ascon_state_t</a> *input);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#a9769f80b55639bed2c5d1a85a0129e83">ascon_unmask</a>(<a class="code" href="unionascon__state__t.html">ascon_state_t</a> *output, <span class="keyword">const</span> <a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *input);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#if ASCON_SLICED</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#a8f50edde376a9e54ce879f947d178540">ascon_mask_sliced</a></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    (<a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *output, <span class="keyword">const</span> <a class="code" href="unionascon__state__t.html">ascon_state_t</a> *input);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-ascon-m_8h.html#abb8279bfec6813f9eeebc2b912d71252">ascon_unmask_sliced</a></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    (<a class="code" href="unionascon__state__t.html">ascon_state_t</a> *output, <span class="keyword">const</span> <a class="code" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *input);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="internal-ascon-m_8h_html_abb8279bfec6813f9eeebc2b912d71252"><div class="ttname"><a href="internal-ascon-m_8h.html#abb8279bfec6813f9eeebc2b912d71252">ascon_unmask_sliced</a></div><div class="ttdeci">void ascon_unmask_sliced(ascon_state_t *output, const ascon_masked_state_t *input)</div><div class="ttdoc">Converts a masked ASCON state into an unmasked sliced state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:143</div></div>
+<div class="ttc" id="unionascon__state__t_html"><div class="ttname"><a href="unionascon__state__t.html">ascon_state_t</a></div><div class="ttdoc">Structure of the internal state of the ASCON permutation. </div><div class="ttdef"><b>Definition:</b> internal-ascon.h:52</div></div>
 <div class="ttc" id="internal-masking_8h_html"><div class="ttname"><a href="internal-masking_8h.html">internal-masking.h</a></div><div class="ttdoc">Utilities that help to implement masked ciphers. </div></div>
+<div class="ttc" id="internal-ascon-m_8h_html_a9769f80b55639bed2c5d1a85a0129e83"><div class="ttname"><a href="internal-ascon-m_8h.html#a9769f80b55639bed2c5d1a85a0129e83">ascon_unmask</a></div><div class="ttdeci">void ascon_unmask(ascon_state_t *output, const ascon_masked_state_t *input)</div><div class="ttdoc">Converts a masked ASCON state into an unmasked state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:109</div></div>
+<div class="ttc" id="internal-ascon-m_8h_html_a8f50edde376a9e54ce879f947d178540"><div class="ttname"><a href="internal-ascon-m_8h.html#a8f50edde376a9e54ce879f947d178540">ascon_mask_sliced</a></div><div class="ttdeci">void ascon_mask_sliced(ascon_masked_state_t *output, const ascon_state_t *input)</div><div class="ttdoc">Converts an unmasked sliced ASCON state into a masked state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:129</div></div>
+<div class="ttc" id="internal-ascon-m_8h_html_ad17ed6fd29e2090fa05692fe9203367b"><div class="ttname"><a href="internal-ascon-m_8h.html#ad17ed6fd29e2090fa05692fe9203367b">ascon_mask</a></div><div class="ttdeci">void ascon_mask(ascon_masked_state_t *output, const ascon_state_t *input)</div><div class="ttdoc">Converts an unmasked ASCON state into a masked state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:92</div></div>
 <div class="ttc" id="structmask__x4__uint64__t_html"><div class="ttname"><a href="structmask__x4__uint64__t.html">mask_x4_uint64_t</a></div><div class="ttdoc">Masked 64-bit word with four shares. </div><div class="ttdef"><b>Definition:</b> internal-masking.h:212</div></div>
+<div class="ttc" id="structascon__masked__state__t_html"><div class="ttname"><a href="structascon__masked__state__t.html">ascon_masked_state_t</a></div><div class="ttdoc">Structure of the internal state of the masked ASCON permutation. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.h:44</div></div>
+<div class="ttc" id="internal-ascon-m_8h_html_a10f682127017e7b60179cdf21ae12217"><div class="ttname"><a href="internal-ascon-m_8h.html#a10f682127017e7b60179cdf21ae12217">ascon_permute_masked</a></div><div class="ttdeci">void ascon_permute_masked(ascon_masked_state_t *state, uint8_t first_round)</div><div class="ttdoc">Permutes the masked ASCON state. </div><div class="ttdef"><b>Definition:</b> internal-ascon-m.c:26</div></div>
+<div class="ttc" id="internal-ascon_8h_html"><div class="ttname"><a href="internal-ascon_8h.html">internal-ascon.h</a></div><div class="ttdoc">Internal implementation of the ASCON permutation. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 19 2020 19:02:41 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 22 2020 09:37:10 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

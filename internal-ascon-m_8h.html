@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">internal-ascon-m.h File Reference</div>  </div>
@@ -94,40 +95,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Masked implementation of the ASCON permutation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="internal-masking_8h_source.html">internal-masking.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="internal-ascon_8h_source.html">internal-ascon.h</a>&quot;</code><br/>
 </div>
 <p><a href="internal-ascon-m_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the internal state of the masked ASCON permutation.  <a href="structascon__masked__state__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a29146390c1988257c94faa49c2fc98e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#a29146390c1988257c94faa49c2fc98e4">ascon_permute_masked</a> (<a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a> state[5], uint8_t first_round)</td></tr>
-<tr class="memdesc:a29146390c1988257c94faa49c2fc98e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the masked ASCON state.  <a href="#a29146390c1988257c94faa49c2fc98e4">More...</a><br/></td></tr>
-<tr class="separator:a29146390c1988257c94faa49c2fc98e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3691c3a6924092797eeb5ddcc00f9b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#ae3691c3a6924092797eeb5ddcc00f9b2">ascon_mask</a> (<a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a> output[5], const uint64_t input[5])</td></tr>
-<tr class="memdesc:ae3691c3a6924092797eeb5ddcc00f9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an unmasked ASCON state into a masked state.  <a href="#ae3691c3a6924092797eeb5ddcc00f9b2">More...</a><br/></td></tr>
-<tr class="separator:ae3691c3a6924092797eeb5ddcc00f9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83a963f876ea77cef3fe1191c8d4c03b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#a83a963f876ea77cef3fe1191c8d4c03b">ascon_unmask</a> (uint64_t output[5], const <a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a> input[5])</td></tr>
-<tr class="memdesc:a83a963f876ea77cef3fe1191c8d4c03b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a masked ASCON state into an unmasked state.  <a href="#a83a963f876ea77cef3fe1191c8d4c03b">More...</a><br/></td></tr>
-<tr class="separator:a83a963f876ea77cef3fe1191c8d4c03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f682127017e7b60179cdf21ae12217"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#a10f682127017e7b60179cdf21ae12217">ascon_permute_masked</a> (<a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *state, uint8_t first_round)</td></tr>
+<tr class="memdesc:a10f682127017e7b60179cdf21ae12217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the masked ASCON state.  <a href="#a10f682127017e7b60179cdf21ae12217">More...</a><br/></td></tr>
+<tr class="separator:a10f682127017e7b60179cdf21ae12217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad17ed6fd29e2090fa05692fe9203367b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#ad17ed6fd29e2090fa05692fe9203367b">ascon_mask</a> (<a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *output, const <a class="el" href="unionascon__state__t.html">ascon_state_t</a> *input)</td></tr>
+<tr class="memdesc:ad17ed6fd29e2090fa05692fe9203367b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an unmasked ASCON state into a masked state.  <a href="#ad17ed6fd29e2090fa05692fe9203367b">More...</a><br/></td></tr>
+<tr class="separator:ad17ed6fd29e2090fa05692fe9203367b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9769f80b55639bed2c5d1a85a0129e83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#a9769f80b55639bed2c5d1a85a0129e83">ascon_unmask</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *output, const <a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *input)</td></tr>
+<tr class="memdesc:a9769f80b55639bed2c5d1a85a0129e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a masked ASCON state into an unmasked state.  <a href="#a9769f80b55639bed2c5d1a85a0129e83">More...</a><br/></td></tr>
+<tr class="separator:a9769f80b55639bed2c5d1a85a0129e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f50edde376a9e54ce879f947d178540"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#a8f50edde376a9e54ce879f947d178540">ascon_mask_sliced</a> (<a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *output, const <a class="el" href="unionascon__state__t.html">ascon_state_t</a> *input)</td></tr>
+<tr class="memdesc:a8f50edde376a9e54ce879f947d178540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an unmasked sliced ASCON state into a masked state.  <a href="#a8f50edde376a9e54ce879f947d178540">More...</a><br/></td></tr>
+<tr class="separator:a8f50edde376a9e54ce879f947d178540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb8279bfec6813f9eeebc2b912d71252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon-m_8h.html#abb8279bfec6813f9eeebc2b912d71252">ascon_unmask_sliced</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *output, const <a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *input)</td></tr>
+<tr class="memdesc:abb8279bfec6813f9eeebc2b912d71252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a masked ASCON state into an unmasked sliced state.  <a href="#abb8279bfec6813f9eeebc2b912d71252">More...</a><br/></td></tr>
+<tr class="separator:abb8279bfec6813f9eeebc2b912d71252"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Masked implementation of the ASCON permutation. </p>
 <p>References: <a href="http://competitions.cr.yp.to/round3/asconv12.pdf,">http://competitions.cr.yp.to/round3/asconv12.pdf,</a> <a href="http://ascon.iaik.tugraz.at/">http://ascon.iaik.tugraz.at/</a> </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ae3691c3a6924092797eeb5ddcc00f9b2"></a>
+<a class="anchor" id="ad17ed6fd29e2090fa05692fe9203367b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ascon_mask </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a>&#160;</td>
-          <td class="paramname"><em>output</em>[5], </td>
+          <td class="paramtype"><a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint64_t&#160;</td>
-          <td class="paramname"><em>input</em>[5]&#160;</td>
+          <td class="paramtype">const <a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -148,15 +162,50 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a29146390c1988257c94faa49c2fc98e4"></a>
+<a class="anchor" id="a8f50edde376a9e54ce879f947d178540"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ascon_mask_sliced </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts an unmasked sliced ASCON state into a masked state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td>The output masked state in host byte order. </td></tr>
+    <tr><td class="paramname">input</td><td>The input unmasked state, sliced, in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a10f682127017e7b60179cdf21ae12217"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ascon_permute_masked </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a>&#160;</td>
-          <td class="paramname"><em>state</em>[5], </td>
+          <td class="paramtype"><a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -184,21 +233,21 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a83a963f876ea77cef3fe1191c8d4c03b"></a>
+<a class="anchor" id="a9769f80b55639bed2c5d1a85a0129e83"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ascon_unmask </td>
           <td>(</td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>output</em>[5], </td>
+          <td class="paramtype"><a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="internal-masking_8h.html#aa6621cc6545bdfa66d6602b0e28fe811">mask_uint64_t</a>&#160;</td>
-          <td class="paramname"><em>input</em>[5]&#160;</td>
+          <td class="paramtype">const <a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -219,10 +268,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="abb8279bfec6813f9eeebc2b912d71252"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ascon_unmask_sliced </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structascon__masked__state__t.html">ascon_masked_state_t</a> *&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a masked ASCON state into an unmasked sliced state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td>The output unmasked state, sliced, in host byte order. </td></tr>
+    <tr><td class="paramname">input</td><td>The input masked state in host byte order. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 19 2020 19:02:42 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 22 2020 09:37:10 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

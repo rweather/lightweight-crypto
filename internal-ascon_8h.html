@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">internal-ascon.h File Reference</div>  </div>
@@ -104,16 +105,467 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the internal state of the ASCON permutation.  <a href="unionascon__state__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a10fbd94f5320dd003f33e77fe99cbc5c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10fbd94f5320dd003f33e77fe99cbc5c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a10fbd94f5320dd003f33e77fe99cbc5c">ASCON_SLICED</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a10fbd94f5320dd003f33e77fe99cbc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defined to 1 if the 32-bit sliced version of ASCON is available. <br/></td></tr>
+<tr class="separator:a10fbd94f5320dd003f33e77fe99cbc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cc5cfb056067129518ff262629af669"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a5cc5cfb056067129518ff262629af669">ascon_set_sliced</a>(state, data, offset)</td></tr>
+<tr class="memdesc:a5cc5cfb056067129518ff262629af669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets data into the ASCON state in sliced form.  <a href="#a5cc5cfb056067129518ff262629af669">More...</a><br/></td></tr>
+<tr class="separator:a5cc5cfb056067129518ff262629af669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72cdb4d98fa8df894ed9f146df974fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#af72cdb4d98fa8df894ed9f146df974fd">ascon_absorb_sliced</a>(state, data, offset)</td></tr>
+<tr class="memdesc:af72cdb4d98fa8df894ed9f146df974fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs data into the ASCON state in sliced form.  <a href="#af72cdb4d98fa8df894ed9f146df974fd">More...</a><br/></td></tr>
+<tr class="separator:af72cdb4d98fa8df894ed9f146df974fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538a340cf59919f2406f16bb81246c6c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a538a340cf59919f2406f16bb81246c6c">ascon_absorb32_low_sliced</a>(state, data, offset)</td></tr>
+<tr class="memdesc:a538a340cf59919f2406f16bb81246c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs 32 bits of data into the ASCON state in sliced form.  <a href="#a538a340cf59919f2406f16bb81246c6c">More...</a><br/></td></tr>
+<tr class="separator:a538a340cf59919f2406f16bb81246c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762d886950c4f89d0ff4384e4693c685"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a762d886950c4f89d0ff4384e4693c685">ascon_absorb32_high_sliced</a>(state, data, offset)</td></tr>
+<tr class="memdesc:a762d886950c4f89d0ff4384e4693c685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absorbs 32 bits of data into the ASCON state in sliced form.  <a href="#a762d886950c4f89d0ff4384e4693c685">More...</a><br/></td></tr>
+<tr class="separator:a762d886950c4f89d0ff4384e4693c685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd25badfbc164b96219e946bebdbae86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#acd25badfbc164b96219e946bebdbae86">ascon_squeeze_sliced</a>(state, data, offset)</td></tr>
+<tr class="memdesc:acd25badfbc164b96219e946bebdbae86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Squeezes data from the ASCON state in sliced form.  <a href="#acd25badfbc164b96219e946bebdbae86">More...</a><br/></td></tr>
+<tr class="separator:acd25badfbc164b96219e946bebdbae86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c753f0267ca22df4fa8b8b63d6e8cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a19c753f0267ca22df4fa8b8b63d6e8cf">ascon_encrypt_sliced</a>(state, c, m, offset)</td></tr>
+<tr class="memdesc:a19c753f0267ca22df4fa8b8b63d6e8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts data using the ASCON state in sliced form.  <a href="#a19c753f0267ca22df4fa8b8b63d6e8cf">More...</a><br/></td></tr>
+<tr class="separator:a19c753f0267ca22df4fa8b8b63d6e8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b7e0bbe71fa47de5d2493022b2b33d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a8b7e0bbe71fa47de5d2493022b2b33d0">ascon_decrypt_sliced</a>(state, m, c, offset)</td></tr>
+<tr class="memdesc:a8b7e0bbe71fa47de5d2493022b2b33d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts data using the ASCON state in sliced form.  <a href="#a8b7e0bbe71fa47de5d2493022b2b33d0">More...</a><br/></td></tr>
+<tr class="separator:a8b7e0bbe71fa47de5d2493022b2b33d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab21c365db8b660dc1e81ddbbda00395e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#ab21c365db8b660dc1e81ddbbda00395e">ascon_permute</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *state, uint8_t first_round)</td></tr>
 <tr class="memdesc:ab21c365db8b660dc1e81ddbbda00395e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the ASCON state.  <a href="#ab21c365db8b660dc1e81ddbbda00395e">More...</a><br/></td></tr>
 <tr class="separator:ab21c365db8b660dc1e81ddbbda00395e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1ef033c6570f3abd644b2d7a02ca6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#adc1ef033c6570f3abd644b2d7a02ca6c">ascon_to_sliced</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *state)</td></tr>
+<tr class="memdesc:adc1ef033c6570f3abd644b2d7a02ca6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ASCON state from byte form into sliced form.  <a href="#adc1ef033c6570f3abd644b2d7a02ca6c">More...</a><br/></td></tr>
+<tr class="separator:adc1ef033c6570f3abd644b2d7a02ca6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1f9f8ee48182dd36bfad9bdecc63771"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#ad1f9f8ee48182dd36bfad9bdecc63771">ascon_from_sliced</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *state)</td></tr>
+<tr class="memdesc:ad1f9f8ee48182dd36bfad9bdecc63771"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ASCON state from sliced form into byte form.  <a href="#ad1f9f8ee48182dd36bfad9bdecc63771">More...</a><br/></td></tr>
+<tr class="separator:ad1f9f8ee48182dd36bfad9bdecc63771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6128b5afc3989348a38af23aafbaf095"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-ascon_8h.html#a6128b5afc3989348a38af23aafbaf095">ascon_permute_sliced</a> (<a class="el" href="unionascon__state__t.html">ascon_state_t</a> *state, uint8_t first_round)</td></tr>
+<tr class="memdesc:a6128b5afc3989348a38af23aafbaf095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the ASCON state in sliced form.  <a href="#a6128b5afc3989348a38af23aafbaf095">More...</a><br/></td></tr>
+<tr class="separator:a6128b5afc3989348a38af23aafbaf095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal implementation of the ASCON permutation. </p>
 <p>References: <a href="http://competitions.cr.yp.to/round3/asconv12.pdf,">http://competitions.cr.yp.to/round3/asconv12.pdf,</a> <a href="http://ascon.iaik.tugraz.at/">http://ascon.iaik.tugraz.at/</a> </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a762d886950c4f89d0ff4384e4693c685"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_absorb32_high_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high = be_load_word32((data)); \</div>
+<div class="line">        ascon_separate(high); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] ^= (high &lt;&lt; 16); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] ^= (high &amp; 0xFFFF0000U); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Absorbs 32 bits of data into the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state for the data to be absorbed into. </td></tr>
+    <tr><td class="paramname">data</td><td>Points to 4 bytes of data in big-endian byte order to absorb. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to absorb at, between 0 and 4.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The data is absorbed into the high bits of the 64-bit word at <em>offset</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a538a340cf59919f2406f16bb81246c6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_absorb32_low_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t low  = be_load_word32((data)); \</div>
+<div class="line">        ascon_separate(low); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] ^= (low &amp; 0x0000FFFFU); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] ^= (low &gt;&gt; 16); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Absorbs 32 bits of data into the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state for the data to be absorbed into. </td></tr>
+    <tr><td class="paramname">data</td><td>Points to 4 bytes of data in big-endian byte order to absorb. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to absorb at, between 0 and 4.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The data is absorbed into the low bits of the 64-bit word at <em>offset</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="af72cdb4d98fa8df894ed9f146df974fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_absorb_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high = be_load_word32((data)); \</div>
+<div class="line">        uint32_t low  = be_load_word32((data) + 4); \</div>
+<div class="line">        ascon_separate(high); \</div>
+<div class="line">        ascon_separate(low); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] ^= (high &lt;&lt; 16) | (low &amp; 0x0000FFFFU); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] ^= (high &amp; 0xFFFF0000U) | (low &gt;&gt; 16); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Absorbs data into the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state for the data to be absorbed into. </td></tr>
+    <tr><td class="paramname">data</td><td>Points to 8 bytes of data in big-endian byte order to absorb. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to absorb at, between 0 and 4. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b7e0bbe71fa47de5d2493022b2b33d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_decrypt_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">m, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high, low, high2, low2; \</div>
+<div class="line">        high = be_load_word32((c)); \</div>
+<div class="line">        low  = be_load_word32((c) + 4); \</div>
+<div class="line">        ascon_separate(high); \</div>
+<div class="line">        ascon_separate(low); \</div>
+<div class="line">        high2 = high ^ ((s-&gt;W[(offset) * 2] &gt;&gt; 16) | \</div>
+<div class="line">                        (s-&gt;W[(offset) * 2 + 1] &amp; 0xFFFF0000U)); \</div>
+<div class="line">        low2 = low ^ ((s-&gt;W[(offset) * 2] &amp; 0x0000FFFFU) | \</div>
+<div class="line">                      (s-&gt;W[(offset) * 2 + 1] &lt;&lt; 16)); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] = (high &lt;&lt; 16) | (low &amp; 0x0000FFFFU); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] = (high &amp; 0xFFFF0000U) | (low &gt;&gt; 16); \</div>
+<div class="line">        ascon_combine(high2); \</div>
+<div class="line">        ascon_combine(low2); \</div>
+<div class="line">        be_store_word32((m), high2); \</div>
+<div class="line">        be_store_word32((m) + 4, low2); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Decrypts data using the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state. </td></tr>
+    <tr><td class="paramname">m</td><td>Points to 8 bytes of output plaintext in big-endian byte order. </td></tr>
+    <tr><td class="paramname">c</td><td>Points to 8 bytes of input ciphertext in big-endian byte order. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to absorb and squeeze at, between 0 and 4. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a19c753f0267ca22df4fa8b8b63d6e8cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_encrypt_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">m, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high = be_load_word32((m)); \</div>
+<div class="line">        uint32_t low  = be_load_word32((m) + 4); \</div>
+<div class="line">        ascon_separate(high); \</div>
+<div class="line">        ascon_separate(low); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] ^= (high &lt;&lt; 16) | (low &amp; 0x0000FFFFU); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] ^= (high &amp; 0xFFFF0000U) | (low &gt;&gt; 16); \</div>
+<div class="line">        high = (s-&gt;W[(offset) * 2] &gt;&gt; 16) | \</div>
+<div class="line">               (s-&gt;W[(offset) * 2 + 1] &amp; 0xFFFF0000U); \</div>
+<div class="line">        low  = (s-&gt;W[(offset) * 2] &amp; 0x0000FFFFU) | \</div>
+<div class="line">               (s-&gt;W[(offset) * 2 + 1] &lt;&lt; 16); \</div>
+<div class="line">        ascon_combine(high); \</div>
+<div class="line">        ascon_combine(low); \</div>
+<div class="line">        be_store_word32((c), high); \</div>
+<div class="line">        be_store_word32((c) + 4, low); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Encrypts data using the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state. </td></tr>
+    <tr><td class="paramname">c</td><td>Points to 8 bytes of output ciphertext in big-endian byte order. </td></tr>
+    <tr><td class="paramname">m</td><td>Points to 8 bytes of input plaintext in big-endian byte order. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to absorb and squeeze at, between 0 and 4. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5cc5cfb056067129518ff262629af669"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_set_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high = be_load_word32((data)); \</div>
+<div class="line">        uint32_t low  = be_load_word32((data) + 4); \</div>
+<div class="line">        ascon_separate(high); \</div>
+<div class="line">        ascon_separate(low); \</div>
+<div class="line">        s-&gt;W[(offset) * 2] = (high &lt;&lt; 16) | (low &amp; 0x0000FFFFU); \</div>
+<div class="line">        s-&gt;W[(offset) * 2 + 1] = (high &amp; 0xFFFF0000U) | (low &gt;&gt; 16); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Sets data into the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state for the data to be absorbed into. </td></tr>
+    <tr><td class="paramname">data</td><td>Points to 8 bytes of data in big-endian byte order to set. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to set at, between 0 and 4. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acd25badfbc164b96219e946bebdbae86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ascon_squeeze_sliced</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">state, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> { \</div>
+<div class="line">        ascon_state_t *s = (state); \</div>
+<div class="line">        uint32_t high, low; \</div>
+<div class="line">        high = (s-&gt;W[(offset) * 2] &gt;&gt; 16) | \</div>
+<div class="line">               (s-&gt;W[(offset) * 2 + 1] &amp; 0xFFFF0000U); \</div>
+<div class="line">        low  = (s-&gt;W[(offset) * 2] &amp; 0x0000FFFFU) | \</div>
+<div class="line">               (s-&gt;W[(offset) * 2 + 1] &lt;&lt; 16); \</div>
+<div class="line">        ascon_combine(high); \</div>
+<div class="line">        ascon_combine(low); \</div>
+<div class="line">        be_store_word32((data), high); \</div>
+<div class="line">        be_store_word32((data) + 4, low); \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Squeezes data from the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state to extract the data from. </td></tr>
+    <tr><td class="paramname">data</td><td>Points to the 8 bytes to be extracted from the state. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of the 64-bit word within the state to extract, between 0 and 4. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ad1f9f8ee48182dd36bfad9bdecc63771"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ascon_from_sliced </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts an ASCON state from sliced form into byte form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state to be converted, in host byte order on entry and in big-endian byte order on exit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ab21c365db8b660dc1e81ddbbda00395e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -150,10 +602,70 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6128b5afc3989348a38af23aafbaf095"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ascon_permute_sliced </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>first_round</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permutes the ASCON state in sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state to be permuted. </td></tr>
+    <tr><td class="paramname">first_round</td><td>The first round (of 12) to be performed; 0, 4, or 6.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The input and output <em>state</em> will be in host byte order. </p>
+
+</div>
+</div>
+<a class="anchor" id="adc1ef033c6570f3abd644b2d7a02ca6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ascon_to_sliced </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionascon__state__t.html">ascon_state_t</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts an ASCON state from byte form into sliced form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The ASCON state to be converted, in big-endian byte order on entry and in host byte order on exit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 19 2020 19:02:42 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 22 2020 09:37:10 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

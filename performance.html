@@ -112,6 +112,12 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46 </td></tr>
 <tr>
+<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>1.29</td><td>1.26</td><td>1.33</td><td>1.32</td><td>1.30 </td></tr>
+<tr>
+<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.12 </td></tr>
+<tr>
+<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.11 </td></tr>
+<tr>
 <td><b><em>Schwaemm256-128</em></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.12</td><td>1.08</td><td>1.10</td><td>1.09 </td></tr>
 <tr>
 <td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>1.02</td><td>1.01</td><td>1.09</td><td>1.09</td><td>1.05 </td></tr>
@@ -152,13 +158,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>ESTATE_TweGIFT-128</em></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66 </td></tr>
 <tr>
-<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.55</td><td>0.57</td><td>0.66</td><td>0.67</td><td>0.61 </td></tr>
-<tr>
 <td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.40</td><td>0.43</td><td>0.79</td><td>0.81</td><td>0.57 </td></tr>
-<tr>
-<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.57</td><td>0.60</td><td>0.49 </td></tr>
-<tr>
-<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.39</td><td>0.42</td><td>0.56</td><td>0.58</td><td>0.48 </td></tr>
 <tr>
 <td><b><em>SPIX</em></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.38</td><td>0.39</td><td>0.40 </td></tr>
 <tr>
@@ -218,6 +218,8 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.10</td><td>0.11</td><td>0.17</td><td>0.18</td><td>0.14 </td></tr>
 <tr>
+<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.17</td><td>0.19</td><td>0.10</td><td>0.11</td><td>0.13 </td></tr>
+<tr>
 <td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.10</td><td>0.11</td><td>0.15</td><td>0.16</td><td>0.13 </td></tr>
 <tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.10</td><td>0.12</td><td>0.12</td><td>0.13</td><td>0.12 </td></tr>
@@ -238,7 +240,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.04</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.05 </td></tr>
 <tr>
-<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.06</td><td>0.03</td><td>0.04</td><td>0.04 </td></tr>
+<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03 </td></tr>
 <tr>
 <td><b><em>WAGE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03</td><td>0.03 </td></tr>
 <tr>
@@ -249,8 +251,6 @@ Performance on ARM Cortex M3</h1>
 <td><b><em>Dumbo</em></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.03</td><td>0.03</td><td>0.02 </td></tr>
 <tr>
 <td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
-<tr>
-<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01 </td></tr>
 <tr>
 <td>ISAP-K-128</td><td>128</td><td>128</td><td>128</td><td>0.0034</td><td>0.0038</td><td>0.0015</td><td>0.0016</td><td>0.0021 </td></tr>
 </table>
@@ -269,11 +269,11 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.24</td><td>0.20</td><td>0.49</td><td>0.31 </td></tr>
 <tr>
+<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.29</td><td>0.24</td><td>0.37</td><td>0.30 </td></tr>
+<tr>
 <td>Esch384 (SPARKLE)</td><td>384</td><td>0.26</td><td>0.21</td><td>0.33</td><td>0.26 </td></tr>
 <tr>
 <td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13 </td></tr>
-<tr>
-<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.11</td><td>0.09</td><td>0.16</td><td>0.12 </td></tr>
 <tr>
 <td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.10</td><td>0.09</td><td>0.15</td><td>0.11 </td></tr>
 <tr>
@@ -316,11 +316,11 @@ Performance on ESP32</h1>
 <tr>
 <td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.87</td><td>0.90</td><td>1.02</td><td>1.00</td><td>0.95 </td></tr>
 <tr>
+<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.86</td><td>0.88</td><td>0.92</td><td>0.93</td><td>0.90 </td></tr>
+<tr>
 <td><b><em>GIFT-COFB</em></b></td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.83</td><td>0.90</td><td>0.90</td><td>0.86 </td></tr>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>0.84</td><td>0.86</td><td>0.80</td><td>0.82</td><td>0.83 </td></tr>
-<tr>
-<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>0.71</td><td>0.74</td><td>0.85</td><td>0.85</td><td>0.79 </td></tr>
 <tr>
 <td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.77</td><td>0.78</td><td>0.70</td><td>0.70</td><td>0.73 </td></tr>
 <tr>
@@ -340,11 +340,11 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>HYENA</em></b></td><td>128</td><td>96</td><td>128</td><td>0.55</td><td>0.60</td><td>0.70</td><td>0.72</td><td>0.64 </td></tr>
 <tr>
-<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.51</td><td>0.56</td><td>0.75</td><td>0.76</td><td>0.64 </td></tr>
-<tr>
 <td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.47</td><td>0.52</td><td>0.85</td><td>0.87</td><td>0.64 </td></tr>
 <tr>
-<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.51</td><td>0.55</td><td>0.74</td><td>0.75</td><td>0.63 </td></tr>
+<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.67</td><td>0.46</td><td>0.86</td><td>0.66</td><td>0.63 </td></tr>
+<tr>
+<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.67</td><td>0.44</td><td>0.84</td><td>0.61</td><td>0.61 </td></tr>
 <tr>
 <td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>0.42</td><td>0.46</td><td>0.84</td><td>0.86</td><td>0.60 </td></tr>
 <tr>
@@ -410,6 +410,8 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>Romulus-N1</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.10</td><td>0.12</td><td>0.13</td><td>0.11 </td></tr>
 <tr>
+<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.08</td><td>0.09</td><td>0.10 </td></tr>
+<tr>
 <td><b><em>ORANGE-Zest</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
 <tr>
 <td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
@@ -436,19 +438,17 @@ Performance on ESP32</h1>
 <tr>
 <td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.04</td><td>0.04</td><td>0.14</td><td>0.12</td><td>0.07 </td></tr>
 <tr>
-<td>ISAP-A-128A</td><td>128</td><td>128</td><td>128</td><td>0.08</td><td>0.09</td><td>0.05</td><td>0.05</td><td>0.06 </td></tr>
-<tr>
 <td>Delirium (Elephant)</td><td>128</td><td>96</td><td>128</td><td>0.05</td><td>0.06</td><td>0.07</td><td>0.08</td><td>0.06 </td></tr>
 <tr>
 <td><b><em>WAGE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.04</td><td>0.04</td><td>0.04</td><td>0.04 </td></tr>
 <tr>
 <td><b><em>ISAP-K-128A</em></b></td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
 <tr>
+<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.03</td><td>0.03</td><td>0.01</td><td>0.02</td><td>0.02 </td></tr>
+<tr>
 <td>PHOTON-Beetle-AEAD-ENC-32</td><td>128</td><td>128</td><td>128</td><td>0.01</td><td>0.02</td><td>0.04</td><td>0.04</td><td>0.02 </td></tr>
 <tr>
 <td><b><em>Dumbo</em></b> (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.02</td><td>0.02 </td></tr>
-<tr>
-<td>ISAP-A-128</td><td>128</td><td>128</td><td>128</td><td>0.02</td><td>0.02</td><td>0.01</td><td>0.01</td><td>0.01 </td></tr>
 <tr>
 <td>Jumbo (Elephant)</td><td>128</td><td>96</td><td>64</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01 </td></tr>
 <tr>
@@ -469,9 +469,9 @@ Performance on ESP32</h1>
 <tr>
 <td>Esch384 (SPARKLE)</td><td>384</td><td>0.24</td><td>0.20</td><td>0.30</td><td>0.25 </td></tr>
 <tr>
-<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.10</td><td>0.10</td><td>0.34</td><td>0.18 </td></tr>
+<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.19</td><td>0.16</td><td>0.25</td><td>0.20 </td></tr>
 <tr>
-<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.14</td><td>0.12</td><td>0.20</td><td>0.15 </td></tr>
+<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.10</td><td>0.10</td><td>0.34</td><td>0.18 </td></tr>
 <tr>
 <td>KNOT-HASH-256-384</td><td>256</td><td>0.09</td><td>0.07</td><td>0.13</td><td>0.10 </td></tr>
 <tr>
@@ -510,13 +510,11 @@ Overall group rankings</h1>
 <tr>
 <td>9</td><td>GIFT-COFB </td></tr>
 <tr>
-<td>8</td><td>Gimli, Xoodyak </td></tr>
+<td>8</td><td>ASCON, Gimli, Xoodyak </td></tr>
 <tr>
 <td>7</td><td>TinyJAMBU, Spook </td></tr>
 <tr>
 <td>6</td><td>ESTATE, HYENA, SUNDAE-GIFT </td></tr>
-<tr>
-<td>5</td><td>ASCON </td></tr>
 <tr>
 <td>4</td><td>Grain128-AEAD, KNOT </td></tr>
 <tr>
@@ -537,14 +535,16 @@ Overall group rankings</h1>
 <tr>
 <td>3</td><td>Saturnin </td></tr>
 <tr>
-<td>1</td><td>ASCON, DryGASCON </td></tr>
+<td>2</td><td>ASCON </td></tr>
+<tr>
+<td>1</td><td>DryGASCON </td></tr>
 <tr>
 <td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 19 2020 19:02:42 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 22 2020 09:37:11 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
