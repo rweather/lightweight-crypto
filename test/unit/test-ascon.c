@@ -116,16 +116,16 @@ static void test_ascon_sliced(void)
 
 static void test_ascon_masked(void)
 {
-    mask_uint64_t state[5];
-    uint64_t unmasked[5];
+    ascon_masked_state_t state;
+    ascon_state_t unmasked;
 
     printf("    Masked Permutation 12 ... ");
     fflush(stdout);
-    memcpy(unmasked, ascon_input, sizeof(ascon_input));
-    ascon_mask(state, unmasked);
-    ascon_permute_masked(state, 0);
-    ascon_unmask(unmasked, state);
-    if (memcmp(unmasked, ascon_output_12, sizeof(ascon_output_12)) != 0) {
+    memcpy(unmasked.B, ascon_input, sizeof(ascon_input));
+    ascon_mask(&state, &unmasked);
+    ascon_permute_masked(&state, 0);
+    ascon_unmask(&unmasked, &state);
+    if (memcmp(unmasked.B, ascon_output_12, sizeof(ascon_output_12)) != 0) {
         printf("failed\n");
         test_exit_result = 1;
     } else {
@@ -134,11 +134,19 @@ static void test_ascon_masked(void)
 
     printf("    Masked Permutation 8 ... ");
     fflush(stdout);
-    memcpy(unmasked, ascon_input, sizeof(ascon_input));
-    ascon_mask(state, unmasked);
-    ascon_permute_masked(state, 4);
-    ascon_unmask(unmasked, state);
-    if (memcmp(unmasked, ascon_output_8, sizeof(ascon_output_8)) != 0) {
+    memcpy(unmasked.B, ascon_input, sizeof(ascon_input));
+#if ASCON_SLICED
+    ascon_to_sliced(&unmasked);
+    ascon_mask_sliced(&state, &unmasked);
+    ascon_permute_masked(&state, 4);
+    ascon_unmask_sliced(&unmasked, &state);
+    ascon_from_sliced(&unmasked);
+#else
+    ascon_mask(&state, &unmasked);
+    ascon_permute_masked(&state, 4);
+    ascon_unmask(&unmasked, &state);
+#endif
+    if (memcmp(unmasked.B, ascon_output_8, sizeof(ascon_output_8)) != 0) {
         printf("failed\n");
         test_exit_result = 1;
     } else {

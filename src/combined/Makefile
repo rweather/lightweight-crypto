@@ -155,7 +155,7 @@ wage.o: wage.h internal-wage.h aead-common.h internal-util.h
 xoodyak.o: xoodyak.h internal-xoodoo.h aead-common.h internal-util.h
 xoodyak-masked.o: xoodyak.h internal-xoodoo.h internal-xoodoo-m.h aead-random.h internal-masking.h aead-common.h internal-util.h
 internal-ascon.o: internal-ascon.h internal-util.h
-internal-ascon-m.o: internal-ascon-m.h aead-random.h internal-masking.h internal-util.h
+internal-ascon-m.o: internal-ascon-m.h internal-ascon.h aead-random.h internal-masking.h internal-util.h
 internal-blake2s.o: internal-blake2s.h internal-util.h
 internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h

@@ -24,6 +24,7 @@
 #define LW_INTERNAL_ASCON_M_H
 
 #include "internal-masking.h"
+#include "internal-ascon.h"
 
 /**
  * \file internal-ascon-m.h
@@ -38,6 +39,15 @@ extern "C" {
 #endif
 
 /**
+ * \brief Structure of the internal state of the masked ASCON permutation.
+ */
+typedef struct
+{
+    mask_uint64_t S[5];     /**< Masked 64-bit words of the state */
+
+} ascon_masked_state_t;
+
+/**
  * \brief Permutes the masked ASCON state.
  *
  * \param state The masked ASCON state to be permuted.
@@ -45,7 +55,7 @@ extern "C" {
  *
  * The input and output \a state will be in host byte order.
  */
-void ascon_permute_masked(mask_uint64_t state[5], uint8_t first_round);
+void ascon_permute_masked(ascon_masked_state_t *state, uint8_t first_round);
 
 /**
  * \brief Converts an unmasked ASCON state into a masked state.
@@ -53,7 +63,7 @@ void ascon_permute_masked(mask_uint64_t state[5], uint8_t first_round);
  * \param output The output masked state in host byte order.
  * \param input The input unmasked state, in big-endian byte order.
  */
-void ascon_mask(mask_uint64_t output[5], const uint64_t input[5]);
+void ascon_mask(ascon_masked_state_t *output, const ascon_state_t *input);
 
 /**
  * \brief Converts a masked ASCON state into an unmasked state.
@@ -61,7 +71,29 @@ void ascon_mask(mask_uint64_t output[5], const uint64_t input[5]);
  * \param output The output unmasked state, in big-endian byte order.
  * \param input The input masked state in host byte order.
  */
-void ascon_unmask(uint64_t output[5], const mask_uint64_t input[5]);
+void ascon_unmask(ascon_state_t *output, const ascon_masked_state_t *input);
+
+#if ASCON_SLICED
+
+/**
+ * \brief Converts an unmasked sliced ASCON state into a masked state.
+ *
+ * \param output The output masked state in host byte order.
+ * \param input The input unmasked state, sliced, in host byte order.
+ */
+void ascon_mask_sliced
+    (ascon_masked_state_t *output, const ascon_state_t *input);
+
+/**
+ * \brief Converts a masked ASCON state into an unmasked sliced state.
+ *
+ * \param output The output unmasked state, sliced, in host byte order.
+ * \param input The input masked state in host byte order.
+ */
+void ascon_unmask_sliced
+    (ascon_state_t *output, const ascon_masked_state_t *input);
+
+#endif
 
 #ifdef __cplusplus
 }
