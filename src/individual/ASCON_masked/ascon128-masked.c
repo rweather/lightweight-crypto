@@ -85,80 +85,265 @@ aead_cipher_t const ascon80pq_masked_cipher = {
 #if AEAD_MASKING_KEY_ONLY
 
 /**
- * \brief Absorbs data into an ASCON state.
+ * \brief Absorbs data into an ASCON state with an 8-byte rate.
  *
  * \param state The state to absorb the data into.
  * \param data Points to the data to be absorbed.
  * \param len Length of the data to be absorbed.
- * \param rate Block rate, which is either 8 or 16.
  * \param first_round First round of the permutation to apply each block.
  */
-static void ascon_absorb_masked
+static void ascon_absorb_masked_8
     (ascon_state_t *state, const unsigned char *data,
-     unsigned long long len, uint8_t rate, uint8_t first_round)
+     unsigned long long len, uint8_t first_round)
 {
-    while (len >= rate) {
-        lw_xor_block(state->B, data, rate);
+#if ASCON_SLICED
+    unsigned char padded[8];
+    unsigned temp;
+    while (len >= 8) {
+        ascon_absorb_sliced(state, data, 0);
+        ascon_permute_sliced(state, first_round);
+        data += 8;
+        len -= 8;
+    }
+    temp = (unsigned)len;
+    memcpy(padded, data, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+    ascon_permute_sliced(state, first_round);
+#else
+    while (len >= 8) {
+        lw_xor_block(state->B, data, 8);
         ascon_permute(state, first_round);
-        data += rate;
-        len -= rate;
+        data += 8;
+        len -= 8;
     }
     lw_xor_block(state->B, data, (unsigned)len);
     state->B[(unsigned)len] ^= 0x80;
     ascon_permute(state, first_round);
+#endif
 }
 
 /**
- * \brief Encrypts a block of data with an ASCON state.
+ * \brief Absorbs data into an ASCON state with a 16-byte rate.
+ *
+ * \param state The state to absorb the data into.
+ * \param data Points to the data to be absorbed.
+ * \param len Length of the data to be absorbed.
+ * \param first_round First round of the permutation to apply each block.
+ */
+static void ascon_absorb_masked_16
+    (ascon_state_t *state, const unsigned char *data,
+     unsigned long long len, uint8_t first_round)
+{
+#if ASCON_SLICED
+    unsigned char padded[16];
+    unsigned temp;
+    while (len >= 16) {
+        ascon_absorb_sliced(state, data, 0);
+        ascon_absorb_sliced(state, data + 8, 1);
+        ascon_permute_sliced(state, first_round);
+        data += 16;
+        len -= 16;
+    }
+    temp = (unsigned)len;
+    memcpy(padded, data, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+    ascon_absorb_sliced(state, padded + 8, 1);
+    ascon_permute_sliced(state, first_round);
+#else
+    while (len >= 16) {
+        lw_xor_block(state->B, data, 16);
+        ascon_permute(state, first_round);
+        data += 16;
+        len -= 16;
+    }
+    lw_xor_block(state->B, data, (unsigned)len);
+    state->B[(unsigned)len] ^= 0x80;
+    ascon_permute(state, first_round);
+#endif
+}
+
+/**
+ * \brief Encrypts a block of data with an ASCON state and an 8-byte rate.
  *
  * \param state The state to encrypt with.
  * \param dest Points to the destination buffer.
  * \param src Points to the source buffer.
  * \param len Length of the data to encrypt from \a src into \a dest.
- * \param rate Block rate, which is either 8 or 16.
  * \param first_round First round of the permutation to apply each block.
  */
-static void ascon_encrypt_masked
+static void ascon_encrypt_masked_8
     (ascon_state_t *state, unsigned char *dest,
-     const unsigned char *src, unsigned long long len,
-     uint8_t rate, uint8_t first_round)
+     const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
-    while (len >= rate) {
-        lw_xor_block_2_dest(dest, state->B, src, rate);
+#if ASCON_SLICED
+    unsigned char padded[8];
+    unsigned temp;
+    while (len >= 8) {
+        ascon_encrypt_sliced(state, dest, src, 0);
+        ascon_permute_sliced(state, first_round);
+        dest += 8;
+        src += 8;
+        len -= 8;
+    }
+    temp = (unsigned)len;
+    memcpy(padded, src, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_encrypt_sliced(state, padded, padded, 0);
+    memcpy(dest, padded, temp);
+#else
+    while (len >= 8) {
+        lw_xor_block_2_dest(dest, state->B, src, 8);
         ascon_permute(state, first_round);
-        dest += rate;
-        src += rate;
-        len -= rate;
+        dest += 8;
+        src += 8;
+        len -= 8;
     }
     lw_xor_block_2_dest(dest, state->B, src, (unsigned)len);
     state->B[(unsigned)len] ^= 0x80;
+#endif
 }
 
 /**
- * \brief Decrypts a block of data with an ASCON state.
+ * \brief Encrypts a block of data with an ASCON state and a 16-byte rate.
+ *
+ * \param state The state to encrypt with.
+ * \param dest Points to the destination buffer.
+ * \param src Points to the source buffer.
+ * \param len Length of the data to encrypt from \a src into \a dest.
+ * \param first_round First round of the permutation to apply each block.
+ */
+static void ascon_encrypt_masked_16
+    (ascon_state_t *state, unsigned char *dest,
+     const unsigned char *src, unsigned long long len, uint8_t first_round)
+{
+#if ASCON_SLICED
+    unsigned char padded[16];
+    unsigned temp;
+    while (len >= 16) {
+        ascon_encrypt_sliced(state, dest, src, 0);
+        ascon_encrypt_sliced(state, dest + 8, src + 8, 1);
+        ascon_permute_sliced(state, first_round);
+        dest += 16;
+        src += 16;
+        len -= 16;
+    }
+    temp = (unsigned)len;
+    memcpy(padded, src, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_encrypt_sliced(state, padded, padded, 0);
+    ascon_encrypt_sliced(state, padded + 8, padded + 8, 1);
+    memcpy(dest, padded, temp);
+#else
+    while (len >= 16) {
+        lw_xor_block_2_dest(dest, state->B, src, 16);
+        ascon_permute(state, first_round);
+        dest += 16;
+        src += 16;
+        len -= 16;
+    }
+    lw_xor_block_2_dest(dest, state->B, src, (unsigned)len);
+    state->B[(unsigned)len] ^= 0x80;
+#endif
+}
+
+/**
+ * \brief Decrypts a block of data with an ASCON state and an 8-byte rate.
  *
  * \param state The state to decrypt with.
  * \param dest Points to the destination buffer.
  * \param src Points to the source buffer.
  * \param len Length of the data to decrypt from \a src into \a dest.
- * \param rate Block rate, which is either 8 or 16.
  * \param first_round First round of the permutation to apply each block.
  */
-static void ascon_decrypt_masked
+static void ascon_decrypt_masked_8
     (ascon_state_t *state, unsigned char *dest,
-     const unsigned char *src, unsigned long long len,
-     uint8_t rate, uint8_t first_round)
+     const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
-    while (len >= rate) {
-        lw_xor_block_swap(dest, state->B, src, rate);
+#if ASCON_SLICED
+    unsigned char padded[8];
+    unsigned temp;
+    while (len >= 8) {
+        ascon_decrypt_sliced(state, dest, src, 0);
+        ascon_permute_sliced(state, first_round);
+        dest += 8;
+        src += 8;
+        len -= 8;
+    }
+    temp = (unsigned)len;
+    ascon_squeeze_sliced(state, padded, 0);
+    lw_xor_block_2_dest(dest, padded, src, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+#else
+    while (len >= 8) {
+        lw_xor_block_swap(dest, state->B, src, 8);
         ascon_permute(state, first_round);
-        dest += rate;
-        src += rate;
-        len -= rate;
+        dest += 8;
+        src += 8;
+        len -= 8;
     }
     lw_xor_block_swap(dest, state->B, src, (unsigned)len);
     state->B[(unsigned)len] ^= 0x80;
+#endif
 }
+
+/**
+ * \brief Decrypts a block of data with an ASCON state and a 16-byte rate.
+ *
+ * \param state The state to decrypt with.
+ * \param dest Points to the destination buffer.
+ * \param src Points to the source buffer.
+ * \param len Length of the data to decrypt from \a src into \a dest.
+ * \param first_round First round of the permutation to apply each block.
+ */
+static void ascon_decrypt_masked_16
+    (ascon_state_t *state, unsigned char *dest,
+     const unsigned char *src, unsigned long long len, uint8_t first_round)
+{
+#if ASCON_SLICED
+    unsigned char padded[16];
+    unsigned temp;
+    while (len >= 16) {
+        ascon_decrypt_sliced(state, dest, src, 0);
+        ascon_decrypt_sliced(state, dest + 8, src + 8, 1);
+        ascon_permute_sliced(state, first_round);
+        dest += 16;
+        src += 16;
+        len -= 16;
+    }
+    temp = (unsigned)len;
+    ascon_squeeze_sliced(state, padded, 0);
+    ascon_squeeze_sliced(state, padded + 8, 1);
+    lw_xor_block_2_dest(dest, padded, src, temp);
+    padded[temp] = 0x80;
+    memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
+    ascon_absorb_sliced(state, padded, 0);
+    ascon_absorb_sliced(state, padded + 8, 1);
+#else
+    while (len >= 16) {
+        lw_xor_block_swap(dest, state->B, src, 16);
+        ascon_permute(state, first_round);
+        dest += 16;
+        src += 16;
+        len -= 16;
+    }
+    lw_xor_block_swap(dest, state->B, src, (unsigned)len);
+    state->B[(unsigned)len] ^= 0x80;
+#endif
+}
+
+#if ASCON_SLICED
+#define ascon_separator() (state.W[8] ^= 0x01)
+#else
+#define ascon_separator() (state.B[39] ^= 0x01)
+#endif
 
 int ascon128_masked_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
@@ -168,7 +353,7 @@ int ascon128_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -177,35 +362,43 @@ int ascon128_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON128_MASKED_IV);
-    mask_input(masked_state[1], be_load_word64(k));
-    mask_input(masked_state[2], be_load_word64(k + 8));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON128_MASKED_IV);
+    mask_input(masked_state.S[1], be_load_word64(k));
+    mask_input(masked_state.S[2], be_load_word64(k + 8));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 8, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked(&state, c, m, mlen, 8, 6);
+    ascon_encrypt_masked_8(&state, c, m, mlen, 6);
 
     /* Finalize and compute the authentication tag in masked form */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[1], be_load_word64(k));
-    mask_xor_const(masked_state[2], be_load_word64(k + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    be_store_word64(c + mlen, mask_output(masked_state[3]));
-    be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[1], be_load_word64(k));
+    mask_xor_const(masked_state.S[2], be_load_word64(k + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+    be_store_word64(c + mlen, mask_output(masked_state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -218,7 +411,7 @@ int ascon128_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -229,35 +422,43 @@ int ascon128_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON128_MASKED_IV);
-    mask_input(masked_state[1], be_load_word64(k));
-    mask_input(masked_state[2], be_load_word64(k + 8));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON128_MASKED_IV);
+    mask_input(masked_state.S[1], be_load_word64(k));
+    mask_input(masked_state.S[2], be_load_word64(k + 8));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 8, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked(&state, m, c, *mlen, 8, 6);
+    ascon_decrypt_masked_8(&state, m, c, *mlen, 6);
 
     /* Finalize and check the authentication tag in masked form */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[1], be_load_word64(k));
-    mask_xor_const(masked_state[2], be_load_word64(k + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    be_store_word64(state.B, mask_output(masked_state[3]));
-    be_store_word64(state.B + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[1], be_load_word64(k));
+    mask_xor_const(masked_state.S[2], be_load_word64(k + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+    be_store_word64(state.B, mask_output(masked_state.S[3]));
+    be_store_word64(state.B + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON128_MASKED_TAG_SIZE);
@@ -271,7 +472,7 @@ int ascon128a_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -280,35 +481,43 @@ int ascon128a_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON128a_MASKED_IV);
-    mask_input(masked_state[1], be_load_word64(k));
-    mask_input(masked_state[2], be_load_word64(k + 8));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON128a_MASKED_IV);
+    mask_input(masked_state.S[1], be_load_word64(k));
+    mask_input(masked_state.S[2], be_load_word64(k + 8));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 16, 4);
+        ascon_absorb_masked_16(&state, ad, adlen, 4);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked(&state, c, m, mlen, 16, 4);
+    ascon_encrypt_masked_16(&state, c, m, mlen, 4);
 
     /* Finalize and compute the authentication tag in masked form */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[2], be_load_word64(k));
-    mask_xor_const(masked_state[3], be_load_word64(k + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    be_store_word64(c + mlen, mask_output(masked_state[3]));
-    be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[2], be_load_word64(k));
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+    be_store_word64(c + mlen, mask_output(masked_state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -321,7 +530,7 @@ int ascon128a_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -332,35 +541,43 @@ int ascon128a_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON128a_MASKED_IV);
-    mask_input(masked_state[1], be_load_word64(k));
-    mask_input(masked_state[2], be_load_word64(k + 8));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON128a_MASKED_IV);
+    mask_input(masked_state.S[1], be_load_word64(k));
+    mask_input(masked_state.S[2], be_load_word64(k + 8));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 16, 4);
+        ascon_absorb_masked_16(&state, ad, adlen, 4);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked(&state, m, c, *mlen, 16, 4);
+    ascon_decrypt_masked_16(&state, m, c, *mlen, 4);
 
     /* Finalize and check the authentication tag in masked form */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[2], be_load_word64(k));
-    mask_xor_const(masked_state[3], be_load_word64(k + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k));
-    mask_xor_const(masked_state[4], be_load_word64(k + 8));
-    be_store_word64(state.B, mask_output(masked_state[3]));
-    be_store_word64(state.B + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[2], be_load_word64(k));
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 8));
+    be_store_word64(state.B, mask_output(masked_state.S[3]));
+    be_store_word64(state.B + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON128_MASKED_TAG_SIZE);
@@ -374,7 +591,7 @@ int ascon80pq_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -383,37 +600,45 @@ int ascon80pq_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
-    mask_input(masked_state[1], be_load_word64(k + 4));
-    mask_input(masked_state[2], be_load_word64(k + 12));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[2], be_load_word32(k));
-    mask_xor_const(masked_state[3], be_load_word64(k + 4));
-    mask_xor_const(masked_state[4], be_load_word64(k + 12));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
+    mask_input(masked_state.S[1], be_load_word64(k + 4));
+    mask_input(masked_state.S[2], be_load_word64(k + 12));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[2], be_load_word32(k));
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 4));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 12));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 8, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked(&state, c, m, mlen, 8, 6);
+    ascon_encrypt_masked_8(&state, c, m, mlen, 6);
 
     /* Finalize and compute the authentication tag */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[1], be_load_word64(k));
-    mask_xor_const(masked_state[2], be_load_word64(k + 8));
-    mask_xor_const(masked_state[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k + 4));
-    mask_xor_const(masked_state[4], be_load_word64(k + 12));
-    be_store_word64(c + mlen, mask_output(masked_state[3]));
-    be_store_word64(c + mlen + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[1], be_load_word64(k));
+    mask_xor_const(masked_state.S[2], be_load_word64(k + 8));
+    mask_xor_const(masked_state.S[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 4));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 12));
+    be_store_word64(c + mlen, mask_output(masked_state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -426,7 +651,7 @@ int ascon80pq_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t masked_state[5];
+    ascon_masked_state_t masked_state;
     ascon_state_t state;
     (void)nsec;
 
@@ -437,37 +662,45 @@ int ascon80pq_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(masked_state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
-    mask_input(masked_state[1], be_load_word64(k + 4));
-    mask_input(masked_state[2], be_load_word64(k + 12));
-    mask_input(masked_state[3], be_load_word64(npub));
-    mask_input(masked_state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[2], be_load_word32(k));
-    mask_xor_const(masked_state[3], be_load_word64(k + 4));
-    mask_xor_const(masked_state[4], be_load_word64(k + 12));
-    ascon_unmask(state.S, masked_state);
+    mask_input(masked_state.S[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
+    mask_input(masked_state.S[1], be_load_word64(k + 4));
+    mask_input(masked_state.S[2], be_load_word64(k + 12));
+    mask_input(masked_state.S[3], be_load_word64(npub));
+    mask_input(masked_state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[2], be_load_word32(k));
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 4));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 12));
+#if ASCON_SLICED
+    ascon_unmask_sliced(&state, &masked_state);
+#else
+    ascon_unmask(&state, &masked_state);
+#endif
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked(&state, ad, adlen, 8, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    state.B[39] ^= 0x01;
+    ascon_separator();
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked(&state, m, c, *mlen, 8, 6);
+    ascon_decrypt_masked_8(&state, m, c, *mlen, 6);
 
     /* Finalize and check the authentication tag in masked form */
-    ascon_mask(masked_state, state.S);
-    mask_xor_const(masked_state[1], be_load_word64(k));
-    mask_xor_const(masked_state[2], be_load_word64(k + 8));
-    mask_xor_const(masked_state[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
-    ascon_permute_masked(masked_state, 0);
-    mask_xor_const(masked_state[3], be_load_word64(k + 4));
-    mask_xor_const(masked_state[4], be_load_word64(k + 12));
-    be_store_word64(state.B, mask_output(masked_state[3]));
-    be_store_word64(state.B + 8, mask_output(masked_state[4]));
+#if ASCON_SLICED
+    ascon_mask_sliced(&masked_state, &state);
+#else
+    ascon_mask(&masked_state, &state);
+#endif
+    mask_xor_const(masked_state.S[1], be_load_word64(k));
+    mask_xor_const(masked_state.S[2], be_load_word64(k + 8));
+    mask_xor_const(masked_state.S[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
+    ascon_permute_masked(&masked_state, 0);
+    mask_xor_const(masked_state.S[3], be_load_word64(k + 4));
+    mask_xor_const(masked_state.S[4], be_load_word64(k + 12));
+    be_store_word64(state.B, mask_output(masked_state.S[3]));
+    be_store_word64(state.B + 8, mask_output(masked_state.S[4]));
     aead_random_finish();
     return aead_check_tag
         (m, *mlen, state.B, c + *mlen, ASCON80PQ_MASKED_TAG_SIZE);
@@ -484,13 +717,13 @@ int ascon80pq_masked_aead_decrypt
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_absorb_masked_8
-    (mask_uint64_t state[5], const unsigned char *data,
+    (ascon_masked_state_t *state, const unsigned char *data,
      unsigned long long len, uint8_t first_round)
 {
     unsigned char padded[8];
     unsigned temp;
     while (len >= 8) {
-        mask_xor_const(state[0], be_load_word64(data));
+        mask_xor_const(state->S[0], be_load_word64(data));
         ascon_permute_masked(state, first_round);
         data += 8;
         len -= 8;
@@ -499,7 +732,7 @@ static void ascon_absorb_masked_8
     memcpy(padded, data, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
+    mask_xor_const(state->S[0], be_load_word64(padded));
     ascon_permute_masked(state, first_round);
 }
 
@@ -512,14 +745,14 @@ static void ascon_absorb_masked_8
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_absorb_masked_16
-    (mask_uint64_t state[5], const unsigned char *data,
+    (ascon_masked_state_t *state, const unsigned char *data,
      unsigned long long len, uint8_t first_round)
 {
     unsigned char padded[16];
     unsigned temp;
     while (len >= 16) {
-        mask_xor_const(state[0], be_load_word64(data));
-        mask_xor_const(state[1], be_load_word64(data + 8));
+        mask_xor_const(state->S[0], be_load_word64(data));
+        mask_xor_const(state->S[1], be_load_word64(data + 8));
         ascon_permute_masked(state, first_round);
         data += 16;
         len -= 16;
@@ -528,8 +761,8 @@ static void ascon_absorb_masked_16
     memcpy(padded, data, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
-    mask_xor_const(state[1], be_load_word64(padded + 8));
+    mask_xor_const(state->S[0], be_load_word64(padded));
+    mask_xor_const(state->S[1], be_load_word64(padded + 8));
     ascon_permute_masked(state, first_round);
 }
 
@@ -543,15 +776,15 @@ static void ascon_absorb_masked_16
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_encrypt_masked_8
-    (mask_uint64_t state[5], unsigned char *dest,
+    (ascon_masked_state_t *state, unsigned char *dest,
      const unsigned char *src, unsigned long long len,
      uint8_t first_round)
 {
     unsigned char padded[8];
     unsigned temp;
     while (len >= 8) {
-        mask_xor_const(state[0], be_load_word64(src));
-        be_store_word64(dest, mask_output(state[0]));
+        mask_xor_const(state->S[0], be_load_word64(src));
+        be_store_word64(dest, mask_output(state->S[0]));
         ascon_permute_masked(state, first_round);
         dest += 8;
         src += 8;
@@ -561,8 +794,8 @@ static void ascon_encrypt_masked_8
     memcpy(padded, src, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
-    be_store_word64(padded, mask_output(state[0]));
+    mask_xor_const(state->S[0], be_load_word64(padded));
+    be_store_word64(padded, mask_output(state->S[0]));
     memcpy(dest, padded, temp);
 }
 
@@ -576,17 +809,17 @@ static void ascon_encrypt_masked_8
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_encrypt_masked_16
-    (mask_uint64_t state[5], unsigned char *dest,
+    (ascon_masked_state_t *state, unsigned char *dest,
      const unsigned char *src, unsigned long long len,
      uint8_t first_round)
 {
     unsigned char padded[16];
     unsigned temp;
     while (len >= 16) {
-        mask_xor_const(state[0], be_load_word64(src));
-        mask_xor_const(state[1], be_load_word64(src + 8));
-        be_store_word64(dest, mask_output(state[0]));
-        be_store_word64(dest + 8, mask_output(state[1]));
+        mask_xor_const(state->S[0], be_load_word64(src));
+        mask_xor_const(state->S[1], be_load_word64(src + 8));
+        be_store_word64(dest, mask_output(state->S[0]));
+        be_store_word64(dest + 8, mask_output(state->S[1]));
         ascon_permute_masked(state, first_round);
         dest += 16;
         src += 16;
@@ -596,10 +829,10 @@ static void ascon_encrypt_masked_16
     memcpy(padded, src, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
-    mask_xor_const(state[1], be_load_word64(padded + 8));
-    be_store_word64(padded, mask_output(state[0]));
-    be_store_word64(padded + 8, mask_output(state[1]));
+    mask_xor_const(state->S[0], be_load_word64(padded));
+    mask_xor_const(state->S[1], be_load_word64(padded + 8));
+    be_store_word64(padded, mask_output(state->S[0]));
+    be_store_word64(padded + 8, mask_output(state->S[1]));
     memcpy(dest, padded, temp);
 }
 
@@ -613,7 +846,7 @@ static void ascon_encrypt_masked_16
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_decrypt_masked_8
-    (mask_uint64_t state[5], unsigned char *dest,
+    (ascon_masked_state_t *state, unsigned char *dest,
      const unsigned char *src, unsigned long long len,
      uint8_t first_round)
 {
@@ -621,8 +854,8 @@ static void ascon_decrypt_masked_8
     unsigned temp;
     uint64_t mword;
     while (len >= 8) {
-        mword = mask_output(state[0]) ^ be_load_word64(src);
-        mask_xor_const(state[0], mword);
+        mword = mask_output(state->S[0]) ^ be_load_word64(src);
+        mask_xor_const(state->S[0], mword);
         be_store_word64(dest, mword);
         ascon_permute_masked(state, first_round);
         dest += 8;
@@ -630,11 +863,11 @@ static void ascon_decrypt_masked_8
         len -= 8;
     }
     temp = (unsigned)len;
-    be_store_word64(padded, mask_output(state[0]));
+    be_store_word64(padded, mask_output(state->S[0]));
     lw_xor_block_2_dest(dest, padded, src, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
+    mask_xor_const(state->S[0], be_load_word64(padded));
 }
 
 /**
@@ -647,7 +880,7 @@ static void ascon_decrypt_masked_8
  * \param first_round First round of the permutation to apply each block.
  */
 static void ascon_decrypt_masked_16
-    (mask_uint64_t state[5], unsigned char *dest,
+    (ascon_masked_state_t *state, unsigned char *dest,
      const unsigned char *src, unsigned long long len,
      uint8_t first_round)
 {
@@ -655,11 +888,11 @@ static void ascon_decrypt_masked_16
     unsigned temp;
     uint64_t mword;
     while (len >= 16) {
-        mword = mask_output(state[0]) ^ be_load_word64(src);
-        mask_xor_const(state[0], mword);
+        mword = mask_output(state->S[0]) ^ be_load_word64(src);
+        mask_xor_const(state->S[0], mword);
         be_store_word64(dest, mword);
-        mword = mask_output(state[1]) ^ be_load_word64(src + 8);
-        mask_xor_const(state[1], mword);
+        mword = mask_output(state->S[1]) ^ be_load_word64(src + 8);
+        mask_xor_const(state->S[1], mword);
         be_store_word64(dest + 8, mword);
         ascon_permute_masked(state, first_round);
         dest += 16;
@@ -667,13 +900,13 @@ static void ascon_decrypt_masked_16
         len -= 16;
     }
     temp = (unsigned)len;
-    be_store_word64(padded,     mask_output(state[0]));
-    be_store_word64(padded + 8, mask_output(state[1]));
+    be_store_word64(padded,     mask_output(state->S[0]));
+    be_store_word64(padded + 8, mask_output(state->S[1]));
     lw_xor_block_2_dest(dest, padded, src, temp);
     padded[temp] = 0x80;
     memset(padded + temp + 1, 0, sizeof(padded) - (temp + 1));
-    mask_xor_const(state[0], be_load_word64(padded));
-    mask_xor_const(state[1], be_load_word64(padded + 8));
+    mask_xor_const(state->S[0], be_load_word64(padded));
+    mask_xor_const(state->S[1], be_load_word64(padded + 8));
 }
 
 int ascon128_masked_aead_encrypt
@@ -684,7 +917,7 @@ int ascon128_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
@@ -692,33 +925,33 @@ int ascon128_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON128_MASKED_IV);
-    mask_input(state[1], be_load_word64(k));
-    mask_input(state[2], be_load_word64(k + 8));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
+    mask_input(state.S[0], ASCON128_MASKED_IV);
+    mask_input(state.S[1], be_load_word64(k));
+    mask_input(state.S[2], be_load_word64(k + 8));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_8(state, ad, adlen, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked_8(state, c, m, mlen, 6);
+    ascon_encrypt_masked_8(&state, c, m, mlen, 6);
 
     /* Finalize and compute the authentication tag in masked form */
-    mask_xor_const(state[1], be_load_word64(k));
-    mask_xor_const(state[2], be_load_word64(k + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
-    be_store_word64(c + mlen, mask_output(state[3]));
-    be_store_word64(c + mlen + 8, mask_output(state[4]));
+    mask_xor_const(state.S[1], be_load_word64(k));
+    mask_xor_const(state.S[2], be_load_word64(k + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
+    be_store_word64(c + mlen, mask_output(state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -731,7 +964,7 @@ int ascon128_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     unsigned char tag[ASCON128_MASKED_TAG_SIZE];
     (void)nsec;
 
@@ -742,33 +975,33 @@ int ascon128_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON128_MASKED_IV);
-    mask_input(state[1], be_load_word64(k));
-    mask_input(state[2], be_load_word64(k + 8));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
+    mask_input(state.S[0], ASCON128_MASKED_IV);
+    mask_input(state.S[1], be_load_word64(k));
+    mask_input(state.S[2], be_load_word64(k + 8));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_8(state, ad, adlen, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked_8(state, m, c, *mlen, 6);
+    ascon_decrypt_masked_8(&state, m, c, *mlen, 6);
 
     /* Finalize and check the authentication tag in masked form */
-    mask_xor_const(state[1], be_load_word64(k));
-    mask_xor_const(state[2], be_load_word64(k + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
-    be_store_word64(tag, mask_output(state[3]));
-    be_store_word64(tag + 8, mask_output(state[4]));
+    mask_xor_const(state.S[1], be_load_word64(k));
+    mask_xor_const(state.S[2], be_load_word64(k + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
+    be_store_word64(tag, mask_output(state.S[3]));
+    be_store_word64(tag + 8, mask_output(state.S[4]));
     aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
@@ -781,7 +1014,7 @@ int ascon128a_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
@@ -789,33 +1022,33 @@ int ascon128a_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON128a_MASKED_IV);
-    mask_input(state[1], be_load_word64(k));
-    mask_input(state[2], be_load_word64(k + 8));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
+    mask_input(state.S[0], ASCON128a_MASKED_IV);
+    mask_input(state.S[1], be_load_word64(k));
+    mask_input(state.S[2], be_load_word64(k + 8));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_16(state, ad, adlen, 4);
+        ascon_absorb_masked_16(&state, ad, adlen, 4);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked_16(state, c, m, mlen, 4);
+    ascon_encrypt_masked_16(&state, c, m, mlen, 4);
 
     /* Finalize and compute the authentication tag in masked form */
-    mask_xor_const(state[2], be_load_word64(k));
-    mask_xor_const(state[3], be_load_word64(k + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
-    be_store_word64(c + mlen, mask_output(state[3]));
-    be_store_word64(c + mlen + 8, mask_output(state[4]));
+    mask_xor_const(state.S[2], be_load_word64(k));
+    mask_xor_const(state.S[3], be_load_word64(k + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
+    be_store_word64(c + mlen, mask_output(state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -828,7 +1061,7 @@ int ascon128a_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     unsigned char tag[ASCON128_MASKED_TAG_SIZE];
     (void)nsec;
 
@@ -839,33 +1072,33 @@ int ascon128a_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON128a_MASKED_IV);
-    mask_input(state[1], be_load_word64(k));
-    mask_input(state[2], be_load_word64(k + 8));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
+    mask_input(state.S[0], ASCON128a_MASKED_IV);
+    mask_input(state.S[1], be_load_word64(k));
+    mask_input(state.S[2], be_load_word64(k + 8));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_16(state, ad, adlen, 4);
+        ascon_absorb_masked_16(&state, ad, adlen, 4);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked_16(state, m, c, *mlen, 4);
+    ascon_decrypt_masked_16(&state, m, c, *mlen, 4);
 
     /* Finalize and check the authentication tag in masked form */
-    mask_xor_const(state[2], be_load_word64(k));
-    mask_xor_const(state[3], be_load_word64(k + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k));
-    mask_xor_const(state[4], be_load_word64(k + 8));
-    be_store_word64(tag, mask_output(state[3]));
-    be_store_word64(tag + 8, mask_output(state[4]));
+    mask_xor_const(state.S[2], be_load_word64(k));
+    mask_xor_const(state.S[3], be_load_word64(k + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k));
+    mask_xor_const(state.S[4], be_load_word64(k + 8));
+    be_store_word64(tag, mask_output(state.S[3]));
+    be_store_word64(tag + 8, mask_output(state.S[4]));
     aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON128_MASKED_TAG_SIZE);
 }
@@ -878,7 +1111,7 @@ int ascon80pq_masked_aead_encrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     (void)nsec;
 
     /* Set the length of the returned ciphertext */
@@ -886,35 +1119,35 @@ int ascon80pq_masked_aead_encrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
-    mask_input(state[1], be_load_word64(k + 4));
-    mask_input(state[2], be_load_word64(k + 12));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[2], be_load_word32(k));
-    mask_xor_const(state[3], be_load_word64(k + 4));
-    mask_xor_const(state[4], be_load_word64(k + 12));
+    mask_input(state.S[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
+    mask_input(state.S[1], be_load_word64(k + 4));
+    mask_input(state.S[2], be_load_word64(k + 12));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[2], be_load_word32(k));
+    mask_xor_const(state.S[3], be_load_word64(k + 4));
+    mask_xor_const(state.S[4], be_load_word64(k + 12));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_8(state, ad, adlen, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Encrypt the plaintext to create the ciphertext */
-    ascon_encrypt_masked_8(state, c, m, mlen, 6);
+    ascon_encrypt_masked_8(&state, c, m, mlen, 6);
 
     /* Finalize and compute the authentication tag */
-    mask_xor_const(state[1], be_load_word64(k));
-    mask_xor_const(state[2], be_load_word64(k + 8));
-    mask_xor_const(state[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k + 4));
-    mask_xor_const(state[4], be_load_word64(k + 12));
-    be_store_word64(c + mlen, mask_output(state[3]));
-    be_store_word64(c + mlen + 8, mask_output(state[4]));
+    mask_xor_const(state.S[1], be_load_word64(k));
+    mask_xor_const(state.S[2], be_load_word64(k + 8));
+    mask_xor_const(state.S[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k + 4));
+    mask_xor_const(state.S[4], be_load_word64(k + 12));
+    be_store_word64(c + mlen, mask_output(state.S[3]));
+    be_store_word64(c + mlen + 8, mask_output(state.S[4]));
     aead_random_finish();
     return 0;
 }
@@ -927,7 +1160,7 @@ int ascon80pq_masked_aead_decrypt
      const unsigned char *npub,
      const unsigned char *k)
 {
-    mask_uint64_t state[5];
+    ascon_masked_state_t state;
     unsigned char tag[ASCON80PQ_MASKED_TAG_SIZE];
     (void)nsec;
 
@@ -938,35 +1171,35 @@ int ascon80pq_masked_aead_decrypt
 
     /* Initialize the ASCON state in masked form */
     aead_random_init();
-    mask_input(state[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
-    mask_input(state[1], be_load_word64(k + 4));
-    mask_input(state[2], be_load_word64(k + 12));
-    mask_input(state[3], be_load_word64(npub));
-    mask_input(state[4], be_load_word64(npub + 8));
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[2], be_load_word32(k));
-    mask_xor_const(state[3], be_load_word64(k + 4));
-    mask_xor_const(state[4], be_load_word64(k + 12));
+    mask_input(state.S[0], ASCON80PQ_MASKED_IV | be_load_word32(k));
+    mask_input(state.S[1], be_load_word64(k + 4));
+    mask_input(state.S[2], be_load_word64(k + 12));
+    mask_input(state.S[3], be_load_word64(npub));
+    mask_input(state.S[4], be_load_word64(npub + 8));
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[2], be_load_word32(k));
+    mask_xor_const(state.S[3], be_load_word64(k + 4));
+    mask_xor_const(state.S[4], be_load_word64(k + 12));
 
     /* Absorb the associated data into the state */
     if (adlen > 0)
-        ascon_absorb_masked_8(state, ad, adlen, 6);
+        ascon_absorb_masked_8(&state, ad, adlen, 6);
 
     /* Separator between the associated data and the payload */
-    mask_xor_const(state[4], 0x01);
+    mask_xor_const(state.S[4], 0x01);
 
     /* Decrypt the ciphertext to create the plaintext */
-    ascon_decrypt_masked_8(state, m, c, *mlen, 6);
+    ascon_decrypt_masked_8(&state, m, c, *mlen, 6);
 
     /* Finalize and check the authentication tag in masked form */
-    mask_xor_const(state[1], be_load_word64(k));
-    mask_xor_const(state[2], be_load_word64(k + 8));
-    mask_xor_const(state[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
-    ascon_permute_masked(state, 0);
-    mask_xor_const(state[3], be_load_word64(k + 4));
-    mask_xor_const(state[4], be_load_word64(k + 12));
-    be_store_word64(tag, mask_output(state[3]));
-    be_store_word64(tag + 8, mask_output(state[4]));
+    mask_xor_const(state.S[1], be_load_word64(k));
+    mask_xor_const(state.S[2], be_load_word64(k + 8));
+    mask_xor_const(state.S[3], ((uint64_t)(be_load_word32(k + 16))) << 32);
+    ascon_permute_masked(&state, 0);
+    mask_xor_const(state.S[3], be_load_word64(k + 4));
+    mask_xor_const(state.S[4], be_load_word64(k + 12));
+    be_store_word64(tag, mask_output(state.S[3]));
+    be_store_word64(tag + 8, mask_output(state.S[4]));
     aead_random_finish();
     return aead_check_tag(m, *mlen, tag, c + *mlen, ASCON80PQ_MASKED_TAG_SIZE);
 }
