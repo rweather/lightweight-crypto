@@ -54,6 +54,10 @@ DRYGASCON_FILES = \
     internal-drysponge.c \
     internal-drysponge.h \
     internal-drysponge-avr.S \
+    drygascon128_arm-v6m.S \
+    drygascon128_arm-v7m.S \
+    drygascon128_arm-v7m_fpu.S \
+    drygascon128_arm_selector.h \
     $(COMMON_FILES)
 ELEPHANT_FILES = \
     elephant.c \

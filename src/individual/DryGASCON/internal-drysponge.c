@@ -112,6 +112,12 @@
 #define intRightRotate62_64(x) (intRightRotateEven((x), 31))
 #define intRightRotate63_64(x) (intRightRotateOdd((x), 31))
 
+#ifdef DRYGASCON_G0_OPT
+void DRYGASCON_G0_OPT(drysponge128_state_t *state);
+static void gascon128_g0(drysponge128_state_t *state){
+	 DRYGASCON_G0_OPT(state);
+}
+#else
 void gascon128_core_round(gascon128_state_t *state, uint8_t round)
 {
     uint64_t t0, t1, t2, t3, t4;
@@ -162,6 +168,11 @@ void gascon128_core_round(gascon128_state_t *state, uint8_t round)
     le_store_word64(state->B + 32, x4);
 #endif
 }
+
+static void gascon128_g0(drysponge128_state_t *state){
+	gascon128_core_round(&(state->c), 0);
+}
+#endif
 
 void gascon256_core_round(gascon256_state_t *state, uint8_t round)
 {
@@ -236,7 +247,17 @@ void gascon256_core_round(gascon256_state_t *state, uint8_t round)
 #endif
 }
 
-void drysponge128_g(drysponge128_state_t *state)
+#ifdef DRYGASCON_G_OPT
+void DRYGASCON_G_OPT(uint64_t* state, uint32_t rounds);
+//use state only to access c,r,x
+static void drysponge128_g_impl(drysponge128_state_t *state,unsigned int rounds)
+{
+    DRYGASCON_G_OPT((uint64_t*)state,rounds);
+}
+#else
+
+//use state only to access c,r,x
+static void drysponge128_g_impl(drysponge128_state_t *state,unsigned int rounds)
 {
     unsigned round;
 
@@ -250,13 +271,21 @@ void drysponge128_g(drysponge128_state_t *state)
     state->r.W[3] = state->c.W[3] ^ state->c.W[4];
 
     /* Perform the rest of the rounds */
-    for (round = 1; round < state->rounds; ++round) {
+    for (round = 1; round < rounds; ++round) {
         gascon128_core_round(&(state->c), round);
         state->r.W[0] ^= state->c.W[0] ^ state->c.W[5];
         state->r.W[1] ^= state->c.W[1] ^ state->c.W[6];
         state->r.W[2] ^= state->c.W[2] ^ state->c.W[7];
         state->r.W[3] ^= state->c.W[3] ^ state->c.W[4];
     }
+}
+#endif
+
+void print_state(void*state);
+void drysponge128_g(drysponge128_state_t *state)
+{
+    drysponge128_g_impl(state,state->rounds);
+    //print_state(state);
 }
 
 void drysponge256_g(drysponge256_state_t *state)
@@ -293,12 +322,14 @@ void drysponge256_g(drysponge256_state_t *state)
 
 #endif /* !__AVR__ */
 
+#ifndef DRYGASCON_G_OPT
 void drysponge128_g_core(drysponge128_state_t *state)
 {
     unsigned round;
     for (round = 0; round < state->rounds; ++round)
         gascon128_core_round(&(state->c), round);
 }
+#endif
 
 void drysponge256_g_core(drysponge256_state_t *state)
 {
@@ -316,7 +347,7 @@ void drysponge256_g_core(drysponge256_state_t *state)
  *
  * \return The selected element of x.
  */
-#if !defined(__AVR__)
+#if defined(__HAS_CACHE__)
 STATIC_INLINE uint32_t drysponge_select_x(const uint32_t x[4], uint8_t index)
 {
     /* We need to be careful how we select each element of x because
@@ -352,6 +383,7 @@ STATIC_INLINE uint32_t drysponge_select_x(const uint32_t x[4], uint8_t index)
 #define drysponge_select_x(x, index) ((x)[(index)])
 #endif
 
+#ifndef DRYGASCON_F_OPT
 /**
  * \brief Mixes a 32-bit value into the DrySPONGE128 state.
  *
@@ -368,6 +400,7 @@ static void drysponge128_mix_phase_round
     state->c.W[6] ^= drysponge_select_x(state->x.W, (data >> 6) & 0x03);
     state->c.W[8] ^= drysponge_select_x(state->x.W, (data >> 8) & 0x03);
 }
+#endif
 
 /**
  * \brief Mixes a 32-bit value into the DrySPONGE256 state.
@@ -390,6 +423,7 @@ static void drysponge256_mix_phase_round
     state->c.W[16] ^= drysponge_select_x(state->x.W, (data >> 16) & 0x03);
 }
 
+#ifndef DRYGASCON_F_OPT
 /**
  * \brief Mixes an input block into a DrySPONGE128 state.
  *
@@ -397,7 +431,7 @@ static void drysponge256_mix_phase_round
  * \param data Full rate block containing the input data.
  */
 static void drysponge128_mix_phase
-    (drysponge128_state_t *state, const unsigned char data[DRYSPONGE128_RATE])
+    (drysponge128_state_t *state, const unsigned char data[DRYSPONGE128_RATE],unsigned int ds)
 {
     /* Mix 10-bit groups into the output, with the domain
      * separator added to the last two groups */
@@ -437,13 +471,11 @@ static void drysponge128_mix_phase
     drysponge128_mix_phase_round
         (state, ((data[13] >> 6) | (((uint32_t)(data[14])) << 2)));
     gascon128_core_round(&(state->c), 0);
-    drysponge128_mix_phase_round(state, data[15] ^ state->domain);
+    drysponge128_mix_phase_round(state, data[15] ^ ds);
     gascon128_core_round(&(state->c), 0);
-    drysponge128_mix_phase_round(state, state->domain >> 10);
-
-    /* Revert to the default domain separator for the next block */
-    state->domain = 0;
+    drysponge128_mix_phase_round(state, ds >> 10);
 }
+#endif
 
 /**
  * \brief Mixes an input block into a DrySPONGE256 state.
@@ -490,18 +522,37 @@ static void drysponge256_mix_phase
     state->domain = 0;
 }
 
-void drysponge128_f_absorb
-    (drysponge128_state_t *state, const unsigned char *input, unsigned len)
-{
-    if (len >= DRYSPONGE128_RATE) {
-        drysponge128_mix_phase(state, input);
+#ifdef DRYGASCON_F_OPT
+void DRYGASCON_F_OPT(drysponge128_state_t *state, const unsigned char *input,unsigned int ds, unsigned int rounds);
+static void drygascon128_f_impl(drysponge128_state_t *state, const unsigned char *input,unsigned int ds, unsigned int rounds){
+    DRYGASCON_F_OPT(state, input, ds, rounds);
+}
+#else
+void drygascon128_f_impl(drysponge128_state_t *state, const unsigned char *input,unsigned int ds, unsigned int rounds){
+    drysponge128_mix_phase(state, input ,ds);
+    drysponge128_g_impl(state,rounds);
+}
+#endif
+void drygascon128_f_wrap(drysponge128_state_t *state, const unsigned char *input, unsigned len){
+    drysponge128_rate_t padded;//enforce alignement (if needed by f_impl)
+    const unsigned char*in;
+    if (len < DRYSPONGE128_RATE) {
+        memcpy(padded.B, input, len);
+        padded.B[len] = 0x01;
+        memset(padded.B + len + 1, 0, DRYSPONGE128_RATE - len - 1);
+        in=padded.B;
     } else {
-        unsigned char padded[DRYSPONGE128_RATE];
-        memcpy(padded, input, len);
-        padded[len] = 0x01;
-        memset(padded + len + 1, 0, DRYSPONGE128_RATE - len - 1);
-        drysponge128_mix_phase(state, padded);
+		#ifdef DRYGASCON_ALIGN_INPUT_32
+        memcpy(padded.B,input,DRYSPONGE128_RATE);
+        in=padded.B;
+		#else
+        in=input;
+		#endif
     }
+    drygascon128_f_impl(state, in,state->domain,state->rounds);
+    //print_state(state);
+    /* Revert to the default domain separator for the next block */
+    state->domain = 0;
 }
 
 void drysponge256_f_absorb
@@ -542,39 +593,62 @@ static int drysponge_x_words_are_same(const uint32_t x[4])
     return result;
 }
 
+
+int drysponge128_safe_alignement(const drysponge128_state_t*state){
+	return 0==(0xF & (uintptr_t )&(state->x));
+}
+
 void drysponge128_setup
-    (drysponge128_state_t *state, const unsigned char *key,
+    (drysponge128_state_t *state, const unsigned char *key, unsigned int keysize,
      const unsigned char *nonce, int final_block)
 {
-    /* Fill the GASCON-128 state with repeated copies of the key */
-    memcpy(state->c.B, key, 16);
-    memcpy(state->c.B + 16, key, 16);
-    memcpy(state->c.B + 32, key, 8);
+	if(DRYGASCON128_SAFEKEY_SIZE==keysize){
+		/* Fill C and X directly with the key */
+		memcpy(state->c.B, key, sizeof(state->c));
+		memcpy(state->x.B, key+ sizeof(state->c), sizeof(state->x));
+		while (drysponge_x_words_are_same(state->x.W)); //block here if the key is not valid
 
-    /* Generate the "x" value for the state.  All four words of "x"
-     * must be unique because they will be used in drysponge_select_x()
-     * as stand-ins for the bit pairs 00, 01, 10, and 11.
-     *
-     * Run the core block operation over and over until "x" is unique.
-     * Technically the runtime here is key-dependent and not constant.
-     * If the input key is randomized, this should only take 1 round
-     * on average so it is "almost constant time".
-     */
-    do {
-        gascon128_core_round(&(state->c), 0);
-    } while (drysponge_x_words_are_same(state->c.W));
-    memcpy(state->x.W, state->c.W, sizeof(state->x));
+	} else {
+		/* Fill the GASCON-128 state with repeated copies of the key */
+		memcpy(state->c.B, key, 16);
+		memcpy(state->c.B + 16, key, 16);
+		memcpy(state->c.B + 32, key, 8);
 
-    /* Replace the generated "x" value in the state with the key prefix */
-    memcpy(state->c.W, key, sizeof(state->x));
+		if(DRYGASCON128_FASTKEY_SIZE==keysize){
+
+			/* Fill X with the 16 last bytes of the key */
+			memcpy(state->x.B, key+16, sizeof(state->x));
+			while (drysponge_x_words_are_same(state->x.W)); //block here if the key is not valid
+
+		} else if(DRYGASCON128_MINKEY_SIZE==keysize){
+
+			/* Generate the "x" value for the state.  All four words of "x"
+			 * must be unique because they will be used in drysponge_select_x()
+			 * as stand-ins for the bit pairs 00, 01, 10, and 11.
+			 *
+			 * Run the core block operation over and over until "x" is unique.
+			 * Technically the runtime here is key-dependent and not constant.
+			 * If the input key is randomized, this should only take 1 round
+			 * on average so it is "almost constant time".
+			 */
+			do {
+				//gascon128_core_round(&(state->c), 0);
+				//drysponge128_g_impl(state,1);
+				gascon128_g0(state);
+			} while (drysponge_x_words_are_same(state->c.W));
+			memcpy(state->x.W, state->c.W, sizeof(state->x));
+
+			/* Replace the generated "x" value in the state with the key prefix */
+			memcpy(state->c.W, key, sizeof(state->x));
+		}
+	}
 
     /* Absorb the nonce into the state with an increased number of rounds */
     state->rounds = DRYSPONGE128_INIT_ROUNDS;
     state->domain = DRYDOMAIN128_NONCE;
     if (final_block)
         state->domain |= DRYDOMAIN128_FINAL;
-    drysponge128_f_absorb(state, nonce, 16);
-    drysponge128_g(state);
+    drygascon128_f_wrap(state, nonce, 16);
 
     /* Set up the normal number of rounds for future operations */
     state->rounds = DRYSPONGE128_ROUNDS;
