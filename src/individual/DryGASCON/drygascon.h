@@ -52,9 +52,25 @@ extern "C" {
 #endif
 
 /**
- * \brief Size of the key for DryGASCON128.
+ * \brief Minimum Size of the key for DryGASCON128.
  */
-#define DRYGASCON128_KEY_SIZE 16
+#define DRYGASCON128_MINKEY_SIZE 16
+
+/**
+ * \brief Fast Size of the key for DryGASCON128.
+ */
+#define DRYGASCON128_FASTKEY_SIZE 32
+
+/**
+ * \brief Safe (and fast) Size of the key for DryGASCON128.
+ * Safe here means the size of the key helps prevent SPA during key loading
+ */
+#define DRYGASCON128_SAFEKEY_SIZE 56
+
+/**
+ * \brief Size of the key for DryGASCON128 (default to "fast" size).
+ */
+#define DRYGASCON128_KEY_SIZE DRYGASCON128_FASTKEY_SIZE
 
 /**
  * \brief Size of the authentication tag for DryGASCON128.
@@ -92,7 +108,22 @@ extern "C" {
 #define DRYGASCON256_HASH_SIZE 64
 
 /**
- * \brief Meta-information block for the DryGASCON128 cipher.
+ * \brief Meta-information block for the DryGASCON128 cipher with 32 bytes key.
+ */
+extern aead_cipher_t const drygascon128k32_cipher;
+
+/**
+ * \brief Meta-information block for the DryGASCON128 cipher with 56 bytes key.
+ */
+extern aead_cipher_t const drygascon128k56_cipher;
+
+/**
+ * \brief Meta-information block for the DryGASCON128 cipher with 16 bytes key.
+ */
+extern aead_cipher_t const drygascon128k16_cipher;
+
+/**
+ * \brief Meta-information block for the DryGASCON128 cipher (default to 32 bytes key).
  */
 extern aead_cipher_t const drygascon128_cipher;
 
@@ -112,7 +143,147 @@ extern aead_hash_algorithm_t const drygascon128_hash_algorithm;
 extern aead_hash_algorithm_t const drygascon256_hash_algorithm;
 
 /**
- * \brief Encrypts and authenticates a packet with DryGASCON128.
+ * \brief Encrypts and authenticates a packet with DryGASCON128 with 32 bytes key.
+ *
+ *	Use this key size if SPA attacks are not a concern in your use case.
+ *
+ * \param c Buffer to receive the output.
+ * \param clen On exit, set to the length of the output which includes
+ * the ciphertext and the 16 byte authentication tag.
+ * \param m Buffer that contains the plaintext message to encrypt.
+ * \param mlen Length of the plaintext message in bytes.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param npub Points to the public nonce for the packet which must
+ * be 16 bytes in length.
+ * \param k Points to the 32 bytes of the key to use to encrypt the packet.
+ *
+ * Note that the function blocks if the 16 last bytes of the key are "invalid".
+ * Here "invalid" means that 32 bit words shall be different from each other.
+ *
+ * \return 0 on success, or a negative value if there was an error in
+ * the parameters.
+ *
+ * \sa drygascon128k32_aead_decrypt()
+ */
+int drygascon128k32_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Decrypts and authenticates a packet with DryGASCON128 with 32 bytes key.
+ *
+ *	Use this key size if SPA attacks are not a concern in your use case.
+ *
+ * \param m Buffer to receive the plaintext message on output.
+ * \param mlen Receives the length of the plaintext message on output.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param c Buffer that contains the ciphertext and authentication
+ * tag to decrypt.
+ * \param clen Length of the input data in bytes, which includes the
+ * ciphertext and the 16 byte authentication tag.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param npub Points to the public nonce for the packet which must
+ * be 16 bytes in length.
+ * \param k Points to the 32 bytes of the key to use to decrypt the packet.
+ *
+ * Note that the function blocks if the 16 last bytes of the key are "invalid".
+ * Here "invalid" means that 32 bit words shall be different from each other.
+ *
+ * \return 0 on success, -1 if the authentication tag was incorrect,
+ * or some other negative number if there was an error in the parameters.
+ *
+ * \sa drygascon128k32_aead_encrypt()
+ */
+int drygascon128k32_aead_decrypt
+    (unsigned char *m, unsigned long long *mlen,
+     unsigned char *nsec,
+     const unsigned char *c, unsigned long long clen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Encrypts and authenticates a packet with DryGASCON128 with 56 bytes key.
+ *
+ *	Use this key size if you want to prevent SPA attacks
+ *
+ * \param c Buffer to receive the output.
+ * \param clen On exit, set to the length of the output which includes
+ * the ciphertext and the 16 byte authentication tag.
+ * \param m Buffer that contains the plaintext message to encrypt.
+ * \param mlen Length of the plaintext message in bytes.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param npub Points to the public nonce for the packet which must
+ * be 16 bytes in length.
+ * \param k Points to the 56 bytes of the key to use to encrypt the packet.
+ *
+ * Note that the function blocks if the 16 last bytes of the key are "invalid".
+ * Here "invalid" means that 32 bit words shall be different from each other.
+ *
+ * \return 0 on success, or a negative value if there was an error in
+ * the parameters.
+ *
+ * \sa drygascon128k56_aead_decrypt()
+ */
+int drygascon128k56_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Decrypts and authenticates a packet with DryGASCON128 with 56 bytes key.
+ *
+ *	Use this key size if you want to prevent SPA attacks
+ *
+ * \param m Buffer to receive the plaintext message on output.
+ * \param mlen Receives the length of the plaintext message on output.
+ * \param nsec Secret nonce - not used by this algorithm.
+ * \param c Buffer that contains the ciphertext and authentication
+ * tag to decrypt.
+ * \param clen Length of the input data in bytes, which includes the
+ * ciphertext and the 16 byte authentication tag.
+ * \param ad Buffer that contains associated data to authenticate
+ * along with the packet but which does not need to be encrypted.
+ * \param adlen Length of the associated data in bytes.
+ * \param npub Points to the public nonce for the packet which must
+ * be 16 bytes in length.
+ * \param k Points to the 56 bytes of the key to use to decrypt the packet.
+ *
+ * Note that the function blocks if the 16 last bytes of the key are "invalid".
+ * Here "invalid" means that 32 bit words shall be different from each other.
+ *
+ * \return 0 on success, -1 if the authentication tag was incorrect,
+ * or some other negative number if there was an error in the parameters.
+ *
+ * \sa drygascon128k56_aead_encrypt()
+ */
+int drygascon128k56_aead_decrypt
+    (unsigned char *m, unsigned long long *mlen,
+     unsigned char *nsec,
+     const unsigned char *c, unsigned long long clen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *npub,
+     const unsigned char *k);
+
+/**
+ * \brief Encrypts and authenticates a packet with DryGASCON128 with 16 bytes key.
+ *
+ *	Use this key size only if you really cannot use the 32 bytes key.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -130,9 +301,9 @@ extern aead_hash_algorithm_t const drygascon256_hash_algorithm;
  * \return 0 on success, or a negative value if there was an error in
  * the parameters.
  *
- * \sa drygascon128_aead_decrypt()
+ * \sa drygascon128k16_aead_decrypt()
  */
-int drygascon128_aead_encrypt
+int drygascon128k16_aead_encrypt
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen,
@@ -141,7 +312,9 @@ int drygascon128_aead_encrypt
      const unsigned char *k);
 
 /**
- * \brief Decrypts and authenticates a packet with DryGASCON128.
+ * \brief Decrypts and authenticates a packet with DryGASCON128 with 16 bytes key.
+ *
+ *	Use this key size only if you really cannot use the 32 bytes key.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -160,9 +333,9 @@ int drygascon128_aead_encrypt
  * \return 0 on success, -1 if the authentication tag was incorrect,
  * or some other negative number if there was an error in the parameters.
  *
- * \sa drygascon128_aead_encrypt()
+ * \sa drygascon128k16_aead_encrypt()
  */
-int drygascon128_aead_decrypt
+int drygascon128k16_aead_decrypt
     (unsigned char *m, unsigned long long *mlen,
      unsigned char *nsec,
      const unsigned char *c, unsigned long long clen,

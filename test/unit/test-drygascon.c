@@ -200,8 +200,9 @@ void test_drygascon(void)
     memcpy(state128.c.B, gascon128_input, sizeof(gascon128_input));
     memcpy(state128.x.B, gascon_f_x, sizeof(gascon_f_x));
     state128.domain = gascon128_f_domain;
-    drysponge128_f_absorb(&state128, gascon_f_data, sizeof(gascon_f_data));
-    drysponge128_g(&state128);
+    //drysponge128_f_absorb(&state128, gascon_f_data, sizeof(gascon_f_data));
+    //drysponge128_g(&state128);
+    drygascon128_f_wrap(&state128, gascon_f_data, sizeof(gascon_f_data));
     if (!test_memcmp(state128.c.B, gascon128_f_output, sizeof(gascon128_f_output)) &&
         !test_memcmp(state128.r.B, gascon128_f_squeezed, sizeof(gascon128_f_squeezed))) {
         printf("ok\n");
@@ -227,7 +228,7 @@ void test_drygascon(void)
 
     printf("    DrySPONGE-128-Key ... ");
     fflush(stdout);
-    drysponge128_setup(&state128, gascon128_input, gascon128_input + 16, 0);
+    drysponge128_setup(&state128, gascon128_input, 16, gascon128_input + 16, 0);
     if (!test_memcmp(state128.c.B, gascon128_k_c, sizeof(gascon128_k_c)) &&
         !test_memcmp(state128.x.B, gascon128_k_x, sizeof(gascon128_k_x))) {
         printf("ok\n");

@@ -23,6 +23,9 @@
 #ifndef LW_INTERNAL_DRYSPONGE_H
 #define LW_INTERNAL_DRYSPONGE_H
 
+#include "drygascon.h"
+#include "drygascon128_arm_selector.h"
+
 #include "internal-util.h"
 
 /**
@@ -88,30 +91,63 @@ extern "C" {
  */
 #define DRYSPONGE256_INIT_ROUNDS 12
 
-/**
- * \brief DrySPONGE128 domain bit for a padded block.
- */
-#define DRYDOMAIN128_PADDED (1 << 8)
+#ifdef DRYGASCON_F_OPT
 
-/**
- * \brief DrySPONGE128 domain bit for a final block.
- */
-#define DRYDOMAIN128_FINAL (1 << 9)
+    /**
+     * \brief DrySPONGE128 domain bit for a padded block.
+     */
+    #define DRYDOMAIN128_PADDED (1 << 0)
 
-/**
- * \brief DrySPONGE128 domain value for processing the nonce.
- */
-#define DRYDOMAIN128_NONCE (1 << 10)
+    /**
+     * \brief DrySPONGE128 domain bit for a final block.
+     */
+    #define DRYDOMAIN128_FINAL (1 << 1)
 
-/**
- * \brief DrySPONGE128 domain value for processing the associated data.
- */
-#define DRYDOMAIN128_ASSOC_DATA (2 << 10)
+    /**
+     * \brief DrySPONGE128 domain value for processing the nonce.
+     */
+    #define DRYDOMAIN128_NONCE (1 << 2)
 
-/**
- * \brief DrySPONGE128 domain value for processing the message.
- */
-#define DRYDOMAIN128_MESSAGE (3 << 10)
+    /**
+     * \brief DrySPONGE128 domain value for processing the associated data.
+     */
+    #define DRYDOMAIN128_ASSOC_DATA (2 << 2)
+
+    /**
+     * \brief DrySPONGE128 domain value for processing the message.
+     */
+    #define DRYDOMAIN128_MESSAGE (3 << 2)
+
+#else
+
+    /**
+     * \brief DrySPONGE128 domain bit for a padded block.
+     */
+    #define DRYDOMAIN128_PADDED (1 << 8)
+
+    /**
+     * \brief DrySPONGE128 domain bit for a final block.
+     */
+    #define DRYDOMAIN128_FINAL (1 << 9)
+
+    /**
+     * \brief DrySPONGE128 domain value for processing the nonce.
+     */
+    #define DRYDOMAIN128_NONCE (1 << 10)
+
+    /**
+     * \brief DrySPONGE128 domain value for processing the associated data.
+     */
+    #define DRYDOMAIN128_ASSOC_DATA (2 << 10)
+
+
+    /**
+     * \brief DrySPONGE128 domain value for processing the message.
+     */
+    #define DRYDOMAIN128_MESSAGE (3 << 10)
+
+#endif
+
 
 /**
  * \brief DrySPONGE256 domain bit for a padded block.
@@ -191,7 +227,7 @@ typedef union
     uint32_t W[DRYSPONGE128_XSIZE / 4]; /**< 32-bit words of the rate */
     uint8_t B[DRYSPONGE128_XSIZE];      /**< Bytes of the rate */
 
-} drysponge128_x_t;
+} __attribute__((aligned(16))) drysponge128_x_t;
 
 /**
  * \brief Structure of the "x" value for DrySPONGE256.
@@ -209,13 +245,12 @@ typedef union
  */
 typedef struct
 {
-    gascon128_state_t c;        /**< GASCON-128 state for the capacity */
-    drysponge128_rate_t r;      /**< Buffer for a rate block of data */
-    drysponge128_x_t x;         /**< "x" value for the sponge */
+	gascon128_state_t c;        /**< GASCON-128 state for the capacity */
     uint32_t domain;            /**< Domain value to mix on next F call */
     uint32_t rounds;            /**< Number of rounds for next G call */
-
-} drysponge128_state_t;
+    drysponge128_rate_t r;      /**< Buffer for a rate block of data */
+    drysponge128_x_t x;         /**< "x" value for the sponge */
+} __attribute__((aligned(16))) drysponge128_state_t;
 
 /**
  * \brief Structure of the rolling DrySPONGE256 state.
@@ -287,20 +322,6 @@ void drysponge128_g_core(drysponge128_state_t *state);
 void drysponge256_g_core(drysponge256_state_t *state);
 
 /**
- * \brief Performs the absorption phase of the DrySPONGE128 F function.
- *
- * \param state The DrySPONGE128 state.
- * \param input The block of input data to incorporate into the state.
- * \param len The length of the input block, which must be less than
- * or equal to DRYSPONGE128_RATE.  Smaller input blocks will be padded.
- *
- * This function must be followed by a call to drysponge128_g() or
- * drysponge128_g_core() to perform the full F operation.
- */
-void drysponge128_f_absorb
-    (drysponge128_state_t *state, const unsigned char *input, unsigned len);
-
-/**
  * \brief Performs the absorption phase of the DrySPONGE256 F function.
  *
  * \param state The DrySPONGE256 state.
@@ -314,6 +335,19 @@ void drysponge128_f_absorb
 void drysponge256_f_absorb
     (drysponge256_state_t *state, const unsigned char *input, unsigned len);
 
+void drygascon128_f_wrap(drysponge128_state_t *state, const unsigned char *input, unsigned len);
+
+/**
+ * \brief Determine if state alignement is safe vs timing attacks.
+ *
+ * \param state Points to the state to check.
+ *
+ * \return Non-zero if alignement is safe.
+ *
+ * We expect this to be completly optimized out by compiler if the alignement is enforced at build time
+ */
+int drysponge128_safe_alignement(const drysponge128_state_t*state);
+
 /**
  * \brief Set up a DrySPONGE128 state to begin encryption or decryption.
  *
@@ -323,7 +357,7 @@ void drysponge256_f_absorb
  * \param final_block Non-zero if after key setup there will be no more blocks.
  */
 void drysponge128_setup
-    (drysponge128_state_t *state, const unsigned char *key,
+    (drysponge128_state_t *state, const unsigned char *key, unsigned int keysize,
      const unsigned char *nonce, int final_block);
 
 /**
