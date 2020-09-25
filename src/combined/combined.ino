@@ -508,7 +508,9 @@ void setup()
     perfCipher(&comet_128_cham_cipher);
     perfCipher(&comet_64_cham_cipher);
     perfCipher(&comet_64_speck_cipher);
-    perfCipher(&drygascon128_cipher);
+    perfCipher(&drygascon128k16_cipher);
+    perfCipher(&drygascon128k32_cipher);
+    perfCipher(&drygascon128k56_cipher);
     perfCipher(&drygascon256_cipher);
     perfCipher(&estate_twegift_cipher);
     perfCipher(&forkae_paef_64_192_cipher);
