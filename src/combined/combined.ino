@@ -30,6 +30,7 @@ of flash memory.
 
 #include "aead-common.h"
 #include "ace.h"
+#include "gascon128.h"
 #include "ascon128.h"
 #include "ascon128-masked.h"
 #include "comet.h"
@@ -481,7 +482,6 @@ void setup()
 {
     Serial.begin(9600);
     Serial.println();
-
     // Test ChaChaPoly and BLAKE2s first to get the reference time
     // for other algorithms.
     perfCipher(&internal_chachapoly_cipher);
@@ -496,6 +496,9 @@ void setup()
 
     // Run performance tests on the NIST AEAD algorithms.
     perfCipher(&ace_cipher);
+    perfCipher(&gascon128_cipher);
+    perfCipher(&gascon128a_cipher);
+    perfCipher(&gascon80pq_cipher);
     perfCipher(&ascon128_cipher);
     perfCipher(&ascon128a_cipher);
     perfCipher(&ascon80pq_cipher);

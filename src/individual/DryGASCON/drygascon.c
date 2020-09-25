@@ -24,14 +24,52 @@
 #include "internal-drysponge.h"
 #include <string.h>
 
-aead_cipher_t const drygascon128_cipher = {
-    "DryGASCON128",
-    DRYGASCON128_KEY_SIZE,
+uint8_t drygascon128k32_expected[DRYGASCON128_TAG_SIZE]={0x66,0x5A,0xDE,0x6C,0x0F,0xBD,0x48,0x8C,0x5E,0xA4,0x77,0x5D,0xD6,0x24,0xDA,0xD7};
+
+uint8_t drygascon128k56_expected[DRYGASCON128_TAG_SIZE]={0x7B,0x8B,0x9D,0x58,0xA7,0xF7,0x5F,0x1E,0x56,0x99,0x46,0xD6,0x24,0xC4,0xF7,0x68};
+
+uint8_t drygascon128k16_expected[DRYGASCON128_TAG_SIZE]={0x14,0xA5,0x21,0x17,0xFF,0x52,0x4F,0x7C,0xCB,0xB3,0xEB,0xE4,0x05,0xEF,0x18,0xA4};
+
+uint8_t drygascon256_expected[DRYGASCON256_TAG_SIZE]={0};//TODO
+
+aead_cipher_t const drygascon128k32_cipher = {
+    "DryGASCON128k32",
+    DRYGASCON128_FASTKEY_SIZE,
     DRYGASCON128_NONCE_SIZE,
     DRYGASCON128_TAG_SIZE,
     AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
-    drygascon128_aead_encrypt,
-    drygascon128_aead_decrypt
+    drygascon128k32_aead_encrypt,
+    drygascon128k32_aead_decrypt
+};
+
+aead_cipher_t const drygascon128_cipher = {
+	"DryGASCON128k32",
+	DRYGASCON128_FASTKEY_SIZE,
+	DRYGASCON128_NONCE_SIZE,
+	DRYGASCON128_TAG_SIZE,
+	AEAD_FLAG_LITTLE_ENDIAN,
+	drygascon128k32_aead_encrypt,
+	drygascon128k32_aead_decrypt
+};
+
+aead_cipher_t const drygascon128k56_cipher = {
+    "DryGASCON128k56",
+    DRYGASCON128_SAFEKEY_SIZE,
+    DRYGASCON128_NONCE_SIZE,
+    DRYGASCON128_TAG_SIZE,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
+    drygascon128k56_aead_encrypt,
+    drygascon128k56_aead_decrypt
+};
+
+aead_cipher_t const drygascon128k16_cipher = {
+    "DryGASCON128k16",
+    DRYGASCON128_MINKEY_SIZE,
+    DRYGASCON128_NONCE_SIZE,
+    DRYGASCON128_TAG_SIZE,
+    AEAD_FLAG_LITTLE_ENDIAN | AEAD_FLAG_SC_PROTECT_ALL,
+    drygascon128k16_aead_encrypt,
+    drygascon128k16_aead_decrypt
 };
 
 aead_cipher_t const drygascon256_cipher = {
@@ -85,8 +123,8 @@ static void drygascon128_process_ad
 {
     /* Process all blocks except the last one */
     while (adlen > DRYSPONGE128_RATE) {
-        drysponge128_f_absorb(state, ad, DRYSPONGE128_RATE);
-        drysponge128_g_core(state);
+        drygascon128_f_wrap(state, ad, DRYSPONGE128_RATE);
+        //drysponge128_g_core(state);
         ad += DRYSPONGE128_RATE;
         adlen -= DRYSPONGE128_RATE;
     }
@@ -97,8 +135,8 @@ static void drygascon128_process_ad
         state->domain |= DRYDOMAIN128_FINAL;
     if (adlen < DRYSPONGE128_RATE)
         state->domain |= DRYDOMAIN128_PADDED;
-    drysponge128_f_absorb(state, ad, (unsigned)adlen);
-    drysponge128_g(state);
+    drygascon128_f_wrap(state, ad, (unsigned)adlen);
+    //drysponge128_g(state);
 }
 
 /**
@@ -132,23 +170,27 @@ static void drygascon256_process_ad
     drysponge256_g(state);
 }
 
-int drygascon128_aead_encrypt
+int drygascon128_aead_encrypt_core
     (unsigned char *c, unsigned long long *clen,
      const unsigned char *m, unsigned long long mlen,
      const unsigned char *ad, unsigned long long adlen,
-     const unsigned char *nsec,
+	 unsigned int keysize,
      const unsigned char *npub,
      const unsigned char *k)
 {
     drysponge128_state_t state;
     unsigned temp;
-    (void)nsec;
+
+    /* Check we are safe */
+	if(!drysponge128_safe_alignement(&state)){
+		return -1;
+	}
 
     /* Set the length of the returned ciphertext */
     *clen = mlen + DRYGASCON128_TAG_SIZE;
 
     /* Initialize the sponge state with the key and nonce */
-    drysponge128_setup(&state, k, npub, adlen == 0 && mlen == 0);
+    drysponge128_setup(&state, k, keysize, npub, adlen == 0 && mlen == 0);
 
     /* Process the associated data */
     if (adlen > 0)
@@ -156,14 +198,28 @@ int drygascon128_aead_encrypt
 
     /* Encrypt the plaintext to produce the ciphertext */
     if (mlen > 0) {
-        /* Processs all blocks except the last one */
-        while (mlen > DRYSPONGE128_RATE) {
-            drysponge128_f_absorb(&state, m, DRYSPONGE128_RATE);
-            lw_xor_block_2_src(c, m, state.r.B, DRYSPONGE128_RATE);
-            drysponge128_g(&state);
-            c += DRYSPONGE128_RATE;
-            m += DRYSPONGE128_RATE;
-            mlen -= DRYSPONGE128_RATE;
+        if(c==m) {
+            /* Deal with in-place encryption case */
+            drysponge128_rate_t tmp; 
+            unsigned char *m2 = (unsigned char *)&tmp;
+            /* Processs all blocks except the last one */
+            while (mlen > DRYSPONGE128_RATE) {
+                memcpy(m2,m,DRYSPONGE128_RATE);
+                lw_xor_block_2_src(c, m, state.r.B, DRYSPONGE128_RATE);
+                drygascon128_f_wrap(&state, m2, DRYSPONGE128_RATE);
+                c += DRYSPONGE128_RATE;
+                m += DRYSPONGE128_RATE;
+                mlen -= DRYSPONGE128_RATE;
+            }
+        }else{
+            /* Processs all blocks except the last one */
+            while (mlen > DRYSPONGE128_RATE) {
+                lw_xor_block_2_src(c, m, state.r.B, DRYSPONGE128_RATE);
+                drygascon128_f_wrap(&state, m, DRYSPONGE128_RATE);
+                c += DRYSPONGE128_RATE;
+                m += DRYSPONGE128_RATE;
+                mlen -= DRYSPONGE128_RATE;
+            }
         }
 
         /* Process the last block with domain separation and padding */
@@ -171,9 +227,17 @@ int drygascon128_aead_encrypt
         if (mlen < DRYSPONGE128_RATE)
             state.domain |= DRYDOMAIN128_PADDED;
         temp = (unsigned)mlen;
-        drysponge128_f_absorb(&state, m, temp);
-        lw_xor_block_2_src(c, m, state.r.B, temp);
-        drysponge128_g(&state);
+        if(c==m) {
+            /* Deal with in-place encryption case */
+            drysponge128_rate_t tmp; 
+            unsigned char *m2 = (unsigned char *)&tmp;
+            memcpy(m2,m,DRYSPONGE128_RATE);
+            lw_xor_block_2_src(c, m, state.r.B, temp);
+            drygascon128_f_wrap(&state, m2, temp);
+        }else{
+            lw_xor_block_2_src(c, m, state.r.B, temp);
+            drygascon128_f_wrap(&state, m, temp);
+        }
         c += temp;
     }
 
@@ -182,9 +246,9 @@ int drygascon128_aead_encrypt
     return 0;
 }
 
-int drygascon128_aead_decrypt
+int drygascon128_aead_decrypt_core
     (unsigned char *m, unsigned long long *mlen,
-     unsigned char *nsec,
+     unsigned int keysize,
      const unsigned char *c, unsigned long long clen,
      const unsigned char *ad, unsigned long long adlen,
      const unsigned char *npub,
@@ -193,7 +257,11 @@ int drygascon128_aead_decrypt
     drysponge128_state_t state;
     unsigned char *mtemp = m;
     unsigned temp;
-    (void)nsec;
+
+    /* Check we are safe */
+    if(!drysponge128_safe_alignement(&state)){
+		return -1;
+	}
 
     /* Validate the ciphertext length and set the return "mlen" value */
     if (clen < DRYGASCON128_TAG_SIZE)
@@ -202,7 +270,7 @@ int drygascon128_aead_decrypt
 
     /* Initialize the sponge state with the key and nonce */
     clen -= DRYGASCON128_TAG_SIZE;
-    drysponge128_setup(&state, k, npub, adlen == 0 && clen == 0);
+    drysponge128_setup(&state, k, keysize, npub, adlen == 0 && clen == 0);
 
     /* Process the associated data */
     if (adlen > 0)
@@ -213,8 +281,8 @@ int drygascon128_aead_decrypt
         /* Processs all blocks except the last one */
         while (clen > DRYSPONGE128_RATE) {
             lw_xor_block_2_src(m, c, state.r.B, DRYSPONGE128_RATE);
-            drysponge128_f_absorb(&state, m, DRYSPONGE128_RATE);
-            drysponge128_g(&state);
+            drygascon128_f_wrap(&state, m, DRYSPONGE128_RATE);
+            //drysponge128_g(&state);
             c += DRYSPONGE128_RATE;
             m += DRYSPONGE128_RATE;
             clen -= DRYSPONGE128_RATE;
@@ -226,13 +294,80 @@ int drygascon128_aead_decrypt
             state.domain |= DRYDOMAIN128_PADDED;
         temp = (unsigned)clen;
         lw_xor_block_2_src(m, c, state.r.B, temp);
-        drysponge128_f_absorb(&state, m, temp);
-        drysponge128_g(&state);
+        drygascon128_f_wrap(&state, m, temp);
+        //drysponge128_g(&state);
         c += temp;
     }
 
     /* Check the authentication tag */
     return aead_check_tag(mtemp, *mlen, state.r.B, c, DRYGASCON128_TAG_SIZE);
+}
+
+int drygascon128k16_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_encrypt_core(c,clen,m,mlen,ad,adlen,16,npub,k);
+}
+
+int drygascon128k32_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_encrypt_core(c,clen,m,mlen,ad,adlen,32,npub,k);
+}
+
+int drygascon128k56_aead_encrypt
+    (unsigned char *c, unsigned long long *clen,
+     const unsigned char *m, unsigned long long mlen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *nsec,
+     const unsigned char *npub,
+     const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_encrypt_core(c,clen,m,mlen,ad,adlen,56,npub,k);
+}
+
+
+int drygascon128k16_aead_decrypt
+	(unsigned char *m, unsigned long long *mlen,
+     unsigned char *nsec,
+     const unsigned char *c, unsigned long long clen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *npub,
+     const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_decrypt_core(m,mlen,16,c,clen,ad,adlen,npub,k);
+}
+
+int drygascon128k32_aead_decrypt
+	(unsigned char *m, unsigned long long *mlen,
+     unsigned char *nsec,
+     const unsigned char *c, unsigned long long clen,
+     const unsigned char *ad, unsigned long long adlen,
+     const unsigned char *npub,
+     const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_decrypt_core(m,mlen,32,c,clen,ad,adlen,npub,k);
+}
+
+int drygascon128k56_aead_decrypt
+	(unsigned char *m, unsigned long long *mlen,
+	 unsigned char *nsec,
+	 const unsigned char *c, unsigned long long clen,
+	 const unsigned char *ad, unsigned long long adlen,
+	 const unsigned char *npub,
+	 const unsigned char *k){
+    (void)nsec;
+	return drygascon128_aead_decrypt_core(m,mlen,56,c,clen,ad,adlen,npub,k);
 }
 
 int drygascon256_aead_encrypt
