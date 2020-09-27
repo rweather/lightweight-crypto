@@ -29,6 +29,7 @@
 #include "elephant.h"
 #include "estate.h"
 #include "forkae.h"
+#include "gascon128.h"
 #include "gift-cofb.h"
 #include "gift-cofb-masked.h"
 #include "gimli24.h"
@@ -91,6 +92,9 @@ static const aead_cipher_t *const ciphers[] = {
     &forkae_paef_128_288_cipher,
     &forkae_saef_128_192_cipher,
     &forkae_saef_128_256_cipher,
+    &gascon128_cipher,
+    &gascon128a_cipher,
+    &gascon80pq_cipher,
     &gift_cofb_cipher,
     &gift_cofb_masked_cipher,
     &gimli24_cipher,

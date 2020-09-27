@@ -20,6 +20,7 @@ OBJS = \
         elephant.o \
         estate.o \
         forkae.o \
+        gascon128.o \
         gift-cofb.o \
         gift-cofb-masked.o \
 	gimli24.o \
@@ -63,6 +64,7 @@ OBJS = \
 	internal-cham.o \
 	internal-drysponge.o \
 	internal-forkskinny.o \
+	internal-gascon.o \
 	internal-gift128.o \
 	internal-gift128-m.o \
 	internal-gift64.o \
@@ -118,6 +120,7 @@ drygascon.o: drygascon.h internal-drysponge.h internal-util.h
 elephant.o: elephant.h aead-common.h internal-keccak.h internal-spongent.h internal-util.h
 estate.o: estate.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 forkae.o: forkae.h aead-common.h internal-forkskinny.h internal-forkae-paef.h internal-forkae-saef.h internal-util.h
+gascon128.o: gascon128.h aead-common.h internal-gascon.h internal-util.h
 gift-cofb.o: gift-cofb.h aead-common.h internal-gift128.h internal-gift128-config.h internal-util.h
 gift-cofb-masked.o: gift-cofb.h aead-common.h internal-gift128-m.h internal-gift128-config.h internal-util.h aead-random.h internal-masking.h
 gimli24.o: gimli24.h internal-gimli24.h aead-common.h internal-util.h
@@ -161,6 +164,7 @@ internal-chachapoly.o: internal-chachapoly.h internal-util.h
 internal-cham.o: internal-cham.h internal-util.h
 internal-drysponge.o: internal-drysponge.h internal-util.h
 internal-forkskinny.o: internal-forkskinny.h internal-skinnyutil.h internal-util.h
+internal-gascon.o: internal-gascon.h internal-util.h
 internal-gift128.o: internal-gift128.h internal-gift128-config.h internal-util.h
 internal-gift128-m.o: internal-gift128-m.h internal-gift128-config.h aead-random.h internal-masking.h internal-util.h
 internal-gift64.o: internal-gift64.h internal-util.h

@@ -21,6 +21,7 @@
  */
 
 #include "internal-drysponge.h"
+#include "internal-gascon.h"
 #include "test-cipher.h"
 #include <stdio.h>
 #include <string.h>
@@ -144,6 +145,7 @@ void test_drygascon(void)
 {
     drysponge128_state_t state128;
     drysponge256_state_t state256;
+    gascon_state_t gstate;
 
     printf("DryGASCON:\n");
 
@@ -153,6 +155,17 @@ void test_drygascon(void)
     state128.rounds = GASCON_NUM_ROUNDS;
     drysponge128_g_core(&state128);
     if (!test_memcmp(state128.c.B, gascon128_output, sizeof(gascon128_output))) {
+        printf("ok\n");
+    } else {
+        printf("failed\n");
+        test_exit_result = 1;
+    }
+
+    printf("    GASCON-128 Standalone ... ");
+    fflush(stdout);
+    memcpy(gstate.B, gascon128_input, sizeof(gascon128_input));
+    gascon_permute(&gstate, 0);
+    if (!test_memcmp(gstate.B, gascon128_output, sizeof(gascon128_output))) {
         printf("ok\n");
     } else {
         printf("failed\n");
