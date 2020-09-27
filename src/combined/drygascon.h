@@ -145,7 +145,7 @@ extern aead_hash_algorithm_t const drygascon256_hash_algorithm;
 /**
  * \brief Encrypts and authenticates a packet with DryGASCON128 with 32 bytes key.
  *
- *	Use this key size if SPA attacks are not a concern in your use case.
+ * Use this key size if SPA attacks are not a concern in your use case.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -179,7 +179,7 @@ int drygascon128k32_aead_encrypt
 /**
  * \brief Decrypts and authenticates a packet with DryGASCON128 with 32 bytes key.
  *
- *	Use this key size if SPA attacks are not a concern in your use case.
+ * Use this key size if SPA attacks are not a concern in your use case.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -214,7 +214,7 @@ int drygascon128k32_aead_decrypt
 /**
  * \brief Encrypts and authenticates a packet with DryGASCON128 with 56 bytes key.
  *
- *	Use this key size if you want to prevent SPA attacks
+ * Use this key size if you want to prevent SPA attacks
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -248,7 +248,7 @@ int drygascon128k56_aead_encrypt
 /**
  * \brief Decrypts and authenticates a packet with DryGASCON128 with 56 bytes key.
  *
- *	Use this key size if you want to prevent SPA attacks
+ * Use this key size if you want to prevent SPA attacks
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
@@ -283,7 +283,7 @@ int drygascon128k56_aead_decrypt
 /**
  * \brief Encrypts and authenticates a packet with DryGASCON128 with 16 bytes key.
  *
- *	Use this key size only if you really cannot use the 32 bytes key.
+ * Use this key size only if you really cannot use the 32 bytes key.
  *
  * \param c Buffer to receive the output.
  * \param clen On exit, set to the length of the output which includes
@@ -314,7 +314,7 @@ int drygascon128k16_aead_encrypt
 /**
  * \brief Decrypts and authenticates a packet with DryGASCON128 with 16 bytes key.
  *
- *	Use this key size only if you really cannot use the 32 bytes key.
+ * Use this key size only if you really cannot use the 32 bytes key.
  *
  * \param m Buffer to receive the plaintext message on output.
  * \param mlen Receives the length of the plaintext message on output.
