@@ -25,6 +25,20 @@
 \page performance Performance on 32-bit platforms
 \tableofcontents
 
+<b>Note:</b> NIST set a cut-off of 18 Septeber 2020 for status updates from
+the Round 2 candidate submission teams, leading up to the selection of
+Round 2 finalists in December 2020.  The figures below reflect the
+performance of my algorithms on the status cut-off date.  I call these
+the "baseline" performance figures.
+
+Since that date, some newer implementations have been contributed by others
+and written by myself.  The performance of the newer versions can be found
+on the \ref performance_phase2 "Phase 2 Performance Figures" page.
+
+The source code for the baseline versions can be found in the
+<b>round2_baseline</b> branch of the repository.  The <b>master</b>
+branch contains the more up to date versions of each algorithm.
+
 \section perf_intro Introduction
 
 There is a lot of variation in the capabilities of embedded microprocessors.

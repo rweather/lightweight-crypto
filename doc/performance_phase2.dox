@@ -1,0 +1,70 @@
+/*
+ * Copyright (C) 2020 Southern Storm Software, Pty Ltd.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+/**
+\file performance_phase2.dox
+\page performance_phase2 Phase 2 Performance Figures
+\tableofcontents
+
+\section perf_phase2_intro Introduction
+
+NIST set a cut-off of 18 Septeber 2020 for status updates from
+the Round 2 candidate submission teams.  Since that date, some newer
+implementations have been contributed by others and written by myself.
+
+The performance of the newer versions can be found on this page.
+The performance original "baseline" versions can be found on the
+\ref performance "original page".
+
+For phase 2, I am focusing mainly on the 32-bit ARM Cortex M3
+microprocessor in the Arduino Due device that I used for previous
+testing.  ESP32 and AVR figures may be included if they provide
+interesting results.
+
+\section perf_phase2_ascon ASCON and GASCON
+
+The baseline versions of ASCON-128, ASCON-128a, and ASCON-80pq for
+32-bit platforms use the 32-bit bit-sliced representation.  Plaintext
+and associated data is converted into bit-sliced form prior to being
+absorbed by the permutation.  Squeezed ciphertext and the tag are
+converted from bit-sliced form to regular form on output.
+
+GASCON128 was part of the DryGASCON submission to Round 2.  It is
+identical to ASCON except that the input and output of the permutation
+are already in 32-bit bit-sliced form.
+
+Sébastien Riou of the DryGASCON submission team contributed versions of
+ASCON-128, ASCON-128a, and ASCON-80pq where the GASCON128 permutation was
+directly substituted for ASCON.  This avoids the need to convert back and
+forth between bit-sliced form and regular form.
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>ASCON-128a</td><td>Baseline</td><td>1.29</td><td>1.26</td><td>1.33</td><td>1.32</td><td>1.30</td></tr>
+<tr><td>ASCON-80pq</td><td>Baseline</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.12</td></tr>
+<tr><td>ASCON-128</td><td>Baseline</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.11</td></tr>
+<tr><td>GASCON-128a</td><td>Sébastien Riou</td><td>0.60</td><td>0.64</td><td>0.70</td><td>0.72</td><td>0.67</td></tr>
+<tr><td>GASCON-128</td><td>Sébastien Riou</td><td>0.45</td><td>0.48</td><td>0.62</td><td>0.64</td><td>0.54</td></tr>
+<tr><td>GASCON-80pq</td><td>Sébastien Riou</td><td>0.45</td><td>0.48</td><td>0.61</td><td>0.64</td><td>0.54</td></tr>
+</table>
+
+*/
