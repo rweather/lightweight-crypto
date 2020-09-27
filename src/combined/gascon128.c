@@ -82,7 +82,12 @@ static void gascon_absorb_8
      unsigned long long len, uint8_t first_round)
 {
     while (len >= 8) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        state->W[0] ^= le_load_word32(data);
+        state->W[1] ^= le_load_word32(data + 4);
+#else
         lw_xor_block(state->B, data, 8);
+#endif
         gascon_permute(state, first_round);
         data += 8;
         len -= 8;
@@ -105,7 +110,14 @@ static void gascon_absorb_16
      unsigned long long len, uint8_t first_round)
 {
     while (len >= 16) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        state->W[0] ^= le_load_word32(data);
+        state->W[1] ^= le_load_word32(data + 4);
+        state->W[2] ^= le_load_word32(data + 8);
+        state->W[3] ^= le_load_word32(data + 12);
+#else
         lw_xor_block(state->B, data, 16);
+#endif
         gascon_permute(state, first_round);
         data += 16;
         len -= 16;
@@ -129,7 +141,14 @@ static void gascon_encrypt_8
      const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
     while (len >= 8) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        state->W[0] ^= le_load_word32(src);
+        state->W[1] ^= le_load_word32(src + 4);
+        le_store_word32(dest, state->W[0]);
+        le_store_word32(dest + 4, state->W[1]);
+#else
         lw_xor_block_2_dest(dest, state->B, src, 8);
+#endif
         gascon_permute(state, first_round);
         dest += 8;
         src += 8;
@@ -153,7 +172,18 @@ static void gascon_encrypt_16
      const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
     while (len >= 16) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        state->W[0] ^= le_load_word32(src);
+        state->W[1] ^= le_load_word32(src + 4);
+        state->W[2] ^= le_load_word32(src + 8);
+        state->W[3] ^= le_load_word32(src + 12);
+        le_store_word32(dest, state->W[0]);
+        le_store_word32(dest + 4, state->W[1]);
+        le_store_word32(dest + 8, state->W[2]);
+        le_store_word32(dest + 12, state->W[3]);
+#else
         lw_xor_block_2_dest(dest, state->B, src, 16);
+#endif
         gascon_permute(state, first_round);
         dest += 16;
         src += 16;
@@ -177,7 +207,16 @@ static void gascon_decrypt_8
      const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
     while (len >= 8) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        uint32_t m = state->W[0] ^ le_load_word32(src);
+        le_store_word32(dest, m);
+        state->W[0] ^= m;
+        m = state->W[1] ^ le_load_word32(src + 4);
+        le_store_word32(dest + 4, m);
+        state->W[1] ^= m;
+#else
         lw_xor_block_swap(dest, state->B, src, 8);
+#endif
         gascon_permute(state, first_round);
         dest += 8;
         src += 8;
@@ -201,7 +240,22 @@ static void gascon_decrypt_16
      const unsigned char *src, unsigned long long len, uint8_t first_round)
 {
     while (len >= 16) {
+#if defined(LW_UTIL_LITTLE_ENDIAN)
+        uint32_t m = state->W[0] ^ le_load_word32(src);
+        le_store_word32(dest, m);
+        state->W[0] ^= m;
+        m = state->W[1] ^ le_load_word32(src + 4);
+        le_store_word32(dest + 4, m);
+        state->W[1] ^= m;
+        m = state->W[2] ^ le_load_word32(src + 8);
+        le_store_word32(dest + 8, m);
+        state->W[2] ^= m;
+        m = state->W[3] ^ le_load_word32(src + 12);
+        le_store_word32(dest + 12, m);
+        state->W[3] ^= m;
+#else
         lw_xor_block_swap(dest, state->B, src, 16);
+#endif
         gascon_permute(state, first_round);
         dest += 16;
         src += 16;
