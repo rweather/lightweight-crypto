@@ -69,4 +69,30 @@ between 12% and 17% improvement in performance on ARM Cortex M3:
 <tr><td>ASCON-128</td><td>Baseline</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.11</td></tr>
 </table>
 
+\section perf_phase2_dryascon DryGASCON
+
+Sébastien Riou of the DryGASCON submission team contributed ARM Cortex M*
+assembly code versions of DryGASCON128 with key sizes 16, 32, and 56.
+The baseline version only had key size 16 and was written in C.
+
+His submission also aligns the "x" words so that the entire "x" array
+fits within a single cache line in the CPU.  This allows him to do away
+with my complex constant-time method for selecting an "x" word.
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>DryGASCON128k32</td><td>Sébastien Riou</td><td>0.59</td><td>0.62</td><td>1.05</td><td>1.04</td><td>0.79</td></tr>
+<tr><td>DryGASCON128k56</td><td>Sébastien Riou</td><td>0.59</td><td>0.62</td><td>1.05</td><td>1.03</td><td>0.79</td></tr>
+<tr><td>DryGASCON128k16</td><td>Sébastien Riou</td><td>0.59</td><td>0.62</td><td>1.03</td><td>1.02</td><td>0.78</td></tr>
+<tr><td>DryGASCON128k16</td><td>Baseline</td><td>0.16</td><td>0.18</td><td>0.28</td><td>0.30</td><td>0.22</td></tr>
+</table>
+
+DryGASCON128-HASH shows a similar improvement:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td>DryGASCON128-HASH</td><td>Sébastien Riou</td><td>0.29</td><td>0.29</td><td>0.88</td><td>0.48</td></tr>
+<tr><td>DryGASCON128-HASH</td><td>Baseline</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13</td></tr>
+</table>
+
 */
