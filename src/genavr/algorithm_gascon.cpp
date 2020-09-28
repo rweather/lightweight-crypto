@@ -104,14 +104,47 @@ static void gascon128_substitute
     code.releaseReg(t4);
 }
 
+// 32-bit rotation using a shuffle for byte-sized shifts.
+static Reg rotate32(Code &code, const Reg &x, int shift)
+{
+    // Rotate by the left-over bits.
+    if ((shift % 8) <= 4) {
+        code.ror(x, shift % 8);
+        shift -= shift % 8;
+    } else {
+        code.rol(x, 8 - (shift % 8));
+        shift -= shift % 8;
+        shift = (shift + 8) % 32;
+    }
+
+    // Rotate the bytes using a shuffle.
+    if (shift == 8)
+        return x.shuffle(1, 2, 3, 0);
+    else if (shift == 16)
+        return x.shuffle(2, 3, 0, 1);
+    else if (shift == 24)
+        return x.shuffle(3, 0, 1, 2);
+    else
+        return x;
+}
+
 // Interleaved rotation of a 64-bit value in two 32-bit halves.
-static Reg intRightRotate(Code &code, const Reg &x, int shift)
+static Reg intRightRotate
+    (Code &code, const Reg &x, int shift, bool reorder = false)
 {
     if (shift & 1) {
         // Odd shift amount: rotate the subwords and swap.
-        code.ror(Reg(x, 0, 4), ((shift / 2) + 1) % 32);
-        code.ror(Reg(x, 4, 4), shift / 2);
-        return x.shuffle(4, 5, 6, 7, 0, 1, 2, 3);
+        // We can virtualise rotations by 8 or more by rearranging
+        // the bytes in the result.  Then we only need to rotate
+        // by the left-over bits.
+        Reg t = rotate32(code, Reg(x, 0, 4), ((shift / 2) + 1) % 32);
+        Reg u = rotate32(code, Reg(x, 4, 4), shift / 2);
+        return u.append(t);
+    } else if (reorder) {
+        // Even shift amount with re-ordering allowed.
+        Reg t = rotate32(code, Reg(x, 0, 4), shift / 2);
+        Reg u = rotate32(code, Reg(x, 4, 4), shift / 2);
+        return t.append(u);
     } else {
         // Even shift amount: rotate the subwords with no swap.
         code.ror(Reg(x, 0, 4), shift / 2);
@@ -139,10 +172,14 @@ static void gascon128_diffuse
     code.move(t, x);
     t = intRightRotate(code, t, shift1);
     code.logxor(t, x);
-    intRightRotate(code, x, shift2);
-    code.logxor(x, t);
-    if (word != 0 && word != 2)
-        code.stz(x, GASCON128_WORD(word));
+    if (word != 0 && word != 2) {
+        Reg xrot = intRightRotate(code, x, shift2, true);
+        code.logxor(xrot, t);
+        code.stz(xrot, GASCON128_WORD(word));
+    } else {
+        intRightRotate(code, x, shift2);
+        code.logxor(x, t);
+    }
     code.releaseReg(t);
 }
 
@@ -184,6 +221,59 @@ void gen_gascon128_core_round(Code &code)
     gascon128_diffuse(code, x0, 3, 10, 17);
     gascon128_diffuse(code, x0, 4,  7, 40);
     gascon128_diffuse(code, x0, 0, 19, 28);
+
+    // Store "x0" and "x2" back to the state memory.
+    code.stz(x0, GASCON128_WORD(0));
+    code.stz(x2, GASCON128_WORD(2));
+}
+
+void gen_gascon128_permutation(Code &code)
+{
+    // Set up the function prologue with 0 bytes of local variable storage.
+    // Z points to the permutation state on input and output.
+    Reg round = code.prologue_permutation_with_count("gascon_permute", 0);
+    code.setFlag(Code::NoLocals); // Don't need Y, so no point creating locals.
+
+    // Compute "round = ((0x0F - round) << 4) | round" to convert the
+    // round number into a round constant.
+    Reg temp = code.allocateHighReg(1);
+    code.move(temp, 0x0F);
+    code.sub(temp, round);
+    code.onereg(Insn::SWAP, temp.reg(0));
+    code.logor(round, temp);
+    code.releaseReg(temp);
+
+    // Preload "x0" and "x2" into registers.
+    Reg x0 = code.allocateReg(8);
+    Reg x2 = code.allocateReg(8);
+    code.ldz(x0, GASCON128_WORD(0));
+    code.ldz(x2, GASCON128_WORD(2));
+
+    // Top of the round loop.
+    unsigned char top_label = 0;
+    code.label(top_label);
+
+    // XOR the round constant with the low byte of "x2".
+    code.logxor(x2, round);
+
+    // Perform the substitution layer byte by byte.
+    for (int index = 0; index < 8; ++index)
+        gascon128_substitute(code, index, Reg(x0, index, 1), Reg(x2, index, 1));
+
+    // Perform the linear diffusion layer on each of the state words.
+    // We spilled "x0" out to the state during the substitution layer,
+    // so we can use that as a temporary register.  We diffuse the "x0"
+    // row last so that it is ready in registers for the next round.
+    gascon128_diffuse(code, x0, 1, 61, 38);
+    gascon128_diffuse(code, x2, 2,  1,  6);
+    gascon128_diffuse(code, x0, 3, 10, 17);
+    gascon128_diffuse(code, x0, 4,  7, 40);
+    gascon128_diffuse(code, x0, 0, 19, 28);
+
+    // Bottom of the round loop.  Adjust the round constant and
+    // check to see if we have reached the final round.
+    code.sub(round, 0x0F);
+    code.compare_and_loop(round, 0x3C, top_label);
 
     // Store "x0" and "x2" back to the state memory.
     code.stz(x0, GASCON128_WORD(0));
@@ -410,10 +500,14 @@ static void gascon256_diffuse
     code.move(t, x);
     t = intRightRotate(code, t, shift1);
     code.logxor(t, x);
-    intRightRotate(code, x, shift2);
-    code.logxor(x, t);
-    if (word != 0 && word != 4)
-        code.stz(x, GASCON256_WORD(word));
+    if (word != 0 && word != 4) {
+        Reg xrot = intRightRotate(code, x, shift2, true);
+        code.logxor(xrot, t);
+        code.stz(xrot, GASCON256_WORD(word));
+    } else {
+        intRightRotate(code, x, shift2);
+        code.logxor(x, t);
+    }
     code.releaseReg(t);
 }
 
@@ -605,6 +699,14 @@ bool test_gascon128_core_round(Code &code)
     memcpy(state, gascon128_input, 40);
     for (unsigned round = 0; round < 12; ++round)
         code.exec_permutation(state, 40, round);
+    return !memcmp(gascon128_output, state, 40);
+}
+
+bool test_gascon128_permutation(Code &code)
+{
+    unsigned char state[40];
+    memcpy(state, gascon128_input, 40);
+    code.exec_permutation(state, 40, 0);
     return !memcmp(gascon128_output, state, 40);
 }
 

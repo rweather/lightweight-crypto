@@ -76,10 +76,12 @@ bool test_forkskinny64_192_reverse_tk(Code &code);
 
 // GASCON permutation and DrySPONGE helper functions.
 void gen_gascon128_core_round(Code &code);
+void gen_gascon128_permutation(Code &code);
 void gen_drysponge128_g(Code &code);
 void gen_gascon256_core_round(Code &code);
 void gen_drysponge256_g(Code &code);
 bool test_gascon128_core_round(Code &code);
+bool test_gascon128_permutation(Code &code);
 bool test_drysponge128_g(Code &code);
 bool test_gascon256_core_round(Code &code);
 bool test_drysponge256_g(Code &code);

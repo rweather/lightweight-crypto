@@ -83,6 +83,7 @@ generate: $(TARGET)
 	./$(TARGET) CHAM >../combined/internal-cham-avr.S
 	./$(TARGET) ForkSkinny >../combined/internal-forkskinny-avr.S
 	./$(TARGET) GASCON >../combined/internal-drysponge-avr.S
+	./$(TARGET) GASCON-Full >../combined/internal-gascon-avr.S
 	./$(TARGET) GIFT-128b-fs-4 >../combined/internal-gift128b-tiny-avr.S
 	./$(TARGET) GIFT-128b-fs-20 >../combined/internal-gift128b-small-avr.S
 	./$(TARGET) GIFT-128b-fs-80 >../combined/internal-gift128b-full-avr.S

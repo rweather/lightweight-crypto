@@ -382,6 +382,23 @@ static bool gascon128(enum Mode mode)
     return ok;
 }
 
+static bool gascon128_full(enum Mode mode)
+{
+    Code code;
+    gen_gascon128_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_gascon128_permutation(code)) {
+            std::cout << "GASCON-128 permutation tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "GASCON-128 permutation tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
 static bool gascon256_core(enum Mode mode)
 {
     Code code;
@@ -2223,6 +2240,8 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "GASCON")) {
             gen1 = gascon128;
             gen2 = gascon256;
+        } else if (!strcmp(argv[1], "GASCON-Full")) {
+            gen1 = gascon128_full;
         } else if (!strcmp(argv[1], "GIFT-128b")) {
             gen1 = gift128b;
         } else if (!strcmp(argv[1], "GIFT-128n")) {
@@ -2327,6 +2346,8 @@ int main(int argc, char *argv[])
         if (!gascon128(Test))
             exit_val = 1;
         if (!gascon256(Test))
+            exit_val = 1;
+        if (!gascon128_full(Test))
             exit_val = 1;
         if (!gift128b(Test))
             exit_val = 1;

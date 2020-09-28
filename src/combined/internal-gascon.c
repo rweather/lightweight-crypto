@@ -21,6 +21,9 @@
  */
 
 #include "internal-gascon.h"
+#include "internal-drysponge.h"
+
+#if !defined(__AVR__)
 
 /* Right rotations in bit-interleaved format */
 #define intRightRotateEven(yl,yh,xl,xh, bits) \
@@ -196,3 +199,5 @@ void gascon_permute(gascon_state_t *state, uint8_t first_round)
     le_store_word32(state->B + 36, x4_h);
 #endif
 }
+
+#endif /* __AVR__ */
