@@ -245,7 +245,7 @@ typedef union
  */
 typedef struct
 {
-	gascon128_state_t c;        /**< GASCON-128 state for the capacity */
+    gascon128_state_t c;        /**< GASCON-128 state for the capacity */
     uint32_t domain;            /**< Domain value to mix on next F call */
     uint32_t rounds;            /**< Number of rounds for next G call */
     drysponge128_rate_t r;      /**< Buffer for a rate block of data */
@@ -335,7 +335,16 @@ void drysponge256_g_core(drysponge256_state_t *state);
 void drysponge256_f_absorb
     (drysponge256_state_t *state, const unsigned char *input, unsigned len);
 
-void drygascon128_f_wrap(drysponge128_state_t *state, const unsigned char *input, unsigned len);
+/**
+ * \brief Wrapper that combines the DrySPONGE128 F and G functions.
+ *
+ * \param state The DrySPONGE128 state.
+ * \param input The block of input data to incorporate into the state.
+ * \param len The length of the input block, which must be less than
+ * or equal to DRYSPONGE128_RATE.  Smaller input blocks will be padded.
+ */
+void drygascon128_f_wrap
+    (drysponge128_state_t *state, const unsigned char *input, unsigned len);
 
 /**
  * \brief Determine if state alignement is safe vs timing attacks.
@@ -352,7 +361,8 @@ int drysponge128_safe_alignement(const drysponge128_state_t*state);
  * \brief Set up a DrySPONGE128 state to begin encryption or decryption.
  *
  * \param state The DrySPONGE128 state.
- * \param key Points to the 16 bytes of the key.
+ * \param key Points to the bytes of the key.
+ * \param keysize Number of bytes in the key.
  * \param nonce Points to the 16 bytes of the nonce.
  * \param final_block Non-zero if after key setup there will be no more blocks.
  */
