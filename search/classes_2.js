@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chacha20_5fstate_5ft',['chacha20_state_t',['../unionchacha20__state__t.html',1,'']]]
+  ['blake2s_5fstate_5ft',['blake2s_state_t',['../structblake2s__state__t.html',1,'']]]
 ];

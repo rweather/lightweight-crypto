@@ -1,7 +1,14 @@
 var searchData=
 [
+  ['gascon128_5fkey_5fsize',['GASCON128_KEY_SIZE',['../gascon128_8h.html#a17a43a108e0e5892aaf284d9a803e5d7',1,'gascon128.h']]],
+  ['gascon128_5fnonce_5fsize',['GASCON128_NONCE_SIZE',['../gascon128_8h.html#ad1bea94ebd90b9c6ca97ed84a89046f6',1,'gascon128.h']]],
   ['gascon128_5fstate_5fsize',['GASCON128_STATE_SIZE',['../internal-drysponge_8h.html#a9b4829c6512c7ceae6e6f18daec9ccb6',1,'internal-drysponge.h']]],
+  ['gascon128_5ftag_5fsize',['GASCON128_TAG_SIZE',['../gascon128_8h.html#aa1fa5116bccf0b57a536623d97a2a607',1,'gascon128.h']]],
   ['gascon256_5fstate_5fsize',['GASCON256_STATE_SIZE',['../internal-drysponge_8h.html#a02db305fb162314afe1e72decb6db741',1,'internal-drysponge.h']]],
+  ['gascon80pq_5fkey_5fsize',['GASCON80PQ_KEY_SIZE',['../gascon128_8h.html#a3b03457b8578247edcc83b0465f00b48',1,'gascon128.h']]],
+  ['gascon80pq_5fnonce_5fsize',['GASCON80PQ_NONCE_SIZE',['../gascon128_8h.html#a7166d422fbd11c11dd98d38c5b8bfec0',1,'gascon128.h']]],
+  ['gascon80pq_5ftag_5fsize',['GASCON80PQ_TAG_SIZE',['../gascon128_8h.html#afe515aed620317ed2235f6c4760eed8e',1,'gascon128.h']]],
+  ['gascon_5fhash_5fsize',['GASCON_HASH_SIZE',['../gascon128_8h.html#a18de67e30b98cec9c9b96ea9e71c8847',1,'gascon128.h']]],
   ['gift128_5fblock_5fsize',['GIFT128_BLOCK_SIZE',['../internal-gift128_8h.html#a642719cdc783743ff774f31b77513109',1,'internal-gift128.h']]],
   ['gift128_5fmasked_5fblock_5fsize',['GIFT128_MASKED_BLOCK_SIZE',['../internal-gift128-m_8h.html#a8132d93ef56a01be0420a234965c99c3',1,'internal-gift128-m.h']]],
   ['gift128_5fmasked_5fround_5fkeys',['GIFT128_MASKED_ROUND_KEYS',['../internal-gift128-m_8h.html#a76232831fa3ba562ddd1aee6fa509f73',1,'internal-gift128-m.h']]],

@@ -101,9 +101,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a2b9c62aae881e524141a8b7f10c48309"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b9c62aae881e524141a8b7f10c48309"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a2b9c62aae881e524141a8b7f10c48309">DRYGASCON128_MINKEY_SIZE</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a2b9c62aae881e524141a8b7f10c48309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum Size of the key for DryGASCON128. <br/></td></tr>
+<tr class="separator:a2b9c62aae881e524141a8b7f10c48309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cbc45d27d61cff36ee04197681daca6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1cbc45d27d61cff36ee04197681daca6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a1cbc45d27d61cff36ee04197681daca6">DRYGASCON128_FASTKEY_SIZE</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memdesc:a1cbc45d27d61cff36ee04197681daca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Size of the key for DryGASCON128. <br/></td></tr>
+<tr class="separator:a1cbc45d27d61cff36ee04197681daca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac794d6906f5b0177d36599fd995c6a2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac794d6906f5b0177d36599fd995c6a2c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#ac794d6906f5b0177d36599fd995c6a2c">DRYGASCON128_SAFEKEY_SIZE</a>&#160;&#160;&#160;56</td></tr>
+<tr class="memdesc:ac794d6906f5b0177d36599fd995c6a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safe (and fast) Size of the key for DryGASCON128. Safe here means the size of the key helps prevent SPA during key loading. <br/></td></tr>
+<tr class="separator:ac794d6906f5b0177d36599fd995c6a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96446a8040ac8ba3e0f393c8e6b430c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96446a8040ac8ba3e0f393c8e6b430c7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a96446a8040ac8ba3e0f393c8e6b430c7">DRYGASCON128_KEY_SIZE</a>&#160;&#160;&#160;16</td></tr>
-<tr class="memdesc:a96446a8040ac8ba3e0f393c8e6b430c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the key for DryGASCON128. <br/></td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a96446a8040ac8ba3e0f393c8e6b430c7">DRYGASCON128_KEY_SIZE</a>&#160;&#160;&#160;<a class="el" href="drygascon_8h.html#a1cbc45d27d61cff36ee04197681daca6">DRYGASCON128_FASTKEY_SIZE</a></td></tr>
+<tr class="memdesc:a96446a8040ac8ba3e0f393c8e6b430c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the key for DryGASCON128 (default to "fast" size). <br/></td></tr>
 <tr class="separator:a96446a8040ac8ba3e0f393c8e6b430c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7638772d0fcc531c9bd0c2fa306b6c4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7638772d0fcc531c9bd0c2fa306b6c4f"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a7638772d0fcc531c9bd0c2fa306b6c4f">DRYGASCON128_TAG_SIZE</a>&#160;&#160;&#160;16</td></tr>
@@ -136,12 +148,24 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a56bc46da7d3c8d9a22bdb67c963b1c98"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a56bc46da7d3c8d9a22bdb67c963b1c98">drygascon128_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
-<tr class="memdesc:a56bc46da7d3c8d9a22bdb67c963b1c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with DryGASCON128.  <a href="#a56bc46da7d3c8d9a22bdb67c963b1c98">More...</a><br/></td></tr>
-<tr class="separator:a56bc46da7d3c8d9a22bdb67c963b1c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9435e1da32868ce5504398221d0d0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a6c9435e1da32868ce5504398221d0d0b">drygascon128_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
-<tr class="memdesc:a6c9435e1da32868ce5504398221d0d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with DryGASCON128.  <a href="#a6c9435e1da32868ce5504398221d0d0b">More...</a><br/></td></tr>
-<tr class="separator:a6c9435e1da32868ce5504398221d0d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a0e08f7dd90c0334527ee5a420324ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a6a0e08f7dd90c0334527ee5a420324ff">drygascon128k32_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a6a0e08f7dd90c0334527ee5a420324ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with DryGASCON128 with 32 bytes key.  <a href="#a6a0e08f7dd90c0334527ee5a420324ff">More...</a><br/></td></tr>
+<tr class="separator:a6a0e08f7dd90c0334527ee5a420324ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e6575e26f62783c6825095fe98fc32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a38e6575e26f62783c6825095fe98fc32">drygascon128k32_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a38e6575e26f62783c6825095fe98fc32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with DryGASCON128 with 32 bytes key.  <a href="#a38e6575e26f62783c6825095fe98fc32">More...</a><br/></td></tr>
+<tr class="separator:a38e6575e26f62783c6825095fe98fc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9af50dc773884d925c5eaa304004f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a5a9af50dc773884d925c5eaa304004f9">drygascon128k56_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a5a9af50dc773884d925c5eaa304004f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with DryGASCON128 with 56 bytes key.  <a href="#a5a9af50dc773884d925c5eaa304004f9">More...</a><br/></td></tr>
+<tr class="separator:a5a9af50dc773884d925c5eaa304004f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a480fa76dab403a4acfa859b5ea689931"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a480fa76dab403a4acfa859b5ea689931">drygascon128k56_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a480fa76dab403a4acfa859b5ea689931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with DryGASCON128 with 56 bytes key.  <a href="#a480fa76dab403a4acfa859b5ea689931">More...</a><br/></td></tr>
+<tr class="separator:a480fa76dab403a4acfa859b5ea689931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3882e82cbe6dd7a9fdb43d3084024afc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a3882e82cbe6dd7a9fdb43d3084024afc">drygascon128k16_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a3882e82cbe6dd7a9fdb43d3084024afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with DryGASCON128 with 16 bytes key.  <a href="#a3882e82cbe6dd7a9fdb43d3084024afc">More...</a><br/></td></tr>
+<tr class="separator:a3882e82cbe6dd7a9fdb43d3084024afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dada6216556541f3ef6f7967592ef42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a6dada6216556541f3ef6f7967592ef42">drygascon128k16_aead_decrypt</a> (unsigned char *m, unsigned long long *mlen, unsigned char *nsec, const unsigned char *c, unsigned long long clen, const unsigned char *ad, unsigned long long adlen, const unsigned char *npub, const unsigned char *k)</td></tr>
+<tr class="memdesc:a6dada6216556541f3ef6f7967592ef42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypts and authenticates a packet with DryGASCON128 with 16 bytes key.  <a href="#a6dada6216556541f3ef6f7967592ef42">More...</a><br/></td></tr>
+<tr class="separator:a6dada6216556541f3ef6f7967592ef42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21fec1481d71dfa7d149bd7f32158510"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a21fec1481d71dfa7d149bd7f32158510">drygascon256_aead_encrypt</a> (unsigned char *c, unsigned long long *clen, const unsigned char *m, unsigned long long mlen, const unsigned char *ad, unsigned long long adlen, const unsigned char *nsec, const unsigned char *npub, const unsigned char *k)</td></tr>
 <tr class="memdesc:a21fec1481d71dfa7d149bd7f32158510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypts and authenticates a packet with DryGASCON256.  <a href="#a21fec1481d71dfa7d149bd7f32158510">More...</a><br/></td></tr>
 <tr class="separator:a21fec1481d71dfa7d149bd7f32158510"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +181,21 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a894a2f86b054c34ec4c7d534e2e1e92c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a894a2f86b054c34ec4c7d534e2e1e92c"></a>
+<a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a894a2f86b054c34ec4c7d534e2e1e92c">drygascon128k32_cipher</a></td></tr>
+<tr class="memdesc:a894a2f86b054c34ec4c7d534e2e1e92c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the DryGASCON128 cipher with 32 bytes key. <br/></td></tr>
+<tr class="separator:a894a2f86b054c34ec4c7d534e2e1e92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1b157dd85591406db45072b7e76e80"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f1b157dd85591406db45072b7e76e80"></a>
+<a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a1f1b157dd85591406db45072b7e76e80">drygascon128k56_cipher</a></td></tr>
+<tr class="memdesc:a1f1b157dd85591406db45072b7e76e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the DryGASCON128 cipher with 56 bytes key. <br/></td></tr>
+<tr class="separator:a1f1b157dd85591406db45072b7e76e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb447cac402eef2187c22e15521af74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fb447cac402eef2187c22e15521af74"></a>
+<a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a1fb447cac402eef2187c22e15521af74">drygascon128k16_cipher</a></td></tr>
+<tr class="memdesc:a1fb447cac402eef2187c22e15521af74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the DryGASCON128 cipher with 16 bytes key. <br/></td></tr>
+<tr class="separator:a1fb447cac402eef2187c22e15521af74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27440d638c76b8d5c23b35670684cb31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27440d638c76b8d5c23b35670684cb31"></a>
 <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#a27440d638c76b8d5c23b35670684cb31">drygascon128_cipher</a></td></tr>
-<tr class="memdesc:a27440d638c76b8d5c23b35670684cb31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the DryGASCON128 cipher. <br/></td></tr>
+<tr class="memdesc:a27440d638c76b8d5c23b35670684cb31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meta-information block for the DryGASCON128 cipher (default to 32 bytes key). <br/></td></tr>
 <tr class="separator:a27440d638c76b8d5c23b35670684cb31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0532be0c6adcc2d542ef49eb41d26a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0532be0c6adcc2d542ef49eb41d26a0"></a>
 <a class="el" href="structaead__cipher__t.html">aead_cipher_t</a> const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drygascon_8h.html#ac0532be0c6adcc2d542ef49eb41d26a0">drygascon256_cipher</a></td></tr>
@@ -187,178 +223,6 @@ Variables</h2></td></tr>
 <p>DryGASCON128 and DryGASCON128-HASH are the primary members of the family.</p>
 <p>References: <a href="https://github.com/sebastien-riou/DryGASCON">https://github.com/sebastien-riou/DryGASCON</a> </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a6c9435e1da32868ce5504398221d0d0b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int drygascon128_aead_decrypt </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long *&#160;</td>
-          <td class="paramname"><em>mlen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>nsec</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>clen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>ad</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>adlen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>npub</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>k</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Decrypts and authenticates a packet with DryGASCON128. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
-    <tr><td class="paramname">mlen</td><td>Receives the length of the plaintext message on output. </td></tr>
-    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
-    <tr><td class="paramname">c</td><td>Buffer that contains the ciphertext and authentication tag to decrypt. </td></tr>
-    <tr><td class="paramname">clen</td><td>Length of the input data in bytes, which includes the ciphertext and the 16 byte authentication tag. </td></tr>
-    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
-    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
-    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
-    <tr><td class="paramname">k</td><td>Points to the 16 bytes of the key to use to decrypt the packet.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 if the authentication tag was incorrect, or some other negative number if there was an error in the parameters.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a56bc46da7d3c8d9a22bdb67c963b1c98" title="Encrypts and authenticates a packet with DryGASCON128. ">drygascon128_aead_encrypt()</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a56bc46da7d3c8d9a22bdb67c963b1c98"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int drygascon128_aead_encrypt </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long *&#160;</td>
-          <td class="paramname"><em>clen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>mlen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>ad</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long long&#160;</td>
-          <td class="paramname"><em>adlen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>nsec</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>npub</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned char *&#160;</td>
-          <td class="paramname"><em>k</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Encrypts and authenticates a packet with DryGASCON128. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c</td><td>Buffer to receive the output. </td></tr>
-    <tr><td class="paramname">clen</td><td>On exit, set to the length of the output which includes the ciphertext and the 16 byte authentication tag. </td></tr>
-    <tr><td class="paramname">m</td><td>Buffer that contains the plaintext message to encrypt. </td></tr>
-    <tr><td class="paramname">mlen</td><td>Length of the plaintext message in bytes. </td></tr>
-    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
-    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
-    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
-    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
-    <tr><td class="paramname">k</td><td>Points to the 16 bytes of the key to use to encrypt the packet.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, or a negative value if there was an error in the parameters.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a6c9435e1da32868ce5504398221d0d0b" title="Decrypts and authenticates a packet with DryGASCON128. ">drygascon128_aead_decrypt()</a> </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a9cdec41564e95661c2aa3fc8f3210965"></a>
 <div class="memitem">
 <div class="memproto">
@@ -399,6 +263,532 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns zero on success or -1 if there was an error in the parameters. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6dada6216556541f3ef6f7967592ef42"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k16_aead_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts and authenticates a packet with DryGASCON128 with 16 bytes key. </p>
+<p>Use this key size only if you really cannot use the 32 bytes key.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Receives the length of the plaintext message on output. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">c</td><td>Buffer that contains the ciphertext and authentication tag to decrypt. </td></tr>
+    <tr><td class="paramname">clen</td><td>Length of the input data in bytes, which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 16 bytes of the key to use to decrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 if the authentication tag was incorrect, or some other negative number if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a3882e82cbe6dd7a9fdb43d3084024afc" title="Encrypts and authenticates a packet with DryGASCON128 with 16 bytes key. ">drygascon128k16_aead_encrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3882e82cbe6dd7a9fdb43d3084024afc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k16_aead_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts and authenticates a packet with DryGASCON128 with 16 bytes key. </p>
+<p>Use this key size only if you really cannot use the 32 bytes key.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Buffer to receive the output. </td></tr>
+    <tr><td class="paramname">clen</td><td>On exit, set to the length of the output which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">m</td><td>Buffer that contains the plaintext message to encrypt. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Length of the plaintext message in bytes. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 16 bytes of the key to use to encrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, or a negative value if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a6dada6216556541f3ef6f7967592ef42" title="Decrypts and authenticates a packet with DryGASCON128 with 16 bytes key. ">drygascon128k16_aead_decrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a38e6575e26f62783c6825095fe98fc32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k32_aead_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts and authenticates a packet with DryGASCON128 with 32 bytes key. </p>
+<p>Use this key size if SPA attacks are not a concern in your use case.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Receives the length of the plaintext message on output. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">c</td><td>Buffer that contains the ciphertext and authentication tag to decrypt. </td></tr>
+    <tr><td class="paramname">clen</td><td>Length of the input data in bytes, which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 32 bytes of the key to use to decrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that the function blocks if the 16 last bytes of the key are "invalid". Here "invalid" means that 32 bit words shall be different from each other.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 if the authentication tag was incorrect, or some other negative number if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a6a0e08f7dd90c0334527ee5a420324ff" title="Encrypts and authenticates a packet with DryGASCON128 with 32 bytes key. ">drygascon128k32_aead_encrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a0e08f7dd90c0334527ee5a420324ff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k32_aead_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts and authenticates a packet with DryGASCON128 with 32 bytes key. </p>
+<p>Use this key size if SPA attacks are not a concern in your use case.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Buffer to receive the output. </td></tr>
+    <tr><td class="paramname">clen</td><td>On exit, set to the length of the output which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">m</td><td>Buffer that contains the plaintext message to encrypt. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Length of the plaintext message in bytes. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 32 bytes of the key to use to encrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that the function blocks if the 16 last bytes of the key are "invalid". Here "invalid" means that 32 bit words shall be different from each other.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, or a negative value if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a38e6575e26f62783c6825095fe98fc32" title="Decrypts and authenticates a packet with DryGASCON128 with 32 bytes key. ">drygascon128k32_aead_decrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a480fa76dab403a4acfa859b5ea689931"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k56_aead_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decrypts and authenticates a packet with DryGASCON128 with 56 bytes key. </p>
+<p>Use this key size if you want to prevent SPA attacks</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Buffer to receive the plaintext message on output. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Receives the length of the plaintext message on output. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">c</td><td>Buffer that contains the ciphertext and authentication tag to decrypt. </td></tr>
+    <tr><td class="paramname">clen</td><td>Length of the input data in bytes, which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 56 bytes of the key to use to decrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that the function blocks if the 16 last bytes of the key are "invalid". Here "invalid" means that 32 bit words shall be different from each other.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 if the authentication tag was incorrect, or some other negative number if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a5a9af50dc773884d925c5eaa304004f9" title="Encrypts and authenticates a packet with DryGASCON128 with 56 bytes key. ">drygascon128k56_aead_encrypt()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5a9af50dc773884d925c5eaa304004f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drygascon128k56_aead_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long *&#160;</td>
+          <td class="paramname"><em>clen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>mlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>ad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long long&#160;</td>
+          <td class="paramname"><em>adlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>nsec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>npub</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned char *&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypts and authenticates a packet with DryGASCON128 with 56 bytes key. </p>
+<p>Use this key size if you want to prevent SPA attacks</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Buffer to receive the output. </td></tr>
+    <tr><td class="paramname">clen</td><td>On exit, set to the length of the output which includes the ciphertext and the 16 byte authentication tag. </td></tr>
+    <tr><td class="paramname">m</td><td>Buffer that contains the plaintext message to encrypt. </td></tr>
+    <tr><td class="paramname">mlen</td><td>Length of the plaintext message in bytes. </td></tr>
+    <tr><td class="paramname">ad</td><td>Buffer that contains associated data to authenticate along with the packet but which does not need to be encrypted. </td></tr>
+    <tr><td class="paramname">adlen</td><td>Length of the associated data in bytes. </td></tr>
+    <tr><td class="paramname">nsec</td><td>Secret nonce - not used by this algorithm. </td></tr>
+    <tr><td class="paramname">npub</td><td>Points to the public nonce for the packet which must be 16 bytes in length. </td></tr>
+    <tr><td class="paramname">k</td><td>Points to the 56 bytes of the key to use to encrypt the packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Note that the function blocks if the 16 last bytes of the key are "invalid". Here "invalid" means that 32 bit words shall be different from each other.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, or a negative value if there was an error in the parameters.</dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="drygascon_8h.html#a480fa76dab403a4acfa859b5ea689931" title="Decrypts and authenticates a packet with DryGASCON128 with 56 bytes key. ">drygascon128k56_aead_decrypt()</a> </dd></dl>
 
 </div>
 </div>
@@ -620,7 +1010,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 22 2020 09:37:10 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 28 2020 10:30:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

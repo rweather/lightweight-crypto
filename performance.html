@@ -85,7 +85,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#perf_overall">Overall group rankings</a></li>
 </ul>
 </div>
-<div class="textblock"><h1><a class="anchor" id="perf_intro"></a>
+<div class="textblock"><p><b>Note:</b> NIST set a cut-off of 18 Septeber 2020 for status updates from the Round 2 candidate submission teams, leading up to the selection of Round 2 finalists in December 2020. The figures below reflect the performance of my algorithms on the status cut-off date. I call these the "baseline" performance figures.</p>
+<p>Since that date, some newer implementations have been contributed by others and written by myself. The performance of the newer versions can be found on the <a class="el" href="performance_phase2.html">Phase 2 Performance Figures</a> page.</p>
+<p>The source code for the baseline versions can be found in the <b>round2_baseline</b> branch of the repository. The <b>master</b> branch contains the more up to date versions of each algorithm.</p>
+<h1><a class="anchor" id="perf_intro"></a>
 Introduction</h1>
 <p>There is a lot of variation in the capabilities of embedded microprocessors. Some are superscalar; others are not. Some have specialised vector instructions; others do not. Clock speeds can also vary considerably. All this means that "cycles per byte" or "megabytes per second" are pretty meaningless when trying to rank the algorithms on relative performance on any given microprocessor.</p>
 <p>The approach I take here is "ChaChaPoly Units". The library contains a reasonably efficient 32-bit non-vectorized implementation of the ChaChaPoly AEAD scheme from my <a href="https://github.com/rweather/arduinolibs">Arduino cryptography library</a>. This makes it a known quanitity to compare with other algorithms side by side.</p>
@@ -184,7 +187,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.22 </td></tr>
 <tr>
-<td><b><em>DryGASCON128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.16</td><td>0.18</td><td>0.28</td><td>0.30</td><td>0.22 </td></tr>
+<td><b><em>DryGASCON128k16</em></b></td><td>128</td><td>128</td><td>128</td><td>0.16</td><td>0.18</td><td>0.28</td><td>0.30</td><td>0.22 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.16</td><td>0.17</td><td>0.26</td><td>0.27</td><td>0.21 </td></tr>
 <tr>
@@ -200,7 +203,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.15</td><td>0.17</td><td>0.21</td><td>0.22</td><td>0.18 </td></tr>
 <tr>
-<td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.13</td><td>0.14</td><td>0.19</td><td>0.20</td><td>0.16 </td></tr>
+<td>DryGASCON256k32</td><td>256</td><td>128</td><td>256</td><td>0.13</td><td>0.14</td><td>0.19</td><td>0.20</td><td>0.16 </td></tr>
 <tr>
 <td><b><em>Oribatida-256-64</em></b></td><td>128</td><td>128</td><td>128</td><td>0.12</td><td>0.13</td><td>0.22</td><td>0.23</td><td>0.16 </td></tr>
 <tr>
@@ -368,7 +371,7 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.34</td><td>0.37</td><td>0.38</td><td>0.39</td><td>0.37 </td></tr>
 <tr>
-<td><b><em>DryGASCON128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.23</td><td>0.25</td><td>0.40</td><td>0.42</td><td>0.31 </td></tr>
+<td><b><em>DryGASCON128k16</em></b></td><td>128</td><td>128</td><td>128</td><td>0.23</td><td>0.25</td><td>0.40</td><td>0.42</td><td>0.31 </td></tr>
 <tr>
 <td><b><em>SpoC-64</em></b></td><td>128</td><td>128</td><td>64</td><td>0.22</td><td>0.25</td><td>0.41</td><td>0.43</td><td>0.31 </td></tr>
 <tr>
@@ -386,7 +389,7 @@ Performance on ESP32</h1>
 <tr>
 <td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.18</td><td>0.21</td><td>0.21</td><td>0.23</td><td>0.21 </td></tr>
 <tr>
-<td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.27</td><td>0.21 </td></tr>
+<td>DryGASCON256k32</td><td>256</td><td>128</td><td>256</td><td>0.16</td><td>0.18</td><td>0.25</td><td>0.27</td><td>0.21 </td></tr>
 <tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.13</td><td>0.15</td><td>0.15</td><td>0.16</td><td>0.15 </td></tr>
 <tr>
@@ -544,7 +547,7 @@ Overall group rankings</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 22 2020 09:37:11 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 28 2020 10:30:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

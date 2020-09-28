@@ -95,7 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Internal implementation of DrySPONGE for the DryGASCON cipher.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;internal-util.h&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="drygascon_8h_source.html">drygascon.h</a>&quot;</code><br/>
+<code>#include &quot;drygascon128_arm_selector.h&quot;</code><br/>
+<code>#include &quot;internal-util.h&quot;</code><br/>
 </div>
 <p><a href="internal-drysponge_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -113,14 +115,14 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uniondrysponge256__rate__t.html">drysponge256_rate_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of a rate block for DrySPONGE256.  <a href="uniondrysponge256__rate__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uniondrysponge128__x__t.html">drysponge128_x_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the "x" value for DrySPONGE128.  <a href="uniondrysponge128__x__t.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union____attribute____.html">__attribute__</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the "x" value for DrySPONGE128.  <a href="union____attribute____.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uniondrysponge256__x__t.html">drysponge256_x_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the "x" value for DrySPONGE256.  <a href="uniondrysponge256__x__t.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the rolling DrySPONGE128 state.  <a href="structdrysponge128__state__t.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union____attribute____.html">__attribute__</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the "x" value for DrySPONGE128.  <a href="union____attribute____.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdrysponge256__state__t.html">drysponge256_state_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure of the rolling DrySPONGE256 state.  <a href="structdrysponge256__state__t.html#details">More...</a><br/></td></tr>
@@ -217,27 +219,30 @@ Functions</h2></td></tr>
 <tr class="memitem:af2f4e37b0c6ed41a4631a48ceed08fa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#af2f4e37b0c6ed41a4631a48ceed08fa1">gascon256_core_round</a> (<a class="el" href="uniongascon256__state__t.html">gascon256_state_t</a> *state, uint8_t round)</td></tr>
 <tr class="memdesc:af2f4e37b0c6ed41a4631a48ceed08fa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permutes the GASCON-256 state using one iteration of CoreRound.  <a href="#af2f4e37b0c6ed41a4631a48ceed08fa1">More...</a><br/></td></tr>
 <tr class="separator:af2f4e37b0c6ed41a4631a48ceed08fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f371a5f433512b483086efa545d52c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#ad5f371a5f433512b483086efa545d52c">drysponge128_g</a> (<a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *state)</td></tr>
+<tr class="memitem:ad5f371a5f433512b483086efa545d52c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#ad5f371a5f433512b483086efa545d52c">drysponge128_g</a> (drysponge128_state_t *state)</td></tr>
 <tr class="memdesc:ad5f371a5f433512b483086efa545d52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the DrySPONGE128 G function which runs the core rounds and squeezes data out of the GASGON-128 state.  <a href="#ad5f371a5f433512b483086efa545d52c">More...</a><br/></td></tr>
 <tr class="separator:ad5f371a5f433512b483086efa545d52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd1ba66bff35ed3ed65ce488bc0e2c3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#afd1ba66bff35ed3ed65ce488bc0e2c3c">drysponge256_g</a> (<a class="el" href="structdrysponge256__state__t.html">drysponge256_state_t</a> *state)</td></tr>
 <tr class="memdesc:afd1ba66bff35ed3ed65ce488bc0e2c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the DrySPONGE256 G function which runs the core rounds and squeezes data out of the GASGON-256 state.  <a href="#afd1ba66bff35ed3ed65ce488bc0e2c3c">More...</a><br/></td></tr>
 <tr class="separator:afd1ba66bff35ed3ed65ce488bc0e2c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addf9409fb2208f6896c21e2147da50e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#addf9409fb2208f6896c21e2147da50e9">drysponge128_g_core</a> (<a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *state)</td></tr>
+<tr class="memitem:addf9409fb2208f6896c21e2147da50e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#addf9409fb2208f6896c21e2147da50e9">drysponge128_g_core</a> (drysponge128_state_t *state)</td></tr>
 <tr class="memdesc:addf9409fb2208f6896c21e2147da50e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the DrySPONGE128 G function which runs the core rounds but does not squeeze out any output.  <a href="#addf9409fb2208f6896c21e2147da50e9">More...</a><br/></td></tr>
 <tr class="separator:addf9409fb2208f6896c21e2147da50e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a171f0759b10a55bf509661f5e417bba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#a171f0759b10a55bf509661f5e417bba4">drysponge256_g_core</a> (<a class="el" href="structdrysponge256__state__t.html">drysponge256_state_t</a> *state)</td></tr>
 <tr class="memdesc:a171f0759b10a55bf509661f5e417bba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the DrySPONGE256 G function which runs the core rounds but does not squeeze out any output.  <a href="#a171f0759b10a55bf509661f5e417bba4">More...</a><br/></td></tr>
 <tr class="separator:a171f0759b10a55bf509661f5e417bba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65db7c5be5f64a0cde6801f2255cc025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#a65db7c5be5f64a0cde6801f2255cc025">drysponge128_f_absorb</a> (<a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *state, const unsigned char *input, unsigned len)</td></tr>
-<tr class="memdesc:a65db7c5be5f64a0cde6801f2255cc025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the absorption phase of the DrySPONGE128 F function.  <a href="#a65db7c5be5f64a0cde6801f2255cc025">More...</a><br/></td></tr>
-<tr class="separator:a65db7c5be5f64a0cde6801f2255cc025"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4219199ab9e8ee4a929087f936149003"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#a4219199ab9e8ee4a929087f936149003">drysponge256_f_absorb</a> (<a class="el" href="structdrysponge256__state__t.html">drysponge256_state_t</a> *state, const unsigned char *input, unsigned len)</td></tr>
 <tr class="memdesc:a4219199ab9e8ee4a929087f936149003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the absorption phase of the DrySPONGE256 F function.  <a href="#a4219199ab9e8ee4a929087f936149003">More...</a><br/></td></tr>
 <tr class="separator:a4219199ab9e8ee4a929087f936149003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5a450f3452715d59d210c159069816d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#ac5a450f3452715d59d210c159069816d">drysponge128_setup</a> (<a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *state, const unsigned char *key, const unsigned char *nonce, int final_block)</td></tr>
-<tr class="memdesc:ac5a450f3452715d59d210c159069816d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up a DrySPONGE128 state to begin encryption or decryption.  <a href="#ac5a450f3452715d59d210c159069816d">More...</a><br/></td></tr>
-<tr class="separator:ac5a450f3452715d59d210c159069816d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6e4498ac3b1a3270b9d44f4ca49883"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#abf6e4498ac3b1a3270b9d44f4ca49883">drygascon128_f_wrap</a> (drysponge128_state_t *state, const unsigned char *input, unsigned len)</td></tr>
+<tr class="memdesc:abf6e4498ac3b1a3270b9d44f4ca49883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper that combines the DrySPONGE128 F and G functions.  <a href="#abf6e4498ac3b1a3270b9d44f4ca49883">More...</a><br/></td></tr>
+<tr class="separator:abf6e4498ac3b1a3270b9d44f4ca49883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9824ff462fa6724ece23f04e0a9335"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#a5a9824ff462fa6724ece23f04e0a9335">drysponge128_safe_alignement</a> (const drysponge128_state_t *state)</td></tr>
+<tr class="memdesc:a5a9824ff462fa6724ece23f04e0a9335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if state alignement is safe vs timing attacks.  <a href="#a5a9824ff462fa6724ece23f04e0a9335">More...</a><br/></td></tr>
+<tr class="separator:a5a9824ff462fa6724ece23f04e0a9335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab604ea6f35d221743b8e07f503129a0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#ab604ea6f35d221743b8e07f503129a0e">drysponge128_setup</a> (drysponge128_state_t *state, const unsigned char *key, unsigned int keysize, const unsigned char *nonce, int final_block)</td></tr>
+<tr class="memdesc:ab604ea6f35d221743b8e07f503129a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up a DrySPONGE128 state to begin encryption or decryption.  <a href="#ab604ea6f35d221743b8e07f503129a0e">More...</a><br/></td></tr>
+<tr class="separator:ab604ea6f35d221743b8e07f503129a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c7965b5d70457e8b627823a6920ee02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-drysponge_8h.html#a8c7965b5d70457e8b627823a6920ee02">drysponge256_setup</a> (<a class="el" href="structdrysponge256__state__t.html">drysponge256_state_t</a> *state, const unsigned char *key, const unsigned char *nonce, int final_block)</td></tr>
 <tr class="memdesc:a8c7965b5d70457e8b627823a6920ee02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up a DrySPONGE256 state to begin encryption or decryption.  <a href="#a8c7965b5d70457e8b627823a6920ee02">More...</a><br/></td></tr>
 <tr class="separator:a8c7965b5d70457e8b627823a6920ee02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,14 +251,14 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Internal implementation of DrySPONGE for the DryGASCON cipher. </p>
 <p>References: <a href="https://github.com/sebastien-riou/DryGASCON">https://github.com/sebastien-riou/DryGASCON</a> </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a65db7c5be5f64a0cde6801f2255cc025"></a>
+<a class="anchor" id="abf6e4498ac3b1a3270b9d44f4ca49883"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void drysponge128_f_absorb </td>
+          <td class="memname">void drygascon128_f_wrap </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *&#160;</td>
+          <td class="paramtype">drysponge128_state_t *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
@@ -276,16 +281,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Performs the absorption phase of the DrySPONGE128 F function. </p>
+<p>Wrapper that combines the DrySPONGE128 F and G functions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The DrySPONGE128 state. </td></tr>
     <tr><td class="paramname">input</td><td>The block of input data to incorporate into the state. </td></tr>
-    <tr><td class="paramname">len</td><td>The length of the input block, which must be less than or equal to DRYSPONGE128_RATE. Smaller input blocks will be padded.</td></tr>
+    <tr><td class="paramname">len</td><td>The length of the input block, which must be less than or equal to DRYSPONGE128_RATE. Smaller input blocks will be padded. </td></tr>
   </table>
   </dd>
 </dl>
-<p>This function must be followed by a call to <a class="el" href="internal-drysponge_8h.html#ad5f371a5f433512b483086efa545d52c" title="Performs the DrySPONGE128 G function which runs the core rounds and squeezes data out of the GASGON-1...">drysponge128_g()</a> or <a class="el" href="internal-drysponge_8h.html#addf9409fb2208f6896c21e2147da50e9" title="Performs the DrySPONGE128 G function which runs the core rounds but does not squeeze out any output...">drysponge128_g_core()</a> to perform the full F operation. </p>
 
 </div>
 </div>
@@ -296,7 +300,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void drysponge128_g </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *&#160;</td>
+          <td class="paramtype">drysponge128_state_t *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
@@ -321,7 +325,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void drysponge128_g_core </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *&#160;</td>
+          <td class="paramtype">drysponge128_state_t *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
@@ -338,14 +342,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac5a450f3452715d59d210c159069816d"></a>
+<a class="anchor" id="a5a9824ff462fa6724ece23f04e0a9335"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drysponge128_safe_alignement </td>
+          <td>(</td>
+          <td class="paramtype">const drysponge128_state_t *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determine if state alignement is safe vs timing attacks. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Points to the state to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Non-zero if alignement is safe.</dd></dl>
+<p>We expect this to be completly optimized out by compiler if the alignement is enforced at build time </p>
+
+</div>
+</div>
+<a class="anchor" id="ab604ea6f35d221743b8e07f503129a0e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void drysponge128_setup </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdrysponge128__state__t.html">drysponge128_state_t</a> *&#160;</td>
+          <td class="paramtype">drysponge128_state_t *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
@@ -353,6 +383,12 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const unsigned char *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>keysize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -378,7 +414,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The DrySPONGE128 state. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the 16 bytes of the key. </td></tr>
+    <tr><td class="paramname">key</td><td>Points to the bytes of the key. </td></tr>
+    <tr><td class="paramname">keysize</td><td>Number of bytes in the key. </td></tr>
     <tr><td class="paramname">nonce</td><td>Points to the 16 bytes of the nonce. </td></tr>
     <tr><td class="paramname">final_block</td><td>Non-zero if after key setup there will be no more blocks. </td></tr>
   </table>
@@ -603,7 +640,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 22 2020 09:37:10 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Sep 28 2020 10:30:12 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
