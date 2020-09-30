@@ -31,9 +31,10 @@ NIST set a cut-off of 18 Septeber 2020 for status updates from
 the Round 2 candidate submission teams.  Since that date, some newer
 implementations have been contributed by others and written by myself.
 
-The performance of the newer versions can be found on this page.
-The performance of the previous "baseline" versions can be found on the
-\ref performance "original performance page".
+This page compares the performance of the original
+\ref performance_baseline "baseline versions" with the newer
+submissions for "Phase 2" of the project.  The original
+\ref performance "performance page" has been updated with the new figures.
 
 For phase 2, I am focusing mainly on the 32-bit ARM Cortex M3
 microprocessor in the Arduino Due device that I used for previous
@@ -42,9 +43,9 @@ interesting results.
 
 \section perf_phase2_ascon ASCON and GASCON
 
-The baseline versions of ASCON-128, ASCON-128a, and ASCON-80pq for
-32-bit platforms use the 32-bit bit-sliced representation.  Plaintext
-and associated data is converted into bit-sliced form prior to being
+The \ref performance_baseline "baseline" versions of ASCON-128, ASCON-128a,
+and ASCON-80pq for 32-bit platforms use the 32-bit bit-sliced representation.
+Plaintext and associated data is converted into bit-sliced form prior to being
 absorbed by the permutation.  Squeezed ciphertext and the tag are
 converted from bit-sliced form to regular form on output.
 
