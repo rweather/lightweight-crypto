@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Lightweight Cryptography Primitives: Performance on 32-bit platforms</title>
+<title>Lightweight Cryptography Primitives: Performance on 32-bit platforms (baseline)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -75,20 +75,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Performance on 32-bit platforms </div>  </div>
+<div class="title">Performance on 32-bit platforms (baseline) </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#perf_intro">Introduction</a></li>
-<li class="level1"><a href="#perf_cortex_m3">Performance on ARM Cortex M3</a></li>
-<li class="level1"><a href="#perf_esp32">Performance on ESP32</a></li>
-<li class="level1"><a href="#perf_overall">Overall group rankings</a></li>
+<ul><li class="level1"><a href="#perf_baseline_intro">Introduction</a></li>
+<li class="level1"><a href="#perf_baseline_cortex_m3">Performance on ARM Cortex M3</a></li>
+<li class="level1"><a href="#perf_baseline_esp32">Performance on ESP32</a></li>
+<li class="level1"><a href="#perf_baseline_overall">Overall group rankings</a></li>
 </ul>
 </div>
-<div class="textblock"><p><b>Note:</b> NIST set a cut-off of 18 Septeber 2020 for status updates from the Round 2 candidate submission teams, leading up to the selection of Round 2 finalists in December 2020. All of my implementations prior to that date were in C.</p>
-<p>Since that date, some newer implementations have been contributed by others and written by myself. The performance of the newer versions compared with the baseline versions can be found on the <a class="el" href="performance_phase2.html">Phase 2 Performance Figures</a> page. The tables on this page have been updated to reflect the latest figures.</p>
-<p>The figures for the original baseline versions are now found on a <a class="el" href="performance_baseline.html">separate page</a>.</p>
-<h1><a class="anchor" id="perf_intro"></a>
+<div class="textblock"><p>This page is a copy of the <a class="el" href="performance.html">main 32-bit performance page</a> as at 18 Septeber 2020. That date was the NIST cut-off for status updates from the Round 2 candidate submission teams, leading up to the selection of Round 2 finalists in December 2020.</p>
+<p>The original page contains updated figures for changes that were made by myself and others since the cut-off. Some submissions were received by me before the cut-off but I didn't have time to integrate them.</p>
+<p>The source code for the baseline versions can be found in the <b>round2_baseline</b> branch of the repository. The <b>master</b> branch contains the more up to date versions of each algorithm.</p>
+<p>All baseline versions are implemented in C for 32-bit platforms. Some of the more recently implementations use assembly code to accelerate the algorithms on ARM Cortex M* microprocessors.</p>
+<h1><a class="anchor" id="perf_baseline_intro"></a>
 Introduction</h1>
 <p>There is a lot of variation in the capabilities of embedded microprocessors. Some are superscalar; others are not. Some have specialised vector instructions; others do not. Clock speeds can also vary considerably. All this means that "cycles per byte" or "megabytes per second" are pretty meaningless when trying to rank the algorithms on relative performance on any given microprocessor.</p>
 <p>The approach I take here is "ChaChaPoly Units". The library contains a reasonably efficient 32-bit non-vectorized implementation of the ChaChaPoly AEAD scheme from my <a href="https://github.com/rweather/arduinolibs">Arduino cryptography library</a>. This makes it a known quanitity to compare with other algorithms side by side.</p>
@@ -97,13 +98,12 @@ Introduction</h1>
 <p>For hash algorithms we use BLAKE2s as the basic unit. BLAKE2s is based on ChaCha20 so it is the most logical hashing counterpart to ChaChaPoly.</p>
 <p>This page details the performance results for 32-bit platforms. A separate page that details preliminary results for the 8-bit AVR platform can be found <a class="el" href="performance_avr.html">here</a>.</p>
 <p>The <a class="el" href="performance_masking.html">masking performance page</a> contains comparisons of masked versions of the algorithms with their baseline versions.</p>
-<h1><a class="anchor" id="perf_cortex_m3"></a>
+<h1><a class="anchor" id="perf_baseline_cortex_m3"></a>
 Performance on ARM Cortex M3</h1>
 <p>All tests were run on an Arduino Due which is an ARM Cortex M3 running at 84MHz. The code was optimised for size rather than speed, which is the default optimisation option for the Arduino IDE. I found that "-Os" size optimisation often did better on the Due than "-O2" or "-O3" with the compiler that I had. Your own results may vary.</p>
 <p>Each algorithm was tested with two packet sizes: 128 and 16 bytes. Some algorithms can have better performance on small packet sizes. The associated data is always zero-length.</p>
 <p>The value in the table below indicates the number of times faster than ChaChaPoly on the same packet. Higher numbers mean better performance. The table is ordered from best average performance down.</p>
 <p>Where a NIST submission contains multiple algorithms in a family, <b><em>bold italics</em></b> indicates the primary algorithm in the family.</p>
-<p>An asterisk (*) indicates algorithms that have been accelerated with assembly code.</p>
 <table class="doxtable">
 <tr>
 <td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
@@ -114,13 +114,13 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>1.16</td><td>1.14</td><td>2.31</td><td>2.24</td><td>1.58 </td></tr>
 <tr>
-<td>ASCON-128a (*)</td><td>128</td><td>128</td><td>128</td><td>1.56</td><td>1.47</td><td>1.55</td><td>1.52</td><td>1.53 </td></tr>
-<tr>
 <td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46 </td></tr>
 <tr>
-<td><b><em>ASCON-128</em></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.25</td><td>1.23</td><td>1.47</td><td>1.48</td><td>1.35 </td></tr>
+<td>ASCON-128a</td><td>128</td><td>128</td><td>128</td><td>1.29</td><td>1.26</td><td>1.33</td><td>1.32</td><td>1.30 </td></tr>
 <tr>
-<td>ASCON-80pq (*)</td><td>160</td><td>128</td><td>128</td><td>1.25</td><td>1.22</td><td>1.47</td><td>1.44</td><td>1.34 </td></tr>
+<td>ASCON-80pq</td><td>160</td><td>128</td><td>128</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.12 </td></tr>
+<tr>
+<td><b><em>ASCON-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.11 </td></tr>
 <tr>
 <td><b><em>Schwaemm256-128</em></b> (SPARKLE)</td><td>128</td><td>256</td><td>128</td><td>1.08</td><td>1.12</td><td>1.08</td><td>1.10</td><td>1.09 </td></tr>
 <tr>
@@ -145,8 +145,6 @@ Performance on ARM Cortex M3</h1>
 <td><b><em>TinyJAMBU-128</em></b></td><td>128</td><td>96</td><td>64</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81 </td></tr>
 <tr>
 <td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80 </td></tr>
-<tr>
-<td><b><em>DryGASCON128k16</em></b> (*)</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.03</td><td>1.02</td><td>0.78 </td></tr>
 <tr>
 <td>Schwaemm256-256 (SPARKLE)</td><td>256</td><td>256</td><td>256</td><td>0.79</td><td>0.80</td><td>0.74</td><td>0.72</td><td>0.76 </td></tr>
 <tr>
@@ -189,6 +187,8 @@ Performance on ARM Cortex M3</h1>
 <td>Romulus-N3</td><td>128</td><td>96</td><td>128</td><td>0.19</td><td>0.20</td><td>0.30</td><td>0.31</td><td>0.24 </td></tr>
 <tr>
 <td><b><em>ACE</em></b></td><td>128</td><td>128</td><td>128</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.24</td><td>0.22 </td></tr>
+<tr>
+<td><b><em>DryGASCON128k16</em></b></td><td>128</td><td>128</td><td>128</td><td>0.16</td><td>0.18</td><td>0.28</td><td>0.30</td><td>0.22 </td></tr>
 <tr>
 <td>SKINNY-AEAD-M4</td><td>128</td><td>96</td><td>64</td><td>0.16</td><td>0.17</td><td>0.26</td><td>0.27</td><td>0.21 </td></tr>
 <tr>
@@ -267,17 +267,17 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td><b><em>Xoodyak</em></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51 </td></tr>
 <tr>
-<td><b><em>DryGASCON128-HASH</em></b> (*)</td><td>256</td><td>0.29</td><td>0.29</td><td>0.88</td><td>0.48 </td></tr>
-<tr>
 <td><b><em>GIMLI-24-HASH</em></b></td><td>256</td><td>0.45</td><td>0.35</td><td>0.61</td><td>0.46 </td></tr>
 <tr>
 <td><b><em>Esch256</em></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.65</td><td>0.46 </td></tr>
 <tr>
-<td><b><em>ASCON-HASH</em></b> (*)</td><td>256</td><td>0.39</td><td>0.32</td><td>0.50</td><td>0.40 </td></tr>
-<tr>
 <td><b><em>SATURNIN-Hash</em></b></td><td>256</td><td>0.24</td><td>0.20</td><td>0.49</td><td>0.31 </td></tr>
 <tr>
+<td><b><em>ASCON-HASH</em></b></td><td>256</td><td>0.29</td><td>0.24</td><td>0.37</td><td>0.30 </td></tr>
+<tr>
 <td>Esch384 (SPARKLE)</td><td>384</td><td>0.26</td><td>0.21</td><td>0.33</td><td>0.26 </td></tr>
+<tr>
+<td><b><em>DryGASCON128-HASH</em></b></td><td>256</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13 </td></tr>
 <tr>
 <td><b><em>ACE-HASH</em></b></td><td>256</td><td>0.10</td><td>0.09</td><td>0.15</td><td>0.11 </td></tr>
 <tr>
@@ -301,7 +301,7 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>SKINNY-tk2-HASH</td><td>256</td><td>0.01</td><td>0.01</td><td>0.02</td><td>0.01 </td></tr>
 </table>
-<h1><a class="anchor" id="perf_esp32"></a>
+<h1><a class="anchor" id="perf_baseline_esp32"></a>
 Performance on ESP32</h1>
 <p>The tests below were run on an ESP32 Dev Module running at 240MHz. The ordering is mostly the same as ARM Cortext M3 with a few reversals where the architectural differences gives some algorithms an added advantage.</p>
 <table class="doxtable">
@@ -499,7 +499,7 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>Subterranean-Hash</em></b></td><td>256</td><td>0.01</td><td>0.01</td><td>0.04</td><td>0.02 </td></tr>
 </table>
-<h1><a class="anchor" id="perf_overall"></a>
+<h1><a class="anchor" id="perf_baseline_overall"></a>
 Overall group rankings</h1>
 <p>Based on the above data, the NIST submissions can be roughly grouped with those of similar performance. Changes in CPU, optimisation options, loop unrolling, or assembly code replacement might modify the rank of an algorithm.</p>
 <p>Only the primary algorithm in each family is considered for this ranking. I took the average of the ARM Cortex M3 and ESP32 figures from the above tables to compute an average across different architectures. I then grouped the algorithms into 0.1-wide buckets; for example everything with rank 3 has an average between 0.30 and 0.39 ChaChaPoly units.</p>
@@ -512,21 +512,19 @@ Overall group rankings</h1>
 <tr>
 <td>10</td><td>SPARKLE </td></tr>
 <tr>
-<td>9</td><td>ASCON, GIFT-COFB </td></tr>
+<td>9</td><td>GIFT-COFB </td></tr>
 <tr>
-<td>8</td><td>Gimli, Xoodyak </td></tr>
+<td>8</td><td>ASCON, Gimli, Xoodyak </td></tr>
 <tr>
 <td>7</td><td>TinyJAMBU, Spook </td></tr>
 <tr>
 <td>6</td><td>ESTATE, HYENA, SUNDAE-GIFT </td></tr>
 <tr>
-<td>5</td><td>DryGASCON </td></tr>
-<tr>
 <td>4</td><td>Grain128-AEAD, KNOT </td></tr>
 <tr>
 <td>3</td><td>LOTUS, Saturnin, SPIX, SpoC </td></tr>
 <tr>
-<td>2</td><td>Oribatida </td></tr>
+<td>2</td><td>DryGASCON, Oribatida </td></tr>
 <tr>
 <td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean </td></tr>
 <tr>
@@ -539,7 +537,11 @@ Overall group rankings</h1>
 <tr>
 <td>4</td><td>Gimli, SPARKLE, Xoodyak </td></tr>
 <tr>
-<td>3</td><td>ASCON, DryGASCON, Saturnin </td></tr>
+<td>3</td><td>Saturnin </td></tr>
+<tr>
+<td>2</td><td>ASCON </td></tr>
+<tr>
+<td>1</td><td>DryGASCON </td></tr>
 <tr>
 <td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean </td></tr>
 </table>

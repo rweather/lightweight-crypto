@@ -87,11 +87,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><h1><a class="anchor" id="perf_phase2_intro"></a>
 Introduction</h1>
 <p>NIST set a cut-off of 18 Septeber 2020 for status updates from the Round 2 candidate submission teams. Since that date, some newer implementations have been contributed by others and written by myself.</p>
-<p>The performance of the newer versions can be found on this page. The performance of the previous "baseline" versions can be found on the <a class="el" href="performance.html">original performance page</a>.</p>
+<p>This page compares the performance of the original <a class="el" href="performance_baseline.html">baseline versions</a> with the newer submissions for "Phase 2" of the project. The original <a class="el" href="performance.html">performance page</a> has been updated with the new figures.</p>
 <p>For phase 2, I am focusing mainly on the 32-bit ARM Cortex M3 microprocessor in the Arduino Due device that I used for previous testing. ESP32 and AVR figures may be included if they provide interesting results.</p>
 <h1><a class="anchor" id="perf_phase2_ascon"></a>
 ASCON and GASCON</h1>
-<p>The baseline versions of ASCON-128, ASCON-128a, and ASCON-80pq for 32-bit platforms use the 32-bit bit-sliced representation. Plaintext and associated data is converted into bit-sliced form prior to being absorbed by the permutation. Squeezed ciphertext and the tag are converted from bit-sliced form to regular form on output.</p>
+<p>The <a class="el" href="performance_baseline.html">baseline</a> versions of ASCON-128, ASCON-128a, and ASCON-80pq for 32-bit platforms use the 32-bit bit-sliced representation. Plaintext and associated data is converted into bit-sliced form prior to being absorbed by the permutation. Squeezed ciphertext and the tag are converted from bit-sliced form to regular form on output.</p>
 <p>The GASCON core function was part of the DryGASCON submission to Round 2. It is identical to ASCON except that the inputs and outputs of the permutation are already in 32-bit bit-sliced form. If DryGASCON is admitted to Round 3, then the authors have suggested including GASCON in Round 3 as well in their <a href="https://csrc.nist.gov/CSRC/media/Projects/lightweight-cryptography/documents/round-2/status-update-sep2020/DryGASCON_20200917-status-update.pdf">status update</a>.</p>
 <p>Sébastien Riou of the DryGASCON submission team contributed versions of ASCON-128, ASCON-128a, and ASCON-80pq where the GASCON permutation was directly substituted for ASCON. This avoids the need to convert back and forth between bit-sliced form and regular form. After applying his patch and adding a few tweaks of my own, replacing ASCON with GASCON provided between 12% and 17% improvement in performance on ARM Cortex M3:</p>
 <table class="doxtable">
@@ -173,7 +173,7 @@ DryGASCON</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 1 2020 06:53:03 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 1 2020 07:55:56 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
