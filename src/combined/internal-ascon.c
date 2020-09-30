@@ -22,7 +22,19 @@
 
 #include "internal-ascon.h"
 
-#if !defined(__AVR__)
+/* Determine which versions should be accelerated with assembly code */
+#if defined(__AVR__)
+#define ASCON_ASM_REGULAR 1
+#define ASCON_ASM_SLICED 0
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define ASCON_ASM_REGULAR 0
+#define ASCON_ASM_SLICED 1
+#else
+#define ASCON_ASM_REGULAR 0
+#define ASCON_ASM_SLICED 0
+#endif
+
+#if !ASCON_ASM_REGULAR
 
 void ascon_permute(ascon_state_t *state, uint8_t first_round)
 {
@@ -77,7 +89,9 @@ void ascon_permute(ascon_state_t *state, uint8_t first_round)
 #endif
 }
 
-#if ASCON_SLICED
+#endif /* !ASCON_ASM_REGULAR */
+
+#if ASCON_SLICED && !ASCON_ASM_SLICED
 
 void ascon_to_sliced(ascon_state_t *state)
 {
@@ -192,5 +206,3 @@ void ascon_permute_sliced(ascon_state_t *state, uint8_t first_round)
 }
 
 #endif /* ASCON_SLICED */
-
-#endif /* !__AVR__ */

@@ -27,6 +27,7 @@ ASCON_FILES = \
     ascon-xof.c \
     internal-ascon.c \
     internal-ascon.h \
+    internal-ascon-arm-cm3.S \
     internal-ascon-avr.S \
     $(COMMON_FILES)
 ASCON_MASKED_FILES = \
@@ -36,6 +37,7 @@ ASCON_MASKED_FILES = \
     internal-ascon.h \
     internal-ascon-m.c \
     internal-ascon-m.h \
+    internal-ascon-arm-cm3.S \
     internal-ascon-avr.S \
     $(COMMON_MASKING_FILES)
 COMET_FILES = \
@@ -144,6 +146,7 @@ ISAP_FILES = \
     isap.h \
     internal-ascon.c \
     internal-ascon.h \
+    internal-ascon-arm-cm3.S \
     internal-ascon-avr.S \
     internal-isap.h \
     internal-keccak.c \

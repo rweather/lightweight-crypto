@@ -23,7 +23,16 @@
 #include "internal-gascon.h"
 #include "internal-drysponge.h"
 
-#if !defined(__AVR__)
+/* Determine if gascon_permute() should be accelerated with assembly code */
+#if defined(__AVR__)
+#define GASCON_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define GASCON_ASM 1
+#else
+#define GASCON_ASM 0
+#endif
+
+#if !GASCON_ASM
 
 /* Right rotations in bit-interleaved format */
 #define intRightRotateEven(yl,yh,xl,xh, bits) \
@@ -200,4 +209,4 @@ void gascon_permute(gascon_state_t *state, uint8_t first_round)
 #endif
 }
 
-#endif /* __AVR__ */
+#endif /* !GASCON_ASM */
