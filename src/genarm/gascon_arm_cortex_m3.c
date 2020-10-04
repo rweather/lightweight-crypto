@@ -29,6 +29,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static void function_header(const char *name)
 {
@@ -42,7 +43,6 @@ static void function_header(const char *name)
 
 static void function_footer(const char *name)
 {
-    printf("\tbx\tlr\n");
     printf("\t.size\t%s, .-%s\n", name, name);
 }
 
@@ -62,6 +62,7 @@ typedef struct
     const char *t0;
     const char *t1;
     const char *t2;
+    const char *t3;
 
 } reg_names;
 
@@ -79,46 +80,52 @@ static void binop(const char *name, const char *reg1, const char *reg2)
         printf("\t%s\t%s, %s\n", name, reg1, reg2);
 }
 
-typedef struct
+/* Generates a "bic" instruction: dest = src1 & ~src2 */
+static void bic(const char *dest, const char *src1, const char *src2)
 {
-    const char *x0;
-    const char *x1;
-    const char *x2;
-    const char *x3;
-    const char *x4;
-    const char *t0;
-    const char *t1;
-    const char *t2;
+    if (!strcmp(dest, src1) && is_low_reg(src1) && is_low_reg(src2))
+        printf("\tbics\t%s, %s\n", src1, src2);
+    else
+        printf("\tbic\t%s, %s, %s\n", dest, src1, src2);
+}
 
-} sbox_reg_names;
-
-/* Applies the S-box to 5 words of the state */
-static void gen_sbox(const sbox_reg_names *regs)
+/* Applies the S-box to five 64-bit words of the state */
+static void gen_sbox(const reg_names *regs)
 {
-    /* S-box with only 3 temporary registers, not the usual 5 */
-    binop("eor", regs->x0, regs->x4);       /* x0 ^= x4; */
-    binop("eor", regs->x4, regs->x3);       /* x4 ^= x3; */
-    binop("eor", regs->x2, regs->x1);       /* x2 ^= x1; */
-    binop("mov", regs->t1, regs->x0);       /* t1 = x0; */
-    binop("mvn", regs->t0, regs->x0);       /* t0 = (~x0) & x1; */
-    binop("and", regs->t0, regs->x1);
-    binop("mvn", regs->t2, regs->x1);       /* x0 ^= (~x1) & x2; */
-    binop("and", regs->t2, regs->x2);
-    binop("eor", regs->x0, regs->t2);
-    binop("mvn", regs->t2, regs->x2);       /* x1 ^= (~x2) & x3; */
-    binop("and", regs->t2, regs->x3);
-    binop("eor", regs->x1, regs->t2);
-    binop("mvn", regs->t2, regs->x3);       /* x2 ^= (~x3) & x4; */
-    binop("and", regs->t2, regs->x4);
-    binop("eor", regs->x2, regs->t2);
-    binop("mvn", regs->t2, regs->x4);       /* x3 ^= (~x4) & t1; */
-    binop("and", regs->t2, regs->t1);
-    binop("eor", regs->x3, regs->t2);
-    binop("eor", regs->x4, regs->t0);       /* x4 ^= t0; */
-    binop("eor", regs->x1, regs->x0);       /* x1 ^= x0; */
-    binop("eor", regs->x0, regs->x4);       /* x0 ^= x4; */
-    binop("eor", regs->x3, regs->x2);       /* x3 ^= x2; */
-    binop("mvn", regs->x2, regs->x2);       /* x2 = ~x2; */
+    binop("eor", regs->x0_e, regs->x4_e);       /* x0_e ^= x4_e; */
+    binop("eor", regs->x0_o, regs->x4_o);       /* x0_o ^= x4_o; */
+    binop("eor", regs->x4_e, regs->x3_e);       /* x4_e ^= x3_e; */
+    binop("eor", regs->x4_o, regs->x3_o);       /* x4_o ^= x3_o; */
+    binop("eor", regs->x2_e, regs->x1_e);       /* x2_e ^= x1_e; */
+    binop("eor", regs->x2_o, regs->x1_o);       /* x2_o ^= x1_o; */
+    bic(regs->t0, regs->x1_e, regs->x0_e);      /* t0 = (~x0_e) & x_e1; */
+    bic(regs->t2, regs->x2_e, regs->x1_e);      /* x0_e ^= (~x1_e) & x2_e; */
+    bic(regs->t3, regs->x3_e, regs->x2_e);      /* x1_e ^= (~x2_e) & x3_e; */
+    binop("eor", regs->x1_e, regs->t3);
+    bic(regs->t3, regs->x0_e, regs->x4_e);      /* x3_e ^= (~x4_e) & t1; */
+    binop("eor", regs->x0_e, regs->t2);
+    bic(regs->t2, regs->x4_e, regs->x3_e);      /* x2_e ^= (~x3_e) & x4_e; */
+    binop("eor", regs->x2_e, regs->t2);
+    binop("eor", regs->x3_e, regs->t3);
+    binop("eor", regs->x4_e, regs->t0);         /* x4_e ^= t0_e; */
+    bic(regs->t0, regs->x1_o, regs->x0_o);      /* t0 = (~x0_o) & x_o1; */
+    bic(regs->t2, regs->x2_o, regs->x1_o);      /* x0_o ^= (~x1_o) & x2_o; */
+    bic(regs->t3, regs->x3_o, regs->x2_o);      /* x1_o ^= (~x2_o) & x3_o; */
+    binop("eor", regs->x1_o, regs->t3);
+    bic(regs->t3, regs->x0_o, regs->x4_o);      /* x3_o ^= (~x4_o) & t1; */
+    binop("eor", regs->x0_o, regs->t2);
+    bic(regs->t2, regs->x4_o, regs->x3_o);      /* x2_o ^= (~x3_o) & x4_o; */
+    binop("eor", regs->x2_o, regs->t2);
+    binop("eor", regs->x3_o, regs->t3);
+    binop("eor", regs->x4_o, regs->t0);         /* x4_o ^= t0_o; */
+    binop("eor", regs->x1_e, regs->x0_e);       /* x1_e ^= x0_e; */
+    binop("eor", regs->x1_o, regs->x0_o);       /* x1_o ^= x0_o; */
+    binop("eor", regs->x0_e, regs->x4_e);       /* x0_e ^= x4_e; */
+    binop("eor", regs->x0_o, regs->x4_o);       /* x0_o ^= x4_o; */
+    binop("eor", regs->x3_e, regs->x2_e);       /* x3_e ^= x2_e; */
+    binop("eor", regs->x3_o, regs->x2_o);       /* x3_o ^= x2_o; */
+    binop("mvn", regs->x2_e, regs->x2_e);       /* x2_e = ~x2_e; */
+    binop("mvn", regs->x2_o, regs->x2_o);       /* x2_o = ~x2_o; */
 }
 
 /* Rotate a 32-bit source and write to a destination */
@@ -168,28 +175,13 @@ static void intRightRotate
 static void gen_round(const reg_names *regs, int round)
 {
     int RC;
-    sbox_reg_names sbox_regs;
 
     /* Apply the round constant to x2_e */
     RC = ((0x0F - round) << 4) | round;
     printf("\teor\t%s, %s, #%d\n", regs->x2_e, regs->x2_e, RC);
 
     /* Apply the S-box to the even and odd halves of the state */
-    sbox_regs.x0 = regs->x0_e;
-    sbox_regs.x1 = regs->x1_e;
-    sbox_regs.x2 = regs->x2_e;
-    sbox_regs.x3 = regs->x3_e;
-    sbox_regs.x4 = regs->x4_e;
-    sbox_regs.t0 = regs->t0;
-    sbox_regs.t1 = regs->t1;
-    sbox_regs.t2 = regs->t2;
-    gen_sbox(&sbox_regs);
-    sbox_regs.x0 = regs->x0_o;
-    sbox_regs.x1 = regs->x1_o;
-    sbox_regs.x2 = regs->x2_o;
-    sbox_regs.x3 = regs->x3_o;
-    sbox_regs.x4 = regs->x4_o;
-    gen_sbox(&sbox_regs);
+    gen_sbox(regs);
 
     /* Linear diffusion layer */
 
@@ -238,7 +230,8 @@ static void gen_permute(void)
     regs.t0 = "r0";
     regs.t1 = "r1";
     regs.t2 = "ip";
-    printf("\tpush\t{r4, r5, r6, r7, r8, r9, r10, fp}\n");
+    regs.t3 = "lr";
+    printf("\tpush\t{r4, r5, r6, r7, r8, r9, r10, fp, lr}\n");
 
     /* Load all words of the state into registers */
     printf("\tldr\t%s, [r0, #%d]\n", regs.x0_e, 0);
@@ -290,7 +283,7 @@ static void gen_permute(void)
     printf("\tstr\t%s, [r0, #%d]\n", regs.x3_o, 28);
     printf("\tstr\t%s, [r0, #%d]\n", regs.x4_e, 32);
     printf("\tstr\t%s, [r0, #%d]\n", regs.x4_o, 36);
-    printf("\tpop\t{r4, r5, r6, r7, r8, r9, r10, fp}\n");
+    printf("\tpop\t{r4, r5, r6, r7, r8, r9, r10, fp, pc}\n");
 }
 
 int main(int argc, char *argv[])

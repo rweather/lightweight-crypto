@@ -9,7 +9,7 @@
 	.thumb_func
 	.type	gascon_permute, %function
 gascon_permute:
-	push	{r4, r5, r6, r7, r8, r9, r10, fp}
+	push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
 	ldr	r2, [r0, #0]
 	ldr	r7, [r0, #4]
 	ldr	r3, [r0, #8]
@@ -49,50 +49,38 @@ gascon_permute:
 .L0:
 	eor	r4, r4, #240
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -127,50 +115,38 @@ gascon_permute:
 .L1:
 	eor	r4, r4, #225
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -205,50 +181,38 @@ gascon_permute:
 .L2:
 	eor	r4, r4, #210
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -283,50 +247,38 @@ gascon_permute:
 .L3:
 	eor	r4, r4, #195
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -361,50 +313,38 @@ gascon_permute:
 .L4:
 	eor	r4, r4, #180
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -439,50 +379,38 @@ gascon_permute:
 .L5:
 	eor	r4, r4, #165
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -517,50 +445,38 @@ gascon_permute:
 .L6:
 	eor	r4, r4, #150
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -595,50 +511,38 @@ gascon_permute:
 .L7:
 	eor	r4, r4, #135
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -673,50 +577,38 @@ gascon_permute:
 .L8:
 	eor	r4, r4, #120
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -751,50 +643,38 @@ gascon_permute:
 .L9:
 	eor	r4, r4, #105
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -829,50 +709,38 @@ gascon_permute:
 .L10:
 	eor	r4, r4, #90
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -907,50 +775,38 @@ gascon_permute:
 .L11:
 	eor	r4, r4, #75
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	mov	r0, r7, ror #9
 	mov	r1, r2, ror #10
@@ -994,8 +850,7 @@ gascon_permute:
 	str	r10, [r0, #28]
 	str	r6, [r0, #32]
 	str	fp, [r0, #36]
-	pop	{r4, r5, r6, r7, r8, r9, r10, fp}
-	bx	lr
+	pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
 	.size	gascon_permute, .-gascon_permute
 
 #endif
