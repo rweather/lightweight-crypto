@@ -27,7 +27,7 @@
 #define ASCON_ASM_REGULAR 1
 #define ASCON_ASM_SLICED 0
 #elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
-#define ASCON_ASM_REGULAR 0
+#define ASCON_ASM_REGULAR 1
 #define ASCON_ASM_SLICED 1
 #else
 #define ASCON_ASM_REGULAR 0

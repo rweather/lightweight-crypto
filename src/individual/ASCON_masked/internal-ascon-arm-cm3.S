@@ -4,12 +4,1122 @@
 	.text
 
 	.align	2
+	.global	ascon_permute
+	.thumb
+	.thumb_func
+	.type	ascon_permute, %function
+ascon_permute:
+	push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+	ldr	r7, [r0, #0]
+	ldr	r2, [r0, #4]
+	ldr	r8, [r0, #8]
+	ldr	r3, [r0, #12]
+	ldr	r9, [r0, #16]
+	ldr	r4, [r0, #20]
+	ldr	r10, [r0, #24]
+	ldr	r5, [r0, #28]
+	ldr	fp, [r0, #32]
+	ldr	r6, [r0, #36]
+	rev	r7, r7
+	rev	r2, r2
+	rev	r8, r8
+	rev	r3, r3
+	rev	r9, r9
+	rev	r4, r4
+	rev	r10, r10
+	rev	r5, r5
+	rev	fp, fp
+	rev	r6, r6
+	push	{r0}
+	cmp	r1, #6
+	beq	.LP6
+	cmp	r1, #0
+	beq	.LP0
+	cmp	r1, #4
+	beq	.LP4
+	cmp	r1, #11
+	beq	.LP11
+	cmp	r1, #10
+	beq	.LP10
+	cmp	r1, #9
+	beq	.LP9
+	cmp	r1, #8
+	beq	.LP8
+	cmp	r1, #7
+	beq	.LP7
+	cmp	r1, #5
+	beq	.LP5
+	cmp	r1, #3
+	beq	.LP3
+	cmp	r1, #2
+	beq	.LP2
+	cmp	r1, #1
+	beq	.LP1
+	b	.LP12
+.LP0:
+	eor	r4, r4, #240
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP1:
+	eor	r4, r4, #225
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP2:
+	eor	r4, r4, #210
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP3:
+	eor	r4, r4, #195
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP4:
+	eor	r4, r4, #180
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP5:
+	eor	r4, r4, #165
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP6:
+	eor	r4, r4, #150
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP7:
+	eor	r4, r4, #135
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP8:
+	eor	r4, r4, #120
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP9:
+	eor	r4, r4, #105
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP10:
+	eor	r4, r4, #90
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP11:
+	eor	r4, r4, #75
+	eors	r2, r6
+	eor	r7, fp
+	eors	r6, r5
+	eor	fp, r10
+	eors	r4, r3
+	eor	r9, r8
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
+	eor	r7, ip
+	bic	ip, fp, r10
+	eor	r9, ip
+	eor	r10, lr
+	eor	fp, r0
+	eors	r3, r2
+	eor	r8, r7
+	eors	r2, r6
+	eor	r7, fp
+	eors	r5, r4
+	eor	r10, r9
+	mvns	r4, r4
+	mvn	r9, r9
+	movs	r0, r2
+	movs	r1, r7
+	eor	r2, r2, r0, lsr #19
+	eor	r7, r7, r1, lsr #19
+	eor	r2, r2, r1, lsl #13
+	eor	r7, r7, r0, lsl #13
+	eor	r2, r2, r0, lsr #28
+	eor	r7, r7, r1, lsr #28
+	eor	r2, r2, r1, lsl #4
+	eor	r7, r7, r0, lsl #4
+	movs	r0, r3
+	mov	r1, r8
+	eor	r3, r3, r1, lsr #29
+	eor	r8, r8, r0, lsr #29
+	eor	r3, r3, r0, lsl #3
+	eor	r8, r8, r1, lsl #3
+	eor	r3, r3, r1, lsr #7
+	eor	r8, r8, r0, lsr #7
+	eor	r3, r3, r0, lsl #25
+	eor	r8, r8, r1, lsl #25
+	movs	r0, r4
+	mov	r1, r9
+	eor	r4, r4, r0, lsr #1
+	eor	r9, r9, r1, lsr #1
+	eor	r4, r4, r1, lsl #31
+	eor	r9, r9, r0, lsl #31
+	eor	r4, r4, r0, lsr #6
+	eor	r9, r9, r1, lsr #6
+	eor	r4, r4, r1, lsl #26
+	eor	r9, r9, r0, lsl #26
+	movs	r0, r5
+	mov	r1, r10
+	eor	r5, r5, r0, lsr #10
+	eor	r10, r10, r1, lsr #10
+	eor	r5, r5, r1, lsl #22
+	eor	r10, r10, r0, lsl #22
+	eor	r5, r5, r0, lsr #17
+	eor	r10, r10, r1, lsr #17
+	eor	r5, r5, r1, lsl #15
+	eor	r10, r10, r0, lsl #15
+	movs	r0, r6
+	mov	r1, fp
+	eor	r6, r6, r0, lsr #7
+	eor	fp, fp, r1, lsr #7
+	eor	r6, r6, r1, lsl #25
+	eor	fp, fp, r0, lsl #25
+	eor	r6, r6, r1, lsr #9
+	eor	fp, fp, r0, lsr #9
+	eor	r6, r6, r0, lsl #23
+	eor	fp, fp, r1, lsl #23
+.LP12:
+	pop	{r0}
+	rev	r7, r7
+	rev	r2, r2
+	rev	r8, r8
+	rev	r3, r3
+	rev	r9, r9
+	rev	r4, r4
+	rev	r10, r10
+	rev	r5, r5
+	rev	fp, fp
+	rev	r6, r6
+	str	r7, [r0, #0]
+	str	r2, [r0, #4]
+	str	r8, [r0, #8]
+	str	r3, [r0, #12]
+	str	r9, [r0, #16]
+	str	r4, [r0, #20]
+	str	r10, [r0, #24]
+	str	r5, [r0, #28]
+	str	fp, [r0, #32]
+	str	r6, [r0, #36]
+	pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+	.size	ascon_permute, .-ascon_permute
+
+	.align	2
 	.global	ascon_permute_sliced
 	.thumb
 	.thumb_func
 	.type	ascon_permute_sliced, %function
 ascon_permute_sliced:
-	push	{r4, r5, r6, r7, r8, r9, r10, fp}
+	push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
 	ldr	r2, [r0, #0]
 	ldr	r7, [r0, #4]
 	ldr	r3, [r0, #8]
@@ -50,50 +1160,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #12
 	eor	r9, r9, #12
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -119,50 +1217,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #9
 	eor	r9, r9, #12
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -188,50 +1274,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #12
 	eor	r9, r9, #9
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -257,50 +1331,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #9
 	eor	r9, r9, #9
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -326,50 +1388,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #6
 	eor	r9, r9, #12
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -395,50 +1445,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #3
 	eor	r9, r9, #12
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -464,50 +1502,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #6
 	eor	r9, r9, #9
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -533,50 +1559,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #3
 	eor	r9, r9, #9
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -602,50 +1616,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #12
 	eor	r9, r9, #6
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -671,50 +1673,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #9
 	eor	r9, r9, #6
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -740,50 +1730,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #12
 	eor	r9, r9, #3
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -809,50 +1787,38 @@ ascon_permute_sliced:
 	eor	r4, r4, #9
 	eor	r9, r9, #3
 	eors	r2, r6
+	eor	r7, fp
 	eors	r6, r5
-	eors	r4, r3
-	movs	r1, r2
-	mvns	r0, r2
-	ands	r0, r3
-	mvn	ip, r3
-	and	ip, r4
-	eor	r2, ip
-	mvn	ip, r4
-	and	ip, r5
-	eor	r3, ip
-	mvn	ip, r5
-	and	ip, r6
-	eor	r4, ip
-	mvn	ip, r6
-	and	ip, r1
-	eor	r5, ip
-	eors	r6, r0
-	eors	r3, r2
-	eors	r2, r6
-	eors	r5, r4
-	mvns	r4, r4
-	eor	r7, fp
 	eor	fp, r10
+	eors	r4, r3
 	eor	r9, r8
-	movs	r1, r7
-	mvns	r0, r7
-	and	r0, r8
-	mvn	ip, r8
-	and	ip, r9
+	bic	r0, r3, r2
+	bic	ip, r4, r3
+	bic	lr, r5, r4
+	eor	r3, lr
+	bic	lr, r2, r6
+	eor	r2, ip
+	bic	ip, r6, r5
+	eor	r4, ip
+	eor	r5, lr
+	eors	r6, r0
+	bic	r0, r8, r7
+	bic	ip, r9, r8
+	bic	lr, r10, r9
+	eor	r8, lr
+	bic	lr, r7, fp
 	eor	r7, ip
-	mvn	ip, r9
-	and	ip, r10
-	eor	r8, ip
-	mvn	ip, r10
-	and	ip, fp
+	bic	ip, fp, r10
 	eor	r9, ip
-	mvn	ip, fp
-	and	ip, r1
-	eor	r10, ip
+	eor	r10, lr
 	eor	fp, r0
+	eors	r3, r2
 	eor	r8, r7
+	eors	r2, r6
 	eor	r7, fp
+	eors	r5, r4
 	eor	r10, r9
+	mvns	r4, r4
 	mvn	r9, r9
 	eor	r0, r2, r7, ror #4
 	eor	r1, r7, r2, ror #5
@@ -886,8 +1852,7 @@ ascon_permute_sliced:
 	str	r10, [r0, #28]
 	str	r6, [r0, #32]
 	str	fp, [r0, #36]
-	pop	{r4, r5, r6, r7, r8, r9, r10, fp}
-	bx	lr
+	pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
 	.size	ascon_permute_sliced, .-ascon_permute_sliced
 
 	.align	2
