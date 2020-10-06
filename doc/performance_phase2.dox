@@ -145,11 +145,29 @@ Using the ARM Cortex M3 assembly version of ASCON provides an improvement
 to the performance of ISAP-A:
 
 <table>
-<tr><td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
 <tr><td>ISAP-A-128A</td><td>Rhys Weatherley</td><td>0.24</td><td>0.26</td><td>0.13</td><td>0.14</td><td>0.18</td></tr>
 <tr><td>ISAP-A-128A</td><td>Baseline</td><td>0.17</td><td>0.19</td><td>0.10</td><td>0.11</td><td>0.13</td></tr>
 <tr><td>ISAP-A-128</td><td>Rhys Weatherley</td><td>0.08</td><td>0.08</td><td>0.03</td><td>0.04</td><td>0.05</td></tr>
 <tr><td>ISAP-A-128</td><td>Baseline</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03</td></tr>
 </table>
+
+\section perf_phase2_tinyjambu TinyJAMBU
+
+I replaced the common TinyJAMBU permutation function with three separate
+unrolled versions for 128-bit, 192-bit, and 256-bit key sizes.  This
+provided a modest improvement:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>TinyJAMBU-128</td><td>Rhys Weatherley</td><td>0.71</td><td>0.74</td><td>1.27</td><td>1.27</td><td>0.94</td></tr>
+<tr><td>TinyJAMBU-192</td><td>Rhys Weatherley</td><td>0.63</td><td>0.67</td><td>1.14</td><td>1.16</td><td>0.85</td></tr>
+<tr><td>TinyJAMBU-128</td><td>Baseline</td><td>0.59</td><td>0.62</td><td>1.10</td><td>1.11</td><td>0.81</td></tr>
+<tr><td>TinyJAMBU-256</td><td>Rhys Weatherley</td><td>0.56</td><td>0.59</td><td>1.04</td><td>1.06</td><td>0.76</td></tr>
+<tr><td>TinyJAMBU-192</td><td>Baseline</td><td>0.54</td><td>0.57</td><td>1.01</td><td>1.03</td><td>0.74</td></tr>
+<tr><td>TinyJAMBU-256</td><td>Baseline</td><td>0.49</td><td>0.52</td><td>0.94</td><td>0.96</td><td>0.68</td></tr>
+</table>
+
+Similar improvements were also seen on ESP32.
 
 */

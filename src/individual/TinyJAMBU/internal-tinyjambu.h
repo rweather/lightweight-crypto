@@ -49,8 +49,45 @@ extern "C" {
  */
 #define TINYJAMBU_ROUNDS(steps) ((steps) / 128)
 
+#if !defined(__AVR__)
+
 /**
- * \brief Perform the TinyJAMBU permutation.
+ * \brief Perform the TinyJAMBU-128 permutation.
+ *
+ * \param state TinyJAMBU-128 state to be permuted.
+ * \param key Points to the 4 key words.
+ * \param rounds The number of rounds to perform.
+ */
+void tiny_jambu_permutation_128
+    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
+     unsigned rounds);
+
+/**
+ * \brief Perform the TinyJAMBU-192 permutation.
+ *
+ * \param state TinyJAMBU-192 state to be permuted.
+ * \param key Points to the 6 key words.
+ * \param rounds The number of rounds to perform.
+ */
+void tiny_jambu_permutation_192
+    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
+     unsigned rounds);
+
+/**
+ * \brief Perform the TinyJAMBU-256 permutation.
+ *
+ * \param state TinyJAMBU-256 state to be permuted.
+ * \param key Points to the 8 key words.
+ * \param rounds The number of rounds to perform.
+ */
+void tiny_jambu_permutation_256
+    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
+     unsigned rounds);
+
+#else /* __AVR__ */
+
+/**
+ * \brief Common function to perform the TinyJAMBU permutation.
  *
  * \param state TinyJAMBU state to be permuted.
  * \param key Points to the key words.
@@ -64,6 +101,17 @@ extern "C" {
 void tiny_jambu_permutation
     (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
      unsigned key_words, unsigned rounds);
+
+/* Wrap the single common function to perform the individual permutations */
+#define TINYJAMBU_192_DUPLICATE_KEY 1
+#define tiny_jambu_permutation_128(state, key, rounds) \
+    tiny_jambu_permutation((state), (key), 4, (rounds))
+#define tiny_jambu_permutation_192(state, key, rounds) \
+    tiny_jambu_permutation((state), (key), 12, (rounds))
+#define tiny_jambu_permutation_256(state, key, rounds) \
+    tiny_jambu_permutation((state), (key), 8, (rounds))
+
+#endif /* __AVR__ */
 
 #ifdef __cplusplus
 }

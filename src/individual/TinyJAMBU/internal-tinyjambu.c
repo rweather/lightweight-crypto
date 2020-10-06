@@ -24,12 +24,20 @@
 
 #if !defined(__AVR__)
 
-void tiny_jambu_permutation
+#define tiny_jambu_steps_32(s0, s1, s2, s3, kword) \
+    do { \
+        t1 = (s1 >> 15) | (s2 << 17); \
+        t2 = (s2 >> 6)  | (s3 << 26); \
+        t3 = (s2 >> 21) | (s3 << 11); \
+        t4 = (s2 >> 27) | (s3 << 5); \
+        s0 ^= t1 ^ (~(t2 & t3)) ^ t4 ^ kword; \
+    } while (0)
+
+void tiny_jambu_permutation_128
     (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
-     unsigned key_words, unsigned rounds)
+     unsigned rounds)
 {
     uint32_t t1, t2, t3, t4;
-    unsigned round;
 
     /* Load the state into local variables */
     uint32_t s0 = state[0];
@@ -37,27 +45,109 @@ void tiny_jambu_permutation
     uint32_t s2 = state[2];
     uint32_t s3 = state[3];
 
-    /* Perform all permutation rounds.  Each round consists of 128 steps,
-     * which can be performed 32 at a time plus a rotation.  After four
-     * sets of 32 steps, the rotation order returns to the original position.
-     * So we can hide the rotations by doing 128 steps each round */
-    for (round = 0; round < rounds; ++round) {
-        /* Get the key words to use during this round */
-        const uint32_t *k = &(key[(round * 4) % key_words]);
+    /* Perform all permutation rounds 128 at a time */
+    for (; rounds > 0; --rounds) {
+        /* Perform the first set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[0]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[1]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[2]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[3]);
 
-        /* Perform the 128 steps of this round in groups of 32 */
-        #define tiny_jambu_steps_32(s0, s1, s2, s3, offset) \
-            do { \
-                t1 = (s1 >> 15) | (s2 << 17); \
-                t2 = (s2 >> 6)  | (s3 << 26); \
-                t3 = (s2 >> 21) | (s3 << 11); \
-                t4 = (s2 >> 27) | (s3 << 5); \
-                s0 ^= t1 ^ (~(t2 & t3)) ^ t4 ^ k[offset]; \
-            } while (0)
-        tiny_jambu_steps_32(s0, s1, s2, s3, 0);
-        tiny_jambu_steps_32(s1, s2, s3, s0, 1);
-        tiny_jambu_steps_32(s2, s3, s0, s1, 2);
-        tiny_jambu_steps_32(s3, s0, s1, s2, 3);
+        /* Bail out if this is the last round */
+        if ((--rounds) == 0)
+            break;
+
+        /* Perform the second set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[0]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[1]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[2]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[3]);
+    }
+
+    /* Store the local variables back to the state */
+    state[0] = s0;
+    state[1] = s1;
+    state[2] = s2;
+    state[3] = s3;
+}
+
+void tiny_jambu_permutation_192
+    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
+     unsigned rounds)
+{
+    uint32_t t1, t2, t3, t4;
+
+    /* Load the state into local variables */
+    uint32_t s0 = state[0];
+    uint32_t s1 = state[1];
+    uint32_t s2 = state[2];
+    uint32_t s3 = state[3];
+
+    /* Perform all permutation rounds 128 at a time */
+    for (; rounds > 0; --rounds) {
+        /* Perform the first set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[0]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[1]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[2]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[3]);
+
+        /* Bail out if this is the last round */
+        if ((--rounds) == 0)
+            break;
+
+        /* Perform the second set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[4]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[5]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[0]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[1]);
+
+        /* Bail out if this is the last round */
+        if ((--rounds) == 0)
+            break;
+
+        /* Perform the third set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[2]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[3]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[4]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[5]);
+    }
+
+    /* Store the local variables back to the state */
+    state[0] = s0;
+    state[1] = s1;
+    state[2] = s2;
+    state[3] = s3;
+}
+
+void tiny_jambu_permutation_256
+    (uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key,
+     unsigned rounds)
+{
+    uint32_t t1, t2, t3, t4;
+
+    /* Load the state into local variables */
+    uint32_t s0 = state[0];
+    uint32_t s1 = state[1];
+    uint32_t s2 = state[2];
+    uint32_t s3 = state[3];
+
+    /* Perform all permutation rounds 128 at a time */
+    for (; rounds > 0; --rounds) {
+        /* Perform the first set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[0]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[1]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[2]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[3]);
+
+        /* Bail out if this is the last round */
+        if ((--rounds) == 0)
+            break;
+
+        /* Perform the second set of 128 steps */
+        tiny_jambu_steps_32(s0, s1, s2, s3, key[4]);
+        tiny_jambu_steps_32(s1, s2, s3, s0, key[5]);
+        tiny_jambu_steps_32(s2, s3, s0, s1, key[6]);
+        tiny_jambu_steps_32(s3, s0, s1, s2, key[7]);
     }
 
     /* Store the local variables back to the state */
