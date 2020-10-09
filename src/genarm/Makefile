@@ -8,7 +8,8 @@ LDFLAGS += $(COMMON_LDFLAGS)
 
 TARGETS = \
 	bin/ascon_arm_cortex_m3 \
-	bin/gascon_arm_cortex_m3
+	bin/gascon_arm_cortex_m3 \
+	bin/tinyjambu_arm_cortex_m3
 
 all: $(TARGETS)
 
@@ -20,6 +21,9 @@ bin/gascon_arm_cortex_m3: gascon_arm_cortex_m3.c
 	@mkdir -p bin
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
+bin/tinyjambu_arm_cortex_m3: tinyjambu_arm_cortex_m3.c
+	@mkdir -p bin
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 clean:
 	rm -f $(TARGETS)
 
@@ -28,3 +32,4 @@ check:
 generate: all
 	bin/ascon_arm_cortex_m3 >../combined/internal-ascon-arm-cm3.S
 	bin/gascon_arm_cortex_m3 >../combined/internal-gascon-arm-cm3.S
+	bin/tinyjambu_arm_cortex_m3 >../combined/internal-tinyjambu-arm-cm3.S

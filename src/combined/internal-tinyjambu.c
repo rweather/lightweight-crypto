@@ -22,7 +22,16 @@
 
 #include "internal-tinyjambu.h"
 
-#if !defined(__AVR__)
+/* Determine if the permutations should be accelerated with assembly code */
+#if defined(__AVR__)
+#define TINYJAMBU_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define TINYJAMBU_ASM 1
+#else
+#define TINYJAMBU_ASM 0
+#endif
+
+#if !TINYJAMBU_ASM
 
 #define tiny_jambu_steps_32(s0, s1, s2, s3, kword) \
     do { \
@@ -157,4 +166,4 @@ void tiny_jambu_permutation_256
     state[3] = s3;
 }
 
-#endif
+#endif /* !TINYJAMBU_ASM */

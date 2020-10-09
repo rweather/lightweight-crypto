@@ -317,6 +317,7 @@ TINYJAMBU_FILES = \
     tinyjambu.h \
     internal-tinyjambu.c \
     internal-tinyjambu.h \
+    internal-tinyjambu-arm-cm3.S \
     internal-tinyjambu-avr.S \
     $(COMMON_FILES)
 TINYJAMBU_MASKED_FILES = \
