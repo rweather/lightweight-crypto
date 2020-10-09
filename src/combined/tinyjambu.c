@@ -22,6 +22,7 @@
 
 #include "tinyjambu.h"
 #include "internal-tinyjambu.h"
+#include "internal-util.h"
 #include <string.h>
 
 aead_cipher_t const tiny_jambu_128_cipher = {
@@ -440,11 +441,7 @@ int tiny_jambu_192_aead_encrypt
      const unsigned char *k)
 {
     uint32_t state[TINY_JAMBU_STATE_SIZE];
-#if defined(TINYJAMBU_192_DUPLICATE_KEY)
-    uint32_t key[12];
-#else
     uint32_t key[6];
-#endif
     uint32_t data;
     (void)nsec;
 
@@ -458,15 +455,6 @@ int tiny_jambu_192_aead_encrypt
     key[3] = le_load_word32(k + 12);
     key[4] = le_load_word32(k + 16);
     key[5] = le_load_word32(k + 20);
-#if defined(TINYJAMBU_192_DUPLICATE_KEY)
-    /* Some permutation implementations require that the key be duplicated */
-    key[6] = key[0];
-    key[7] = key[1];
-    key[8] = key[2];
-    key[9] = key[3];
-    key[10] = key[4];
-    key[11] = key[5];
-#endif
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
     tiny_jambu_setup_192(state, key, npub, ad, adlen);
@@ -526,11 +514,7 @@ int tiny_jambu_192_aead_decrypt
 {
     unsigned char *mtemp = m;
     uint32_t state[TINY_JAMBU_STATE_SIZE];
-#if defined(TINYJAMBU_192_DUPLICATE_KEY)
-    uint32_t key[12];
-#else
     uint32_t key[6];
-#endif
     unsigned char tag[TINY_JAMBU_TAG_SIZE];
     uint32_t data;
     (void)nsec;
@@ -547,15 +531,6 @@ int tiny_jambu_192_aead_decrypt
     key[3] = le_load_word32(k + 12);
     key[4] = le_load_word32(k + 16);
     key[5] = le_load_word32(k + 20);
-#if defined(TINYJAMBU_192_DUPLICATE_KEY)
-    /* Some permutation implementations require that the key be duplicated */
-    key[6] = key[0];
-    key[7] = key[1];
-    key[8] = key[2];
-    key[9] = key[3];
-    key[10] = key[4];
-    key[11] = key[5];
-#endif
 
     /* Set up the TinyJAMBU state with the key, nonce, and associated data */
     tiny_jambu_setup_192(state, key, npub, ad, adlen);

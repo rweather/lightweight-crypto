@@ -606,7 +606,7 @@ public:
         { prologue_encrypt_block_key2(name, size_locals); }
     void prologue_permutation(const char *name, unsigned size_locals);
     Reg prologue_permutation_with_count(const char *name, unsigned size_locals);
-    void prologue_tinyjambu(const char *name, Reg &key_words, Reg &rounds);
+    void prologue_tinyjambu(const char *name, Reg &rounds);
     void load_output_ptr();
 
     // Extra arguments and return values.

@@ -168,6 +168,6 @@ provided a modest improvement:
 <tr><td>TinyJAMBU-256</td><td>Baseline</td><td>0.49</td><td>0.52</td><td>0.94</td><td>0.96</td><td>0.68</td></tr>
 </table>
 
-Similar improvements were also seen on ESP32.
+Improvements were also seen on ESP32 and AVR.
 
 */

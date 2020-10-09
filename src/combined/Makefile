@@ -188,7 +188,7 @@ internal-spongent.o: internal-spongent.h internal-util.h
 internal-spook.o: internal-spook.h internal-util.h
 internal-spook-m.o: internal-spook.h internal-util.h aead-random.h internal-masking.h
 internal-subterranean.o: internal-subterranean.h internal-util.h
-internal-tinyjambu.o: internal-tinyjambu.h internal-util.h
+internal-tinyjambu.o: internal-tinyjambu.h
 internal-tinyjambu-m.o: internal-tinyjambu-m.h aead-random.h internal-masking.h internal-util.h
 internal-wage.o: internal-wage.h internal-util.h
 internal-xoodoo.o: internal-xoodoo.h internal-util.h

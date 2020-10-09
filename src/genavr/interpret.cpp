@@ -606,7 +606,7 @@ void Code::exec_permutation
 }
 
 /**
- * \brief Executes the code in this object as a TinyJAMBI keyed permutation.
+ * \brief Executes the code in this object as a TinyJAMBU keyed permutation.
  *
  * \param state Points to the buffer containing the state on input and output.
  * \param state_len Length of the state buffer.
@@ -623,8 +623,7 @@ void Code::exec_tinyjambu
     unsigned key_address = s.alloc_buffer(key, key_len);
     s.setPair(26, state_address);   // X = state
     s.setPair(30, key_address);     // Z = key
-    s.setPair(20, key_len / 4);     // key_words
-    s.setPair(18, rounds / 128);    // TINYJAMBU_ROUNDS(rounds)
+    s.setPair(20, rounds / 128);    // TINYJAMBU_ROUNDS(rounds)
     s.push16(0xFFFF);               // return address
     unsigned fp = s.pair(32) - m_localsSize - 1;
     s.setPair(28, fp);              // Y = frame pointer

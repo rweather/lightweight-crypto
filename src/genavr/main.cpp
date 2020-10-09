@@ -2142,18 +2142,52 @@ static bool subterranean(enum Mode mode)
     return true;
 }
 
-static bool tinyjambu(enum Mode mode)
+static bool tinyjambu128(enum Mode mode)
 {
     Code code;
-    gen_tinyjambu_permutation(code);
+    gen_tinyjambu128_permutation(code);
     if (mode == Generate) {
         code.write(std::cout);
     } else {
-        if (!test_tinyjambu_permutation(code)) {
-            std::cout << "TinyJAMBU tests FAILED" << std::endl;
+        if (!test_tinyjambu128_permutation(code)) {
+            std::cout << "TinyJAMBU-128 tests FAILED" << std::endl;
             return false;
         } else {
-            std::cout << "TinyJAMBU tests succeeded" << std::endl;
+            std::cout << "TinyJAMBU-128 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool tinyjambu192(enum Mode mode)
+{
+    Code code;
+    gen_tinyjambu192_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_tinyjambu192_permutation(code)) {
+            std::cout << "TinyJAMBU-192 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "TinyJAMBU-192 tests succeeded" << std::endl;
+        }
+    }
+    return true;
+}
+
+static bool tinyjambu256(enum Mode mode)
+{
+    Code code;
+    gen_tinyjambu256_permutation(code);
+    if (mode == Generate) {
+        code.write(std::cout);
+    } else {
+        if (!test_tinyjambu256_permutation(code)) {
+            std::cout << "TinyJAMBU-256 tests FAILED" << std::endl;
+            return false;
+        } else {
+            std::cout << "TinyJAMBU-256 tests succeeded" << std::endl;
         }
     }
     return true;
@@ -2316,7 +2350,9 @@ int main(int argc, char *argv[])
         } else if (!strcmp(argv[1], "Subterranean")) {
             gen1 = subterranean;
         } else if (!strcmp(argv[1], "TinyJAMBU")) {
-            gen1 = tinyjambu;
+            gen1 = tinyjambu128;
+            gen2 = tinyjambu192;
+            gen3 = tinyjambu256;
         } else if (!strcmp(argv[1], "WAGE")) {
             gen1 = wage;
             gen2 = wage_helpers;
@@ -2427,7 +2463,11 @@ int main(int argc, char *argv[])
             exit_val = 1;
         if (!subterranean(Test))
             exit_val = 1;
-        if (!tinyjambu(Test))
+        if (!tinyjambu128(Test))
+            exit_val = 1;
+        if (!tinyjambu192(Test))
+            exit_val = 1;
+        if (!tinyjambu256(Test))
             exit_val = 1;
         if (!wage(Test))
             exit_val = 1;

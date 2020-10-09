@@ -45,7 +45,8 @@ static void shift_left_5regs
 }
 
 static void gen_tinyjambu_steps_32
-    (Code &code, const Reg &s0, const Reg &s1, const Reg &s2, const Reg &s3)
+    (Code &code, const Reg &s0, const Reg &s1, const Reg &s2, const Reg &s3,
+     int koffset)
 {
     // Allocate some temporary working registers.  After the allocations
     // in the gen_tinyjambu_permutation() function we have 7 left spare.
@@ -91,9 +92,8 @@ static void gen_tinyjambu_steps_32
     code.lsr(Reg(temp, 1, 5), 3);
     code.logxor(s0, Reg(temp, 1, 4));
 
-    // s0 ^= *k++;
-    code.ldz(t, POST_INC);
-    code.logxor(s0, t);
+    // s0 ^= k[koffset];
+    code.ldz_xor(s0, koffset * 4);
 
     // Release the temporary working registers.
     code.releaseReg(temp);
@@ -103,18 +103,16 @@ static void gen_tinyjambu_steps_32
  * \brief Generates the AVR code for the TinyJAMBU permutation.
  *
  * \param code The code block to generate into.
+ * \param name Name of the function to generate.
+ * \param key_words Number of words in the key: 4, 6, or 8.
  */
-void gen_tinyjambu_permutation(Code &code)
+static void gen_tinyjambu_permutation
+    (Code &code, const char *name, int key_words)
 {
     // Set up the function prologue.  X points to the state and Z to the key.
-    Reg key_words, rounds;
-    code.prologue_tinyjambu("tiny_jambu_permutation", key_words, rounds);
-
-    // We don't need Y any more, so use it for temporaries.
-    code.setFlag(Code::TempY);
-
-    // We need a temporary high register to hold a key word counter.
-    Reg counter = code.allocateHighReg(1);
+    Reg rounds;
+    code.prologue_tinyjambu(name, rounds);
+    code.setFlag(Code::NoLocals);
 
     // Load the 128-bit state from X into registers.
     Reg s0 = code.allocateReg(4);
@@ -126,33 +124,38 @@ void gen_tinyjambu_permutation(Code &code)
     code.ldx(s2, POST_INC);
     code.ldx(s3, POST_INC);
 
-    // Multiply the key_words parameter by 4 and set up a counter.
-    code.lsl(key_words, 2);
-    code.move(counter, 0);
-
-    // Perform all permutation rounds.  Each round has 128 steps.
+    // Perform all permutation rounds.  Each round has 128 steps
+    // but it may be unrolled 2 or 3 times based on the key size.
     unsigned char top_label = 0;
     unsigned char end_label = 0;
     code.label(top_label);
 
-    // Perform the 128 steps of this round, 32 at a time.
-    gen_tinyjambu_steps_32(code, s0, s1, s2, s3);
-    gen_tinyjambu_steps_32(code, s1, s2, s3, s0);
-    gen_tinyjambu_steps_32(code, s2, s3, s0, s1);
-    gen_tinyjambu_steps_32(code, s3, s0, s1, s2);
+    // Unroll the inner part of the loop.
+    int inner_rounds;
+    if (key_words == 4)
+        inner_rounds = 1;
+    else if (key_words == 6)
+        inner_rounds = 3;
+    else
+        inner_rounds = 2;
+    for (int inner = 0; inner < inner_rounds; ++inner) {
+        // Perform the 128 steps of this inner round, 32 at a time.
+        int koffset = inner * 4;
+        gen_tinyjambu_steps_32(code, s0, s1, s2, s3, koffset % key_words);
+        gen_tinyjambu_steps_32(code, s1, s2, s3, s0, (koffset + 1) % key_words);
+        gen_tinyjambu_steps_32(code, s2, s3, s0, s1, (koffset + 2) % key_words);
+        gen_tinyjambu_steps_32(code, s3, s0, s1, s2, (koffset + 3) % key_words);
+
+        // Check for early bail-out between the inner rounds.
+        if (inner < (inner_rounds - 1)) {
+            code.dec(rounds);
+            code.breq(end_label);
+        }
+    }
 
     // Decrement the round counter at the bottom of the round loop.
     code.dec(rounds);
-    code.breq(end_label);
-
-    // Z has been incremented through the key words.  Check to see if
-    // we have reached the end and then rewind back to the start.
-    code.add(counter, 16);
-    code.compare(counter, key_words);
     code.brne(top_label);
-    code.sub(Reg::z_ptr(), key_words);
-    code.move(counter, 0);
-    code.jmp(top_label);
 
     // Store the 128-bit state in the registers back to X.
     code.label(end_label);
@@ -162,38 +165,95 @@ void gen_tinyjambu_permutation(Code &code)
     code.stx(s0, PRE_DEC);
 }
 
-bool test_tinyjambu_permutation(Code &code)
+/**
+ * \brief Generates the AVR code for the TinyJAMBU-128 permutation.
+ *
+ * \param code The code block to generate into.
+ */
+void gen_tinyjambu128_permutation(Code &code)
+{
+    gen_tinyjambu_permutation(code, "tiny_jambu_permutation_128", 4);
+}
+
+/**
+ * \brief Generates the AVR code for the TinyJAMBU-192 permutation.
+ *
+ * \param code The code block to generate into.
+ */
+void gen_tinyjambu192_permutation(Code &code)
+{
+    gen_tinyjambu_permutation(code, "tiny_jambu_permutation_192", 6);
+}
+
+/**
+ * \brief Generates the AVR code for the TinyJAMBU-256 permutation.
+ *
+ * \param code The code block to generate into.
+ */
+void gen_tinyjambu256_permutation(Code &code)
+{
+    gen_tinyjambu_permutation(code, "tiny_jambu_permutation_256", 8);
+}
+
+bool test_tinyjambu128_permutation(Code &code)
 {
     static unsigned char const input[16] = {
         0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
         0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
     };
-    static unsigned char const key_1[16] = {
+    static unsigned char const key[16] = {
         0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
         0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff
     };
-    static unsigned char const output_1[16] = {
+    static unsigned char const output[16] = {
         0x75, 0x5b, 0x02, 0xd9, 0x11, 0xc7, 0xa7, 0xde,
         0x5c, 0xfe, 0x2b, 0xc4, 0x16, 0x50, 0x1e, 0x36
     };
-    static unsigned char const key_2[32] = {
+    unsigned char state[16];
+    memcpy(state, input, 16);
+    code.exec_tinyjambu(state, 16, key, 16, 1024);
+    return !memcmp(output, state, 16);
+}
+
+bool test_tinyjambu192_permutation(Code &code)
+{
+    static unsigned char const input[16] = {
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+        0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
+    };
+    static unsigned char const key[24] = {
+        0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
+        0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
+        0xa5, 0xb4, 0x87, 0x96, 0xe1, 0xf0, 0xc3, 0xd2
+    };
+    static unsigned char const output[16] = {
+        0xda, 0xd4, 0x03, 0xeb, 0x42, 0x43, 0x89, 0x14,
+        0x4d, 0xba, 0xd7, 0xb0, 0xa6, 0x53, 0x5b, 0x02
+    };
+    unsigned char state[16];
+    memcpy(state, input, 16);
+    code.exec_tinyjambu(state, 16, key, 24, 1152);
+    return !memcmp(output, state, 16);
+}
+
+bool test_tinyjambu256_permutation(Code &code)
+{
+    static unsigned char const input[16] = {
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+        0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f
+    };
+    static unsigned char const key[32] = {
         0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,
         0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
         0xa5, 0xb4, 0x87, 0x96, 0xe1, 0xf0, 0xc3, 0xd2,
         0x2d, 0x3c, 0x0f, 0x1e, 0x69, 0x78, 0x4b, 0x5a
     };
-    static unsigned char const output_2[16] = {
+    static unsigned char const output[16] = {
         0x53, 0xf2, 0x66, 0xf0, 0xed, 0x13, 0xcf, 0xa8,
         0xb9, 0x2e, 0x6f, 0xd4, 0x4a, 0x5e, 0x4c, 0xbd
     };
     unsigned char state[16];
-    int ok;
-
     memcpy(state, input, 16);
-    code.exec_tinyjambu(state, 16, key_1, 16, 1024);
-    ok = !memcmp(output_1, state, 16);
-
-    memcpy(state, input, 16);
-    code.exec_tinyjambu(state, 16, key_2, 32, 1280);
-    return ok && !memcmp(output_2, state, 16);
+    code.exec_tinyjambu(state, 16, key, 32, 1280);
+    return !memcmp(output, state, 16);
 }

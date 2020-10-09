@@ -288,8 +288,12 @@ void gen_subterranean_extract(Code &code);
 bool test_subterranean_permutation(Code &code);
 
 // TinyJAMBU permutation.
-void gen_tinyjambu_permutation(Code &code);
-bool test_tinyjambu_permutation(Code &code);
+void gen_tinyjambu128_permutation(Code &code);
+void gen_tinyjambu192_permutation(Code &code);
+void gen_tinyjambu256_permutation(Code &code);
+bool test_tinyjambu128_permutation(Code &code);
+bool test_tinyjambu192_permutation(Code &code);
+bool test_tinyjambu256_permutation(Code &code);
 
 // WAGE permutation.
 Sbox get_wage_round_constants(int num);
