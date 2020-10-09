@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Internal implementation of the TinyJAMBU permutation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;internal-util.h&quot;</code><br/>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br/>
 </div>
 <p><a href="internal-tinyjambu_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -110,9 +110,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a854834010fb42611bffc220f851dc25d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-tinyjambu_8h.html#a854834010fb42611bffc220f851dc25d">tiny_jambu_permutation</a> (uint32_t state[<a class="el" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], const uint32_t *key, unsigned key_words, unsigned rounds)</td></tr>
-<tr class="memdesc:a854834010fb42611bffc220f851dc25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the TinyJAMBU permutation.  <a href="#a854834010fb42611bffc220f851dc25d">More...</a><br/></td></tr>
-<tr class="separator:a854834010fb42611bffc220f851dc25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc6b9428c0a360b37f4e825c038bc7c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-tinyjambu_8h.html#afc6b9428c0a360b37f4e825c038bc7c4">tiny_jambu_permutation_128</a> (uint32_t state[<a class="el" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], const uint32_t *key, unsigned rounds)</td></tr>
+<tr class="memdesc:afc6b9428c0a360b37f4e825c038bc7c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the TinyJAMBU-128 permutation.  <a href="#afc6b9428c0a360b37f4e825c038bc7c4">More...</a><br/></td></tr>
+<tr class="separator:afc6b9428c0a360b37f4e825c038bc7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7cfc7a4f1d7d0038770267050293ada"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-tinyjambu_8h.html#aa7cfc7a4f1d7d0038770267050293ada">tiny_jambu_permutation_192</a> (uint32_t state[<a class="el" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], const uint32_t *key, unsigned rounds)</td></tr>
+<tr class="memdesc:aa7cfc7a4f1d7d0038770267050293ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the TinyJAMBU-192 permutation.  <a href="#aa7cfc7a4f1d7d0038770267050293ada">More...</a><br/></td></tr>
+<tr class="separator:aa7cfc7a4f1d7d0038770267050293ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4377ab9d2746be67f9037a5fe43a262c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="internal-tinyjambu_8h.html#a4377ab9d2746be67f9037a5fe43a262c">tiny_jambu_permutation_256</a> (uint32_t state[<a class="el" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], const uint32_t *key, unsigned rounds)</td></tr>
+<tr class="memdesc:a4377ab9d2746be67f9037a5fe43a262c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the TinyJAMBU-256 permutation.  <a href="#a4377ab9d2746be67f9037a5fe43a262c">More...</a><br/></td></tr>
+<tr class="separator:a4377ab9d2746be67f9037a5fe43a262c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal implementation of the TinyJAMBU permutation. </p>
@@ -143,12 +149,12 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a854834010fb42611bffc220f851dc25d"></a>
+<a class="anchor" id="afc6b9428c0a360b37f4e825c038bc7c4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void tiny_jambu_permutation </td>
+          <td class="memname">void tiny_jambu_permutation_128 </td>
           <td>(</td>
           <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>state</em>[TINY_JAMBU_STATE_SIZE], </td>
@@ -158,12 +164,6 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const uint32_t *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>key_words</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -179,24 +179,106 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Perform the TinyJAMBU permutation. </p>
+<p>Perform the TinyJAMBU-128 permutation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">state</td><td>TinyJAMBU state to be permuted. </td></tr>
-    <tr><td class="paramname">key</td><td>Points to the key words. </td></tr>
-    <tr><td class="paramname">key_words</td><td>The number of words in the key. </td></tr>
-    <tr><td class="paramname">rounds</td><td>The number of rounds to perform.</td></tr>
+    <tr><td class="paramname">state</td><td>TinyJAMBU-128 state to be permuted. </td></tr>
+    <tr><td class="paramname">key</td><td>Points to the 4 key words. </td></tr>
+    <tr><td class="paramname">rounds</td><td>The number of rounds to perform. </td></tr>
   </table>
   </dd>
 </dl>
-<p>The number of key words should be 4 for TinyJAMBU-128, 12 for TinyJAMBU-192, and 8 for TinuJAMBU-256. The TinyJAMBU-192 key is duplicated so that the <em>key_words</em> parameter is a multiple of 4. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa7cfc7a4f1d7d0038770267050293ada"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tiny_jambu_permutation_192 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>state</em>[TINY_JAMBU_STATE_SIZE], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform the TinyJAMBU-192 permutation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>TinyJAMBU-192 state to be permuted. </td></tr>
+    <tr><td class="paramname">key</td><td>Points to the 6 key words. </td></tr>
+    <tr><td class="paramname">rounds</td><td>The number of rounds to perform. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4377ab9d2746be67f9037a5fe43a262c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tiny_jambu_permutation_256 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>state</em>[TINY_JAMBU_STATE_SIZE], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint32_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform the TinyJAMBU-256 permutation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>TinyJAMBU-256 state to be permuted. </td></tr>
+    <tr><td class="paramname">key</td><td>Points to the 8 key words. </td></tr>
+    <tr><td class="paramname">rounds</td><td>The number of rounds to perform. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 5 2020 08:40:16 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2020 08:27:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

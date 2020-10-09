@@ -12,6 +12,8 @@ var searchData=
   ['tiny_5fjambu_5f256_5faead_5fencrypt',['tiny_jambu_256_aead_encrypt',['../tinyjambu_8h.html#a7feec076254eaf1c475a99daad7bd2ee',1,'tinyjambu.c']]],
   ['tiny_5fjambu_5f256_5fmasked_5faead_5fdecrypt',['tiny_jambu_256_masked_aead_decrypt',['../tinyjambu-masked_8h.html#a0d0d952ba16a52fa91f9b0d43e6d2d8b',1,'tinyjambu-masked.c']]],
   ['tiny_5fjambu_5f256_5fmasked_5faead_5fencrypt',['tiny_jambu_256_masked_aead_encrypt',['../tinyjambu-masked_8h.html#a672cb8a0c1f7e975a5354da37bce513f',1,'tinyjambu-masked.c']]],
-  ['tiny_5fjambu_5fpermutation',['tiny_jambu_permutation',['../internal-tinyjambu_8h.html#a854834010fb42611bffc220f851dc25d',1,'internal-tinyjambu.c']]],
+  ['tiny_5fjambu_5fpermutation_5f128',['tiny_jambu_permutation_128',['../internal-tinyjambu_8h.html#afc6b9428c0a360b37f4e825c038bc7c4',1,'internal-tinyjambu.c']]],
+  ['tiny_5fjambu_5fpermutation_5f192',['tiny_jambu_permutation_192',['../internal-tinyjambu_8h.html#aa7cfc7a4f1d7d0038770267050293ada',1,'internal-tinyjambu.c']]],
+  ['tiny_5fjambu_5fpermutation_5f256',['tiny_jambu_permutation_256',['../internal-tinyjambu_8h.html#a4377ab9d2746be67f9037a5fe43a262c',1,'internal-tinyjambu.c']]],
   ['tiny_5fjambu_5fpermutation_5fmasked',['tiny_jambu_permutation_masked',['../internal-tinyjambu-m_8h.html#aa57f1a9cc98a001ccea2c1f0f07234f1',1,'internal-tinyjambu-m.c']]]
 ];

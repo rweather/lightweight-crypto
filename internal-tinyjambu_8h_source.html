@@ -113,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef LW_INTERNAL_TINYJAMBU_H</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define LW_INTERNAL_TINYJAMBU_H</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;internal-util.h&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
@@ -123,21 +123,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="internal-tinyjambu_8h.html#ab20aad70de3206ce2707aa66f8c1e6ac">   50</a></span>&#160;<span class="preprocessor">#define TINYJAMBU_ROUNDS(steps) ((steps) / 128)</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-tinyjambu_8h.html#a854834010fb42611bffc220f851dc25d">tiny_jambu_permutation</a></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    (uint32_t state[<a class="code" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], <span class="keyword">const</span> uint32_t *key,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;     <span class="keywordtype">unsigned</span> key_words, <span class="keywordtype">unsigned</span> rounds);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="internal-tinyjambu_8h_html_a854834010fb42611bffc220f851dc25d"><div class="ttname"><a href="internal-tinyjambu_8h.html#a854834010fb42611bffc220f851dc25d">tiny_jambu_permutation</a></div><div class="ttdeci">void tiny_jambu_permutation(uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key, unsigned key_words, unsigned rounds)</div><div class="ttdoc">Perform the TinyJAMBU permutation. </div><div class="ttdef"><b>Definition:</b> internal-tinyjambu.c:28</div></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-tinyjambu_8h.html#afc6b9428c0a360b37f4e825c038bc7c4">tiny_jambu_permutation_128</a></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    (uint32_t state[<a class="code" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], <span class="keyword">const</span> uint32_t *key,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;     <span class="keywordtype">unsigned</span> rounds);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-tinyjambu_8h.html#aa7cfc7a4f1d7d0038770267050293ada">tiny_jambu_permutation_192</a></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    (uint32_t state[<a class="code" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], <span class="keyword">const</span> uint32_t *key,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;     <span class="keywordtype">unsigned</span> rounds);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="internal-tinyjambu_8h.html#a4377ab9d2746be67f9037a5fe43a262c">tiny_jambu_permutation_256</a></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    (uint32_t state[<a class="code" href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a>], <span class="keyword">const</span> uint32_t *key,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;     <span class="keywordtype">unsigned</span> rounds);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="internal-tinyjambu_8h_html_afc6b9428c0a360b37f4e825c038bc7c4"><div class="ttname"><a href="internal-tinyjambu_8h.html#afc6b9428c0a360b37f4e825c038bc7c4">tiny_jambu_permutation_128</a></div><div class="ttdeci">void tiny_jambu_permutation_128(uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key, unsigned rounds)</div><div class="ttdoc">Perform the TinyJAMBU-128 permutation. </div><div class="ttdef"><b>Definition:</b> internal-tinyjambu.c:46</div></div>
+<div class="ttc" id="internal-tinyjambu_8h_html_a4377ab9d2746be67f9037a5fe43a262c"><div class="ttname"><a href="internal-tinyjambu_8h.html#a4377ab9d2746be67f9037a5fe43a262c">tiny_jambu_permutation_256</a></div><div class="ttdeci">void tiny_jambu_permutation_256(uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key, unsigned rounds)</div><div class="ttdoc">Perform the TinyJAMBU-256 permutation. </div><div class="ttdef"><b>Definition:</b> internal-tinyjambu.c:132</div></div>
+<div class="ttc" id="internal-tinyjambu_8h_html_aa7cfc7a4f1d7d0038770267050293ada"><div class="ttname"><a href="internal-tinyjambu_8h.html#aa7cfc7a4f1d7d0038770267050293ada">tiny_jambu_permutation_192</a></div><div class="ttdeci">void tiny_jambu_permutation_192(uint32_t state[TINY_JAMBU_STATE_SIZE], const uint32_t *key, unsigned rounds)</div><div class="ttdoc">Perform the TinyJAMBU-192 permutation. </div><div class="ttdef"><b>Definition:</b> internal-tinyjambu.c:84</div></div>
 <div class="ttc" id="internal-tinyjambu_8h_html_a6ca3a4f5b5780a290c00a85679fd2a90"><div class="ttname"><a href="internal-tinyjambu_8h.html#a6ca3a4f5b5780a290c00a85679fd2a90">TINY_JAMBU_STATE_SIZE</a></div><div class="ttdeci">#define TINY_JAMBU_STATE_SIZE</div><div class="ttdoc">Size of the TinyJAMBU state in 32-bit words. </div><div class="ttdef"><b>Definition:</b> internal-tinyjambu.h:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 5 2020 08:40:16 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2020 08:27:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
