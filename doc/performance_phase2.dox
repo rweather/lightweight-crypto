@@ -113,6 +113,25 @@ For fairness, I also converted GASCON:
 <tr><td>ASCON-128</td><td>Baseline</td><td>0.99</td><td>1.02</td><td>1.22</td><td>1.23</td><td>1.11</td></tr>
 </table>
 
+\section perf_phase2_comet COMET
+
+I implemented ARM Cortex M3 assembly versions of the CHAM-128 and
+SPECK-64 block ciphers to accelerate COMET-128_CHAM-128/128 and
+COMET-64_SPECK-64/128.  I haven't yet tried to accelerate CHAM-64
+because its use of 16-bit words in the state and key schedule
+doesn't work well on 32-bit platforms.
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>COMET-128_CHAM-128/128</td><td>Rhys Weatherley</td><td>1.58</td><td>1.56</td><td>2.94</td><td>2.62</td><td>2.05</td></tr>
+<tr><td>COMET-128_CHAM-128/128</td><td>Baseline</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61</td></tr>
+<tr><td>COMET-64_SPECK-64/128</td><td>Baseline</td><td>1.16</td><td>1.14</td><td>2.31</td><td>2.24</td><td>1.58</td></tr>
+</table>
+
+Both CHAM-128 and SPEC-64 are fully unrolled and fit entirely within the
+ARM's register set.  Memory loads and stores are only required during
+function setup and cleanup.
+
 \section perf_phase2_dryascon DryGASCON
 
 Sébastien Riou of the DryGASCON submission team contributed ARM Cortex M*

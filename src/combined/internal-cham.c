@@ -23,7 +23,19 @@
 #include "internal-cham.h"
 #include "internal-util.h"
 
-#if !defined(__AVR__)
+/* Determine which versions should be accelerated with assembly code */
+#if defined(__AVR__)
+#define CHAM_128_ASM 1
+#define CHAM_64_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define CHAM_128_ASM 1
+#define CHAM_64_ASM 0
+#else
+#define CHAM_128_ASM 0
+#define CHAM_64_ASM 0
+#endif
+
+#if !CHAM_128_ASM
 
 void cham128_128_encrypt
     (const unsigned char *key, unsigned char *output,
@@ -71,6 +83,10 @@ void cham128_128_encrypt
     le_store_word32(output + 8,  x2);
     le_store_word32(output + 12, x3);
 }
+
+#endif /* !CHAM_128_ASM */
+
+#if !CHAM_64_ASM
 
 void cham64_128_encrypt
     (const unsigned char *key, unsigned char *output,
@@ -135,4 +151,4 @@ void cham64_128_encrypt
     le_store_word16(output + 6, x3);
 }
 
-#endif
+#endif /* !CHAM_64_ASM */

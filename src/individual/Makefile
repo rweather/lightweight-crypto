@@ -45,6 +45,7 @@ COMET_FILES = \
     comet.h \
     internal-cham.c \
     internal-cham.h \
+    internal-cham-arm-cm3.S \
     internal-cham-avr.S \
     internal-speck64.c \
     internal-speck64.h \

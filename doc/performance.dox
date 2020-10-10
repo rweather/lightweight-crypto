@@ -99,10 +99,10 @@ assembly code.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td><b><i>COMET-128_CHAM-128/128</i></b><sup>2</sup> (*)</td><td>128</td><td>128</td><td>128</td><td>1.58</td><td>1.56</td><td>2.94</td><td>2.62</td><td>2.05</td></tr>
 <tr><td>ASCON-128a (*)</td><td>128</td><td>128</td><td>128</td><td>1.86</td><td>1.70</td><td>1.80</td><td>1.78</td><td>1.78</td></tr>
 <tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.62</td><td>1.69</td><td>1.66</td></tr>
 <tr><td><b><i>ASCON-128</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.54</td><td>1.44</td><td>1.78</td><td>1.68</td><td>1.61</td></tr>
-<tr><td><b><i>COMET-128_CHAM-128/128</i></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>1.22</td><td>1.25</td><td>2.20</td><td>2.08</td><td>1.61</td></tr>
 <tr><td>ASCON-80pq (*)</td><td>160</td><td>128</td><td>128</td><td>1.52</td><td>1.43</td><td>1.71</td><td>1.65</td><td>1.57</td></tr>
 <tr><td>COMET-64_SPECK-64/128</td><td>128</td><td>120</td><td>128</td><td>1.16</td><td>1.14</td><td>2.31</td><td>2.24</td><td>1.58</td></tr>
 <tr><td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46</td></tr>
@@ -334,7 +334,7 @@ AEAD algorithm rankings:
 
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
-<tr><td>15</td><td>COMET</td></tr>
+<tr><td>17</td><td>COMET</td></tr>
 <tr><td>11</td><td>ASCON</td></tr>
 <tr><td>10</td><td>SPARKLE, TinyJAMBU</td></tr>
 <tr><td>9</td><td>GIFT-COFB</td></tr>
