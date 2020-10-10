@@ -49,6 +49,7 @@ COMET_FILES = \
     internal-cham-avr.S \
     internal-speck64.c \
     internal-speck64.h \
+    internal-speck64-arm-cm3.S \
     internal-speck64-avr.S \
     $(COMMON_FILES)
 DRYGASCON_FILES = \

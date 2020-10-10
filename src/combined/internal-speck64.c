@@ -23,7 +23,16 @@
 #include "internal-speck64.h"
 #include "internal-util.h"
 
-#if !defined(__AVR__)
+/* Determine if SPECK-64 should be accelerated with assembly code */
+#if defined(__AVR__)
+#define SPECK_64_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define SPECK_64_ASM 1
+#else
+#define SPECK_64_ASM 0
+#endif
+
+#if !SPECK_64_ASM
 
 void speck64_128_encrypt
     (const unsigned char *key, unsigned char *output,
@@ -67,4 +76,4 @@ void speck64_128_encrypt
     le_store_word32(output + 4, x);
 }
 
-#endif
+#endif /* !SPECK_64_ASM */

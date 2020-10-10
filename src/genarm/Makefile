@@ -10,7 +10,8 @@ TARGETS = \
 	bin/ascon_arm_cortex_m3 \
 	bin/cham_arm_cortex_m3 \
 	bin/gascon_arm_cortex_m3 \
-	bin/tinyjambu_arm_cortex_m3
+	bin/tinyjambu_arm_cortex_m3 \
+	bin/speck_arm_cortex_m3
 
 all: $(TARGETS)
 
@@ -29,6 +30,11 @@ bin/gascon_arm_cortex_m3: gascon_arm_cortex_m3.c
 bin/tinyjambu_arm_cortex_m3: tinyjambu_arm_cortex_m3.c
 	@mkdir -p bin
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
+
+bin/speck_arm_cortex_m3: speck_arm_cortex_m3.c
+	@mkdir -p bin
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
+
 clean:
 	rm -f $(TARGETS)
 
@@ -39,3 +45,4 @@ generate: all
 	bin/cham_arm_cortex_m3 >../combined/internal-cham-arm-cm3.S
 	bin/gascon_arm_cortex_m3 >../combined/internal-gascon-arm-cm3.S
 	bin/tinyjambu_arm_cortex_m3 >../combined/internal-tinyjambu-arm-cm3.S
+	bin/speck_arm_cortex_m3 >../combined/internal-speck64-arm-cm3.S
