@@ -22,7 +22,15 @@
 
 #include "internal-xoodoo.h"
 
-#if !defined(__AVR__)
+#if defined(__AVR__)
+#define XOODOO_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define XOODOO_ASM 1
+#else
+#define XOODOO_ASM 0
+#endif
+
+#if !XOODOO_ASM
 
 void xoodoo_permute(xoodoo_state_t *state)
 {
@@ -163,4 +171,4 @@ void xoodoo_permute(xoodoo_state_t *state)
 #endif
 }
 
-#endif /* !__AVR__ */
+#endif /* !XOODOO_ASM */

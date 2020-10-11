@@ -341,6 +341,7 @@ XOODYAK_FILES = \
     xoodyak.h \
     internal-xoodoo.c \
     internal-xoodoo.h \
+    internal-xoodoo-arm-cm3.S \
     internal-xoodoo-avr.S \
     $(COMMON_FILES)
 XOODYAK_MASKED_FILES = \

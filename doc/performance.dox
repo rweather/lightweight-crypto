@@ -103,6 +103,7 @@ assembly code.
 <tr><td>COMET-64_SPECK-64/128 (*)</td><td>128</td><td>120</td><td>128</td><td>1.42</td><td>1.43</td><td>2.86</td><td>2.75</td><td>1.94</td></tr>
 <tr><td>ASCON-128a (*)</td><td>128</td><td>128</td><td>128</td><td>1.86</td><td>1.70</td><td>1.80</td><td>1.78</td><td>1.78</td></tr>
 <tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.62</td><td>1.69</td><td>1.66</td></tr>
+<tr><td><b><i>Xoodyak</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.66</td><td>1.51</td><td>1.73</td><td>1.60</td><td>1.62</td></tr>
 <tr><td><b><i>ASCON-128</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.54</td><td>1.44</td><td>1.78</td><td>1.68</td><td>1.61</td></tr>
 <tr><td>ASCON-80pq (*)</td><td>160</td><td>128</td><td>128</td><td>1.52</td><td>1.43</td><td>1.71</td><td>1.65</td><td>1.57</td></tr>
 <tr><td>Schwaemm128-128 (SPARKLE)</td><td>128</td><td>128</td><td>128</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46</td></tr>
@@ -118,7 +119,6 @@ assembly code.
 <tr><td>Spook-128-384-mu</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.10</td><td>1.09</td><td>0.93</td></tr>
 <tr><td><b><i>Spook-128-512-su</i></b></td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.89</td><td>0.90</td></tr>
 <tr><td>Spook-128-512-mu</td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.88</td><td>0.90</td></tr>
-<tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86</td></tr>
 <tr><td>SpoC-128</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.14</td><td>1.14</td><td>0.82</td></tr>
 <tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80</td></tr>
 <tr><td><b><i>DryGASCON128k16</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.03</td><td>1.02</td><td>0.78</td></tr>
@@ -188,9 +188,9 @@ The hash algorithms are compared against BLAKE2s instead of ChaChaPoly:
 
 <table>
 <tr><td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td><b><i>Xoodyak</i></b> (*)</td><td>256</td><td>0.71</td><td>0.65</td><td>1.43</td><td>0.93</td></tr>
 <tr><td>GIMLI-24-HASH (*)</td><td>256</td><td>0.54</td><td>0.47</td><td>0.86</td><td>0.62</td></tr>
 <tr><td><b><i>ASCON-HASH</i></b> (*)</td><td>256</td><td>0.51</td><td>0.41</td><td>0.63</td><td>0.52</td></tr>
-<tr><td><b><i>Xoodyak</i></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51</td></tr>
 <tr><td><b><i>DryGASCON128-HASH</i></b> (*)</td><td>256</td><td>0.29</td><td>0.29</td><td>0.88</td><td>0.48</td></tr>
 <tr><td><b><i>Esch256</i></b> (SPARKLE)</td><td>256</td><td>0.38</td><td>0.34</td><td>0.65</td><td>0.46</td></tr>
 <tr><td><b><i>SATURNIN-Hash</i></b></td><td>256</td><td>0.24</td><td>0.20</td><td>0.49</td><td>0.31</td></tr>
@@ -335,10 +335,10 @@ AEAD algorithm rankings:
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
 <tr><td>17</td><td>COMET</td></tr>
+<tr><td>12</td><td>Xoodyak</td></tr>
 <tr><td>11</td><td>ASCON</td></tr>
 <tr><td>10</td><td>SPARKLE, TinyJAMBU</td></tr>
 <tr><td>9</td><td>GIFT-COFB, Gimli</td></tr>
-<tr><td>8</td><td>Xoodyak</td></tr>
 <tr><td>7</td><td>Spook</td></tr>
 <tr><td>6</td><td>ESTATE, HYENA, SUNDAE-GIFT</td></tr>
 <tr><td>5</td><td>DryGASCON</td>
@@ -353,8 +353,9 @@ Hash algorithm rankings:
 
 <table>
 <tr><td>Rank</td><td>Algorithms</td></tr>
+<tr><td>7</td><td>Xoodyak</td></tr>
 <tr><td>5</td><td>Gimli</td></tr>
-<tr><td>4</td><td>SPARKLE, Xoodyak</td></tr>
+<tr><td>4</td><td>SPARKLE</td></tr>
 <tr><td>3</td><td>ASCON, DryGASCON, Saturnin</td></tr>
 <tr><td>0</td><td>ACE, KNOT, ORANGE, PHOTON-Beetle, SKINNY-AEAD, Subterranean</td></tr>
 </table>
