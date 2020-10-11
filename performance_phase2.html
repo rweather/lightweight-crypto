@@ -85,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#perf_phase2_dryascon">DryGASCON</a></li>
 <li class="level1"><a href="#perf_phase2_gimli">Gimli</a></li>
 <li class="level1"><a href="#perf_phase2_isap">ISAP</a></li>
-<li class="level1"><a href="#perf_phase2_tinyjambu">TinyJAMBU</a></li>
+<li class="level1"><a href="#perf_phase2_tinyjambu">Xoodyak</a></li>
 </ul>
 </div>
 <div class="textblock"><h1><a class="anchor" id="perf_phase2_intro"></a>
@@ -202,7 +202,7 @@ DryGASCON</h1>
 </table>
 <h1><a class="anchor" id="perf_phase2_gimli"></a>
 Gimli</h1>
-<p>I implemented ARM Cortex M3 assembly versions of the GIMLI-24 permutation. The implementation is fully unrolled with the entire state be held in registers. The GIMLI-24 AEAD mode shows a 30% improvement over the baseline:</p>
+<p>I implemented ARM Cortex M3 assembly versions of the GIMLI-24 permutation. The implementation is fully unrolled with the entire state held in registers. The GIMLI-24 AEAD mode shows a 30% improvement over the baseline:</p>
 <table class="doxtable">
 <tr>
 <td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
@@ -236,7 +236,7 @@ ISAP</h1>
 <td>ISAP-A-128</td><td>Baseline</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03 </td></tr>
 </table>
 <h1><a class="anchor" id="perf_phase2_tinyjambu"></a>
-TinyJAMBU</h1>
+Xoodyak</h1>
 <p>I replaced the common TinyJAMBU permutation function with three separate unrolled versions for 128-bit, 192-bit, and 256-bit key sizes. This provided a modest improvement:</p>
 <table class="doxtable">
 <tr>
@@ -274,11 +274,31 @@ TinyJAMBU</h1>
 </table>
 <p>The assembly versions of the TinyJAMBU-128 and TinyJAMBU-192 permutations fit entirely within the ARM's register set. The state words and key words are loaded from memory into registers and kept there until the state words are stored back to memory at the end of the permutation function.</p>
 <p>TinyJAMBU-256 almost fits entirely within registers. Three of the eight key words need to be loaded from memory each round because there aren't enough registers to keep the entire 256-bit key cached in registers.</p>
-<p>The ARM assembly source code can be found in "src/combined/internal-tinyjambu-arm-cm3.S" in the source tree. </p>
+<p>The ARM assembly source code can be found in "src/combined/internal-tinyjambu-arm-cm3.S" in the source tree.</p>
+<h1><a class="anchor" id="perf_phase2_tinyjambu"></a>
+Xoodyak</h1>
+<p>I implemented ARM Cortex M3 assembly versions of the Xoodoo permutation. The implementation is fully unrolled with the entire state held in registers. The Xoodyak AEAD mode almost doubled in speed:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
+<tr>
+<td>Xoodyak</td><td>Rhys Weatherley</td><td>1.66</td><td>1.51</td><td>1.73</td><td>1.60</td><td>1.62 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Baseline</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86 </td></tr>
+</table>
+<p>Similar improvements were seen for the hashing mode:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average </td></tr>
+<tr>
+<td>Xoodyak</td><td>Rhys Weatherley</td><td>0.71</td><td>0.65</td><td>1.43</td><td>0.93 </td></tr>
+<tr>
+<td>Xoodyak</td><td>Baselin</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51 </td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 11 2020 14:08:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 12 2020 04:29:37 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

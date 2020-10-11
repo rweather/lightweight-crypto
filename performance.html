@@ -116,6 +116,8 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td></td><td></td><td>1.62</td><td>1.69</td><td>1.66 </td></tr>
 <tr>
+<td><b><em>Xoodyak</em></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.66</td><td>1.51</td><td>1.73</td><td>1.60</td><td>1.62 </td></tr>
+<tr>
 <td><b><em>ASCON-128</em></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.54</td><td>1.44</td><td>1.78</td><td>1.68</td><td>1.61 </td></tr>
 <tr>
 <td>ASCON-80pq (*)</td><td>160</td><td>128</td><td>128</td><td>1.52</td><td>1.43</td><td>1.71</td><td>1.65</td><td>1.57 </td></tr>
@@ -145,8 +147,6 @@ Performance on ARM Cortex M3</h1>
 <td><b><em>Spook-128-512-su</em></b></td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.89</td><td>0.90 </td></tr>
 <tr>
 <td>Spook-128-512-mu</td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.88</td><td>0.90 </td></tr>
-<tr>
-<td><b><em>Xoodyak</em></b></td><td>128</td><td>128</td><td>128</td><td>0.85</td><td>0.87</td><td>0.84</td><td>0.85</td><td>0.86 </td></tr>
 <tr>
 <td>SpoC-128</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.14</td><td>1.14</td><td>0.82 </td></tr>
 <tr>
@@ -265,11 +265,11 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>Algorithm</td><td>Hash Bits</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average </td></tr>
 <tr>
+<td><b><em>Xoodyak</em></b> (*)</td><td>256</td><td>0.71</td><td>0.65</td><td>1.43</td><td>0.93 </td></tr>
+<tr>
 <td>GIMLI-24-HASH (*)</td><td>256</td><td>0.54</td><td>0.47</td><td>0.86</td><td>0.62 </td></tr>
 <tr>
 <td><b><em>ASCON-HASH</em></b> (*)</td><td>256</td><td>0.51</td><td>0.41</td><td>0.63</td><td>0.52 </td></tr>
-<tr>
-<td><b><em>Xoodyak</em></b></td><td>256</td><td>0.38</td><td>0.35</td><td>0.79</td><td>0.51 </td></tr>
 <tr>
 <td><b><em>DryGASCON128-HASH</em></b> (*)</td><td>256</td><td>0.29</td><td>0.29</td><td>0.88</td><td>0.48 </td></tr>
 <tr>
@@ -510,13 +510,13 @@ Overall group rankings</h1>
 <tr>
 <td>17</td><td>COMET </td></tr>
 <tr>
+<td>12</td><td>Xoodyak </td></tr>
+<tr>
 <td>11</td><td>ASCON </td></tr>
 <tr>
 <td>10</td><td>SPARKLE, TinyJAMBU </td></tr>
 <tr>
 <td>9</td><td>GIFT-COFB, Gimli </td></tr>
-<tr>
-<td>8</td><td>Xoodyak </td></tr>
 <tr>
 <td>7</td><td>Spook </td></tr>
 <tr>
@@ -539,9 +539,11 @@ Overall group rankings</h1>
 <tr>
 <td>Rank</td><td>Algorithms </td></tr>
 <tr>
+<td>7</td><td>Xoodyak </td></tr>
+<tr>
 <td>5</td><td>Gimli </td></tr>
 <tr>
-<td>4</td><td>SPARKLE, Xoodyak </td></tr>
+<td>4</td><td>SPARKLE </td></tr>
 <tr>
 <td>3</td><td>ASCON, DryGASCON, Saturnin </td></tr>
 <tr>
@@ -550,7 +552,7 @@ Overall group rankings</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 11 2020 14:08:26 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 12 2020 04:29:37 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
