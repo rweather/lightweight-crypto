@@ -115,6 +115,7 @@ GIMLI_FILES = \
     gimli24.h \
     internal-gimli24.c \
     internal-gimli24.h \
+    internal-gimli24-arm-cm3.S \
     internal-gimli24-avr.S \
     $(COMMON_FILES)
 GIMLI_MASKED_FILES = \

@@ -22,7 +22,15 @@
 
 #include "internal-gimli24.h"
 
-#if !defined(__AVR__)
+#if defined(__AVR__)
+#define GIMLI24_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define GIMLI24_ASM 1
+#else
+#define GIMLI24_ASM 0
+#endif
+
+#if !GIMLI24_ASM
 
 /* Apply the SP-box to a specific column in the state array */
 #define GIMLI24_SP(s0, s4, s8) \
@@ -139,4 +147,4 @@ void gimli24_permute(uint32_t state[12])
 #endif
 }
 
-#endif /* !__AVR__ */
+#endif /* !GIMLI24_ASM */

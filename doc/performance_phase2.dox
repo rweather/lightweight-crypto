@@ -159,6 +159,26 @@ DryGASCON128-HASH shows a similar improvement:
 <tr><td>DryGASCON128-HASH</td><td>Baseline</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13</td></tr>
 </table>
 
+\section perf_phase2_gimli Gimli
+
+I implemented ARM Cortex M3 assembly versions of the GIMLI-24 permutation.
+The implementation is fully unrolled with the entire state be held in
+registers.  The GIMLI-24 AEAD mode shows a 30% improvement over the baseline:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>GIMLI-24</td><td>Rhys Weatherley</td><td>1.08</td><td>1.09</td><td>1.29</td><td>1.28</td><td>1.18</td></tr>
+<tr><td>GIMLI-24</td><td>Baseline</td><td>0.84</td><td>0.85</td><td>0.97</td><td>0.98</td><td>0.91</td></tr>
+</table>
+
+Similar improvements were seen for GIMLI-24-HASH:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td>GIMLI-24-HASH</td><td>Rhys Weatherley</td><td>0.54</td><td>0.47</td><td>0.86</td><td>0.62</td></tr>
+<tr><td>GIMLI-24-HASH</td><td>Baseline</td><td>0.45</td><td>0.35</td><td>0.61</td><td>0.46</td></tr>
+</table>
+
 \section perf_phase2_isap ISAP
 
 Using the ARM Cortex M3 assembly version of ASCON provides an improvement
