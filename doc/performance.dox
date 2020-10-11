@@ -99,8 +99,8 @@ assembly code.
 
 <table>
 <tr><td>Algorithm</td><td>Key Bits</td><td>Nonce Bits</td><td>Tag Bits</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
-<tr><td><b><i>COMET-128_CHAM-128/128</i></b><sup>2</sup> (*)</td><td>128</td><td>128</td><td>128</td><td>1.58</td><td>1.56</td><td>2.93</td><td>2.62</td><td>2.04</td></tr>
-<tr><td>COMET-64_SPECK-64/128 (*)</td><td>128</td><td>120</td><td>128</td><td>1.43</td><td>1.37</td><td>2.89</td><td>2.66</td><td>1.91</td></tr>
+<tr><td><b><i>COMET-128_CHAM-128/128</i></b><sup>2</sup> (*)</td><td>128</td><td>128</td><td>128</td><td>1.57</td><td>1.56</td><td>2.91</td><td>2.69</td><td>2.05</td></tr>
+<tr><td>COMET-64_SPECK-64/128 (*)</td><td>128</td><td>120</td><td>128</td><td>1.42</td><td>1.43</td><td>2.86</td><td>2.75</td><td>1.94</td></tr>
 <tr><td>ASCON-128a (*)</td><td>128</td><td>128</td><td>128</td><td>1.86</td><td>1.70</td><td>1.80</td><td>1.78</td><td>1.78</td></tr>
 <tr><td>SATURNIN-Short<sup>1</sup></td><td>256</td><td>128</td><td>256</td><td> </td><td> </td><td>1.62</td><td>1.69</td><td>1.66</td></tr>
 <tr><td><b><i>ASCON-128</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>1.54</td><td>1.44</td><td>1.78</td><td>1.68</td><td>1.61</td></tr>
@@ -111,6 +111,7 @@ assembly code.
 <tr><td>TinyJAMBU-192 (*)</td><td>192</td><td>96</td><td>64</td><td>0.81</td><td>0.84</td><td>1.45</td><td>1.44</td><td>1.08</td></tr>
 <tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>1.02</td><td>1.01</td><td>1.09</td><td>1.09</td><td>1.05</td></tr>
 <tr><td>Schwaemm192-192 (SPARKLE)</td><td>192</td><td>192</td><td>192</td><td>0.90</td><td>0.92</td><td>1.04</td><td>1.07</td><td>0.99</td></tr>
+<tr><td>COMET-64_CHAM-64/128 (*)</td><td>128</td><td>120</td><td>128</td><td>0.70</td><td>0.75</td><td>1.35</td><td>1.37</td><td>0.97</td></tr>
 <tr><td>TinyJAMBU-256 (*)</td><td>256</td><td>96</td><td>64</td><td>0.70</td><td>0.73</td><td>1.28</td><td>1.29</td><td>0.94</td></tr>
 <tr><td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.11</td><td>1.09</td><td>0.93</td></tr>
 <tr><td>Spook-128-384-mu</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.10</td><td>1.09</td><td>0.93</td></tr>
@@ -127,7 +128,6 @@ assembly code.
 <tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.86</td><td>0.70</td></tr>
 <tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.56</td><td>0.59</td><td>0.83</td><td>0.85</td><td>0.70</td></tr>
 <tr><td><b><i>ESTATE_TweGIFT-128</i></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66</td></tr>
-<tr><td>COMET-64_CHAM-64/128</td><td>128</td><td>120</td><td>128</td><td>0.40</td><td>0.43</td><td>0.79</td><td>0.81</td><td>0.57</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.38</td><td>0.39</td><td>0.40</td></tr>
 <tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.29</td><td>0.31</td><td>0.56</td><td>0.58</td><td>0.40</td></tr>
 <tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.28</td><td>0.29</td><td>0.56</td><td>0.57</td><td>0.39</td></tr>

@@ -29,7 +29,7 @@
 #define CHAM_64_ASM 1
 #elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
 #define CHAM_128_ASM 1
-#define CHAM_64_ASM 0
+#define CHAM_64_ASM 1
 #else
 #define CHAM_128_ASM 0
 #define CHAM_64_ASM 0
