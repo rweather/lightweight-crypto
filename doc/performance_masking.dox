@@ -151,9 +151,9 @@ software.  So the above table doesn't give a good idea as to the actual
 software performance.
 
 The following table divides the 4-share overhead by the ChaChaPoly
-ranking from the main \ref perf_cortex_m3 "ARM Cortex M3" performance
-rankings.  This gives an indication as to the relative performance of
-the masked algorithms in software, with the fastest at the top of the table:
+ranking from the baseline \ref perf_baseline_cortex_m3 "ARM Cortex M3"
+performance rankings.  This gives an indication as to the relative performance
+of the masked algorithms in software, with the fastest at the top of the table:
 
 <table>
 <tr><td>Algorithm</td><td>Degree of Masking</td><td>4 shares</td><td>ChaChaPoly</td><td>4 shares / ChaChaPoly</td></tr>
