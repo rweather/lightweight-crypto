@@ -125,6 +125,7 @@ GIMLI_MASKED_FILES = \
     internal-gimli24.h \
     internal-gimli24-m.c \
     internal-gimli24-m.h \
+    internal-gimli24-arm-cm3.S \
     internal-gimli24-avr.S \
     $(COMMON_MASKING_FILES)
 GRAIN128_FILES = \
@@ -352,6 +353,7 @@ XOODYAK_MASKED_FILES = \
     internal-xoodoo.h \
     internal-xoodoo-m.c \
     internal-xoodoo-m.h \
+    internal-xoodoo-arm-cm3.S \
     internal-xoodoo-avr.S \
     $(COMMON_MASKING_FILES)
 
