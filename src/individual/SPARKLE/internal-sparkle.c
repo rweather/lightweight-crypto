@@ -22,7 +22,22 @@
 
 #include "internal-sparkle.h"
 
-#if !defined(__AVR__)
+/* Determine which versions should be accelerated with assembly code */
+#if defined(__AVR__)
+#define SPARKLE_256_ASM 1
+#define SPARKLE_384_ASM 1
+#define SPARKLE_512_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define SPARKLE_256_ASM 1
+#define SPARKLE_384_ASM 1
+#define SPARKLE_512_ASM 1
+#else
+#define SPARKLE_256_ASM 0
+#define SPARKLE_384_ASM 0
+#define SPARKLE_512_ASM 0
+#endif
+
+#if !SPARKLE_256_ASM || !SPARKLE_384_ASM || !SPARKLE_512_ASM
 
 /* The 8 basic round constants from the specification */
 #define RC_0 0xB7E15162
@@ -63,6 +78,10 @@ static uint32_t const sparkle_rc[12] = {
         (y) ^= leftRotate16((x)); \
         (x) ^= (k); \
     } while (0)
+
+#endif /* !SPARKLE_256_ASM || !SPARKLE_384_ASM || !SPARKLE_512_ASM */
+
+#if !SPARKLE_256_ASM
 
 void sparkle_256(uint32_t s[SPARKLE_256_STATE_SIZE], unsigned steps)
 {
@@ -144,6 +163,10 @@ void sparkle_256(uint32_t s[SPARKLE_256_STATE_SIZE], unsigned steps)
     le_store_word32((uint8_t *)&(s[7]), y3);
 #endif
 }
+
+#endif /* !SPARKLE_256_ASM */
+
+#if !SPARKLE_384_ASM
 
 void sparkle_384(uint32_t s[SPARKLE_384_STATE_SIZE], unsigned steps)
 {
@@ -249,6 +272,10 @@ void sparkle_384(uint32_t s[SPARKLE_384_STATE_SIZE], unsigned steps)
     le_store_word32((uint8_t *)&(s[11]), y5);
 #endif
 }
+
+#endif /* !SPARKLE_384_ASM */
+
+#if !SPARKLE_512_ASM
 
 void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)
 {
@@ -379,4 +406,4 @@ void sparkle_512(uint32_t s[SPARKLE_512_STATE_SIZE], unsigned steps)
 #endif
 }
 
-#endif
+#endif /* !SPARKLE_512_ASM */

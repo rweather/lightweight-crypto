@@ -192,6 +192,40 @@ to the performance of ISAP-A:
 <tr><td>ISAP-A-128</td><td>Baseline</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03</td></tr>
 </table>
 
+\section perf_phase2_sparkle SPARKLE
+
+I implemented fully unrolled ARM Cortex M3 assembly versions of the
+SPARKLE-256, SPARKLE-384, and SPARKLE-512 permutations.  There was
+up to a 70% improvement in performance in some of the algorithms.
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>Schwaemm128-128</td><td>Rhys Weatherley</td><td>1.60</td><td>1.58</td><td>2.84</td><td>2.39</td><td>2.01</td></tr>
+<tr><td>Schwaemm256-128</td><td>Rhys Weatherley</td><td>1.74</td><td>1.63</td><td>1.90</td><td>1.93</td><td>1.80</td></tr>
+<tr><td>Schwaemm192-192</td><td>Rhys Weatherley</td><td>1.47</td><td>1.50</td><td>1.98</td><td>1.81</td><td>1.68</td></tr>
+<tr><td>Schwaemm128-128</td><td>Baseline</td><td>1.17</td><td>1.15</td><td>1.93</td><td>1.80</td><td>1.46</td></tr>
+<tr><td>Schwaemm256-256</td><td>Rhys Weatherley</td><td>1.18</td><td>1.16</td><td>1.15</td><td>1.09</td><td>1.14</td></tr>
+<tr><td>Schwaemm256-128</td><td>Baseline</td><td>1.08</td><td>1.12</td><td>1.08</td><td>1.10</td><td>1.09</td></tr>
+<tr><td>Schwaemm192-192</td><td>Baseline</td><td>0.90</td><td>0.92</td><td>1.04</td><td>1.07</td><td>0.99</td></tr>
+<tr><td>Schwaemm256-256</td><td>Baseline</td><td>0.79</td><td>0.80</td><td>0.74</td><td>0.72</td><td>0.76</td></tr>
+</table>
+
+The improvements to hashing performance was even more spectacular:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average</td></tr>
+<tr><td>Esch256</td><td>Rhys Weatherley</td><td>0.89</td><td>0.78</td><td>1.50</td><td>1.06</td></tr>
+<tr><td>Esch384</td><td>Rhys Weatherley</td><td>0.45</td><td>0.37</td><td>1.50</td><td>0.47</td></tr>
+<tr><td>Esch256</td><td>Baseline</td><td>0.38</td><td>0.34</td><td>0.65</td><td>0.46</td></tr>
+<tr><td>Esch384</td><td>Baseline</td><td>0.26</td><td>0.21</td><td>0.33</td><td>0.26</td></tr>
+</table>
+
+The SPARKLE-256 and SPARKLE-384 implementations fit entirely within ARM
+registers, with memory operations at the start and end of the permutation
+functions only.  SPARKLE-512 holds 10 of the 16 state words in registers
+at a time, and swaps the remaining the words between memory and registers
+as needed in each round.
+
 \section perf_phase2_tinyjambu TinyJAMBU
 
 I replaced the common TinyJAMBU permutation function with three separate
@@ -236,7 +270,7 @@ enough registers to keep the entire 256-bit key cached in registers.
 The ARM assembly source code can be found in
 "src/combined/internal-tinyjambu-arm-cm3.S" in the source tree.
 
-\section perf_phase2_tinyjambu Xoodyak
+\section perf_phase2_xoodyak Xoodyak
 
 I implemented ARM Cortex M3 assembly versions of the Xoodoo permutation.
 The implementation is fully unrolled with the entire state held in
