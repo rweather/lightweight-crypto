@@ -79,6 +79,9 @@ ESTATE_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
+    internal-gift128n-full-arm-cm3.S \
+    internal-gift128n-small-arm-cm3.S \
+    internal-gift128n-tiny-arm-cm3.S \
     internal-gift128n-full-avr.S \
     internal-gift128n-small-avr.S \
     internal-gift128n-tiny-avr.S \
@@ -99,6 +102,9 @@ GIFT_COFB_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
+    internal-gift128b-full-arm-cm3.S \
+    internal-gift128b-small-arm-cm3.S \
+    internal-gift128b-tiny-arm-cm3.S \
     internal-gift128b-full-avr.S \
     internal-gift128b-small-avr.S \
     internal-gift128b-tiny-avr.S \
@@ -141,6 +147,9 @@ HYENA_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
+    internal-gift128n-full-arm-cm3.S \
+    internal-gift128n-small-arm-cm3.S \
+    internal-gift128n-tiny-arm-cm3.S \
     internal-gift128n-full-avr.S \
     internal-gift128n-small-avr.S \
     internal-gift128n-tiny-avr.S \
@@ -313,6 +322,9 @@ SUNDAE_GIFT_FILES = \
     internal-gift128.c \
     internal-gift128.h \
     internal-gift128-config.h \
+    internal-gift128b-full-arm-cm3.S \
+    internal-gift128b-small-arm-cm3.S \
+    internal-gift128b-tiny-arm-cm3.S \
     internal-gift128b-full-avr.S \
     internal-gift128b-small-avr.S \
     internal-gift128b-tiny-avr.S \
