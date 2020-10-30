@@ -70,6 +70,9 @@
 #if defined(__AVR__) && !defined(GIFT128_VARIANT_ASM)
 #define GIFT128_VARIANT_ASM 1
 #endif
+#if defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7 && !defined(GIFT128_VARIANT_ASM)
+#define GIFT128_VARIANT_ASM 1
+#endif
 #if !defined(GIFT128_VARIANT)
 #define GIFT128_VARIANT GIFT128_VARIANT_FULL
 #endif

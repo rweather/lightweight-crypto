@@ -112,8 +112,8 @@ assembly code.
 <tr><td><b><i>TinyJAMBU-128</i></b> (*)</td><td>128</td><td>96</td><td>64</td><td>0.93</td><td>0.95</td><td>1.63</td><td>1.61</td><td>1.21</td></tr>
 <tr><td><b><i>GIMLI-24</i></b> (*)</td><td>256</td><td>128</td><td>128</td><td>1.08</td><td>1.09</td><td>1.29</td><td>1.28</td><td>1.18</td></tr>
 <tr><td>Schwaemm256-256 (SPARKLE) (*)</td><td>256</td><td>256</td><td>256</td><td>1.18</td><td>1.16</td><td>1.15</td><td>1.09</td><td>1.14</td></tr>
+<tr><td><b><i>GIFT-COFB</i></b> (*)<td>128</td><td>128</td><td>128</td><td>1.01</td><td>1.01</td><td>1.16</td><td>1.15</td><td>1.08</td></tr>
 <tr><td>TinyJAMBU-192 (*)</td><td>192</td><td>96</td><td>64</td><td>0.81</td><td>0.84</td><td>1.45</td><td>1.44</td><td>1.08</td></tr>
-<tr><td><b><i>GIFT-COFB</i></b><td>128</td><td>128</td><td>128</td></td><td>1.02</td><td>1.01</td><td>1.09</td><td>1.09</td><td>1.05</td></tr>
 <tr><td>COMET-64_CHAM-64/128 (*)</td><td>128</td><td>120</td><td>128</td><td>0.70</td><td>0.75</td><td>1.35</td><td>1.37</td><td>0.97</td></tr>
 <tr><td>TinyJAMBU-256 (*)</td><td>256</td><td>96</td><td>64</td><td>0.70</td><td>0.73</td><td>1.28</td><td>1.29</td><td>0.94</td></tr>
 <tr><td>Spook-128-384-su</td><td>128</td><td>128</td><td>128</td><td>0.78</td><td>0.79</td><td>1.11</td><td>1.09</td><td>0.93</td></tr>
@@ -121,13 +121,13 @@ assembly code.
 <tr><td><b><i>Spook-128-512-su</i></b></td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.89</td><td>0.90</td></tr>
 <tr><td>Spook-128-512-mu</td><td>256</td><td>128</td><td>128</td><td>0.92</td><td>0.93</td><td>0.88</td><td>0.88</td><td>0.90</td></tr>
 <tr><td>SpoC-128</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.14</td><td>1.14</td><td>0.82</td></tr>
-<tr><td>SUNDAE-GIFT-0</td><td>128</td><td>0</td><td>128</td><td>0.59</td><td>0.63</td><td>1.05</td><td>1.06</td><td>0.80</td></tr>
+<tr><td><b><i>HYENA</i></b> (*)<td>128</td><td>96</td><td>128</td></td><td>0.68</td><td>0.74</td><td>0.87</td><td>0.88</td><td>0.80</td></tr>
 <tr><td><b><i>DryGASCON128k16</i></b> (*)</td><td>128</td><td>128</td><td>128</td><td>0.59</td><td>0.62</td><td>1.03</td><td>1.02</td><td>0.78</td></tr>
-<tr><td><b><i>HYENA</i></b><td>128</td><td>96</td><td>128</td></td><td>0.62</td><td>0.65</td><td>0.81</td><td>0.84</td><td>0.73</td></tr>
-<tr><td>SUNDAE-GIFT-64</td><td>128</td><td>64</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.87</td><td>0.71</td></tr>
-<tr><td><b><i>SUNDAE-GIFT-96</i></b></td><td>128</td><td>96</td><td>128</td><td>0.56</td><td>0.60</td><td>0.85</td><td>0.86</td><td>0.70</td></tr>
-<tr><td>SUNDAE-GIFT-128</td><td>128</td><td>128</td><td>128</td><td>0.56</td><td>0.59</td><td>0.83</td><td>0.85</td><td>0.70</td></tr>
-<tr><td><b><i>ESTATE_TweGIFT-128</i></b><sup>2</sup></td><td>128</td><td>128</td><td>128</td><td>0.48</td><td>0.52</td><td>0.91</td><td>0.92</td><td>0.66</td></tr>
+<tr><td>SUNDAE-GIFT-0 (*)</td><td>128</td><td>0</td><td>128</td><td>0.57</td><td>0.61</td><td>1.04</td><td>1.05</td><td>0.78</td></tr>
+<tr><td><b><i>ESTATE_TweGIFT-128</i></b><sup>2</sup> (*)</td><td>128</td><td>128</td><td>128</td><td>0.53</td><td>0.57</td><td>1.04</td><td>1.04</td><td>0.74</td></tr>
+<tr><td>SUNDAE-GIFT-64 (*)</td><td>128</td><td>64</td><td>128</td><td>0.54</td><td>0.58</td><td>0.84</td><td>0.86</td><td>0.69</td></tr>
+<tr><td><b><i>SUNDAE-GIFT-96</i></b> (*)</td><td>128</td><td>96</td><td>128</td><td>0.54</td><td>0.58</td><td>0.83</td><td>0.85</td><td>0.69</td></tr>
+<tr><td>SUNDAE-GIFT-128 (*)</td><td>128</td><td>128</td><td>128</td><td>0.54</td><td>0.58</td><td>0.81</td><td>0.83</td><td>0.68</td></tr>
 <tr><td><b><i>SPIX</i></b></td><td>128</td><td>128</td><td>128</td><td>0.41</td><td>0.44</td><td>0.38</td><td>0.39</td><td>0.40</td></tr>
 <tr><td><b><i>LOTUS-AEAD</i></b></td><td>128</td><td>128</td><td>64</td><td>0.29</td><td>0.31</td><td>0.56</td><td>0.58</td><td>0.40</td></tr>
 <tr><td>LOCUS-AEAD</td><td>128</td><td>128</td><td>64</td><td>0.28</td><td>0.29</td><td>0.56</td><td>0.57</td><td>0.39</td></tr>
@@ -340,8 +340,8 @@ AEAD algorithm rankings:
 <tr><td>11</td><td>ASCON</td></tr>
 <tr><td>10</td><td>TinyJAMBU</td></tr>
 <tr><td>9</td><td>GIFT-COFB, Gimli</td></tr>
-<tr><td>7</td><td>Spook</td></tr>
-<tr><td>6</td><td>ESTATE, HYENA, SUNDAE-GIFT</td></tr>
+<tr><td>7</td><td>HYENA, Spook</td></tr>
+<tr><td>6</td><td>ESTATE, SUNDAE-GIFT</td></tr>
 <tr><td>5</td><td>DryGASCON</td>
 <tr><td>4</td><td>Grain128-AEAD, KNOT</td></tr>
 <tr><td>3</td><td>LOTUS, Saturnin, SPIX, SpoC</td></tr>

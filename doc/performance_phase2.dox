@@ -159,6 +159,41 @@ DryGASCON128-HASH shows a similar improvement:
 <tr><td>DryGASCON128-HASH</td><td>Baseline</td><td>0.08</td><td>0.07</td><td>0.25</td><td>0.13</td></tr>
 </table>
 
+\section perf_phase2_gift128 GIFT-128
+
+I implemented ARM Cortex M3 assembly versions of the GIFT-128 block cipher
+to support accelerated versions of the  the ESTATE, GIFT-COFB, HYENA, and
+SUNDAE-GIFT submissions to Round 2.  Versions were created for the "full",
+"small", and "tiny" variants of GIFT-128.  The following figures are for
+the full fixsliced variant:
+
+<table>
+<tr><td>Algorithm</td><td>Contributor</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>GIFT-COFB</td><td>Rhys Weatherley</td></td><td>1.01</td><td>1.01</td><td>1.16</td><td>1.15</td><td>1.08</td></tr>
+<tr><td>GIFT-COFB</td><td>Baseline</td></td><td>1.02</td><td>1.01</td><td>1.09</td><td>1.09</td><td>1.05</td></tr>
+<tr><td>HYENA<td>Rhys Weatherley</td></td><td>0.68</td><td>0.74</td><td>0.87</td><td>0.88</td><td>0.80</td></tr>
+<tr><td>SUNDAE-GIFT-0<td>Rhys Weatherley</td><td>0.57</td><td>0.61</td><td>1.04</td><td>1.05</td><td>0.78</td></tr>
+<tr><td>SUNDAE-GIFT-0<td>Baseline</td><td>0.58</td><td>0.62</td><td>1.01</td><td>1.02</td><td>0.77</td></tr>
+<tr><td>HYENA<td>Baseline</td></td><td>0.62</td><td>0.65</td><td>0.81</td><td>0.84</td><td>0.73</td></tr>
+<tr><td>ESTATE_TweGIFT-128<td>Rhys Weatherley</td><td>0.53</td><td>0.57</td><td>1.04</td><td>1.04</td><td>0.74</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>Rhys Weatherley</td><td>0.54</td><td>0.58</td><td>0.84</td><td>0.86</td><td>0.69</td></tr>
+<tr><td>SUNDAE-GIFT-64</td><td>Baseline</td><td>0.55</td><td>0.59</td><td>0.82</td><td>0.84</td><td>0.69</td></tr>
+<tr><td>SUNDAE-GIFT-96</td><td>Rhys Weatherley</td><td>0.54</td><td>0.58</td><td>0.83</td><td>0.85</td><td>0.69</td></tr>
+<tr><td>SUNDAE-GIFT-96</td><td>Baseline</td><td>0.55</td><td>0.59</td><td>0.81</td><td>0.83</td><td>0.68</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>Rhys Weatherley</td><td>0.54</td><td>0.58</td><td>0.81</td><td>0.83</td><td>0.68</td></tr>
+<tr><td>SUNDAE-GIFT-128</td><td>Baseline</td><td>0.54</td><td>0.59</td><td>0.79</td><td>0.82</td><td>0.67</td></tr>
+<tr><td>ESTATE_TweGIFT-128<td>Baseline</td><td>0.48</td><td>0.51</td><td>0.92</td><td>0.92</td><td>0.66</td></tr>
+</table>
+
+The assembly versions provided a modest improvement in performance, but
+it wasn't as substantial as for other submissions.  The C compiler actually
+does a pretty good job on my GIFT-128 block cipher implementations in C.
+
+Further improvements will be investigated later.  The GIFT authors' ARM
+implementations have some other tricks that I haven't implemented yet,
+such as deferring word rotations from one step to be performed during
+the following step.
+
 \section perf_phase2_gimli Gimli
 
 I implemented ARM Cortex M3 assembly versions of the GIMLI-24 permutation.
