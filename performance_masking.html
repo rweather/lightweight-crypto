@@ -209,7 +209,7 @@ Rankings</h1>
 </table>
 <p>DryGASCON and ISAP have been included for comparison purposes. The baseline versions of those algorithms implement side channel protection without the need for random masking, so their "4 share" value is effectively 1.00.</p>
 <p>Pyjamask and Spook are near the head of the table because they were explicitly designed with masking in mind so the overhead is less than the other algorithms. However, the baseline version of Pyjamask is fairly slow in software. So the above table doesn't give a good idea as to the actual software performance.</p>
-<p>The following table divides the 4-share overhead by the ChaChaPoly ranking from the main <a class="el" href="performance.html#perf_cortex_m3">ARM Cortex M3</a> performance rankings. This gives an indication as to the relative performance of the masked algorithms in software, with the fastest at the top of the table:</p>
+<p>The following table divides the 4-share overhead by the ChaChaPoly ranking from the baseline <a class="el" href="performance_baseline.html#perf_baseline_cortex_m3">ARM Cortex M3</a> performance rankings. This gives an indication as to the relative performance of the masked algorithms in software, with the fastest at the top of the table:</p>
 <table class="doxtable">
 <tr>
 <td>Algorithm</td><td>Degree of Masking</td><td>4 shares</td><td>ChaChaPoly</td><td>4 shares / ChaChaPoly </td></tr>
@@ -258,7 +258,7 @@ Optimisation tricks</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 15 2020 19:12:23 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 31 2020 09:57:08 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
