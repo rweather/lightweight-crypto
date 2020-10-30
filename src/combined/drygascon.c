@@ -65,7 +65,7 @@ aead_cipher_t const drygascon128k16_cipher = {
 };
 
 aead_cipher_t const drygascon256_cipher = {
-    "DryGASCON256",
+    "DryGASCON256k32",
     DRYGASCON256_KEY_SIZE,
     DRYGASCON256_NONCE_SIZE,
     DRYGASCON256_TAG_SIZE,

@@ -1,6 +1,6 @@
 aead_family=drygascon
-aead_name=drygascon256
-aead_meta_name=DryGASCON256
+aead_name=drygascon256k32
+aead_meta_name=DryGASCON256k32
 aead_srcdir=DryGASCON
 aead_key_size=32
 aead_nonce_size=16
