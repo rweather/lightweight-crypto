@@ -23,7 +23,19 @@
 #include "internal-pyjamask.h"
 #include "internal-util.h"
 
-#if !defined(__AVR__)
+/* Determine which versions should be accelerated with assembly code */
+#if defined(__AVR__)
+#define PYJAMASK_128_ASM 1
+#define PYJAMASK_96_ASM 1
+#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
+#define PYJAMASK_128_ASM 1
+#define PYJAMASK_96_ASM 1
+#else
+#define PYJAMASK_128_ASM 0
+#define PYJAMASK_96_ASM 0
+#endif
+
+#if !PYJAMASK_128_ASM || !PYJAMASK_96_ASM
 
 /**
  * \brief Performs a circulant binary matrix multiplication.
@@ -50,6 +62,10 @@ STATIC_INLINE uint32_t pyjamask_matrix_multiply(uint32_t x, uint32_t y)
     }
     return result;
 }
+
+#endif
+
+#if !PYJAMASK_128_ASM
 
 void pyjamask_128_setup_key
     (pyjamask_128_key_schedule_t *ks, const unsigned char *key)
@@ -96,52 +112,6 @@ void pyjamask_128_setup_key
         rk[1] = k1;
         rk[2] = k2;
         rk[3] = k3;
-    }
-}
-
-void pyjamask_96_setup_key
-    (pyjamask_96_key_schedule_t *ks, const unsigned char *key)
-{
-    uint32_t *rk = ks->k;
-    uint32_t k0, k1, k2, k3;
-    uint32_t temp;
-    uint8_t round;
-
-    /* Load the words of the key */
-    k0 = be_load_word32(key);
-    k1 = be_load_word32(key + 4);
-    k2 = be_load_word32(key + 8);
-    k3 = be_load_word32(key + 12);
-
-    /* The first round key is the same as the key itself */
-    rk[0] = k0;
-    rk[1] = k1;
-    rk[2] = k2;
-    rk += 3;
-
-    /* Derive the round keys for all of the other rounds */
-    for (round = 0; round < PYJAMASK_ROUNDS; ++round, rk += 3) {
-        /* Mix the columns */
-        temp = k0 ^ k1 ^ k2 ^ k3;
-        k0 ^= temp;
-        k1 ^= temp;
-        k2 ^= temp;
-        k3 ^= temp;
-
-        /* Mix the rows and add the round constants.  Note that the Pyjamask
-         * specification says that k1/k2/k3 should be rotated left by 8, 15,
-         * and 18 bits.  But the reference code actually rotates the words
-         * right.  And the test vectors in the specification match up with
-         * right rotations, not left.  We match the reference code here */
-        k0 = pyjamask_matrix_multiply(0xb881b9caU, k0) ^ 0x00000080U ^ round;
-        k1 = rightRotate8(k1)  ^ 0x00006a00U;
-        k2 = rightRotate15(k2) ^ 0x003f0000U;
-        k3 = rightRotate18(k3) ^ 0x24000000U;
-
-        /* Write the round key to the schedule */
-        rk[0] = k0;
-        rk[1] = k1;
-        rk[2] = k2;
     }
 }
 
@@ -256,6 +226,56 @@ void pyjamask_128_decrypt
     be_store_word32(output + 12, s3);
 }
 
+#endif
+
+#if !PYJAMASK_96_ASM
+
+void pyjamask_96_setup_key
+    (pyjamask_96_key_schedule_t *ks, const unsigned char *key)
+{
+    uint32_t *rk = ks->k;
+    uint32_t k0, k1, k2, k3;
+    uint32_t temp;
+    uint8_t round;
+
+    /* Load the words of the key */
+    k0 = be_load_word32(key);
+    k1 = be_load_word32(key + 4);
+    k2 = be_load_word32(key + 8);
+    k3 = be_load_word32(key + 12);
+
+    /* The first round key is the same as the key itself */
+    rk[0] = k0;
+    rk[1] = k1;
+    rk[2] = k2;
+    rk += 3;
+
+    /* Derive the round keys for all of the other rounds */
+    for (round = 0; round < PYJAMASK_ROUNDS; ++round, rk += 3) {
+        /* Mix the columns */
+        temp = k0 ^ k1 ^ k2 ^ k3;
+        k0 ^= temp;
+        k1 ^= temp;
+        k2 ^= temp;
+        k3 ^= temp;
+
+        /* Mix the rows and add the round constants.  Note that the Pyjamask
+         * specification says that k1/k2/k3 should be rotated left by 8, 15,
+         * and 18 bits.  But the reference code actually rotates the words
+         * right.  And the test vectors in the specification match up with
+         * right rotations, not left.  We match the reference code here */
+        k0 = pyjamask_matrix_multiply(0xb881b9caU, k0) ^ 0x00000080U ^ round;
+        k1 = rightRotate8(k1)  ^ 0x00006a00U;
+        k2 = rightRotate15(k2) ^ 0x003f0000U;
+        k3 = rightRotate18(k3) ^ 0x24000000U;
+
+        /* Write the round key to the schedule */
+        rk[0] = k0;
+        rk[1] = k1;
+        rk[2] = k2;
+    }
+}
+
 void pyjamask_96_encrypt
     (const pyjamask_96_key_schedule_t *ks, unsigned char *output,
      const unsigned char *input)
@@ -353,4 +373,4 @@ void pyjamask_96_decrypt
     be_store_word32(output + 8,  s2);
 }
 
-#endif /* !__AVR__ */
+#endif

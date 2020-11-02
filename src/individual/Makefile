@@ -221,6 +221,7 @@ PYJAMASK_FILES = \
     pyjamask.h \
     internal-pyjamask.c \
     internal-pyjamask.h \
+    internal-pyjamask-arm-cm3.S \
     internal-pyjamask-avr.S \
     internal-ocb.h \
     $(COMMON_FILES)
