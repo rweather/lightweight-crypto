@@ -22,31 +22,32 @@
 
 #include "internal-pyjamask-m.h"
 
+/* Single step in the binary matrix multiplication */
+#define STEP(y, bit) \
+    mask = rightRotate1(mask); \
+    result ^= mask & -(((y) >> (bit)) & 1)
+
 /**
  * \brief Performs a circulant binary matrix multiplication.
  *
  * \param x The matrix.
- * \param y The vector to multiply with the matrix.
- *
- * \return The vector result of multiplying x by y.
+ * \param y The vector to multiply with the matrix.  Also the result.
  */
-STATIC_INLINE uint32_t pyjamask_matrix_multiply(uint32_t x, uint32_t y)
-{
-    uint32_t result = 0;
-    int bit;
-    for (bit = 31; bit >= 0; --bit) {
-#if defined(ESP32)
-        /* This version has slightly better performance on ESP32 */
-        y = leftRotate1(y);
-        result ^= x & -(y & 1);
-        x = rightRotate1(x);
-#else
-        result ^= x & -((y >> bit) & 1);
-        x = rightRotate1(x);
-#endif
-    }
-    return result;
-}
+#define pyjamask_matrix_multiply(x, y) \
+    do { \
+        uint32_t mask = (x); \
+        uint32_t result; \
+        result = mask & -(((y) >> 31) & 1); \
+        STEP((y), 30); STEP((y), 29); STEP((y), 28); STEP((y), 27); \
+        STEP((y), 26); STEP((y), 25); STEP((y), 24); STEP((y), 23); \
+        STEP((y), 22); STEP((y), 21); STEP((y), 20); STEP((y), 19); \
+        STEP((y), 18); STEP((y), 17); STEP((y), 16); STEP((y), 15); \
+        STEP((y), 14); STEP((y), 13); STEP((y), 12); STEP((y), 11); \
+        STEP((y), 10); STEP((y), 9); STEP((y), 8); STEP((y), 7); \
+        STEP((y), 6); STEP((y), 5); STEP((y), 4); STEP((y), 3); \
+        STEP((y), 2); STEP((y), 1); STEP((y), 0); \
+        (y) = result; \
+    } while (0)
 
 /**
  * \brief Performs a circulant binary matrix multiplication on a masked vector.
@@ -56,19 +57,19 @@ STATIC_INLINE uint32_t pyjamask_matrix_multiply(uint32_t x, uint32_t y)
  */
 static void pyjamask_matrix_multiply_masked(mask_uint32_t *y, uint32_t x)
 {
-    y->a = pyjamask_matrix_multiply(x, y->a);
-    y->b = pyjamask_matrix_multiply(x, y->b);
+    pyjamask_matrix_multiply(x, y->a);
+    pyjamask_matrix_multiply(x, y->b);
 #if AEAD_MASKING_SHARES >= 3
-    y->c = pyjamask_matrix_multiply(x, y->c);
+    pyjamask_matrix_multiply(x, y->c);
 #endif
 #if AEAD_MASKING_SHARES >= 4
-    y->d = pyjamask_matrix_multiply(x, y->d);
+    pyjamask_matrix_multiply(x, y->d);
 #endif
 #if AEAD_MASKING_SHARES >= 5
-    y->e = pyjamask_matrix_multiply(x, y->e);
+    pyjamask_matrix_multiply(x, y->e);
 #endif
 #if AEAD_MASKING_SHARES >= 6
-    y->f = pyjamask_matrix_multiply(x, y->f);
+    pyjamask_matrix_multiply(x, y->f);
 #endif
 #if AEAD_MASKING_SHARES > 6
     #error "Unknown number of shares"

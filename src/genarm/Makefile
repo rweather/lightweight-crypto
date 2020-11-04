@@ -76,7 +76,6 @@ generate: all
 	bin/gift128_arm_cortex_m3 small nibble >../combined/internal-gift128n-small-arm-cm3.S
 	bin/gift128_arm_cortex_m3 tiny nibble >../combined/internal-gift128n-tiny-arm-cm3.S
 	bin/gimli24_arm_cortex_m3 >../combined/internal-gimli24-arm-cm3.S
-	bin/pyjamask_arm_cortex_m3 >../combined/internal-pyjamask-arm-cm3.S
 	bin/tinyjambu_arm_cortex_m3 >../combined/internal-tinyjambu-arm-cm3.S
 	bin/sparkle_arm_cortex_m3 >../combined/internal-sparkle-arm-cm3.S
 	bin/speck_arm_cortex_m3 >../combined/internal-speck64-arm-cm3.S

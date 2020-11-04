@@ -227,6 +227,57 @@ to the performance of ISAP-A:
 <tr><td>ISAP-A-128</td><td>Baseline</td><td>0.05</td><td>0.05</td><td>0.02</td><td>0.02</td><td>0.03</td></tr>
 </table>
 
+\section perf_phase2_pyjamask Pyjamask
+
+Unrolling the circulant matrix multiplication step of Pyjamask produces a
+three-fold performance improvement in the C version of the algorithm:
+
+<table>
+<tr><td>Algorithm</td><td>Version</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>Unrolled</td><td>0.22</td><td>0.25</td><td>0.25</td><td>0.27</td><td>0.25</td></tr>
+<tr><td>Pyjamask-128-AEAD</td><td>Unrolled</td><td>0.22</td><td>0.24</td><td>0.24</td><td>0.25</td><td>0.24</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>Baseline</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.08</td><td>0.07</td></tr>
+<tr><td>Pyjamask-128-AEAD</td><td>Baseline</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07</td></tr>
+</table>
+
+Circulant multiplication has two arguments, a matrix "x" and a state
+word "y", where the matrix is a constant.  The reference implementation
+from the authors rotates and XOR's the matrix with the result wherever
+there is a 1 bit in the state word:
+
+\code
+result ^= x & -((y >> bit) & 1);
+x = rightRotate1(x);
+\endcode
+
+However, circulant multiplication is commutative so we can swap the
+arguments.  Because the matrix is a constant, we only need to perform
+XOR's and rotations for set bits in the matrix and ignore the unset bits.
+The matrix values in the standard algorithm have an average of 12 set bits,
+which reduces the number of XOR's and rotations significantly.  The
+resulting implementation is approximately 10 times faster than the
+baseline version:
+
+<table>
+<tr><td>Algorithm</td><td>Version</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>Reversed Multiplication</td><td>0.66</td><td>0.67</td><td>0.81</td><td>0.83</td><td>0.74</td></tr>
+<tr><td>Pyjamask-128-AEAD</td><td>Reversed Multiplication</td><td>0.67</td><td>0.63</td><td>0.80</td><td>0.79</td><td>0.72</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>Baseline</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.08</td><td>0.07</td></tr>
+<tr><td>Pyjamask-128-AEAD</td><td>Baseline</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07</td></tr>
+</table>
+
+There is a caveat with swapping the arguments to circulant multiplication.
+Pyjamask is strongly designed for resistance against power analysis.
+It is unclear if doing the calculation in reverse order would alter the
+power profile of the algorithm so as to make the state vulnerable.
+For this reason I am still using the original argument order in the
+masked version of Pyjamask.
+
+I also experiemented with ARM Cortex M3 assembly versions of Pyjamask
+but there wasn't much difference in performance to the plain C version.
+So for now I am sticking with the C version with reversed arguments
+as the primary implementation of unmasked Pyjamask.
+
 \section perf_phase2_sparkle SPARKLE
 
 I implemented fully unrolled ARM Cortex M3 assembly versions of the
