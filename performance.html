@@ -158,7 +158,11 @@ Performance on ARM Cortex M3</h1>
 <tr>
 <td>SUNDAE-GIFT-0 (*)</td><td>128</td><td>0</td><td>128</td><td>0.57</td><td>0.61</td><td>1.04</td><td>1.05</td><td>0.78 </td></tr>
 <tr>
+<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.81</td><td>0.83</td><td>0.74 </td></tr>
+<tr>
 <td><b><em>ESTATE_TweGIFT-128</em></b><sup>2</sup> (*)</td><td>128</td><td>128</td><td>128</td><td>0.53</td><td>0.57</td><td>1.04</td><td>1.04</td><td>0.74 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.67</td><td>0.63</td><td>0.80</td><td>0.79</td><td>0.72 </td></tr>
 <tr>
 <td>SUNDAE-GIFT-64 (*)</td><td>128</td><td>64</td><td>128</td><td>0.54</td><td>0.58</td><td>0.84</td><td>0.86</td><td>0.69 </td></tr>
 <tr>
@@ -235,10 +239,6 @@ Performance on ARM Cortex M3</h1>
 <td>Oribatida-192-96</td><td>128</td><td>64</td><td>96</td><td>0.07</td><td>0.08</td><td>0.12</td><td>0.13</td><td>0.10 </td></tr>
 <tr>
 <td><b><em>PHOTON-Beetle-AEAD-ENC-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.06</td><td>0.07</td><td>0.11</td><td>0.12</td><td>0.08 </td></tr>
-<tr>
-<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.08</td><td>0.07 </td></tr>
-<tr>
-<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07 </td></tr>
 <tr>
 <td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.05</td><td>0.05</td><td>0.18</td><td>0.14</td><td>0.08 </td></tr>
 <tr>
@@ -368,6 +368,10 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>ESTATE_TweGIFT-128</em></b></td><td>128</td><td>128</td><td>128</td><td>0.38</td><td>0.42</td><td>0.74</td><td>0.76</td><td>0.54 </td></tr>
 <tr>
+<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.46</td><td>0.49</td><td>0.54</td><td>0.56</td><td>0.51 </td></tr>
+<tr>
+<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.44</td><td>0.46</td><td>0.51</td><td>0.52</td><td>0.48 </td></tr>
+<tr>
 <td><b><em>Grain-128AEAD</em></b></td><td>128</td><td>96</td><td>64</td><td>0.33</td><td>0.30</td><td>0.65</td><td>0.59</td><td>0.43 </td></tr>
 <tr>
 <td><b><em>SATURNIN-CTR-Cascade</em></b></td><td>256</td><td>128</td><td>256</td><td>0.34</td><td>0.37</td><td>0.38</td><td>0.39</td><td>0.37 </td></tr>
@@ -418,8 +422,6 @@ Performance on ESP32</h1>
 <tr>
 <td><b><em>ORANGE-Zest</em></b></td><td>128</td><td>128</td><td>128</td><td>0.09</td><td>0.11</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
 <tr>
-<td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.09</td><td>0.10</td><td>0.10</td><td>0.11</td><td>0.10 </td></tr>
-<tr>
 <td>PAEF-ForkSkinny-128-256</td><td>128</td><td>112</td><td>128</td><td>0.06</td><td>0.07</td><td>0.21</td><td>0.20</td><td>0.10 </td></tr>
 <tr>
 <td>SAEF-ForkSkinny-128-256</td><td>128</td><td>120</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.20</td><td>0.10 </td></tr>
@@ -429,8 +431,6 @@ Performance on ESP32</h1>
 <td>SAEF-ForkSkinny-128-192</td><td>128</td><td>56</td><td>128</td><td>0.06</td><td>0.06</td><td>0.21</td><td>0.20</td><td>0.10 </td></tr>
 <tr>
 <td>Romulus-M3</td><td>128</td><td>96</td><td>128</td><td>0.07</td><td>0.08</td><td>0.12</td><td>0.13</td><td>0.09 </td></tr>
-<tr>
-<td><b><em>Pyjamask-128-AEAD</em></b></td><td>128</td><td>96</td><td>128</td><td>0.08</td><td>0.10</td><td>0.09</td><td>0.10</td><td>0.09 </td></tr>
 <tr>
 <td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.06</td><td>0.07</td><td>0.09</td><td>0.10</td><td>0.08 </td></tr>
 <tr>
@@ -522,7 +522,7 @@ Overall group rankings</h1>
 <tr>
 <td>7</td><td>HYENA, Spook </td></tr>
 <tr>
-<td>6</td><td>ESTATE, SUNDAE-GIFT </td></tr>
+<td>6</td><td>ESTATE, Pyjamask, SUNDAE-GIFT </td></tr>
 <tr>
 <td>5</td><td>DryGASCON </td></tr>
 <tr>
@@ -534,7 +534,7 @@ Overall group rankings</h1>
 <tr>
 <td>1</td><td>ACE, ORANGE, Romulus, SKINNY-AEAD, Subterranean </td></tr>
 <tr>
-<td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, Pyjamask, WAGE </td></tr>
+<td>0</td><td>Elephant, ForkAE, ISAP, PHOTON-Beetle, WAGE </td></tr>
 </table>
 <p>Hash algorithm rankings:</p>
 <table class="doxtable">
@@ -552,7 +552,7 @@ Overall group rankings</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 31 2020 09:57:08 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 4 2020 19:15:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
