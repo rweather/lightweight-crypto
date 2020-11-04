@@ -27,9 +27,6 @@
 #if defined(__AVR__)
 #define PYJAMASK_128_ASM 1
 #define PYJAMASK_96_ASM 1
-#elif defined(__ARM_ARCH_ISA_THUMB) && __ARM_ARCH == 7
-#define PYJAMASK_128_ASM 1
-#define PYJAMASK_96_ASM 1
 #else
 #define PYJAMASK_128_ASM 0
 #define PYJAMASK_96_ASM 0
