@@ -87,6 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li class="level1"><a href="#perf_phase2_gimli">Gimli</a></li>
 <li class="level1"><a href="#perf_phase2_isap">ISAP</a></li>
 <li class="level1"><a href="#perf_phase2_pyjamask">Pyjamask</a></li>
+<li class="level1"><a href="#perf_phase2_saturnin">Saturnin</a></li>
 <li class="level1"><a href="#perf_phase2_sparkle">SPARKLE</a></li>
 <li class="level1"><a href="#perf_phase2_tinyjambu">TinyJAMBU</a></li>
 <li class="level1"><a href="#perf_phase2_xoodyak">Xoodyak</a></li>
@@ -309,6 +310,30 @@ Pyjamask</h1>
 </table>
 <p>There is a caveat with swapping the arguments to circulant multiplication. Pyjamask is strongly designed for resistance against power analysis. It is unclear if doing the calculation in reverse order would alter the power profile of the algorithm so as to make the state vulnerable. For this reason I am still using the original argument order in the masked version of Pyjamask.</p>
 <p>I also experiemented with ARM Cortex M3 assembly versions of Pyjamask but there wasn't much difference in performance to the plain C version. So for now I am sticking with the C version with reversed arguments as the primary implementation of unmasked Pyjamask.</p>
+<h1><a class="anchor" id="perf_phase2_saturnin"></a>
+Saturnin</h1>
+<p>The S-box and MDS steps in Saturnin rotate the words of the state at various points. In a previous change, I made the S-box words rotations implicit within the higher level round function. In the latest change, I did the same for MDS. Doing this provides a modest improvement in the performance of the C version:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Version</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
+<tr>
+<td>SATURNIN-Short</td><td>Rhys Weatherley</td><td></td><td></td><td>1.82</td><td>1.66</td><td>1.73 </td></tr>
+<tr>
+<td>SATURNIN-Short</td><td>Baseline</td><td></td><td></td><td>1.62</td><td>1.69</td><td>1.66 </td></tr>
+<tr>
+<td>SATURNIN-CTR-Cascade</td><td>Rhys Weatherley</td><td>0.39</td><td>0.42</td><td>0.42</td><td>0.44</td><td>0.42 </td></tr>
+<tr>
+<td>SATURNIN-CTR-Cascade</td><td>Baseline</td><td>0.34</td><td>0.36</td><td>0.37</td><td>0.38</td><td>0.36 </td></tr>
+</table>
+<p>Similar performance improvements are also seen for SATURNIN-Hash:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Contributor</td><td>1024 bytes</td><td>128 bytes</td><td>16 bytes</td><td>Average </td></tr>
+<tr>
+<td>SATURNIN-Hash</td><td>Rhys Weatherley</td><td>0.28</td><td>0.23</td><td>0.57</td><td>0.36 </td></tr>
+<tr>
+<td>SATURNIN-Hash</td><td>Baseline</td><td>0.24</td><td>0.20</td><td>0.49</td><td>0.31 </td></tr>
+</table>
 <h1><a class="anchor" id="perf_phase2_sparkle"></a>
 SPARKLE</h1>
 <p>I implemented fully unrolled ARM Cortex M3 assembly versions of the SPARKLE-256, SPARKLE-384, and SPARKLE-512 permutations. There was up to a 70% improvement in performance in some of the algorithms.</p>
@@ -409,7 +434,7 @@ Xoodyak</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 4 2020 19:15:52 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 11 2020 19:40:46 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
