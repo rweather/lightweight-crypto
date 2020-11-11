@@ -180,15 +180,17 @@ static uint32_t const saturnin_rc[] = {
         (a) ^= (b) & (c); \
     } while (0)
 
-/* Helpers for MDS matrix operations */
+/* Helpers for MDS matrix operations, with word rotations done implicitly */
 #define SWAP(a) (((a) << 16) | ((a) >> 16))
 #define MUL(x0, x1, x2, x3) \
     do { \
-        temp = x0; x0 = x1; x1 = x2; x2 = x3; x3 = temp ^ x0; \
+        /*temp = x0; x0 = x1; x1 = x2; x2 = x3; x3 = temp ^ x0;*/ \
+        x0 ^= x1; \
     } while (0)
 #define MULINV(x0, x1, x2, x3) \
     do { \
-        temp = x3; x3 = x2; x2 = x1; x1 = x0; x0 = x1 ^ temp; \
+        /*temp = x3; x3 = x2; x2 = x1; x1 = x0; x0 = x1 ^ temp;*/ \
+        x3 ^= x0; \
     } while (0)
 
 /**
@@ -202,18 +204,23 @@ static uint32_t const saturnin_rc[] = {
  * \param x5 Sixth word of the bit-sliced state.
  * \param x6 Seventh word of the bit-sliced state.
  * \param x7 Eighth word of the bit-sliced state.
+ *
+ * The rotations for the MUL() operations are performed implicitly.
+ * The words of the bit-sliced state on exit will appear in the
+ * words x2, x3, x0, x1, x5, x6, x7, x4 in that order.  Follow-on
+ * steps need to take the new ordering into account.
  */
 #define saturnin_mds(x0, x1, x2, x3, x4, x5, x6, x7) \
     do { \
         x0 ^= x4; x1 ^= x5; x2 ^= x6; x3 ^= x7; \
         MUL(x4, x5, x6, x7); \
-        x4 ^= SWAP(x0); x5 ^= SWAP(x1); \
-        x6 ^= SWAP(x2); x7 ^= SWAP(x3); \
+        x5 ^= SWAP(x0); x6 ^= SWAP(x1); \
+        x7 ^= SWAP(x2); x4 ^= SWAP(x3); \
         MUL(x0, x1, x2, x3); \
-        MUL(x0, x1, x2, x3); \
-        x0 ^= x4; x1 ^= x5; x2 ^= x6; x3 ^= x7; \
-        x4 ^= SWAP(x0); x5 ^= SWAP(x1); \
-        x6 ^= SWAP(x2); x7 ^= SWAP(x3); \
+        MUL(x1, x2, x3, x0); \
+        x2 ^= x5; x3 ^= x6; x0 ^= x7; x1 ^= x4; \
+        x5 ^= SWAP(x2); x6 ^= SWAP(x3); \
+        x7 ^= SWAP(x0); x4 ^= SWAP(x1); \
     } while (0)
 
 /**
@@ -227,6 +234,11 @@ static uint32_t const saturnin_rc[] = {
  * \param x5 Sixth word of the bit-sliced state.
  * \param x6 Seventh word of the bit-sliced state.
  * \param x7 Eighth word of the bit-sliced state.
+ *
+ * The rotations for the MULINV() operations are performed implicitly.
+ * The words of the bit-sliced state on exit will appear in the
+ * words x2, x3, x0, x1, x7, x4, x5, x6 in that order.  Follow-on
+ * steps need to take the new ordering into account.
  */
 #define saturnin_mds_inverse(x0, x1, x2, x3, x4, x5, x6, x7) \
     do { \
@@ -234,11 +246,11 @@ static uint32_t const saturnin_rc[] = {
         x4 ^= SWAP(x0); x5 ^= SWAP(x1); \
         x0 ^= x4; x1 ^= x5; x2 ^= x6; x3 ^= x7; \
         MULINV(x0, x1, x2, x3); \
-        MULINV(x0, x1, x2, x3); \
-        x6 ^= SWAP(x2); x7 ^= SWAP(x3); \
-        x4 ^= SWAP(x0); x5 ^= SWAP(x1); \
+        MULINV(x3, x0, x1, x2); \
+        x6 ^= SWAP(x0); x7 ^= SWAP(x1); \
+        x4 ^= SWAP(x2); x5 ^= SWAP(x3); \
         MULINV(x4, x5, x6, x7); \
-        x0 ^= x4; x1 ^= x5; x2 ^= x6; x3 ^= x7; \
+        x2 ^= x7; x3 ^= x4; x0 ^= x5; x1 ^= x6; \
     } while (0)
 
 /**
@@ -356,7 +368,7 @@ void saturnin_encrypt_block
 {
     unsigned rounds = (domain >= SATURNIN_DOMAIN_16_7) ? 8 : 5;
     const uint32_t *rc = saturnin_rc + domain;
-    uint32_t x0, x1, x2, x3, x4, x5, x6, x7, temp;
+    uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
 
     /* Load the input into local variables */
     x0 = saturnin_load_word32(input);
@@ -377,31 +389,25 @@ void saturnin_encrypt_block
         saturnin_sbox(x0, x1, x2, x3);
         saturnin_sbox(x4, x5, x6, x7);
         saturnin_mds(x1, x2, x3, x0, x7, x5, x4, x6);
-        saturnin_sbox(x1, x2, x3, x0);
-        saturnin_sbox(x7, x5, x4, x6);
-        saturnin_slice(x2, x3, x0, x1, x6, x5, x7, x4);
-        saturnin_mds(x2, x3, x0, x1, x6, x5, x7, x4);
-        saturnin_slice_inverse(x2, x3, x0, x1, x6, x5, x7, x4);
+        saturnin_sbox(x3, x0, x1, x2);
+        saturnin_sbox(x5, x4, x6, x7);
+        saturnin_slice(x0, x1, x2, x3, x7, x4, x5, x6);
+        saturnin_mds(x0, x1, x2, x3, x7, x4, x5, x6);
+        saturnin_slice_inverse(x2, x3, x0, x1, x4, x5, x6, x7);
         x2 ^= rc[0];
-        saturnin_xor_key_rotated(x2, x3, x0, x1, x6, x5, x7, x4);
+        saturnin_xor_key_rotated(x2, x3, x0, x1, x4, x5, x6, x7);
 
         /* Odd rounds */
         saturnin_sbox(x2, x3, x0, x1);
-        saturnin_sbox(x6, x5, x7, x4);
-        saturnin_mds(x3, x0, x1, x2, x4, x5, x6, x7);
-        saturnin_sbox(x3, x0, x1, x2);
         saturnin_sbox(x4, x5, x6, x7);
-        saturnin_sheet(x0, x1, x2, x3, x7, x5, x4, x6);
-        saturnin_mds(x0, x1, x2, x3, x7, x5, x4, x6);
-        saturnin_sheet_inverse(x0, x1, x2, x3, x7, x5, x4, x6);
+        saturnin_mds(x3, x0, x1, x2, x7, x5, x4, x6);
+        saturnin_sbox(x1, x2, x3, x0);
+        saturnin_sbox(x5, x4, x6, x7);
+        saturnin_sheet(x2, x3, x0, x1, x7, x4, x5, x6);
+        saturnin_mds(x2, x3, x0, x1, x7, x4, x5, x6);
+        saturnin_sheet_inverse(x0, x1, x2, x3, x4, x5, x6, x7);
         x0 ^= rc[1];
-        saturnin_xor_key(x0, x1, x2, x3, x7, x5, x4, x6);
-
-        /* Correct the rotation of the second half before the next round */
-        temp = x4;
-        x4 = x7;
-        x7 = x6;
-        x6 = temp;
+        saturnin_xor_key(x0, x1, x2, x3, x4, x5, x6, x7);
     }
 
     /* Store the local variables to the output buffer */
@@ -421,7 +427,7 @@ void saturnin_decrypt_block
 {
     unsigned rounds = (domain >= SATURNIN_DOMAIN_16_7) ? 8 : 5;
     const uint32_t *rc = saturnin_rc + domain + (rounds - 1) * 2;
-    uint32_t x0, x1, x2, x3, x4, x5, x6, x7, temp;
+    uint32_t x0, x1, x2, x3, x4, x5, x6, x7;
 
     /* Load the input into local variables */
     x0 = saturnin_load_word32(input);
@@ -435,33 +441,27 @@ void saturnin_decrypt_block
 
     /* Perform all decryption rounds, two at a time */
     for (; rounds > 0; --rounds, rc -= 2) {
-        /* Correct the rotation of the second half before the next round */
-        temp = x6;
-        x6 = x7;
-        x7 = x4;
-        x4 = temp;
-
         /* Odd rounds */
-        saturnin_xor_key(x0, x1, x2, x3, x7, x5, x4, x6);
+        saturnin_xor_key(x0, x1, x2, x3, x4, x5, x6, x7);
         x0 ^= rc[1];
-        saturnin_sheet(x0, x1, x2, x3, x7, x5, x4, x6);
-        saturnin_mds_inverse(x0, x1, x2, x3, x7, x5, x4, x6);
-        saturnin_sheet_inverse(x0, x1, x2, x3, x7, x5, x4, x6);
-        saturnin_sbox_inverse(x3, x0, x1, x2);
-        saturnin_sbox_inverse(x4, x5, x6, x7);
-        saturnin_mds_inverse(x3, x0, x1, x2, x4, x5, x6, x7);
+        saturnin_sheet(x0, x1, x2, x3, x4, x5, x6, x7);
+        saturnin_mds_inverse(x0, x1, x2, x3, x4, x5, x6, x7);
+        saturnin_sheet_inverse(x2, x3, x0, x1, x7, x4, x5, x6);
+        saturnin_sbox_inverse(x1, x2, x3, x0);
+        saturnin_sbox_inverse(x5, x4, x6, x7);
+        saturnin_mds_inverse(x1, x2, x3, x0, x5, x4, x6, x7);
         saturnin_sbox_inverse(x2, x3, x0, x1);
-        saturnin_sbox_inverse(x6, x5, x7, x4);
+        saturnin_sbox_inverse(x4, x5, x6, x7);
 
         /* Even rounds */
-        saturnin_xor_key_rotated(x2, x3, x0, x1, x6, x5, x7, x4);
+        saturnin_xor_key_rotated(x2, x3, x0, x1, x4, x5, x6, x7);
         x2 ^= rc[0];
-        saturnin_slice(x2, x3, x0, x1, x6, x5, x7, x4);
-        saturnin_mds_inverse(x2, x3, x0, x1, x6, x5, x7, x4);
-        saturnin_slice_inverse(x2, x3, x0, x1, x6, x5, x7, x4);
-        saturnin_sbox_inverse(x1, x2, x3, x0);
-        saturnin_sbox_inverse(x7, x5, x4, x6);
-        saturnin_mds_inverse(x1, x2, x3, x0, x7, x5, x4, x6);
+        saturnin_slice(x2, x3, x0, x1, x4, x5, x6, x7);
+        saturnin_mds_inverse(x2, x3, x0, x1, x4, x5, x6, x7);
+        saturnin_slice_inverse(x0, x1, x2, x3, x7, x4, x5, x6);
+        saturnin_sbox_inverse(x3, x0, x1, x2);
+        saturnin_sbox_inverse(x5, x4, x6, x7);
+        saturnin_mds_inverse(x3, x0, x1, x2, x5, x4, x6, x7);
         saturnin_sbox_inverse(x0, x1, x2, x3);
         saturnin_sbox_inverse(x4, x5, x6, x7);
     }
