@@ -60,7 +60,7 @@ var searchData=
   ['pyjamask_5fmasked_5f128_5fdecrypt',['pyjamask_masked_128_decrypt',['../internal-pyjamask-m_8h.html#ac76073310888f50194fc766d79f3b426',1,'internal-pyjamask-m.c']]],
   ['pyjamask_5fmasked_5f128_5fencrypt',['pyjamask_masked_128_encrypt',['../internal-pyjamask-m_8h.html#aa531f821050f32e273b2839c11f0beb4',1,'internal-pyjamask-m.c']]],
   ['pyjamask_5fmasked_5f128_5fkey_5fschedule_5ft',['pyjamask_masked_128_key_schedule_t',['../structpyjamask__masked__128__key__schedule__t.html',1,'']]],
-  ['pyjamask_5fmasked_5f128_5fsetup_5fkey',['pyjamask_masked_128_setup_key',['../internal-pyjamask-m_8h.html#a331174491c071fcdf1aeb2a1473821de',1,'internal-pyjamask-m.c']]],
+  ['pyjamask_5fmasked_5f128_5fsetup_5fkey',['pyjamask_masked_128_setup_key',['../internal-pyjamask-m_8h.html#a331174491c071fcdf1aeb2a1473821de',1,'internal-pyjamask-m.h']]],
   ['pyjamask_5fmasked_5f96_5faead_5fdecrypt',['pyjamask_masked_96_aead_decrypt',['../pyjamask-masked_8h.html#abd2ad74be143076577b973c87e20e1d7',1,'pyjamask-masked.h']]],
   ['pyjamask_5fmasked_5f96_5faead_5fencrypt',['pyjamask_masked_96_aead_encrypt',['../pyjamask-masked_8h.html#a2e81afc9dc7899edc5e7b33e0e426a0e',1,'pyjamask-masked.h']]],
   ['pyjamask_5fmasked_5f96_5fcipher',['pyjamask_masked_96_cipher',['../pyjamask-masked_8h.html#a5db3bd8159d82c983bc6f727e9e2a9b3',1,'pyjamask-96-masked.c']]],

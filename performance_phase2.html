@@ -308,8 +308,21 @@ Pyjamask</h1>
 <tr>
 <td>Pyjamask-128-AEAD</td><td>Baseline</td><td>0.06</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07 </td></tr>
 </table>
-<p>There is a caveat with swapping the arguments to circulant multiplication. Pyjamask is strongly designed for resistance against power analysis. It is unclear if doing the calculation in reverse order would alter the power profile of the algorithm so as to make the state vulnerable. For this reason I am still using the original argument order in the masked version of Pyjamask.</p>
-<p>I also experiemented with ARM Cortex M3 assembly versions of Pyjamask but there wasn't much difference in performance to the plain C version. So for now I am sticking with the C version with reversed arguments as the primary implementation of unmasked Pyjamask.</p>
+<p>According to the Pyjamask authors, swapping the arguments to circulant multiplication should have no affect on the algorithm's resistance against power analysis when used in masked form.</p>
+<p>I also experiemented with ARM Cortex M3 assembly versions of Pyjamask but there wasn't much difference in performance to the plain C version. So for now I am sticking with the C version.</p>
+<p>The AVR version of Pyjamask also shows a significant improvement by swapping the arguments:</p>
+<table class="doxtable">
+<tr>
+<td>Algorithm</td><td>Version</td><td>Encrypt 128 bytes</td><td>Decrypt 128 bytes</td><td>Encrypt 16 bytes</td><td>Decrypt 16 bytes</td><td>Average </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>Rhys Weatherley</td><td>1.47</td><td>1.45</td><td>2.13</td><td>2.11</td><td>1.64 </td></tr>
+<tr>
+<td>Pyjamask-128-AEAD</td><td>Rhys Weatherley</td><td>1.39</td><td>1.34</td><td>1.95</td><td>1.91</td><td>1.52 </td></tr>
+<tr>
+<td>Pyjamask-96-AEAD</td><td>Baseline</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74 </td></tr>
+<tr>
+<td>Pyjamask-128-AEAD</td><td>Baseline</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71 </td></tr>
+</table>
 <h1><a class="anchor" id="perf_phase2_saturnin"></a>
 Saturnin</h1>
 <p>The S-box and MDS steps in Saturnin rotate the words of the state at various points. In a previous change, I made the S-box words rotations implicit within the higher level round function. In the latest change, I did the same for MDS. Doing this provides a modest improvement in the performance of the C version:</p>
@@ -434,7 +447,7 @@ Xoodyak</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 11 2020 19:40:46 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 13 2020 04:03:15 for Lightweight Cryptography Primitives by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
