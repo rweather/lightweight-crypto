@@ -26,6 +26,8 @@
 // Number of rounds for the Pyjamask cipher.
 #define PYJAMASK_ROUNDS 14
 
+#if 0
+
 // Performs a circulant binary matrix multiplication.
 static void pyjamask_matrix_multiply(Code &code, uint32_t x, const Reg &y)
 {
@@ -57,12 +59,10 @@ static void pyjamask_matrix_multiply(Code &code, uint32_t x, const Reg &y)
     code.releaseReg(result);
 }
 
-#if 0
+#endif
 
 // By reversing the arguments, we can get a version of Pyjamask that is 2x
-// faster than using the multiplication code above.  It is not clear from
-// the specification as to whether we should do this or if there is some
-// security implication on the side channel protection in doing so.
+// faster than using the multiplication code above.
 static void pyjamask_matrix_multiply(Code &code, uint32_t x, const Reg &y)
 {
     int bit, count, first;
@@ -84,8 +84,6 @@ static void pyjamask_matrix_multiply(Code &code, uint32_t x, const Reg &y)
     code.move(y, result);
     code.releaseReg(result);
 }
-
-#endif
 
 /**
  * \brief Generates the AVR code for the Pyjamask key setup function.

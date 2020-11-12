@@ -67,6 +67,8 @@ fairly similar.  Performance figures for 32-bit platforms can be found
 <tr><td>SpoC-128</td><td>128</td><td>128</td><td>128</td><td>1.46</td><td>1.44</td><td>3.47</td><td>3.37</td><td>1.81</td></tr>
 <tr><td>TinyJAMBU-256</td><td>256</td><td>96</td><td>64</td><td>1.45</td><td>1.42</td><td>3.60</td><td>3.48</td><td>1.80</td></tr>
 <tr><td><b><i>Xoodyak</i></b></td><td>128</td><td>128</td><td>128</td><td>1.64</td><td>1.58</td><td>1.99</td><td>1.95</td><td>1.72</td></tr>
+<tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>1.47</td><td>1.45</td><td>2.13</td><td>2.11</td><td>1.64</td></tr>
+<tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>1.39</td><td>1.34</td><td>1.95</td><td>1.91</td><td>1.52</td></tr>
 <tr><td>KNOT-AEAD-128-384</td><td>128</td><td>128</td><td>128</td><td>1.40</td><td>1.38</td><td>1.76</td><td>1.75</td><td>1.50</td></tr>
 <tr><td><b><i>PHOTON-Beetle-AEAD-ENC-128</i></b></td><td>128</td><td>128</td><td>128</td><td>1.16</td><td>1.15</td><td>2.82</td><td>2.76</td><td>1.45</td></tr>
 <tr><td>Romulus-N2</td><td>128</td><td>96</td><td>128</td><td>1.16</td><td>1.15</td><td>2.69</td><td>2.63</td><td>1.44</td></tr>
@@ -93,10 +95,8 @@ fairly similar.  Performance figures for 32-bit platforms can be found
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.68</td><td>0.69</td><td>1.61</td><td>1.60</td><td>0.85</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.68</td><td>0.69</td><td>1.19</td><td>1.19</td><td>0.80</td></tr>
 <tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75</td></tr>
-<tr><td>Pyjamask-96-AEAD</td><td>128</td><td>64</td><td>96</td><td>0.66</td><td>0.67</td><td>0.96</td><td>0.96</td><td>0.74</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72</td></tr>
 <tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.59</td><td>0.58</td><td>1.30</td><td>1.27</td><td>0.72</td></tr>
-<tr><td><b><i>Pyjamask-128-AEAD</i></b></td><td>128</td><td>96</td><td>128</td><td>0.63</td><td>0.64</td><td>0.89</td><td>0.90</td><td>0.71</td></tr>
 <tr><td><b><i>PAEF-ForkSkinny-128-288</i></b></td><td>128</td><td>104</td><td>128</td><td>0.61</td><td>0.39</td><td>2.56</td><td>1.61</td><td>0.65</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.58</td><td>0.38</td><td>2.44</td><td>1.56</td><td>0.62</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48</td></tr>
@@ -150,12 +150,13 @@ AEAD algorithm rankings:
 <tr><td>19</td><td>ESTATE, SUNDAE-GIFT</td></tr>
 <tr><td>18</td><td>Subterranean</td></tr>
 <tr><td>17</td><td>Xoodyak</td></tr>
+<tr><td>15</td><td>Pyjamask</td></tr>
 <tr><td>14</td><td>Romulus, PHOTON-Beetle</td></tr>
 <tr><td>13</td><td>KNOT, SKINNY-AEAD, SpoC</td></tr>
 <tr><td>11</td><td>Saturnin</td></tr>
 <tr><td>10</td><td>DryGASCON, LOTUS, SPIX</td></tr>
 <tr><td>8</td><td>Oribatida</td></tr>
-<tr><td>7</td><td>Grain-128AEAD, Pyjamask, WAGE</td></tr>
+<tr><td>7</td><td>Grain-128AEAD, WAGE</td></tr>
 <tr><td>6</td><td>ForkAE</td></tr>
 <tr><td>4</td><td>ACE, Elephant</td></tr>
 <tr><td>3</td><td>ISAP</td></tr>

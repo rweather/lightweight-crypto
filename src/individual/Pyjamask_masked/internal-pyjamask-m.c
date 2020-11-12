@@ -22,59 +22,222 @@
 
 #include "internal-pyjamask-m.h"
 
-/* Single step in the binary matrix multiplication */
-#define STEP(y, bit) \
-    mask = rightRotate1(mask); \
-    result ^= mask & -(((y) >> (bit)) & 1)
-
-/**
- * \brief Performs a circulant binary matrix multiplication.
- *
- * \param x The matrix.
- * \param y The vector to multiply with the matrix.  Also the result.
- */
-#define pyjamask_matrix_multiply(x, y) \
+/* Macros for specific matrix values */
+#define pyjamask_matrix_multiply_b881b9ca(y) \
     do { \
-        uint32_t mask = (x); \
         uint32_t result; \
-        result = mask & -(((y) >> 31) & 1); \
-        STEP((y), 30); STEP((y), 29); STEP((y), 28); STEP((y), 27); \
-        STEP((y), 26); STEP((y), 25); STEP((y), 24); STEP((y), 23); \
-        STEP((y), 22); STEP((y), 21); STEP((y), 20); STEP((y), 19); \
-        STEP((y), 18); STEP((y), 17); STEP((y), 16); STEP((y), 15); \
-        STEP((y), 14); STEP((y), 13); STEP((y), 12); STEP((y), 11); \
-        STEP((y), 10); STEP((y), 9); STEP((y), 8); STEP((y), 7); \
-        STEP((y), 6); STEP((y), 5); STEP((y), 4); STEP((y), 3); \
-        STEP((y), 2); STEP((y), 1); STEP((y), 0); \
+        result  = (y); \
+        result ^= rightRotate2((y)); \
+        result ^= rightRotate3((y)); \
+        result ^= rightRotate4((y)); \
+        result ^= rightRotate8((y)); \
+        result ^= rightRotate15((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate20((y)); \
+        result ^= rightRotate23((y)); \
+        result ^= rightRotate24((y)); \
+        result ^= rightRotate25((y)); \
+        result ^= rightRotate28((y)); \
+        result ^= rightRotate30((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_a3861085(y) \
+    do { \
+        uint32_t result; \
+        result  = (y); \
+        result ^= rightRotate2((y)); \
+        result ^= rightRotate6((y)); \
+        result ^= rightRotate7((y)); \
+        result ^= rightRotate8((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate14((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate24((y)); \
+        result ^= rightRotate29((y)); \
+        result ^= rightRotate31((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_63417021(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate1((y)); \
+        result ^= rightRotate2((y)); \
+        result ^= rightRotate6((y)); \
+        result ^= rightRotate7((y)); \
+        result ^= rightRotate9((y)); \
+        result ^= rightRotate15((y)); \
+        result ^= rightRotate17((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate26((y)); \
+        result ^= rightRotate31((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_692cf280(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate1((y)); \
+        result ^= rightRotate2((y)); \
+        result ^= rightRotate4((y)); \
+        result ^= rightRotate7((y)); \
+        result ^= rightRotate10((y)); \
+        result ^= rightRotate12((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate17((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate22((y)); \
+        result ^= rightRotate24((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_48a54813(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate1((y)); \
+        result ^= rightRotate4((y)); \
+        result ^= rightRotate8((y)); \
+        result ^= rightRotate10((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate15((y)); \
+        result ^= rightRotate17((y)); \
+        result ^= rightRotate20((y)); \
+        result ^= rightRotate27((y)); \
+        result ^= rightRotate30((y)); \
+        result ^= rightRotate31((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_2037a121(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate2((y)); \
+        result ^= rightRotate10((y)); \
+        result ^= rightRotate11((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate14((y)); \
+        result ^= rightRotate15((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate23((y)); \
+        result ^= rightRotate26((y)); \
+        result ^= rightRotate31((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_108ff2a0(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate3((y)); \
+        result ^= rightRotate8((y)); \
+        result ^= rightRotate12((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate14((y)); \
+        result ^= rightRotate15((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate17((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate22((y)); \
+        result ^= rightRotate24((y)); \
+        result ^= rightRotate26((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_9054d8c0(y) \
+    do { \
+        uint32_t result; \
+        result  = (y); \
+        result ^= rightRotate3((y)); \
+        result ^= rightRotate9((y)); \
+        result ^= rightRotate11((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate17((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate20((y)); \
+        result ^= rightRotate24((y)); \
+        result ^= rightRotate25((y)); \
+        (y) = result; \
+    } while (0)
+#define pyjamask_matrix_multiply_3354b117(y) \
+    do { \
+        uint32_t result; \
+        result  = rightRotate2((y)); \
+        result ^= rightRotate3((y)); \
+        result ^= rightRotate6((y)); \
+        result ^= rightRotate7((y)); \
+        result ^= rightRotate9((y)); \
+        result ^= rightRotate11((y)); \
+        result ^= rightRotate13((y)); \
+        result ^= rightRotate16((y)); \
+        result ^= rightRotate18((y)); \
+        result ^= rightRotate19((y)); \
+        result ^= rightRotate23((y)); \
+        result ^= rightRotate27((y)); \
+        result ^= rightRotate29((y)); \
+        result ^= rightRotate30((y)); \
+        result ^= rightRotate31((y)); \
         (y) = result; \
     } while (0)
 
-/**
- * \brief Performs a circulant binary matrix multiplication on a masked vector.
- *
- * \param y Points to the masked vector to multiply with the matrix.
- * \param x The matrix.
- */
-static void pyjamask_matrix_multiply_masked(mask_uint32_t *y, uint32_t x)
-{
-    pyjamask_matrix_multiply(x, y->a);
-    pyjamask_matrix_multiply(x, y->b);
-#if AEAD_MASKING_SHARES >= 3
-    pyjamask_matrix_multiply(x, y->c);
-#endif
-#if AEAD_MASKING_SHARES >= 4
-    pyjamask_matrix_multiply(x, y->d);
-#endif
-#if AEAD_MASKING_SHARES >= 5
-    pyjamask_matrix_multiply(x, y->e);
-#endif
-#if AEAD_MASKING_SHARES >= 6
-    pyjamask_matrix_multiply(x, y->f);
-#endif
-#if AEAD_MASKING_SHARES > 6
-    #error "Unknown number of shares"
-#endif
+/* Define masked multiply operations based on the number of shares */
+#if AEAD_MASKING_SHARES == 2
+#define pyjamask_matrix_multiply_masked_define(x) \
+static void pyjamask_matrix_multiply_masked_##x(mask_uint32_t *y) \
+{ \
+    pyjamask_matrix_multiply_##x(y->a); \
+    pyjamask_matrix_multiply_##x(y->b); \
 }
+#elif AEAD_MASKING_SHARES == 3
+#define pyjamask_matrix_multiply_masked_define(x) \
+static void pyjamask_matrix_multiply_masked_##x(mask_uint32_t *y) \
+{ \
+    pyjamask_matrix_multiply_##x(y->a); \
+    pyjamask_matrix_multiply_##x(y->b); \
+    pyjamask_matrix_multiply_##x(y->c); \
+}
+#elif AEAD_MASKING_SHARES == 4
+#define pyjamask_matrix_multiply_masked_define(x) \
+static void pyjamask_matrix_multiply_masked_##x(mask_uint32_t *y) \
+{ \
+    pyjamask_matrix_multiply_##x(y->a); \
+    pyjamask_matrix_multiply_##x(y->b); \
+    pyjamask_matrix_multiply_##x(y->c); \
+    pyjamask_matrix_multiply_##x(y->d); \
+}
+#elif AEAD_MASKING_SHARES == 5
+#define pyjamask_matrix_multiply_masked_define(x) \
+static void pyjamask_matrix_multiply_masked_##x(mask_uint32_t *y) \
+{ \
+    pyjamask_matrix_multiply_##x(y->a); \
+    pyjamask_matrix_multiply_##x(y->b); \
+    pyjamask_matrix_multiply_##x(y->c); \
+    pyjamask_matrix_multiply_##x(y->d); \
+    pyjamask_matrix_multiply_##x(y->e); \
+}
+#elif AEAD_MASKING_SHARES == 6
+#define pyjamask_matrix_multiply_masked_define(x) \
+static void pyjamask_matrix_multiply_masked_##x(mask_uint32_t *y) \
+{ \
+    pyjamask_matrix_multiply_##x(y->a); \
+    pyjamask_matrix_multiply_##x(y->b); \
+    pyjamask_matrix_multiply_##x(y->c); \
+    pyjamask_matrix_multiply_##x(y->d); \
+    pyjamask_matrix_multiply_##x(y->e); \
+    pyjamask_matrix_multiply_##x(y->f); \
+}
+#else
+#error "Unknown number of shares"
+#endif
+pyjamask_matrix_multiply_masked_define(b881b9ca)
+pyjamask_matrix_multiply_masked_define(a3861085)
+pyjamask_matrix_multiply_masked_define(63417021)
+pyjamask_matrix_multiply_masked_define(692cf280)
+pyjamask_matrix_multiply_masked_define(48a54813)
+pyjamask_matrix_multiply_masked_define(2037a121)
+pyjamask_matrix_multiply_masked_define(108ff2a0)
+pyjamask_matrix_multiply_masked_define(9054d8c0)
+pyjamask_matrix_multiply_masked_define(3354b117)
 
 void pyjamask_masked_128_setup_key
     (pyjamask_masked_128_key_schedule_t *ks, const unsigned char *key)
@@ -117,7 +280,7 @@ void pyjamask_masked_128_setup_key
          * and 18 bits.  But the reference code actually rotates the words
          * right.  And the test vectors in the specification match up with
          * right rotations, not left.  We match the reference code here */
-        pyjamask_matrix_multiply_masked(&k0, 0xb881b9caU);
+        pyjamask_matrix_multiply_masked_b881b9ca(&k0);
         mask_xor_const(k0, 0x00000080U ^ round);
         mask_ror(k1, k1, 8);
         mask_xor_const(k1, 0x00006a00U);
@@ -174,7 +337,7 @@ void pyjamask_masked_96_setup_key
          * and 18 bits.  But the reference code actually rotates the words
          * right.  And the test vectors in the specification match up with
          * right rotations, not left.  We match the reference code here */
-        pyjamask_matrix_multiply_masked(&k0, 0xb881b9caU);
+        pyjamask_matrix_multiply_masked_b881b9ca(&k0);
         mask_xor_const(k0, 0x00000080U ^ round);
         mask_ror(k1, k1, 8);
         mask_xor_const(k1, 0x00006a00U);
@@ -225,10 +388,10 @@ void pyjamask_masked_128_encrypt
         mask_swap(s2, s3);
 
         /* Mix the rows of the state */
-        pyjamask_matrix_multiply_masked(&s0, 0xa3861085U);
-        pyjamask_matrix_multiply_masked(&s1, 0x63417021U);
-        pyjamask_matrix_multiply_masked(&s2, 0x692cf280U);
-        pyjamask_matrix_multiply_masked(&s3, 0x48a54813U);
+        pyjamask_matrix_multiply_masked_a3861085(&s0);
+        pyjamask_matrix_multiply_masked_63417021(&s1);
+        pyjamask_matrix_multiply_masked_692cf280(&s2);
+        pyjamask_matrix_multiply_masked_48a54813(&s3);
     }
 
     /* Mix in the key one last time */
@@ -269,10 +432,10 @@ void pyjamask_masked_128_decrypt
     /* Perform all decryption rounds */
     for (round = 0; round < PYJAMASK_MASKED_ROUNDS; ++round, rk -= 4) {
         /* Inverse mix of the rows in the state */
-        pyjamask_matrix_multiply_masked(&s0, 0x2037a121U);
-        pyjamask_matrix_multiply_masked(&s1, 0x108ff2a0U);
-        pyjamask_matrix_multiply_masked(&s2, 0x9054d8c0U);
-        pyjamask_matrix_multiply_masked(&s3, 0x3354b117U);
+        pyjamask_matrix_multiply_masked_2037a121(&s0);
+        pyjamask_matrix_multiply_masked_108ff2a0(&s1);
+        pyjamask_matrix_multiply_masked_9054d8c0(&s2);
+        pyjamask_matrix_multiply_masked_3354b117(&s3);
 
         /* Apply the inverse of the 128-bit Pyjamask sbox */
         mask_swap(s2, s3);
@@ -332,9 +495,9 @@ void pyjamask_masked_96_encrypt
         mask_xor(s0, s1);
 
         /* Mix the rows of the state */
-        pyjamask_matrix_multiply_masked(&s0, 0xa3861085U);
-        pyjamask_matrix_multiply_masked(&s1, 0x63417021U);
-        pyjamask_matrix_multiply_masked(&s2, 0x692cf280U);
+        pyjamask_matrix_multiply_masked_a3861085(&s0);
+        pyjamask_matrix_multiply_masked_63417021(&s1);
+        pyjamask_matrix_multiply_masked_692cf280(&s2);
     }
 
     /* Mix in the key one last time */
@@ -371,9 +534,9 @@ void pyjamask_masked_96_decrypt
     /* Perform all encryption rounds */
     for (round = 0; round < PYJAMASK_MASKED_ROUNDS; ++round, rk -= 3) {
         /* Inverse mix of the rows in the state */
-        pyjamask_matrix_multiply_masked(&s0, 0x2037a121U);
-        pyjamask_matrix_multiply_masked(&s1, 0x108ff2a0U);
-        pyjamask_matrix_multiply_masked(&s2, 0x9054d8c0U);
+        pyjamask_matrix_multiply_masked_2037a121(&s0);
+        pyjamask_matrix_multiply_masked_108ff2a0(&s1);
+        pyjamask_matrix_multiply_masked_9054d8c0(&s2);
 
         /* Apply the inverse of the 96-bit Pyjamask sbox */
         mask_xor(s0, s1);

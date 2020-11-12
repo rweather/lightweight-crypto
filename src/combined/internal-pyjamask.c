@@ -34,17 +34,6 @@
 
 #if !PYJAMASK_128_ASM || !PYJAMASK_96_ASM
 
-/* Define this to 1 to reverse the order of parameters for the circulant
- * matrix multiplications.  Define to 0 for the original order.
- *
- * Reversing the parameters results in a signficiant speed improvement.
- * But it is unclear as to whether the resulting algorithm will have
- * the same resistance to power analysis as the original parameter order.
- */
-#define PYJAMASK_REVERSED_MATRIX 1
-
-#if PYJAMASK_REVERSED_MATRIX
-
 /* Macros for specific matrix values */
 #define pyjamask_matrix_multiply_b881b9ca(y) \
     do { \
@@ -202,57 +191,6 @@
         result ^= rightRotate31((y)); \
         (y) = result; \
     } while (0)
-
-#else /* !PYJAMASK_REVERSED_MATRIX */
-
-/* Single step in the binary matrix multiplication */
-#define STEP(y, bit) \
-    mask = rightRotate1(mask); \
-    result ^= mask & -(((y) >> (bit)) & 1)
-
-/**
- * \brief Performs a circulant binary matrix multiplication.
- *
- * \param x The matrix.
- * \param y The vector to multiply with the matrix.  Also the result.
- */
-#define pyjamask_matrix_multiply(x, y) \
-    do { \
-        uint32_t mask = (x); \
-        uint32_t result; \
-        result = mask & -(((y) >> 31) & 1); \
-        STEP((y), 30); STEP((y), 29); STEP((y), 28); STEP((y), 27); \
-        STEP((y), 26); STEP((y), 25); STEP((y), 24); STEP((y), 23); \
-        STEP((y), 22); STEP((y), 21); STEP((y), 20); STEP((y), 19); \
-        STEP((y), 18); STEP((y), 17); STEP((y), 16); STEP((y), 15); \
-        STEP((y), 14); STEP((y), 13); STEP((y), 12); STEP((y), 11); \
-        STEP((y), 10); STEP((y), 9); STEP((y), 8); STEP((y), 7); \
-        STEP((y), 6); STEP((y), 5); STEP((y), 4); STEP((y), 3); \
-        STEP((y), 2); STEP((y), 1); STEP((y), 0); \
-        (y) = result; \
-    } while (0)
-
-/* Macros for specific matrix values */
-#define pyjamask_matrix_multiply_b881b9ca(y) \
-    pyjamask_matrix_multiply(0xb881b9caU, (y))
-#define pyjamask_matrix_multiply_a3861085(y) \
-    pyjamask_matrix_multiply(0xa3861085U, (y))
-#define pyjamask_matrix_multiply_63417021(y) \
-    pyjamask_matrix_multiply(0x63417021U, (y))
-#define pyjamask_matrix_multiply_692cf280(y) \
-    pyjamask_matrix_multiply(0x692cf280U, (y))
-#define pyjamask_matrix_multiply_48a54813(y) \
-    pyjamask_matrix_multiply(0x48a54813U, (y))
-#define pyjamask_matrix_multiply_2037a121(y) \
-    pyjamask_matrix_multiply(0x2037a121U, (y))
-#define pyjamask_matrix_multiply_108ff2a0(y) \
-    pyjamask_matrix_multiply(0x108ff2a0U, (y))
-#define pyjamask_matrix_multiply_9054d8c0(y) \
-    pyjamask_matrix_multiply(0x9054d8c0U, (y))
-#define pyjamask_matrix_multiply_3354b117(y) \
-    pyjamask_matrix_multiply(0x3354b117U, (y))
-
-#endif /* !PYJAMASK_REVERSED_MATRIX */
 
 #endif
 
