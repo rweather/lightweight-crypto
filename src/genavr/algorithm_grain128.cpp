@@ -259,7 +259,7 @@ void gen_grain128_preoutput(Code &code)
     code.releaseReg(Reg(x0, 0, 1));
     x0 = Reg(x0, 1, 4);
     Reg x4 = code.allocateReg(5);
-    code.ldz(Reg(x4, 4, 1), 27);
+    code.ldz(Reg(x4, 4, 1), 24);
     code.ldz(Reg(x4, 0, 4), 28);
     code.lsr(x4, 1);
     code.releaseReg(Reg(x4, 4, 1));

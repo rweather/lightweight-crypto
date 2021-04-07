@@ -22,11 +22,22 @@
 
 #include "internal-grain128.h"
 
+/* Determine which primitives should be accelerated with assembly code */
+#if defined(__AVR__)
+#define GRAIN128_ASM_CORE 1
+#define GRAIN128_ASM_PREOUTPUT 1
+#define GRAIN128_ASM_HELPERS 1
+#else
+#define GRAIN128_ASM_CORE 0
+#define GRAIN128_ASM_PREOUTPUT 0
+#define GRAIN128_ASM_HELPERS 0
+#endif
+
 /* Extracts 32 bits from the Grain state that are not word-aligned */
 #define GWORD(a, b, start_bit) \
         (((a) << ((start_bit) % 32)) ^ ((b) >> (32 - ((start_bit) % 32))))
 
-#if !defined(__AVR__)
+#if !GRAIN128_ASM_CORE
 
 void grain128_core
     (grain128_state_t *state, uint32_t x, uint32_t x2)
@@ -101,19 +112,11 @@ void grain128_core
     state->nfsr[3] = x2;
 }
 
-#define grain128_preoutput grain128_preoutput_inner
-#define grain128_preoutput_setup(state) grain128_preoutput((state))
+#endif /* !GRAIN128_ASM_CORE */
 
-#else /* __AVR__ */
+#if !GRAIN128_ASM_PREOUTPUT
 
-/* For some reason, the AVR assembly preoutput doesn't work for key setup
- * but does work everywhere else.  Investigate and fix this later. */
-uint32_t grain128_preoutput(const grain128_state_t *state);
-#define grain128_preoutput_setup(state) grain128_preoutput_inner((state))
-
-#endif /* __AVR__ */
-
-uint32_t grain128_preoutput_inner(const grain128_state_t *state)
+uint32_t grain128_preoutput(const grain128_state_t *state)
 {
     uint32_t s0, s1, s2, s3;
     uint32_t b0, b1, b2, b3;
@@ -156,6 +159,8 @@ uint32_t grain128_preoutput_inner(const grain128_state_t *state)
     return y;
 }
 
+#endif /* !GRAIN128_ASM_PREOUTPUT */
+
 /* http://programming.sirrida.de/perm_fn.html#bit_permute_step */
 #define bit_permute_step(_y, mask, shift) \
     do { \
@@ -170,11 +175,7 @@ uint32_t grain128_preoutput_inner(const grain128_state_t *state)
         (_y) = (((_y) & (mask)) << (shift)) | (((_y) >> (shift)) & (mask)); \
     } while (0)
 
-#if defined(__AVR__)
-#define GRAIN128_ASM_HELPERS 1
-#endif
-
-#if defined(GRAIN128_ASM_HELPERS)
+#if GRAIN128_ASM_HELPERS
 
 /**
  * \brief Loads a 32-bit word and swaps it from big-endian bit order
@@ -212,7 +213,7 @@ void grain128_setup
      * P = [7 6 5 4 3 2 1 0 15 14 13 12 11 10 9 8
      *      23 22 21 20 19 18 17 16 31 30 29 28 27 26 25 24]
      */
-    #if defined(GRAIN128_ASM_HELPERS)
+    #if GRAIN128_ASM_HELPERS
     #define SWAP_BITS(out, in) \
         do { \
             (out) = grain128_swap_word32((in)); \
@@ -247,7 +248,7 @@ void grain128_setup
     /* Perform 256 rounds of Grain-128 to mix up the initial state.
      * The rounds can be performed 32 at a time: 32 * 8 = 256 */
     for (round = 0; round < 8; ++round) {
-        uint32_t y = grain128_preoutput_setup(state);
+        uint32_t y = grain128_preoutput(state);
         grain128_core(state, y, y);
     }
 
@@ -273,7 +274,7 @@ void grain128_setup
  */
 static void grain128_next_keystream(grain128_state_t *state)
 {
-#if !defined(GRAIN128_ASM_HELPERS)
+#if !GRAIN128_ASM_HELPERS
     unsigned posn;
     for (posn = 0; posn < sizeof(state->ks); posn += 4) {
         /* Get the next word of pre-output and run the Grain-128 core */

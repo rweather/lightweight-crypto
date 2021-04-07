@@ -728,7 +728,7 @@ grain128_preoutput:
 	rol r20
 	rol r21
 	rol r26
-	ldd r18,Z+27
+	ldd r18,Z+24
 	ldd r28,Z+28
 	ldd r29,Z+29
 	ldd r2,Z+30

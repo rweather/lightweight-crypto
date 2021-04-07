@@ -93,10 +93,10 @@ fairly similar.  Performance figures for 32-bit platforms can be found
 <tr><td>Romulus-M1</td><td>128</td><td>128</td><td>128</td><td>0.80</td><td>0.81</td><td>1.81</td><td>1.78</td><td>1.00</td></tr>
 <tr><td>Romulus-M2</td><td>128</td><td>96</td><td>128</td><td>0.75</td><td>0.76</td><td>1.81</td><td>1.78</td><td>0.94</td></tr>
 <tr><td><b><i>Oribatida-256-64</i></b></td><td>128</td><td>128</td><td>128</td><td>0.68</td><td>0.69</td><td>1.61</td><td>1.60</td><td>0.85</td></tr>
+<tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.64</td><td>0.62</td><td>1.81</td><td>1.74</td><td>0.81</td></tr>
 <tr><td>KNOT-AEAD-192-384</td><td>192</td><td>192</td><td>192</td><td>0.68</td><td>0.69</td><td>1.19</td><td>1.19</td><td>0.80</td></tr>
 <tr><td>DryGASCON256</td><td>256</td><td>128</td><td>256</td><td>0.62</td><td>0.63</td><td>1.18</td><td>1.17</td><td>0.75</td></tr>
 <tr><td><b><i>WAGE</i></b></td><td>128</td><td>128</td><td>128</td><td>0.65</td><td>0.65</td><td>0.92</td><td>0.91</td><td>0.72</td></tr>
-<tr><td><b><i>Grain-128AEAD</i></b><td>128</td><td>96</td><td>64</td></td><td>0.59</td><td>0.58</td><td>1.30</td><td>1.27</td><td>0.72</td></tr>
 <tr><td><b><i>PAEF-ForkSkinny-128-288</i></b></td><td>128</td><td>104</td><td>128</td><td>0.61</td><td>0.39</td><td>2.56</td><td>1.61</td><td>0.65</td></tr>
 <tr><td>PAEF-ForkSkinny-64-192</td><td>128</td><td>48</td><td>64</td><td>0.58</td><td>0.38</td><td>2.44</td><td>1.56</td><td>0.62</td></tr>
 <tr><td>KNOT-AEAD-256-512</td><td>256</td><td>256</td><td>256</td><td>0.42</td><td>0.44</td><td>0.63</td><td>0.63</td><td>0.48</td></tr>
@@ -155,8 +155,8 @@ AEAD algorithm rankings:
 <tr><td>13</td><td>KNOT, SKINNY-AEAD, SpoC</td></tr>
 <tr><td>11</td><td>Saturnin</td></tr>
 <tr><td>10</td><td>DryGASCON, LOTUS, SPIX</td></tr>
-<tr><td>8</td><td>Oribatida</td></tr>
-<tr><td>7</td><td>Grain-128AEAD, WAGE</td></tr>
+<tr><td>8</td><td>Oribatida, Grain-128AEAD</td></tr>
+<tr><td>7</td><td>WAGE</td></tr>
 <tr><td>6</td><td>ForkAE</td></tr>
 <tr><td>4</td><td>ACE, Elephant</td></tr>
 <tr><td>3</td><td>ISAP</td></tr>
