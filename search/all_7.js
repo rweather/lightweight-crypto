@@ -173,7 +173,7 @@ var searchData=
   ['grain128_5fencrypt',['grain128_encrypt',['../internal-grain128_8h.html#a5eea18f1ba3dea68807b402432d2c431',1,'internal-grain128.c']]],
   ['grain128_5fkey_5fsize',['GRAIN128_KEY_SIZE',['../grain128_8h.html#ab394b591a8017175ba26601a7a64445c',1,'grain128.h']]],
   ['grain128_5fnonce_5fsize',['GRAIN128_NONCE_SIZE',['../grain128_8h.html#a3e6bb766668175bac5e638672e237df8',1,'grain128.h']]],
-  ['grain128_5fpreoutput',['grain128_preoutput',['../internal-grain128_8h.html#a049382592272d9a27bf3c1f3c68007c2',1,'internal-grain128.h']]],
+  ['grain128_5fpreoutput',['grain128_preoutput',['../internal-grain128_8h.html#a049382592272d9a27bf3c1f3c68007c2',1,'internal-grain128.c']]],
   ['grain128_5fsetup',['grain128_setup',['../internal-grain128_8h.html#ab8badf7d15868acb24c26bd3f78cd125',1,'internal-grain128.c']]],
   ['grain128_5fstate_5ft',['grain128_state_t',['../structgrain128__state__t.html',1,'']]],
   ['grain128_5ftag_5fsize',['GRAIN128_TAG_SIZE',['../grain128_8h.html#aa27d8a6d607c7098ec52e6c6227e42ba',1,'grain128.h']]]
