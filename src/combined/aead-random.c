@@ -45,19 +45,18 @@
 
 /* Determine if we have a CPU random number generator that can generate
  * raw 32-bit values.  Modify this to add support for new CPU's */
-#if defined(__x86_64) || defined(__x86_64__)
+#if (defined(__x86_64) || defined(__x86_64__)) && defined(__RDRND__)
 /* Assume that we have the RDRAND instruction on x86-64 platforms */
+#include <immintrin.h> /* For _rdrand64_step() */
 #define aead_system_random_init() do { ; } while (0)
-#define aead_system_random(var) \
+#define aead_system_random(var, ready) \
     do { \
-        uint64_t temp = 0; \
-        uint8_t ok = 0; \
+        unsigned long long temp = 0; \
+        int count = 20; \
         do { \
-            __asm__ __volatile__ ( \
-                ".byte 0x48,0x0f,0xc7,0xf0 ; setc %1" \
-                : "=a"(temp), "=q"(ok) :: "cc" \
-            ); \
-        } while (!ok); \
+            if (_rdrand64_step(&temp)) \
+                break; \
+        } while ((--count) > 0); \
         (var) = temp; \
     } while (0)
 #define aead_system_random_is_64bit 1
